@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "features": "Fitur",
+    "pricing": "Harga",
+    "about": "Tentang",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "title": "Bangun SaaS Anda",
+    "subtitle": "Lebih Cepat dari Sebelumnya",
+    "description": "Boilerplate Next.js siap produksi dengan internasionalisasi, autentikasi, dan desain indah langsung pakai.",
+    "cta": "Mulai Sekarang",
+    "secondary": "Lihat Demo"
+  },
+  "about": {
+    "meta": {
+      "title": "Tentang Kami",
+      "description": "Pelajari lebih lanjut tentang perusahaan dan misi kami"
+    },
+    "title": "Tentang Kami",
+    "intro": "Kami membangun masa depan teknologi keuangan, membuat manajemen kredit dapat diakses dan transparan untuk semua orang.",
+    "mission": {
+      "title": "Misi Kami",
+      "description": "Mendemokratisasikan layanan keuangan dengan menyediakan alat intuitif yang membantu bisnis dan individu mengelola kredit mereka secara efisien."
+    },
+    "vision": {
+      "title": "Visi Kami",
+      "description": "Dunia di mana literasi keuangan dan manajemen kredit dapat diakses oleh semua, didukung oleh teknologi dan transparansi."
+    },
+    "values": {
+      "title": "Nilai-Nilai Kami",
+      "items": [
+        "Transparansi dalam segala hal yang kami lakukan",
+        "Pendekatan pelanggan-dahulu dalam pemecahan masalah",
+        "Inovasi dan peningkatan terus-menerus",
+        "Keamanan dan privasi sebagai prinsip dasar"
+      ]
+    }
+  },
+  "features": {
+    "title": "Semua yang Anda Butuhkan",
+    "subtitle": "Fitur bawaan untuk mempercepat pengembangan Anda",
+    "i18n": {
+      "title": "Internasionalisasi",
+      "description": "Dukungan multi-bahasa dengan next-intl, dioptimalkan SEO untuk jangkauan global."
+    },
+    "design": {
+      "title": "Desain yang Halus",
+      "description": "Antarmuka terinspirasi editorial dengan tipografi canggih dan detail yang bijaksana."
+    },
+    "performance": {
+      "title": "Performa yang Dioptimalkan",
+      "description": "Dibangun di Next.js 14 App Router dengan komponen server dan streaming."
+    },
+    "typescript": {
+      "title": "TypeScript Prioritas",
+      "description": "Basis kode yang sepenuhnya diketik untuk pengalaman pengembang yang lebih baik dan bug lebih sedikit."
+    }
+  },
+  "metadata": {
+    "general": {
+      "title": "SaaS Boilerplate - Bangun Lebih Cepat",
+      "description": "Boilerplate Next.js siap produksi dengan internasionalisasi dan desain indah"
+    },
+    "fintech": {
+      "title": "Boilerplate FinTech SaaS - Luncurkan Produk Keuangan Anda",
+      "description": "Boilerplate Next.js kelas enterprise yang disesuaikan untuk aplikasi teknologi keuangan"
+    }
+  }
+}

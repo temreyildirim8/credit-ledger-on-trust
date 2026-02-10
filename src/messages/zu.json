@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "features": "Izici",
+    "pricing": "Amanani",
+    "about": "Nge",
+    "contact": "Thinta"
+  },
+  "hero": {
+    "title": "Yakha I-SaaS Yakho",
+    "subtitle": "Ngokushesha Okunye",
+    "description": "Isandla sika-Nextji esisebenzayo kunokuqala ngokuseshwa, ukuhlanganiswa, kanye nesakhiwo esihle.",
+    "cta": "Qala Manje",
+    "secondary": "Buka Udemo"
+  },
+  "about": {
+    "meta": {
+      "title": "Nge Thina",
+      "description": "Funda kwabuye ukwazi ngochwepheshe bakhe namisiya ethu"
+    },
+    "title": "Nge Thina",
+    "intro": "Sakha usuku lwobuchwepheshe bemali, ukuze ukuphathwa kwekhredithi kube lula futhi kuvulelekile kuwonke.",
+    "mission": {
+      "title": "Umisiya Wethu",
+      "description": "Ukuze kuqondiswe ukuphathwa kwezimali ngokunikeza izinsiza ezilula ezisiza amabhizinisi nabantu ukuziphatha kahle ikhredithi yabo."
+    },
+    "vision": {
+      "title": "Ubuwembu Bethu",
+      "description": "Umhlaba apho ukuwazi ukubala nokuphatha ikhredithi kuwuvulelekile wonke, osizwa ubuchwepheshe namazwi."
+    },
+    "values": {
+      "title": "Izikhungo Zethu",
+      "items": [
+        "Ukuqondisisa okuqukethwe konke esikwenzenza",
+        "Indlela yokugcina abathengi kuqala ekulungiseneni izinkinga",
+        "Ukuthuthuka nokuphucwa okuqhubeka",
+        "Ukuvikeleka nokufihla njengezinkolelo zokuqala"
+      ]
+    }
+  },
+  "features": {
+    "title": "Konke Okudingekayo",
+    "subtitle": "Izici ezihlanganisiwe ukuze uphucule ukuthuthuka kwakho",
+    "i18n": {
+      "title": "Ukuhlanganiswa Kwamazwe",
+      "description": "Ukuxhasanisa ngolwimi nge-next-intl, ukuhlanganiswa okuhle i-SEO ukuze ufinyelele emhlabeni jikelele."
+    },
+    "design": {
+      "title": "Isakhiwo Esihle",
+      "description": "Umxholo wekhompuyutha oqondiswe ngamaphephandlu esemzimwenini netekhnoloji ephumelelayo."
+    },
+    "performance": {
+      "title": "UkuSebenza Okulungisiwe",
+      "description": "Sakhiwe inguqulo ye-Nextji 14 App Router ngezingxenye zeseva nokuqhuba okuqhakazela."
+    },
+    "typescript": {
+      "title": "I-Thayipaskript Kuqala",
+      "description": "Ikhowudi eliphelele elichazwe ukuze kube nomuzamo omsulwa omphelele kumprogrammer kanye nephutha ezimbalwa."
+    }
+  },
+  "metadata": {
+    "general": {
+      "title": "I-SaaS Boilerplate - Yakha Ngokushesha",
+      "description": "Isandla sika-Nextji esisebenzayo kunokuqala ngokuseshwa nokuhlanganiswa kwamazwe kanye nesakhiwo esihle"
+    },
+    "fintech": {
+      "title": "I-FinTech SaaS Boilerplate - Qalisisa Umkhiqizo Wakho Wemali",
+      "description": "Isandla sika-Nextji esisebenzayo kunokuqala ngokuseshwa esihlanganisiwe ukusetshenziswa kwezinhlelo zobuchwepheshe bemali"
+    }
+  }
+}

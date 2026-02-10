@@ -1,0 +1,450 @@
+{
+  "common": {
+    "back": "Geri",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "add": "Ekle",
+    "search": "Ara",
+    "loading": "Yükleniyor...",
+    "noResults": "Sonuç bulunamadı",
+    "required": "Zorunlu",
+    "optional": "İsteğe Bağlı",
+    "submit": "Gönder",
+    "close": "Kapat",
+    "confirm": "Onayla",
+    "success": "Başarılı",
+    "error": "Hata",
+    "tryAgain": "Tekrar Dene",
+    "or": "veya",
+    "and": "ve",
+    "of": "nın",
+    "in": "içinde",
+    "to": "e",
+    "from": "den",
+    "at": "de",
+    "on": "üzerinde",
+    "off": "Kapalı",
+    "yes": "Evet",
+    "no": "Hayır"
+  },
+  "nav": {
+    "dashboard": "Kontrol Paneli",
+    "customers": "Müşteriler",
+    "transactions": "İşlemler",
+    "quickAdd": "Hızlı Ekle",
+    "settings": "Ayarlar",
+    "login": "Giriş Yap",
+    "signup": "Kayıt Ol",
+    "logout": "Çıkış Yap",
+    "features": "Özellikler",
+    "pricing": "Fiyatlandırma",
+    "about": "Hakkında",
+    "contact": "İletişim"
+  },
+  "home": {
+    "meta": {
+      "title": "Global Ledger - Küçük İşletmeler İçin Dijital Veresiye Defteri",
+      "description": "Kağıt defterinizi küçük işletmeler için akıllı, güvenli ve her zaman erişilebilir bir veresiye defteri uygulamasıyla değiştirin."
+    },
+    "hero": {
+      "title": "Para Burada, Orada ve Her Yerde İçin",
+      "subtitle": "Küçük işletmeler için akıllı veresiye defteri",
+      "description": "Kağıt defterinizi çevrimdışı çalışan, otomatik olarak senkronize olan ve işinizi büyütmenize yardımcı olan bir dijital çözümle değiştirin.",
+      "cta": "Bugün Ücretsiz Başlayın",
+      "secondary": "Nasıl Çalıştığını Gör"
+    },
+    "trust": {
+      "bankGradeSecurity": "Banka Düzeyinde Güvenlik",
+      "worksOffline": "%100 Çevrimdışı Çalışır",
+      "autoBackup": "Otomatik Bulut Yedekleme"
+    },
+    "stats": {
+      "users": "300.000+",
+      "usersLabel": "Aktif Kullanıcı",
+      "security": "Banka Düzeyinde",
+      "securityLabel": "Güvenlik",
+      "uptime": "%99.9",
+      "uptimeLabel": "Hızlılık"
+    }
+  },
+  "features": {
+    "meta": {
+      "title": "Özellikler - Global Ledger",
+      "description": "Global Ledger veresiye defteri uygulamasının tüm güçlü özelliklerini keşfedin"
+    },
+    "title": "Veresiye Yönetimi İçin İhtiyacınız Olan Her Şey",
+    "subtitle": "Küçük işletmeler için yapıldı, dünya çapında dükkan sahipleri tarafından güveniliyor",
+    "localLanguage": {
+      "title": "Yerel Dil Desteği",
+      "description": "Türkçe, Hintçe, İspanyolca ve daha fazla dil dahil 7 dilde çalışır."
+    },
+    "multiCurrency": {
+      "title": "Çok Para Birimi Koruması",
+      "description": "Otomatik döviz kuru güncellemeleriyle tüm büyük para birimlerini destekler."
+    },
+    "offlineMode": {
+      "title": "%100 Çevrimdışı Çalışır",
+      "description": "İnternet olmadan işlem kaydedin. Tekrar çevrimiçi olduğunuzda otomatik olarak senkronize olur."
+    },
+    "cloudBackup": {
+      "title": "Otomatik Bulut Yedeklemeleri",
+      "description": "Verileriniz güvenle buluta yedeklenir. Asla veresiye kayıtlarınızı kaybetmeyin."
+    },
+    "smsReminders": {
+      "title": "SMS Hatırlatıcıları",
+      "description": "Müşterilere otomatik olarak ödeme hatırlatıcıları gönderin."
+    },
+    "reports": {
+      "title": "Detaylı Raporlar",
+      "description": "Kapsamlı raporlar ve analizlerle işiniz hakkında bilgi edinin."
+    }
+  },
+  "pricing": {
+    "meta": {
+      "title": "Fiyatlandırma - Global Ledger",
+      "description": "Her işletme büyüklüğü için uygun fiyatlandırma. Ücretsiz başlayın, büyüdükçe yükseltin."
+    },
+    "title": "Basit, Şeffaf Fiyatlandırma",
+    "subtitle": "Ücretsiz başlayın, büyüdükçe yükseltin",
+    "free": {
+      "name": "Her Zaman Ücretsiz",
+      "price": "₺0",
+      "period": "sonsuza kadar",
+      "description": "Başlamak için mükemmel",
+      "features": [
+        "50'ye kadar müşteri",
+        "Sınırsız işlem",
+        "Çevrimdışı mod",
+        "Temel raporlar",
+        "E-posta desteği"
+      ],
+      "cta": "Ücretsiz Başla"
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "₺149",
+      "period": "ay",
+      "description": "Büyüyen işletmeler için",
+      "features": [
+        "Sınırsız müşteri",
+        "Sınırsız işlem",
+        "Çevrimdışı mod",
+        "Gelişmiş raporlar",
+        "SMS hatırlatıcıları",
+        "Öncelikli destek",
+        "Veri dışa aktarma (CSV, PDF)"
+      ],
+      "cta": "Pro Denemesini Başlat"
+    },
+    "enterprise": {
+      "name": "Kurumsal",
+      "price": "Özel",
+      "period": "iletişime geçin",
+      "description": "Büyük işletmeler için",
+      "features": [
+        "Pro'daki her şey",
+        "Çoklu kullanıcı erişimi",
+        "API erişimi",
+        "Özel entegrasyonlar",
+        "Özel destek",
+        "Beyaz etiket seçeneği"
+      ],
+      "cta": "Satışla İletişime Geçin"
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "Hakkımızda - Global Ledger",
+      "description": "Küçük işletmeler için veresiye yönetimini demokratikleştirme misyonumuzu öğrenin"
+    },
+    "title": "Global Ledger Hakkında",
+    "subtitle": "Dünya çapındaki küçük işletmeleri güçlendirme",
+    "intro": "Finansal teknolojinin geleceğini inşa ediyoruz, herkes için veresiye yönetimini erişilebilir ve şeffaf hale getiriyoruz.",
+    "mission": {
+      "title": "Misyonumuz",
+      "description": "İşletmelerin ve bireylerin veresilerini verimli bir şekilde yönetmelerine yardımcı olan sezgisel araçlar sağlayarak finansal hizmetleri demokratikleştirmek."
+    },
+    "vision": {
+      "title": "Vizyonumuz",
+      "description": "Finansal okuryazarlık ve veresiye yönetiminin herkes için erişilebilir olduğu, teknoloji ve şeffaflıkla desteklenen bir dünya."
+    },
+    "values": {
+      "title": "Değerlerimiz",
+      "items": [
+        "Yaptığımız her şeyde şeffaflık",
+        "Problem çözmede müşteri öncelikli yaklaşım",
+        "Sürekli yenilik ve iyileştirme",
+        "Güvenlik ve gizlilik temel ilkeler olarak"
+      ]
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "İletişim - Global Ledger",
+      "description": "Destek, sorular veya geri bildirim için ekibimizle iletişime geçin"
+    },
+    "title": "İletişime Geçin",
+    "subtitle": "Sizinle tanışmak isteriz",
+    "form": {
+      "name": "Adınız",
+      "email": "E-posta Adresi",
+      "subject": "Konu",
+      "message": "Mesaj",
+      "submit": "Mesaj Gönder"
+    },
+    "info": {
+      "email": "Bize e-posta gönderin",
+      "emailAddress": "destek@globalledger.app",
+      "responseTime": "Genellikle 24 saat içinde yanıt veriyoruz"
+    },
+    "success": "Mesaj başarıyla gönderildi!",
+    "error": "Mesaj gönderilemedi. Lütfen tekrar deneyin."
+  },
+  "dashboard": {
+    "title": "Kontrol Paneli",
+    "greeting": {
+      "morning": "Günaydın",
+      "afternoon": "Tünaydın",
+      "evening": "İyi akşamlar"
+    },
+    "stats": {
+      "totalOwed": "Toplam Alacak",
+      "collected": "Toplanan",
+      "thisMonth": "Bu Ay",
+      "activeCustomers": "Aktif Müşteriler"
+    },
+    "quickActions": {
+      "title": "Hızlı İşlemler",
+      "addDebt": "Borç Ekle",
+      "addPayment": "Ödeme Ekle",
+      "addCustomer": "Müşteri Ekle",
+      "sendReminders": "Hepsine Hatırlat"
+    },
+    "recentActivity": {
+      "title": "Son Aktivite",
+      "empty": "Son aktivite yok"
+    },
+    "overdueDebts": {
+      "title": "Gecikmiş Borçlar",
+      "empty": "Gecikmiş ödeme yok",
+      "remind": "Hatırlat"
+    }
+  },
+  "customers": {
+    "title": "Müşteriler",
+    "addCustomer": "Müşteri Ekle",
+    "searchPlaceholder": "Müşteri ara...",
+    "filter": {
+      "all": "Tümü",
+      "hasDebt": "Borcu Olanlar",
+      "paidUp": "Ödeyenler"
+    },
+    "empty": {
+      "noCustomers": "Henüz müşteri yok",
+      "noSearchResults": "Müşteri bulunamadı",
+      "addFirst": "İlk müşterinizi ekleyin"
+    },
+    "count": "{count} müşteri",
+    "form": {
+      "title": "Yeni Müşteri Ekle",
+      "name": "Tam Ad",
+      "namePlaceholder": "Müşteri adını girin",
+      "phone": "Telefon Numarası",
+      "phonePlaceholder": "+90 555 123 4567",
+      "address": "Adres",
+      "addressPlaceholder": "Adres girin (isteğe bağlı)",
+      "submit": "Müşteri Ekle"
+    },
+    "details": {
+      "totalDebt": "Toplam Borç",
+      "balance": "Bakiye",
+      "contact": "İletişim",
+      "transactionHistory": "İşlem Geçmişi",
+      "noTransactions": "Henüz işlem yok",
+      "debt": "Borç",
+      "payment": "Ödeme"
+    },
+    "success": "Müşteri başarıyla eklendi",
+    "error": "Müşteri eklenemedi"
+  },
+  "transactions": {
+    "title": "İşlemler",
+    "addNew": "Yeni Ekle",
+    "filter": {
+      "all": "Tümü",
+      "debts": "Borçlar",
+      "payments": "Ödemeler"
+    },
+    "empty": {
+      "noTransactions": "Henüz işlem yok",
+      "noFilterResults": "{filter} bulunamadı"
+    },
+    "count": "{count} işlem",
+    "form": {
+      "title": "Yeni İşlem",
+      "description": "Borç veya ödeme işlemi ekleyin",
+      "type": "Tür",
+      "debt": "Borç",
+      "payment": "Ödeme",
+      "customer": "Müşteri",
+      "customerPlaceholder": "Bir müşteri seçin",
+      "amount": "Tutar",
+      "amountPlaceholder": "0.00",
+      "note": "Not",
+      "notePlaceholder": "Açıklama (isteğe bağlı)",
+      "submit": "Kaydet"
+    },
+    "success": "İşlem eklendi!",
+    "error": "İşlem eklenemedi",
+    "validation": {
+      "customerRequired": "Müşteri gereklidir",
+      "amountRequired": "Tutar gereklidir",
+      "invalidAmount": "Lütfen geçerli bir tutar girin"
+    }
+  },
+  "quickAdd": {
+    "title": "Hızlı Ekle",
+    "newTransaction": "Yeni İşlem",
+    "type": {
+      "debt": "Borç",
+      "payment": "Ödeme"
+    },
+    "customer": "Müşteri",
+    "customerPlaceholder": "Bir müşteri seçin",
+    "amount": "Tutar",
+    "note": "Not",
+    "notePlaceholder": "Açıklama (isteğe bağlı)",
+    "quickAmounts": "Hızlı Tutarlar",
+    "submit": {
+      "debt": "Borç Ekle",
+      "payment": "Ödeme Ekle"
+    },
+    "success": "İşlem eklendi!",
+    "error": "İşlem eklenemedi"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "subtitle": "Hesabınızı ve tercihlerinizi yönetin",
+    "betaFounder": "Beta Kurucusu",
+    "betaDescription": "Erken benimseyen avantajları - Sonsuza kadar %50 indirim!",
+    "sections": {
+      "profile": {
+        "title": "Profil",
+        "description": "Kişisel bilgilerinizi yönetin",
+        "fullName": "Tam Ad",
+        "email": "E-posta",
+        "phone": "Telefon",
+        "saveChanges": "Değişiklikleri Kaydet",
+        "saved": "Profil başarıyla kaydedildi"
+      },
+      "business": {
+        "title": "İşletme",
+        "description": "İşletme adı, para birimi, dil",
+        "businessName": "İşletme Adı",
+        "businessNamePlaceholder": "Dükkanım",
+        "currency": "Para Birimi",
+        "language": "Dil",
+        "timezone": "Saat Dilimi",
+        "saveChanges": "Değişiklikleri Kaydet",
+        "saved": "İşletme ayarları kaydedildi"
+      },
+      "notifications": {
+        "title": "Bildirimler",
+        "description": "Push bildirimleri ve hatırlatıcılar",
+        "pushEnabled": "Push Bildirimleri",
+        "pushDescription": "Cihazınızda uyarılar alın",
+        "remindersEnabled": "Ödeme Hatırlatıcıları",
+        "remindersDescription": "Müşterilere borçlarını hatırlatın",
+        "weeklyReport": "Haftalık Rapor",
+        "weeklyReportDescription": "Haftalık aktivite özeti"
+      },
+      "subscription": {
+        "title": "Abonelik",
+        "description": "Plan ve faturalandırma",
+        "currentPlan": "Mevcut Plan",
+        "planName": "Beta Kurucusu",
+        "features": {
+          "customers": "50'ye kadar müşteri",
+          "transactions": "Sınırsız işlem",
+          "offline": "Çevrimdışı mod",
+          "export": "Veri dışa aktarma"
+        },
+        "viewPricing": "Fiyatlandırmayı Görüntüle",
+        "manageBilling": "Faturalandırmayı Yönet"
+      },
+      "data": {
+        "title": "Veri ve Yedekleme",
+        "description": "Verilerinizi dışa aktarın ve yedekleyin",
+        "export": "Verilerinizi Dışa Aktarın",
+        "exportDescription": "Tüm müşterilerinizi ve işlemlerinizi indirin",
+        "exportCSV": "CSV Dışa Aktar",
+        "exportPDF": "PDF Dışa Aktar",
+        "backup": "Yedekleme",
+        "backupDescription": "Verileriniz otomatik olarak buluta yedeklenir",
+        "lastBackup": "Son yedekleme: Şimdi"
+      },
+      "support": {
+        "title": "Destek",
+        "description": "Yardım, iletişim ve geri bildirim",
+        "helpCenter": "Yardım Merkezi",
+        "contactSupport": "Destekle İletişime Geç",
+        "callSupport": "Destek Ara",
+        "rateUs": "Mağazada Bizi Değerlendirin"
+      },
+      "account": {
+        "title": "Hesap",
+        "description": "Gizlilik, koşullar ve çıkış",
+        "privacyPolicy": "Gizlilik Politikası",
+        "termsOfService": "Kullanım Koşulları",
+        "licenses": "Lisanslar",
+        "signOut": "Çıkış Yap",
+        "signOutConfirm": "Çıkış yapmak istediğinizden emin misiniz? Her zaman e-posta ile tekrar giriş yapabilirsiniz.",
+        "signOutTitle": "Çıkış Yap"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Tekrar Hoş Geldiniz",
+      "subtitle": "Hesabınıza giriş yapın",
+      "email": "E-posta",
+      "emailPlaceholder": "eposta@adres.com",
+      "password": "Şifre",
+      "passwordPlaceholder": "Şifrenizi girin",
+      "rememberMe": "Beni hatırla",
+      "forgotPassword": "Şifremi unuttum?",
+      "submit": "Giriş Yap",
+      "noAccount": "Hesabınız yok mu?",
+      "signUp": "Kayıt ol",
+      "success": "Başarıyla giriş yapıldı",
+      "error": "Geçersiz e-posta veya şifre"
+    },
+    "signup": {
+      "title": "Hesap Oluştur",
+      "subtitle": "Bugün ücretsiz denemenizi başlatın",
+      "name": "Tam Ad",
+      "namePlaceholder": "Tam adınızı girin",
+      "email": "E-posta",
+      "emailPlaceholder": "eposta@adres.com",
+      "password": "Şifre",
+      "passwordPlaceholder": "Bir şifre oluşturun",
+      "agree": "Kabul ediyorum",
+      "terms": "Kullanım Koşullarını",
+      "and": "ve",
+      "privacy": "Gizlilik Politikasını",
+      "submit": "Hesap Oluştur",
+      "hasAccount": "Zaten hesabınız var mı?",
+      "signIn": "Giriş yapın",
+      "success": "Hesap başarıyla oluşturuldu",
+      "error": "Hesap oluşturulamadı"
+    }
+  },
+  "metadata": {
+    "general": {
+      "title": "Global Ledger - Küçük İşletmeler İçin Dijital Veresiye Defteri",
+      "description": "Kağıt defterinizi akıllı, güvenli ve her zaman erişilebilir bir veresiye defteri uygulamasıyla değiştirin."
+    }
+  }
+}

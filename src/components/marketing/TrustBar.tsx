@@ -1,0 +1,58 @@
+import { Shield, Users, Clock } from "lucide-react";
+
+/**
+ * Trust bar - Social proof and reliability indicators
+ */
+export function TrustBar() {
+  const stats = [
+    {
+      icon: Users,
+      value: "300,000+",
+      label: "Active Users",
+    },
+    {
+      icon: Shield,
+      value: "Bank-Grade",
+      label: "Security",
+    },
+    {
+      icon: Clock,
+      value: "99.9%",
+      label: "Uptime",
+    },
+  ];
+
+  return (
+    <section className="py-16 bg-[var(--color-bg)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <p className="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-wide mb-2">
+            Trusted by businesses small and large
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-[var(--color-text)]">
+            Join thousands of shop owners worldwide
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-3 gap-8 max-w-4xl mx-auto">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <div key={index} className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-md mb-4">
+                  <Icon className="h-7 w-7 text-[var(--color-accent)]" />
+                </div>
+                <p className="text-2xl sm:text-3xl font-bold text-[var(--color-text)] mb-1">
+                  {stat.value}
+                </p>
+                <p className="text-sm text-[var(--color-text-secondary)]">
+                  {stat.label}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

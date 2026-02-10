@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "features": "Características",
+    "pricing": "Precios",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Construye Tu SaaS",
+    "subtitle": "Más Rápido Que Nunca",
+    "description": "Una plantilla Next.js lista para producción con internacionalización, autenticación y hermoso diseño incluido.",
+    "cta": "Comenzar",
+    "secondary": "Ver Demo"
+  },
+  "about": {
+    "meta": {
+      "title": "Acerca de Nosotros",
+      "description": "Conozca más sobre nuestra empresa y misión"
+    },
+    "title": "Acerca de Nosotros",
+    "intro": "Estamos construyendo el futuro de la tecnología financiera, haciendo que la gestión del crédito sea accesible y transparente para todos.",
+    "mission": {
+      "title": "Nuestra Misión",
+      "description": "Democratizar los servicios financieros proporcionando herramientas intuitivas que ayudan a empresas e individuos a gestionar su crédito eficientemente."
+    },
+    "vision": {
+      "title": "Nuestra Visión",
+      "description": "Un mundo donde la alfabetización financiera y la gestión del crédito sean accesibles para todos, impulsados por la tecnología y la transparencia."
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "items": [
+        "Transparencia en todo lo que hacemos",
+        "Enfoque centrado en el cliente para resolver problemas",
+        "Innovación y mejora continua",
+        "Seguridad y privacidad como principios fundamentales"
+      ]
+    }
+  },
+  "features": {
+    "title": "Todo Lo Que Necesitas",
+    "subtitle": "Funciones integradas para acelerar tu desarrollo",
+    "i18n": {
+      "title": "Internacionalización",
+      "description": "Soporte multiidioma con next-intl, optimizado para SEO y alcance global."
+    },
+    "design": {
+      "title": "Diseño Refinado",
+      "description": "Interfaz de inspiración editorial con tipografía sofisticada y detalles cuidados."
+    },
+    "performance": {
+      "title": "Rendimiento Optimizado",
+      "description": "Construido sobre Next.js 14 App Router con componentes de servidor y streaming."
+    },
+    "typescript": {
+      "title": "TypeScript Primero",
+      "description": "Base de código completamente tipada para mejor experiencia de desarrollo y menos errores."
+    }
+  },
+  "metadata": {
+    "general": {
+      "title": "Plantilla SaaS - Construye Más Rápido",
+      "description": "Plantilla Next.js lista para producción con internacionalización y hermoso diseño"
+    },
+    "fintech": {
+      "title": "Plantilla SaaS FinTech - Lanza Tu Producto Financiero",
+      "description": "Plantilla Next.js de nivel empresarial adaptada para aplicaciones de tecnología financiera"
+    },
+    "ecommerce": {
+      "title": "Plataforma SaaS E-Commerce - Escala Tu Negocio Online",
+      "description": "Plantilla Next.js completa para construir soluciones de comercio electrónico modernas"
+    },
+    "healthcare": {
+      "title": "Solución SaaS de Salud - Plataforma Compatible con HIPAA",
+      "description": "Plantilla Next.js segura diseñada para aplicaciones médicas y de atención médica"
+    }
+  }
+}
