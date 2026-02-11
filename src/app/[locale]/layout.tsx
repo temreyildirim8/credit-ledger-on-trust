@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing, type Locale } from "@/routing";
 import { notFound } from "next/navigation";
-import { AuthProvider } from "@/lib/hooks/useAuth";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import { PWAProvider } from "@/components/pwa/PWAProvider";
+import { PWAInstallProvider } from "@/components/pwa/PWAInstallProvider";
+import { AuthProviderWrapper } from "@/components/auth/AuthProviderWrapper";
 import "../globals.css";
 
 // Global Ledger font pairing - Plus Jakarta Sans for display, Inter for body/numbers
@@ -105,7 +106,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
     },
     manifest: "/manifest.json",
-    themeColor: "#2D8E4A",
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
@@ -120,6 +120,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export function generateViewport(): Viewport {
+  return {
+    themeColor: "#2D8E4A",
+  };
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
@@ -137,17 +143,25 @@ export default async function LocaleLayout({ children, params }: Props) {
   const isRTL = locale === "ar";
 
   return (
-    <html lang={locale} dir={isRTL ? "rtl" : "ltr"} suppressHydrationWarning>
+    <html
+      lang={locale}
+      dir={isRTL ? "rtl" : "ltr"}
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+    >
       <body
         className={`${plusJakarta.variable} ${inter.variable} antialiased`}
+        suppressHydrationWarning
       >
-        <AuthProvider>
-          <NextIntlClientProvider messages={messages}>
-            <PWAProvider />
-            {children}
-          </NextIntlClientProvider>
+        <ThemeProvider defaultTheme="dark" storageKey="credit-ledger-theme">
+          <PWAInstallProvider>
+            <NextIntlClientProvider messages={messages}>
+              {/* Auth context must be provided via AuthProviderWrapper */}
+              <AuthProviderWrapper>{children}</AuthProviderWrapper>
+            </NextIntlClientProvider>
+          </PWAInstallProvider>
           <Toaster />
-        </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

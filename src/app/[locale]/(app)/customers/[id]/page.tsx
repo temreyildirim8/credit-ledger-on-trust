@@ -7,7 +7,7 @@ import { customersService, Customer } from '@/lib/services/customers.service';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Phone, Loader2 } from 'lucide-react';
+import { ArrowLeft, Phone, Loader2, Mail, MapPin, Edit } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatDistanceToNow } from 'date-fns';
 import { tr, enUS, es } from 'date-fns/locale';
@@ -54,16 +54,16 @@ export default function CustomerDetailsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-[var(--color-accent)]" />
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-accent" />
       </div>
     );
   }
 
   if (!customer) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Customer not found</p>
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <p className="text-text-secondary">Customer not found</p>
       </div>
     );
   }
@@ -71,113 +71,157 @@ export default function CustomerDetailsPage() {
   const hasDebt = customer.balance > 0;
 
   return (
-    <>
+    <div className="space-y-4">
       {/* Header */}
-      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] p-6 text-white -mx-4 md:-mx-6">
+      <div className="bg-gradient-to-br from-accent to-accent-hover rounded-2xl p-6 text-white shadow-md">
         <Button
           variant="ghost"
           size="sm"
           onClick={() => router.back()}
-          className="mb-4 text-white hover:bg-white/20"
+          className="mb-2 text-white/80 hover:text-white hover:bg-white/10"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back
         </Button>
         <h1 className="text-2xl font-bold font-display">{customer.name}</h1>
+        <p className="text-white/90 text-sm mt-1">
+          {hasDebt ? 'Owes you money' : 'All settled up'}
+        </p>
       </div>
 
-      <div className="-mx-4 md:-mx-6 space-y-4 -mt-4 px-4 md:px-6">
-        {/* Balance Card */}
-        <Card className={hasDebt ? 'border-red-200 bg-red-50' : 'border-green-200 bg-green-50'}>
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <p className="text-sm text-gray-600 mb-1">
-                {hasDebt ? 'Total Debt' : 'Balance'}
-              </p>
-              <p className={`text-3xl font-bold ${hasDebt ? 'text-red-600' : 'text-green-600'}`}>
-                {formatCurrency(Math.abs(customer.balance))}
-              </p>
-            </div>
+      {/* Balance Card */}
+      <Card className={hasDebt ? 'border-debt/20 bg-debt/5' : 'border-payment/20 bg-payment/5'}>
+        <CardContent className="pt-6">
+          <div className="text-center">
+            <p className="text-sm text-text-secondary mb-2">
+              {hasDebt ? 'Total Debt' : 'Balance'}
+            </p>
+            <p className={`text-3xl font-bold ${hasDebt ? 'text-debt-text' : 'text-payment-text'}`}>
+              {formatCurrency(Math.abs(customer.balance))}
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Quick Actions */}
+      <Card className="border-border">
+        <CardContent className="pt-2">
+          <div className="grid grid-cols-2 gap-2">
+            <Button
+              variant="outline"
+              size="default"
+              className="gap-2"
+            >
+              <Phone className="h-4 w-4" />
+              Call
+            </Button>
+            <Button
+              variant="outline"
+              size="default"
+              className="gap-2"
+            >
+              <Mail className="h-4 w-4" />
+              WhatsApp
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Contact Info */}
+      {(customer.phone || customer.address) && (
+        <Card className="border-border">
+          <CardHeader>
+            <CardTitle className="text-lg">Contact Information</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {customer.phone && (
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-accent" />
+                </div>
+                <a
+                  href={`tel:${customer.phone}`}
+                  className="text-accent hover:underline font-medium"
+                >
+                  {customer.phone}
+                </a>
+              </div>
+            )}
+            {customer.address && (
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-accent" />
+                </div>
+                <p className="text-sm text-text-secondary">{customer.address}</p>
+              </div>
+            )}
           </CardContent>
         </Card>
+      )}
 
-        {/* Contact Info */}
-        {(customer.phone || customer.address) && (
-          <Card className="border-[var(--color-border)]">
-            <CardHeader>
-              <CardTitle className="text-lg">Contact</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              {customer.phone && (
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-[var(--color-text-secondary)]" />
-                  <a
-                    href={`tel:${customer.phone}`}
-                    className="text-[var(--color-accent)] hover:underline font-medium"
-                  >
-                    {customer.phone}
-                  </a>
-                </div>
-              )}
-              {customer.address && (
-                <p className="text-sm text-[var(--color-text-secondary)]">{customer.address}</p>
-              )}
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Transaction History */}
-        <Card className="border-[var(--color-border)]">
-          <CardHeader>
+      {/* Transaction History */}
+      <Card className="border-border">
+        <CardHeader>
+          <div className="flex items-center justify-between">
             <CardTitle className="text-lg">Transaction History</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {transactions.length === 0 ? (
-              <p className="text-center text-[var(--color-text-secondary)] py-8">
-                No transactions yet
-              </p>
-            ) : (
-              <div className="space-y-3">
-                {transactions.map((transaction) => (
-                  <div
-                    key={transaction.id}
-                    className="flex items-center justify-between p-3 bg-[var(--color-bg)] rounded-lg border border-[var(--color-border)]"
-                  >
-                    <div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+            >
+              <Edit className="h-4 w-4" />
+              Edit Customer
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {transactions.length === 0 ? (
+            <p className="text-center text-text-secondary py-8">
+              No transactions yet
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {transactions.map((transaction) => (
+                <div
+                  key={transaction.id}
+                  className="flex items-center justify-between p-4 bg-surface-alt rounded-xl border border-border transition-shadow hover:shadow-sm"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
                       <Badge
                         className={transaction.type === 'debt'
-                          ? 'mb-1 bg-red-100 text-red-700 hover:bg-red-200'
-                          : 'mb-1 bg-green-100 text-green-700 hover:bg-green-200'}
+                          ? 'bg-debt text-debt-text'
+                          : 'bg-payment text-payment-text'}
                       >
                         {transaction.type === 'debt' ? 'Debt' : 'Payment'}
                       </Badge>
-                      <p className="text-xs text-[var(--color-text-secondary)]">
+                      <p className="text-xs text-text-secondary flex items-center gap-1 mt-1">
                         {formatDistanceToNow(
                           new Date(transaction.transaction_date),
                           { addSuffix: true, locale: dateLocale }
                         )}
                       </p>
-                      {transaction.note && (
-                        <p className="text-sm mt-1 text-[var(--color-text)]">{transaction.note}</p>
-                      )}
                     </div>
-                    <p
-                      className={`font-semibold ${
-                        transaction.type === 'debt'
-                          ? 'text-red-600'
-                          : 'text-green-600'
-                      }`}
-                    >
-                      {transaction.type === 'debt' ? '+' : '-'}
-                      {formatCurrency(transaction.amount)}
-                    </p>
+                    {transaction.note && (
+                      <p className="text-sm text-text">{transaction.note}</p>
+                    )}
                   </div>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-    </>
+                  <p
+                    className={`text-lg font-semibold ${
+                      transaction.type === 'debt'
+                        ? 'text-debt-text'
+                        : 'text-payment-text'
+                    }`}
+                  >
+                    {transaction.type === 'debt' ? '+' : '-'}
+                    {formatCurrency(transaction.amount)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
   );
 }

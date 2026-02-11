@@ -1,8 +1,9 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { TrendingUp, TrendingDown, Users, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { TrendingUp, TrendingDown, Users, DollarSign } from "lucide-react";
+import { formatCurrency } from "@/lib/utils/currency";
 
 interface StatCardProps {
   label: string;
@@ -13,39 +14,30 @@ interface StatCardProps {
 
 function StatCard({ label, value, icon, variant }: StatCardProps) {
   const variantStyles = {
-    debt: "bg-gradient-to-br from-red-50 to-red-100 dark:from-red-950/50 dark:to-red-900/50 border-red-200 dark:border-red-800",
-    collected: "bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/50 dark:to-green-900/50 border-green-200 dark:border-green-800",
-    customers: "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/50 dark:to-blue-900/50 border-blue-200 dark:border-blue-800",
-    month: "bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-950/50 dark:to-amber-900/50 border-amber-200 dark:border-amber-800",
-  };
-
-  const textStyles = {
-    debt: "text-red-700 dark:text-red-300",
-    collected: "text-green-700 dark:text-green-300",
-    customers: "text-blue-700 dark:text-blue-300",
-    month: "text-amber-700 dark:text-amber-300",
+    debt: "bg-debt/10 text-debt-text",
+    collected: "bg-payment/10 text-payment-text",
+    customers: "bg-accent/10 text-accent",
+    month: "bg-surface-alt text-text",
   };
 
   const iconStyles = {
-    debt: "text-red-600",
-    collected: "text-green-600",
-    customers: "text-blue-600",
-    month: "text-amber-600",
+    debt: "text-debt-text",
+    collected: "text-payment-text",
+    customers: "text-accent",
+    month: "text-text",
   };
 
   return (
-    <Card className={cn("border", variantStyles[variant])}>
-      <div className="p-4 md:p-6">
-        <p className="text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wide mb-2">
+    <Card className={cn("border-border hover:shadow-sm transition-shadow", variantStyles[variant])}>
+      <div className="p-4 md:p-5">
+        <p className="text-xs font-semibold text-text-secondary uppercase tracking-wide mb-2">
           {label}
         </p>
         <div className="flex items-center gap-3">
-          <div className={cn("p-2 rounded-lg bg-white/50 dark:bg-black/20", iconStyles[variant])}>
+          <div className={cn("p-2 rounded-xl", variantStyles[variant])}>
             {icon}
           </div>
-          <span className={cn("text-2xl font-bold", textStyles[variant])}>
-            {value}
-          </span>
+          <span className="text-2xl font-bold">{value}</span>
         </div>
       </div>
     </Card>
@@ -65,7 +57,6 @@ export function QuickStatsGrid({
   activeCustomers = 0,
   thisMonth = 0,
 }: QuickStatsGridProps) {
-  // Format currency
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("tr-TR", {
       style: "currency",
@@ -76,7 +67,7 @@ export function QuickStatsGrid({
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
       <StatCard
         label="Total Owed"
         value={formatCurrency(totalDebt)}

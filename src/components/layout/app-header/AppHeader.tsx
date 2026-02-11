@@ -32,7 +32,7 @@ export function AppHeader({
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--color-border)]",
+        "sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-border",
         "md:hidden", // Only show on mobile
         className
       )}
@@ -40,30 +40,32 @@ export function AppHeader({
       <div className="flex items-center justify-between px-4 py-3">
         <div>
           {title ? (
-            <h1 className="text-lg font-semibold text-[var(--color-text)]">
+            <h1 className="text-lg font-semibold text-text">
               {title}
             </h1>
           ) : (
-            <p className="text-sm text-[var(--color-text-secondary)]">
-              {getGreeting()}, {userName}
-            </p>
-          )}
-          {subtitle && (
-            <p className="text-xs text-[var(--color-text-tertiary)] mt-0.5">
-              {subtitle}
-            </p>
+            <div>
+              <p className="text-base font-medium text-text">
+                {getGreeting()}, <span className="text-accent">{userName}</span>
+              </p>
+              {subtitle && (
+                <p className="text-xs text-text-secondary mt-0.5">
+                  {subtitle}
+                </p>
+              )}
+            </div>
           )}
         </div>
 
         <div className="flex items-center gap-3">
           {/* Notifications */}
-          <button className="relative p-2 rounded-full hover:bg-[var(--color-bg)] transition-colors">
-            <Bell className="w-5 h-5 text-[var(--color-text-secondary)]" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-[var(--color-error)] rounded-full" />
+          <button className="relative p-2.5 rounded-xl hover:bg-surface-alt transition-colors">
+            <Bell className="w-5 h-5 text-text-secondary" />
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full" />
           </button>
 
           {/* User Avatar */}
-          <button className="w-9 h-9 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white font-medium">
+          <button className="w-10 h-10 rounded-xl bg-accent text-white font-medium flex items-center justify-center shadow-sm">
             {userName.charAt(0)}
           </button>
         </div>

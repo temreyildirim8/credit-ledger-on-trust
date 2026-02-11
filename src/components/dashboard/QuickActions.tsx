@@ -19,8 +19,8 @@ interface ActionButtonProps {
 
 function ActionButton({ label, icon, href, variant }: ActionButtonProps) {
   const variantStyles = {
-    primary: "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)]",
-    secondary: "bg-white dark:bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border)] hover:border-[var(--color-accent)]",
+    primary: "bg-accent text-white hover:bg-accent-hover shadow-sm",
+    secondary: "bg-surface text-text hover:bg-surface-alt border-border",
   };
 
   return (
@@ -31,7 +31,7 @@ function ActionButton({ label, icon, href, variant }: ActionButtonProps) {
         variantStyles[variant]
       )}
     >
-      <div className="p-3 rounded-full bg-current">
+      <div className="p-2.5 rounded-full bg-current">
         {icon}
       </div>
       <span className="text-xs font-medium">{label}</span>
@@ -46,24 +46,26 @@ interface QuickActionsProps {
 export function QuickActions({ locale = "en" }: QuickActionsProps) {
   const t = useTranslations('dashboard.quickActions');
 
+  const basePath = locale ? `/${locale}` : '';
+
   return (
     <div className="grid grid-cols-4 gap-2 md:gap-3">
       <ActionButton
         label={t('addDebt')}
         icon={<PlusCircle className="h-5 w-5" />}
-        href="/quick-add?type=debt"
+        href={`${basePath}/quick-add?type=debt`}
         variant="primary"
       />
       <ActionButton
         label={t('addPayment')}
         icon={<MinusCircle className="h-5 w-5" />}
-        href="/quick-add?type=payment"
+        href={`${basePath}/quick-add?type=payment`}
         variant="secondary"
       />
       <ActionButton
         label={t('addCustomer')}
         icon={<UserPlus className="h-5 w-5" />}
-        href="/customers?add=true"
+        href={`${basePath}/customers?add=true`}
         variant="secondary"
       />
       <ActionButton

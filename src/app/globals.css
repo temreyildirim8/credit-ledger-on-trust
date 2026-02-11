@@ -9,19 +9,29 @@
    Global Ledger - Green-focused financial app design
    ============================================ */
 
+/* ============================================
+   LIGHT THEME (Default)
+   ============================================ */
 :root {
-  /* Color Palette - Clean white/gray with green primary */
-  --color-bg: #F0F0F0;
+  /* Color Palette - Clean, refined light theme */
+  --color-bg: #F8FAFC;
   --color-surface: #FFFFFF;
-  --color-text: #333333;
-  --color-text-secondary: #666666;
-  --color-text-tertiary: #999999;
-  --color-border: #E5E5E5;
-  --color-accent: #2D8E4A;  /* Global Ledger Green */
-  --color-accent-hover: #1A3A1A;
-  --color-success: #2D8E4A;
-  --color-error: #FF6B6B;
-  --color-warning: #FFC107;
+  --color-surface-alt: #F1F5F9;
+  --color-text: #0F172A;
+  --color-text-secondary: #64748B;
+  --color-text-tertiary: #94A3B8;
+  --color-border: #E2E8F0;
+  --color-border-light: #F1F5F9;
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
+  --color-accent-light: #D1FAE5;
+  --color-success: #059669;
+  --color-error: #DC2626;
+  --color-warning: #F59E0B;
+  --color-debt: #FEF2F2;
+  --color-debt-text: #991B1B;
+  --color-payment: #F0FDF4;
+  --color-payment-text: #0369A1;
 
   /* Typography Scale */
   --font-display: var(--font-display);
@@ -30,18 +40,22 @@
   /* Spacing */
   --spacing-unit: 8px;
   --container-max: 1280px;
+  --app-content-max: 1024px;
 
   /* Effects */
-  --shadow-sm: 0 1px 3px rgba(26, 22, 20, 0.08);
-  --shadow-md: 0 4px 12px rgba(26, 22, 20, 0.12);
-  --shadow-lg: 0 12px 32px rgba(26, 22, 20, 0.16);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05);
+  --shadow-accent: 0 2px 8px rgba(5, 150, 105, 0.15);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
 
   /* Transitions */
-  --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -76,59 +90,144 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0A0A0A;
-    --color-surface: #1A1A1A;
-    --color-text: #F0F0F0;
-    --color-text-secondary: #C0C0C0;
-    --color-text-tertiary: #808080;
-    --color-border: #333333;
-    --color-accent: #3BC272;
-    --color-accent-hover: #5FD98A;
-    --color-success: #3BC272;
-    --color-error: #FF6B6B;
-    --color-warning: #FFD54F;
-  }
+/* ============================================
+   DARK THEME
+   ============================================ */
+.dark {
+  --color-bg: #0C0A09;
+  --color-surface: #1C1917;
+  --color-surface-alt: #292524;
+  --color-text: #FAFAF9;
+  --color-text-secondary: #A8A29E;
+  --color-text-tertiary: #78716C;
+  --color-border: #44403C;
+  --color-border-light: #292524;
+  --color-accent: #34D399;
+  --color-accent-hover: #6EE7B7;
+  --color-accent-light: #064E3B;
+  --color-success: #34D399;
+  --color-error: #F87171;
+  --color-warning: #FBBF24;
+  --color-debt: #450A0A;
+  --color-debt-text: #FCA5A5;
+  --color-payment: #0C4A6E;
+  --color-payment-text: #7DD3FC;
 }
 
 /* ============================================
    MARKET-SPECIFIC COLOR THEMES
    ============================================ */
 
-/* Turkey - Green (default) */
+/* Turkey - Emerald Green (default) */
 html[data-market="tr"] {
-  --color-primary: #2D8E4A;
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
 }
 
 /* India - Orange */
 html[data-market="in"] {
-  --color-primary: #F97316;
+  --color-accent: #EA580C;
+  --color-accent-hover: #C2410C;
+  --color-debt: #FFF7ED;
+  --color-debt-text: #9A3412;
 }
 
-/* Indonesia - Green */
+/* Indonesia - Emerald Green */
 html[data-market="id"] {
-  --color-primary: #2D8E4A;
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
 }
 
 /* Nigeria - Green */
 html[data-market="ng"] {
-  --color-primary: #2D8E4A;
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
 }
 
 /* Egypt - Blue */
 html[data-market="eg"] {
-  --color-primary: #3B82F6;
+  --color-accent: #0284C7;
+  --color-accent-hover: #0369A1;
+  --color-accent-light: #E0F2FE;
 }
 
 /* South Africa - Green */
 html[data-market="za"] {
-  --color-primary: #2D8E4A;
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
 }
 
 /* Global/Other - Blue */
 html[data-market="global"] {
-  --color-primary: #3B82F6;
+  --color-accent: #0284C7;
+  --color-accent-hover: #0369A1;
+  --color-accent-light: #E0F2FE;
+}
+
+/* Dark mode market-specific themes */
+.dark[data-market="tr"] {
+  --color-accent: #34D399;
+  --color-accent-hover: #6EE7B7;
+}
+
+.dark[data-market="in"] {
+  --color-accent: #FB923C;
+  --color-accent-hover: #FDBA74;
+}
+
+.dark[data-market="eg"],
+.dark[data-market="global"] {
+  --color-accent: #38BDF8;
+  --color-accent-hover: #7DD3FC;
+}
+
+/* ============================================
+   APP LAYOUT COMPONENTS
+   ============================================ */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  width: 260px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+  transition: transform var(--transition-base);
+}
+
+.app-content {
+  flex: 1;
+  margin-left: 260px;
+  background: var(--color-bg);
+  min-height: 100vh;
+}
+
+@media (max-width: 767px) {
+  .app-sidebar {
+    display: none;
+  }
+  .app-content {
+    margin-left: 0;
+  }
+}
+
+.app-content-inner {
+  max-width: var(--app-content-max);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+@media (max-width: 767px) {
+  .app-content-inner {
+    padding: 16px;
+  }
 }
 
 /* ============================================
@@ -177,16 +276,14 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(253, 251, 247, 0.8);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
   transition: all var(--transition-base);
 }
 
-@media (prefers-color-scheme: dark) {
-  .navbar {
-    background: rgba(26, 22, 20, 0.8);
-  }
+.dark .navbar {
+  background: color-mix(in srgb, var(--color-surface) 85%, transparent);
 }
 
 .navbar__container {
@@ -966,6 +1063,100 @@ body {
 }
 
 /* ============================================
+   TAILWIND UTILITY CLASSES FOR CUSTOM THEME
+   Maps Tailwind-like classes to our CSS variables
+   ============================================ */
+
+.bg-bg {
+  background-color: var(--color-bg);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-surface-alt {
+  background-color: var(--color-surface-alt);
+}
+
+.text-text {
+  color: var(--color-text);
+}
+
+.text-text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-text-tertiary {
+  color: var(--color-text-tertiary);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.bg-success {
+  background-color: var(--color-success);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.bg-error {
+  background-color: var(--color-error);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.bg-warning {
+  background-color: var(--color-warning);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.bg-debt {
+  background-color: var(--color-debt);
+}
+
+.text-debt-text {
+  color: var(--color-debt-text);
+}
+
+.bg-payment {
+  background-color: var(--color-payment);
+}
+
+.text-payment-text {
+  color: var(--color-payment-text);
+}
+
+.border-border {
+  border-color: var(--color-border);
+}
+
+/* Opacity modifiers using color-mix */
+.bg-accent\/10 {
+  background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+.bg-success\/10 {
+  background-color: color-mix(in srgb, var(--color-success) 10%, transparent);
+}
+
+.bg-error\/5 {
+  background-color: color-mix(in srgb, var(--color-error) 5%, transparent);
+}
+
+/* ============================================
    MARKETING PAGE ANIMATIONS
    ============================================ */
 
@@ -1006,4 +1197,23 @@ body {
 
 .animate-float-delayed-2 {
   animation: float-delayed-2 7s ease-in-out infinite;
+}
+
+/* ============================================
+   APP SHELL ANIMATIONS
+   ============================================ */
+
+@keyframes in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: in 0.3s ease-out;
 }

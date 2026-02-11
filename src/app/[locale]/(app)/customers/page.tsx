@@ -38,12 +38,12 @@ export default function CustomersPage() {
           <div>
             <h1 className="text-2xl font-bold font-display">{t('title')}</h1>
             <p className="text-white/90 mt-1">
-              {customers.length} {customers.length === 1 ? t('count').split('|')[0].replace('{count}', String(customers.length)) : t('count').split('|')[1].replace('{count}', String(customers.length))}
+              {t('count', { count: customers.length })}
             </p>
           </div>
           <Button
             onClick={() => setModalOpen(true)}
-            className="bg-white text-[var(--var(--color-accent))] hover:bg-white/90"
+            className="bg-white text-[var(--color-accent)] hover:bg-white/90"
           >
             <Plus className="h-4 w-4" />
             {t('addCustomer')}

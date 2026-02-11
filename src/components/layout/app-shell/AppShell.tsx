@@ -1,6 +1,7 @@
 import { Sidebar } from "../sidebar";
 import { BottomNav } from "../bottom-nav";
 import { AppHeader } from "../app-header";
+import { cn } from "@/lib/utils";
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -11,20 +12,26 @@ type AppShellProps = {
 /**
  * App Shell component for authenticated pages
  * Includes Sidebar (desktop), BottomNav (mobile), and AppHeader (mobile)
+ * Unified layout with proper max-width for content
  */
 export function AppShell({ children, title, subtitle }: AppShellProps) {
   return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
+    <div className="app-shell min-h-screen bg-bg">
       {/* Desktop Sidebar */}
       <Sidebar />
 
       {/* Main Content Area */}
-      <div className="md:ml-64 pb-16 md:pb-0">
-        {/* Mobile Header */}
-        <AppHeader title={title} subtitle={subtitle} />
+      <div className="app-content">
+        {/* Content wrapper with max-width */}
+        <div className="app-content-inner">
+          {/* Mobile Header */}
+          <div className="md:hidden mb-4">
+            <AppHeader title={title} subtitle={subtitle} />
+          </div>
 
-        {/* Page Content */}
-        <div className="p-4 md:p-6">{children}</div>
+          {/* Page Content */}
+          <div className="animate-in">{children}</div>
+        </div>
       </div>
 
       {/* Mobile Bottom Navigation */}

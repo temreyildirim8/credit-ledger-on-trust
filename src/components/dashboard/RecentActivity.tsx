@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Clock, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
+import type { Locale } from "date-fns";
+import { formatCurrency } from "@/lib/utils/currency";
 
 interface Activity {
   id: string;
@@ -19,10 +21,12 @@ interface RecentActivityProps {
 }
 
 export function RecentActivity({ activities = [], locale = "en" }: RecentActivityProps) {
+  const dateLocale: Locale = locale as any || "enUS";
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
       style: "currency",
-      currency: "TRY",
+      currency: locale === "tr" ? "TRY" : "USD",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
@@ -30,11 +34,11 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
 
   if (activities.length === 0) {
     return (
-      <Card className="border-[var(--color-border)]">
+      <Card className="border-border">
         <div className="p-8 text-center">
-          <Clock className="h-12 w-12 mx-auto text-[var(--color-text-tertiary)] mb-3" />
-          <h3 className="font-medium text-[var(--color-text)] mb-1">No activity yet</h3>
-          <p className="text-sm text-[var(--color-text-secondary)]">
+          <Clock className="h-12 w-12 mx-auto text-text-secondary mb-3" />
+          <h3 className="text-lg font-semibold text-text mb-1">No activity yet</h3>
+          <p className="text-sm text-text-secondary">
             Start by adding your first customer or recording a transaction
           </p>
         </div>
@@ -50,40 +54,41 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
         return (
           <Card
             key={activity.id}
-            className="border-[var(--color-border)] hover:shadow-md transition-shadow"
+            className="border-border hover:shadow-md transition-shadow"
           >
-            <div className="flex items-center gap-4 p-4">
-              <div
-                className={cn(
-                  "p-3 rounded-full",
-                  isDebt
-                    ? "bg-red-100 dark:bg-red-900/30 text-red-600"
-                    : "bg-green-100 dark:bg-green-900/30 text-green-600"
-                )}
-              >
-                <User className="h-5 w-5" />
-              </div>
-
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-[var(--color-text)] truncate">
-                  {activity.customerName}
+            <div className="flex items-center justify-between p-4">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-1">
+                  <div
+                    className={cn(
+                      "p-2 rounded-lg text-xs font-semibold uppercase",
+                      isDebt ? "bg-debt text-white" : "bg-payment text-white"
+                    )}
+                  >
+                    {activity.type === "debt" ? "Debt" : "Payment"}
+                  </div>
+                  <span className="font-medium text-text text-sm">
+                    {activity.customerName}
+                  </span>
+                </div>
+                <p className="text-xs text-text-secondary flex items-center gap-1">
+                  <Clock className="h-3.5 w-3.5" />
+                  {formatDistanceToNow(
+                    new Date(activity.date),
+                    { addSuffix: true, locale: dateLocale }
+                  )}
                 </p>
-                <p className="text-xs text-[var(--color-text-tertiary)] flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {formatDistanceToNow(new Date(activity.date), {
-                    addSuffix: true,
-                  })}
-                </p>
               </div>
-
-              <div
-                className={cn(
-                  "text-right font-semibold",
-                  isDebt ? "text-red-600" : "text-green-600"
-                )}
-              >
-                {isDebt ? "+" : "-"}
-                {formatCurrency(activity.amount)}
+              <div>
+                <p
+                  className={cn(
+                    "text-lg font-semibold",
+                    isDebt ? "text-debt-text" : "text-payment-text"
+                  )}
+                >
+                  {isDebt ? "+" : "-"}
+                  {formatCurrency(activity.amount)}
+                </p>
               </div>
             </div>
           </Card>

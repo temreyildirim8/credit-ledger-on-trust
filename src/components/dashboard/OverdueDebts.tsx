@@ -20,7 +20,7 @@ export function OverdueDebts({ customers = [], locale = "en" }: OverdueDebtsProp
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
       style: "currency",
-      currency: "TRY",
+      currency: locale === "tr" ? "TRY" : "USD",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
@@ -33,36 +33,34 @@ export function OverdueDebts({ customers = [], locale = "en" }: OverdueDebtsProp
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <AlertCircle className="h-5 w-5 text-[var(--color-error)]" />
-        <h2 className="font-semibold text-[var(--color-text)]">
-          Overdue Payments ({customers.length})
-        </h2>
+        <AlertCircle className="h-5 w-5 text-error flex-shrink-0" />
+        <div>
+          <h2 className="text-lg font-semibold text-text">Overdue Payments</h2>
+          <p className="text-sm text-text-secondary">({customers.length})</p>
+        </div>
       </div>
 
       <div className="space-y-3">
         {customers.map((customer) => (
           <Card
             key={customer.id}
-            className="border-l-4 border-l-[var(--color-error)] border-[var(--color-border)]"
+            className="border-error/20 bg-error/5 hover:shadow-md transition-shadow"
           >
             <div className="flex items-center justify-between p-4">
               <div className="flex-1">
-                <p className="font-medium text-[var(--color-text)]">
-                  {customer.name}
-                </p>
-                <p className="text-sm text-[var(--color-error)]">
+                <p className="font-medium text-text">{customer.name}</p>
+                <p className="text-sm text-error mt-0.5">
                   {customer.overdueDays} days overdue
                 </p>
               </div>
-
               <div className="flex items-center gap-4">
-                <p className="text-lg font-semibold text-[var(--color-text)]">
+                <p className="text-lg font-semibold text-error">
                   {formatCurrency(customer.amount)}
                 </p>
                 <button
                   className={cn(
                     "flex items-center gap-2 px-3 py-2 rounded-lg",
-                    "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)]",
+                    "bg-accent text-white hover:bg-accent-hover",
                     "transition-colors duration-200"
                   )}
                 >

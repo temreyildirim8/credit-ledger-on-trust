@@ -60,11 +60,11 @@ export function BottomNav({ className }: BottomNavProps) {
   return (
     <nav
       className={cn(
-        "md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[var(--color-border)] z-50 pb-safe",
+        "md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-border z-50 pb-safe",
         className
       )}
     >
-      <div className="flex items-center justify-around px-2 h-16">
+      <div className="flex items-center justify-around px-2 h-[68px]">
         {navItems.map((item) => {
           const isActive = pathname === `${basePath}${item.href}`;
           const isAddButton = item.key === "quickAdd";
@@ -74,35 +74,33 @@ export function BottomNav({ className }: BottomNavProps) {
             <Link
               key={item.href}
               href={item.href}
-              className={cn(
-                "flex flex-col items-center justify-center gap-1 min-w-0 flex-1",
-                "transition-colors duration-200"
-              )}
+              className="flex flex-col items-center justify-center gap-1 min-w-0 flex-1"
             >
               <div
                 className={cn(
-                  "relative flex items-center justify-center",
-                  isAddButton &&
-                    "-mt-6 w-14 h-14 rounded-full bg-[var(--color-accent)] text-white shadow-lg"
+                  "relative flex items-center justify-center transition-all duration-200",
+                  isAddButton
+                    ? "-mt-5 w-12 h-12 rounded-full bg-accent text-white shadow-lg shadow-accent"
+                    : "w-11 h-11 rounded-xl"
                 )}
               >
                 <Icon
                   className={cn(
-                    isAddButton ? "w-7 h-7" : "w-5 h-5",
+                    isAddButton ? "w-6 h-6" : "w-5 h-5",
                     isActive && !isAddButton
-                      ? "text-[var(--color-accent)]"
+                      ? "text-accent"
                       : !isAddButton
-                      ? "text-[var(--color-text-secondary)]"
+                      ? "text-text-secondary"
                       : ""
                   )}
                 />
               </div>
               <span
                 className={cn(
-                  "text-[10px] font-medium",
+                  "text-[10px] font-medium leading-none mt-0.5",
                   isActive && !isAddButton
-                    ? "text-[var(--color-accent)]"
-                    : "text-[var(--color-text-secondary)]"
+                    ? "text-accent"
+                    : "text-text-secondary"
                 )}
               >
                 {t(item.key)}
