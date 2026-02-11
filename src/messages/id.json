@@ -322,7 +322,10 @@
       "payment": "Tambah Pembayaran"
     },
     "success": "Transaksi ditambahkan!",
-    "error": "Gagal menambahkan transaksi"
+    "error": "Gagal menambahkan transaksi",
+    "validation": {
+      "invalidAmount": "Silakan masukkan jumlah yang valid"
+    }
   },
   "settings": {
     "title": "Pengaturan",

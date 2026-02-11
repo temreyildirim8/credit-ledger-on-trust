@@ -6,7 +6,7 @@ import { useTransactions } from '@/lib/hooks/useTransactions';
 import { AddTransactionModal } from '@/components/transactions/AddTransactionModal';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Loader2, Calendar } from 'lucide-react';
+import { Plus, Loader2, Calendar, Filter } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatDistanceToNow } from 'date-fns';
@@ -32,114 +32,115 @@ export default function TransactionsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
-      {/* Header */}
-      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] p-6 text-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold font-display">{t('title')}</h1>
-              <p className="text-white/80 mt-1">
-                {transactions.length} {transactions.length === 1 ? t('count').split('|')[0].replace('{count}', String(transactions.length)) : t('count').split('|')[1].replace('{count}', String(transactions.length))}
-              </p>
-            </div>
-            <Button
-              onClick={() => setModalOpen(true)}
-              size="sm"
-              className="gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90"
-            >
-              <Plus className="h-4 w-4" />
-              {t('addNew')}
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto p-4 space-y-4 -mt-4">
-        {/* Filters */}
-        <div className="flex gap-2">
-          <Button
-            variant={filter === 'all' ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => setFilter('all')}
-            className={filter === 'all' ? 'bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]' : ''}
-          >
-            {t('filter.all')}
-          </Button>
-          <Button
-            variant={filter === 'debt' ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => setFilter('debt')}
-            className={filter === 'debt' ? 'bg-red-500 hover:bg-red-600 text-white' : ''}
-          >
-            {t('filter.debts')}
-          </Button>
-          <Button
-            variant={filter === 'payment' ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => setFilter('payment')}
-            className={filter === 'payment' ? 'bg-green-500 hover:bg-green-600 text-white' : ''}
-          >
-            {t('filter.payments')}
-          </Button>
-        </div>
-
-        {/* Transaction List */}
-        {loading ? (
-          <div className="flex justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-[var(--color-accent)]" />
-          </div>
-        ) : filteredTransactions.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-[var(--color-text-secondary)]">
-              {filter === 'all' ? t('empty.noTransactions') : t('empty.noFilterResults').replace('{filter}', filter === 'debt' ? t('filter.debts') : t('filter.payments'))}
+    <div className="space-y-5">
+      {/* Header Card */}
+      <div className="bg-gradient-to-br from-accent to-accent-hover rounded-2xl p-6 text-white shadow-md">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-bold font-display">
+              {t('title')}
+            </h1>
+            <p className="text-white/90 text-sm mt-1">
+              {t('count', { count: transactions.length })}
             </p>
           </div>
-        ) : (
-          <div className="space-y-3">
-            {filteredTransactions.map((transaction) => (
-              <Card key={transaction.id} className="p-4 border-[var(--color-border)] hover:shadow-md transition-shadow">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Badge
-                        className={transaction.type === 'debt'
-                          ? 'bg-red-100 text-red-700 hover:bg-red-200'
-                          : 'bg-green-100 text-green-700 hover:bg-green-200'}
-                      >
-                        {transaction.type === 'debt' ? t('form.debt') : t('form.payment')}
-                      </Badge>
-                      <span className="font-medium text-[var(--color-text)]">{transaction.customer_name}</span>
-                    </div>
-                    {transaction.note && (
-                      <p className="text-sm text-[var(--color-text-secondary)] mt-1">
-                        {transaction.note}
-                      </p>
-                    )}
-                    <p className="text-xs text-[var(--color-text-secondary)] mt-1 flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      {formatDistanceToNow(
-                        new Date(transaction.transaction_date),
-                        { addSuffix: true, locale: dateLocale }
-                      )}
-                    </p>
+          <Button
+            onClick={() => setModalOpen(true)}
+            size="sm"
+            className="gap-2 bg-white text-accent hover:bg-white/90 shadow-sm"
+          >
+            <Plus className="h-4 w-4" />
+            {t('addNew')}
+          </Button>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="flex items-center gap-2">
+        <Button
+          variant={filter === 'all' ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setFilter('all')}
+          className={filter === 'all' ? 'bg-accent hover:bg-accent-hover' : 'hover:bg-surface-alt'}
+        >
+          <Filter className="h-4 w-4 mr-1.5" />
+          {t('filter.all')}
+        </Button>
+        <Button
+          variant={filter === 'debt' ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setFilter('debt')}
+          className={filter === 'debt' ? 'bg-debt text-debt-text hover:opacity-90' : 'hover:bg-surface-alt'}
+        >
+          {t('filter.debts')}
+        </Button>
+        <Button
+          variant={filter === 'payment' ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setFilter('payment')}
+          className={filter === 'payment' ? 'bg-payment text-payment-text hover:opacity-90' : 'hover:bg-surface-alt'}
+        >
+          {t('filter.payments')}
+        </Button>
+      </div>
+
+      {/* Transaction List */}
+      {loading ? (
+        <div className="flex justify-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-accent" />
+        </div>
+      ) : filteredTransactions.length === 0 ? (
+        <div className="text-center py-12">
+          <p className="text-text-secondary">
+            {filter === 'all' ? t('empty.noTransactions') : t('empty.noFilterResults').replace('{filter}', filter === 'debt' ? t('filter.debts') : t('filter.payments'))}
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {filteredTransactions.map((transaction) => (
+            <Card key={transaction.id} className="p-4 hover:shadow-md transition-shadow">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Badge
+                      className={transaction.type === 'debt'
+                        ? 'bg-debt text-debt-text'
+                        : 'bg-payment text-payment-text'}
+                    >
+                      {transaction.type === 'debt' ? t('form.debt') : t('form.payment')}
+                    </Badge>
+                    <span className="font-medium text-text text-sm">
+                      {transaction.customer_name}
+                    </span>
                   </div>
-                  <p
-                    className={`text-lg font-semibold ${
-                      transaction.type === 'debt'
-                        ? 'text-red-600'
-                        : 'text-green-600'
-                    }`}
-                  >
-                    {transaction.type === 'debt' ? '+' : '-'}
-                    {formatCurrency(transaction.amount)}
+                  {transaction.note && (
+                    <p className="text-sm text-text-secondary mt-1">
+                      {transaction.note}
+                    </p>
+                  )}
+                  <p className="text-xs text-text-secondary mt-1 flex items-center gap-1">
+                    <Calendar className="h-3.5 w-3.5" />
+                    {formatDistanceToNow(
+                      new Date(transaction.transaction_date),
+                      { addSuffix: true, locale: dateLocale }
+                    )}
                   </p>
                 </div>
-              </Card>
-            ))}
-          </div>
-        )}
-      </div>
+                <p
+                  className={`text-lg font-semibold flex-shrink-0 ${
+                    transaction.type === 'debt'
+                      ? 'text-debt-text'
+                      : 'text-payment-text'
+                  }`}
+                >
+                  {transaction.type === 'debt' ? '+' : '-'}
+                  {formatCurrency(transaction.amount)}
+                </p>
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
 
       <AddTransactionModal
         open={modalOpen}

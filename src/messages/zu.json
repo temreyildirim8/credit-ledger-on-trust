@@ -322,7 +322,10 @@
       "payment": "Yengeza Ukukhokha"
     },
     "success": "Ukuthengiselana kuqoshwe!",
-    "error": "Yehlula ukwengeza ukuthengiselana"
+    "error": "Yehlula ukwengeza ukuthengiselana",
+    "validation": {
+      "invalidAmount": "Sicela ufake inani elisebenzayo"
+    }
   },
   "settings": {
     "title": "Izilungiselelo",

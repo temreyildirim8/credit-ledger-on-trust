@@ -1,13 +1,14 @@
 'use client';
 
 import { useDashboard } from '@/lib/hooks/useDashboard';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ArrowUpRight, Plus } from 'lucide-react';
 import { QuickStatsGrid } from '@/components/dashboard/QuickStatsGrid';
 import { QuickActions } from '@/components/dashboard/QuickActions';
 import { RecentActivity } from '@/components/dashboard/RecentActivity';
 import { OverdueDebts } from '@/components/dashboard/OverdueDebts';
-import { usePathname } from '@/routing';
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
 
 export default function DashboardPage() {
   const t = useTranslations('dashboard');
@@ -27,27 +28,37 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-[var(--color-accent)]" />
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-accent" />
       </div>
     );
   }
 
   // Sample overdue data (would come from API)
-  const overdueCustomers: any[] = [
-    // Add overdue customers here
-  ];
+  const overdueCustomers: any[] = [];
 
   return (
-    <div className="space-y-6">
-      {/* Greeting Header */}
-      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white">
-        <h1 className="text-2xl font-bold font-display">
-          {getGreeting()} 👋
-        </h1>
-        <p className="text-white/90 mt-1">
-          {t('stats.totalOwed')} - {t('stats.thisMonth')}
-        </p>
+    <div className="space-y-5">
+      {/* Greeting Header - Refined Card */}
+      <div className="bg-gradient-to-br from-accent to-accent-hover rounded-2xl p-6 text-white shadow-md">
+        <div className="flex items-start justify-between">
+          <div>
+            <h1 className="text-2xl font-bold font-display mb-1">
+              {getGreeting()} 👋
+            </h1>
+            <p className="text-white/90 text-sm">
+              {t('stats.totalOwed')} • {t('stats.thisMonth')}
+            </p>
+          </div>
+          <Button
+            size="sm"
+            variant="secondary"
+            className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+          >
+            <Plus className="h-4 w-4" />
+            Quick Add
+          </Button>
+        </div>
       </div>
 
       {/* Quick Stats Grid */}
@@ -57,11 +68,21 @@ export default function DashboardPage() {
         activeCustomers={stats?.activeCustomers}
       />
 
-      {/* Quick Actions */}
-      <div>
-        <h2 className="text-lg font-semibold text-[var(--color-text)] mb-3">
-          {t('quickActions.title')}
-        </h2>
+      {/* Quick Actions - Redesigned */}
+      <div className="bg-surface rounded-2xl border border-border p-5 shadow-sm">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-text">
+            {t('quickActions.title')}
+          </h2>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-accent hover:text-accent-hover"
+          >
+            View All
+            <ArrowUpRight className="h-4 w-4" />
+          </Button>
+        </div>
         <QuickActions locale={locale} />
       </div>
 
@@ -70,7 +91,7 @@ export default function DashboardPage() {
 
       {/* Recent Activity */}
       <div>
-        <h2 className="text-lg font-semibold text-[var(--color-text)] mb-3">
+        <h2 className="text-lg font-semibold text-text mb-4">
           {t('recentActivity.title')}
         </h2>
         <RecentActivity activities={recentActivity} locale={locale} />

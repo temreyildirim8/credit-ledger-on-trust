@@ -322,7 +322,10 @@
       "payment": "Agregar Pago"
     },
     "success": "¡Transacción agregada!",
-    "error": "Error al agregar transacción"
+    "error": "Error al agregar transacción",
+    "validation": {
+      "invalidAmount": "Por favor ingrese un monto válido"
+    }
   },
   "settings": {
     "title": "Configuración",

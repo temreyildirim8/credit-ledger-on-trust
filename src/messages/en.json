@@ -322,7 +322,10 @@
       "payment": "Add Payment"
     },
     "success": "Transaction added!",
-    "error": "Failed to add transaction"
+    "error": "Failed to add transaction",
+    "validation": {
+      "invalidAmount": "Please enter a valid amount"
+    }
   },
   "settings": {
     "title": "Settings",

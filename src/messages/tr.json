@@ -363,7 +363,10 @@
       "payment": "Ödeme Ekle"
     },
     "success": "İşlem eklendi!",
-    "error": "İşlem eklenemedi"
+    "error": "İşlem eklenemedi",
+    "validation": {
+      "invalidAmount": "Lütfen geçerli bir tutar girin"
+    }
   },
   "settings": {
     "title": "Ayarlar",

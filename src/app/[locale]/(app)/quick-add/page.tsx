@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useTransactions } from '@/lib/hooks/useTransactions';
 import { useCustomers } from '@/lib/hooks/useCustomers';
 import { Button } from '@/components/ui/button';
@@ -9,18 +10,29 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Loader2, Plus } from 'lucide-react';
+import { Loader2, Plus } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
 export default function QuickAddPage() {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const locale = pathname.split('/')[1] || 'en';
+  const t = useTranslations('quickAdd');
+  const tCommon = useTranslations('common');
 
   const { createTransaction } = useTransactions();
   const { customers } = useCustomers();
   const [type, setType] = useState<'debt' | 'payment'>('debt');
+
+  // Read type from URL query param
+  useEffect(() => {
+    const typeParam = searchParams.get('type');
+    if (typeParam === 'debt' || typeParam === 'payment') {
+      setType(typeParam);
+    }
+  }, [searchParams]);
   const [customerId, setCustomerId] = useState('');
   const [amount, setAmount] = useState('');
   const [note, setNote] = useState('');
@@ -29,13 +41,13 @@ export default function QuickAddPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!customerId || !amount) {
-      toast.error('Customer and amount are required');
+      toast.error(tCommon('required'));
       return;
     }
 
     const amountNum = parseFloat(amount);
     if (isNaN(amountNum) || amountNum <= 0) {
-      toast.error('Please enter a valid amount');
+      toast.error(t('validation.invalidAmount'));
       return;
     }
 
@@ -47,10 +59,10 @@ export default function QuickAddPage() {
         amount: amountNum,
         note: note.trim() || undefined,
       });
-      toast.success('Transaction added!');
+      toast.success(t('success'));
       router.back();
     } catch (error: any) {
-      toast.error(error.message || 'Failed to add transaction');
+      toast.error(error.message || t('error'));
     } finally {
       setLoading(false);
     }
@@ -59,126 +71,114 @@ export default function QuickAddPage() {
   const quickAmounts = [10, 50, 100, 200, 500];
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] p-6 text-white">
-        <div className="max-w-4xl mx-auto">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => router.back()}
-            className="mb-4 text-white hover:bg-white/20"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back
-          </Button>
-          <h1 className="text-2xl font-bold font-display flex items-center gap-2">
-            <Plus className="h-6 w-6" />
-            Quick Add
-          </h1>
-        </div>
+      <div className="bg-gradient-to-br from-accent to-accent-hover rounded-2xl p-6 text-white">
+        <h1 className="text-2xl font-bold font-display flex items-center gap-2">
+          <Plus className="h-6 w-6" />
+          {t('title')}
+        </h1>
       </div>
 
-      <div className="max-w-4xl mx-auto p-4 -mt-4">
-        <Card className="border-[var(--color-border)]">
-          <CardHeader className="border-b border-[var(--color-border)]">
-            <CardTitle className="font-display">New Transaction</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Type Toggle */}
-              <div className="flex gap-2">
-                <Button
-                  type="button"
-                  variant={type === 'debt' ? 'default' : 'outline'}
-                  className={cn("flex-1 h-12 text-lg", type === 'debt' ? 'bg-red-500 hover:bg-red-600 text-white' : '')}
-                  onClick={() => setType('debt')}
-                  disabled={loading}
-                >
-                  Debt
-                </Button>
-                <Button
-                  type="button"
-                  variant={type === 'payment' ? 'default' : 'outline'}
-                  className={cn("flex-1 h-12 text-lg", type === 'payment' ? 'bg-green-500 hover:bg-green-600 text-white' : '')}
-                  onClick={() => setType('payment')}
-                  disabled={loading}
-                >
-                  Payment
-                </Button>
-              </div>
-
-              {/* Customer Select */}
-              <div className="space-y-2">
-                <Label>Customer *</Label>
-                <Select value={customerId} onValueChange={setCustomerId} disabled={loading}>
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Select a customer" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {customers.map((customer) => (
-                      <SelectItem key={customer.id} value={customer.id}>
-                        {customer.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Amount */}
-              <div className="space-y-2">
-                <Label>Amount *</Label>
-                <Input
-                  type="number"
-                  step="0.01"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  placeholder="0.00"
-                  className="h-12 text-lg"
-                  disabled={loading}
-                />
-                {/* Quick Amount Buttons */}
-                <div className="flex gap-2 mt-2 flex-wrap">
-                  {quickAmounts.map((qa) => (
-                    <Button
-                      key={qa}
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setAmount(qa.toString())}
-                      disabled={loading}
-                    >
-                      +{qa}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Note */}
-              <div className="space-y-2">
-                <Label>Note</Label>
-                <Input
-                  value={note}
-                  onChange={(e) => setNote(e.target.value)}
-                  placeholder="Description (optional)"
-                  disabled={loading}
-                />
-              </div>
-
-              {/* Submit Button */}
+      {/* Form Card */}
+      <Card className="border-border bg-surface">
+        <CardHeader className="border-b border-border">
+          <CardTitle className="font-display text-text">{t('newTransaction')}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Type Toggle */}
+            <div className="flex gap-2">
               <Button
-                type="submit"
-                className="w-full h-12 text-lg bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]"
+                type="button"
+                variant={type === 'debt' ? 'default' : 'outline'}
+                className={cn("flex-1 h-12 text-lg", type === 'debt' ? 'bg-destructive hover:bg-destructive/90 text-white' : '')}
+                onClick={() => setType('debt')}
                 disabled={loading}
               >
-                {loading && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
-                {type === 'debt' ? 'Add Debt' : 'Add Payment'}
-                {amount && ` - ${parseFloat(amount).toFixed(2)}`}
+                {t('type.debt')}
               </Button>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
+              <Button
+                type="button"
+                variant={type === 'payment' ? 'default' : 'outline'}
+                className={cn("flex-1 h-12 text-lg", type === 'payment' ? 'bg-green-600 hover:bg-green-700 text-white' : '')}
+                onClick={() => setType('payment')}
+                disabled={loading}
+              >
+                {t('type.payment')}
+              </Button>
+            </div>
+
+            {/* Customer Select */}
+            <div className="space-y-2">
+              <Label className="text-text">{t('customer')} *</Label>
+              <Select value={customerId} onValueChange={setCustomerId} disabled={loading}>
+                <SelectTrigger className="h-12">
+                  <SelectValue placeholder={t('customerPlaceholder')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {customers.map((customer) => (
+                    <SelectItem key={customer.id} value={customer.id}>
+                      {customer.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Amount */}
+            <div className="space-y-2">
+              <Label className="text-text">{t('amount')} *</Label>
+              <Input
+                type="number"
+                step="0.01"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                placeholder="0.00"
+                className="h-12 text-lg"
+                disabled={loading}
+              />
+              {/* Quick Amount Buttons */}
+              <div className="flex gap-2 mt-2 flex-wrap">
+                {quickAmounts.map((qa) => (
+                  <Button
+                    key={qa}
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setAmount(qa.toString())}
+                    disabled={loading}
+                  >
+                    +{qa}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            {/* Note */}
+            <div className="space-y-2">
+              <Label className="text-text">{t('note')}</Label>
+              <Input
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                placeholder={t('notePlaceholder')}
+                disabled={loading}
+              />
+            </div>
+
+            {/* Submit Button */}
+            <Button
+              type="submit"
+              className="w-full h-12 text-lg bg-accent hover:bg-accent-hover text-white"
+              disabled={loading}
+            >
+              {loading && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
+              {type === 'debt' ? t('submit.debt') : t('submit.payment')}
+              {amount && ` - ${parseFloat(amount).toFixed(2)}`}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
