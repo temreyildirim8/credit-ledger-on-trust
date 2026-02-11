@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { authService } from '@/lib/services/auth.service';
+import { createContext, useContext, useEffect, useState } from "react";
+import { User, Session } from "@supabase/supabase-js";
+import { authService } from "@/lib/services/auth.service";
 
 interface AuthContextType {
   user: User | null;
@@ -33,7 +33,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setLoading(false);
         }
       } catch (error) {
-        console.error('Error initializing auth:', error);
+        console.error("Error initializing auth:", error);
         if (mounted) {
           setLoading(false);
         }
@@ -43,15 +43,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     initAuth();
 
     // Listen for auth changes
-    const { data: { subscription } } = authService.onAuthStateChange(
-      (_event, session) => {
-        if (mounted) {
-          setSession(session);
-          setUser(session?.user ?? null);
-          setLoading(false);
-        }
+    const {
+      data: { subscription },
+    } = authService.onAuthStateChange((event, session) => {
+      if (mounted) {
+        setSession(session);
+        setUser(session?.user ?? null);
+        setLoading(false);
       }
-    );
+    });
 
     return () => {
       mounted = false;
@@ -60,11 +60,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    await authService.signIn({ email, password });
+    const authData = await authService.signIn({ email, password });
+    // Immediately update state to avoid race condition with redirect
+    if (authData.session) {
+      setSession(authData.session);
+      setUser(authData.session.user);
+    }
   };
 
   const signUp = async (email: string, password: string, name?: string) => {
-    await authService.signUp({ email, password, name });
+    const authData = await authService.signUp({ email, password, name });
+    // Immediately update state if session is available (for auto-confirmed users)
+    if (authData.session) {
+      setSession(authData.session);
+      setUser(authData.session.user);
+    }
   };
 
   const signOut = async () => {
@@ -73,13 +83,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(null);
       setSession(null);
     } catch (error) {
-      console.error('Sign out error:', error);
+      console.error("Sign out error:", error);
       throw error;
     }
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider
+      value={{ user, session, loading, signIn, signUp, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -88,7 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }

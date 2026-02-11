@@ -10,9 +10,12 @@ const intlMiddleware = createMiddleware(routing);
  * Combined middleware for i18n and authentication
  */
 export default async function middleware(request: NextRequest) {
-  // Check for Supabase auth session cookie
-  const session = request.cookies.get("sb-session-token");
-  const isLoggedIn = !!session;
+  // Check for Supabase auth session cookies (names vary by project)
+  const cookieNames = request.cookies.getAll().map((cookie) => cookie.name);
+  const hasSupabaseAuthCookie = cookieNames.some((name) =>
+    /^sb-.*-(auth-token|access-token|refresh-token)$/.test(name),
+  );
+  const isLoggedIn = hasSupabaseAuthCookie;
 
   const { pathname } = request.nextUrl;
 
@@ -25,26 +28,35 @@ export default async function middleware(request: NextRequest) {
   const isValidLocale = supportedLocales.includes(locale);
   const hasLocalePrefix = isValidLocale;
 
-  // Protected routes: /{locale}/app/*
-  const isProtectedRoute = hasLocalePrefix && pathname.includes("/app/");
+  // Protected routes: /{locale}/dashboard, /{locale}/customers, etc.
+  const protectedPaths = [
+    "dashboard",
+    "customers",
+    "transactions",
+    "quick-add",
+    "settings",
+  ];
+  const secondSegment = segments[2]; // e.g., "dashboard" from /en/dashboard
+  const isProtectedRoute =
+    hasLocalePrefix && protectedPaths.includes(secondSegment || "");
 
   // Auth routes: /{locale}/login, /{locale}/signup
-  const isAuthRoute =
-    hasLocalePrefix &&
-    (pathname.includes("/login") || pathname.includes("/signup"));
+  const secondSegmentIsAuth =
+    segments[2] === "login" || segments[2] === "signup";
+  const isAuthRoute = hasLocalePrefix && secondSegmentIsAuth;
 
   // Redirect unauthenticated users from protected routes to login
   if (isProtectedRoute && !isLoggedIn) {
     const loginUrl = new URL(
       `/${locale}/login?redirect=${encodeURIComponent(pathname)}`,
-      request.url
+      request.url,
     );
     return NextResponse.redirect(loginUrl);
   }
 
   // Redirect authenticated users from login/signup to dashboard
   if (isAuthRoute && isLoggedIn) {
-    const dashboardUrl = new URL(`/${locale}/app/dashboard`, request.url);
+    const dashboardUrl = new URL(`/${locale}/dashboard`, request.url);
     return NextResponse.redirect(dashboardUrl);
   }
 
