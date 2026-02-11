@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
 
 interface AddCustomerModalProps {
   open: boolean;
@@ -15,6 +16,9 @@ interface AddCustomerModalProps {
 }
 
 export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModalProps) {
+  const t = useTranslations('customers.form');
+  const tCommon = useTranslations('common');
+  const tCustomers = useTranslations('customers');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -24,7 +28,7 @@ export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModa
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) {
-      toast.error('İsim gereklidir');
+      toast.error(tCommon('required'));
       return;
     }
 
@@ -36,7 +40,7 @@ export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModa
         address: address.trim() || undefined,
         notes: notes.trim() || undefined,
       });
-      toast.success('Müşteri eklendi!');
+      toast.success(tCustomers('success'));
       // Reset form
       setName('');
       setPhone('');
@@ -44,7 +48,7 @@ export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModa
       setNotes('');
       onOpenChange(false);
     } catch (error: any) {
-      toast.error(error.message || 'Müşteri eklenemedi');
+      toast.error(error.message || tCustomers('error'));
     } finally {
       setLoading(false);
     }
@@ -55,50 +59,50 @@ export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModa
       <DialogContent className="sm:max-w-md">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Yeni Müşteri</DialogTitle>
+            <DialogTitle>{t('title')}</DialogTitle>
             <DialogDescription>
-              Borç takibi için yeni müşteri ekleyin
+              {tCustomers('title')}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="name">İsim *</Label>
+              <Label htmlFor="name">{t('name')}</Label>
               <Input
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Müşteri adı"
+                placeholder={t('namePlaceholder')}
                 disabled={loading}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="phone">Telefon</Label>
+              <Label htmlFor="phone">{t('phone')}</Label>
               <Input
                 id="phone"
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="05XX XXX XX XX"
+                placeholder={t('phonePlaceholder')}
                 disabled={loading}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="address">Adres</Label>
+              <Label htmlFor="address">{t('address')}</Label>
               <Input
                 id="address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder="Adres (opsiyonel)"
+                placeholder={t('addressPlaceholder')}
                 disabled={loading}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="notes">Notlar</Label>
+              <Label htmlFor="notes">{tCommon('optional')}</Label>
               <Input
                 id="notes"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="Ek notlar (opsiyonel)"
+                placeholder={t('addressPlaceholder')}
                 disabled={loading}
               />
             </div>
@@ -110,11 +114,11 @@ export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModa
               onClick={() => onOpenChange(false)}
               disabled={loading}
             >
-              İptal
+              {tCommon('cancel')}
             </Button>
             <Button type="submit" disabled={loading}>
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Kaydet
+              {t('submit')}
             </Button>
           </DialogFooter>
         </form>

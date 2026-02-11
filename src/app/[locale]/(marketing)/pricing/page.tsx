@@ -115,31 +115,31 @@ export default function PricingPage() {
       <section className="py-20 bg-[var(--color-bg)]">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold font-display text-[var(--color-text)] text-center mb-12">
-            Frequently Asked Questions
+            {t('faq.title')}
           </h2>
           <div className="space-y-6">
             {[
               {
-                q: 'Is the free plan really free?',
-                a: 'Yes! The free plan is free forever with up to 50 customers. No credit card required.',
+                qKey: 'faq.q1',
+                aKey: 'faq.a1',
               },
               {
-                q: 'Can I switch plans anytime?',
-                a: 'Absolutely! You can upgrade or downgrade your plan at any time.',
+                qKey: 'faq.q2',
+                aKey: 'faq.a2',
               },
               {
-                q: 'What payment methods do you accept?',
-                a: 'We accept all major credit cards, debit cards, and local payment methods in supported countries.',
+                qKey: 'faq.q3',
+                aKey: 'faq.a3',
               },
               {
-                q: 'Is my data secure?',
-                a: 'Yes! We use bank-grade encryption and automatic cloud backups to keep your data safe.',
+                qKey: 'faq.q4',
+                aKey: 'faq.a4',
               },
             ].map((faq, index) => (
               <Card key={index} className="border-[var(--color-border)]">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-[var(--color-text)] mb-2">{faq.q}</h3>
-                  <p className="text-[var(--color-text-secondary)]">{faq.a}</p>
+                  <h3 className="font-semibold text-[var(--color-text)] mb-2">{t(faq.qKey)}</h3>
+                  <p className="text-[var(--color-text-secondary)]">{t(faq.aKey)}</p>
                 </CardContent>
               </Card>
             ))}
@@ -151,16 +151,16 @@ export default function PricingPage() {
       <section className="py-20 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold font-display mb-4">
-            Not Sure Which Plan to Choose?
+            {t('cta.title')}
           </h2>
           <p className="text-white/90 mb-8">
-            Start with our free plan and upgrade when you need more features.
+            {t('cta.description')}
           </p>
           <a
             href="/login"
             className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
-            Get Started Free
+            {t('cta.button')}
           </a>
         </div>
       </section>

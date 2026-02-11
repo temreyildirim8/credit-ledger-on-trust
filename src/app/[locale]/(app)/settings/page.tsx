@@ -42,60 +42,39 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useTranslations } from 'next-intl';
 
 type SettingsTab = 'profile' | 'business' | 'notifications' | 'subscription' | 'data' | 'support' | 'account';
 
 interface SettingsSection {
   id: SettingsTab;
-  title: string;
+  titleKey: string;
+  descriptionKey: string;
   icon: React.ElementType;
-  description: string;
 }
 
-const settingsSections: SettingsSection[] = [
-  {
-    id: 'profile',
-    title: 'Profile',
-    icon: User,
-    description: 'Manage your personal information',
-  },
-  {
-    id: 'business',
-    title: 'Business',
-    icon: Building2,
-    description: 'Business name, currency, language',
-  },
-  {
-    id: 'notifications',
-    title: 'Notifications',
-    icon: Bell,
-    description: 'Push notifications and reminders',
-  },
-  {
-    id: 'subscription',
-    title: 'Subscription',
-    icon: CreditCard,
-    description: 'Plan and billing',
-  },
-  {
-    id: 'data',
-    title: 'Data & Backup',
-    icon: Download,
-    description: 'Export and backup your data',
-  },
-  {
-    id: 'support',
-    title: 'Support',
-    icon: HelpCircle,
-    description: 'Help, contact, and feedback',
-  },
-  {
-    id: 'account',
-    title: 'Account',
-    icon: Shield,
-    description: 'Privacy, terms, and sign out',
-  },
-];
+export default function SettingsPage() {
+  const t = useTranslations('settings');
+  const tCommon = useTranslations('common');
+  const tAccount = useTranslations('settings.sections.account');
+
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1] || 'en';
+  const router = useRouter();
+  const { user, signOut } = useAuth();
+  const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
+  const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
+
+  // Settings sections will be computed from translations
+  const settingsSections: SettingsSection[] = [
+    { id: 'profile', titleKey: 'sections.profile.title', descriptionKey: 'sections.profile.description', icon: User },
+    { id: 'business', titleKey: 'sections.business.title', descriptionKey: 'sections.business.description', icon: Building2 },
+    { id: 'notifications', titleKey: 'sections.notifications.title', descriptionKey: 'sections.notifications.description', icon: Bell },
+    { id: 'subscription', titleKey: 'sections.subscription.title', descriptionKey: 'sections.subscription.description', icon: CreditCard },
+    { id: 'data', titleKey: 'sections.data.title', descriptionKey: 'sections.data.description', icon: Download },
+    { id: 'support', titleKey: 'sections.support.title', descriptionKey: 'sections.support.description', icon: HelpCircle },
+    { id: 'account', titleKey: 'sections.account.title', descriptionKey: 'sections.account.description', icon: Shield },
+  ];
 
 export default function SettingsPage() {
   const pathname = usePathname();
@@ -126,20 +105,20 @@ export default function SettingsPage() {
   const handleSignOut = async () => {
     try {
       await signOut();
-      toast.success('Signed out successfully');
+      toast.success(tCommon('success') || 'Signed out successfully');
       router.push(`/${locale}/login`);
     } catch (error) {
-      toast.error('Failed to sign out. Please try again.');
+      toast.error(tCommon('tryAgain'));
       console.error('Sign out error:', error);
     }
   };
 
   const handleSaveProfile = () => {
-    toast.success('Profile saved successfully');
+    toast.success(t('sections.profile.saved'));
   };
 
   const handleSaveBusiness = () => {
-    toast.success('Business settings saved');
+    toast.success(t('sections.business.saved'));
   };
 
   const handleExportData = (format: 'csv' | 'pdf') => {
@@ -154,8 +133,8 @@ export default function SettingsPage() {
       {/* Header */}
       <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] p-6 text-white">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold font-display">Settings</h1>
-          <p className="text-white/80 mt-1">Manage your account and preferences</p>
+          <h1 className="text-2xl font-bold font-display">{t('title')}</h1>
+          <p className="text-white/80 mt-1">{t('subtitle')}</p>
         </div>
       </div>
 
@@ -169,10 +148,10 @@ export default function SettingsPage() {
               </div>
               <div>
                 <p className="font-semibold text-[var(--color-text)]">
-                  Beta Founder
+                  {t('betaFounder')}
                 </p>
                 <p className="text-sm text-[var(--color-text-secondary)]">
-                  Early adopter benefits - 50% off forever! 🚀
+                  {t('betaDescription')}
                 </p>
               </div>
             </div>
@@ -186,6 +165,8 @@ export default function SettingsPage() {
               <CardContent className="p-2">
                 {settingsSections.map((section) => {
                   const Icon = section.icon;
+                  const title = typeof section.titleKey === 'string' ? section.titleKey : t(section.titleKey);
+                  const description = typeof section.descriptionKey === 'string' ? section.descriptionKey : t(section.descriptionKey);
                   return (
                     <button
                       key={section.id}
@@ -198,9 +179,9 @@ export default function SettingsPage() {
                     >
                       <Icon className="h-5 w-5" />
                       <div className="flex-1">
-                        <p className="font-medium text-sm">{section.title}</p>
+                        <p className="font-medium text-sm">{title}</p>
                         <p className={`text-xs ${activeTab === section.id ? 'text-white/70' : 'text-[var(--color-text-secondary)]'}`}>
-                          {section.description}
+                          {description}
                         </p>
                       </div>
                       {activeTab === section.id && <ChevronRight className="h-4 w-4" />}
@@ -217,7 +198,7 @@ export default function SettingsPage() {
               <CardHeader className="border-b border-[var(--color-border)]">
                 <CardTitle className="flex items-center gap-2 font-display">
                   <ActiveIcon className="h-5 w-5 text-[var(--color-accent)]" />
-                  {activeSection?.title}
+                  {activeSection ? t(activeSection.titleKey) : ''}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
@@ -225,16 +206,16 @@ export default function SettingsPage() {
                 {activeTab === 'profile' && (
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
+                      <Label htmlFor="name">{t('sections.profile.fullName')}</Label>
                       <Input
                         id="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Your name"
+                        placeholder={t('sections.profile.fullName')}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="email">{t('sections.profile.email')}</Label>
                       <Input
                         id="email"
                         type="email"
@@ -244,7 +225,7 @@ export default function SettingsPage() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Phone</Label>
+                      <Label htmlFor="phone">{t('sections.profile.phone')}</Label>
                       <Input
                         id="phone"
                         type="tel"
@@ -254,7 +235,7 @@ export default function SettingsPage() {
                       />
                     </div>
                     <Button onClick={handleSaveProfile} className="bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]">
-                      Save Changes
+                      {t('sections.profile.saveChanges')}
                     </Button>
                   </div>
                 )}
@@ -263,16 +244,16 @@ export default function SettingsPage() {
                 {activeTab === 'business' && (
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="businessName">Business Name</Label>
+                      <Label htmlFor="businessName">{t('sections.business.businessName')}</Label>
                       <Input
                         id="businessName"
                         value={businessName}
                         onChange={(e) => setBusinessName(e.target.value)}
-                        placeholder="My Shop"
+                        placeholder={t('sections.business.businessNamePlaceholder')}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="currency">Currency</Label>
+                      <Label htmlFor="currency">{t('sections.business.currency')}</Label>
                       <Select value={currency} onValueChange={setCurrency}>
                         <SelectTrigger>
                           <SelectValue />
@@ -290,7 +271,7 @@ export default function SettingsPage() {
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="language">Language</Label>
+                      <Label htmlFor="language">{t('sections.business.language')}</Label>
                       <Select value={language} onValueChange={setLanguage}>
                         <SelectTrigger>
                           <SelectValue />
@@ -303,7 +284,7 @@ export default function SettingsPage() {
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="timezone">Timezone</Label>
+                      <Label htmlFor="timezone">{t('sections.business.timezone')}</Label>
                       <Select defaultValue="Europe/Istanbul">
                         <SelectTrigger>
                           <SelectValue />
@@ -318,7 +299,7 @@ export default function SettingsPage() {
                       </Select>
                     </div>
                     <Button onClick={handleSaveBusiness} className="bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]">
-                      Save Changes
+                      {t('sections.business.saveChanges')}
                     </Button>
                   </div>
                 )}
@@ -328,22 +309,22 @@ export default function SettingsPage() {
                   <div className="space-y-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium">Push Notifications</p>
-                        <p className="text-sm text-[var(--color-text-secondary)]">Receive alerts on your device</p>
+                        <p className="font-medium">{t('sections.notifications.pushEnabled')}</p>
+                        <p className="text-sm text-[var(--color-text-secondary)]">{t('sections.notifications.pushDescription')}</p>
                       </div>
                       <Switch checked={pushEnabled} onCheckedChange={setPushEnabled} />
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium">Payment Reminders</p>
-                        <p className="text-sm text-[var(--color-text-secondary)]">Remind customers about debts</p>
+                        <p className="font-medium">{t('sections.notifications.remindersEnabled')}</p>
+                        <p className="text-sm text-[var(--color-text-secondary)]">{t('sections.notifications.remindersDescription')}</p>
                       </div>
                       <Switch checked={remindersEnabled} onCheckedChange={setRemindersEnabled} />
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium">Weekly Report</p>
-                        <p className="text-sm text-[var(--color-text-secondary)]">Summary of weekly activity</p>
+                        <p className="font-medium">{t('sections.notifications.weeklyReport')}</p>
+                        <p className="text-sm text-[var(--color-text-secondary)]">{t('sections.notifications.weeklyReportDescription')}</p>
                       </div>
                       <Switch checked={weeklyReport} onCheckedChange={setWeeklyReport} />
                     </div>
@@ -356,35 +337,35 @@ export default function SettingsPage() {
                     <div className="p-4 bg-[var(--color-accent)]/10 rounded-xl border border-[var(--color-accent)]/20">
                       <div className="flex items-center justify-between mb-4">
                         <div>
-                          <p className="font-semibold text-[var(--color-text)]">Current Plan</p>
-                          <p className="text-sm text-[var(--color-text-secondary)]">Beta Founder</p>
+                          <p className="font-semibold text-[var(--color-text)]">{t('sections.subscription.currentPlan')}</p>
+                          <p className="text-sm text-[var(--color-text-secondary)]">{t('sections.subscription.planName')}</p>
                         </div>
                         <Badge className="bg-[var(--color-accent)] text-white">50% Off</Badge>
                       </div>
                       <div className="space-y-2 text-sm">
                         <div className="flex items-center gap-2">
                           <div className="h-2 w-2 rounded-full bg-green-500" />
-                          <span>Up to 50 customers</span>
+                          <span>{t('sections.subscription.features.customers')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="h-2 w-2 rounded-full bg-green-500" />
-                          <span>Unlimited transactions</span>
+                          <span>{t('sections.subscription.features.transactions')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="h-2 w-2 rounded-full bg-green-500" />
-                          <span>Offline mode</span>
+                          <span>{t('sections.subscription.features.offline')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="h-2 w-2 rounded-full bg-green-500" />
-                          <span>Data export</span>
+                          <span>{t('sections.subscription.features.export')}</span>
                         </div>
                       </div>
                     </div>
                     <Button variant="outline" className="w-full">
-                      View Pricing Plans
+                      {t('sections.subscription.viewPricing')}
                     </Button>
                     <Button variant="outline" className="w-full">
-                      Manage Billing
+                      {t('sections.subscription.manageBilling')}
                     </Button>
                   </div>
                 )}
@@ -393,9 +374,9 @@ export default function SettingsPage() {
                 {activeTab === 'data' && (
                   <div className="space-y-6">
                     <div>
-                      <p className="font-medium mb-2">Export Your Data</p>
+                      <p className="font-medium mb-2">{t('sections.data.export')}</p>
                       <p className="text-sm text-[var(--color-text-secondary)] mb-4">
-                        Download all your customers and transactions
+                        {t('sections.data.exportDescription')}
                       </p>
                       <div className="flex gap-2">
                         <Button
@@ -404,7 +385,7 @@ export default function SettingsPage() {
                           className="flex-1"
                         >
                           <Download className="h-4 w-4 mr-2" />
-                          Export CSV
+                          {t('sections.data.exportCSV')}
                         </Button>
                         <Button
                           variant="outline"
@@ -412,18 +393,18 @@ export default function SettingsPage() {
                           className="flex-1"
                         >
                           <Download className="h-4 w-4 mr-2" />
-                          Export PDF
+                          {t('sections.data.exportPDF')}
                         </Button>
                       </div>
                     </div>
                     <div className="border-t border-[var(--color-border)] pt-6">
-                      <p className="font-medium mb-2">Backup</p>
+                      <p className="font-medium mb-2">{t('sections.data.backup')}</p>
                       <p className="text-sm text-[var(--color-text-secondary)] mb-4">
-                        Your data is automatically backed up to the cloud
+                        {t('sections.data.backupDescription')}
                       </p>
                       <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
                         <div className="h-2 w-2 rounded-full bg-green-500" />
-                        Last backup: Just now
+                        {t('sections.data.lastBackup')}
                       </div>
                     </div>
                   </div>
@@ -434,20 +415,20 @@ export default function SettingsPage() {
                   <div className="space-y-4">
                     <Button variant="outline" className="w-full justify-start">
                       <HelpCircle className="h-4 w-4 mr-2" />
-                      Help Center
+                      {t('sections.support.helpCenter')}
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
                       <Mail className="h-4 w-4 mr-2" />
-                      Contact Support
+                      {t('sections.support.contactSupport')}
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
                       <Phone className="h-4 w-4 mr-2" />
-                      Call Support
+                      {t('sections.support.callSupport')}
                     </Button>
                     <div className="border-t border-[var(--color-border)] pt-4">
                       <p className="text-sm text-[var(--color-text-secondary)] mb-2">Enjoying the app?</p>
                       <Button variant="outline" className="w-full">
-                        Rate Us on Store
+                        {t('sections.support.rateUs')}
                       </Button>
                     </div>
                   </div>
@@ -458,15 +439,15 @@ export default function SettingsPage() {
                   <div className="space-y-4">
                     <Button variant="outline" className="w-full justify-start">
                       <Shield className="h-4 w-4 mr-2" />
-                      Privacy Policy
+                      {tAccount('privacyPolicy')}
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
                       <Globe className="h-4 w-4 mr-2" />
-                      Terms of Service
+                      {tAccount('termsOfService')}
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
                       <Globe className="h-4 w-4 mr-2" />
-                      Licenses
+                      {tAccount('licenses')}
                     </Button>
                     <div className="border-t border-[var(--color-border)] pt-4">
                       <Button
@@ -475,7 +456,7 @@ export default function SettingsPage() {
                         onClick={() => setSignOutDialogOpen(true)}
                       >
                         <LogOut className="h-4 w-4 mr-2" />
-                        Sign Out
+                        {tAccount('signOut')}
                       </Button>
                     </div>
                   </div>
@@ -495,17 +476,17 @@ export default function SettingsPage() {
       <Dialog open={signOutDialogOpen} onOpenChange={setSignOutDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Sign Out</DialogTitle>
+            <DialogTitle>{tAccount('signOutTitle')}</DialogTitle>
             <DialogDescription>
-              Are you sure you want to sign out? You can always sign back in with your email.
+              {tAccount('signOutConfirm')}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setSignOutDialogOpen(false)}>
-              Cancel
+              {tCommon('cancel')}
             </Button>
             <Button variant="destructive" onClick={handleSignOut}>
-              Sign Out
+              {tAccount('signOut')}
             </Button>
           </DialogFooter>
         </DialogContent>

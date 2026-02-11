@@ -12,6 +12,7 @@ import { formatCurrency } from '@/lib/utils/currency';
 import { formatDistanceToNow } from 'date-fns';
 import { tr, enUS, es } from 'date-fns/locale';
 import type { Locale } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 // Locale map for date-fns
 const localeMap: Record<string, Locale> = { en: enUS, tr, es };
@@ -20,6 +21,7 @@ export default function TransactionsPage() {
   const pathname = usePathname();
   const locale = pathname.split('/')[1] || 'en';
   const dateLocale = localeMap[locale] || enUS;
+  const t = useTranslations('transactions');
 
   const { transactions, loading, createTransaction } = useTransactions();
   const [modalOpen, setModalOpen] = useState(false);
@@ -36,9 +38,9 @@ export default function TransactionsPage() {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold font-display">Transactions</h1>
+              <h1 className="text-2xl font-bold font-display">{t('title')}</h1>
               <p className="text-white/80 mt-1">
-                {transactions.length} transaction{transactions.length !== 1 ? 's' : ''}
+                {transactions.length} {transactions.length === 1 ? t('count').split('|')[0].replace('{count}', String(transactions.length)) : t('count').split('|')[1].replace('{count}', String(transactions.length))}
               </p>
             </div>
             <Button
@@ -47,7 +49,7 @@ export default function TransactionsPage() {
               className="gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90"
             >
               <Plus className="h-4 w-4" />
-              Add New
+              {t('addNew')}
             </Button>
           </div>
         </div>
@@ -62,7 +64,7 @@ export default function TransactionsPage() {
             onClick={() => setFilter('all')}
             className={filter === 'all' ? 'bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]' : ''}
           >
-            All
+            {t('filter.all')}
           </Button>
           <Button
             variant={filter === 'debt' ? 'default' : 'outline'}
@@ -70,7 +72,7 @@ export default function TransactionsPage() {
             onClick={() => setFilter('debt')}
             className={filter === 'debt' ? 'bg-red-500 hover:bg-red-600 text-white' : ''}
           >
-            Debts
+            {t('filter.debts')}
           </Button>
           <Button
             variant={filter === 'payment' ? 'default' : 'outline'}
@@ -78,7 +80,7 @@ export default function TransactionsPage() {
             onClick={() => setFilter('payment')}
             className={filter === 'payment' ? 'bg-green-500 hover:bg-green-600 text-white' : ''}
           >
-            Payments
+            {t('filter.payments')}
           </Button>
         </div>
 
@@ -90,7 +92,7 @@ export default function TransactionsPage() {
         ) : filteredTransactions.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-[var(--color-text-secondary)]">
-              {filter === 'all' ? 'No transactions yet' : `No ${filter}s found`}
+              {filter === 'all' ? t('empty.noTransactions') : t('empty.noFilterResults').replace('{filter}', filter === 'debt' ? t('filter.debts') : t('filter.payments'))}
             </p>
           </div>
         ) : (
@@ -105,7 +107,7 @@ export default function TransactionsPage() {
                           ? 'bg-red-100 text-red-700 hover:bg-red-200'
                           : 'bg-green-100 text-green-700 hover:bg-green-200'}
                       >
-                        {transaction.type === 'debt' ? 'Debt' : 'Payment'}
+                        {transaction.type === 'debt' ? t('form.debt') : t('form.payment')}
                       </Badge>
                       <span className="font-medium text-[var(--color-text)]">{transaction.customer_name}</span>
                     </div>

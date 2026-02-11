@@ -1,27 +1,170 @@
 {
+  "common": {
+    "back": "Atrás",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "search": "Buscar",
+    "loading": "Cargando...",
+    "noResults": "No se encontraron resultados",
+    "required": "Obligatorio",
+    "optional": "Opcional",
+    "submit": "Enviar",
+    "close": "Cerrar",
+    "confirm": "Confirmar",
+    "success": "Éxito",
+    "error": "Error",
+    "tryAgain": "Inténtalo de nuevo",
+    "or": "o",
+    "and": "y",
+    "of": "de",
+    "in": "en",
+    "to": "a",
+    "from": "de",
+    "at": "en",
+    "on": "en",
+    "off": "Desactivado",
+    "yes": "Sí",
+    "no": "No"
+  },
   "nav": {
+    "dashboard": "Panel",
+    "customers": "Clientes",
+    "transactions": "Transacciones",
+    "quickAdd": "Agregar Rápido",
+    "settings": "Configuración",
+    "login": "Iniciar Sesión",
+    "signup": "Registrarse",
+    "logout": "Cerrar Sesión",
     "features": "Características",
     "pricing": "Precios",
     "about": "Acerca de",
     "contact": "Contacto"
   },
-  "hero": {
-    "title": "Construye Tu SaaS",
-    "subtitle": "Más Rápido Que Nunca",
-    "description": "Una plantilla Next.js lista para producción con internacionalización, autenticación y hermoso diseño incluido.",
-    "cta": "Comenzar",
-    "secondary": "Ver Demo"
+  "home": {
+    "meta": {
+      "title": "Global Ledger - Libro Mayor de Crédito Digital para Micro-EMPRESAS",
+      "description": "Reemplaza tu cuaderno de papel con una aplicación de libro mayor de crédito inteligente, segura y siempre disponible para pequeñas empresas."
+    },
+    "hero": {
+      "title": "Dinero para Aquí, Allá y en Todas Partes",
+      "subtitle": "El libro mayor de crédito inteligente para micro-empresas",
+      "description": "Reemplaza tu cuaderno de papel con una solución digital que funciona sin conexión, se sincroniza automáticamente y te ayuda a hacer crecer tu negocio.",
+      "cta": "Comienza Gratis Hoy",
+      "secondary": "Ver Cómo Funciona"
+    },
+    "trust": {
+      "bankGradeSecurity": "Seguridad de Nivel Bancario",
+      "worksOffline": "Funciona 100% Sin Conexión",
+      "autoBackup": "Copia de Seguridad en la Nube Automática"
+    },
+    "stats": {
+      "users": "300,000+",
+      "usersLabel": "Usuarios Activos",
+      "security": "Nivel Bancario",
+      "securityLabel": "Seguridad",
+      "uptime": "99.9%",
+      "uptimeLabel": "Tiempo de Actividad"
+    }
+  },
+  "features": {
+    "meta": {
+      "title": "Características - Global Ledger",
+      "description": "Explora todas las poderosas características de la aplicación de libro mayor de crédito Global Ledger"
+    },
+    "title": "Todo Lo Que Necesitas Para Gestionar Crédito",
+    "subtitle": "Construido para micro-empresas, confiado por dueños de tiendas en todo el mundo",
+    "localLanguage": {
+      "title": "Soporte de Idioma Local",
+      "description": "Funciona en tu idioma con soporte para 7 idiomas incluyendo hindi, turco, español y más."
+    },
+    "multiCurrency": {
+      "title": "Protección Multidivisa",
+      "description": "Soporte para todas las monedas principales con actualizaciones automáticas de tipos de cambio."
+    },
+    "offlineMode": {
+      "title": "Funciona 100% Sin Conexión",
+      "description": "Registra transacciones incluso sin internet. Se sincroniza automáticamente cuando vuelves a estar en línea."
+    },
+    "cloudBackup": {
+      "title": "Copias de Seguridad Automáticas en la Nube",
+      "description": "Tus datos se respaldan de forma segura en la nube. Nunca pierdas tus registros de crédito nuevamente."
+    },
+    "smsReminders": {
+      "title": "Recordatorios SMS",
+      "description": "Envía recordatorios de pago a los clientes automáticamente por SMS."
+    },
+    "reports": {
+      "title": "Informes Detallados",
+      "description": "Obtén información sobre tu negocio con informes y análisis completos."
+    }
+  },
+  "pricing": {
+    "meta": {
+      "title": "Precios - Global Ledger",
+      "description": "Precios asequibles para cada tamaño de negocio. Comienza gratis, actualiza cuando lo necesites."
+    },
+    "title": "Precios Simples y Transparentes",
+    "subtitle": "Comienza gratis, actualiza cuando crezcas",
+    "free": {
+      "name": "Gratis Para Siempre",
+      "price": "$0",
+      "period": "para siempre",
+      "description": "Perfecto para comenzar",
+      "features": [
+        "Hasta 50 clientes",
+        "Transacciones ilimitadas",
+        "Modo sin conexión",
+        "Informes básicos",
+        "Soporte por correo electrónico"
+      ],
+      "cta": "Comenzar Gratis"
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "$4.99",
+      "period": "mes",
+      "description": "Para negocios en crecimiento",
+      "features": [
+        "Clientes ilimitados",
+        "Transacciones ilimitadas",
+        "Modo sin conexión",
+        "Informes avanzados",
+        "Recordatorios SMS",
+        "Soporte prioritario",
+        "Exportación de datos (CSV, PDF)"
+      ],
+      "cta": "Iniciar Prueba Pro"
+    },
+    "enterprise": {
+      "name": "Empresarial",
+      "price": "Personalizado",
+      "period": "contacto",
+      "description": "Para grandes negocios",
+      "features": [
+        "Todo en Pro",
+        "Acceso multiusuario",
+        "Acceso API",
+        "Integraciones personalizadas",
+        "Soporte dedicado",
+        "Opción de marca blanca"
+      ],
+      "cta": "Contactar Ventas"
+    }
   },
   "about": {
     "meta": {
-      "title": "Acerca de Nosotros",
-      "description": "Conozca más sobre nuestra empresa y misión"
+      "title": "Acerca de Nosotros - Global Ledger",
+      "description": "Conoce más sobre la misión de Global Ledger de democratizar la gestión de crédito para micro-empresas"
     },
-    "title": "Acerca de Nosotros",
+    "title": "Acerca de Global Ledger",
+    "subtitle": "Empoderando micro-empresas en todo el mundo",
     "intro": "Estamos construyendo el futuro de la tecnología financiera, haciendo que la gestión del crédito sea accesible y transparente para todos.",
     "mission": {
       "title": "Nuestra Misión",
-      "description": "Democratizar los servicios financieros proporcionando herramientas intuitivas que ayudan a empresas e individuos a gestionar su crédito eficientemente."
+      "description": "Democratizar los servicios financieros proporcionando herramientas intuitivas que ayudan a las empresas y las personas a gestionar su crédito de manera eficiente."
     },
     "vision": {
       "title": "Nuestra Visión",
@@ -37,42 +180,336 @@
       ]
     }
   },
-  "features": {
-    "title": "Todo Lo Que Necesitas",
-    "subtitle": "Funciones integradas para acelerar tu desarrollo",
-    "i18n": {
-      "title": "Internacionalización",
-      "description": "Soporte multiidioma con next-intl, optimizado para SEO y alcance global."
+  "contact": {
+    "meta": {
+      "title": "Contactanos - Global Ledger",
+      "description": "Ponte en contacto con nuestro equipo para soporte, preguntas o comentarios"
     },
-    "design": {
-      "title": "Diseño Refinado",
-      "description": "Interfaz de inspiración editorial con tipografía sofisticada y detalles cuidados."
+    "title": "Ponte en Contacto",
+    "subtitle": "Nos encantaría saber de ti",
+    "form": {
+      "name": "Tu Nombre",
+      "email": "Correo Electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "submit": "Enviar Mensaje"
     },
-    "performance": {
-      "title": "Rendimiento Optimizado",
-      "description": "Construido sobre Next.js 14 App Router con componentes de servidor y streaming."
+    "info": {
+      "email": "Envíanos un correo",
+      "emailAddress": "soporte@globalledger.app",
+      "responseTime": "Por lo general respondemos dentro de 24 horas"
     },
-    "typescript": {
-      "title": "TypeScript Primero",
-      "description": "Base de código completamente tipada para mejor experiencia de desarrollo y menos errores."
+    "success": "¡Mensaje enviado con éxito!",
+    "error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
+  },
+  "dashboard": {
+    "title": "Panel",
+    "greeting": {
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches"
+    },
+    "stats": {
+      "totalOwed": "Total Adeudado",
+      "collected": "Recaudado",
+      "thisMonth": "Este Mes",
+      "activeCustomers": "Clientes Activos"
+    },
+    "quickActions": {
+      "title": "Acciones Rápidas",
+      "addDebt": "Agregar Deuda",
+      "addPayment": "Agregar Pago",
+      "addCustomer": "Agregar Cliente",
+      "sendReminders": "Recordar a Todos"
+    },
+    "recentActivity": {
+      "title": "Actividad Reciente",
+      "empty": "Sin actividad reciente"
+    },
+    "overdueDebts": {
+      "title": "Deudas Vencidas",
+      "empty": "Sin pagos vencidos",
+      "remind": "Recordar"
     }
+  },
+  "customers": {
+    "title": "Clientes",
+    "addCustomer": "Agregar Cliente",
+    "searchPlaceholder": "Buscar clientes...",
+    "filter": {
+      "all": "Todos",
+      "hasDebt": "Con Deuda",
+      "paidUp": "Pagado"
+    },
+    "empty": {
+      "noCustomers": "Aún no hay clientes",
+      "noSearchResults": "No se encontraron clientes",
+      "addFirst": "Agrega tu primer cliente"
+    },
+    "count": "{count} cliente | {count} clientes",
+    "form": {
+      "title": "Agregar Nuevo Cliente",
+      "name": "Nombre Completo",
+      "namePlaceholder": "Ingresa el nombre del cliente",
+      "phone": "Número de Teléfono",
+      "phonePlaceholder": "+90 555 123 4567",
+      "address": "Dirección",
+      "addressPlaceholder": "Ingresa la dirección (opcional)",
+      "submit": "Agregar Cliente"
+    },
+    "details": {
+      "totalDebt": "Deuda Total",
+      "balance": "Saldo",
+      "contact": "Contacto",
+      "transactionHistory": "Historial de Transacciones",
+      "noTransactions": "Aún no hay transacciones",
+      "debt": "Deuda",
+      "payment": "Pago"
+    },
+    "success": "Cliente agregado con éxito",
+    "error": "Error al agregar cliente"
+  },
+  "transactions": {
+    "title": "Transacciones",
+    "addNew": "Agregar Nueva",
+    "filter": {
+      "all": "Todas",
+      "debts": "Deudas",
+      "payments": "Pagos"
+    },
+    "empty": {
+      "noTransactions": "Aún no hay transacciones",
+      "noFilterResults": "No se encontraron {filter}"
+    },
+    "count": "{count} transacción | {count} transacciones",
+    "form": {
+      "title": "Nueva Transacción",
+      "description": "Agregar una transacción de deuda o pago",
+      "type": "Tipo",
+      "debt": "Deuda",
+      "payment": "Pago",
+      "customer": "Cliente",
+      "customerPlaceholder": "Selecciona un cliente",
+      "amount": "Monto",
+      "amountPlaceholder": "0.00",
+      "note": "Nota",
+      "notePlaceholder": "Descripción (opcional)",
+      "submit": "Guardar"
+    },
+    "success": "¡Transacción agregada!",
+    "error": "Error al agregar transacción",
+    "validation": {
+      "customerRequired": "El cliente es obligatorio",
+      "amountRequired": "El monto es obligatorio",
+      "invalidAmount": "Por favor, ingresa un monto válido"
+    }
+  },
+  "quickAdd": {
+    "title": "Agregar Rápido",
+    "newTransaction": "Nueva Transacción",
+    "type": {
+      "debt": "Deuda",
+      "payment": "Pago"
+    },
+    "customer": "Cliente",
+    "customerPlaceholder": "Selecciona un cliente",
+    "amount": "Monto",
+    "note": "Nota",
+    "notePlaceholder": "Descripción (opcional)",
+    "quickAmounts": "Montos Rápidos",
+    "submit": {
+      "debt": "Agregar Deuda",
+      "payment": "Agregar Pago"
+    },
+    "success": "¡Transacción agregada!",
+    "error": "Error al agregar transacción"
+  },
+  "settings": {
+    "title": "Configuración",
+    "subtitle": "Administra tu cuenta y preferencias",
+    "betaFounder": "Fundador Beta",
+    "betaDescription": "Beneficios de los primeros adoptantes - ¡50% de descuento para siempre!",
+    "sections": {
+      "profile": {
+        "title": "Perfil",
+        "description": "Administra tu información personal",
+        "fullName": "Nombre Completo",
+        "email": "Correo Electrónico",
+        "phone": "Teléfono",
+        "saveChanges": "Guardar Cambios",
+        "saved": "Perfil guardado con éxito"
+      },
+      "business": {
+        "title": "Negocio",
+        "description": "Nombre del negocio, moneda, idioma",
+        "businessName": "Nombre del Negocio",
+        "businessNamePlaceholder": "Mi Tienda",
+        "currency": "Moneda",
+        "language": "Idioma",
+        "timezone": "Zona Horaria",
+        "saveChanges": "Guardar Cambios",
+        "saved": "Configuración del negocio guardada"
+      },
+      "notifications": {
+        "title": "Notificaciones",
+        "description": "Notificaciones push y recordatorios",
+        "pushEnabled": "Notificaciones Push",
+        "pushDescription": "Recibe alertas en tu dispositivo",
+        "remindersEnabled": "Recordatorios de Pago",
+        "remindersDescription": "Recuerda a los clientes sus deudas",
+        "weeklyReport": "Informe Semanal",
+        "weeklyReportDescription": "Resumen de actividad semanal"
+      },
+      "subscription": {
+        "title": "Suscripción",
+        "description": "Plan y facturación",
+        "currentPlan": "Plan Actual",
+        "planName": "Fundador Beta",
+        "features": {
+          "customers": "Hasta 50 clientes",
+          "transactions": "Transacciones ilimitadas",
+          "offline": "Modo sin conexión",
+          "export": "Exportación de datos"
+        },
+        "viewPricing": "Ver Planes de Precios",
+        "manageBilling": "Administrar Facturación"
+      },
+      "data": {
+        "title": "Datos y Copia de Seguridad",
+        "description": "Exporta y respalda tus datos",
+        "export": "Exporta Tus Datos",
+        "exportDescription": "Descarga todos tus clientes y transacciones",
+        "exportCSV": "Exportar CSV",
+        "exportPDF": "Exportar PDF",
+        "backup": "Copia de Seguridad",
+        "backupDescription": "Tus datos se respaldan automáticamente en la nube",
+        "lastBackup": "Última copia: Justo ahora"
+      },
+      "support": {
+        "title": "Soporte",
+        "description": "Ayuda, contacto y comentarios",
+        "helpCenter": "Centro de Ayuda",
+        "contactSupport": "Contactar Soporte",
+        "callSupport": "Llamar a Soporte",
+        "rateUs": "Califícanos en la Tienda"
+      },
+      "account": {
+        "title": "Cuenta",
+        "description": "Privacidad, términos y cerrar sesión",
+        "privacyPolicy": "Política de Privacidad",
+        "termsOfService": "Términos de Servicio",
+        "licenses": "Licencias",
+        "signOut": "Cerrar Sesión",
+        "signOutConfirm": "¿Estás seguro de que quieres cerrar sesión? Siempre puedes volver a iniciar sesión con tu correo electrónico.",
+        "signOutTitle": "Cerrar Sesión"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Inicia sesión en tu cuenta",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tu@correo.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Ingresa tu contraseña",
+      "rememberMe": "Recordarme",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "submit": "Iniciar Sesión",
+      "noAccount": "¿No tienes una cuenta?",
+      "signUp": "Regístrate",
+      "success": "Sesión iniciada correctamente",
+      "error": "Correo electrónico o contraseña inválidos"
+    },
+    "signup": {
+      "title": "Crear Cuenta",
+      "subtitle": "Comienza tu prueba gratuita hoy",
+      "name": "Nombre Completo",
+      "namePlaceholder": "Ingresa tu nombre completo",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tu@correo.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Crea una contraseña",
+      "agree": "Acepto los",
+      "terms": "Términos de Servicio",
+      "and": "y",
+      "privacy": "Política de Privacidad",
+      "submit": "Crear Cuenta",
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "signIn": "Inicia sesión",
+      "success": "Cuenta creada exitosamente",
+      "error": "Error al crear la cuenta"
+    },
+    "forgotPassword": {
+      "title": "Contraseña Olvidada",
+      "subtitle": "Introduce tu correo para restablecer tu contraseña",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tu@correo.com",
+      "submit": "Enviar OTP",
+      "backToLogin": "Volver al Inicio de Sesión",
+      "success": "¡Código OTP enviado!",
+      "error": "Error al enviar OTP",
+      "otpVerification": {
+        "title": "Verificación OTP",
+        "subtitle": "Introduce el código de 8 dígitos enviado a tu correo",
+        "otp": "Código OTP",
+        "otpPlaceholder": "12345678",
+        "otpHint": "Introduce el código de 8 dígitos enviado a tu dirección de correo",
+        "newPassword": "Nueva Contraseña",
+        "newPasswordPlaceholder": "Nueva contraseña",
+        "confirmPassword": "Confirmar Contraseña",
+        "confirmPasswordPlaceholder": "Confirmar contraseña",
+        "submit": "Restablecer Contraseña",
+        "back": "Atrás",
+        "resend": "Reenviar Código",
+        "resendSuccess": "¡Nuevo código OTP enviado!",
+        "invalidOtp": "El OTP debe tener 8 dígitos",
+        "passwordsMismatch": "Las contraseñas no coinciden",
+        "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+        "error": "Error en la verificación OTP o no se pudo actualizar la contraseña"
+      },
+      "passwordReset": {
+        "title": "Contraseña Restablecida",
+        "success": "¡Éxito!",
+        "successDescription": "Tu contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña."
+      }
+    },
+    "resetPassword": {
+      "title": "Restablecer Contraseña",
+      "subtitle": "Ingresa tu nueva contraseña",
+      "password": "Nueva Contraseña",
+      "passwordPlaceholder": "Ingresa nueva contraseña",
+      "confirmPassword": "Confirmar Contraseña",
+      "confirmPasswordPlaceholder": "Confirma nueva contraseña",
+      "submit": "Restablecer Contraseña",
+      "backToLogin": "Volver al Inicio de Sesión",
+      "success": "¡Contraseña restablecida exitosamente!",
+      "successDescription": "Tu contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña.",
+      "error": "Error al restablecer la contraseña",
+      "invalidToken": "Enlace de restablecimiento inválido o expirado",
+      "passwordsMismatch": "Las contraseñas no coinciden",
+      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres"
+    },
+    "otpExpired": {
+      "title": "Enlace de Verificación Expirado",
+      "description": "El enlace de verificación de correo electrónico ha expirado. Por favor solicita uno nuevo abajo.",
+      "resendButton": "Reenviar Correo de Verificación",
+      "success": "¡Nuevo correo de verificación enviado!",
+      "enterEmail": "Ingresa tu dirección de correo electrónico",
+      "emailPlaceholder": "tu@correo.com"
+    }
+  },
+  "notFound": {
+    "title": "¡Ups! Página No Encontrada",
+    "description": "La página que buscas no existe o ha sido movida.",
+    "goHome": "Ir al Inicio",
+    "contactSupport": "Contactar Soporte",
+    "goBack": "Volver"
   },
   "metadata": {
     "general": {
-      "title": "Plantilla SaaS - Construye Más Rápido",
-      "description": "Plantilla Next.js lista para producción con internacionalización y hermoso diseño"
-    },
-    "fintech": {
-      "title": "Plantilla SaaS FinTech - Lanza Tu Producto Financiero",
-      "description": "Plantilla Next.js de nivel empresarial adaptada para aplicaciones de tecnología financiera"
-    },
-    "ecommerce": {
-      "title": "Plataforma SaaS E-Commerce - Escala Tu Negocio Online",
-      "description": "Plantilla Next.js completa para construir soluciones de comercio electrónico modernas"
-    },
-    "healthcare": {
-      "title": "Solución SaaS de Salud - Plataforma Compatible con HIPAA",
-      "description": "Plantilla Next.js segura diseñada para aplicaciones médicas y de atención médica"
+      "title": "Global Ledger - Libro Mayor de Crédito Digital para Micro-EMPRESAS",
+      "description": "Reemplaza tu cuaderno de papel con una aplicación de libro mayor de crédito inteligente, segura y siempre disponible."
     }
   }
 }

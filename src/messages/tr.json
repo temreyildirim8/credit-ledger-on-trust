@@ -99,6 +99,26 @@
     "reports": {
       "title": "Detaylı Raporlar",
       "description": "Kapsamlı raporlar ve analizlerle işiniz hakkında bilgi edinin."
+    },
+    "howItWorks": {
+      "title": "Nasıl Çalışır?",
+      "step1": {
+        "title": "Müşteri Ekleyin",
+        "description": "İsim ve telefon numarası ile müşterilerinizi hızlıca ekleyin"
+      },
+      "step2": {
+        "title": "İşlem Kaydedin",
+        "description": "Saniyeler içinde borç veya ödeme ekleyin, çevrimdışı bile"
+      },
+      "step3": {
+        "title": "Takip Edin ve Hatırlatın",
+        "description": "Bakiyeleri görüntüleyin ve otomatik ödeme hatırlatıcıları gönderin"
+      }
+    },
+    "cta": {
+      "title": "Başlamaya Hazır mısınız?",
+      "description": "Global Ledger'i kullanarak vereslerini yöneten binlerce dükkan sahibine katılın.",
+      "button": "Bugün Ücretsiz Başlayın"
     }
   },
   "pricing": {
@@ -152,6 +172,22 @@
         "Beyaz etiket seçeneği"
       ],
       "cta": "Satışla İletişime Geçin"
+    },
+    "faq": {
+      "title": "Sıkça Sorulan Sorular",
+      "q1": "Ücretsiz plan gerçekten ücretsiz mi?",
+      "a1": "Evet! Ücretsiz plan 50 müşteriye kadar sonsuza kadar ücretsizdir. Kredi kartı gerekmez.",
+      "q2": "Planları istediğim zaman değiştirebilir miyim?",
+      "a2": "Elbette! Planınızı istediğiniz zaman yükseltebilir veya düşürebilirsiniz.",
+      "q3": "Hangi ödeme yöntemlerini kabul ediyorsunuz?",
+      "a3": "Tüm büyük kredi kartlarını, banka kartlarını ve desteklenen ülkelerdeki yerel ödeme yöntemlerini kabul ediyoruz.",
+      "q4": "Verilerim güvende mi?",
+      "a4": "Evet! Verilerinizin güvende kalması için banka düzeyinde şifreleme ve otomatik bulut yedeklemeleri kullanıyoruz."
+    },
+    "cta": {
+      "title": "Hangi Plani Seçeceğinizden Emin Değil misiniz?",
+      "description": "Ücretsiz planımızla başlayın ve daha fazla özelliğe ihtiyaç duyduğunuzda yükseltin.",
+      "button": "Ücretsiz Başlayın"
     }
   },
   "about": {
@@ -178,6 +214,11 @@
         "Sürekli yenilik ve iyileştirme",
         "Güvenlik ve gizlilik temel ilkeler olarak"
       ]
+    },
+    "cta": {
+      "title": "İşletmenizi Dönüştürmeye Hazır mısınız?",
+      "description": "Global Ledger'a geçen binlerce dükkan sahibine katılın.",
+      "button": "Ücretsiz Başlayın"
     }
   },
   "contact": {
@@ -246,7 +287,7 @@
       "noSearchResults": "Müşteri bulunamadı",
       "addFirst": "İlk müşterinizi ekleyin"
     },
-    "count": "{count} müşteri",
+    "count": "{count} müşteri | {count} müşteri",
     "form": {
       "title": "Yeni Müşteri Ekle",
       "name": "Tam Ad",
@@ -281,7 +322,7 @@
       "noTransactions": "Henüz işlem yok",
       "noFilterResults": "{filter} bulunamadı"
     },
-    "count": "{count} işlem",
+    "count": "{count} işlem | {count} işlem",
     "form": {
       "title": "Yeni İşlem",
       "description": "Borç veya ödeme işlemi ekleyin",
@@ -439,7 +480,72 @@
       "signIn": "Giriş yapın",
       "success": "Hesap başarıyla oluşturuldu",
       "error": "Hesap oluşturulamadı"
+    },
+    "forgotPassword": {
+      "title": "Şifremi Unuttum",
+      "subtitle": "Şifrenizi sıfırlamak için e-posta adresinizi girin",
+      "email": "E-posta",
+      "emailPlaceholder": "ornek@email.com",
+      "submit": "OTP Gönder",
+      "backToLogin": "Girişe Dön",
+      "success": "OTP kodu gönderildi!",
+      "error": "OTP gönderilemedi",
+      "otpVerification": {
+        "title": "OTP Doğrulama",
+        "subtitle": "E-posta adresinize gönderilen 8 haneli kodu girin",
+        "otp": "OTP Kodu",
+        "otpPlaceholder": "12345678",
+        "otpHint": "E-posta adresinize gönderilen 8 haneli kodu girin",
+        "newPassword": "Yeni Şifre",
+        "newPasswordPlaceholder": "Yeni şifre",
+        "confirmPassword": "Şifre Tekrarı",
+        "confirmPasswordPlaceholder": "Şifre tekrarı",
+        "submit": "Şifreyi Sıfırla",
+        "back": "Geri",
+        "resend": "Kodu Yeniden Gönder",
+        "resendSuccess": "Yeni OTP kodu gönderildi!",
+        "invalidOtp": "OTP 8 haneli olmalı",
+        "passwordsMismatch": "Şifreler eşleşmiyor",
+        "passwordTooShort": "Şifre en az 6 karakter olmalı",
+        "error": "OTP doğrulanamadı veya şifre güncellenemedi"
+      },
+      "passwordReset": {
+        "title": "Şifre Sıfırlandı",
+        "success": "Başarılı!",
+        "successDescription": "Şifreniz başarıyla sıfırlandı. Artık yeni şifrenizle giriş yapabilirsiniz."
+      }
+    },
+    "resetPassword": {
+      "title": "Şifre Sıfırlama",
+      "subtitle": "Yeni şifrenizi girin",
+      "password": "Yeni Şifre",
+      "passwordPlaceholder": "Yeni şifre girin",
+      "confirmPassword": "Şifre Tekrarı",
+      "confirmPasswordPlaceholder": "Yeni şifreyi tekrar girin",
+      "submit": "Şifreyi Sıfırla",
+      "backToLogin": "Girişe Dön",
+      "success": "Şifre başarıyla sıfırlandı!",
+      "successDescription": "Şifreniz başarıyla sıfırlandı. Artık yeni şifrenizle giriş yapabilirsiniz.",
+      "error": "Şifre sıfırlanamadı",
+      "invalidToken": "Geçersiz veya süresi dolmuş bağlantı",
+      "passwordsMismatch": "Şifreler eşleşmiyor",
+      "passwordTooShort": "Şifre en az 6 karakter olmalı"
+    },
+    "otpExpired": {
+      "title": "Doğrulama Bağlantısının Süresi Doldu",
+      "description": "E-posta doğrulama bağlantısının süresi doldu. Lütfen aşağıdan yeni bir tane isteyin.",
+      "resendButton": "Doğrulama E-postasını Yeniden Gönder",
+      "success": "Yeni doğrulama e-postası gönderildi!",
+      "enterEmail": "E-posta adresinizi girin",
+      "emailPlaceholder": "ornek@email.com"
     }
+  },
+  "notFound": {
+    "title": "Ups! Sayfa Bulunamadı",
+    "description": "Aradığınız sayfa mevcut değil veya taşınmış.",
+    "goHome": "Ana Sayfaya Dön",
+    "contactSupport": "Destek İle İletişime Geç",
+    "goBack": "Geri Dön"
   },
   "metadata": {
     "general": {

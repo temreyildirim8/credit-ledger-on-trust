@@ -47,20 +47,20 @@ export default async function HomePage({
             <div className="hero__visual">
               <div className="hero__card hero__card--1">
                 <div className="card-stat">
-                  <div className="card-stat__value">150+</div>
-                  <div className="card-stat__label">Countries</div>
+                  <div className="card-stat__value">{t("home.stats.users")}</div>
+                  <div className="card-stat__label">{t("home.stats.usersLabel")}</div>
                 </div>
               </div>
               <div className="hero__card hero__card--2">
                 <div className="card-stat">
-                  <div className="card-stat__value">99.9%</div>
-                  <div className="card-stat__label">Uptime</div>
+                  <div className="card-stat__value">{t("home.stats.uptime")}</div>
+                  <div className="card-stat__label">{t("home.stats.uptimeLabel")}</div>
                 </div>
               </div>
               <div className="hero__card hero__card--3">
                 <div className="card-stat">
-                  <div className="card-stat__value">2M+</div>
-                  <div className="card-stat__label">Users</div>
+                  <div className="card-stat__value">{t("home.stats.security")}</div>
+                  <div className="card-stat__label">{t("home.stats.securityLabel")}</div>
                 </div>
               </div>
             </div>

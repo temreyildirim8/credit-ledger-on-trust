@@ -1,23 +1,166 @@
 {
+  "common": {
+    "back": "Kembali",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "delete": "Hapus",
+    "edit": "Edit",
+    "add": "Tambah",
+    "search": "Cari",
+    "loading": "Memuat...",
+    "noResults": "Tidak ada hasil",
+    "required": "Wajib",
+    "optional": "Opsional",
+    "submit": "Kirim",
+    "close": "Tutup",
+    "confirm": "Konfirmasi",
+    "success": "Berhasil",
+    "error": "Error",
+    "tryAgain": "Coba Lagi",
+    "or": "atau",
+    "and": "dan",
+    "of": "dari",
+    "in": "di",
+    "to": "ke",
+    "from": "dari",
+    "at": "di",
+    "on": "pada",
+    "off": "Mati",
+    "yes": "Ya",
+    "no": "Tidak"
+  },
   "nav": {
+    "dashboard": "Dashboard",
+    "customers": "Pelanggan",
+    "transactions": "Transaksi",
+    "quickAdd": "Tambah Cepat",
+    "settings": "Pengaturan",
+    "login": "Masuk",
+    "signup": "Daftar",
+    "logout": "Keluar",
     "features": "Fitur",
     "pricing": "Harga",
     "about": "Tentang",
     "contact": "Kontak"
   },
-  "hero": {
-    "title": "Bangun SaaS Anda",
-    "subtitle": "Lebih Cepat dari Sebelumnya",
-    "description": "Boilerplate Next.js siap produksi dengan internasionalisasi, autentikasi, dan desain indah langsung pakai.",
-    "cta": "Mulai Sekarang",
-    "secondary": "Lihat Demo"
+  "home": {
+    "meta": {
+      "title": "Global Ledger - Buku Kredit Digital untuk UMKM",
+      "description": "Ganti buku catatan kertas Anda dengan aplikasi buku kredit cerdas, aman, dan selalu tersedia untuk usaha kecil."
+    },
+    "hero": {
+      "title": "Uang untuk Di Sini, Di Sana & Di Mana Saja",
+      "subtitle": "Buku kredit cerdas untuk UMKM",
+      "description": "Ganti buku catatan kertas Anda dengan solusi digital yang bekerja offline, sinkron otomatis, dan membantu bisnis Anda tumbuh.",
+      "cta": "Mulai Gratis Hari Ini",
+      "secondary": "Lihat Cara Kerjanya"
+    },
+    "trust": {
+      "bankGradeSecurity": "Keamanan Tingkat Bank",
+      "worksOffline": "Bekerja 100% Offline",
+      "autoBackup": "Backup Cloud Otomatis"
+    },
+    "stats": {
+      "users": "300.000+",
+      "usersLabel": "Pengguna Aktif",
+      "security": "Tingkat Bank",
+      "securityLabel": "Keamanan",
+      "uptime": "99,9%",
+      "uptimeLabel": "Uptime"
+    }
+  },
+  "features": {
+    "meta": {
+      "title": "Fitur - Global Ledger",
+      "description": "Jelajahi semua fitur canggih aplikasi buku kredit Global Ledger"
+    },
+    "title": "Semua yang Anda Butuhkan untuk Mengelola Kredit",
+    "subtitle": "Dibuat untuk UMKM, dipercaya oleh pemilik toko di seluruh dunia",
+    "localLanguage": {
+      "title": "Dukungan Bahasa Lokal",
+      "description": "Bekerja dalam bahasa Anda dengan dukungan 7 bahasa termasuk Hindi, Turki, Spanyol, dan lainnya."
+    },
+    "multiCurrency": {
+      "title": "Perlindungan Multi-Mata Uang",
+      "description": "Dukungan untuk semua mata uang utama dengan pembaruan nilai tukar otomatis."
+    },
+    "offlineMode": {
+      "title": "Bekerja 100% Offline",
+      "description": "Catat transaksi bahkan tanpa internet. Sinkron otomatis saat kembali online."
+    },
+    "cloudBackup": {
+      "title": "Backup Cloud Otomatis",
+      "description": "Data Anda dicadangkan dengan aman ke cloud. Jangan pernah kehilangan catatan kredit Anda lagi."
+    },
+    "smsReminders": {
+      "title": "Pengingat SMS",
+      "description": "Kirim pengingat pembayaran kepada pelanggan secara otomatis melalui SMS."
+    },
+    "reports": {
+      "title": "Laporan Mendetail",
+      "description": "Dapatkan wawasan tentang bisnis Anda dengan laporan dan analitik yang komprehensif."
+    }
+  },
+  "pricing": {
+    "meta": {
+      "title": "Harga - Global Ledger",
+      "description": "Harga terjangkau untuk setiap ukuran bisnis. Mulai gratis, upgrade saat Anda butuhkan."
+    },
+    "title": "Harga Sederhana & Transparan",
+    "subtitle": "Mulai gratis, upgrade saat Anda tumbuh",
+    "free": {
+      "name": "Gratis Selamanya",
+      "price": "$0",
+      "period": "selamanya",
+      "description": "Sempurna untuk memulai",
+      "features": [
+        "Hingga 50 pelanggan",
+        "Transaksi tidak terbatas",
+        "Mode offline",
+        "Laporan dasar",
+        "Dukungan email"
+      ],
+      "cta": "Mulai Gratis"
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "$4.99",
+      "period": "bulan",
+      "description": "Untuk bisnis yang sedang tumbuh",
+      "features": [
+        "Pelanggan tidak terbatas",
+        "Transaksi tidak terbatas",
+        "Mode offline",
+        "Laporan lanjutan",
+        "Pengingat SMS",
+        "Dukungan prioritas",
+        "Ekspor data (CSV, PDF)"
+      ],
+      "cta": "Mulai Uji Coba Pro"
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "price": "Kustom",
+      "period": "hubungi",
+      "description": "Untuk bisnis besar",
+      "features": [
+        "Semua di Pro",
+        "Akses multi-pengguna",
+        "Akses API",
+        "Integrasi kustom",
+        "Dukungan dedicated",
+        "Opsi white-label"
+      ],
+      "cta": "Hubungi Penjualan"
+    }
   },
   "about": {
     "meta": {
-      "title": "Tentang Kami",
-      "description": "Pelajari lebih lanjut tentang perusahaan dan misi kami"
+      "title": "Tentang Kami - Global Ledger",
+      "description": "Pelajari lebih lanjut tentang misi Global Ledger untuk mendemokratisasikan manajemen kredit bagi UMKM"
     },
-    "title": "Tentang Kami",
+    "title": "Tentang Global Ledger",
+    "subtitle": "Memberdayakan UMKM di seluruh dunia",
     "intro": "Kami membangun masa depan teknologi keuangan, membuat manajemen kredit dapat diakses dan transparan untuk semua orang.",
     "mission": {
       "title": "Misi Kami",
@@ -37,34 +180,336 @@
       ]
     }
   },
-  "features": {
-    "title": "Semua yang Anda Butuhkan",
-    "subtitle": "Fitur bawaan untuk mempercepat pengembangan Anda",
-    "i18n": {
-      "title": "Internasionalisasi",
-      "description": "Dukungan multi-bahasa dengan next-intl, dioptimalkan SEO untuk jangkauan global."
+  "contact": {
+    "meta": {
+      "title": "Hubungi Kami - Global Ledger",
+      "description": "Hubungi tim kami untuk dukungan, pertanyaan, atau masukan"
     },
-    "design": {
-      "title": "Desain yang Halus",
-      "description": "Antarmuka terinspirasi editorial dengan tipografi canggih dan detail yang bijaksana."
+    "title": "Hubungi Kami",
+    "subtitle": "Kami ingin mendengar dari Anda",
+    "form": {
+      "name": "Nama Anda",
+      "email": "Alamat Email",
+      "subject": "Subjek",
+      "message": "Pesan",
+      "submit": "Kirim Pesan"
     },
-    "performance": {
-      "title": "Performa yang Dioptimalkan",
-      "description": "Dibangun di Next.js 14 App Router dengan komponen server dan streaming."
+    "info": {
+      "email": "Email kami di",
+      "emailAddress": "support@globalledger.app",
+      "responseTime": "Kami biasanya merespons dalam 24 jam"
     },
-    "typescript": {
-      "title": "TypeScript Prioritas",
-      "description": "Basis kode yang sepenuhnya diketik untuk pengalaman pengembang yang lebih baik dan bug lebih sedikit."
+    "success": "Pesan berhasil dikirim!",
+    "error": "Gagal mengirim pesan. Silakan coba lagi."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "greeting": {
+      "morning": "Selamat pagi",
+      "afternoon": "Selamat siang",
+      "evening": "Selamat malam"
+    },
+    "stats": {
+      "totalOwed": "Total Tertagih",
+      "collected": "Dikumpulkan",
+      "thisMonth": "Bulan Ini",
+      "activeCustomers": "Pelanggan Aktif"
+    },
+    "quickActions": {
+      "title": "Aksi Cepat",
+      "addDebt": "Tambah Hutang",
+      "addPayment": "Tambah Pembayaran",
+      "addCustomer": "Tambah Pelanggan",
+      "sendReminders": "Ingatkan Semua"
+    },
+    "recentActivity": {
+      "title": "Aktivitas Terbaru",
+      "empty": "Tidak ada aktivitas terbaru"
+    },
+    "overdueDebts": {
+      "title": "Hutang Jatuh Tempo",
+      "empty": "Tidak ada pembayaran jatuh tempo",
+      "remind": "Ingatkan"
     }
+  },
+  "customers": {
+    "title": "Pelanggan",
+    "addCustomer": "Tambah Pelanggan",
+    "searchPlaceholder": "Cari pelanggan...",
+    "filter": {
+      "all": "Semua",
+      "hasDebt": "Berhutang",
+      "paidUp": "Lunas"
+    },
+    "empty": {
+      "noCustomers": "Belum ada pelanggan",
+      "noSearchResults": "Tidak ada pelanggan ditemukan",
+      "addFirst": "Tambahkan pelanggan pertama Anda"
+    },
+    "count": "{count} pelanggan | {count} pelanggan",
+    "form": {
+      "title": "Tambah Pelanggan Baru",
+      "name": "Nama Lengkap",
+      "namePlaceholder": "Masukkan nama pelanggan",
+      "phone": "Nomor Telepon",
+      "phonePlaceholder": "+90 555 123 4567",
+      "address": "Alamat",
+      "addressPlaceholder": "Masukkan alamat (opsional)",
+      "submit": "Tambah Pelanggan"
+    },
+    "details": {
+      "totalDebt": "Total Hutang",
+      "balance": "Saldo",
+      "contact": "Kontak",
+      "transactionHistory": "Riwayat Transaksi",
+      "noTransactions": "Belum ada transaksi",
+      "debt": "Hutang",
+      "payment": "Pembayaran"
+    },
+    "success": "Pelanggan berhasil ditambahkan",
+    "error": "Gagal menambahkan pelanggan"
+  },
+  "transactions": {
+    "title": "Transaksi",
+    "addNew": "Tambah Baru",
+    "filter": {
+      "all": "Semua",
+      "debts": "Hutang",
+      "payments": "Pembayaran"
+    },
+    "empty": {
+      "noTransactions": "Belum ada transaksi",
+      "noFilterResults": "Tidak ada {filter} ditemukan"
+    },
+    "count": "{count} transaksi | {count} transaksi",
+    "form": {
+      "title": "Transaksi Baru",
+      "description": "Tambahkan transaksi hutang atau pembayaran",
+      "type": "Tipe",
+      "debt": "Hutang",
+      "payment": "Pembayaran",
+      "customer": "Pelanggan",
+      "customerPlaceholder": "Pilih pelanggan",
+      "amount": "Jumlah",
+      "amountPlaceholder": "0.00",
+      "note": "Catatan",
+      "notePlaceholder": "Deskripsi (opsional)",
+      "submit": "Simpan"
+    },
+    "success": "Transaksi ditambahkan!",
+    "error": "Gagal menambahkan transaksi",
+    "validation": {
+      "customerRequired": "Pelanggan wajib",
+      "amountRequired": "Jumlah wajib",
+      "invalidAmount": "Silakan masukkan jumlah yang valid"
+    }
+  },
+  "quickAdd": {
+    "title": "Tambah Cepat",
+    "newTransaction": "Transaksi Baru",
+    "type": {
+      "debt": "Hutang",
+      "payment": "Pembayaran"
+    },
+    "customer": "Pelanggan",
+    "customerPlaceholder": "Pilih pelanggan",
+    "amount": "Jumlah",
+    "note": "Catatan",
+    "notePlaceholder": "Deskripsi (opsional)",
+    "quickAmounts": "Jumlah Cepat",
+    "submit": {
+      "debt": "Tambah Hutang",
+      "payment": "Tambah Pembayaran"
+    },
+    "success": "Transaksi ditambahkan!",
+    "error": "Gagal menambahkan transaksi"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "subtitle": "Kelola akun dan preferensi Anda",
+    "betaFounder": "Pendiri Beta",
+    "betaDescription": "Manfaat early adopter - Diskon 50% selamanya!",
+    "sections": {
+      "profile": {
+        "title": "Profil",
+        "description": "Kelola informasi pribadi Anda",
+        "fullName": "Nama Lengkap",
+        "email": "Email",
+        "phone": "Telepon",
+        "saveChanges": "Simpan Perubahan",
+        "saved": "Profil berhasil disimpan"
+      },
+      "business": {
+        "title": "Bisnis",
+        "description": "Nama bisnis, mata uang, bahasa",
+        "businessName": "Nama Bisnis",
+        "businessNamePlaceholder": "Toko Saya",
+        "currency": "Mata Uang",
+        "language": "Bahasa",
+        "timezone": "Zona Waktu",
+        "saveChanges": "Simpan Perubahan",
+        "saved": "Pengaturan bisnis disimpan"
+      },
+      "notifications": {
+        "title": "Notifikasi",
+        "description": "Notifikasi push dan pengingat",
+        "pushEnabled": "Notifikasi Push",
+        "pushDescription": "Terima peringatan di perangkat Anda",
+        "remindersEnabled": "Pengingat Pembayaran",
+        "remindersDescription": "Ingatkan pelanggan tentang hutang",
+        "weeklyReport": "Laporan Mingguan",
+        "weeklyReportDescription": "Ringkasan aktivitas mingguan"
+      },
+      "subscription": {
+        "title": "Langganan",
+        "description": "Rencana dan penagihan",
+        "currentPlan": "Rencana Saat Ini",
+        "planName": "Pendiri Beta",
+        "features": {
+          "customers": "Hingga 50 pelanggan",
+          "transactions": "Transaksi tidak terbatas",
+          "offline": "Mode offline",
+          "export": "Ekspor data"
+        },
+        "viewPricing": "Lihat Rencana Harga",
+        "manageBilling": "Kelola Penagihan"
+      },
+      "data": {
+        "title": "Data & Backup",
+        "description": "Ekspor dan cadangkan data Anda",
+        "export": "Ekspor Data Anda",
+        "exportDescription": "Unduh semua pelanggan dan transaksi Anda",
+        "exportCSV": "Ekspor CSV",
+        "exportPDF": "Ekspor PDF",
+        "backup": "Backup",
+        "backupDescription": "Data Anda dicadangkan secara otomatis ke cloud",
+        "lastBackup": "Backup terakhir: Baru saja"
+      },
+      "support": {
+        "title": "Dukungan",
+        "description": "Bantuan, kontak, dan masukan",
+        "helpCenter": "Pusat Bantuan",
+        "contactSupport": "Hubungi Dukungan",
+        "callSupport": "Panggil Dukungan",
+        "rateUs": "Beri Kami Nilai di Toko"
+      },
+      "account": {
+        "title": "Akun",
+        "description": "Privasi, ketentuan, dan keluar",
+        "privacyPolicy": "Kebijakan Privasi",
+        "termsOfService": "Ketentuan Layanan",
+        "licenses": "Lisensi",
+        "signOut": "Keluar",
+        "signOutConfirm": "Apakah Anda yakin ingin keluar? Anda selalu dapat masuk kembali dengan email Anda.",
+        "signOutTitle": "Keluar"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Selamat Datang Kembali",
+      "subtitle": "Masuk ke akun Anda",
+      "email": "Email",
+      "emailPlaceholder": "@email_anda.com",
+      "password": "Kata Sandi",
+      "passwordPlaceholder": "Masukkan kata sandi Anda",
+      "rememberMe": "Ingat saya",
+      "forgotPassword": "Lupa kata sandi?",
+      "submit": "Masuk",
+      "noAccount": "Tidak punya akun?",
+      "signUp": "Daftar",
+      "success": "Berhasil masuk",
+      "error": "Email atau kata sandi tidak valid"
+    },
+    "signup": {
+      "title": "Buat Akun",
+      "subtitle": "Mulai uji coba gratis Anda hari ini",
+      "name": "Nama Lengkap",
+      "namePlaceholder": "Masukkan nama lengkap Anda",
+      "email": "Email",
+      "emailPlaceholder": "@email_anda.com",
+      "password": "Kata Sandi",
+      "passwordPlaceholder": "Buat kata sandi",
+      "agree": "Saya menyetujui",
+      "terms": "Syarat Ketentuan",
+      "and": "dan",
+      "privacy": "Kebijakan Privasi",
+      "submit": "Buat Akun",
+      "hasAccount": "Sudah punya akun?",
+      "signIn": "Masuk",
+      "success": "Akun berhasil dibuat",
+      "error": "Gagal membuat akun"
+    },
+    "forgotPassword": {
+      "title": "Lupa Kata Sandi",
+      "subtitle": "Masukkan email Anda untuk mereset kata sandi",
+      "email": "Email",
+      "emailPlaceholder": "@email_anda.com",
+      "submit": "Kirim OTP",
+      "backToLogin": "Kembali ke Login",
+      "success": "Kode OTP terkirim!",
+      "error": "Gagal mengirim OTP",
+      "otpVerification": {
+        "title": "Verifikasi OTP",
+        "subtitle": "Masukkan kode 6 digit yang dikirim ke email Anda",
+        "otp": "Kode OTP",
+        "otpPlaceholder": "123456",
+        "otpHint": "Masukkan kode 6 digit yang dikirim ke alamat email Anda",
+        "newPassword": "Kata Sandi Baru",
+        "newPasswordPlaceholder": "Kata sandi baru",
+        "confirmPassword": "Konfirmasi Kata Sandi",
+        "confirmPasswordPlaceholder": "Konfirmasi kata sandi",
+        "submit": "Reset Kata Sandi",
+        "back": "Kembali",
+        "resend": "Kirim Ulang Kode",
+        "resendSuccess": "Kode OTP baru terkirim!",
+        "invalidOtp": "OTP harus 6 digit",
+        "passwordsMismatch": "Kata sandi tidak cocok",
+        "passwordTooShort": "Kata sandi harus minimal 6 karakter",
+        "error": "Verifikasi OTP gagal atau kata sandi tidak dapat diperbarui"
+      },
+      "passwordReset": {
+        "title": "Kata Sandi Direset",
+        "success": "Berhasil!",
+        "successDescription": "Kata sandi Anda telah berhasil direset. Anda sekarang dapat masuk dengan kata sandi baru Anda."
+      }
+    },
+    "resetPassword": {
+      "title": "Reset Kata Sandi",
+      "subtitle": "Masukkan kata sandi baru Anda",
+      "password": "Kata Sandi Baru",
+      "passwordPlaceholder": "Masukkan kata sandi baru",
+      "confirmPassword": "Konfirmasi Kata Sandi",
+      "confirmPasswordPlaceholder": "Konfirmasi kata sandi baru",
+      "submit": "Reset Kata Sandi",
+      "backToLogin": "Kembali ke Login",
+      "success": "Kata sandi berhasil direset!",
+      "successDescription": "Kata sandi Anda telah berhasil direset. Anda sekarang dapat masuk dengan kata sandi baru Anda.",
+      "error": "Gagal mereset kata sandi",
+      "invalidToken": "Link reset tidak valid atau kadaluarsa",
+      "passwordsMismatch": "Kata sandi tidak cocok",
+      "passwordTooShort": "Kata sandi harus minimal 6 karakter"
+    },
+    "otpExpired": {
+      "title": "Link Verifikasi Kadaluarsa",
+      "description": "Link verifikasi email telah kadaluarsa. Silakan minta yang baru di bawah.",
+      "resendButton": "Kirim Ulang Email Verifikasi",
+      "success": "Email verifikasi baru terkirim!",
+      "enterEmail": "Masukkan alamat email Anda",
+      "emailPlaceholder": "email@anda.com"
+    }
+  },
+  "notFound": {
+    "title": "Ups! Halaman Tidak Ditemukan",
+    "description": "Halaman yang Anda cari tidak ada atau telah dipindahkan.",
+    "goHome": "Ke Beranda",
+    "contactSupport": "Hubungi Dukungan",
+    "goBack": "Kembali"
   },
   "metadata": {
     "general": {
-      "title": "SaaS Boilerplate - Bangun Lebih Cepat",
-      "description": "Boilerplate Next.js siap produksi dengan internasionalisasi dan desain indah"
-    },
-    "fintech": {
-      "title": "Boilerplate FinTech SaaS - Luncurkan Produk Keuangan Anda",
-      "description": "Boilerplate Next.js kelas enterprise yang disesuaikan untuk aplikasi teknologi keuangan"
+      "title": "Global Ledger - Buku Kredit Digital untuk UMKM",
+      "description": "Ganti buku catatan kertas Anda dengan aplikasi buku kredit cerdas, aman, dan selalu tersedia."
     }
   }
 }

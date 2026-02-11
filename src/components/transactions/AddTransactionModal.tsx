@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 interface AddTransactionModalProps {
   open: boolean;
@@ -30,6 +31,10 @@ interface Customer {
 
 export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransactionModalProps) {
   const { user } = useAuth();
+  const t = useTranslations('transactions.form');
+  const tCommon = useTranslations('common');
+  const tTransactions = useTranslations('transactions');
+
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [type, setType] = useState<'debt' | 'payment'>('debt');
   const [customerId, setCustomerId] = useState('');
@@ -59,13 +64,13 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!customerId || !amount) {
-      toast.error('Customer and amount are required');
+      toast.error(tTransactions.raw('validation.customerRequired') || 'Customer and amount are required');
       return;
     }
 
     const amountNum = parseFloat(amount);
     if (isNaN(amountNum) || amountNum <= 0) {
-      toast.error('Please enter a valid amount');
+      toast.error(tTransactions.raw('validation.invalidAmount') || 'Please enter a valid amount');
       return;
     }
 
@@ -77,7 +82,7 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
         amount: amountNum,
         note: note.trim() || undefined,
       });
-      toast.success('Transaction added!');
+      toast.success(tTransactions.raw('success'));
       // Reset form
       setType('debt');
       setCustomerId('');
@@ -85,7 +90,7 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
       setNote('');
       onOpenChange(false);
     } catch (error: any) {
-      toast.error(error.message || 'Failed to add transaction');
+      toast.error(error.message || tTransactions.raw('error'));
     } finally {
       setLoading(false);
     }
@@ -96,9 +101,9 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
       <DialogContent className="sm:max-w-md">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle className="font-display font-semibold">New Transaction</DialogTitle>
+            <DialogTitle className="font-display font-semibold">{t('title')}</DialogTitle>
             <DialogDescription>
-              Add a debt or payment transaction
+              {t('description')}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
@@ -111,7 +116,7 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
                 onClick={() => setType('debt')}
                 disabled={loading}
               >
-                Debt
+                {t('debt')}
               </Button>
               <Button
                 type="button"
@@ -120,20 +125,20 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
                 onClick={() => setType('payment')}
                 disabled={loading}
               >
-                Payment
+                {t('payment')}
               </Button>
             </div>
 
             {/* Customer Select */}
             <div className="space-y-2">
-              <Label htmlFor="customer">Customer *</Label>
+              <Label htmlFor="customer">{t('customer')} *</Label>
               <Select
                 value={customerId}
                 onValueChange={setCustomerId}
                 disabled={loading || loadingCustomers}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select a customer" />
+                  <SelectValue placeholder={t('customerPlaceholder')} />
                 </SelectTrigger>
                 <SelectContent>
                   {customers.map((customer) => (
@@ -147,26 +152,26 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
 
             {/* Amount */}
             <div className="space-y-2">
-              <Label htmlFor="amount">Amount *</Label>
+              <Label htmlFor="amount">{t('amount')} *</Label>
               <Input
                 id="amount"
                 type="number"
                 step="0.01"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder="0.00"
+                placeholder={t('amountPlaceholder')}
                 disabled={loading}
               />
             </div>
 
             {/* Note */}
             <div className="space-y-2">
-              <Label htmlFor="note">Note</Label>
+              <Label htmlFor="note">{t('note')}</Label>
               <Input
                 id="note"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                placeholder="Description (optional)"
+                placeholder={t('notePlaceholder')}
                 disabled={loading}
               />
             </div>
@@ -178,11 +183,11 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
               onClick={() => onOpenChange(false)}
               disabled={loading}
             >
-              Cancel
+              {tCommon('cancel')}
             </Button>
             <Button type="submit" disabled={loading} className="bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]">
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Save
+              {t('submit')}
             </Button>
           </DialogFooter>
         </form>

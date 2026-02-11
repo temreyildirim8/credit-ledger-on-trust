@@ -7,13 +7,23 @@ import { QuickActions } from '@/components/dashboard/QuickActions';
 import { RecentActivity } from '@/components/dashboard/RecentActivity';
 import { OverdueDebts } from '@/components/dashboard/OverdueDebts';
 import { usePathname } from '@/routing';
+import { useTranslations } from 'next-intl';
 
 export default function DashboardPage() {
+  const t = useTranslations('dashboard');
   const { stats, recentActivity, loading } = useDashboard();
   const pathname = usePathname();
 
   // Extract locale from pathname
   const locale = pathname.split('/')[1] || 'en';
+
+  // Get greeting based on time of day
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return t('greeting.morning');
+    if (hour < 18) return t('greeting.afternoon');
+    return t('greeting.evening');
+  };
 
   if (loading) {
     return (
@@ -33,10 +43,10 @@ export default function DashboardPage() {
       {/* Greeting Header */}
       <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white">
         <h1 className="text-2xl font-bold font-display">
-          Good morning! 👋
+          {getGreeting()} 👋
         </h1>
         <p className="text-white/90 mt-1">
-          Here's your business overview for today
+          {t('stats.totalOwed')} - {t('stats.thisMonth')}
         </p>
       </div>
 
@@ -50,7 +60,7 @@ export default function DashboardPage() {
       {/* Quick Actions */}
       <div>
         <h2 className="text-lg font-semibold text-[var(--color-text)] mb-3">
-          Quick Actions
+          {t('quickActions.title')}
         </h2>
         <QuickActions locale={locale} />
       </div>
@@ -61,7 +71,7 @@ export default function DashboardPage() {
       {/* Recent Activity */}
       <div>
         <h2 className="text-lg font-semibold text-[var(--color-text)] mb-3">
-          Recent Activity
+          {t('recentActivity.title')}
         </h2>
         <RecentActivity activities={recentActivity} locale={locale} />
       </div>

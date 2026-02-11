@@ -1,70 +1,515 @@
 {
+  "common": {
+    "back": "Emuva",
+    "save": "Gcina",
+    "cancel": "Khansela",
+    "delete": "Cisha",
+    "edit": "Hlela",
+    "add": "Yengeza",
+    "search": "Sesha",
+    "loading": "Ilayisha...",
+    "noResults": "Awukho mphumela",
+    "required": "Kudingekile",
+    "optional": "Okukhetha",
+    "submit": "Thumela",
+    "close": "Vala",
+    "confirm": "Qinisekisa",
+    "success": "Impumelelo",
+    "error": "Iphutha",
+    "tryAgain": "Zama Usapho",
+    "or": "noma",
+    "and": "kanye",
+    "of": "kuka",
+    "in": "ku",
+    "to": "ku",
+    "from": "uka",
+    "at": "ea",
+    "on": "ea",
+    "off": "Valiwe",
+    "yes": "Yebo",
+    "no": "Cha"
+  },
   "nav": {
+    "dashboard": "I-Dashboard",
+    "customers": "Abathengi",
+    "transactions": "Ukuthengiselana",
+    "quickAdd": "Yengeza Ngokushesha",
+    "settings": "Izilungiselelo",
+    "login": "Ngena",
+    "signup": "Bhalisa",
+    "logout": "Phuma",
     "features": "Izici",
     "pricing": "Amanani",
     "about": "Nge",
     "contact": "Thinta"
   },
-  "hero": {
-    "title": "Yakha I-SaaS Yakho",
-    "subtitle": "Ngokushesha Okunye",
-    "description": "Isandla sika-Nextji esisebenzayo kunokuqala ngokuseshwa, ukuhlanganiswa, kanye nesakhiwo esihle.",
-    "cta": "Qala Manje",
-    "secondary": "Buka Udemo"
+  "home": {
+    "meta": {
+      "title": "Global Ledger - I-Bhuku Lekredithi Edijithali Yama-UMKM",
+      "description": "Sebentisana ibhuku lekhathi lakho ne-app yokuphathwa ikredithi ekhaliphile, ethulelekile, iyatholakala sonke kunezisekelo ezincane."
+    },
+    "hero": {
+      "title": "Imali lapha, khona nasaphi na",
+      "subtitle": "Ibhuku lekredithi eliqotho lama-UMKM",
+      "description": "Sebentisana ibhuku lekhathi lakho ngesixazululo sedijithi esebenza ngaphandle kwenternet, u-syncronize ukuze kusiza ukukhulisa ushishalo lakho.",
+      "cta": "Qala Mahhala Namhlanje",
+      "secondary": "Buka Ukuthi Kusebenza Kanjani"
+    },
+    "trust": {
+      "bankGradeSecurity": "Ukhuseleko Lwemali Ezingeni Eliphezulu",
+      "worksOffline": "Sebenza 100% Ngaphandle Kwenternet",
+      "autoBackup": "I-backup ye-Cloud Okuzenzakalela"
+    },
+    "stats": {
+      "users": "300,000+",
+      "usersLabel": "Abasebenzisi Abaqhubezayo",
+      "security": "Izingeni Eliphezulu",
+      "securityLabel": "Ukhuseleko",
+      "uptime": "99.9%",
+      "uptimeLabel": "I-Uptime"
+    }
+  },
+  "features": {
+    "meta": {
+      "title": "Izici - Global Ledger",
+      "description": "Hlola izici zonke ezinqande ze-app yokuphathwa ikredithi ye-Global Ledger"
+    },
+    "title": "Konke Okudingekile Ukuze Uphathe Ikredithi",
+    "subtitle": "Kwakhiwe kuma-UMKM, ethembeka ngabanikazi bezitolo emhlabeni jikelele",
+    "localLanguage": {
+      "title": "Ukuxhasa Kolimi Lwasekhaya",
+      "description": "Isebenza kolimi lakho nokuhlasela amalimi ayisikhombisa kuqukethi isiHindi, isiTurkish, isiSpanish, nanye."
+    },
+    "multiCurrency": {
+      "title": "Ukuvikela Imali Eziningi",
+      "description": "Ukuxhasa zonke izinhlobo zezimali ezinkulu nokuupdate okuzenzakalela kwamarikhetingi."
+    },
+    "offlineMode": {
+      "title": "Sebenza 100% Ngaphandle Kwenternet",
+      "description": "Rekhoda ukuthengiselana ngisho nangati intanethi. I-sync ongaye ubheke esebenziseni intanethi."
+    },
+    "cloudBackup": {
+      "title": "I-backup ye-Cloud Okuzenzakalela",
+      "description": "Idath yakho igcinwa ephephile ku-cloud. Ungasabi ulahleko irekhodi lakho lekredithi kwaphinde."
+    },
+    "smsReminders": {
+      "title": "Izikhumbizi Ze-SMS",
+      "description": "Thumela izikhumbizi zokukhokha abathengi ngokuzenzakalela nge-SMS."
+    },
+    "reports": {
+      "title": "Izingxenye Ezinhle Zikashwazi",
+      "description": "Thola ukwaziswa ngeshishalo lakho ngezingxenye eziningi nezingcai."
+    }
+  },
+  "pricing": {
+    "meta": {
+      "title": "Amanani - Global Ledger",
+      "description": "Amanani ahlongozwans kuso sonke isayizi zoshishalo. Qala mahhala, vuselela lapho udinga khona."
+    },
+    "title": "Amanani Ahlakahle Ahlakaniphile",
+    "subtitle": "Qala mahhala, vuselela uma ukhula",
+    "free": {
+      "name": "Mahhala Nasempela",
+      "price": "$0",
+      "period": "nasempela",
+      "description": "Impumelelo ukuqala",
+      "features": [
+        "Kwabathengi abangama-50",
+        "Ukuthengiselana okungagcutheki",
+        "Indlela yesuphephile",
+        "Izingxenye ezisisekelo",
+        "Usizo nge-email"
+      ],
+      "cta": "Qala Mahhala"
+    },
+    "pro": {
+      "name": "I-Pro",
+      "price": "$4.99",
+      "period": "inyanga",
+      "description": "Izoshishalo ezikhulayo",
+      "features": [
+        "Abathengi abangagcutheki",
+        "Ukuthengiselana okungagcutheki",
+        "Indlela yesuphephile",
+        "Izingxenye ezinqandayo",
+        "Izikhumbizi ze-SMS",
+        "Usokuqala",
+        "Ukudluliswa kwedath (CSV, PDF)"
+      ],
+      "cta": "Qala Ukuhlola I-Pro"
+    },
+    "enterprise": {
+      "name": "I-Enterprise",
+      "price": "Enkonzweni",
+      "period": "thinta",
+      "description": "Izoshishalo ezinkulu",
+      "features": [
+        "Konke ku-Pro",
+        "Ukungena kubasebenzisi abaningi",
+        "Ukungena kwe-API",
+        "Ukuhlanganiswa okwahlongozwe",
+        "Usizo olodwa",
+        "Ukukhetha okungaphefumleli"
+      ],
+      "cta": "Thinta Ukuthengisa"
+    }
   },
   "about": {
     "meta": {
-      "title": "Nge Thina",
-      "description": "Funda kwabuye ukwazi ngochwepheshe bakhe namisiya ethu"
+      "title": "Nge Thina - Global Ledger",
+      "description": "Funda kabanzi nge mission ka-Global Ledger yokuphatha ukulungisa ikredithi kuma-UMKM"
     },
-    "title": "Nge Thina",
-    "intro": "Sakha usuku lwobuchwepheshe bemali, ukuze ukuphathwa kwekhredithi kube lula futhi kuvulelekile kuwonke.",
+    "title": "Nge Global Ledger",
+    "subtitle": "Ukubonga amakhosi kuma-UMKM emhlabeni jikelele",
+    "intro": "Sakha usuku lwobuchwepheshe bemali, siphaza ukuphathwa ikredithi kube lula futhi ivulelekile kuwonke.",
     "mission": {
-      "title": "Umisiya Wethu",
-      "description": "Ukuze kuqondiswe ukuphathwa kwezimali ngokunikeza izinsiza ezilula ezisiza amabhizinisi nabantu ukuziphatha kahle ikhredithi yabo."
+      "title": "Umiso Wethu",
+      "description": "Ukulungisa izinsizakalo zezimali ngokunikeza izixazululo ezilula ezisiza ushishalo kanye abantu baqine ikredithi yabo ngokufanele."
     },
     "vision": {
       "title": "Ubuwembu Bethu",
-      "description": "Umhlaba apho ukuwazi ukubala nokuphatha ikhredithi kuwuvulelekile wonke, osizwa ubuchwepheshe namazwi."
+      "description": "Umhlaba apho ukwaziswa kwemali nokuphathwa ikredithi kuvumelekile wonke, osizwa ubuchwepheshe namazwi."
     },
     "values": {
       "title": "Izikhungo Zethu",
       "items": [
         "Ukuqondisisa okuqukethwe konke esikwenzenza",
-        "Indlela yokugcina abathengi kuqala ekulungiseneni izinkinga",
+        "Indlela yentando yokuqala ekulungiseneni izinkinga",
         "Ukuthuthuka nokuphucwa okuqhubeka",
-        "Ukuvikeleka nokufihla njengezinkolelo zokuqala"
+        "Ukhuseleko nokufihla njengezinqalo ezisisekelo"
       ]
     }
   },
-  "features": {
-    "title": "Konke Okudingekayo",
-    "subtitle": "Izici ezihlanganisiwe ukuze uphucule ukuthuthuka kwakho",
-    "i18n": {
-      "title": "Ukuhlanganiswa Kwamazwe",
-      "description": "Ukuxhasanisa ngolwimi nge-next-intl, ukuhlanganiswa okuhle i-SEO ukuze ufinyelele emhlabeni jikelele."
+  "contact": {
+    "meta": {
+      "title": "Thinta Kami - Global Ledger",
+      "description": "Thinta iqhembakethu lethu ukuze uthole usizo, imibuzo, noma izinzwakalo"
     },
-    "design": {
-      "title": "Isakhiwo Esihle",
-      "description": "Umxholo wekhompuyutha oqondiswe ngamaphephandlu esemzimwenini netekhnoloji ephumelelayo."
+    "title": "Thinta Kami",
+    "subtitle": "Sinqoka ukusiza",
+    "form": {
+      "name": "Igama Lakho",
+      "email": "Ikheli Le-Email",
+      "subject": "Isihloko",
+      "message": "Umlayezo",
+      "submit": "Thumela Umlayezo"
     },
-    "performance": {
-      "title": "UkuSebenza Okulungisiwe",
-      "description": "Sakhiwe inguqulo ye-Nextji 14 App Router ngezingxenye zeseva nokuqhuba okuqhakazela."
+    "info": {
+      "email": "Thumela i-email kwethu",
+      "emailAddress": "support@globalledger.app",
+      "responseTime": "Saqhubeka kwamahora angama-24"
     },
-    "typescript": {
-      "title": "I-Thayipaskript Kuqala",
-      "description": "Ikhowudi eliphelele elichazwe ukuze kube nomuzamo omsulwa omphelele kumprogrammer kanye nephutha ezimbalwa."
+    "success": "Umlayezo uthumelekahle!",
+    "error": "Umlayezo ungathunyelwa. Sicela uzage usapho."
+  },
+  "dashboard": {
+    "title": "I-Dashboard",
+    "greeting": {
+      "morning": "Kusale isiwe",
+      "afternoon": "Kusale emuva kwemini",
+      "evening": "Kusale busuku"
+    },
+    "stats": {
+      "totalOwed": "Isikwele Esisonke",
+      "collected": "Kuqoqiwe",
+      "thisMonth": "KuNyaka",
+      "activeCustomers": "Abathengi Asebenzayo"
+    },
+    "quickActions": {
+      "title": "Izenzo Ezisheshayo",
+      "addDebt": "Yengeza Ikredithi",
+      "addPayment": "Yengeza Ukukhokha",
+      "addCustomer": "Yengeza Umthengi",
+      "sendReminders": "Khumbaza Wonke"
+    },
+    "recentActivity": {
+      "title": "Ukuqamba Okuqoshiwe",
+      "empty": "Awukho kuqamba okuqoshiwe"
+    },
+    "overdueDebts": {
+      "title": "Ikredithi Esiphethe Ivesi",
+      "empty": "Awukho ukukhokha okuphethe ivesi",
+      "remind": "Khumbaza"
     }
+  },
+  "customers": {
+    "title": "Abathengi",
+    "addCustomer": "Yengeza Umthengi",
+    "searchPlaceholder": "Sesha abathengi...",
+    "filter": {
+      "all": "Wonke",
+      "hasDebt": "Unekredithi",
+      "paidUp": "Ekhokhile"
+    },
+    "empty": {
+      "noCustomers": "Awukho mthengi ukuphela",
+      "noSearchResults": "Awukho mthengi atholakele",
+      "addFirst": "Yengeza umthengi wakhookuqala"
+    },
+    "count": "{count} omthengi | {count} abathengi",
+    "form": {
+      "title": "Yengeza Umthengi Omusha",
+      "name": "Igama Eliqophelo",
+      "namePlaceholder": "Faka igama lomthengi",
+      "phone": "Inombolo Yecefone",
+      "phonePlaceholder": "+90 555 123 4567",
+      "address": "Ikheli",
+      "addressPlaceholder": "Faka ikheli (okukhetha)",
+      "submit": "Yengeza Umthengi"
+    },
+    "details": {
+      "totalDebt": "Ikredithi Esisonke",
+      "balance": "Isilinganiso",
+      "contact": "Umxhulumeni",
+      "transactionHistory": "Umlando Wezento",
+      "noTransactions": "Awukho ukuthengiselana ukuphela",
+      "debt": "Ikredithi",
+      "payment": "Ukukhokha"
+    },
+    "success": "Umthengi yengezwekahle",
+    "error": "Yehlula ukwengeza umthengi"
+  },
+  "transactions": {
+    "title": "Ukuthengiselana",
+    "addNew": "Yengeza Omusha",
+    "filter": {
+      "all": "Wonke",
+      "debts": "Ikredithi",
+      "payments": "Ukukhokha"
+    },
+    "empty": {
+      "noTransactions": "Awukho ukuthengiselana ukuphela",
+      "noFilterResults": "Awukho {filter} atholakele"
+    },
+    "count": "{count} ukuthengiselana | {count} ukuthengiselana",
+    "form": {
+      "title": "Ukuthengiselana Omusha",
+      "description": "Yengeza ukuthengiselana lekredithi noma ukukhokha",
+      "type": "Uhlobo",
+      "debt": "Ikredithi",
+      "payment": "Ukukhokha",
+      "customer": "Umthengi",
+      "customerPlaceholder": "Khetha umthengi",
+      "amount": "Inani",
+      "amountPlaceholder": "0.00",
+      "note": "Inothi",
+      "notePlaceholder": "Incazelo (okukhetha)",
+      "submit": "Gcina"
+    },
+    "success": "Ukuthengiselana kuqoshwe!",
+    "error": "Yehlula ukwengeza ukuthengiselana",
+    "validation": {
+      "customerRequired": "Umthengi udingekile",
+      "amountRequired": "Inani lidingekile",
+      "invalidAmount": "Sicela faka inani elisebenzayo"
+    }
+  },
+  "quickAdd": {
+    "title": "Yengeza Ngokushesha",
+    "newTransaction": "Ukuthengiselana Omusha",
+    "type": {
+      "debt": "Ikredithi",
+      "payment": "Ukukhokha"
+    },
+    "customer": "Umthengi",
+    "customerPlaceholder": "Khetha umthengi",
+    "amount": "Inani",
+    "note": "Inothi",
+    "notePlaceholder": "Incazelo (okukhetha)",
+    "quickAmounts": "Amanani Asheshayo",
+    "submit": {
+      "debt": "Yengeza Ikredithi",
+      "payment": "Yengeza Ukukhokha"
+    },
+    "success": "Ukuthengiselana kuqoshwe!",
+    "error": "Yehlula ukwengeza ukuthengiselana"
+  },
+  "settings": {
+    "title": "Izilungiselelo",
+    "subtitle": "Phata akhawunti nezikhethimo zakho",
+    "betaFounder": "Umphini We-Beta",
+    "betaDescription": "Izinzuzo zabathandi bokuqala - 50% insikhathi sonke!",
+    "sections": {
+      "profile": {
+        "title": "Iphrofayili",
+        "description": "Phata ulwazi lwakho khu",
+        "fullName": "Igama Eliqophelo",
+        "email": "I-Email",
+        "phone": "Icefone",
+        "saveChanges": "Gcina Izinguquko",
+        "saved": "Iphrofayili igcine kahle"
+      },
+      "business": {
+        "title": "Ushishalo",
+        "description": "Igama lomshishalo, imali, ulimi",
+        "businessName": "Igama Lomshishalo",
+        "businessNamePlaceholder": "Isitolo Sami",
+        "currency": "Imali",
+        "language": "Ulimi",
+        "timezone": "Isikhathi Sethulu",
+        "saveChanges": "Gcina Izinguquko",
+        "saved": "Izilungiselelo zomshishalo ziqoshiwe"
+      },
+      "notifications": {
+        "title": "Izaziso",
+        "description": "Izaziso ze-push ngezikhumbizi",
+        "pushEnabled": "Izaziso Ze-Push",
+        "pushDescription": "Amazwisa kudivayisi yakho",
+        "remindersEnabled": "Izikhumbizi Zokukhokha",
+        "remindersDescription": "Khumbaza abathengi ngezikredithi",
+        "weeklyReport": "Umbiko Wesonto",
+        "weeklyReportDescription": "Isahlulelo sezosheshalo zesonto"
+      },
+      "subscription": {
+        "title": "Ukungena",
+        "description": "Iphlani nobilling",
+        "currentPlan": "Iphlani Elanjongo",
+        "planName": "Umphini We-Beta",
+        "features": {
+          "customers": "Kwabathengi abangama-50",
+          "transactions": "Ukuthengiselana okungagcutheki",
+          "offline": "Indlela yesuphephile",
+          "export": "Ukudlulisa idath"
+        },
+        "viewPricing": "Buka Izingxenye Zamanani",
+        "manageBilling": "Phata I-Billing"
+      },
+      "data": {
+        "title": "Idathi Ne-Backup",
+        "description": "Dlulisa nophose idath yakho",
+        "export": "Dlulisa Idath Yakho",
+        "exportDescription": "Landa zonke abathengi bakho nokuthengiselana",
+        "exportCSV": "Dlulisa i-CSV",
+        "exportPDF": "Dlulisa i-PDF",
+        "backup": "I-Backup",
+        "backupDescription": "Idath yakho igcinwa kuzithulele ku-cloud",
+        "lastBackup": "I-backu yokugcina: Manje"
+      },
+      "support": {
+        "title": "Usizo",
+        "description": "Usizo, ukuhlobana, nezinzwakalo",
+        "helpCenter": "Isikhungo Sokusiza",
+        "contactSupport": "Thinta Usizo",
+        "callSupport": "Shintisa Usizo",
+        "rateUs": "Sasisa Isitolo"
+      },
+      "account": {
+        "title": "I-Akhawunti",
+        "description": "Ukufihla, imigomo, nokuphuma",
+        "privacyPolicy": "Inqubomgomo Yokufihla",
+        "termsOfService": "Imigomo Yesevisi",
+        "licenses": "Ilayisense",
+        "signOut": "Phuma",
+        "signOutConfirm": "Uyaqinisekisa ufuna ukuphuma? Ungavame ukungena khona nge-email yakho.",
+        "signOutTitle": "Phuma"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcomed Emuva",
+      "subtitle": "Ngena ku-akhawunti yakho",
+      "email": "I-imeyili",
+      "emailPlaceholder": "yakho@imeyili.com",
+      "password": "Iphasiwedi",
+      "passwordPlaceholder": "Faka iphasiwedi yakho",
+      "rememberMe": "Ngikhumbule",
+      "forgotPassword": "Ukhohlwe iphasiwedi?",
+      "submit": "Ngena",
+      "noAccount": "Awuna akhawunti?",
+      "signUp": "Bhalisa",
+      "success": "Ukungena okuphumelelile",
+      "error": "I-imeyili noma iphasiwedi alungavumelekile"
+    },
+    "signup": {
+      "title": "Yakha I-akhawunti",
+      "subtitle": "Qala ukuvivinya mahhala namhlanje",
+      "name": "Igama Eliqopho",
+      "namePlaceholder": "Faka igama lakho eliphelele",
+      "email": "I-imeyili",
+      "emailPlaceholder": "yakho@imeyili.com",
+      "password": "Iphasiwedi",
+      "passwordPlaceholder": "Yakha iphasiwedi",
+      "agree": "Ngiyavumelana",
+      "terms": "Imigomo Yesevisi",
+      "and": "kanye",
+      "privacy": "Inqubomgomo Yobumfihlo",
+      "submit": "Yakha I-akhawunti",
+      "hasAccount": "Unesakhawunti already?",
+      "signIn": "Ngena",
+      "success": "I-akhawunti yakhiwe okuphumelelile",
+      "error": "Yehlula ukwakha i-akhawunti"
+    },
+    "forgotPassword": {
+      "title": "Ukhohlwe Iphasiwedi",
+      "subtitle": "Faka i-imeyili yakho ukusetha kabusha iphasiwedi",
+      "email": "I-imeyili",
+      "emailPlaceholder": "yakho@imeyili.com",
+      "submit": "Thumela i-OTP",
+      "backToLogin": "Buyela Ekungeneni",
+      "success": "Ikhowedi ye-OTP ithunyelwe!",
+      "error": "Yehlula ukuthumela i-OTP",
+      "otpVerification": {
+        "title": "Ukuqinisekiswa kwe-OTP",
+        "subtitle": "Faka ikhowedi yamadijithi ayi-6 ethunyelwe ku-imeyili yakho",
+        "otp": "Ikhowedi ye-OTP",
+        "otpPlaceholder": "123456",
+        "otpHint": "Faka ikhowedi yamadijithi ayi-6 ethunyelwe ekhelini le-imeyili yakho",
+        "newPassword": "Iphasiwedi Entsha",
+        "newPasswordPlaceholder": "Iphasiwedi entsha",
+        "confirmPassword": "Qinisekisa Iphasiwedi",
+        "confirmPasswordPlaceholder": "Qinisekisa iphasiwedi",
+        "submit": "Setha Kabusha Iphasiwedi",
+        "back": "Emuva",
+        "resend": "Thumela Kabusha Ikhowedi",
+        "resendSuccess": "Ikhowedi entsha ye-OTP ithunyelwe!",
+        "invalidOtp": "I-OTP kumele ibe amadijithi ayi-6",
+        "passwordsMismatch": "Iphasiwedi ayihambisani",
+        "passwordTooShort": "Iphasiwedi kumele ibe ngamagama angu-6 okungenani",
+        "error": "Ukuqinisekiswa kwe-OTP kuhlulekile noma iphasiwedi ayikwazanga ukuseshwa"
+      },
+      "passwordReset": {
+        "title": "Iphasiwedi Isethwe Kabusha",
+        "success": "Iphumelela!",
+        "successDescription": "Iphasiwedi yakho isethwe kabusha ngempumelelo. Manje unganga nge-phasiwedi yakho entsha."
+      }
+    },
+    "resetPassword": {
+      "title": "Setha Kabusha Iphasiwedi",
+      "subtitle": "Faka iphasiwedi yakho entsha",
+      "password": "Iphasiwedi Entsha",
+      "passwordPlaceholder": "Faka iphasiwedi entsha",
+      "confirmPassword": "Qinisekisa Iphasiwedi",
+      "confirmPasswordPlaceholder": "Qinisekisa iphasiwedi entsha",
+      "submit": "Setha Kabusha Iphasiwedi",
+      "backToLogin": "Buyela Ekungeneni",
+      "success": "Iphasiwedi sethshwe kabusha okuphumelelile!",
+      "successDescription": "Iphasiwedi yakho isetha kabusha okuphumelelile. Manje unganga nge-iphasiwedi yakho entsha.",
+      "error": "Yehlula ukusetha kabusha iphasiwedi",
+      "invalidToken": "Ilinki lokusetha kabushi elingavumelekile noma esidlule",
+      "passwordsMismatch": "Iphasiwedi ayihambisani",
+      "passwordTooShort": "Iphasiwedi kumele ibe ama-6 okungenani amagama"
+    },
+    "otpExpired": {
+      "title": "Ilinki Lokugunyaza Isele",
+      "description": "Ilinki lokugunyaza i-imeyili sesidlalile. Sicela ucze omunye ngezansi.",
+      "resendButton": "Thumela Kabusha I-imeyili Lokugunyaza",
+      "success": "I-imeyili entsha yokugunyaza ithunyelwe!",
+      "enterEmail": "Faka ikheli le-imeyili yakho",
+      "emailPlaceholder": "imeyili@yakho.com"
+    }
+  },
+  "notFound": {
+    "title": "Ouu! Iphepha Alitholakali",
+    "description": "Iphepha olufuna alikho okuysesiqanjini okusanda kuhsudwa.",
+    "goHome": "Yiya Ekhayeni",
+    "contactSupport": "Thinta Usizo",
+    "goBack": "Emuva"
   },
   "metadata": {
     "general": {
-      "title": "I-SaaS Boilerplate - Yakha Ngokushesha",
-      "description": "Isandla sika-Nextji esisebenzayo kunokuqala ngokuseshwa nokuhlanganiswa kwamazwe kanye nesakhiwo esihle"
-    },
-    "fintech": {
-      "title": "I-FinTech SaaS Boilerplate - Qalisisa Umkhiqizo Wakho Wemali",
-      "description": "Isandla sika-Nextji esisebenzayo kunokuqala ngokuseshwa esihlanganisiwe ukusetshenziswa kwezinhlelo zobuchwepheshe bemali"
+      "title": "Global Ledger - I-Bhuku Lekredithi Edijithali Yama-UMKM",
+      "description": "Sebentisana ibhuku lekhathi lakho ne-app yokuphathwa ikredithi ekhaliphile, ethulelekile, iyatholakala sonke."
     }
   }
 }

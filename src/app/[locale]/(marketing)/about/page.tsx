@@ -116,16 +116,16 @@ export default function AboutPage() {
       <section className="py-20 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold font-display mb-4">
-            Ready to Transform Your Business?
+            {t('cta.title')}
           </h2>
           <p className="text-white/90 mb-8">
-            Join thousands of shop owners who have already switched to Global Ledger.
+            {t('cta.description')}
           </p>
           <a
             href="/login"
             className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
-            Get Started for Free
+            {t('cta.button')}
           </a>
         </div>
       </section>

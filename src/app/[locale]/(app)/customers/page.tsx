@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Plus, Search, Loader2, Filter } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { usePathname } from '@/routing';
+import { useTranslations } from 'next-intl';
 
 export default function CustomersPage() {
   const { customers, loading, createCustomer } = useCustomers();
@@ -16,6 +17,8 @@ export default function CustomersPage() {
   const [filterType, setFilterType] = useState<'all' | 'hasDebt' | 'paidUp'>('all');
   const pathname = usePathname();
   const locale = pathname.split('/')[1] || 'en';
+  const t = useTranslations('customers');
+  const tCommon = useTranslations('common');
 
   const filteredCustomers = customers.filter((customer) => {
     const matchesSearch =
@@ -33,17 +36,17 @@ export default function CustomersPage() {
       <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold font-display">Customers</h1>
+            <h1 className="text-2xl font-bold font-display">{t('title')}</h1>
             <p className="text-white/90 mt-1">
-              {customers.length} {customers.length === 1 ? 'customer' : 'customers'}
+              {customers.length} {customers.length === 1 ? t('count').split('|')[0].replace('{count}', String(customers.length)) : t('count').split('|')[1].replace('{count}', String(customers.length))}
             </p>
           </div>
           <Button
             onClick={() => setModalOpen(true)}
-            className="bg-white text-[var(--color-accent)] hover:bg-white/90"
+            className="bg-white text-[var(--var(--color-accent))] hover:bg-white/90"
           >
             <Plus className="h-4 w-4" />
-            Add Customer
+            {t('addCustomer')}
           </Button>
         </div>
       </div>
@@ -53,7 +56,7 @@ export default function CustomersPage() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-text-tertiary)]" />
           <Input
-            placeholder="Search customers..."
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -65,21 +68,21 @@ export default function CustomersPage() {
             size="sm"
             onClick={() => setFilterType('all')}
           >
-            All
+            {t('filter.all')}
           </Button>
           <Button
             variant={filterType === 'hasDebt' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setFilterType('hasDebt')}
           >
-            Has Debt
+            {t('filter.hasDebt')}
           </Button>
           <Button
             variant={filterType === 'paidUp' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setFilterType('paidUp')}
           >
-            Paid Up
+            {t('filter.paidUp')}
           </Button>
         </div>
       </div>
@@ -92,7 +95,7 @@ export default function CustomersPage() {
       ) : filteredCustomers.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-[var(--color-text-secondary)]">
-            {searchQuery ? 'No customers found' : 'No customers yet'}
+            {searchQuery ? t('empty.noSearchResults') : t('empty.noCustomers')}
           </p>
           {!searchQuery && (
             <Button
@@ -100,7 +103,7 @@ export default function CustomersPage() {
               variant="outline"
               className="mt-4"
             >
-              Add your first customer
+              {t('empty.addFirst')}
             </Button>
           )}
         </div>

@@ -72,9 +72,9 @@ export default function FeaturesPage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { step: '1', title: 'Add Customers', description: 'Quickly add your customers with name and phone number' },
-              { step: '2', title: 'Record Transactions', description: 'Add debts or payments in seconds, even offline' },
-              { step: '3', title: 'Track & Remind', description: 'View balances and send payment reminders automatically' },
+              { step: '1', title: t('howItWorks.step1.title'), description: t('howItWorks.step1.description') },
+              { step: '2', title: t('howItWorks.step2.title'), description: t('howItWorks.step2.description') },
+              { step: '3', title: t('howItWorks.step3.title'), description: t('howItWorks.step3.description') },
             ].map((item) => (
               <div key={item.step} className="text-center">
                 <div className="h-16 w-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white text-2xl font-bold font-display mx-auto mb-4">
@@ -96,16 +96,16 @@ export default function FeaturesPage() {
       <section className="py-20 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold font-display mb-4">
-            Ready to Get Started?
+            {t('cta.title')}
           </h2>
           <p className="text-white/90 mb-8">
-            Join thousands of shop owners using Global Ledger to manage their credit.
+            {t('cta.description')}
           </p>
           <a
             href="/login"
             className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
-            Start Free Today
+            {t('cta.button')}
           </a>
         </div>
       </section>
