@@ -1,24 +1,23 @@
 'use client';
 
-import Link from 'next/link';
-import { useTranslations, useLocale } from 'next-intl';
+import { Link } from "@/routing";
+import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from '../language-switcher';
 
 export default function Navbar() {
   const t = useTranslations('nav');
-  const locale = useLocale();
 
   const navItems = [
-    { key: 'features', href: `/${locale}#features` },
-    { key: 'pricing', href: `/${locale}#pricing` },
-    { key: 'about', href: `/${locale}/about` },
-    { key: 'contact', href: `/${locale}#contact` },
+    { key: 'features', href: '#features' },
+    { key: 'pricing', href: '#pricing' },
+    { key: 'about', href: '/about' },
+    { key: 'contact', href: '#contact' },
   ];
 
   return (
     <nav className="navbar">
       <div className="navbar__container">
-        <Link href={`/${locale}`} className="navbar__logo">
+        <Link href="/" className="navbar__logo">
           <svg
             width="32"
             height="32"
@@ -52,7 +51,7 @@ export default function Navbar() {
 
         <div className="navbar__actions">
           <LanguageSwitcher />
-          <Link href={`/${locale}#demo`} className="navbar__cta">
+          <Link href="/login" className="navbar__cta">
             Get Started
           </Link>
         </div>

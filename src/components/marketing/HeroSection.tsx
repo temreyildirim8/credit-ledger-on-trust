@@ -1,13 +1,10 @@
 import { Link } from "@/routing";
 import { ArrowRight, Shield, Zap, Smartphone } from "lucide-react";
-import { usePathname } from "@/routing";
 
 /**
  * Hero section - Large headline, subtitle, CTAs, and floating stat cards
  */
 export function HeroSection() {
-  const pathname = usePathname();
-  const locale = pathname.split('/')[1] || "en";
 
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)]">
@@ -41,7 +38,7 @@ export function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href={`/${locale}/signup`}
+                href="/login"
                 className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
               >
                 Start Free Today

@@ -10,10 +10,11 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Phone, Loader2 } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatDistanceToNow } from 'date-fns';
-import { tr, en, es } from 'date-fns/locale';
+import { tr, enUS, es } from 'date-fns/locale';
+import type { Locale } from 'date-fns';
 
 // Locale map for date-fns
-const localeMap: Record<string, Locale> = { en, tr, es };
+const localeMap: Record<string, Locale> = { en: enUS, tr, es };
 
 export default function CustomerDetailsPage() {
   const params = useParams();
@@ -26,7 +27,7 @@ export default function CustomerDetailsPage() {
 
   // Extract locale from pathname
   const locale = pathname.split('/')[1] || 'en';
-  const dateLocale = localeMap[locale] || en;
+  const dateLocale = localeMap[locale] || enUS;
 
   useEffect(() => {
     if (!user?.id || !params.id) return;
@@ -70,24 +71,22 @@ export default function CustomerDetailsPage() {
   const hasDebt = customer.balance > 0;
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
+    <>
       {/* Header */}
-      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] p-6 text-white">
-        <div className="max-w-4xl mx-auto">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => router.back()}
-            className="mb-4 text-white hover:bg-white/20"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back
-          </Button>
-          <h1 className="text-2xl font-bold font-display">{customer.name}</h1>
-        </div>
+      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] p-6 text-white -mx-4 md:-mx-6">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => router.back()}
+          className="mb-4 text-white hover:bg-white/20"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back
+        </Button>
+        <h1 className="text-2xl font-bold font-display">{customer.name}</h1>
       </div>
 
-      <div className="max-w-4xl mx-auto p-4 space-y-4 -mt-4">
+      <div className="-mx-4 md:-mx-6 space-y-4 -mt-4 px-4 md:px-6">
         {/* Balance Card */}
         <Card className={hasDebt ? 'border-red-200 bg-red-50' : 'border-green-200 bg-green-50'}>
           <CardContent className="pt-6">
@@ -179,6 +178,6 @@ export default function CustomerDetailsPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </>
   );
 }

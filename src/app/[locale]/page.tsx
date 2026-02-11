@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "@/components/layout/navbar";
+import { MarketingFooter } from "@/components/marketing/MarketingFooter";
 
 export default async function HomePage({
   params,
@@ -20,13 +21,13 @@ export default async function HomePage({
           <div className="hero__container">
             <div className="hero__content">
               <h1 className="hero__title">
-                <span className="hero__title-main">{t("hero.title")}</span>
-                <span className="hero__title-accent">{t("hero.subtitle")}</span>
+                <span className="hero__title-main">{t("home.hero.title")}</span>
+                <span className="hero__title-accent">{t("home.hero.subtitle")}</span>
               </h1>
-              <p className="hero__description">{t("hero.description")}</p>
+              <p className="hero__description">{t("home.hero.description")}</p>
               <div className="hero__actions">
                 <button className="btn btn--primary">
-                  {t("hero.cta")}
+                  {t("home.hero.cta")}
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path
                       d="M4 10H16M16 10L11 5M16 10L11 15"
@@ -38,7 +39,7 @@ export default async function HomePage({
                   </svg>
                 </button>
                 <button className="btn btn--secondary">
-                  {t("hero.secondary")}
+                  {t("home.hero.secondary")}
                 </button>
               </div>
             </div>
@@ -95,10 +96,10 @@ export default async function HomePage({
                   </svg>
                 </div>
                 <h3 className="feature-card__title">
-                  {t("features.i18n.title")}
+                  {t("features.localLanguage.title")}
                 </h3>
                 <p className="feature-card__description">
-                  {t("features.i18n.description")}
+                  {t("features.localLanguage.description")}
                 </p>
               </div>
 
@@ -115,10 +116,10 @@ export default async function HomePage({
                   </svg>
                 </div>
                 <h3 className="feature-card__title">
-                  {t("features.design.title")}
+                  {t("features.multiCurrency.title")}
                 </h3>
                 <p className="feature-card__description">
-                  {t("features.design.description")}
+                  {t("features.multiCurrency.description")}
                 </p>
               </div>
 
@@ -142,10 +143,10 @@ export default async function HomePage({
                   </svg>
                 </div>
                 <h3 className="feature-card__title">
-                  {t("features.performance.title")}
+                  {t("features.offlineMode.title")}
                 </h3>
                 <p className="feature-card__description">
-                  {t("features.performance.description")}
+                  {t("features.offlineMode.description")}
                 </p>
               </div>
 
@@ -169,10 +170,10 @@ export default async function HomePage({
                   </svg>
                 </div>
                 <h3 className="feature-card__title">
-                  {t("features.typescript.title")}
+                  {t("features.cloudBackup.title")}
                 </h3>
                 <p className="feature-card__description">
-                  {t("features.typescript.description")}
+                  {t("features.cloudBackup.description")}
                 </p>
               </div>
             </div>
@@ -180,29 +181,7 @@ export default async function HomePage({
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="footer__container">
-          <p className="footer__text">Built with Next.js 14 & next-intl</p>
-          <div className="footer__links">
-            <a
-              href="https://nextjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer__link"
-            >
-              Next.js
-            </a>
-            <a
-              href="https://next-intl-docs.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer__link"
-            >
-              next-intl
-            </a>
-          </div>
-        </div>
-      </footer>
+      <MarketingFooter />
     </div>
   );
 }

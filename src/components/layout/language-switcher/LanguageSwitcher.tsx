@@ -10,12 +10,20 @@ const localeNames: Record<Locale, string> = {
   en: "English",
   tr: "Türkçe",
   es: "Español",
+  hi: "हिन्दी",
+  id: "Bahasa Indonesia",
+  ar: "العربية",
+  zu: "isiZulu",
 };
 
 const localeFlags: Record<Locale, string> = {
   en: "🇬🇧",
   tr: "🇹🇷",
   es: "🇪🇸",
+  hi: "🇮🇳",
+  id: "🇮🇩",
+  ar: "🇸🇦",
+  zu: "🇿🇦",
 };
 
 export default function LanguageSwitcher() {

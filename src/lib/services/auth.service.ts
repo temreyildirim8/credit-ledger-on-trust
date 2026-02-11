@@ -1,4 +1,5 @@
-import { supabase } from '@/lib/supabase';
+import { supabase } from "@/lib/supabase";
+import type { AuthChangeEvent, Session } from "@supabase/supabase-js";
 
 export interface SignUpData {
   email: string;
@@ -13,6 +14,7 @@ export interface SignInData {
 
 export const authService = {
   async signUp(data: SignUpData) {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
     const { data: authData, error } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
@@ -20,6 +22,7 @@ export const authService = {
         data: {
           name: data.name,
         },
+        emailRedirectTo: `${siteUrl}/auth/callback`,
       },
     });
 
@@ -43,18 +46,50 @@ export const authService = {
   },
 
   async getCurrentUser() {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
     if (error) throw error;
     return user;
   },
 
   async getSession() {
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
     if (error) throw error;
     return session;
   },
 
-  onAuthStateChange(callback: (event: string, session: any) => void) {
+  onAuthStateChange(
+    callback: (event: AuthChangeEvent, session: Session | null) => void,
+  ) {
     return supabase.auth.onAuthStateChange(callback);
+  },
+
+  async resendConfirmationEmail(email: string) {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const { error } = await supabase.auth.resend({
+      type: "signup",
+      email,
+      options: {
+        emailRedirectTo: `${siteUrl}/auth/callback`,
+      },
+    });
+    if (error) throw error;
+    return { success: true };
+  },
+
+  // Note: Password reset with OTP is now handled by server actions
+  // See: /app/[locale]/(auth)/forgot-password/actions.ts
+
+  async updatePassword(newPassword: string) {
+    const { data, error } = await supabase.auth.updateUser({
+      password: newPassword,
+    });
+    if (error) throw error;
+    return data;
   },
 };

@@ -2,6 +2,7 @@
 
 import { usePathname } from "@/routing";
 import { Link } from "@/routing";
+import { useTranslations } from "next-intl";
 import {
   LayoutDashboard,
   Users,
@@ -13,28 +14,28 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   {
-    name: "Home",
-    href: "/app/dashboard",
+    key: "dashboard",
+    href: "/dashboard",
     icon: LayoutDashboard,
   },
   {
-    name: "Customers",
-    href: "/app/customers",
+    key: "customers",
+    href: "/customers",
     icon: Users,
   },
   {
-    name: "History",
-    href: "/app/transactions",
+    key: "transactions",
+    href: "/transactions",
     icon: Receipt,
   },
   {
-    name: "Add",
-    href: "/app/quick-add",
+    key: "quickAdd",
+    href: "/quick-add",
     icon: CirclePlus,
   },
   {
-    name: "Settings",
-    href: "/app/settings",
+    key: "settings",
+    href: "/settings",
     icon: Settings,
   },
 ];
@@ -49,6 +50,7 @@ interface BottomNavProps {
  */
 export function BottomNav({ className }: BottomNavProps) {
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   // Extract locale and base path
   const segments = pathname.split("/");
@@ -65,13 +67,13 @@ export function BottomNav({ className }: BottomNavProps) {
       <div className="flex items-center justify-around px-2 h-16">
         {navItems.map((item) => {
           const isActive = pathname === `${basePath}${item.href}`;
-          const isAddButton = item.name === "Add";
+          const isAddButton = item.key === "quickAdd";
           const Icon = item.icon;
 
           return (
             <Link
               key={item.href}
-              href={`${basePath}${item.href}`}
+              href={item.href}
               className={cn(
                 "flex flex-col items-center justify-center gap-1 min-w-0 flex-1",
                 "transition-colors duration-200"
@@ -103,7 +105,7 @@ export function BottomNav({ className }: BottomNavProps) {
                     : "text-[var(--color-text-secondary)]"
                 )}
               >
-                {item.name}
+                {t(item.key)}
               </span>
             </Link>
           );

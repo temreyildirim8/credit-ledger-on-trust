@@ -6,9 +6,6 @@ import { usePathname } from "@/routing";
  * CTA section - Dark green gradient with signup call to action
  */
 export function CTASection() {
-  const pathname = usePathname();
-  const locale = pathname.split('/')[1] || "en";
-
   const benefits = [
     "Free forever for up to 50 customers",
     "Works 100% offline",
@@ -35,7 +32,7 @@ export function CTASection() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <Link
-            href={`/${locale}/signup`}
+            href="/login"
             className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
             Get Started for Free

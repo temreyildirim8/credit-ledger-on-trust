@@ -122,7 +122,7 @@ export default function AboutPage() {
             Join thousands of shop owners who have already switched to Global Ledger.
           </p>
           <a
-            href="/signup"
+            href="/login"
             className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
             Get Started for Free

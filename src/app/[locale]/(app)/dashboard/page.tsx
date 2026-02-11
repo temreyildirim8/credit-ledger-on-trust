@@ -24,7 +24,7 @@ export default function DashboardPage() {
   }
 
   // Sample overdue data (would come from API)
-  const overdueCustomers = [
+  const overdueCustomers: any[] = [
     // Add overdue customers here
   ];
 
@@ -45,7 +45,6 @@ export default function DashboardPage() {
         totalDebt={stats?.totalDebt}
         totalCollected={stats?.totalCollected}
         activeCustomers={stats?.activeCustomers}
-        thisMonth={stats?.thisMonth}
       />
 
       {/* Quick Actions */}

@@ -2,23 +2,20 @@
 
 import { Link } from "@/routing";
 import { Github, Twitter, Linkedin } from "lucide-react";
-import { usePathname } from "@/routing";
 import { useTranslations } from "next-intl";
 
 /**
  * Marketing footer - Multi-column links and social icons
  */
 export function MarketingFooter() {
-  const pathname = usePathname();
-  const locale = pathname.split('/')[1] || "en";
   const t = useTranslations('nav');
 
   const footerSections = [
     {
       title: "Product",
       links: [
-        { name: t('features'), href: `/${locale}/features` },
-        { name: t('pricing'), href: `/${locale}/pricing` },
+        { name: t('features'), href: "/features" },
+        { name: t('pricing'), href: "/pricing" },
         { name: "Security", href: "#" },
         { name: "FAQ", href: "#" },
       ],
@@ -26,10 +23,10 @@ export function MarketingFooter() {
     {
       title: "Company",
       links: [
-        { name: t('about'), href: `/${locale}/about` },
+        { name: t('about'), href: "/about" },
         { name: "Blog", href: "#" },
         { name: "Careers", href: "#" },
-        { name: t('contact'), href: `/${locale}/contact` },
+        { name: t('contact'), href: "/contact" },
       ],
     },
     {
@@ -146,10 +143,10 @@ export function MarketingFooter() {
             © 2025 Global Ledger. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link href={`/${locale}/login`} className="text-gray-400 hover:text-white transition-colors">
+            <Link href="/login" className="text-gray-400 hover:text-white transition-colors">
               {t('login')}
             </Link>
-            <Link href={`/${locale}/signup`} className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium">
+            <Link href="/signup" className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium">
               {t('signup')}
             </Link>
           </div>

@@ -43,26 +43,24 @@ interface QuickActionsProps {
 }
 
 export function QuickActions({ locale = "en" }: QuickActionsProps) {
-  const basePath = `/${locale}`;
-
   return (
     <div className="grid grid-cols-4 gap-2 md:gap-3">
       <ActionButton
         label="Add Debt"
         icon={<PlusCircle className="h-5 w-5" />}
-        href={`${basePath}/app/quick-add?type=debt`}
+        href="/quick-add?type=debt"
         variant="primary"
       />
       <ActionButton
         label="Add Payment"
         icon={<MinusCircle className="h-5 w-5" />}
-        href={`${basePath}/app/quick-add?type=payment`}
+        href="/quick-add?type=payment"
         variant="secondary"
       />
       <ActionButton
         label="Add Customer"
         icon={<UserPlus className="h-5 w-5" />}
-        href={`${basePath}/app/customers?add=true`}
+        href="/customers?add=true"
         variant="secondary"
       />
       <ActionButton

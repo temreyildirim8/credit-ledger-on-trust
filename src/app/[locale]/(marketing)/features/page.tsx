@@ -102,7 +102,7 @@ export default function FeaturesPage() {
             Join thousands of shop owners using Global Ledger to manage their credit.
           </p>
           <a
-            href="/signup"
+            href="/login"
             className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
             Start Free Today

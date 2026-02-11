@@ -13,14 +13,55 @@ if (!supabaseAnonKey) {
 }
 
 /**
+ * Custom storage adapter for Next.js
+ * Uses localStorage to persist session across page navigations
+ */
+const customStorageAdapter = {
+  getItem: (key: string) => {
+    if (typeof window === 'undefined') return null
+    return localStorage.getItem(key)
+  },
+  setItem: (key: string, value: string) => {
+    if (typeof window === 'undefined') return
+    localStorage.setItem(key, value)
+  },
+  removeItem: (key: string) => {
+    if (typeof window === 'undefined') return
+    localStorage.removeItem(key)
+  },
+}
+
+/**
  * Singleton browser client instance for backward compatibility
  * Use this for direct imports in services and hooks
  */
-export const supabase: SupabaseClient<Database> = createSupabaseClient<Database>(supabaseUrl, supabaseAnonKey)
+export const supabase: SupabaseClient<Database> = createSupabaseClient<Database>(
+  supabaseUrl,
+  supabaseAnonKey,
+  {
+    auth: {
+      storage: customStorageAdapter,
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+    },
+  }
+)
 
 /**
  * Browser client function - for use when you need a fresh client instance
  */
 export function createClient(): SupabaseClient<Database> {
-  return createSupabaseClient<Database>(supabaseUrl, supabaseAnonKey)
+  return createSupabaseClient<Database>(
+    supabaseUrl,
+    supabaseAnonKey,
+    {
+      auth: {
+        storage: customStorageAdapter,
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+      },
+    }
+  )
 }

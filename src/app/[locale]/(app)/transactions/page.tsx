@@ -10,15 +10,16 @@ import { Plus, Loader2, Calendar } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatDistanceToNow } from 'date-fns';
-import { tr, en, es } from 'date-fns/locale';
+import { tr, enUS, es } from 'date-fns/locale';
+import type { Locale } from 'date-fns';
 
 // Locale map for date-fns
-const localeMap: Record<string, Locale> = { en, tr, es };
+const localeMap: Record<string, Locale> = { en: enUS, tr, es };
 
 export default function TransactionsPage() {
   const pathname = usePathname();
   const locale = pathname.split('/')[1] || 'en';
-  const dateLocale = localeMap[locale] || en;
+  const dateLocale = localeMap[locale] || enUS;
 
   const { transactions, loading, createTransaction } = useTransactions();
   const [modalOpen, setModalOpen] = useState(false);

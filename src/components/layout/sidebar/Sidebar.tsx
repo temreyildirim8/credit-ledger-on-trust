@@ -2,6 +2,7 @@
 
 import { usePathname } from "@/routing";
 import { Link } from "@/routing";
+import { useAuth } from "@/lib/hooks/useAuth";
 import {
   LayoutDashboard,
   Users,
@@ -15,27 +16,27 @@ import { cn } from "@/lib/utils";
 const navItems = [
   {
     name: "Dashboard",
-    href: "/app/dashboard",
+    href: "/dashboard",
     icon: LayoutDashboard,
   },
   {
     name: "Customers",
-    href: "/app/customers",
+    href: "/customers",
     icon: Users,
   },
   {
     name: "Transactions",
-    href: "/app/transactions",
+    href: "/transactions",
     icon: Receipt,
   },
   {
     name: "Quick Add",
-    href: "/app/quick-add",
+    href: "/quick-add",
     icon: CirclePlus,
   },
   {
     name: "Settings",
-    href: "/app/settings",
+    href: "/settings",
     icon: Settings,
   },
 ];
@@ -50,15 +51,21 @@ interface SidebarProps {
  */
 export function Sidebar({ className }: SidebarProps) {
   const pathname = usePathname();
+  const { signOut } = useAuth();
 
   // Extract locale and base path
   const segments = pathname.split("/");
   const locale = segments[1] || "en";
   const basePath = `/${locale}`;
 
-  const handleLogout = () => {
-    // TODO: Implement logout
-    console.log("Logout clicked");
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      // Use router for soft navigation - the auth state change will trigger UI updates
+      window.location.href = `/${locale}/login`;
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
   };
 
   return (
@@ -70,7 +77,7 @@ export function Sidebar({ className }: SidebarProps) {
     >
       {/* Logo */}
       <div className="p-6 border-b border-[var(--color-border)]">
-        <Link href={basePath} className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
             <svg
               width="24"
@@ -120,7 +127,7 @@ export function Sidebar({ className }: SidebarProps) {
           return (
             <Link
               key={item.href}
-              href={`${basePath}${item.href}`}
+              href={item.href}
               className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200",
                 isActive

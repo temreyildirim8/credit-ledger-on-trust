@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Check, Star, Zap, Building2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Link } from '@/routing';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -87,16 +88,21 @@ export default function PricingPage() {
                         </li>
                       ))}
                     </ul>
-                    <Button
-                      className={`w-full ${
-                        plan.featured
-                          ? 'bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]'
-                          : ''
-                      }`}
-                      variant={plan.featured ? 'default' : 'outline'}
+                    <Link
+                      href="/login"
+                      className="block"
                     >
-                      {t(`${plan.key}.cta`)}
-                    </Button>
+                      <Button
+                        className={`w-full ${
+                          plan.featured
+                            ? 'bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]'
+                            : ''
+                        }`}
+                        variant={plan.featured ? 'default' : 'outline'}
+                      >
+                        {t(`${plan.key}.cta`)}
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               );
@@ -151,7 +157,7 @@ export default function PricingPage() {
             Start with our free plan and upgrade when you need more features.
           </p>
           <a
-            href="/signup"
+            href="/login"
             className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
             Get Started Free

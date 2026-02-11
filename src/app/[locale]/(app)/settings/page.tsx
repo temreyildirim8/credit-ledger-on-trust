@@ -124,8 +124,14 @@ export default function SettingsPage() {
   const [darkMode, setDarkMode] = useState(false);
 
   const handleSignOut = async () => {
-    await signOut();
-    router.push(`/${locale}/login`);
+    try {
+      await signOut();
+      toast.success('Signed out successfully');
+      router.push(`/${locale}/login`);
+    } catch (error) {
+      toast.error('Failed to sign out. Please try again.');
+      console.error('Sign out error:', error);
+    }
   };
 
   const handleSaveProfile = () => {
