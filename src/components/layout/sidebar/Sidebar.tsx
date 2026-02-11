@@ -10,8 +10,11 @@ import {
   CirclePlus,
   Settings,
   LogOut,
+  TrendingUp,
+  Wallet,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const navItems = [
   {
@@ -61,65 +64,58 @@ export function Sidebar({ className }: SidebarProps) {
   const handleLogout = async () => {
     try {
       await signOut();
-      // Use router for soft navigation - the auth state change will trigger UI updates
-      window.location.href = `/${locale}/login`;
+      // Use window.location.replace for absolute path navigation
+      window.location.replace(`/${locale}/login`);
     } catch (error) {
-      console.error('Sign out error:', error);
+      console.error("Sign out error:", error);
     }
   };
 
   return (
     <aside
       className={cn(
-        "hidden md:flex flex-col w-64 bg-white border-r border-[var(--color-border)] h-screen sticky top-0",
-        className
+        "hidden md:flex flex-col w-[260px] bg-surface border-r border-border",
+        "fixed top-0 left-0 bottom-0 z-50",
+        className,
       )}
     >
       {/* Logo */}
-      <div className="p-6 border-b border-[var(--color-border)]">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
+      <div className="p-5 border-b border-border">
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 rounded-xl bg-accent text-white flex items-center justify-center transition-transform group-hover:scale-105">
             <svg
-              width="24"
-              height="24"
+              width="22"
+              height="22"
               viewBox="0 0 24 24"
               fill="none"
-              className="text-white"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path
-                d="M12 2L2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7L12 2Z"
-                fill="currentColor"
+                d="M3 11L12 3l9 8v10a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1z"
+                fill="white"
                 fillOpacity="0.2"
               />
               <path
-                d="M12 2L2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7L12 2Z"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                d="M3 11L12 3l9 8v10a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1z"
+                stroke="white"
               />
-              <path
-                d="M12 10V16M12 16L9 13M12 16L15 13"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+              <path d="M12 10V16M12 16L9 13M12 16L15 13" stroke="white" />
             </svg>
           </div>
           <div>
-            <h1 className="font-display font-semibold text-lg text-[var(--color-text)]">
+            <h1 className="font-display font-semibold text-base text-text">
               Global Ledger
             </h1>
-            <p className="text-xs text-[var(--color-text-secondary)]">
-              Credit Management
-            </p>
+            <p className="text-xs text-text-secondary">Credit Management</p>
           </div>
         </Link>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-1">
+      <nav className="flex-1 px-3 py-4 space-y-1">
         {navItems.map((item) => {
           const isActive = pathname === `${basePath}${item.href}`;
           const Icon = item.icon;
@@ -129,27 +125,67 @@ export function Sidebar({ className }: SidebarProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200",
+                "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200",
+                "group relative overflow-hidden",
                 isActive
-                  ? "bg-[var(--color-accent)] text-white"
-                  : "text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] hover:text-[var(--color-text)]"
+                  ? "bg-accent text-white shadow-sm"
+                  : "text-text-secondary hover:bg-surface-alt hover:text-text",
               )}
             >
-              <Icon className="w-5 h-5" />
-              <span className="font-medium">{item.name}</span>
+              {/* Active indicator background */}
+              {isActive && (
+                <div className="absolute inset-0 bg-accent opacity-100" />
+              )}
+              {/* Hover background for non-active */}
+              {!isActive && (
+                <div className="absolute inset-0 bg-surface-alt opacity-0 group-hover:opacity-100 transition-opacity" />
+              )}
+              <Icon className="w-5 h-5 relative z-10" />
+              <span className="font-medium text-sm relative z-10">
+                {item.name}
+              </span>
             </Link>
           );
         })}
       </nav>
 
+      {/* Theme Toggle */}
+      <div className="px-3 pb-2">
+        <ThemeToggle />
+      </div>
+
+      {/* Quick Stats Section */}
+      <div className="p-4 border-t border-border">
+        <div className="bg-surface-alt rounded-xl p-4 space-y-3">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+              <Wallet className="w-4 h-4 text-accent" />
+            </div>
+            <div>
+              <p className="text-xs text-text-secondary">This Month</p>
+              <p className="text-sm font-semibold text-text">₺12,450</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-success/10 flex items-center justify-center">
+              <TrendingUp className="w-4 h-4 text-success" />
+            </div>
+            <div>
+              <p className="text-xs text-text-secondary">Collected</p>
+              <p className="text-sm font-semibold text-text">₺8,230</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* User Section */}
-      <div className="p-4 border-t border-[var(--color-border)]">
+      <div className="p-4 border-t border-border">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-[var(--color-error)] hover:bg-red-50 transition-all duration-200"
+          className="flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-error hover:bg-error/5 transition-all duration-200 group"
         >
-          <LogOut className="w-5 h-5" />
-          <span className="font-medium">Sign Out</span>
+          <LogOut className="w-5 h-5 flex-shrink-0" />
+          <span className="font-medium text-sm">Sign Out</span>
         </button>
       </div>
     </aside>
