@@ -61,20 +61,29 @@ export async function proxy(request: NextRequest) {
   const isValidLocale = supportedLocales.includes(locale);
   const hasLocalePrefix = isValidLocale;
 
-  // Protected routes
+  // Protected routes (require authentication)
   const protectedPaths = [
     "dashboard",
     "customers",
     "transactions",
     "quick-add",
     "settings",
+    "reports",
+    "onboarding",
   ];
   const secondSegment = segments[2];
   const isProtectedRoute =
     hasLocalePrefix && protectedPaths.includes(secondSegment || "");
 
-  // Auth routes
-  const authPaths = ["login", "signup"];
+  // Auth routes (redirect to dashboard if already logged in)
+  const authPaths = [
+    "login",
+    "signup",
+    "forgot-password",
+    "reset-password",
+    "verify-otp",
+    "reset-success",
+  ];
   const isAuthRoute =
     hasLocalePrefix && authPaths.includes(secondSegment || "");
 

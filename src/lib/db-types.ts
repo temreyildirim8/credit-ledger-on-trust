@@ -1,129 +1,37 @@
 // ============================================
-// Supabase Database Types - Best Practices Uygulamalı
+// Supabase Query Helpers - Best Practices
 // ============================================
-// Bu dosya Supabase'den otomatik oluşturulan types içindir
-// Supabase CLI ile: supabase gen types typescript > src/lib/database.types.ts
+// Re-exports types from database.types.ts (auto-generated)
+// This file contains optimized query helper classes
 // ============================================
 
-export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json | undefined }
-  | Json[]
+// Re-export types from the auto-generated file
+export type {
+  Database,
+  Json,
+  Tables,
+  TablesInsert,
+  TablesUpdate,
+  Enums,
+  UserProfile,
+  Customer,
+  Transaction,
+  Subscription,
+  SyncQueue,
+  CustomerBalance,
+  SubscriptionPlan,
+  TransactionType,
+  SyncStatus,
+  SyncActionType,
+} from './database.types';
 
-export interface Database {
-  public: {
-    Tables: {
-      customers: {
-        Row: {
-          id: string
-          name: string
-          phone: string | null
-          address: string | null
-          notes: string | null
-          is_deleted: boolean
-          user_id: string
-          tenant_id: string
-          created_at: string
-          updated_at: string
-        }
-        Insert: {
-          id?: string
-          name: string
-          phone?: string | null
-          address?: string | null
-          notes?: string | null
-          is_deleted?: boolean
-          user_id?: string
-          tenant_id?: string
-          created_at?: string
-          updated_at?: string
-        }
-        Update: {
-          id?: string
-          name?: string
-          phone?: string | null
-          address?: string | null
-          notes?: string | null
-          is_deleted?: boolean
-          user_id?: string
-          tenant_id?: string
-          created_at?: string
-          updated_at?: string
-        }
-      }
-      transactions: {
-        Row: {
-          id: string
-          customer_id: string
-          type: 'debt' | 'payment'
-          amount: number
-          description: string | null
-          transaction_date: string
-          user_id: string
-          tenant_id: string
-          created_at: string
-        }
-        Insert: {
-          id?: string
-          customer_id: string
-          type: 'debt' | 'payment'
-          amount: number
-          description?: string | null
-          transaction_date?: string
-          user_id?: string
-          tenant_id?: string
-          created_at?: string
-        }
-        Update: {
-          id?: string
-          customer_id?: string
-          type?: 'debt' | 'payment'
-          amount?: number
-          description?: string | null
-          transaction_date?: string
-          user_id?: string
-          tenant_id?: string
-          created_at?: string
-        }
-      }
-    }
-    Views: {
-      customer_balances: {
-        Row: {
-          id: string
-          user_id: string
-          name: string
-          phone: string | null
-          is_deleted: boolean
-          balance: number
-          transaction_count: number
-          last_transaction_date: string | null
-          created_at: string
-        }
-      }
-    }
-    Functions: {
-      get_customer_balance: {
-        Args: {
-          p_customer_id: string
-        }
-        Returns: number
-      }
-      create_customer: {
-        Args: {
-          p_name: string
-          p_phone?: string
-          p_address?: string
-          p_notes?: string
-        }
-        Returns: string
-      }
-    }
-  }
-}
+export {
+  Constants,
+  CUSTOMER_LIMITS,
+  TRANSACTION_TYPES,
+  SYNC_STATUS,
+  SYNC_ACTION_TYPES,
+} from './database.types';
 
 // ============================================
 // Best Practices Query Helpers
