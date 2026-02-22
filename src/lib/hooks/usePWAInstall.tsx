@@ -31,11 +31,8 @@ export function PWAInstallProvider({
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
-    // Check if app is already installed
-    if (window.matchMedia("(display-mode: standalone)").matches) {
-      setIsInstalled(true);
-      return;
-    }
+    // Check if app is already installed - use initial state instead of setState
+    const alreadyInstalled = window.matchMedia("(display-mode: standalone)").matches;
 
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
@@ -57,7 +54,12 @@ export function PWAInstallProvider({
       console.log("[PWA] App installed");
     };
 
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    // Set initial installed state using a microtask to avoid synchronous setState
+    if (alreadyInstalled) {
+      queueMicrotask(() => setIsInstalled(true));
+    } else {
+      window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    }
     window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {

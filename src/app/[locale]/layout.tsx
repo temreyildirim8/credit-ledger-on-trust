@@ -3,7 +3,6 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing, type Locale } from "@/routing";
-import { notFound } from "next/navigation";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { PWAInstallProvider } from "@/components/pwa/PWAInstallProvider";
@@ -68,11 +67,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const messages = await getMessages({ locale });
   const t = (key: string) => {
     const keys = key.split(".");
-    let value: any = messages;
+    let value: unknown = messages;
     for (const k of keys) {
-      value = value?.[k];
+      value = (value as Record<string, unknown>)?.[k];
     }
-    return value || key;
+    return (typeof value === 'string' ? value : key);
   };
 
   // Get industry from environment or default to 'general'

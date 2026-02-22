@@ -113,15 +113,15 @@ export default function TransactionsPage() {
                       {transaction.customer_name}
                     </span>
                   </div>
-                  {transaction.note && (
+                  {transaction.description && (
                     <p className="text-sm text-text-secondary mt-1">
-                      {transaction.note}
+                      {transaction.description}
                     </p>
                   )}
                   <p className="text-xs text-text-secondary mt-1 flex items-center gap-1">
                     <Calendar className="h-3.5 w-3.5" />
                     {formatDistanceToNow(
-                      new Date(transaction.transaction_date),
+                      new Date(transaction.transaction_date || transaction.created_at || Date.now()),
                       { addSuffix: true, locale: dateLocale }
                     )}
                   </p>

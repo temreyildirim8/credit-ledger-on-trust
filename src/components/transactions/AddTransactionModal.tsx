@@ -21,7 +21,7 @@ interface AddTransactionModalProps {
     type: 'debt' | 'payment';
     amount: number;
     note?: string;
-  }) => Promise<void>;
+  }) => Promise<unknown>;
 }
 
 interface Customer {
@@ -44,22 +44,22 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
   const [loadingCustomers, setLoadingCustomers] = useState(false);
 
   useEffect(() => {
-    if (open && user?.id) {
-      loadCustomers();
-    }
-  }, [open, user?.id]);
+    if (!open || !user?.id) return;
 
-  const loadCustomers = async () => {
-    setLoadingCustomers(true);
-    try {
-      const data = await transactionsService.getCustomers(user!.id);
-      setCustomers(data);
-    } catch (error) {
-      console.error('Error loading customers:', error);
-    } finally {
-      setLoadingCustomers(false);
-    }
-  };
+    const loadCustomers = async () => {
+      setLoadingCustomers(true);
+      try {
+        const data = await transactionsService.getCustomers(user.id);
+        setCustomers(data);
+      } catch (error) {
+        console.error('Error loading customers:', error);
+      } finally {
+        setLoadingCustomers(false);
+      }
+    };
+
+    loadCustomers();
+  }, [open, user?.id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,8 +89,9 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
       setAmount('');
       setNote('');
       onOpenChange(false);
-    } catch (error: any) {
-      toast.error(error.message || tTransactions.raw('error'));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      toast.error(message || tTransactions.raw('error'));
     } finally {
       setLoading(false);
     }

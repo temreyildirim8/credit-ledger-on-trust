@@ -1,6 +1,5 @@
 import { Link } from "@/routing";
 import { ArrowRight, Check } from "lucide-react";
-import { usePathname } from "@/routing";
 
 /**
  * CTA section - Dark green gradient with signup call to action

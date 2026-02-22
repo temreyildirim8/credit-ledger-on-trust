@@ -1,18 +1,21 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { Clock, User } from "lucide-react";
+import { Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
+import { tr, enUS, es } from "date-fns/locale";
 import type { Locale } from "date-fns";
-import { formatCurrency } from "@/lib/utils/currency";
+
+// Locale map for date-fns
+const localeMap: Record<string, Locale> = { en: enUS, tr, es };
 
 interface Activity {
   id: string;
   customerName: string;
   amount: number;
   type: "debt" | "payment";
-  date: string | Date;
+  date: string | Date | null;
 }
 
 interface RecentActivityProps {
@@ -21,9 +24,9 @@ interface RecentActivityProps {
 }
 
 export function RecentActivity({ activities = [], locale = "en" }: RecentActivityProps) {
-  const dateLocale: Locale = locale as any || "enUS";
+  const dateLocale: Locale = localeMap[locale] || enUS;
 
-  const formatCurrency = (amount: number) => {
+  const formatCurrencyValue = (amount: number) => {
     return new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
       style: "currency",
       currency: locale === "tr" ? "TRY" : "USD",
@@ -74,7 +77,7 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
                 <p className="text-xs text-text-secondary flex items-center gap-1">
                   <Clock className="h-3.5 w-3.5" />
                   {formatDistanceToNow(
-                    new Date(activity.date),
+                    new Date(activity.date || Date.now()),
                     { addSuffix: true, locale: dateLocale }
                   )}
                 </p>
@@ -87,7 +90,7 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
                   )}
                 >
                   {isDebt ? "+" : "-"}
-                  {formatCurrency(activity.amount)}
+                  {formatCurrencyValue(activity.amount)}
                 </p>
               </div>
             </div>

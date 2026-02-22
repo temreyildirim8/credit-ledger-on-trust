@@ -18,24 +18,19 @@ const PWAInstallContext = createContext<PWAInstallContextValue | undefined>(unde
 
 interface PWAInstallProviderProps {
   children: ReactNode;
-  showInstallPromptAfter?: number;
 }
 
 export function PWAInstallProvider({
   children,
-  showInstallPromptAfter = 3000,
 }: PWAInstallProviderProps) {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
-  const [isInstalled, setIsInstalled] = useState(false);
+  // Check if app is already installed on initial render
+  const [isInstalled, setIsInstalled] = useState(
+    typeof window !== 'undefined' && window.matchMedia("(display-mode: standalone)").matches
+  );
 
   useEffect(() => {
-    // Check if app is already installed
-    if (window.matchMedia("(display-mode: standalone)").matches) {
-      setIsInstalled(true);
-      return;
-    }
-
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       const promptEvent = e as BeforeInstallPromptEvent;

@@ -12,7 +12,7 @@ import { useTranslations } from 'next-intl';
 interface AddCustomerModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onSave: (customer: { name: string; phone?: string; address?: string; notes?: string }) => Promise<void>;
+  onSave: (customer: { name: string; phone?: string; address?: string; notes?: string }) => Promise<unknown>;
 }
 
 export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModalProps) {
@@ -47,8 +47,9 @@ export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModa
       setAddress('');
       setNotes('');
       onOpenChange(false);
-    } catch (error: any) {
-      toast.error(error.message || tCustomers('error'));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      toast.error(message || tCustomers('error'));
     } finally {
       setLoading(false);
     }

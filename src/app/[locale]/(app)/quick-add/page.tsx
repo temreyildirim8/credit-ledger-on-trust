@@ -61,8 +61,8 @@ export default function QuickAddPage() {
       });
       toast.success(t('success'));
       router.back();
-    } catch (error: any) {
-      toast.error(error.message || t('error'));
+    } catch (error) {
+      toast.error((error instanceof Error ? error.message : String(error)) || t('error'));
     } finally {
       setLoading(false);
     }

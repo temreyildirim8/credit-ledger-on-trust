@@ -17,7 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Loader2, MailCheck, Mail, AlertCircle, Clock } from "lucide-react";
+import { Loader2, MailCheck, Clock } from "lucide-react";
 import { toast } from "sonner";
 
 type AuthError = {
@@ -104,10 +104,12 @@ export function LoginForm() {
       const redirectTo = redirectParam || `/${locale}/dashboard`;
       console.log("[LoginForm] Redirecting to:", redirectTo);
       router.replace(redirectTo);
-    } catch (error: any) {
-      const errorCode = error?.code || error?.status;
+    } catch (error) {
+      const errorCode = (error as { code?: string; status?: string })?.code ||
+                        (error as { code?: string; status?: string })?.status;
       const errorMessage =
-        error?.message || t("login.error") || "Invalid email or password";
+        (error instanceof Error ? error.message : String(error)) ||
+        t("login.error") || "Invalid email or password";
 
       // Handle email not confirmed error specifically
       if (errorCode === "email_not_confirmed") {
@@ -133,9 +135,10 @@ export function LoginForm() {
     try {
       await authService.resendConfirmationEmail(email);
       toast.success(t("login.resendSuccess") || "Verification email resent!");
-    } catch (error: any) {
+    } catch (error) {
       toast.error(
-        error.message || t("login.resendError") || "Failed to send email",
+        (error instanceof Error ? error.message : String(error)) ||
+        t("login.resendError") || "Failed to send email",
       );
     } finally {
       setResendingEmail(false);
@@ -153,9 +156,10 @@ export function LoginForm() {
       await authService.resendConfirmationEmail(resendEmail);
       toast.success(t("login.resendSuccess") || "Verification email resent!");
       setOtpExpiredEmail("");
-    } catch (error: any) {
+    } catch (error) {
       toast.error(
-        error.message || t("login.resendError") || "Failed to send email",
+        (error instanceof Error ? error.message : String(error)) ||
+        t("login.resendError") || "Failed to send email",
       );
     } finally {
       setResendingOtpEmail(false);

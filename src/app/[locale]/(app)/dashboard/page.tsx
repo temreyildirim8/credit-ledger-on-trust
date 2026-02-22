@@ -35,7 +35,7 @@ export default function DashboardPage() {
   }
 
   // Sample overdue data (would come from API)
-  const overdueCustomers: any[] = [];
+  const overdueCustomers: { id: string; name: string; amount: number; overdueDays: number }[] = [];
 
   return (
     <div className="space-y-5">

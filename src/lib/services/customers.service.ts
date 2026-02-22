@@ -1,13 +1,18 @@
 import { supabase } from '@/lib/supabase/client';
+import type { Tables, TablesInsert, TablesUpdate, CustomerBalance } from '@/lib/database.types';
 
 export interface Customer {
   id: string;
+  user_id: string;
   name: string;
   phone: string | null;
-  address: string | null;
-  notes: string | null;
+  address?: string | null;
+  notes?: string | null;
   balance: number;
-  created_at: string;
+  transaction_count?: number | null;
+  last_transaction_date?: string | null;
+  is_deleted?: boolean | null;
+  created_at: string | null;
 }
 
 export const customersService = {
@@ -18,7 +23,17 @@ export const customersService = {
       .eq('user_id', userId)
       .order('created_at', { ascending: false });
 
-    return (data || []) as Customer[];
+    return (data || []).map(row => ({
+      id: row.id!,
+      user_id: row.user_id!,
+      name: row.name!,
+      phone: row.phone,
+      balance: row.balance || 0,
+      transaction_count: row.transaction_count,
+      last_transaction_date: row.last_transaction_date,
+      is_deleted: row.is_deleted,
+      created_at: row.created_at,
+    }));
   },
 
   async getCustomerById(userId: string, customerId: string): Promise<Customer | null> {
@@ -29,7 +44,19 @@ export const customersService = {
       .eq('id', customerId)
       .single();
 
-    return data as Customer | null;
+    if (!data) return null;
+
+    return {
+      id: data.id!,
+      user_id: data.user_id!,
+      name: data.name!,
+      phone: data.phone,
+      balance: data.balance || 0,
+      transaction_count: data.transaction_count,
+      last_transaction_date: data.last_transaction_date,
+      is_deleted: data.is_deleted,
+      created_at: data.created_at,
+    };
   },
 
   async createCustomer(userId: string, customer: {
@@ -37,32 +64,32 @@ export const customersService = {
     phone?: string;
     address?: string;
     notes?: string;
-  }) {
+  }): Promise<Customer> {
+    const insertData: TablesInsert<'customers'> = {
+      user_id: userId,
+      name: customer.name,
+      phone: customer.phone || null,
+      address: customer.address || null,
+      notes: customer.notes || null,
+    };
+
     const { data, error } = await supabase
       .from('customers')
-      .insert({
-        user_id: userId,
-        tenant_id: userId, // Using userId as tenant_id for single-tenant setup
-        name: customer.name,
-        phone: customer.phone || null,
-        address: customer.address || null,
-        notes: customer.notes || null,
-      } as any)
+      .insert(insertData)
       .select()
       .single();
 
     if (error) throw error;
-    return data;
+    // Return with default balance of 0 for new customers
+    return {
+      ...data,
+      balance: 0,
+    };
   },
 
-  async updateCustomer(customerId: string, customer: {
-    name?: string;
-    phone?: string;
-    address?: string;
-    notes?: string;
-  }) {
-    const { data, error } = await (supabase
-      .from('customers') as any)
+  async updateCustomer(customerId: string, customer: TablesUpdate<'customers'>) {
+    const { data, error } = await supabase
+      .from('customers')
       .update(customer)
       .eq('id', customerId)
       .select()

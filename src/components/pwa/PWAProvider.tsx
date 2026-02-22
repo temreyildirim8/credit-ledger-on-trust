@@ -2,6 +2,11 @@
 
 import { useEffect } from "react";
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
+
 export function PWAProvider() {
   useEffect(() => {
     // Register service worker only in production (Next.js dev mode redirects cause issues)
@@ -17,14 +22,12 @@ export function PWAProvider() {
     }
 
     // Handle before install prompt
-    let deferredPrompt: any = null;
     const handleBeforeInstallPrompt = (e: Event) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       console.log("[PWA] beforeinstallprompt event captured");
-      // Store the event for later use
-      deferredPrompt = e;
-      window.dispatchEvent(new CustomEvent("pwa-installable", { detail: e }));
+      // Store the event for later use via custom event
+      window.dispatchEvent(new CustomEvent("pwa-installable", { detail: e as BeforeInstallPromptEvent }));
       console.log("[PWA] Custom event pwa-installable dispatched");
     };
 

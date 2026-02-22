@@ -22,7 +22,7 @@ export default function CustomerDetailsPage() {
   const pathname = usePathname();
   const { user } = useAuth();
   const [customer, setCustomer] = useState<Customer | null>(null);
-  const [transactions, setTransactions] = useState<any[]>([]);
+  const [transactions, setTransactions] = useState<{ id: string; type: string; amount: number; transaction_date: string | null; created_at: string | null; description?: string | null }[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Extract locale from pathname
@@ -197,13 +197,13 @@ export default function CustomerDetailsPage() {
                       </Badge>
                       <p className="text-xs text-text-secondary flex items-center gap-1 mt-1">
                         {formatDistanceToNow(
-                          new Date(transaction.transaction_date),
+                          new Date(transaction.transaction_date || transaction.created_at || Date.now()),
                           { addSuffix: true, locale: dateLocale }
                         )}
                       </p>
                     </div>
-                    {transaction.note && (
-                      <p className="text-sm text-text">{transaction.note}</p>
+                    {transaction.description && (
+                      <p className="text-sm text-text">{transaction.description}</p>
                     )}
                   </div>
                   <p

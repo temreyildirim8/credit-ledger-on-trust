@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Mail, CheckCircle2 } from 'lucide-react';
+import { Loader2, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 type FormState = 'idle' | 'loading' | 'success';
@@ -36,9 +36,9 @@ export function SignupForm() {
       await signUp(email, password, name);
       setFormState('success');
       toast.success(t('signup.success') || 'Account created successfully');
-    } catch (error: any) {
+    } catch (error) {
       setFormState('idle');
-      toast.error(error.message || t('signup.error') || 'Failed to create account');
+      toast.error((error instanceof Error ? error.message : String(error)) || t('signup.error') || 'Failed to create account');
     }
   };
 

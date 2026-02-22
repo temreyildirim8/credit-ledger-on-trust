@@ -32,7 +32,7 @@ export function useCustomers() {
     phone?: string;
     address?: string;
     notes?: string;
-  }) => {
+  }): Promise<Customer> => {
     if (!user?.id) throw new Error('User not authenticated');
 
     const newCustomer = await customersService.createCustomer(user.id, customer);

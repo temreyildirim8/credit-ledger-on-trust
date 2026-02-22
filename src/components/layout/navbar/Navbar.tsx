@@ -44,7 +44,7 @@ export default function Navbar() {
               href={item.href}
               className="navbar__link"
             >
-              {t(item.key as any)}
+              {t(item.key as 'features' | 'pricing' | 'about' | 'contact')}
             </Link>
           ))}
         </div>

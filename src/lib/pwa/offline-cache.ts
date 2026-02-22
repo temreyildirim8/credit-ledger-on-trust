@@ -2,9 +2,9 @@ const DB_NAME = 'global-ledger-offline';
 const DB_VERSION = 1;
 const STORE_NAME = 'offline-cache';
 
-export interface OfflineData {
+export interface OfflineData<T = unknown> {
   key: string;
-  data: any;
+  data: T;
   timestamp: number;
 }
 
@@ -34,14 +34,14 @@ export class OfflineCache {
     });
   }
 
-  async set(key: string, data: any): Promise<void> {
+  async set<T>(key: string, data: T): Promise<void> {
     if (!this.db) await this.init();
 
     return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction([STORE_NAME], 'readwrite');
       const objectStore = transaction.objectStore(STORE_NAME);
 
-      const offlineData: OfflineData = {
+      const offlineData: OfflineData<T> = {
         key,
         data,
         timestamp: Date.now(),
@@ -54,7 +54,7 @@ export class OfflineCache {
     });
   }
 
-  async get(key: string): Promise<any> {
+  async get<T>(key: string): Promise<T | null> {
     if (!this.db) await this.init();
 
     return new Promise((resolve, reject) => {
@@ -63,7 +63,7 @@ export class OfflineCache {
       const request = objectStore.get(key);
 
       request.onsuccess = () => {
-        const result = request.result as OfflineData | undefined;
+        const result = request.result as OfflineData<T> | undefined;
         // Return data if cached within last 24 hours
         if (result && Date.now() - result.timestamp < 24 * 60 * 60 * 1000) {
           resolve(result.data);

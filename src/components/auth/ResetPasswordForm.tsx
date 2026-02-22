@@ -57,8 +57,11 @@ export function ResetPasswordForm() {
     // First, check for error in URL hash
     const hashError = getErrorFromHash();
     if (hashError) {
-      setError(hashError);
-      setFormState('idle');
+      // Use queueMicrotask to avoid synchronous setState in effect
+      queueMicrotask(() => {
+        setError(hashError);
+        setFormState('idle');
+      });
       // Clear the hash to prevent error persisting on refresh
       window.history.replaceState(null, '', ' ');
       return;
@@ -98,7 +101,7 @@ export function ResetPasswordForm() {
     return () => {
       subscription.unsubscribe();
     };
-  }, [t]);
+  }, [t, getErrorFromHash]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,9 +132,9 @@ export function ResetPasswordForm() {
       setTimeout(() => {
         router.push(`/${locale}/login`);
       }, 2000);
-    } catch (error: any) {
+    } catch (error) {
       setFormState('idle');
-      const errorMsg = error.message || t('resetPassword.error');
+      const errorMsg = (error instanceof Error ? error.message : String(error)) || t('resetPassword.error');
       setError(errorMsg);
       toast.error(errorMsg);
     }
