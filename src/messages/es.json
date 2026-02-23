@@ -537,5 +537,115 @@
     "hoursAgo": "hace {count}h",
     "sync": "Sincronizar",
     "willSyncWhenOnline": "Se sincronizará cuando haya conexión"
+  },
+  "legal": {
+    "title": "Centro Legal",
+    "subtitle": "Encuentra todos nuestros documentos y políticas legales en un solo lugar",
+    "items": {
+      "privacy": {
+        "title": "Política de Privacidad",
+        "description": "Aprende cómo recopilamos, usamos y protegemos tu información personal"
+      },
+      "terms": {
+        "title": "Términos de Servicio",
+        "description": "Los términos y condiciones que rigen tu uso de Global Ledger"
+      },
+      "cookies": {
+        "title": "Política de Cookies",
+        "description": "Información sobre cómo usamos cookies y tecnologías similares"
+      },
+      "compliance": {
+        "title": "Cumplimiento",
+        "description": "Nuestros estándares de cumplimiento regulatorio y protección de datos"
+      },
+      "security": {
+        "title": "Seguridad",
+        "description": "Conoce nuestras prácticas e infraestructura de seguridad"
+      },
+      "licensing": {
+        "title": "Licencias de Software",
+        "description": "Información sobre licencias y atribuciones de terceros"
+      }
+    },
+    "contact": {
+      "title": "¿Preguntas sobre nuestras políticas?",
+      "description": "Nuestro equipo legal está aquí para ayudarte. Contáctanos para cualquier pregunta sobre nuestros términos, privacidad o cumplimiento.",
+      "button": "Contáctanos"
+    },
+    "lastUpdated": "Última actualización: Febrero 2026",
+    "privacyPage": {
+      "title": "Política de Privacidad",
+      "lastUpdated": "Última Actualización: 22 de Febrero de 2026",
+      "intro": "En Global Ledger, tomamos tu privacidad en serio. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando usas nuestro servicio.",
+      "sections": {
+        "collect": {
+          "title": "Información que Recopilamos",
+          "content": "Recopilamos información que nos proporcionas directamente, incluyendo: tu nombre, dirección de correo electrónico, número de teléfono, nombre comercial, datos de clientes y registros de transacciones. También recopilamos automáticamente cierta información cuando usas nuestro servicio, incluyendo tu tipo de dispositivo, dirección IP, tipo de navegador y datos de uso."
+        },
+        "use": {
+          "title": "Cómo Usamos tu Información",
+          "content": "Usamos la información que recopilamos para: proporcionar y mantener nuestro servicio, procesar tus transacciones, enviarte avisos técnicos y mensajes de soporte, responder a tus comentarios y preguntas, monitorear y analizar tendencias, y detectar y prevenir fraudes."
+        },
+        "sharing": {
+          "title": "Compartir Información",
+          "content": "No vendemos tu información personal. Podemos compartir tu información con: proveedores de servicios que realizan servicios en nuestro nombre, asesores profesionales como abogados y contadores, y autoridades policiales si lo exige la ley."
+        },
+        "security": {
+          "title": "Seguridad de Datos",
+          "content": "Implementamos medidas técnicas y organizativas apropiadas para proteger tu información personal contra el procesamiento no autorizado o ilegal, pérdida accidental, destrucción o daño. Usamos encriptación AES-256 de grado bancario para todos los datos en reposo y en tránsito."
+        },
+        "rights": {
+          "title": "Tus Derechos",
+          "content": "Dependiendo de tu ubicación, puedes tener derecho a: acceder a tus datos personales, corregir datos inexactos, eliminar tus datos, oponerte al procesamiento y portabilidad de datos. Contáctanos para ejercer estos derechos."
+        },
+        "contact": {
+          "title": "Contáctanos",
+          "content": "Si tienes preguntas sobre esta Política de Privacidad, contáctanos en privacy@globalledger.app"
+        }
+      }
+    },
+    "termsPage": {
+      "title": "Términos de Servicio",
+      "lastUpdated": "Última Actualización: 22 de Febrero de 2026",
+      "intro": "Bienvenido a Global Ledger. Al usar nuestro servicio, aceptas estos términos. Por favor léalos cuidadosamente.",
+      "sections": {
+        "acceptance": {
+          "title": "Aceptación de Términos",
+          "content": "Al acceder o usar Global Ledger, aceptas estar sujeto a estos Términos de Servicio y todas las leyes y regulaciones aplicables. Si no estás de acuerdo con alguno de estos términos, se te prohíbe usar o acceder a este servicio."
+        },
+        "description": {
+          "title": "Descripción del Servicio",
+          "content": "Global Ledger proporciona una aplicación de libro mayor de crédito digital para micro-PYMES para rastrear deudas y pagos de clientes. El servicio incluye funcionalidad sin conexión, respaldo en la nube y funciones de informes."
+        },
+        "accounts": {
+          "title": "Cuentas de Usuario",
+          "content": "Eres responsable de mantener la confidencialidad de las credenciales de tu cuenta. Debes proporcionar información precisa y completa al crear tu cuenta. Eres responsable de todas las actividades que ocurran bajo tu cuenta."
+        },
+        "acceptable": {
+          "title": "Uso Aceptable",
+          "content": "Aceptas usar Global Ledger solo para fines legales. No puedes: usar el servicio para almacenar o transmitir código malicioso, intentar obtener acceso no autorizado a nuestros sistemas, interferir o interrumpir el servicio, o usar el servicio para violar leyes."
+        },
+        "payment": {
+          "title": "Términos de Pago",
+          "content": "Algunas características requieren una suscripción de pago. Aceptas pagar todas las tarifas asociadas con tu cuenta. Las suscripciones se renuevan automáticamente a menos que se cancelen antes de la fecha de renovación. Todos los pagos son no reembolsables excepto según lo exija la ley."
+        },
+        "termination": {
+          "title": "Terminación",
+          "content": "Podemos terminar o suspender tu cuenta en cualquier momento por cualquier motivo, incluyendo la violación de estos términos. Al terminar, tu derecho a usar el servicio cesará inmediatamente. Puedes terminar tu cuenta en cualquier momento a través de la configuración de tu cuenta."
+        },
+        "limitation": {
+          "title": "Limitación de Responsabilidad",
+          "content": "Global Ledger no será responsable de ningún daño indirecto, incidental, especial, consecuente o punitivo resultante de tu uso o incapacidad para usar el servicio. Nuestra responsabilidad total no excederá la cantidad que nos pagaste en los 12 meses anteriores al reclamo."
+        },
+        "changes": {
+          "title": "Cambios a los Términos",
+          "content": "Nos reservamos el derecho de modificar estos términos en cualquier momento. Te notificaremos sobre cambios materiales publicando los nuevos términos en nuestro sitio web. Tu uso continuado del servicio después de los cambios constituye aceptación de los nuevos términos."
+        },
+        "contact": {
+          "title": "Contáctanos",
+          "content": "Si tienes preguntas sobre estos Términos de Servicio, contáctanos en legal@globalledger.app"
+        }
+      }
+    }
   }
 }

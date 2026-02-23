@@ -735,5 +735,115 @@
     "a6": "Yes! You can export your customer statements as PDF files and your transaction history as CSV spreadsheets. This feature is available on both free and paid plans.",
     "stillHaveQuestions": "Still have questions?",
     "contactSupport": "Contact our support team"
+  },
+  "legal": {
+    "title": "Legal Center",
+    "subtitle": "Find all our legal documents and policies in one place",
+    "items": {
+      "privacy": {
+        "title": "Privacy Policy",
+        "description": "Learn how we collect, use, and protect your personal information"
+      },
+      "terms": {
+        "title": "Terms of Service",
+        "description": "The terms and conditions governing your use of Global Ledger"
+      },
+      "cookies": {
+        "title": "Cookie Policy",
+        "description": "Information about how we use cookies and similar technologies"
+      },
+      "compliance": {
+        "title": "Compliance",
+        "description": "Our regulatory compliance and data protection standards"
+      },
+      "security": {
+        "title": "Security",
+        "description": "Learn about our security practices and infrastructure"
+      },
+      "licensing": {
+        "title": "Software Licensing",
+        "description": "Information about third-party licenses and attributions"
+      }
+    },
+    "contact": {
+      "title": "Questions about our policies?",
+      "description": "Our legal team is here to help. Contact us for any questions about our terms, privacy, or compliance.",
+      "button": "Contact Us"
+    },
+    "lastUpdated": "Last updated: February 2026",
+    "privacyPage": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last Updated: February 22, 2026",
+      "intro": "At Global Ledger, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service.",
+      "sections": {
+        "collect": {
+          "title": "Information We Collect",
+          "content": "We collect information that you provide directly to us, including: your name, email address, phone number, business name, customer data, and transaction records. We also automatically collect certain information when you use our service, including your device type, IP address, browser type, and usage data."
+        },
+        "use": {
+          "title": "How We Use Your Information",
+          "content": "We use the information we collect to: provide and maintain our service, process your transactions, send you technical notices and support messages, respond to your comments and questions, monitor and analyze trends, and detect and prevent fraud."
+        },
+        "sharing": {
+          "title": "Information Sharing",
+          "content": "We do not sell your personal information. We may share your information with: service providers who perform services on our behalf, professional advisors such as lawyers and accountants, and law enforcement if required by law."
+        },
+        "security": {
+          "title": "Data Security",
+          "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized or unlawful processing, accidental loss, destruction, or damage. We use bank-grade AES-256 encryption for all data at rest and in transit."
+        },
+        "rights": {
+          "title": "Your Rights",
+          "content": "Depending on your location, you may have the right to: access your personal data, correct inaccurate data, delete your data, object to processing, and data portability. Contact us to exercise these rights."
+        },
+        "contact": {
+          "title": "Contact Us",
+          "content": "If you have questions about this Privacy Policy, please contact us at privacy@globalledger.app"
+        }
+      }
+    },
+    "termsPage": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last Updated: February 22, 2026",
+      "intro": "Welcome to Global Ledger. By using our service, you agree to these terms. Please read them carefully.",
+      "sections": {
+        "acceptance": {
+          "title": "Acceptance of Terms",
+          "content": "By accessing or using Global Ledger, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this service."
+        },
+        "description": {
+          "title": "Description of Service",
+          "content": "Global Ledger provides a digital credit ledger application for micro-SMEs to track customer debts and payments. The service includes offline functionality, cloud backup, and reporting features."
+        },
+        "accounts": {
+          "title": "User Accounts",
+          "content": "You are responsible for maintaining the confidentiality of your account credentials. You must provide accurate and complete information when creating your account. You are responsible for all activities that occur under your account."
+        },
+        "acceptable": {
+          "title": "Acceptable Use",
+          "content": "You agree to use Global Ledger only for lawful purposes. You may not: use the service to store or transmit malicious code, attempt to gain unauthorized access to our systems, interfere with or disrupt the service, or use the service to violate any laws."
+        },
+        "payment": {
+          "title": "Payment Terms",
+          "content": "Some features require a paid subscription. You agree to pay all fees associated with your account. Subscriptions automatically renew unless cancelled before the renewal date. All payments are non-refundable except as required by law."
+        },
+        "termination": {
+          "title": "Termination",
+          "content": "We may terminate or suspend your account at any time for any reason, including violation of these terms. Upon termination, your right to use the service will immediately cease. You may terminate your account at any time through your account settings."
+        },
+        "limitation": {
+          "title": "Limitation of Liability",
+          "content": "Global Ledger shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service. Our total liability shall not exceed the amount you paid us in the 12 months preceding the claim."
+        },
+        "changes": {
+          "title": "Changes to Terms",
+          "content": "We reserve the right to modify these terms at any time. We will notify you of any material changes by posting the new terms on our website. Your continued use of the service after changes constitutes acceptance of the new terms."
+        },
+        "contact": {
+          "title": "Contact Us",
+          "content": "If you have questions about these Terms of Service, please contact us at legal@globalledger.app"
+        }
+      }
+    }
   }
 }

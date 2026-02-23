@@ -537,5 +537,115 @@
     "hoursAgo": "{count} amahora edlule",
     "sync": "Vumelanisa",
     "willSyncWhenOnline": "Kuzovumelaniswa uma ku-inthanethi"
+  },
+  "legal": {
+    "title": "Isikhungo Somthetho",
+    "subtitle": "Thola wonke amadokhumenti nobuhlelo bethu bomthetho indawo eyodwa",
+    "items": {
+      "privacy": {
+        "title": "Inqubomgomo Yobumfihlo",
+        "description": "Funda ukuthi siqoqa, sisebenzisa, futhi sivikela kanjani ulwazi lwakho bomuntu siqu"
+      },
+      "terms": {
+        "title": "Izimo Zokusebenza",
+        "description": "Izimo nemigomo elawula ukusebenzisa kwakho i-Global Ledger"
+      },
+      "cookies": {
+        "title": "Inqubomgomo Yamakhuki",
+        "description": "Ulwazi ngendlela esisebenzisa ngayo amakhuki nobuchwepheshe obufanayo"
+      },
+      "compliance": {
+        "title": "Ukuvumelana",
+        "description": "Amazinga ethu okuvumelana komthetho nokuvikelwa kwedatha"
+      },
+      "security": {
+        "title": "Ukuvikeleka",
+        "description": "Funda ngamazinga ethu okuvikeleka nensimbi esiyisebenzisayo"
+      },
+      "licensing": {
+        "title": "Ulayisensi Wesoftware",
+        "description": "Ulwazi ngolayisensi bendawo yesithathu nezibongo"
+      }
+    },
+    "contact": {
+      "title": "Imibuzo mayelana nobuhlelo bethu?",
+      "description": "Ithimba lethu lomthetho liseduze ukusiza. Singathi ukuze uthinte noma yimuphi umbuzo mayelana nezimo zethu, ubumfihlo, noma ukuvumelana.",
+      "button": "Sithinte"
+    },
+    "lastUpdated": "Kugciniswe: Febhuwari 2026",
+    "privacyPage": {
+      "title": "Inqubomgomo Yobumfihlo",
+      "lastUpdated": "Kugciniswe: 22 Febhuwari 2026",
+      "intro": "E-Global Ledger, sithatha ubumfihlo bakho ngokuzwela. Le nqubomgomo yokuvikela incazela indlela esiqoqa, sisebenzise, sixoxe, futhi sivikela ngayo ulwazi lwakho uma usebenzisa insizakalo yethu.",
+      "sections": {
+        "collect": {
+          "title": "Ulwazi Esiluqoqayo",
+          "content": "Siqoqa ulwazi olusipha ngokuqondile, okuhlanganisa: igama lakho, ikheli le-imeyili, inombolo yocingo, igama lebhizinisi lakho, idatha yamakhasimende, namarekhodi emisebenzi. Futhi siqoqa ngokuzenzakalela ulwazi oluthile uma usebenzisa insizakalo yethu, okuhlanganisa uhlobo lwejini yakho, ikheli le-IP, uhlobo lwebrawuza, nadatha yokusebenzisa."
+        },
+        "use": {
+          "title": "Indlela Esisebenzisa Ngayo Ulwazi lwakho",
+          "content": "Sisebenzisa ulwazi esiluqoqile ukuze: sinike futhi sigcine insizakalo yethu, siphathe imisebenzi yakho, sikuthumele izaziso zezobuchwepheshe nemilayezo yosizo, sipendule izimpendulo zakho nemibuzo, silinde futhi sihlasisise izindlela, futhi sithole futhi sivimbe ukukhwabanisa."
+        },
+        "sharing": {
+          "title": "Ukwabelana Ngolwazi",
+          "content": "Asikuthengisi ulwazi lwakho bomuntu siqu. Singabelana ngolwazi lwakho: abanikezeli bezinsizakalo abenza izinsizakalo ngokwethu, abeluleki bezobuchwepheshe njengamalungisi nabatoliki, kanye nomthethosisekelo uma kudingwa umthetho."
+        },
+        "security": {
+          "title": "Ukuvikeleka Kwedatha",
+          "content": "Sisebenzisa izinyathelo zobuchwepheshe futhi zenhlangano ezifanele ukuze sivikele ulwazi lwakho bomuntu siqu ekuphathweni okungavunyelwe noma okungomthetho, ekulahlekeni okungahlosile, ekubhubhiseni, noma ekulimazeni. Sisebenzisa ukubhalisa kwe-AES-256 komzinga webhange yonke idatha eqhumayo nasekufudumeni."
+        },
+        "rights": {
+          "title": "Amalungelo Akho",
+          "content": "Kuye ngendawo yakho, kungaba namalungelo oku: ukufinyelela idatha yakho yomuntu siqu, ukuhlola idatha engalungile, ukususa idatha yakho, ukuphikisa ukuphathwa, nokudluliselwa kwedatha. Sithinte ukuze usebenzise la malungelo."
+        },
+        "contact": {
+          "title": "Sithinte",
+          "content": "Uma unemibuzo mayelana nale nqubomgomo yokuvikela, sicela usithinte ku privacy@globalledger.app"
+        }
+      }
+    },
+    "termsPage": {
+      "title": "Izimo Zokusebenza",
+      "lastUpdated": "Kugciniswe: 22 Febhuwari 2026",
+      "intro": "Siyakwamukela ku-Global Ledger. Ngokusebenzisa insizakalo yethu, uyavuma lezi zimo. Sicela uzifunde ngokucophelela.",
+      "sections": {
+        "acceptance": {
+          "title": "Ukwamukelwa Kwezimo",
+          "content": "Ngokufinyelela noma ukusebenzisa i-Global Ledger, uyavuma ukuba ujabuliswe yilezi Izimo Zokusebenza nawo wonke umthetho nemithethonqubo esebenzayo. Uma ungavumelani nanoma yiziphi kulezi zimo, uvinjelwe ukusebenzisa noma ukufinyelela le nsizakalo."
+        },
+        "description": {
+          "title": "Incazelo Yensizakalo",
+          "content": "I-Global Ledger inikeza uhlelo lokusebenza lwebhuku lekhredithi yedijithali yama-UMKM ukulandela izikweletu zamakhasimende nezinkokhelo. Insizakalo ihlanganisa ukusebenza kwangaphandle, isipele sewefu, nezici zokubika."
+        },
+        "accounts": {
+          "title": "Akhawunti Zomsebenzisi",
+          "content": "Uyajabuliswa ukugcina ubumfihlo bezitifikethi zakho zekhawunti. Kufanele unikeze ulwazi olunembile futhi oluphelele uma udala ikhawunti yakho. Uyajabuliswa yonke imisebenzi enhla kwekhawunti yakho."
+        },
+        "acceptable": {
+          "title": "Ukusebenzisa Okwamukelekayo",
+          "content": "Uyavuma ukusebenzisa i-Global Ledger kuphela ngezinhloso ezomthetho. Awukwazi: ukusebenzisa insizakalo ukugcina noma ukudlulisa ikhodi enobungozi, ukuzama ukufinyelela okungavunyelwe kumajini ethu, ukuphazamisa noma ukuphazamisa insizakalo, noma ukusebenzisa insizakalo ukwephula omunye umthetho."
+        },
+        "payment": {
+          "title": "Izimo Zokukhokha",
+          "content": "Ezinye izici zidinga ukubhalisa okukhokhiswayo. Uyavuma ukukhokha yonke imali ehlobene nekhawunti yakho. Izibhaliso zivuselelwa ngokuzenzakalela ngaphandle kokukhanselwa ngaphambi komhla wokuvuselela. Yonke imikokhelo ayibuyiselwa ngaphandle kokuba kudingwa umthetho."
+        },
+        "termination": {
+          "title": "Ukupheliswa",
+          "content": "Singaphelisa noma sinqamule ibhanki yakho noma ngasiphi isikhathi noma ngasiphi isizathu, okuhlanganisa ukwephula lezi zimo. Ekuphelisweni, ilungelo lakho lokusebenzisa insizakalo lizophelela ngokushesha. Ungaphelisa ikhawunti yakho noma ngasiphi isikhatha ngaphandle kwezilungiselelo zekhawunti yakho."
+        },
+        "limitation": {
+          "title": "Umkhawulo Wobunikazi",
+          "content": "I-Global Ledger angeke ibe nomgqomo noma yikuphi ukulimala okungaqondile, okungahleleki, okukhethekile, okungomphumela, noma okuqondiswayo okusuka ekusebenziseni kwakho noma ukungakwazi ukusebenzisa insizakalo. Ubunikazi bethu obuphelele abuzi ndawo enani olikhokhele kithi ezinyangeni eziyi-12 ezedlule isimangalo."
+        },
+        "changes": {
+          "title": "Izinguquko Ezizimweni",
+          "content": "Siyagcina ilungelo lokulungisa lezi zimo noma ngasiphi isikhathi. Sizokwazisa nganoma yiziphi izinguquko ezibalulekile ngokushicilela izimo ezintsha kuwebhusayithi yethu. Ukusebenzisa insizakalo ngokuqhubeka emva kwezinguquko kuyawamukela izimo ezintsha."
+        },
+        "contact": {
+          "title": "Sithinte",
+          "content": "Uma unemibuzo mayelana nalezi Izimo Zokusebenza, sicela usithinte ku legal@globalledger.app"
+        }
+      }
+    }
   }
 }

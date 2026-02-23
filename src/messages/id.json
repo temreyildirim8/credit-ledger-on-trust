@@ -537,5 +537,115 @@
     "hoursAgo": "{count} jam lalu",
     "sync": "Sinkronkan",
     "willSyncWhenOnline": "Akan disinkronkan saat daring"
+  },
+  "legal": {
+    "title": "Pusat Hukum",
+    "subtitle": "Temukan semua dokumen dan kebijakan hukum kami di satu tempat",
+    "items": {
+      "privacy": {
+        "title": "Kebijakan Privasi",
+        "description": "Pelajari bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda"
+      },
+      "terms": {
+        "title": "Ketentuan Layanan",
+        "description": "Syarat dan ketentuan yang mengatur penggunaan Global Ledger Anda"
+      },
+      "cookies": {
+        "title": "Kebijakan Cookie",
+        "description": "Informasi tentang bagaimana kami menggunakan cookie dan teknologi serupa"
+      },
+      "compliance": {
+        "title": "Kepatuhan",
+        "description": "Standar kepatuhan regulasi dan perlindungan data kami"
+      },
+      "security": {
+        "title": "Keamanan",
+        "description": "Pelajari tentang praktik dan infrastruktur keamanan kami"
+      },
+      "licensing": {
+        "title": "Lisensi Perangkat Lunak",
+        "description": "Informasi tentang lisensi dan atribusi pihak ketiga"
+      }
+    },
+    "contact": {
+      "title": "Pertanyaan tentang kebijakan kami?",
+      "description": "Tim hukum kami siap membantu. Hubungi kami untuk pertanyaan tentang syarat, privasi, atau kepatuhan kami.",
+      "button": "Hubungi Kami"
+    },
+    "lastUpdated": "Terakhir diperbarui: Februari 2026",
+    "privacyPage": {
+      "title": "Kebijakan Privasi",
+      "lastUpdated": "Terakhir Diperbarui: 22 Februari 2026",
+      "intro": "Di Global Ledger, kami menganggap privasi Anda dengan serius. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, mengungkapkan, dan melindungi informasi Anda saat menggunakan layanan kami.",
+      "sections": {
+        "collect": {
+          "title": "Informasi yang Kami Kumpulkan",
+          "content": "Kami mengumpulkan informasi yang Anda berikan langsung kepada kami, termasuk: nama, alamat email, nomor telepon, nama bisnis, data pelanggan, dan catatan transaksi. Kami juga secara otomatis mengumpulkan informasi tertentu saat Anda menggunakan layanan kami, termasuk jenis perangkat, alamat IP, jenis browser, dan data penggunaan."
+        },
+        "use": {
+          "title": "Bagaimana Kami Menggunakan Informasi Anda",
+          "content": "Kami menggunakan informasi yang kami kumpulkan untuk: menyediakan dan memelihara layanan kami, memproses transaksi Anda, mengirimkan pemberitahuan teknis dan pesan dukungan, menanggapi komentar dan pertanyaan Anda, memantau dan menganalisis tren, serta mendeteksi dan mencegah penipuan."
+        },
+        "sharing": {
+          "title": "Berbagi Informasi",
+          "content": "Kami tidak menjual informasi pribadi Anda. Kami dapat membagikan informasi Anda dengan: penyedia layanan yang melakukan layanan atas nama kami, penasihat profesional seperti pengacara dan akuntan, dan penegak hukum jika diwajibkan oleh hukum."
+        },
+        "security": {
+          "title": "Keamanan Data",
+          "content": "Kami menerapkan langkah-langkah teknis dan organisasi yang tepat untuk melindungi informasi pribadi Anda terhadap pemrosesan tanpa izin atau melanggar hukum, kehilangan yang tidak disengaja, penghancuran, atau kerusakan. Kami menggunakan enkripsi AES-256 tingkat bank untuk semua data saat istirahat dan dalam transit."
+        },
+        "rights": {
+          "title": "Hak Anda",
+          "content": "Tergantung pada lokasi Anda, Anda mungkin memiliki hak untuk: mengakses data pribadi Anda, memperbaiki data yang tidak akurat, menghapus data Anda, menolak pemrosesan, dan portabilitas data. Hubungi kami untuk menggunakan hak-hak ini."
+        },
+        "contact": {
+          "title": "Hubungi Kami",
+          "content": "Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami di privacy@globalledger.app"
+        }
+      }
+    },
+    "termsPage": {
+      "title": "Ketentuan Layanan",
+      "lastUpdated": "Terakhir Diperbarui: 22 Februari 2026",
+      "intro": "Selamat datang di Global Ledger. Dengan menggunakan layanan kami, Anda menyetujui ketentuan ini. Harap baca dengan seksama.",
+      "sections": {
+        "acceptance": {
+          "title": "Penerimaan Ketentuan",
+          "content": "Dengan mengakses atau menggunakan Global Ledger, Anda setuju untuk terikat oleh Ketentuan Layanan ini dan semua hukum dan peraturan yang berlaku. Jika Anda tidak setuju dengan ketentuan ini, Anda dilarang menggunakan atau mengakses layanan ini."
+        },
+        "description": {
+          "title": "Deskripsi Layanan",
+          "content": "Global Ledger menyediakan aplikasi buku kredit digital untuk UMKM untuk melacak hutang dan pembayaran pelanggan. Layanan ini mencakup fungsionalitas offline, cadangan cloud, dan fitur pelaporan."
+        },
+        "accounts": {
+          "title": "Akun Pengguna",
+          "content": "Anda bertanggung jawab untuk menjaga kerahasiaan kredensial akun Anda. Anda harus memberikan informasi yang akurat dan lengkap saat membuat akun. Anda bertanggung jawab atas semua aktivitas yang terjadi di bawah akun Anda."
+        },
+        "acceptable": {
+          "title": "Penggunaan yang Dapat Diterima",
+          "content": "Anda setuju untuk menggunakan Global Ledger hanya untuk tujuan yang sah. Anda tidak boleh: menggunakan layanan untuk menyimpan atau mengirimkan kode berbahaya, mencoba mendapatkan akses tidak sah ke sistem kami, mengganggu atau mengganggu layanan, atau menggunakan layanan untuk melanggar hukum."
+        },
+        "payment": {
+          "title": "Ketentuan Pembayaran",
+          "content": "Beberapa fitur memerlukan langganan berbayar. Anda setuju untuk membayar semua biaya yang terkait dengan akun Anda. Langganan diperpanjang secara otomatis kecuali dibatalkan sebelum tanggal perpanjangan. Semua pembayaran tidak dapat dikembalikan kecuali diwajibkan oleh hukum."
+        },
+        "termination": {
+          "title": "Penghentian",
+          "content": "Kami dapat menghentikan atau menangguhkan akun Anda kapan saja karena alasan apa pun, termasuk pelanggaran ketentuan ini. Setelah penghentian, hak Anda untuk menggunakan layanan akan segera berakhir. Anda dapat menghentikan akun Anda kapan saja melalui pengaturan akun."
+        },
+        "limitation": {
+          "title": "Batasan Tanggung Jawab",
+          "content": "Global Ledger tidak bertanggung jawab atas kerusakan tidak langsung, insidental, khusus, konsekuensial, atau hukuman yang diakibatkan oleh penggunaan Anda atau ketidakmampuan Anda menggunakan layanan. Total tanggung jawab kami tidak akan melebihi jumlah yang Anda bayarkan kepada kami dalam 12 bulan sebelum klaim."
+        },
+        "changes": {
+          "title": "Perubahan Ketentuan",
+          "content": "Kami berhak untuk mengubah ketentuan ini kapan saja. Kami akan memberitahu Anda tentang perubahan material dengan memposting ketentuan baru di situs web kami. Penggunaan layanan yang berkelanjutan setelah perubahan merupakan penerimaan ketentuan baru."
+        },
+        "contact": {
+          "title": "Hubungi Kami",
+          "content": "Jika Anda memiliki pertanyaan tentang Ketentuan Layanan ini, silakan hubungi kami di legal@globalledger.app"
+        }
+      }
+    }
   }
 }

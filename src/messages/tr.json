@@ -656,5 +656,115 @@
         "description": "En son işlemlerinizi görün ve müşteri ödemelerini ile borçlarını takip edin."
       }
     }
+  },
+  "legal": {
+    "title": "Yasal Merkez",
+    "subtitle": "Tüm yasal belgelerimizi ve politikalarımızı tek bir yerde bulun",
+    "items": {
+      "privacy": {
+        "title": "Gizlilik Politikası",
+        "description": "Kişisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu öğrenin"
+      },
+      "terms": {
+        "title": "Kullanım Şartları",
+        "description": "Global Ledger kullanımınızı yöneten şartlar ve koşullar"
+      },
+      "cookies": {
+        "title": "Çerez Politikası",
+        "description": "Çerezleri ve benzer teknolojileri nasıl kullandığımız hakkında bilgi"
+      },
+      "compliance": {
+        "title": "Uyumluluk",
+        "description": "Mevzuat uyumluluğumuz ve veri koruma standartlarımız"
+      },
+      "security": {
+        "title": "Güvenlik",
+        "description": "Güvenlik uygulamalarımız ve altyapımız hakkında bilgi edinin"
+      },
+      "licensing": {
+        "title": "Yazılım Lisanslama",
+        "description": "Üçüncü taraf lisansları ve atıfları hakkında bilgi"
+      }
+    },
+    "contact": {
+      "title": "Politikalarımız hakkında sorularınız mı var?",
+      "description": "Yasal ekibimiz size yardımcı olmak için burada. Şartlarımız, gizliliğimiz veya uyumluluğumuz hakkında herhangi bir soru için bize ulaşın.",
+      "button": "Bize Ulaşın"
+    },
+    "lastUpdated": "Son güncelleme: Şubat 2026",
+    "privacyPage": {
+      "title": "Gizlilik Politikası",
+      "lastUpdated": "Son Güncelleme: 22 Şubat 2026",
+      "intro": "Global Ledger olarak gizliliğinizi ciddiye alıyoruz. Bu Gizlilik Politikası, hizmetimizi kullandığınızda bilgilerinizi nasıl topladığımızı, kullandığımızı, açıkladığımızı ve koruduğumuzu açıklar.",
+      "sections": {
+        "collect": {
+          "title": "Topladığımız Bilgiler",
+          "content": "Adınız, e-posta adresiniz, telefon numaranız, işletme adınız, müşteri verileriniz ve işlem kayıtlarınız dahil olmak üzere doğrudan bize sağladığınız bilgileri topluyoruz. Ayrıca hizmetimizi kullandığınızda cihaz türünüz, IP adresiniz, tarayıcı türünüz ve kullanım verileriniz dahil olmak üzere belirli bilgileri otomatik olarak toplarız."
+        },
+        "use": {
+          "title": "Bilgilerinizi Nasıl Kullanıyoruz",
+          "content": "Topladığımız bilgileri şu amaçlarla kullanıyoruz: hizmetimizi sağlamak ve sürdürmek, işlemlerinizi gerçekleştirmek, size teknik bildirimler ve destek mesajları göndermek, yorumlarınıza ve sorularınıza yanıt vermek, trendleri izlemek ve analiz etmek ve dolandırıcılığı tespit etmek ve önlemek."
+        },
+        "sharing": {
+          "title": "Bilgi Paylaşımı",
+          "content": "Kişisel bilgilerinizi satmıyoruz. Bilgilerinizi şu taraflarla paylaşabiliriz: bizim adımıza hizmet veren hizmet sağlayıcılar, avukatlar ve muhasebeciler gibi profesyonel danışmanlar ve yasal olarak gerekliyse kolluk kuvvetleri."
+        },
+        "security": {
+          "title": "Veri Güvenliği",
+          "content": "Kişisel bilgilerinizi yetkisiz veya yasadışı işleme, kazara kayıp, yok olma veya hasara karşı korumak için uygun teknik ve örgütsel önlemler uyguluyoruz. Dinlenme ve aktarım sırasındaki tüm veriler için banka düzeyinde AES-256 şifrelemesi kullanıyoruz."
+        },
+        "rights": {
+          "title": "Haklarınız",
+          "content": "Konumunuza bağlı olarak şu haklara sahip olabilirsiniz: kişisel verilerinize erişim, yanlış verileri düzeltme, verilerinizi silme, işleme itiraz etme ve veri taşınabilirliği. Bu hakları kullanmak için bize ulaşın."
+        },
+        "contact": {
+          "title": "Bize Ulaşın",
+          "content": "Bu Gizlilik Politikası hakkında sorularınız varsa, lütfen privacy@globalledger.app adresinden bize ulaşın"
+        }
+      }
+    },
+    "termsPage": {
+      "title": "Kullanım Şartları",
+      "lastUpdated": "Son Güncelleme: 22 Şubat 2026",
+      "intro": "Global Ledger'a hoş geldiniz. Hizmetimizi kullanarak bu şartları kabul etmiş olursunuz. Lütfen dikkatlice okuyun.",
+      "sections": {
+        "acceptance": {
+          "title": "Şartların Kabulü",
+          "content": "Global Ledger'a erişerek veya kullanarak, bu Kullanım Şartları ve tüm geçerli yasa ve yönetmeliklere bağlı olmayı kabul edersiniz. Bu şartlardan herhangi birini kabul etmiyorsanız, bu hizmeti kullanmanız veya erişmeniz yasaktır."
+        },
+        "description": {
+          "title": "Hizmet Açıklaması",
+          "content": "Global Ledger, mikro KOBİ'lerin müşteri borçlarını ve ödemelerini takip etmesi için dijital bir kredi defteri uygulaması sağlar. Hizmet, çevrimdışı işlevsellik, bulut yedekleme ve raporlama özelliklerini içerir."
+        },
+        "accounts": {
+          "title": "Kullanıcı Hesapları",
+          "content": "Hesap kimlik bilgilerinizin gizliliğini korumaktan siz sorumlusunuz. Hesabınızı oluştururken doğru ve eksiksiz bilgi sağlamalısınız. Hesabınız altında gerçekleşen tüm faaliyetlerden sorumlusunuz."
+        },
+        "acceptable": {
+          "title": "Kabul Edilebilir Kullanım",
+          "content": "Global Ledger'ı yalnızca yasal amaçlarla kullanmayı kabul edersiniz. Şunları yapamazsınız: hizmeti kötü amaçlı kod depolamak veya iletmek için kullanmak, sistemlerimize yetkisiz erişim elde etmeye çalışmak, hizmete müdahale etmek veya aksatmak, veya herhangi bir yasa ihlal etmek için hizmeti kullanmak."
+        },
+        "payment": {
+          "title": "Ödeme Şartları",
+          "content": "Bazı özellikler ücretli abonelik gerektirir. Hesabınızla ilişkili tüm ücretleri ödemeyi kabul edersiniz. Abonelikler, yenileme tarihinden önce iptal edilmedikçe otomatik olarak yenilenir. Yasa gereği zorunlu olmadıkça tüm ödemeler iade edilemez."
+        },
+        "termination": {
+          "title": "Fesih",
+          "content": "Bu şartların ihlali dahil olmak üzere herhangi bir nedenle hesabınızı herhangi bir zamanda feshedebilir veya askıya alabiliriz. Fesih durumunda, hizmeti kullanma hakkınız hemen sona erecektir. Hesabınızı hesap ayarlarınızdan istediğiniz zaman sonlandırabilirsiniz."
+        },
+        "limitation": {
+          "title": "Sorumluluk Sınırlaması",
+          "content": "Global Ledger, hizmeti kullanmanızdan veya kullanamamanızdan kaynaklanan dolaylı, tesadüfi, özel, sonuçsal veya cezai hasarlardan sorumlu tutulamaz. Toplam sorumluluğumuz, talepten önceki 12 ay içinde bize ödediğiniz tutarı aşamaz."
+        },
+        "changes": {
+          "title": "Şartlardaki Değişiklikler",
+          "content": "Bu şartları istediğimiz zaman değiştirme hakkını saklı tutarız. Materyal değişiklikleri web sitemizde yeni şartları yayınlayarak size bildireceğiz. Değişikliklerden sonra hizmeti kullanmaya devam etmeniz, yeni şartları kabul ettiğinizi oluşturur."
+        },
+        "contact": {
+          "title": "Bize Ulaşın",
+          "content": "Bu Kullanım Şartları hakkında sorularınız varsa, lütfen legal@globalledger.app adresinden bize ulaşın"
+        }
+      }
+    }
   }
 }
