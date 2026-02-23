@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# Playwright auth state (contains session tokens)
+playwright/.auth/
+
 # next.js
 /.next/
 /out/
