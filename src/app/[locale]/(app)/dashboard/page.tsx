@@ -6,6 +6,7 @@ import { QuickStatsGrid } from '@/components/dashboard/QuickStatsGrid';
 import { QuickActions } from '@/components/dashboard/QuickActions';
 import { RecentActivity } from '@/components/dashboard/RecentActivity';
 import { OverdueDebts } from '@/components/dashboard/OverdueDebts';
+import { DashboardEmptyState } from '@/components/dashboard/DashboardEmptyState';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
@@ -32,6 +33,13 @@ export default function DashboardPage() {
         <Loader2 className="h-8 w-8 animate-spin text-accent" />
       </div>
     );
+  }
+
+  // Show empty state if no customers
+  const hasCustomers = stats && stats.activeCustomers > 0;
+
+  if (!hasCustomers) {
+    return <DashboardEmptyState locale={locale} />;
   }
 
   // Sample overdue data (would come from API)

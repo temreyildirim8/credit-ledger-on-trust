@@ -232,6 +232,12 @@
       "title": "Overdue Debts",
       "empty": "No overdue payments",
       "remind": "Remind"
+    },
+    "empty": {
+      "title": "Welcome to Global Ledger",
+      "description": "Start tracking your customer credit by adding your first customer. You can record debts and payments to keep track of who owes you money.",
+      "addCustomer": "Add Your First Customer",
+      "viewReports": "View Reports"
     }
   },
   "customers": {
