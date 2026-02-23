@@ -38,6 +38,8 @@
     "login": "Giriş Yap",
     "signup": "Kayıt Ol",
     "logout": "Çıkış Yap",
+    "signOut": "Çıkış Yap",
+    "toggleTheme": "Tema Değiştir",
     "features": "Özellikler",
     "pricing": "Fiyatlandırma",
     "about": "Hakkında",

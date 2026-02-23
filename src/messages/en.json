@@ -38,6 +38,8 @@
     "login": "Log In",
     "signup": "Sign Up",
     "logout": "Sign Out",
+    "signOut": "Sign Out",
+    "toggleTheme": "Toggle Theme",
     "features": "Features",
     "pricing": "Pricing",
     "about": "About",
