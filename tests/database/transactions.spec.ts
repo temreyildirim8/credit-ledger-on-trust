@@ -919,9 +919,9 @@ test.describe('Transactions Table CRUD Operations', () => {
 
   test.describe('Customer Balance Calculation', () => {
     let balanceCustomerId: string;
-    let balanceDebtId1: string;
-    let balanceDebtId2: string;
-    let balancePaymentId: string;
+    let _balanceDebtId1: string;
+    let _balanceDebtId2: string;
+    let _balancePaymentId: string;
 
     test.beforeAll(async () => {
       if (!testUserId) return;
@@ -981,15 +981,15 @@ test.describe('Transactions Table CRUD Operations', () => {
         .single();
 
       if (debt1) {
-        balanceDebtId1 = debt1.id;
+        _balanceDebtId1 = debt1.id;
         createdTransactionIds.push(debt1.id);
       }
       if (debt2) {
-        balanceDebtId2 = debt2.id;
+        _balanceDebtId2 = debt2.id;
         createdTransactionIds.push(debt2.id);
       }
       if (payment) {
-        balancePaymentId = payment.id;
+        _balancePaymentId = payment.id;
         createdTransactionIds.push(payment.id);
       }
 

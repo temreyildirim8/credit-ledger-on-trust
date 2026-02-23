@@ -1,4 +1,4 @@
-import { test, expect, devices } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 /**
  * E2E Tests for Global Ledger Responsive Design
@@ -60,10 +60,6 @@ test.describe('Responsive Design - Marketing Pages', () => {
 
       // Hero should stack vertically
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-
-      // Mobile menu button might be present
-      const mobileMenuButton = page.locator('button').filter({ hasText: /menu/i });
-      const hasMobileMenu = await mobileMenuButton.isVisible().catch(() => false);
 
       // Content should be scrollable
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -268,10 +264,6 @@ test.describe('Responsive Design - App Pages', () => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Sidebar should be hidden or collapsible on mobile
-      // Look for hamburger menu or bottom navigation
-      const mobileMenuButton = page.locator('button').filter({ has: page.locator('svg') }).first();
-      const hasMobileMenu = await mobileMenuButton.isVisible().catch(() => false);
-
       // Page content should still be visible
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     });

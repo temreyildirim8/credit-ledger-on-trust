@@ -29,7 +29,7 @@ const TEST_USER_PASSWORD = process.env.TEST_USER_PASSWORD || 'testpassword123';
 const createdProfileIds: string[] = [];
 
 let supabase: SupabaseClient<Database>;
-let adminClient: SupabaseClient<Database>;
+let _adminClient: SupabaseClient<Database>;
 let testUserId: string | null = null;
 
 test.describe('User Profiles Table CRUD Operations', () => {
@@ -39,7 +39,7 @@ test.describe('User Profiles Table CRUD Operations', () => {
 
     // Create admin client (bypasses RLS for cleanup)
     if (supabaseServiceKey) {
-      adminClient = createClient<Database>(supabaseUrl, supabaseServiceKey, {
+      _adminClient = createClient<Database>(supabaseUrl, supabaseServiceKey, {
         auth: {
           autoRefreshToken: false,
           persistSession: false,
@@ -201,7 +201,7 @@ test.describe('User Profiles Table CRUD Operations', () => {
     test('should return null for non-existent profile', async () => {
       const fakeUserId = '00000000-0000-0000-0000-000000000000';
 
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('user_profiles')
         .select('*')
         .eq('id', fakeUserId)
@@ -395,13 +395,6 @@ test.describe('User Profiles Table CRUD Operations', () => {
     test('should update updated_at timestamp', async () => {
       test.skip(!testUserId, 'No test user authenticated');
 
-      // Get current state
-      const { data: beforeUpdate } = await supabase
-        .from('user_profiles')
-        .select('updated_at')
-        .eq('id', testUserId)
-        .single();
-
       // Wait a bit to ensure timestamp difference
       await new Promise((resolve) => setTimeout(resolve, 100));
 
@@ -439,7 +432,7 @@ test.describe('User Profiles Table CRUD Operations', () => {
       test.skip(!testUserId, 'No test user authenticated');
 
       // Attempt to delete own profile
-      const { error } = await supabase
+      await supabase
         .from('user_profiles')
         .delete()
         .eq('id', testUserId);

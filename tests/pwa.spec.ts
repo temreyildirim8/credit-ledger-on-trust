@@ -126,9 +126,6 @@ test.describe('PWA Install Prompt', () => {
 
     await page.goto(BASE_URL);
 
-    // Look for PWA-related elements in the DOM
-    const pwaProvider = await page.locator('[data-testid="pwa-provider"]').count();
-
     // The PWA install prompt should be set up (even if not visible)
     // Check that the page has proper PWA meta tags
     const themeColor = await page.locator('meta[name="theme-color"]').getAttribute('content');

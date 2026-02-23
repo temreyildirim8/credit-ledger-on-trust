@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase/client';
-import type { Tables, TablesInsert, TablesUpdate, CustomerBalance } from '@/lib/database.types';
+import type { TablesInsert, TablesUpdate } from '@/lib/database.types';
 
 export interface Customer {
   id: string;

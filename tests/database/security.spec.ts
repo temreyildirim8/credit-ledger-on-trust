@@ -734,7 +734,7 @@ test.describe('Backend Security Tests', () => {
       const results = await Promise.all(promises);
 
       // All should succeed or fail gracefully
-      results.forEach((result, i) => {
+      results.forEach((result) => {
         if (result.data) {
           createdCustomerIds.push(result.data.id);
           expect(result.error).toBeNull();

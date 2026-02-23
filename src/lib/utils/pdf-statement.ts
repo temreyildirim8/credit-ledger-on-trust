@@ -435,7 +435,6 @@ export async function generateCustomerStatementPDF(options: PDFStatementOptions)
     });
     y -= 20;
   } else {
-    let runningBalance = 0;
     const rowHeight = 22;
     let rowIndex = 0;
 
@@ -453,14 +452,10 @@ export async function generateCustomerStatementPDF(options: PDFStatementOptions)
         });
       }
 
-      const isDebt = transaction.type === 'debt';
-      if (isDebt) {
-        runningBalance += transaction.amount;
-      } else {
-        runningBalance -= transaction.amount;
-      }
-
       let colX = margin + 10;
+
+      // Determine transaction type
+      const isDebt = transaction.type === 'debt';
 
       // Date
       const dateText = formatters.date(transaction.transaction_date || transaction.created_at);

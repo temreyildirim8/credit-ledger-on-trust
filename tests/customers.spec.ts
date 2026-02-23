@@ -10,8 +10,9 @@ const BASE_URL = `http://localhost:3000/${TEST_LOCALE}`;
 
 /**
  * Helper to check if we're on login page (unauthenticated)
+ * Note: This function is kept for potential future use
  */
-async function isAuthenticated(page: import('@playwright/test').Page): Promise<boolean> {
+async function _isAuthenticated(page: import('@playwright/test').Page): Promise<boolean> {
   return !page.url().includes('/login');
 }
 
@@ -75,9 +76,7 @@ test.describe('Customer Management', () => {
     test('should show loading state initially', async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
-      // Look for loading spinner or skeleton
-      const loadingIndicator = page.locator('[class*="animate-spin"], [class*="skeleton"]');
-      // Loading might be quick, so we just check the page loaded
+      // Look for loading spinner or skeleton - might be quick, so we just check the page loaded
       await expect(page.getByRole('heading', { name: /customers/i })).toBeVisible();
     });
   });
@@ -255,12 +254,6 @@ test.describe('Customer Management', () => {
 
     test('should toggle between table and card view', async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
-
-      // Find view toggle buttons (list/grid icons)
-      const viewToggleContainer = page.locator('div').filter({ has: page.locator('button') }).filter({ hasText: '' }).nth(5);
-
-      // Try to find grid button
-      const gridButton = page.locator('button').filter({ has: page.locator('[class*="grid"], svg') }).nth(1);
 
       // If we have customers, toggle should work
       const customerCount = await page.locator('table tbody tr, [class*="grid"] [class*="card"]').count().catch(() => 0);

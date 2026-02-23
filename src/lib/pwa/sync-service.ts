@@ -1,6 +1,6 @@
-import { offlineCache, type SyncQueueItem, type CachedCustomer, type CachedTransaction } from './offline-cache';
+import { offlineCache, type SyncQueueItem } from './offline-cache';
 import { supabase } from '@/lib/supabase/client';
-import type { TablesInsert, TablesUpdate } from '@/lib/database.types';
+import type { TablesInsert } from '@/lib/database.types';
 
 export interface OfflineActionResult {
   success: boolean;
