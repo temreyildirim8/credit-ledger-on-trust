@@ -5,17 +5,22 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Crown } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
+
+// Free tier customer limit
+const FREE_TIER_CUSTOMER_LIMIT = 10;
 
 interface AddCustomerModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSave: (customer: { name: string; phone?: string; address?: string; notes?: string }) => Promise<unknown>;
+  currentCustomerCount?: number;
+  isPaidPlan?: boolean;
 }
 
-export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModalProps) {
+export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCount = 0, isPaidPlan = false }: AddCustomerModalProps) {
   const t = useTranslations('customers.form');
   const tCommon = useTranslations('common');
   const tCustomers = useTranslations('customers');
@@ -25,8 +30,18 @@ export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModa
   const [notes, setNotes] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Check if customer limit is reached for free tier
+  const isAtLimit = !isPaidPlan && currentCustomerCount >= FREE_TIER_CUSTOMER_LIMIT;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check customer limit before saving
+    if (isAtLimit) {
+      toast.error(tCustomers('paywall.limitReached'));
+      return;
+    }
+
     if (!name.trim()) {
       toast.error(tCommon('required'));
       return;
@@ -66,6 +81,33 @@ export function AddCustomerModal({ open, onOpenChange, onSave }: AddCustomerModa
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
+            {/* Paywall warning */}
+            {isAtLimit && (
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-4">
+                <div className="flex items-start gap-3">
+                  <Crown className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-orange-800 text-sm">
+                      {tCustomers('paywall.limitReached')}
+                    </p>
+                    <p className="text-orange-700 text-xs mt-1">
+                      {tCustomers('paywall.upgradeMessage')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Customer count indicator */}
+            {!isPaidPlan && (
+              <div className="flex items-center justify-between text-xs text-[var(--color-text-secondary)]">
+                <span>{tCustomers('paywall.customersUsed', { count: currentCustomerCount })}</span>
+                <span className={currentCustomerCount >= FREE_TIER_CUSTOMER_LIMIT ? 'text-orange-500 font-medium' : ''}>
+                  {FREE_TIER_CUSTOMER_LIMIT} {tCustomers('paywall.limit')}
+                </span>
+              </div>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="name">{t('name')}</Label>
               <Input

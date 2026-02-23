@@ -255,6 +255,12 @@
       "addFirst": "Add your first customer"
     },
     "count": "{count} customer | {count} customers",
+    "paywall": {
+      "limitReached": "Customer limit reached",
+      "upgradeMessage": "Upgrade to Pro for unlimited customers and more features.",
+      "customersUsed": "{count} of",
+      "limit": "free limit"
+    },
     "form": {
       "title": "Add New Customer",
       "name": "Full Name",

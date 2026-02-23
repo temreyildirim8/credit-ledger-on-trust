@@ -289,6 +289,8 @@ export default function CustomersPage() {
         open={addModalOpen}
         onOpenChange={setAddModalOpen}
         onSave={createCustomer}
+        currentCustomerCount={customers.length}
+        isPaidPlan={false}
       />
 
       {/* Customer Details Modal */}
