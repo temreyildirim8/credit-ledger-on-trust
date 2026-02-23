@@ -38,6 +38,8 @@
     "login": "Ngena",
     "signup": "Bhalisa",
     "logout": "Phuma",
+    "signOut": "Phuma",
+    "toggleTheme": "Shintsha Isitayela",
     "features": "Izici",
     "pricing": "Amanani",
     "about": "Nge",
@@ -230,6 +232,12 @@
       "title": "Ikredithi Esiphethe Ivesi",
       "empty": "Awukho ukukhokha okuphethe ivesi",
       "remind": "Khumbaza"
+    },
+    "empty": {
+      "title": "Siyakwamukela Ku-Global Ledger",
+      "description": "Qala ukulandela ikredithi yamakhasimende akho ngokwengeza umakhasimende wakho wokuqala. Ungabhalisa ikredithi nokukhokha ukuze ulande ukuthi ubani okufanele akukhokhe.",
+      "addCustomer": "Yengeza Umakhasimende Wakho Wokuqala",
+      "viewReports": "Buka Imibiko"
     }
   },
   "customers": {
@@ -247,6 +255,12 @@
       "addFirst": "Yengeza umthengi wakhookuqala"
     },
     "count": "{count} omthengi | {count} abathengi",
+    "paywall": {
+      "limitReached": "Umkhawulo wamakhasimende ufinyelelwe",
+      "upgradeMessage": "Yenza i-Upgrade ku-Pro ukuze uthole amakhasimende angakhawulelwanga nezinye izici.",
+      "customersUsed": "{count} kuka",
+      "limit": "umkhawulo mahhala"
+    },
     "form": {
       "title": "Yengeza Umthengi Omusha",
       "name": "Igama Eliqophelo",
@@ -505,6 +519,144 @@
       "enterEmail": "Faka ikheli le-imeyili yakho",
       "emailPlaceholder": "imeyili@yakho.com"
     }
+  },
+  "reports": {
+    "title": "Imibiko Nehlaziyiwe",
+    "subtitle": "Ukuqonda mayelana nebizinisi lakho",
+    "shopSummary": {
+      "title": "Isifanekiso Sesitolo",
+      "today": "Namuhla",
+      "week": "Lokhu Isonto",
+      "month": "Lo Mnyaka",
+      "totalOwed": "Isikwele Esisonke",
+      "collected": "Kuqoqiwe",
+      "newDebts": "Ikredithi Entsha",
+      "paymentsReceived": "Ukukhokha Okwamukelwe",
+      "activeCustomers": "Abathengi Asebenzayo"
+    },
+    "debtAging": {
+      "title": "Ukuguga Kwekredithi",
+      "current": "Okwamanje",
+      "days30": "1-30 izinsuku",
+      "days60": "31-60 izinsuku",
+      "days90": "61-90 izinsuku",
+      "overdue": "Engaphezu kwezinsuku ezingama-90"
+    },
+    "collectionRate": {
+      "title": "Isilinganiso Sokuqoqa",
+      "thisMonth": "Lo Mnyaka",
+      "lastMonth": "Inyanga Edlule"
+    },
+    "export": {
+      "title": "Khipha Idatha",
+      "description": "Landa imibiko nezitatimende",
+      "pdf": "Khipha Isitatimende Se-PDF",
+      "csv": "Khipha I-CSV",
+      "customerStatement": "Isitatimende Somthengi",
+      "noTransactions": "Awukho ukuthengiselana okukhiqwayo",
+      "success": "Ukukhipha kupumelele",
+      "error": "Ihlulekile ukukhipha idatha"
+    },
+    "empty": {
+      "title": "Idatha ayanele",
+      "description": "Yengeza abanye abathengi nokuthengiselana ukuze ubone imibiko nehlaziyiwe.",
+      "action": "Yiya Ku-Dashboard"
+    },
+    "timeFilter": {
+      "today": "Namuhla",
+      "week": "Lokhu Isonto",
+      "month": "Lo Mnyaka",
+      "year": "Lo Mnyaka Wonke",
+      "all": "Wonke Isikhathi"
+    }
+  },
+  "onboarding": {
+    "title": "Ake Siqale",
+    "subtitle": "Misela i-akhawunti yakho ezinyathelweni ezimbalwa ezisheshayo",
+    "step": "Isinyathelo {current} saka {total}",
+    "currency": {
+      "title": "Khetha Imali Yakho",
+      "subtitle": "Khetha imali oyisebenzisela ukuthengiselana kwebizinisi lakho"
+    },
+    "language": {
+      "title": "Khetha Ulimi Lakho",
+      "subtitle": "Khetha ulimi oluthandayo lolimi le-app"
+    },
+    "category": {
+      "title": "Ibizinisi Lakho Yini?",
+      "subtitle": "Khetha isigaba esichaza kahle ibizinisi lakho"
+    },
+    "success": {
+      "title": "Umiselwe Konke!",
+      "subtitle": "I-akhawunti yakho ilungele ukusebenza",
+      "description": "Ungashintsha lezi zilungiselelo ngesikhathi esizayo kuphrofayela yakho",
+      "action": "Yiya Ku-Dashboard"
+    },
+    "categories": {
+      "bakkal": "Isitolo Sekhaphetsheni",
+      "kirana": "Isitolo Sikakirana",
+      "warung": "I-Warung / I-Mini Market",
+      "spaza": "Isitolo Sikaspaza",
+      "kiosk": "I-Kiosk",
+      "restaurant": "Izitolo Zokudla / I-Khefi",
+      "retail": "Isitolo Sokuthengisa",
+      "wholesale": "Ukuthengisa Okukhulu",
+      "services": "Izinsizakalo",
+      "other": "Okunye"
+    },
+    "skip": "Yeqa okwamanje",
+    "next": "Okulandelayo",
+    "back": "Emuva",
+    "finish": "Qala"
+  },
+  "quickTour": {
+    "title": "Uhambo Olusheshayo",
+    "subtitle": "Ake sikubonise",
+    "skip": "Yeqa Uhambo",
+    "next": "Okulandelayo",
+    "back": "Emuva",
+    "finish": "Qedela",
+    "steps": {
+      "sidebar": {
+        "title": "Ukukhangisa",
+        "description": "Sebenzisa i-sidebar ukuze ukhangise phakathi kwe-Dashboard, Abathengi, Ukuthengiselana, kanye Nezilungiselelo. Chofoza inkinobho yokwehlisa ukuze uyincishise."
+      },
+      "quickAdd": {
+        "title": "Yengeza Ngokushesha",
+        "description": "Yengeza ngokushesha ukuthengiselana olutsha lekredithi noma lokukhokha. Le nkinobho ihlale ikhona ukuze kungene ngokushesha."
+      },
+      "stats": {
+        "title": "Izibalo Zakho",
+        "description": "Landa inani elisonke elikwele, ukukhokha okuqoqiwe, kanye nabathengi abasebenzayo ngokubuka okukodwa."
+      },
+      "actions": {
+        "title": "Izenzo Ezisheshayo",
+        "description": "Finyelela ezintweni eziqhelekile njengokwengeza ikredithi, ukurekhoda ukukhokha, ukwengeza umthengi, noma ukuthumela izikhumbuzi."
+      },
+      "activity": {
+        "title": "Ukuqamba Okuqoshiwe",
+        "description": "Buka ukuthengiselana kwakho okusha kakhulu futhi ulandele ukukhokha kwamakhasimende namakredithi."
+      }
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Imibuzo Evame Ukubuzwa",
+    "subtitle": "Konke okudingeka ukwazi mayelana ne-Global Ledger",
+    "q1": "Ingabe i-Global Ledger yamahhala ngempela?",
+    "a1": "Yebo! I-Global Ledger inikeza uhlelo lwamahhala kuze kube phakade oluhlanganisa abathengi abangu-10, ukuthengiselana okungakhawulelwanga, imodi ye-Offline, namabhikihli okwamanje. Akukho khadi lekiredithi edingekayo ukuze uqale.",
+    "q2": "Ngingayisebenzisa i-Global Ledger ngaphandle kwe-inthanethi?",
+    "a2": "Kakululekile! I-Global Ledger yakhiwe njenge-Progressive Web App (PWA) enosizo lwangaphandle olugcwele. Ungawengeza amakhasimende, ukurekhoda ikredithi, futhi ulandele ukukhokha ngisho nangaphandle kwe-inthanethi. Idatha yakho ivumelaniswa ngokuzenzakalela uma ubuyela ku-inthanethi.",
+    "q3": "I-backup ezenzakalelayo isebenza kanjani?",
+    "a3": "Idatha yakho ivumelaniswa ngokuzenzakalela kumaseva ethu aphephile e-cloud nanoma nini uma unoxhumano lwe-inthanethi. Yonke idatha ibhaliswa ngokusebenzisa ukubhalisa kwe-AES-256 komzinga webhange, ngakho-ke amarekhodi akho ahlale ephephile futhi atholakala.",
+    "q4": "Yimaphi amasheke namalimi axhaswayo?",
+    "a4": "I-Global Ledger ixhasa izimali eziningi okuhlanganisa i-TRY (Turkish Lira), i-IDR (Indonesian Rupiah), i-NGN (Nigerian Naira), i-EGP (Egyptian Pound), i-ZAR (South African Rand), nokuningi. I-app itholakala ngamalimi ayi-7: Turkish, Hindi, Indonesian, English, Arabic, Spanish, kanye ne-Zulu.",
+    "q5": "Ngingathumela kanjani izikhumbuzi zokukhokha kubakhasimende?",
+    "a5": "Ungathumela izikhumbuzi ngokuqondile nge-WhatsApp ngemilayezo egcwele. Vula nje imininingwane yomthengi bese uchofoza inkinobho ye-WhatsApp. Abasebenzisi be-Pro bathola futhi izikhumbuzi ze-SMS ezizenzakalelayo.",
+    "q6": "Ngingakhipha idatha yami?",
+    "a6": "Yebo! Ungakhipha izitatimende zamakhasimende njengezinhlelo ze-PDF kanye nomlando wakho wokuthengiselana njenge-spreadsheets ze-CSV. Le nkinga itholakala kuzo zombili izinhlelo zamahhala nezikhokhelwayo.",
+    "stillHaveQuestions": "Usesandleni imibuzo?",
+    "contactSupport": "Sithinte ithimba lethu losizo"
   },
   "notFound": {
     "title": "Ouu! Iphepha Alitholakali",

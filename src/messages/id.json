@@ -38,6 +38,8 @@
     "login": "Masuk",
     "signup": "Daftar",
     "logout": "Keluar",
+    "signOut": "Keluar",
+    "toggleTheme": "Ganti Tema",
     "features": "Fitur",
     "pricing": "Harga",
     "about": "Tentang",
@@ -230,6 +232,12 @@
       "title": "Hutang Jatuh Tempo",
       "empty": "Tidak ada pembayaran jatuh tempo",
       "remind": "Ingatkan"
+    },
+    "empty": {
+      "title": "Selamat Datang di Global Ledger",
+      "description": "Mulai melacak kredit pelanggan Anda dengan menambahkan pelanggan pertama Anda. Anda dapat mencatat hutang dan pembayaran untuk melacak siapa yang berhutang kepada Anda.",
+      "addCustomer": "Tambahkan Pelanggan Pertama Anda",
+      "viewReports": "Lihat Laporan"
     }
   },
   "customers": {
@@ -247,6 +255,12 @@
       "addFirst": "Tambahkan pelanggan pertama Anda"
     },
     "count": "{count} pelanggan | {count} pelanggan",
+    "paywall": {
+      "limitReached": "Batas pelanggan tercapai",
+      "upgradeMessage": "Upgrade ke Pro untuk pelanggan tidak terbatas dan fitur lainnya.",
+      "customersUsed": "{count} dari",
+      "limit": "batas gratis"
+    },
     "form": {
       "title": "Tambah Pelanggan Baru",
       "name": "Nama Lengkap",
@@ -505,6 +519,144 @@
       "enterEmail": "Masukkan alamat email Anda",
       "emailPlaceholder": "email@anda.com"
     }
+  },
+  "reports": {
+    "title": "Laporan & Analitik",
+    "subtitle": "Wawasan tentang bisnis Anda",
+    "shopSummary": {
+      "title": "Ringkasan Toko",
+      "today": "Hari Ini",
+      "week": "Minggu Ini",
+      "month": "Bulan Ini",
+      "totalOwed": "Total Tertagih",
+      "collected": "Dikumpulkan",
+      "newDebts": "Hutang Baru",
+      "paymentsReceived": "Pembayaran Diterima",
+      "activeCustomers": "Pelanggan Aktif"
+    },
+    "debtAging": {
+      "title": "Usia Hutang",
+      "current": "Saat Ini",
+      "days30": "1-30 hari",
+      "days60": "31-60 hari",
+      "days90": "61-90 hari",
+      "overdue": "Lebih dari 90 hari"
+    },
+    "collectionRate": {
+      "title": "Tingkat Pengumpulan",
+      "thisMonth": "Bulan Ini",
+      "lastMonth": "Bulan Lalu"
+    },
+    "export": {
+      "title": "Ekspor Data",
+      "description": "Unduh laporan dan rekening",
+      "pdf": "Ekspor Laporan Rekening PDF",
+      "csv": "Ekspor CSV",
+      "customerStatement": "Rekening Pelanggan",
+      "noTransactions": "Tidak ada transaksi untuk diekspor",
+      "success": "Ekspor berhasil",
+      "error": "Gagal mengekspor data"
+    },
+    "empty": {
+      "title": "Data tidak cukup",
+      "description": "Tambahkan lebih banyak pelanggan dan transaksi untuk melihat laporan dan analitik.",
+      "action": "Ke Dashboard"
+    },
+    "timeFilter": {
+      "today": "Hari Ini",
+      "week": "Minggu Ini",
+      "month": "Bulan Ini",
+      "year": "Tahun Ini",
+      "all": "Sepanjang Waktu"
+    }
+  },
+  "onboarding": {
+    "title": "Mari Mulai",
+    "subtitle": "Siapkan akun Anda dalam beberapa langkah cepat",
+    "step": "Langkah {current} dari {total}",
+    "currency": {
+      "title": "Pilih Mata Uang Anda",
+      "subtitle": "Pilih mata uang yang Anda gunakan untuk transaksi bisnis Anda"
+    },
+    "language": {
+      "title": "Pilih Bahasa Anda",
+      "subtitle": "Pilih bahasa pilihan Anda untuk aplikasi"
+    },
+    "category": {
+      "title": "Apa Bisnis Anda?",
+      "subtitle": "Pilih kategori yang paling menggambarkan bisnis Anda"
+    },
+    "success": {
+      "title": "Semua Siap!",
+      "subtitle": "Akun Anda siap digunakan",
+      "description": "Anda selalu dapat mengubah pengaturan ini nanti di profil Anda",
+      "action": "Ke Dashboard"
+    },
+    "categories": {
+      "bakkal": "Toko Kelontong",
+      "kirana": "Toko Kirana",
+      "warung": "Warung / Minimarket",
+      "spaza": "Toko Spaza",
+      "kiosk": "Kios",
+      "restaurant": "Restoran / Kafe",
+      "retail": "Toko Eceran",
+      "wholesale": "Grosir",
+      "services": "Jasa",
+      "other": "Lainnya"
+    },
+    "skip": "Lewati untuk sekarang",
+    "next": "Berikutnya",
+    "back": "Kembali",
+    "finish": "Mulai"
+  },
+  "quickTour": {
+    "title": "Tur Cepat",
+    "subtitle": "Mari kami tunjukkan sekeliling",
+    "skip": "Lewati Tour",
+    "next": "Berikutnya",
+    "back": "Kembali",
+    "finish": "Selesai",
+    "steps": {
+      "sidebar": {
+        "title": "Navigasi",
+        "description": "Gunakan sidebar untuk menavigasi antara Dashboard, Pelanggan, Transaksi, dan Pengaturan. Klik tombol ciutkan untuk meminimalkannya."
+      },
+      "quickAdd": {
+        "title": "Tambah Cepat",
+        "description": "Tambahkan transaksi hutang atau pembayaran baru dengan cepat. Tombol ini selalu tersedia untuk entri cepat."
+      },
+      "stats": {
+        "title": "Statistik Anda",
+        "description": "Lacak total jumlah tertagih, pembayaran yang dikumpulkan, dan pelanggan aktif dengan sekali lihat."
+      },
+      "actions": {
+        "title": "Aksi Cepat",
+        "description": "Akses aksi umum seperti menambahkan hutang, mencatat pembayaran, menambahkan pelanggan, atau mengirim pengingat."
+      },
+      "activity": {
+        "title": "Aktivitas Terbaru",
+        "description": "Lihat transaksi terbaru Anda dan lacak pembayaran dan hutang pelanggan."
+      }
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Pertanyaan yang Sering Diajukan",
+    "subtitle": "Semua yang perlu Anda ketahui tentang Global Ledger",
+    "q1": "Apakah Global Ledger benar-benar gratis?",
+    "a1": "Ya! Global Ledger menawarkan rencana gratis selamanya yang mencakup hingga 10 pelanggan, transaksi tidak terbatas, mode offline, dan laporan dasar. Tidak perlu kartu kredit untuk memulai.",
+    "q2": "Bisakah saya menggunakan Global Ledger tanpa internet?",
+    "a2": "Tentu saja! Global Ledger dibangun sebagai Progressive Web App (PWA) dengan dukungan offline penuh. Anda dapat menambahkan pelanggan, mencatat hutang, dan melacak pembayaran bahkan tanpa internet. Data Anda disinkronkan secara otomatis saat Anda kembali online.",
+    "q3": "Bagaimana cara kerja cadangan otomatis?",
+    "a3": "Data Anda secara otomatis disinkronkan ke server cloud aman kami setiap kali Anda memiliki koneksi internet. Semua data dienkripsi menggunakan enkripsi AES-256 tingkat bank, sehingga catatan Anda selalu aman dan dapat diakses.",
+    "q4": "Mata uang dan bahasa apa saja yang didukung?",
+    "a4": "Global Ledger mendukung banyak mata uang termasuk TRY (Lira Turki), IDR (Rupiah Indonesia), NGN (Naira Nigeria), EGP (Pound Mesir), ZAR (Rand Afrika Selatan), dan lainnya. Aplikasi tersedia dalam 7 bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu.",
+    "q5": "Bagaimana cara mengirim pengingat pembayaran kepada pelanggan?",
+    "a5": "Anda dapat mengirim pengingat langsung melalui WhatsApp dengan pesan yang sudah diisi. Cukup buka detail pelanggan dan ketuk tombol WhatsApp. Pengguna Pro juga mendapatkan pengingat SMS otomatis.",
+    "q6": "Bisakah saya mengekspor data saya?",
+    "a6": "Ya! Anda dapat mengekspor rekening pelanggan sebagai file PDF dan riwayat transaksi sebagai spreadsheet CSV. Fitur ini tersedia di rencana gratis dan berbayar.",
+    "stillHaveQuestions": "Masih ada pertanyaan?",
+    "contactSupport": "Hubungi tim dukungan kami"
   },
   "notFound": {
     "title": "Ups! Halaman Tidak Ditemukan",
