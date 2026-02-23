@@ -686,5 +686,35 @@
     "hoursAgo": "{count}h ago",
     "sync": "Sync",
     "willSyncWhenOnline": "Will sync when online"
+  },
+  "quickTour": {
+    "title": "Quick Tour",
+    "subtitle": "Let's show you around",
+    "skip": "Skip Tour",
+    "next": "Next",
+    "back": "Back",
+    "finish": "Finish",
+    "steps": {
+      "sidebar": {
+        "title": "Navigation",
+        "description": "Use the sidebar to navigate between Dashboard, Customers, Transactions, and Settings. Click the collapse button to minimize it."
+      },
+      "quickAdd": {
+        "title": "Quick Add",
+        "description": "Quickly add a new debt or payment transaction. This button is always available for fast entry."
+      },
+      "stats": {
+        "title": "Your Stats",
+        "description": "Track your total owed amount, collected payments, and active customers at a glance."
+      },
+      "actions": {
+        "title": "Quick Actions",
+        "description": "Access common actions like adding a debt, recording a payment, adding a customer, or sending reminders."
+      },
+      "activity": {
+        "title": "Recent Activity",
+        "description": "See your latest transactions and keep track of customer payments and debts."
+      }
+    }
   }
 }

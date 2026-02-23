@@ -7,6 +7,7 @@ import { QuickActions } from '@/components/dashboard/QuickActions';
 import { RecentActivity } from '@/components/dashboard/RecentActivity';
 import { OverdueDebts } from '@/components/dashboard/OverdueDebts';
 import { DashboardEmptyState } from '@/components/dashboard/DashboardEmptyState';
+import { QuickTour } from '@/components/onboarding/QuickTour';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
@@ -47,6 +48,9 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-5">
+      {/* Quick Tour - Desktop only */}
+      <QuickTour />
+
       {/* Greeting Header - Refined Card */}
       <div className="bg-gradient-to-br from-accent to-accent-hover rounded-2xl p-6 text-white shadow-md">
         <div className="flex items-start justify-between">
@@ -62,6 +66,7 @@ export default function DashboardPage() {
             size="sm"
             variant="secondary"
             className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+            data-tour="quick-add-button"
           >
             <Plus className="h-4 w-4" />
             Quick Add
@@ -70,14 +75,16 @@ export default function DashboardPage() {
       </div>
 
       {/* Quick Stats Grid */}
-      <QuickStatsGrid
-        totalDebt={stats?.totalDebt}
-        totalCollected={stats?.totalCollected}
-        activeCustomers={stats?.activeCustomers}
-      />
+      <div data-tour="quick-stats">
+        <QuickStatsGrid
+          totalDebt={stats?.totalDebt}
+          totalCollected={stats?.totalCollected}
+          activeCustomers={stats?.activeCustomers}
+        />
+      </div>
 
       {/* Quick Actions - Redesigned */}
-      <div className="bg-surface rounded-2xl border border-border p-5 shadow-sm">
+      <div className="bg-surface rounded-2xl border border-border p-5 shadow-sm" data-tour="quick-actions">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-text">
             {t('quickActions.title')}
@@ -98,7 +105,7 @@ export default function DashboardPage() {
       <OverdueDebts customers={overdueCustomers} locale={locale} />
 
       {/* Recent Activity */}
-      <div>
+      <div data-tour="recent-activity">
         <h2 className="text-lg font-semibold text-text mb-4">
           {t('recentActivity.title')}
         </h2>

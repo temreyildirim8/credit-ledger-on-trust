@@ -626,5 +626,35 @@
     "hoursAgo": "{count} sa önce",
     "sync": "Eşitle",
     "willSyncWhenOnline": "Çevrimiçi olduğunda eşitlenecek"
+  },
+  "quickTour": {
+    "title": "Hızlı Tur",
+    "subtitle": "Uygulamayı tanıyalım",
+    "skip": "Turu Atla",
+    "next": "İleri",
+    "back": "Geri",
+    "finish": "Bitir",
+    "steps": {
+      "sidebar": {
+        "title": "Navigasyon",
+        "description": "Panel, Müşteriler, İşlemler ve Ayarlar arasında geçiş yapmak için kenar çubuğunu kullanın. Daraltmak için düğmeye tıklayın."
+      },
+      "quickAdd": {
+        "title": "Hızlı Ekle",
+        "description": "Hızlıca yeni bir borç veya ödeme işlemi ekleyin. Bu düğme her zaman hızlı giriş için kullanılabilir."
+      },
+      "stats": {
+        "title": "İstatistikleriniz",
+        "description": "Toplam borç, tahsil edilen ödemeler ve aktif müşterilerinizi tek bakışta takip edin."
+      },
+      "actions": {
+        "title": "Hızlı İşlemler",
+        "description": "Borç ekleme, ödeme kaydetme, müşteri ekleme veya hatırlatıcı gönderme gibi yaygın işlemlere erişin."
+      },
+      "activity": {
+        "title": "Son Aktivite",
+        "description": "En son işlemlerinizi görün ve müşteri ödemelerini ile borçlarını takip edin."
+      }
+    }
   }
 }
