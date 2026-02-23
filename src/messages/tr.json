@@ -231,16 +231,33 @@
     "title": "İletişime Geçin",
     "subtitle": "Sizinle tanışmak isteriz",
     "form": {
+      "title": "Bize Mesaj Gönderin",
       "name": "Adınız",
       "email": "E-posta Adresi",
       "subject": "Konu",
       "message": "Mesaj",
-      "submit": "Mesaj Gönder"
+      "submit": "Mesaj Gönder",
+      "sending": "Gönderiliyor..."
     },
     "info": {
       "email": "Bize e-posta gönderin",
       "emailAddress": "destek@globalledger.app",
-      "responseTime": "Genellikle 24 saat içinde yanıt veriyoruz"
+      "responseTime": "Genellikle 24 saat içinde yanıt veriyoruz",
+      "liveChat": {
+        "title": "Canlı Sohbet",
+        "description": "Çalışma saatleri boyunca destek ekibimizle sohbet edin.",
+        "button": "Sohbeti Başlat"
+      },
+      "office": {
+        "title": "Ofis",
+        "company": "Global Ledger Inc.",
+        "address": "İstanbul, Türkiye"
+      }
+    },
+    "cta": {
+      "title": "Hızlı Yardım mı Lazım?",
+      "description": "Yaygın soruların cevapları için Yardım Merkezimize göz atın.",
+      "button": "Yardım Merkezini Ziyaret Et"
     },
     "success": "Mesaj başarıyla gönderildi!",
     "error": "Mesaj gönderilemedi. Lütfen tekrar deneyin."
@@ -273,6 +290,12 @@
       "title": "Gecikmiş Borçlar",
       "empty": "Gecikmiş ödeme yok",
       "remind": "Hatırlat"
+    },
+    "empty": {
+      "title": "Global Ledger'a Hoş Geldiniz",
+      "description": "İlk müşterinizi ekleyerek müşteri kredisi takibine başlayın. Kimin size borçlandığını takip etmek için borç ve ödemeleri kaydedebilirsiniz.",
+      "addCustomer": "İlk Müşterinizi Ekleyin",
+      "viewReports": "Raporları Görüntüle"
     }
   },
   "customers": {
@@ -314,7 +337,13 @@
       "pdfError": "PDF oluşturulamadı"
     },
     "success": "Müşteri başarıyla eklendi",
-    "error": "Müşteri eklenemedi"
+    "error": "Müşteri eklenemedi",
+    "paywall": {
+      "limitReached": "Müşteri limitine ulaşıldı",
+      "upgradeMessage": "Sınırsız müşteri ve daha fazla özellik için Pro'ya yükseltin.",
+      "customersUsed": "Kullanılan:",
+      "limit": "ücretsiz limit"
+    }
   },
   "transactions": {
     "title": "İşlemler",
@@ -373,6 +402,114 @@
     "validation": {
       "invalidAmount": "Lütfen geçerli bir tutar girin"
     }
+  },
+  "reports": {
+    "title": "Raporlar ve Analizler",
+    "subtitle": "İşiniz hakkında bilgiler",
+    "shopSummary": {
+      "title": "İşletme Özeti",
+      "today": "Bugün",
+      "week": "Bu Hafta",
+      "month": "Bu Ay",
+      "totalOwed": "Toplam Alacak",
+      "collected": "Tahsil Edilen",
+      "newDebts": "Yeni Borçlar",
+      "paymentsReceived": "Alınan Ödemeler",
+      "activeCustomers": "Aktif Müşteriler"
+    },
+    "debtAging": {
+      "title": "Borç Yaşlandırması",
+      "current": "Cari",
+      "days30": "1-30 gün",
+      "days60": "31-60 gün",
+      "days90": "61-90 gün",
+      "overdue": "90 gün üzeri"
+    },
+    "collectionRate": {
+      "title": "Tahsilat Oranı",
+      "thisMonth": "Bu Ay",
+      "lastMonth": "Geçen Ay"
+    },
+    "export": {
+      "title": "Verileri Dışa Aktar",
+      "description": "Raporları ve ekstreleri indirin",
+      "pdf": "PDF Ekstre Dışa Aktar",
+      "csv": "CSV Dışa Aktar",
+      "customerStatement": "Müşteri Ekstresi",
+      "noTransactions": "Dışa aktarılacak işlem yok",
+      "success": "Dışa aktarma başarıyla tamamlandı",
+      "error": "Veriler dışa aktarılamadı"
+    },
+    "empty": {
+      "title": "Yeterli veri yok",
+      "description": "Raporları ve analizleri görmek için daha fazla müşteri ve işlem ekleyin.",
+      "action": "Kontrol Paneline Git"
+    },
+    "timeFilter": {
+      "today": "Bugün",
+      "week": "Bu Hafta",
+      "month": "Bu Ay",
+      "year": "Bu Yıl",
+      "all": "Tüm Zamanlar"
+    }
+  },
+  "onboarding": {
+    "title": "Başlayalım",
+    "subtitle": "Hesabınızı birkaç hızlı adımda ayarlayın",
+    "step": "Adım {current} / {total}",
+    "currency": {
+      "title": "Para Biriminizi Seçin",
+      "subtitle": "İşletme işlemleriniz için kullandığınız para birimini seçin"
+    },
+    "language": {
+      "title": "Dilinizi Seçin",
+      "subtitle": "Uygulama için tercih ettiğiniz dili seçin"
+    },
+    "category": {
+      "title": "İşletmeniz Nedir?",
+      "subtitle": "İşletmenizi en iyi tanımlayan kategoriyi seçin"
+    },
+    "success": {
+      "title": "Hazırsınız!",
+      "subtitle": "Hesabınız kullanıma hazır",
+      "description": "Bu ayarları daha sonra profilinizden değiştirebilirsiniz",
+      "action": "Kontrol Paneline Git"
+    },
+    "categories": {
+      "bakkal": "Bakkal / Market",
+      "kirana": "Kirana Dükkanı",
+      "warung": "Warung / Mini Market",
+      "spaza": "Spaza Dükkanı",
+      "kiosk": "Kiosk",
+      "restaurant": "Restoran / Kafe",
+      "retail": "Perakende Mağaza",
+      "wholesale": "Toptancı",
+      "services": "Hizmetler",
+      "other": "Diğer"
+    },
+    "skip": "Şimdilik Atla",
+    "next": "İleri",
+    "back": "Geri",
+    "finish": "Başla"
+  },
+  "faq": {
+    "badge": "SSS",
+    "title": "Sıkça Sorulan Sorular",
+    "subtitle": "Global Ledger hakkında bilmeniz gereken her şey",
+    "q1": "Global Ledger gerçekten ücretsiz mi?",
+    "a1": "Evet! Global Ledger, 10 müşteriye kadar, sınırsız işlem, çevrimdışı mod ve temel raporlar içeren sonsuza kadar ücretsiz bir plan sunar. Başlamak için kredi kartı gerekmez.",
+    "q2": "Global Ledger'ı internet olmadan kullanabilir miyim?",
+    "a2": "Kesinlikle! Global Ledger, tam çevrimdışı destekle Progressive Web App (PWA) olarak oluşturulmuştur. İnternet olmadan müşteri ekleyebilir, borç kaydedebilir ve ödemeleri takip edebilirsiniz. Verileriniz tekrar çevrimiçi olduğunuzda otomatik olarak senkronize olur.",
+    "q3": "Otomatik yedekleme nasıl çalışır?",
+    "a3": "İnternet bağlantınız olduğunda verileriniz otomatik olarak güvenli bulut sunucularımıza senkronize edilir. Tüm veriler banka düzeyinde AES-256 şifrelemesi kullanılarak şifrelenir, bu nedenle kayıtlarınız her zaman güvende ve erişilebilir durumdadır.",
+    "q4": "Hangi para birimleri ve diller destekleniyor?",
+    "a4": "Global Ledger, TRY (Türk Lirası), IDR (Endonezya Rupisi), NGN (Nijerya Nairası), EGP (Mısır Lirası), ZAR (Güney Afrika Randı) ve daha fazlası dahil olmak üzere birden fazla para birimini destekler. Uygulama 7 dilde mevcuttur: Türkçe, Hintçe, Endonezce, İngilizce, Arapça, İspanyolca ve Zuluca.",
+    "q5": "Müşterilere ödeme hatırlatıcılarını nasıl gönderebilirim?",
+    "a5": "Önceden doldurulmuş mesajlarla doğrudan WhatsApp üzerinden hatırlatıcı gönderebilirsiniz. Sadece müşterinin detaylarını açın ve WhatsApp düğmesine dokunun. Pro kullanıcılar ayrıca otomatik SMS hatırlatıcıları alır.",
+    "q6": "Verilerimi dışa aktarabilir miyim?",
+    "a6": "Evet! Müşteri ekstrelerinizi PDF dosyası olarak ve işlem geçmişinizi CSV elektronik tablosu olarak dışa aktarabilirsiniz. Bu özellik hem ücretsiz hem de ücretli planlarda mevcuttur.",
+    "stillHaveQuestions": "Hala sorularınız mı var?",
+    "contactSupport": "Destek ekibimizle iletişime geçin"
   },
   "settings": {
     "title": "Ayarlar",

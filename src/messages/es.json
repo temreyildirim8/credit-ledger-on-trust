@@ -38,6 +38,8 @@
     "login": "Iniciar Sesión",
     "signup": "Registrarse",
     "logout": "Cerrar Sesión",
+    "signOut": "Cerrar Sesión",
+    "toggleTheme": "Cambiar Tema",
     "features": "Características",
     "pricing": "Precios",
     "about": "Acerca de",
@@ -188,16 +190,33 @@
     "title": "Ponte en Contacto",
     "subtitle": "Nos encantaría saber de ti",
     "form": {
+      "title": "Envíanos un Mensaje",
       "name": "Tu Nombre",
       "email": "Correo Electrónico",
       "subject": "Asunto",
       "message": "Mensaje",
-      "submit": "Enviar Mensaje"
+      "submit": "Enviar Mensaje",
+      "sending": "Enviando..."
     },
     "info": {
       "email": "Envíanos un correo",
       "emailAddress": "soporte@globalledger.app",
-      "responseTime": "Por lo general respondemos dentro de 24 horas"
+      "responseTime": "Por lo general respondemos dentro de 24 horas",
+      "liveChat": {
+        "title": "Chat en Vivo",
+        "description": "Chatea con nuestro equipo de soporte durante el horario laboral.",
+        "button": "Iniciar Chat"
+      },
+      "office": {
+        "title": "Oficina",
+        "company": "Global Ledger Inc.",
+        "address": "Estambul, Turquía"
+      }
+    },
+    "cta": {
+      "title": "¿Necesitas Ayuda Rápida?",
+      "description": "Revisa nuestro Centro de Ayuda para respuestas a preguntas comunes.",
+      "button": "Visitar Centro de Ayuda"
     },
     "success": "¡Mensaje enviado con éxito!",
     "error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
@@ -230,6 +249,12 @@
       "title": "Deudas Vencidas",
       "empty": "Sin pagos vencidos",
       "remind": "Recordar"
+    },
+    "empty": {
+      "title": "Bienvenido a Global Ledger",
+      "description": "Comienza a rastrear el crédito de tus clientes agregando tu primer cliente. Puedes registrar deudas y pagos para llevar un seguimiento de quién te debe dinero.",
+      "addCustomer": "Agrega Tu Primer Cliente",
+      "viewReports": "Ver Reportes"
     }
   },
   "customers": {
@@ -271,7 +296,13 @@
       "pdfError": "Error al generar el PDF"
     },
     "success": "Cliente agregado con éxito",
-    "error": "Error al agregar cliente"
+    "error": "Error al agregar cliente",
+    "paywall": {
+      "limitReached": "Límite de clientes alcanzado",
+      "upgradeMessage": "Actualiza a Pro para clientes ilimitados y más funciones.",
+      "customersUsed": "Usados:",
+      "limit": "límite gratis"
+    }
   },
   "transactions": {
     "title": "Transacciones",
