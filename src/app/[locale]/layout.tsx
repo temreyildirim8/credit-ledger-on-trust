@@ -6,6 +6,7 @@ import { routing, type Locale } from "@/routing";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { PWAInstallProvider } from "@/components/pwa/PWAInstallProvider";
+import { PWAProvider } from "@/components/pwa/PWAProvider";
 import { AuthProviderWrapper } from "@/components/auth/AuthProviderWrapper";
 import "../globals.css";
 
@@ -153,6 +154,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         suppressHydrationWarning
       >
         <ThemeProvider defaultTheme="dark" storageKey="credit-ledger-theme">
+          <PWAProvider />
           <PWAInstallProvider>
             <NextIntlClientProvider messages={messages}>
               {/* Auth context must be provided via AuthProviderWrapper */}
