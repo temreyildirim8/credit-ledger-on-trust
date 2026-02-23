@@ -277,6 +277,21 @@ self.addEventListener('message', (event) => {
   if (event.data.type === 'TRIGGER_SYNC') {
     event.waitUntil(handleBackgroundSync());
   }
+
+  // Respond with pending sync count
+  if (event.data.type === 'GET_PENDING_COUNT') {
+    getPendingSyncCount()
+      .then((count) => {
+        if (event.ports && event.ports[0]) {
+          event.ports[0].postMessage({ count });
+        }
+      })
+      .catch(() => {
+        if (event.ports && event.ports[0]) {
+          event.ports[0].postMessage({ count: 0 });
+        }
+      });
+  }
 });
 
 // Periodic background sync (if supported)

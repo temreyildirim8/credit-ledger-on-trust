@@ -128,8 +128,9 @@ export function useSyncStatus() {
           queueStatus: "idle",
           isSyncing: false,
           lastSyncedAt: new Date(event.data.timestamp),
-          pendingCount: 0,
+          pendingCount: event.data.failed || 0,
         }));
+        fetchPendingCount();
       }
 
       if (event.data?.type === "SYNC_ERROR") {
@@ -142,8 +143,8 @@ export function useSyncStatus() {
       }
 
       // Handle sync trigger from service worker (background sync)
-      if (event.data?.type === "TRIGGER_SYNC") {
-        console.log("[useSyncStatus] Received TRIGGER_SYNC from service worker");
+      if (event.data?.type === "TRIGGER_SYNC" || event.data?.type === "PROCESS_SYNC_QUEUE") {
+        console.log("[useSyncStatus] Received sync trigger from service worker");
         setStatus((prev) => ({ ...prev, isSyncing: true, queueStatus: "syncing" }));
 
         try {
@@ -161,7 +162,7 @@ export function useSyncStatus() {
               ...prev,
               queueStatus: "idle",
               isSyncing: false,
-              lastSyncedAt: new Date(event.data.timestamp),
+              lastSyncedAt: new Date(),
               pendingCount: 0,
             }));
           }
