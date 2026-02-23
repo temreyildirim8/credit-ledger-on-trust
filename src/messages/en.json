@@ -190,16 +190,33 @@
     "title": "Get in Touch",
     "subtitle": "We'd love to hear from you",
     "form": {
+      "title": "Send us a Message",
       "name": "Your Name",
       "email": "Email Address",
       "subject": "Subject",
       "message": "Message",
-      "submit": "Send Message"
+      "submit": "Send Message",
+      "sending": "Sending..."
     },
     "info": {
       "email": "Email us at",
       "emailAddress": "support@globalledger.app",
-      "responseTime": "We typically respond within 24 hours"
+      "responseTime": "We typically respond within 24 hours",
+      "liveChat": {
+        "title": "Live Chat",
+        "description": "Chat with our support team during business hours.",
+        "button": "Start Chat"
+      },
+      "office": {
+        "title": "Office",
+        "company": "Global Ledger Inc.",
+        "address": "Istanbul, Turkey"
+      }
+    },
+    "cta": {
+      "title": "Need Quick Help?",
+      "description": "Check out our Help Center for answers to common questions.",
+      "button": "Visit Help Center"
     },
     "success": "Message sent successfully!",
     "error": "Failed to send message. Please try again."

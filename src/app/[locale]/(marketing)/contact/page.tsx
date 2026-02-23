@@ -54,7 +54,7 @@ export default function ContactPage() {
             <Card className="border-[var(--color-border)]">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold font-display text-[var(--color-text)] mb-6">
-                  Send us a Message
+                  {t('form.title')}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
@@ -102,7 +102,7 @@ export default function ContactPage() {
                     disabled={loading}
                   >
                     {loading ? (
-                      'Sending...'
+                      t('form.sending')
                     ) : (
                       <>
                         <Send className="h-4 w-4 mr-2" />
@@ -145,13 +145,13 @@ export default function ContactPage() {
                       <MessageCircle className="h-6 w-6 text-blue-500" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[var(--color-text)] mb-1">Live Chat</h3>
+                      <h3 className="font-semibold text-[var(--color-text)] mb-1">{t('info.liveChat.title')}</h3>
                       <p className="text-[var(--color-text-secondary)] text-sm">
-                        Chat with our support team during business hours.
+                        {t('info.liveChat.description')}
                       </p>
                       <Button variant="outline" className="mt-3" size="sm">
-                    Start Chat
-                  </Button>
+                        {t('info.liveChat.button')}
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -164,10 +164,10 @@ export default function ContactPage() {
                       <MapPin className="h-6 w-6 text-green-500" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[var(--color-text)] mb-1">Office</h3>
+                      <h3 className="font-semibold text-[var(--color-text)] mb-1">{t('info.office.title')}</h3>
                       <p className="text-[var(--color-text-secondary)] text-sm">
-                        Global Ledger Inc.<br />
-                        Istanbul, Turkey
+                        {t('info.office.company')}<br />
+                        {t('info.office.address')}
                       </p>
                     </div>
                   </div>
@@ -182,16 +182,16 @@ export default function ContactPage() {
       <section className="py-20 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold font-display mb-4">
-            Need Quick Help?
+            {t('cta.title')}
           </h2>
           <p className="text-white/90 mb-8">
-            Check out our Help Center for answers to common questions.
+            {t('cta.description')}
           </p>
           <Button
             size="lg"
             className="bg-white text-[var(--color-accent)] hover:bg-white/90"
           >
-            Visit Help Center
+            {t('cta.button')}
           </Button>
         </div>
       </section>

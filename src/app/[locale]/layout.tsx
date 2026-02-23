@@ -125,7 +125,7 @@ export function generateStaticParams() {
 
 export function generateViewport(): Viewport {
   return {
-    themeColor: "#2D8E4A",
+    themeColor: "#3B82F6", // Global Blue from Figma specs
   };
 }
 

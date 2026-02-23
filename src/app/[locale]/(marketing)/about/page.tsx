@@ -73,7 +73,7 @@ export default function AboutPage() {
           <Card className="border-[var(--color-border)]">
             <CardContent className="p-8">
               <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+                <div className="h-12 w-12 rounded-full bg-[var(--color-accent)] flex items-center justify-center flex-shrink-0">
                   <Users className="h-6 w-6 text-white" />
                 </div>
                 <div>
