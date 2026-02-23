@@ -26,7 +26,7 @@ export function CTASection() {
           Meet money without borders
         </h2>
         <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-          Join thousands of shop owners who've gone digital. Start tracking your credit ledger today.
+          Join thousands of shop owners who&apos;ve gone digital. Start tracking your credit ledger today.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">

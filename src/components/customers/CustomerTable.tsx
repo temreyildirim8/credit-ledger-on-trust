@@ -29,6 +29,25 @@ import { useTranslations } from 'next-intl';
 // Locale map for date-fns
 const localeMap: Record<string, Locale> = { en: enUS, tr, es, id, hi, ar };
 
+// SortButton component defined outside to avoid recreation on every render
+interface SortButtonProps {
+  column: string;
+  label: string;
+  onSort: (column: string) => void;
+}
+
+function SortButton({ column, label, onSort }: SortButtonProps) {
+  return (
+    <button
+      className="flex items-center gap-1 hover:text-[var(--color-text)] transition-colors"
+      onClick={() => onSort(column)}
+    >
+      {label}
+      <ArrowUpDown className="h-4 w-4 opacity-50" />
+    </button>
+  );
+}
+
 interface CustomerTableProps {
   customers: Customer[];
   locale?: string;
@@ -92,29 +111,19 @@ export function CustomerTable({
     }
   };
 
-  const SortButton = ({ column, label }: { column: string; label: string }) => (
-    <button
-      className="flex items-center gap-1 hover:text-[var(--color-text)] transition-colors"
-      onClick={() => handleSort(column)}
-    >
-      {label}
-      <ArrowUpDown className="h-4 w-4 opacity-50" />
-    </button>
-  );
-
   return (
     <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden">
       <Table>
         <TableHeader>
           <TableRow className="hover:bg-transparent">
             <TableHead className="w-[300px] font-semibold text-[var(--color-text-secondary)]">
-              <SortButton column="name" label={t('form.name')} />
+              <SortButton column="name" label={t('form.name')} onSort={handleSort} />
             </TableHead>
             <TableHead className="font-semibold text-[var(--color-text-secondary)]">
               {t('form.phone')}
             </TableHead>
             <TableHead className="font-semibold text-[var(--color-text-secondary)]">
-              <SortButton column="balance" label={t('details.balance')} />
+              <SortButton column="balance" label={t('details.balance')} onSort={handleSort} />
             </TableHead>
             <TableHead className="font-semibold text-[var(--color-text-secondary)]">
               {t('details.contact')}

@@ -121,7 +121,7 @@ export default function TransactionsPage() {
                   <p className="text-xs text-text-secondary mt-1 flex items-center gap-1">
                     <Calendar className="h-3.5 w-3.5" />
                     {formatDistanceToNow(
-                      new Date(transaction.transaction_date || transaction.created_at || Date.now()),
+                      new Date(transaction.transaction_date || transaction.created_at || '1970-01-01'),
                       { addSuffix: true, locale: dateLocale }
                     )}
                   </p>

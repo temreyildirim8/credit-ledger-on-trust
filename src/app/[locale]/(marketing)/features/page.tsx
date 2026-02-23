@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Languages, DollarSign, WifiOff, Cloud, MessageSquare, BarChart3 } from 'lucide-react';
+import Link from 'next/link';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -101,12 +102,12 @@ export default function FeaturesPage() {
           <p className="text-white/90 mb-8">
             {t('cta.description')}
           </p>
-          <a
+          <Link
             href="/login"
             className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
             {t('cta.button')}
-          </a>
+          </Link>
         </div>
       </section>
     </div>

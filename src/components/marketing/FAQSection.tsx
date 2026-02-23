@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { Link } from "@/routing";
 
 /**
  * FAQ section - Frequently Asked Questions with accordion UI
@@ -94,13 +95,13 @@ export function FAQSection() {
           <p className="text-[var(--color-text-secondary)] mb-4">
             {t('stillHaveQuestions')}
           </p>
-          <a
+          <Link
             href="/contact"
             className="inline-flex items-center justify-center gap-2 text-[var(--color-accent)] font-semibold hover:underline"
           >
             {t('contactSupport')}
             <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

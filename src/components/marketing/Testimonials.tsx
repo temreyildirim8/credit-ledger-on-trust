@@ -52,7 +52,7 @@ export function Testimonials() {
               </div>
 
               <p className="text-[var(--color-text)] mb-6 leading-relaxed relative">
-                "{testimonial.content}"
+                &ldquo;{testimonial.content}&rdquo;
               </p>
 
               <div>

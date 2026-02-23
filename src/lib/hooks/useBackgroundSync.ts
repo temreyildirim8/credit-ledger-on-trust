@@ -196,7 +196,7 @@ async function processSyncItem(item: SyncQueueItem, _userId: string): Promise<vo
       };
 
       // Check if customer_id is a temp ID - if so, find the real one
-      let customerId = payload.transaction.customerId;
+      const customerId = payload.transaction.customerId;
       if (customerId.startsWith("temp_")) {
         // Find the corresponding sync item for the customer
         const pendingItems = await offlineCache.getSyncQueue("completed");
