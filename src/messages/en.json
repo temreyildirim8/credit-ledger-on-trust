@@ -667,5 +667,24 @@
       "title": "Global Ledger - Digital Credit Ledger for Micro-SMEs",
       "description": "Replace your paper notebook with a smart, secure, and always-available credit ledger application."
     }
+  },
+  "syncStatus": {
+    "online": "Online",
+    "offline": "Offline",
+    "synced": "Synced",
+    "syncing": "Syncing...",
+    "pending": "Pending",
+    "syncError": "Sync Error",
+    "syncFailed": "Sync failed. Tap to retry.",
+    "allSynced": "All synced",
+    "offlineMode": "Offline Mode",
+    "pendingCount": "{count} pending",
+    "lastSync": "Last sync",
+    "never": "Never",
+    "justNow": "Just now",
+    "minutesAgo": "{count} min ago",
+    "hoursAgo": "{count}h ago",
+    "sync": "Sync",
+    "willSyncWhenOnline": "Will sync when online"
   }
 }

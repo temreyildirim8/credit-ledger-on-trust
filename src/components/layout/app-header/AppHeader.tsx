@@ -2,6 +2,7 @@
 
 import { Bell, User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SyncStatusIndicator } from "@/components/layout/sync-status";
 
 interface AppHeaderProps {
   title?: string;
@@ -58,6 +59,9 @@ export function AppHeader({
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Sync Status */}
+          <SyncStatusIndicator variant="compact" />
+
           {/* Notifications */}
           <button className="relative p-2.5 rounded-xl hover:bg-surface-alt transition-colors">
             <Bell className="w-5 h-5 text-text-secondary" />

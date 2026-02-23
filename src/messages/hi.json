@@ -518,5 +518,24 @@
       "title": "Global Ledger - सूक्ष्म-एसएमई के लिए डिजिटल क्रेडिट लेजर",
       "description": "अपने पेपर नोटबुक को एक स्मार्ट, सुरक्षित और हमेशा उपलब्ध क्रेडिट लेजर ऐप से बदलें।"
     }
+  },
+  "syncStatus": {
+    "online": "ऑनलाइन",
+    "offline": "ऑफ़लाइन",
+    "synced": "सिंक हो गया",
+    "syncing": "सिंक हो रहा है...",
+    "pending": "लंबित",
+    "syncError": "सिंक त्रुटि",
+    "syncFailed": "सिंक विफल। पुनः प्रयास करें।",
+    "allSynced": "सभी सिंक हो गए",
+    "offlineMode": "ऑफ़लाइन मोड",
+    "pendingCount": "{count} लंबित",
+    "lastSync": "पिछला सिंक",
+    "never": "कभी नहीं",
+    "justNow": "अभी अभी",
+    "minutesAgo": "{count} मिनट पहले",
+    "hoursAgo": "{count} घंटे पहले",
+    "sync": "सिंक करें",
+    "willSyncWhenOnline": "ऑनलाइन होने पर सिंक होगा"
   }
 }

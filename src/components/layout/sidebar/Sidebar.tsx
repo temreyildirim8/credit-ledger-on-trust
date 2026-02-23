@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { SyncStatusIndicator } from "@/components/layout/sync-status";
 import {
   Tooltip,
   TooltipContent,
@@ -216,6 +217,20 @@ export function Sidebar({ className }: SidebarProps) {
           return linkContent;
         })}
       </nav>
+
+      {/* Sync Status Indicator */}
+      <div
+        className={cn(
+          "border-t border-border transition-all duration-300",
+          isCollapsed ? "flex justify-center px-2 py-2" : "px-3 py-2"
+        )}
+      >
+        {isCollapsed ? (
+          <SyncStatusIndicator variant="compact" />
+        ) : (
+          <SyncStatusIndicator variant="full" />
+        )}
+      </div>
 
       {/* Theme Toggle */}
       <div

@@ -518,5 +518,24 @@
       "title": "Global Ledger - Libro Mayor de Crédito Digital para Micro-EMPRESAS",
       "description": "Reemplaza tu cuaderno de papel con una aplicación de libro mayor de crédito inteligente, segura y siempre disponible."
     }
+  },
+  "syncStatus": {
+    "online": "En línea",
+    "offline": "Sin conexión",
+    "synced": "Sincronizado",
+    "syncing": "Sincronizando...",
+    "pending": "Pendiente",
+    "syncError": "Error de sincronización",
+    "syncFailed": "Error al sincronizar. Toca para reintentar.",
+    "allSynced": "Todo sincronizado",
+    "offlineMode": "Modo sin conexión",
+    "pendingCount": "{count} pendiente",
+    "lastSync": "Última sincronización",
+    "never": "Nunca",
+    "justNow": "Recién",
+    "minutesAgo": "hace {count} min",
+    "hoursAgo": "hace {count}h",
+    "sync": "Sincronizar",
+    "willSyncWhenOnline": "Se sincronizará cuando haya conexión"
   }
 }

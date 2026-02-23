@@ -518,5 +518,24 @@
       "title": "Global Ledger - Buku Kredit Digital untuk UMKM",
       "description": "Ganti buku catatan kertas Anda dengan aplikasi buku kredit cerdas, aman, dan selalu tersedia."
     }
+  },
+  "syncStatus": {
+    "online": "Daring",
+    "offline": "Luring",
+    "synced": "Tersinkron",
+    "syncing": "Menyinkronkan...",
+    "pending": "Tertunda",
+    "syncError": "Kesalahan Sinkronisasi",
+    "syncFailed": "Sinkronisasi gagal. Ketuk untuk mencoba lagi.",
+    "allSynced": "Semua tersinkron",
+    "offlineMode": "Mode Luring",
+    "pendingCount": "{count} tertunda",
+    "lastSync": "Sinkronisasi terakhir",
+    "never": "Tidak pernah",
+    "justNow": "Baru saja",
+    "minutesAgo": "{count} menit lalu",
+    "hoursAgo": "{count} jam lalu",
+    "sync": "Sinkronkan",
+    "willSyncWhenOnline": "Akan disinkronkan saat daring"
   }
 }

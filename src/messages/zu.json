@@ -518,5 +518,24 @@
       "title": "Global Ledger - I-Bhuku Lekredithi Edijithali Yama-UMKM",
       "description": "Sebentisana ibhuku lekhathi lakho ne-app yokuphathwa ikredithi ekhaliphile, ethulelekile, iyatholakala sonke."
     }
+  },
+  "syncStatus": {
+    "online": "Ku-inthanethi",
+    "offline": "Ngaphandle kwe-inthanethi",
+    "synced": "Kuvumelaniswe",
+    "syncing": "Kuvumelaniswa...",
+    "pending": "Kulindile",
+    "syncError": "Iphutha Lokuvumelanisa",
+    "syncFailed": "Ukuvumelanisa kuhlulekile. Thepha ukuze uzame futhi.",
+    "allSynced": "Konke kuvumelaniswe",
+    "offlineMode": "Imodi Yekhaphapha",
+    "pendingCount": "{count} kulindile",
+    "lastSync": "Ukuvumelanisa kokugcina",
+    "never": "Akusoze",
+    "justNow": "Manje",
+    "minutesAgo": "{count} imizuzu edlule",
+    "hoursAgo": "{count} amahora edlule",
+    "sync": "Vumelanisa",
+    "willSyncWhenOnline": "Kuzovumelaniswa uma ku-inthanethi"
   }
 }

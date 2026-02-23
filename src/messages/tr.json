@@ -607,5 +607,24 @@
       "title": "Global Ledger - Küçük İşletmeler İçin Dijital Veresiye Defteri",
       "description": "Kağıt defterinizi akıllı, güvenli ve her zaman erişilebilir bir veresiye defteri uygulamasıyla değiştirin."
     }
+  },
+  "syncStatus": {
+    "online": "Çevrimiçi",
+    "offline": "Çevrimdışı",
+    "synced": "Eşitlendi",
+    "syncing": "Eşitleniyor...",
+    "pending": "Bekliyor",
+    "syncError": "Eşitleme Hatası",
+    "syncFailed": "Eşitleme başarısız. Tekrar deneyin.",
+    "allSynced": "Tümü eşitlendi",
+    "offlineMode": "Çevrimdışı Mod",
+    "pendingCount": "{count} bekliyor",
+    "lastSync": "Son eşitleme",
+    "never": "Hiçbir zaman",
+    "justNow": "Az önce",
+    "minutesAgo": "{count} dk önce",
+    "hoursAgo": "{count} sa önce",
+    "sync": "Eşitle",
+    "willSyncWhenOnline": "Çevrimiçi olduğunda eşitlenecek"
   }
 }
