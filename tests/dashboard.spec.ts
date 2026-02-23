@@ -35,14 +35,20 @@ test.describe('Dashboard', () => {
     test('should display greeting header', async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
+      // Wait for page to finish loading
+      await page.waitForLoadState('networkidle');
+
       // Check for greeting OR empty state (both are valid)
+      // Note: Empty state uses h2, populated dashboard uses h1
       const greeting = page.getByRole('heading', { level: 1 });
+      const greeting2 = page.getByRole('heading', { level: 2 });
       const emptyState = page.getByText(/welcome|no.*customer|add.*first/i);
 
       // Either greeting or empty state should be visible
       const hasGreeting = await greeting.isVisible().catch(() => false);
+      const hasGreeting2 = await greeting2.first().isVisible().catch(() => false);
       const hasEmptyState = await emptyState.first().isVisible().catch(() => false);
-      expect(hasGreeting || hasEmptyState).toBe(true);
+      expect(hasGreeting || hasGreeting2 || hasEmptyState).toBe(true);
     });
 
     test('should display quick add button in header', async ({ page }) => {
@@ -362,15 +368,21 @@ test.describe('Dashboard', () => {
 
       if (await skipIfUnauthenticated(page)) return;
 
+      // Wait for page to finish loading (either main content or empty state)
+      await page.waitForLoadState('networkidle');
+
       // Either greeting (h1 or paragraph), or empty state should be visible
+      // Note: Empty state uses h2, populated dashboard uses h1
       const heading = page.getByRole('heading', { level: 1 });
+      const heading2 = page.getByRole('heading', { level: 2 });
       const greetingText = page.getByText(/good\s+(morning|afternoon|evening)|welcome/i);
       const emptyState = page.getByText(/no.*customer|add.*first/i);
 
       const hasHeading = await heading.isVisible().catch(() => false);
+      const hasHeading2 = await heading2.first().isVisible().catch(() => false);
       const hasGreeting = await greetingText.first().isVisible().catch(() => false);
       const hasEmptyState = await emptyState.first().isVisible().catch(() => false);
-      expect(hasHeading || hasGreeting || hasEmptyState).toBe(true);
+      expect(hasHeading || hasHeading2 || hasGreeting || hasEmptyState).toBe(true);
     });
 
     test('should display KPI cards in 2-column grid on mobile', async ({ page }) => {
@@ -395,15 +407,21 @@ test.describe('Dashboard', () => {
 
       if (await skipIfUnauthenticated(page)) return;
 
+      // Wait for page to finish loading
+      await page.waitForLoadState('networkidle');
+
       // Either empty state or dashboard content should be visible
+      // Note: Empty state uses h2, populated dashboard uses h1
       const heading = page.getByRole('heading', { level: 1 });
+      const heading2 = page.getByRole('heading', { level: 2 });
       const greetingText = page.getByText(/good\s+(morning|afternoon|evening)|welcome/i);
       const emptyState = page.getByText(/no.*customer|add.*first/i);
 
       const hasHeading = await heading.isVisible().catch(() => false);
+      const hasHeading2 = await heading2.first().isVisible().catch(() => false);
       const hasGreeting = await greetingText.first().isVisible().catch(() => false);
       const hasEmptyState = await emptyState.first().isVisible().catch(() => false);
-      expect(hasHeading || hasGreeting || hasEmptyState).toBe(true);
+      expect(hasHeading || hasHeading2 || hasGreeting || hasEmptyState).toBe(true);
     });
 
     test('should display quick actions on mobile', async ({ page }) => {
