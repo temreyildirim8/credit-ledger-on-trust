@@ -1,6 +1,47 @@
 const CACHE_NAME = 'global-ledger-v3';
 const OFFLINE_URL = '/offline.html';
 
+// IndexedDB helper for service worker
+const DB_NAME = 'global-ledger-offline';
+const DB_VERSION = 2;
+const SYNC_QUEUE_STORE = 'sync-queue';
+
+// Open IndexedDB
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+    request.onerror = () => reject(new Error('Failed to open IndexedDB'));
+    request.onsuccess = () => resolve(request.result);
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains(SYNC_QUEUE_STORE)) {
+        const syncStore = db.createObjectStore(SYNC_QUEUE_STORE, { keyPath: 'id' });
+        syncStore.createIndex('status', 'status', { unique: false });
+        syncStore.createIndex('action_type', 'action_type', { unique: false });
+      }
+    };
+  });
+}
+
+// Get pending sync count from IndexedDB
+async function getPendingSyncCount() {
+  try {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+      const transaction = db.transaction([SYNC_QUEUE_STORE], 'readonly');
+      const store = transaction.objectStore(SYNC_QUEUE_STORE);
+      const index = store.index('status');
+      const request = index.count('pending');
+
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(new Error('Failed to count pending items'));
+    });
+  } catch (error) {
+    console.error('[SW] Error getting pending count:', error);
+    return 0;
+  }
+}
+
 // Assets to cache immediately on install
 const PRECACHE_ASSETS = [
   '/',
@@ -128,20 +169,29 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('sync', (event) => {
   console.log('[SW] Background sync event:', event.tag);
 
-  if (event.tag === 'sync-transactions') {
+  if (event.tag === 'sync-transactions' || event.tag === 'sync-all') {
     event.waitUntil(handleBackgroundSync());
   }
 });
 
 /**
  * Handle background sync by notifying the main app to process the sync queue.
- * The actual sync logic is in the TypeScript sync-service which has access to
+ * The actual sync logic is in the TypeScript sync-processor which has access to
  * IndexedDB and Supabase client.
  */
 async function handleBackgroundSync() {
   console.log('[SW] Handling background sync...');
 
   try {
+    const pendingCount = await getPendingSyncCount();
+
+    if (pendingCount === 0) {
+      console.log('[SW] No pending items to sync');
+      return;
+    }
+
+    console.log(`[SW] Found ${pendingCount} pending items`);
+
     // Notify all clients to process their sync queues
     const clients = await self.clients.matchAll({ type: 'window' });
 
@@ -154,7 +204,8 @@ async function handleBackgroundSync() {
     // Send message to all clients to trigger sync
     clients.forEach((client) => {
       client.postMessage({
-        type: 'TRIGGER_SYNC',
+        type: 'PROCESS_SYNC_QUEUE',
+        pendingCount,
         timestamp: Date.now()
       });
     });
