@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useCustomers } from '@/lib/hooks/useCustomers';
 import { CustomerTable } from '@/components/customers/CustomerTable';
 import { CustomerCard } from '@/components/customers/CustomerCard';
+import { CustomerDetailsModal } from '@/components/customers/CustomerDetailsModal';
 import { AddCustomerModal } from '@/components/customers/AddCustomerModal';
 import { Button } from '@/components/ui/button';
 import { Plus, Search, Loader2, LayoutGrid, List } from 'lucide-react';
@@ -14,7 +15,9 @@ import { Customer } from '@/lib/services/customers.service';
 
 export default function CustomersPage() {
   const { customers, loading, createCustomer } = useCustomers();
-  const [modalOpen, setModalOpen] = useState(false);
+  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [detailsModalOpen, setDetailsModalOpen] = useState(false);
+  const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'hasDebt' | 'paidUp'>('all');
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('table');
@@ -23,7 +26,6 @@ export default function CustomersPage() {
   const pathname = usePathname();
   const locale = pathname.split('/')[1] || 'en';
   const t = useTranslations('customers');
-  const tCommon = useTranslations('common');
 
   const filteredCustomers = customers.filter((customer) => {
     const matchesSearch =
@@ -74,6 +76,11 @@ export default function CustomersPage() {
     }
   };
 
+  const handleRowClick = (customer: Customer) => {
+    setSelectedCustomerId(customer.id);
+    setDetailsModalOpen(true);
+  };
+
   const handleAddDebt = (customer: Customer) => {
     // TODO: Implement add debt modal
     console.log('Add debt for:', customer.name);
@@ -111,7 +118,7 @@ export default function CustomersPage() {
             </p>
           </div>
           <Button
-            onClick={() => setModalOpen(true)}
+            onClick={() => setAddModalOpen(true)}
             className="bg-white text-[var(--color-accent)] hover:bg-white/90"
           >
             <Plus className="h-4 w-4" />
@@ -197,7 +204,7 @@ export default function CustomersPage() {
           </p>
           {!searchQuery && (
             <Button
-              onClick={() => setModalOpen(true)}
+              onClick={() => setAddModalOpen(true)}
               className="mt-6 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]"
             >
               <Plus className="h-4 w-4 mr-2" />
@@ -209,6 +216,7 @@ export default function CustomersPage() {
         <CustomerTable
           customers={sortedCustomers}
           locale={locale}
+          onRowClick={handleRowClick}
           onAddDebt={handleAddDebt}
           onRecordPayment={handleRecordPayment}
           onEdit={handleEdit}
@@ -221,15 +229,32 @@ export default function CustomersPage() {
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {sortedCustomers.map((customer) => (
-            <CustomerCard key={customer.id} customer={customer} locale={locale} />
+            <CustomerCard
+              key={customer.id}
+              customer={customer}
+              locale={locale}
+              onClick={() => handleRowClick(customer)}
+            />
           ))}
         </div>
       )}
 
+      {/* Add Customer Modal */}
       <AddCustomerModal
-        open={modalOpen}
-        onOpenChange={setModalOpen}
+        open={addModalOpen}
+        onOpenChange={setAddModalOpen}
         onSave={createCustomer}
+      />
+
+      {/* Customer Details Modal */}
+      <CustomerDetailsModal
+        customerId={selectedCustomerId}
+        open={detailsModalOpen}
+        onOpenChange={setDetailsModalOpen}
+        onAddDebt={handleAddDebt}
+        onRecordPayment={handleRecordPayment}
+        onEdit={handleEdit}
+        locale={locale}
       />
     </div>
   );

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import {
   Table,
   TableBody,
@@ -33,6 +32,7 @@ const localeMap: Record<string, Locale> = { en: enUS, tr, es, id, hi, ar };
 interface CustomerTableProps {
   customers: Customer[];
   locale?: string;
+  onRowClick?: (customer: Customer) => void;
   onAddDebt?: (customer: Customer) => void;
   onRecordPayment?: (customer: Customer) => void;
   onEdit?: (customer: Customer) => void;
@@ -46,6 +46,7 @@ interface CustomerTableProps {
 export function CustomerTable({
   customers,
   locale = 'en',
+  onRowClick,
   onAddDebt,
   onRecordPayment,
   onEdit,
@@ -131,7 +132,7 @@ export function CustomerTable({
             <TableRow
               key={customer.id}
               className="cursor-pointer group"
-              onClick={() => window.location.href = `/${locale}/app/customers/${customer.id}`}
+              onClick={() => onRowClick?.(customer)}
             >
               <TableCell>
                 <div className="flex items-center gap-3">
