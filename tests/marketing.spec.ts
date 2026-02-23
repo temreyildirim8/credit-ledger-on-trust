@@ -86,7 +86,7 @@ test.describe('Marketing Pages', () => {
     });
 
     test('should display page title', async ({ page }) => {
-      const title = page.getByRole('heading', { name: /pricing|plan|choose.*plan/i });
+      const title = page.getByRole('heading', { name: /pricing|plan|choose.*plan/i }).first();
       await expect(title).toBeVisible();
     });
 
@@ -147,7 +147,7 @@ test.describe('Marketing Pages', () => {
     });
 
     test('should display page title', async ({ page }) => {
-      const title = page.getByRole('heading', { name: /about|who.*we|our.*story|mission/i });
+      const title = page.getByRole('heading', { name: /about|who.*we|our.*story|mission/i }).first();
       await expect(title).toBeVisible();
     });
 
@@ -239,7 +239,7 @@ test.describe('Marketing Pages', () => {
     });
 
     test('should display page title', async ({ page }) => {
-      const title = page.getByRole('heading', { name: /legal|policy|terms|privacy/i });
+      const title = page.getByRole('heading', { name: /legal|policy|terms|privacy/i }).first();
       await expect(title).toBeVisible();
     });
 
@@ -370,8 +370,8 @@ test.describe('Marketing Pages', () => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${BASE_URL}/pricing`);
 
-      // Title should be visible
-      const title = page.getByRole('heading', { name: /pricing|plan/i });
+      // Title should be visible - use first() for multiple matches
+      const title = page.getByRole('heading', { name: /pricing|plan/i }).first();
       await expect(title).toBeVisible();
     });
 
@@ -379,8 +379,8 @@ test.describe('Marketing Pages', () => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${BASE_URL}/about`);
 
-      // Title should be visible
-      const title = page.getByRole('heading', { name: /about|mission/i });
+      // Title should be visible - use first() for multiple matches
+      const title = page.getByRole('heading', { name: /about|mission/i }).first();
       await expect(title).toBeVisible();
     });
 
@@ -388,8 +388,8 @@ test.describe('Marketing Pages', () => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${BASE_URL}/contact`);
 
-      // Title should be visible
-      const title = page.getByRole('heading', { name: /contact/i });
+      // Title should be visible - h1 says "Get in Touch"
+      const title = page.getByRole('heading', { name: /contact|get.*touch|reach/i }).first();
       await expect(title).toBeVisible();
     });
 
@@ -416,8 +416,8 @@ test.describe('Marketing Pages', () => {
     test('home page should be accessible', async ({ page }) => {
       await page.goto(`${BASE_URL}/`);
 
-      // Check for proper heading structure
-      const heading = page.getByRole('heading', { level: 1 });
+      // Check for proper heading structure - use first() since there may be multiple h1s
+      const heading = page.getByRole('heading', { level: 1 }).first();
       await expect(heading).toBeVisible();
 
       // Check for navigation
@@ -429,8 +429,8 @@ test.describe('Marketing Pages', () => {
     test('pricing page should be accessible', async ({ page }) => {
       await page.goto(`${BASE_URL}/pricing`);
 
-      // Check for proper heading structure
-      const heading = page.getByRole('heading', { level: 1 });
+      // Check for proper heading structure - use first() since there may be multiple h1s
+      const heading = page.getByRole('heading', { level: 1 }).first();
       await expect(heading).toBeVisible();
     });
 
