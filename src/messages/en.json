@@ -595,9 +595,13 @@
     },
     "export": {
       "title": "Export Data",
+      "description": "Download reports and statements",
       "pdf": "Export PDF Statement",
       "csv": "Export CSV",
-      "customerStatement": "Customer Statement"
+      "customerStatement": "Customer Statement",
+      "noTransactions": "No transactions to export",
+      "success": "Export completed successfully",
+      "error": "Failed to export data"
     },
     "empty": {
       "title": "Not enough data",

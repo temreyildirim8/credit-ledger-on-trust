@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useState, useEffect } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -15,33 +15,171 @@ import {
   Download,
   ArrowRight,
   PieChart,
-  Calendar
+  Calendar,
+  Loader2
 } from 'lucide-react';
 import Link from 'next/link';
+import { toast } from 'sonner';
+import { useAuth } from '@/lib/hooks/useAuth';
+import { useTransactions } from '@/lib/hooks/useTransactions';
+import { userProfilesService, type UserProfile as ServiceUserProfile } from '@/lib/services/user-profiles.service';
+import { generateTransactionsCSV, downloadCSV, generateCSVFilename } from '@/lib/utils/csv-export';
+import type { Transaction } from '@/lib/services/transactions.service';
 
 type TimeFilter = 'today' | 'week' | 'month';
 
 export default function ReportsPage() {
   const t = useTranslations('reports');
+  const locale = useLocale();
+  const { user } = useAuth();
+  const { transactions, loading: transactionsLoading } = useTransactions();
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('month');
+  const [profile, setProfile] = useState<ServiceUserProfile | null>(null);
+  const [profileLoading, setProfileLoading] = useState(true);
+  const [exporting, setExporting] = useState(false);
 
-  // Mock data - in production this would come from Supabase
-  const hasData = false; // Toggle this to see empty state vs data view
+  // Load user profile for business info
+  useEffect(() => {
+    if (!user?.id) return;
 
-  const stats = {
-    totalOwed: 15420.50,
-    collected: 8500.00,
-    newDebts: 4200.00,
-    paymentsReceived: 6800.00,
-    activeCustomers: 12,
-    collectionRate: 68.5
+    const loadProfile = async () => {
+      try {
+        const data = await userProfilesService.getProfile(user.id);
+        setProfile(data);
+      } catch (error) {
+        console.error('Error loading profile:', error);
+      } finally {
+        setProfileLoading(false);
+      }
+    };
+
+    loadProfile();
+  }, [user?.id]);
+
+  // Filter transactions by time period
+  const getFilteredTransactions = (): Transaction[] => {
+    const now = new Date();
+    const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const startOfWeek = new Date(startOfDay);
+    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+    let startDate: Date;
+    switch (timeFilter) {
+      case 'today':
+        startDate = startOfDay;
+        break;
+      case 'week':
+        startDate = startOfWeek;
+        break;
+      case 'month':
+      default:
+        startDate = startOfMonth;
+        break;
+    }
+
+    return transactions.filter((tx) => {
+      const txDate = new Date(tx.transaction_date || tx.created_at || 0);
+      return txDate >= startDate;
+    });
   };
 
+  const filteredTransactions = getFilteredTransactions();
+
+  // Calculate stats from filtered transactions
+  const calculateStats = () => {
+    let totalOwed = 0;
+    let collected = 0;
+    let newDebts = 0;
+    let paymentsReceived = 0;
+    const uniqueCustomers = new Set<string>();
+
+    for (const tx of filteredTransactions) {
+      uniqueCustomers.add(tx.customer_id);
+      if (tx.type === 'debt') {
+        totalOwed += tx.amount;
+        newDebts += tx.amount;
+      } else {
+        totalOwed -= tx.amount;
+        collected += tx.amount;
+        paymentsReceived += tx.amount;
+      }
+    }
+
+    const collectionRate = newDebts > 0 ? (paymentsReceived / newDebts) * 100 : 0;
+
+    return {
+      totalOwed: Math.max(0, totalOwed),
+      collected,
+      newDebts,
+      paymentsReceived,
+      activeCustomers: uniqueCustomers.size,
+      collectionRate: Math.min(100, collectionRate)
+    };
+  };
+
+  const stats = calculateStats();
+  const hasData = transactions.length > 0;
+  const currency = profile?.currency || 'USD';
+
   const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('en-US', {
+    const currencyLocaleMap: Record<string, string> = {
+      TRY: 'tr-TR',
+      USD: 'en-US',
+      EUR: 'de-DE',
+      GBP: 'en-GB',
+      IDR: 'id-ID',
+      NGN: 'en-NG',
+      EGP: 'ar-EG',
+      ZAR: 'en-ZA',
+      INR: 'en-IN',
+    };
+    const localeCode = currencyLocaleMap[currency] || 'en-US';
+    return new Intl.NumberFormat(localeCode, {
       style: 'currency',
-      currency: 'USD',
+      currency: currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
     }).format(value);
+  };
+
+  // Handle CSV export
+  const handleExportCSV = async () => {
+    if (filteredTransactions.length === 0) {
+      toast.warning('No transactions to export');
+      return;
+    }
+
+    setExporting(true);
+    try {
+      const csvContent = generateTransactionsCSV({
+        transactions: filteredTransactions,
+        businessName: profile?.shop_name || undefined,
+        currency: currency,
+        locale: locale,
+        dateRange: {
+          start: timeFilter === 'today' ? new Date().toISOString().split('T')[0] :
+                 timeFilter === 'week' ? new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] :
+                 new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0],
+          end: new Date().toISOString().split('T')[0],
+        },
+      });
+
+      const filename = generateCSVFilename('all', undefined, {
+        start: timeFilter === 'today' ? new Date().toISOString().split('T')[0] :
+               timeFilter === 'week' ? new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] :
+               new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0],
+        end: new Date().toISOString().split('T')[0],
+      });
+
+      downloadCSV(csvContent, filename);
+      toast.success('CSV exported successfully');
+    } catch (error) {
+      console.error('Error exporting CSV:', error);
+      toast.error('Failed to export CSV');
+    } finally {
+      setExporting(false);
+    }
   };
 
   if (!hasData) {
@@ -225,7 +363,7 @@ export default function ReportsPage() {
               {t('export.title')}
             </CardTitle>
             <CardDescription>
-              Download reports and statements
+              {t('export.description') || 'Download reports and statements'}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -233,8 +371,17 @@ export default function ReportsPage() {
               <Download className="mr-2 h-4 w-4" />
               {t('export.pdf')}
             </Button>
-            <Button variant="outline" className="w-full justify-start" disabled>
-              <Download className="mr-2 h-4 w-4" />
+            <Button
+              variant="outline"
+              className="w-full justify-start"
+              onClick={handleExportCSV}
+              disabled={exporting || filteredTransactions.length === 0}
+            >
+              {exporting ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <Download className="mr-2 h-4 w-4" />
+              )}
               {t('export.csv')}
             </Button>
             <Button variant="outline" className="w-full justify-start" disabled>
