@@ -307,7 +307,11 @@
       "transactionHistory": "İşlem Geçmişi",
       "noTransactions": "Henüz işlem yok",
       "debt": "Borç",
-      "payment": "Ödeme"
+      "payment": "Ödeme",
+      "downloadPDF": "Hesap Özeti İndir (PDF)",
+      "generatingPDF": "PDF Oluşturuluyor...",
+      "pdfDownloaded": "PDF hesap özeti indirildi",
+      "pdfError": "PDF oluşturulamadı"
     },
     "success": "Müşteri başarıyla eklendi",
     "error": "Müşteri eklenemedi"

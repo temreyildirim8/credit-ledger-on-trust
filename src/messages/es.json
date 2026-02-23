@@ -264,7 +264,11 @@
       "transactionHistory": "Historial de Transacciones",
       "noTransactions": "Aún no hay transacciones",
       "debt": "Deuda",
-      "payment": "Pago"
+      "payment": "Pago",
+      "downloadPDF": "Descargar Estado de Cuenta (PDF)",
+      "generatingPDF": "Generando PDF...",
+      "pdfDownloaded": "PDF del estado de cuenta descargado",
+      "pdfError": "Error al generar el PDF"
     },
     "success": "Cliente agregado con éxito",
     "error": "Error al agregar cliente"

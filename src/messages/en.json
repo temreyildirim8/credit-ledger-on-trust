@@ -278,7 +278,11 @@
       "transactionHistory": "Transaction History",
       "noTransactions": "No transactions yet",
       "debt": "Debt",
-      "payment": "Payment"
+      "payment": "Payment",
+      "downloadPDF": "Download Statement (PDF)",
+      "generatingPDF": "Generating PDF...",
+      "pdfDownloaded": "PDF statement downloaded",
+      "pdfError": "Failed to generate PDF"
     },
     "success": "Customer added successfully",
     "error": "Failed to add customer"

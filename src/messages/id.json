@@ -264,7 +264,11 @@
       "transactionHistory": "Riwayat Transaksi",
       "noTransactions": "Belum ada transaksi",
       "debt": "Hutang",
-      "payment": "Pembayaran"
+      "payment": "Pembayaran",
+      "downloadPDF": "Unduh Laporan Rekening (PDF)",
+      "generatingPDF": "Membuat PDF...",
+      "pdfDownloaded": "PDF laporan rekening telah diunduh",
+      "pdfError": "Gagal membuat PDF"
     },
     "success": "Pelanggan berhasil ditambahkan",
     "error": "Gagal menambahkan pelanggan"

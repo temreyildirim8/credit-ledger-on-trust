@@ -20,8 +20,10 @@ import {
   Loader2,
   TrendingUp,
   TrendingDown,
+  FileText,
 } from 'lucide-react';
 import { Customer, customersService } from '@/lib/services/customers.service';
+import { userProfilesService } from '@/lib/services/user-profiles.service';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatDistanceToNow } from 'date-fns';
 import { tr, enUS, es, id, hi, ar } from 'date-fns/locale';
@@ -29,6 +31,8 @@ import type { Locale } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/lib/hooks/useAuth';
+import { generateCustomerStatementPDF, downloadPDF } from '@/lib/utils/pdf-statement';
+import { toast } from 'sonner';
 
 // Locale map for date-fns
 const localeMap: Record<string, Locale> = { en: enUS, tr, es, id, hi, ar };
@@ -68,6 +72,8 @@ export function CustomerDetailsModal({
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
+  const [generatingPDF, setGeneratingPDF] = useState(false);
+  const [userCurrency, setUserCurrency] = useState<string>('TRY');
 
   useEffect(() => {
     if (!user?.id || !customerId || !open) return;
@@ -75,12 +81,16 @@ export function CustomerDetailsModal({
     const loadData = async () => {
       setLoading(true);
       try {
-        const [customerData, transactionsData] = await Promise.all([
+        const [customerData, transactionsData, userProfile] = await Promise.all([
           customersService.getCustomerById(user.id, customerId),
           customersService.getCustomerTransactions(user.id, customerId),
+          userProfilesService.getProfile(user.id),
         ]);
         setCustomer(customerData);
         setTransactions(transactionsData);
+        if (userProfile?.currency) {
+          setUserCurrency(userProfile.currency);
+        }
       } catch (error) {
         console.error('Error loading customer:', error);
       } finally {
@@ -99,6 +109,37 @@ export function CustomerDetailsModal({
       addSuffix: true,
       locale: dateLocale,
     });
+  };
+
+  const handleDownloadPDF = async () => {
+    if (!customer) return;
+
+    setGeneratingPDF(true);
+    try {
+      const pdfBytes = await generateCustomerStatementPDF({
+        customer,
+        transactions,
+        businessInfo: {
+          name: user?.user_metadata?.full_name || 'My Business',
+          currency: userCurrency,
+          language: locale,
+        },
+        locale,
+      });
+
+      // Generate filename with customer name and date
+      const dateStr = new Date().toISOString().split('T')[0];
+      const sanitizedName = customer.name.replace(/[^a-zA-Z0-9]/g, '_');
+      const filename = `statement_${sanitizedName}_${dateStr}.pdf`;
+
+      downloadPDF(pdfBytes, filename);
+      toast.success(t('details.pdfDownloaded'));
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      toast.error(t('details.pdfError'));
+    } finally {
+      setGeneratingPDF(false);
+    }
   };
 
   return (
@@ -188,6 +229,21 @@ export function CustomerDetailsModal({
                   Record Payment
                 </Button>
               </div>
+
+              {/* PDF Statement Button */}
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={handleDownloadPDF}
+                disabled={generatingPDF}
+              >
+                {generatingPDF ? (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <FileText className="h-4 w-4 mr-2" />
+                )}
+                {generatingPDF ? t('details.generatingPDF') : t('details.downloadPDF')}
+              </Button>
 
               {/* Contact Info */}
               {(customer.phone || customer.address) && (

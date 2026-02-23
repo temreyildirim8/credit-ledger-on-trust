@@ -264,7 +264,11 @@
       "transactionHistory": "लेनदेन इतिहास",
       "noTransactions": "अभी तक कोई लेनदेन नहीं",
       "debt": "ऋण",
-      "payment": "भुगतान"
+      "payment": "भुगतान",
+      "downloadPDF": "खाता विवरण डाउनलोड करें (PDF)",
+      "generatingPDF": "PDF बना रहा है...",
+      "pdfDownloaded": "PDF खाता विवरण डाउनलोड हो गया",
+      "pdfError": "PDF बनाने में विफल"
     },
     "success": "ग्राहक सफलतापूर्वक जोड़ा गया",
     "error": "ग्राहक जोड़ने में विफल"

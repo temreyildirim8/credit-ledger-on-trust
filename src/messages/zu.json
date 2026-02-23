@@ -264,7 +264,11 @@
       "transactionHistory": "Umlando Wezento",
       "noTransactions": "Awukho ukuthengiselana ukuphela",
       "debt": "Ikredithi",
-      "payment": "Ukukhokha"
+      "payment": "Ukukhokha",
+      "downloadPDF": "Landa Isitatimende (PDF)",
+      "generatingPDF": "Idala i-PDF...",
+      "pdfDownloaded": "I-PDF yesitatimende ilandiwe",
+      "pdfError": "Ihlulekile ukudala i-PDF"
     },
     "success": "Umthengi yengezwekahle",
     "error": "Yehlula ukwengeza umthengi"

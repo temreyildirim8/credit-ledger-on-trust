@@ -264,7 +264,11 @@
       "transactionHistory": "سجل المعاملات",
       "noTransactions": "لا توجد معاملات بعد",
       "debt": "دين",
-      "payment": "دفع"
+      "payment": "دفع",
+      "downloadPDF": "تحميل كشف الحساب (PDF)",
+      "generatingPDF": "جاري إنشاء PDF...",
+      "pdfDownloaded": "تم تحميل كشف الحساب PDF",
+      "pdfError": "فشل في إنشاء PDF"
     },
     "success": "تمت إضافة العميل بنجاح",
     "error": "فشل إضافة العميل"
