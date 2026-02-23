@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { useCustomers } from '@/lib/hooks/useCustomers';
 import { useTransactions } from '@/lib/hooks/useTransactions';
 import { CustomerTable } from '@/components/customers/CustomerTable';
 import { CustomerCard } from '@/components/customers/CustomerCard';
 import { CustomerDetailsModal } from '@/components/customers/CustomerDetailsModal';
 import { AddCustomerModal } from '@/components/customers/AddCustomerModal';
+import { DestructiveActionModal } from '@/components/customers/DestructiveActionModal';
 import { AddTransactionModal } from '@/components/transactions/AddTransactionModal';
 import { Button } from '@/components/ui/button';
 import { Plus, Search, Loader2, LayoutGrid, List } from 'lucide-react';
@@ -14,16 +15,20 @@ import { Input } from '@/components/ui/input';
 import { usePathname } from '@/routing';
 import { useTranslations } from 'next-intl';
 import { Customer } from '@/lib/services/customers.service';
+import { toast } from 'sonner';
 
 export default function CustomersPage() {
-  const { customers, loading, createCustomer, refreshCustomers } = useCustomers();
+  const { customers, loading, createCustomer, refreshCustomers, archiveCustomer, deleteCustomer } = useCustomers();
   const { createTransaction } = useTransactions();
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [transactionModalOpen, setTransactionModalOpen] = useState(false);
+  const [destructiveModalOpen, setDestructiveModalOpen] = useState(false);
   const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(null);
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
   const [transactionType, setTransactionType] = useState<'debt' | 'payment'>('debt');
+  const [destructiveActionType, setDestructiveActionType] = useState<'archive' | 'delete'>('archive');
+  const [destructiveLoading, setDestructiveLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'hasDebt' | 'paidUp'>('all');
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('table');
@@ -116,13 +121,34 @@ export default function CustomersPage() {
   };
 
   const handleArchive = (customer: Customer) => {
-    // TODO: Implement archive customer (soft delete)
-    console.log('Archive customer:', customer.name);
+    setSelectedCustomer(customer);
+    setDestructiveActionType('archive');
+    setDestructiveModalOpen(true);
   };
 
   const handleDelete = (customer: Customer) => {
-    // TODO: Implement delete customer (hard delete)
-    console.log('Delete customer:', customer.name);
+    setSelectedCustomer(customer);
+    setDestructiveActionType('delete');
+    setDestructiveModalOpen(true);
+  };
+
+  const handleDestructiveConfirm = async () => {
+    if (!selectedCustomer) return;
+    setDestructiveLoading(true);
+    try {
+      if (destructiveActionType === 'archive') {
+        await archiveCustomer(selectedCustomer.id);
+        toast.success(`${selectedCustomer.name} has been archived`);
+      } else {
+        await deleteCustomer(selectedCustomer.id);
+        toast.success(`${selectedCustomer.name} has been deleted`);
+      }
+    } catch (error) {
+      toast.error(`Failed to ${destructiveActionType} customer`);
+      console.error(`Error ${destructiveActionType}ing customer:`, error);
+    } finally {
+      setDestructiveLoading(false);
+    }
   };
 
   return (
@@ -283,6 +309,16 @@ export default function CustomersPage() {
         onSave={handleTransactionSave}
         preselectedCustomerId={selectedCustomer?.id}
         preselectedType={transactionType}
+      />
+
+      {/* Destructive Action Modal (Archive/Delete) */}
+      <DestructiveActionModal
+        open={destructiveModalOpen}
+        onOpenChange={setDestructiveModalOpen}
+        customerName={selectedCustomer?.name || ''}
+        onConfirm={handleDestructiveConfirm}
+        actionType={destructiveActionType}
+        loading={destructiveLoading}
       />
     </div>
   );

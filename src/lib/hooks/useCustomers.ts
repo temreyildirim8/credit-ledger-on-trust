@@ -43,5 +43,15 @@ export function useCustomers() {
     loadCustomers();
   }, [loadCustomers]);
 
-  return { customers, loading, createCustomer, refreshCustomers };
+  const archiveCustomer = async (customerId: string) => {
+    await customersService.archiveCustomer(customerId);
+    setCustomers(customers.filter(c => c.id !== customerId));
+  };
+
+  const deleteCustomer = async (customerId: string) => {
+    await customersService.deleteCustomer(customerId);
+    setCustomers(customers.filter(c => c.id !== customerId));
+  };
+
+  return { customers, loading, createCustomer, refreshCustomers, archiveCustomer, deleteCustomer };
 }

@@ -109,4 +109,31 @@ export const customersService = {
 
     return data || [];
   },
+
+  async archiveCustomer(customerId: string): Promise<void> {
+    const { error } = await supabase
+      .from('customers')
+      .update({ is_deleted: true })
+      .eq('id', customerId);
+
+    if (error) throw error;
+  },
+
+  async deleteCustomer(customerId: string): Promise<void> {
+    // First delete all transactions for this customer
+    const { error: transactionsError } = await supabase
+      .from('transactions')
+      .delete()
+      .eq('customer_id', customerId);
+
+    if (transactionsError) throw transactionsError;
+
+    // Then delete the customer
+    const { error } = await supabase
+      .from('customers')
+      .delete()
+      .eq('id', customerId);
+
+    if (error) throw error;
+  },
 };
