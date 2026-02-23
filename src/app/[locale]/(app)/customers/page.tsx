@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useCustomers } from '@/lib/hooks/useCustomers';
+import { useTransactions } from '@/lib/hooks/useTransactions';
 import { CustomerTable } from '@/components/customers/CustomerTable';
 import { CustomerCard } from '@/components/customers/CustomerCard';
 import { CustomerDetailsModal } from '@/components/customers/CustomerDetailsModal';
 import { AddCustomerModal } from '@/components/customers/AddCustomerModal';
+import { AddTransactionModal } from '@/components/transactions/AddTransactionModal';
 import { Button } from '@/components/ui/button';
 import { Plus, Search, Loader2, LayoutGrid, List } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -14,10 +16,14 @@ import { useTranslations } from 'next-intl';
 import { Customer } from '@/lib/services/customers.service';
 
 export default function CustomersPage() {
-  const { customers, loading, createCustomer } = useCustomers();
+  const { customers, loading, createCustomer, refreshCustomers } = useCustomers();
+  const { createTransaction } = useTransactions();
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
+  const [transactionModalOpen, setTransactionModalOpen] = useState(false);
   const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(null);
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
+  const [transactionType, setTransactionType] = useState<'debt' | 'payment'>('debt');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'hasDebt' | 'paidUp'>('all');
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('table');
@@ -82,13 +88,26 @@ export default function CustomersPage() {
   };
 
   const handleAddDebt = (customer: Customer) => {
-    // TODO: Implement add debt modal
-    console.log('Add debt for:', customer.name);
+    setSelectedCustomer(customer);
+    setTransactionType('debt');
+    setTransactionModalOpen(true);
   };
 
   const handleRecordPayment = (customer: Customer) => {
-    // TODO: Implement record payment modal
-    console.log('Record payment for:', customer.name);
+    setSelectedCustomer(customer);
+    setTransactionType('payment');
+    setTransactionModalOpen(true);
+  };
+
+  const handleTransactionSave = async (transaction: {
+    customerId: string;
+    type: 'debt' | 'payment';
+    amount: number;
+    note?: string;
+  }) => {
+    await createTransaction(transaction);
+    // Refresh customer list to update balances
+    refreshCustomers();
   };
 
   const handleEdit = (customer: Customer) => {
@@ -255,6 +274,15 @@ export default function CustomersPage() {
         onRecordPayment={handleRecordPayment}
         onEdit={handleEdit}
         locale={locale}
+      />
+
+      {/* Add Transaction Modal */}
+      <AddTransactionModal
+        open={transactionModalOpen}
+        onOpenChange={setTransactionModalOpen}
+        onSave={handleTransactionSave}
+        preselectedCustomerId={selectedCustomer?.id}
+        preselectedType={transactionType}
       />
     </div>
   );

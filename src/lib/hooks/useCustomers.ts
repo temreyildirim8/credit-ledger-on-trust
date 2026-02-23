@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from './useAuth';
 import { customersService, Customer } from '@/lib/services/customers.service';
 
@@ -9,23 +9,22 @@ export function useCustomers() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const loadCustomers = useCallback(async () => {
     if (!user?.id) return;
-
-    const loadCustomers = async () => {
-      setLoading(true);
-      try {
-        const data = await customersService.getCustomers(user.id);
-        setCustomers(data);
-      } catch (error) {
-        console.error('Error loading customers:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadCustomers();
+    setLoading(true);
+    try {
+      const data = await customersService.getCustomers(user.id);
+      setCustomers(data);
+    } catch (error) {
+      console.error('Error loading customers:', error);
+    } finally {
+      setLoading(false);
+    }
   }, [user?.id]);
+
+  useEffect(() => {
+    loadCustomers();
+  }, [loadCustomers]);
 
   const createCustomer = async (customer: {
     name: string;
@@ -40,5 +39,9 @@ export function useCustomers() {
     return newCustomer;
   };
 
-  return { customers, loading, createCustomer };
+  const refreshCustomers = useCallback(() => {
+    loadCustomers();
+  }, [loadCustomers]);
+
+  return { customers, loading, createCustomer, refreshCustomers };
 }

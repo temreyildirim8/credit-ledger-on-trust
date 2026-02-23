@@ -22,6 +22,8 @@ interface AddTransactionModalProps {
     amount: number;
     note?: string;
   }) => Promise<unknown>;
+  preselectedCustomerId?: string;
+  preselectedType?: 'debt' | 'payment';
 }
 
 interface Customer {
@@ -29,15 +31,21 @@ interface Customer {
   name: string;
 }
 
-export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransactionModalProps) {
+export function AddTransactionModal({
+  open,
+  onOpenChange,
+  onSave,
+  preselectedCustomerId,
+  preselectedType
+}: AddTransactionModalProps) {
   const { user } = useAuth();
   const t = useTranslations('transactions.form');
   const tCommon = useTranslations('common');
   const tTransactions = useTranslations('transactions');
 
   const [customers, setCustomers] = useState<Customer[]>([]);
-  const [type, setType] = useState<'debt' | 'payment'>('debt');
-  const [customerId, setCustomerId] = useState('');
+  const [type, setType] = useState<'debt' | 'payment'>(preselectedType || 'debt');
+  const [customerId, setCustomerId] = useState(preselectedCustomerId || '');
   const [amount, setAmount] = useState('');
   const [note, setNote] = useState('');
   const [loading, setLoading] = useState(false);
@@ -60,6 +68,14 @@ export function AddTransactionModal({ open, onOpenChange, onSave }: AddTransacti
 
     loadCustomers();
   }, [open, user?.id]);
+
+  // Set preselected values when modal opens
+  useEffect(() => {
+    if (open) {
+      if (preselectedType) setType(preselectedType);
+      if (preselectedCustomerId) setCustomerId(preselectedCustomerId);
+    }
+  }, [open, preselectedType, preselectedCustomerId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
