@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Manrope, Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing, type Locale } from "@/routing";
@@ -10,8 +10,9 @@ import { PWAProvider } from "@/components/pwa/PWAProvider";
 import { AuthProviderWrapper } from "@/components/auth/AuthProviderWrapper";
 import "../globals.css";
 
-// Global Ledger font pairing - Plus Jakarta Sans for display, Inter for body/numbers
-const plusJakarta = Plus_Jakarta_Sans({
+// Global Ledger font pairing - Manrope for display/headings, Inter for body/numbers
+// Figma spec: Manrope for display, Inter for body text
+const manrope = Manrope({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700", "800"],
@@ -150,7 +151,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       data-scroll-behavior="smooth"
     >
       <body
-        className={`${plusJakarta.variable} ${inter.variable} antialiased`}
+        className={`${manrope.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider defaultTheme="dark" storageKey="credit-ledger-theme">
