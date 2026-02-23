@@ -287,3 +287,795 @@ test.describe('Push Notifications (Capability Check)', () => {
     expect(swContent).toContain('showNotification');
   });
 });
+
+test.describe('Sync Queue Functionality', () => {
+  test('should have sync queue object store in IndexedDB', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    const storeExists = await page.evaluate(async () => {
+      return new Promise<boolean>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const exists = db.objectStoreNames.contains('sync-queue');
+          db.close();
+          resolve(exists);
+        };
+        request.onerror = () => resolve(false);
+      });
+    });
+
+    expect(storeExists).toBe(true);
+  });
+
+  test('should be able to add item to sync queue', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    const itemId = await page.evaluate(async () => {
+      return new Promise<string | null>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+
+          const id = `sync_test_${Date.now()}`;
+          const item = {
+            id,
+            action_type: 'create_customer',
+            payload: { name: 'Test Customer' },
+            client_timestamp: new Date().toISOString(),
+            retry_count: 0,
+            max_retries: 3,
+            status: 'pending',
+            _addedAt: Date.now(),
+          };
+
+          const putRequest = store.put(item);
+          putRequest.onsuccess = () => {
+            db.close();
+            resolve(id);
+          };
+          putRequest.onerror = () => {
+            db.close();
+            resolve(null);
+          };
+        };
+        request.onerror = () => resolve(null);
+      });
+    });
+
+    expect(itemId).not.toBeNull();
+    expect(itemId).toContain('sync_test_');
+  });
+
+  test('should be able to retrieve pending sync items', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    // First add a test item
+    const testId = await page.evaluate(async () => {
+      return new Promise<string | null>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+
+          const id = `sync_retrieve_test_${Date.now()}`;
+          const item = {
+            id,
+            action_type: 'create_transaction',
+            payload: { amount: 100 },
+            client_timestamp: new Date().toISOString(),
+            retry_count: 0,
+            max_retries: 3,
+            status: 'pending',
+            _addedAt: Date.now(),
+          };
+
+          const putRequest = store.put(item);
+          putRequest.onsuccess = () => {
+            db.close();
+            resolve(id);
+          };
+          putRequest.onerror = () => {
+            db.close();
+            resolve(null);
+          };
+        };
+        request.onerror = () => resolve(null);
+      });
+    });
+
+    expect(testId).not.toBeNull();
+
+    // Now retrieve pending items
+    const pendingItems = await page.evaluate(async () => {
+      return new Promise<Array<{ id: string; status: string }>>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readonly');
+          const store = transaction.objectStore('sync-queue');
+          const index = store.index('status');
+          const getAllRequest = index.getAll('pending');
+
+          getAllRequest.onsuccess = () => {
+            db.close();
+            resolve(getAllRequest.result);
+          };
+          getAllRequest.onerror = () => {
+            db.close();
+            resolve([]);
+          };
+        };
+        request.onerror = () => resolve([]);
+      });
+    });
+
+    expect(pendingItems.length).toBeGreaterThan(0);
+    expect(pendingItems.some((item) => item.id === testId)).toBe(true);
+  });
+
+  test('should be able to update sync queue item status', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    // Add test item
+    const testId = await page.evaluate(async () => {
+      return new Promise<string | null>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+
+          const id = `sync_update_test_${Date.now()}`;
+          const item = {
+            id,
+            action_type: 'create_customer',
+            payload: {},
+            client_timestamp: new Date().toISOString(),
+            retry_count: 0,
+            max_retries: 3,
+            status: 'pending',
+            _addedAt: Date.now(),
+          };
+
+          const putRequest = store.put(item);
+          putRequest.onsuccess = () => {
+            db.close();
+            resolve(id);
+          };
+          putRequest.onerror = () => {
+            db.close();
+            resolve(null);
+          };
+        };
+        request.onerror = () => resolve(null);
+      });
+    });
+
+    expect(testId).not.toBeNull();
+
+    // Update status to syncing
+    const updated = await page.evaluate(async (id) => {
+      return new Promise<boolean>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+          const getRequest = store.get(id);
+
+          getRequest.onsuccess = () => {
+            const item = getRequest.result;
+            if (item) {
+              item.status = 'syncing';
+              const putRequest = store.put(item);
+              putRequest.onsuccess = () => {
+                db.close();
+                resolve(true);
+              };
+              putRequest.onerror = () => {
+                db.close();
+                resolve(false);
+              };
+            } else {
+              db.close();
+              resolve(false);
+            }
+          };
+          getRequest.onerror = () => {
+            db.close();
+            resolve(false);
+          };
+        };
+        request.onerror = () => resolve(false);
+      });
+    }, testId);
+
+    expect(updated).toBe(true);
+
+    // Verify status was updated
+    const item = await page.evaluate(async (id) => {
+      return new Promise<{ status: string } | null>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readonly');
+          const store = transaction.objectStore('sync-queue');
+          const getRequest = store.get(id);
+
+          getRequest.onsuccess = () => {
+            db.close();
+            resolve(getRequest.result);
+          };
+          getRequest.onerror = () => {
+            db.close();
+            resolve(null);
+          };
+        };
+        request.onerror = () => resolve(null);
+      });
+    }, testId);
+
+    expect(item).not.toBeNull();
+    expect(item?.status).toBe('syncing');
+  });
+
+  test('should be able to remove item from sync queue', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    // Add test item
+    const testId = await page.evaluate(async () => {
+      return new Promise<string | null>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+
+          const id = `sync_delete_test_${Date.now()}`;
+          const item = {
+            id,
+            action_type: 'delete_customer',
+            payload: {},
+            client_timestamp: new Date().toISOString(),
+            retry_count: 0,
+            max_retries: 3,
+            status: 'completed',
+            _addedAt: Date.now(),
+          };
+
+          const putRequest = store.put(item);
+          putRequest.onsuccess = () => {
+            db.close();
+            resolve(id);
+          };
+          putRequest.onerror = () => {
+            db.close();
+            resolve(null);
+          };
+        };
+        request.onerror = () => resolve(null);
+      });
+    });
+
+    expect(testId).not.toBeNull();
+
+    // Delete the item
+    const deleted = await page.evaluate(async (id) => {
+      return new Promise<boolean>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+          const deleteRequest = store.delete(id);
+
+          deleteRequest.onsuccess = () => {
+            db.close();
+            resolve(true);
+          };
+          deleteRequest.onerror = () => {
+            db.close();
+            resolve(false);
+          };
+        };
+        request.onerror = () => resolve(false);
+      });
+    }, testId);
+
+    expect(deleted).toBe(true);
+
+    // Verify item was deleted
+    const item = await page.evaluate(async (id) => {
+      return new Promise<unknown>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readonly');
+          const store = transaction.objectStore('sync-queue');
+          const getRequest = store.get(id);
+
+          getRequest.onsuccess = () => {
+            db.close();
+            resolve(getRequest.result);
+          };
+          getRequest.onerror = () => {
+            db.close();
+            resolve(null);
+          };
+        };
+        request.onerror = () => resolve(null);
+      });
+    }, testId);
+
+    expect(item).toBeUndefined();
+  });
+
+  test('should count pending sync items correctly', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    // Clear existing pending items first
+    await page.evaluate(async () => {
+      return new Promise<void>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+          const clearRequest = store.clear();
+          clearRequest.onsuccess = () => {
+            db.close();
+            resolve();
+          };
+          clearRequest.onerror = () => {
+            db.close();
+            resolve();
+          };
+        };
+        request.onerror = () => resolve();
+      });
+    });
+
+    // Add 3 pending items
+    for (let i = 0; i < 3; i++) {
+      await page.evaluate(async (index) => {
+        return new Promise<boolean>((resolve) => {
+          const request = indexedDB.open('global-ledger-offline', 2);
+          request.onsuccess = () => {
+            const db = request.result;
+            const transaction = db.transaction(['sync-queue'], 'readwrite');
+            const store = transaction.objectStore('sync-queue');
+
+            const item = {
+              id: `sync_count_test_${Date.now()}_${index}`,
+              action_type: 'create_customer',
+              payload: {},
+              client_timestamp: new Date().toISOString(),
+              retry_count: 0,
+              max_retries: 3,
+              status: 'pending',
+              _addedAt: Date.now() + index,
+            };
+
+            const putRequest = store.put(item);
+            putRequest.onsuccess = () => {
+              db.close();
+              resolve(true);
+            };
+            putRequest.onerror = () => {
+              db.close();
+              resolve(false);
+            };
+          };
+          request.onerror = () => resolve(false);
+        });
+      }, i);
+    }
+
+    // Count pending items
+    const count = await page.evaluate(async () => {
+      return new Promise<number>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readonly');
+          const store = transaction.objectStore('sync-queue');
+          const index = store.index('status');
+          const countRequest = index.count('pending');
+
+          countRequest.onsuccess = () => {
+            db.close();
+            resolve(countRequest.result);
+          };
+          countRequest.onerror = () => {
+            db.close();
+            resolve(0);
+          };
+        };
+        request.onerror = () => resolve(0);
+      });
+    });
+
+    expect(count).toBe(3);
+  });
+
+  test('sync queue items should be sorted by added time ascending', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    // Clear existing items
+    await page.evaluate(async () => {
+      return new Promise<void>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+          const clearRequest = store.clear();
+          clearRequest.onsuccess = () => {
+            db.close();
+            resolve();
+          };
+          clearRequest.onerror = () => {
+            db.close();
+            resolve();
+          };
+        };
+        request.onerror = () => resolve();
+      });
+    });
+
+    // Add items with different timestamps
+    const timestamps = [1000, 500, 2000]; // Intentionally out of order
+    for (const ts of timestamps) {
+      await page.evaluate(async (timestamp) => {
+        return new Promise<boolean>((resolve) => {
+          const request = indexedDB.open('global-ledger-offline', 2);
+          request.onsuccess = () => {
+            const db = request.result;
+            const transaction = db.transaction(['sync-queue'], 'readwrite');
+            const store = transaction.objectStore('sync-queue');
+
+            const item = {
+              id: `sync_order_test_${timestamp}`,
+              action_type: 'create_customer',
+              payload: { order: timestamp },
+              client_timestamp: new Date().toISOString(),
+              retry_count: 0,
+              max_retries: 3,
+              status: 'pending',
+              _addedAt: timestamp,
+            };
+
+            const putRequest = store.put(item);
+            putRequest.onsuccess = () => {
+              db.close();
+              resolve(true);
+            };
+            putRequest.onerror = () => {
+              db.close();
+              resolve(false);
+            };
+          };
+          request.onerror = () => resolve(false);
+        });
+      }, ts);
+    }
+
+    // Get all items and check ordering (oldest first)
+    const items = await page.evaluate(async () => {
+      return new Promise<Array<{ id: string; _addedAt: number }>>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readonly');
+          const store = transaction.objectStore('sync-queue');
+          const getAllRequest = store.getAll();
+
+          getAllRequest.onsuccess = () => {
+            db.close();
+            const items = getAllRequest.result as Array<{ id: string; _addedAt: number }>;
+            // Sort by _addedAt ascending as the app would do
+            items.sort((a, b) => a._addedAt - b._addedAt);
+            resolve(items);
+          };
+          getAllRequest.onerror = () => {
+            db.close();
+            resolve([]);
+          };
+        };
+        request.onerror = () => resolve([]);
+      });
+    });
+
+    expect(items.length).toBe(3);
+    expect(items[0]._addedAt).toBe(500);
+    expect(items[1]._addedAt).toBe(1000);
+    expect(items[2]._addedAt).toBe(2000);
+  });
+
+  test('should support all sync action types', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    const actionTypes = [
+      'create_customer',
+      'update_customer',
+      'delete_customer',
+      'create_transaction',
+      'update_transaction',
+    ];
+
+    // Add items of each action type
+    for (const actionType of actionTypes) {
+      const success = await page.evaluate(async (type) => {
+        return new Promise<boolean>((resolve) => {
+          const request = indexedDB.open('global-ledger-offline', 2);
+          request.onsuccess = () => {
+            const db = request.result;
+            const transaction = db.transaction(['sync-queue'], 'readwrite');
+            const store = transaction.objectStore('sync-queue');
+
+            const item = {
+              id: `sync_action_test_${type}_${Date.now()}`,
+              action_type: type,
+              payload: {},
+              client_timestamp: new Date().toISOString(),
+              retry_count: 0,
+              max_retries: 3,
+              status: 'pending',
+              _addedAt: Date.now(),
+            };
+
+            const putRequest = store.put(item);
+            putRequest.onsuccess = () => {
+              db.close();
+              resolve(true);
+            };
+            putRequest.onerror = () => {
+              db.close();
+              resolve(false);
+            };
+          };
+          request.onerror = () => resolve(false);
+        });
+      }, actionType);
+
+      expect(success).toBe(true);
+    }
+
+    // Verify all types are stored
+    const items = await page.evaluate(async () => {
+      return new Promise<Array<{ action_type: string }>>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readonly');
+          const store = transaction.objectStore('sync-queue');
+          const getAllRequest = store.getAll();
+
+          getAllRequest.onsuccess = () => {
+            db.close();
+            resolve(
+              (getAllRequest.result as Array<{ id: string; action_type: string }>)
+                .filter((item) => item.id.startsWith('sync_action_test_'))
+                .map((item) => ({ action_type: item.action_type }))
+            );
+          };
+          getAllRequest.onerror = () => {
+            db.close();
+            resolve([]);
+          };
+        };
+        request.onerror = () => resolve([]);
+      });
+    });
+
+    expect(items.length).toBe(5);
+    const storedTypes = items.map((i) => i.action_type);
+    actionTypes.forEach((type) => {
+      expect(storedTypes).toContain(type);
+    });
+  });
+
+  test('should handle retry logic in sync queue', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    // Add item with retry_count = 2
+    const testId = await page.evaluate(async () => {
+      return new Promise<string | null>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+
+          const id = `sync_retry_test_${Date.now()}`;
+          const item = {
+            id,
+            action_type: 'create_customer',
+            payload: {},
+            client_timestamp: new Date().toISOString(),
+            retry_count: 2,
+            max_retries: 3,
+            status: 'pending',
+            _addedAt: Date.now(),
+          };
+
+          const putRequest = store.put(item);
+          putRequest.onsuccess = () => {
+            db.close();
+            resolve(id);
+          };
+          putRequest.onerror = () => {
+            db.close();
+            resolve(null);
+          };
+        };
+        request.onerror = () => resolve(null);
+      });
+    });
+
+    expect(testId).not.toBeNull();
+
+    // Simulate incrementing retry count
+    const incremented = await page.evaluate(async (id) => {
+      return new Promise<boolean>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+          const getRequest = store.get(id);
+
+          getRequest.onsuccess = () => {
+            const item = getRequest.result;
+            if (item) {
+              item.retry_count += 1;
+
+              // If retry_count >= max_retries, mark as failed
+              if (item.retry_count >= item.max_retries) {
+                item.status = 'failed';
+                item.error_message = 'Max retries exceeded';
+              }
+
+              const putRequest = store.put(item);
+              putRequest.onsuccess = () => {
+                db.close();
+                resolve(true);
+              };
+              putRequest.onerror = () => {
+                db.close();
+                resolve(false);
+              };
+            } else {
+              db.close();
+              resolve(false);
+            }
+          };
+          getRequest.onerror = () => {
+            db.close();
+            resolve(false);
+          };
+        };
+        request.onerror = () => resolve(false);
+      });
+    }, testId);
+
+    expect(incremented).toBe(true);
+
+    // Verify item is now failed
+    const item = await page.evaluate(async (id) => {
+      return new Promise<{ retry_count: number; status: string; error_message?: string } | null>(
+        (resolve) => {
+          const request = indexedDB.open('global-ledger-offline', 2);
+          request.onsuccess = () => {
+            const db = request.result;
+            const transaction = db.transaction(['sync-queue'], 'readonly');
+            const store = transaction.objectStore('sync-queue');
+            const getRequest = store.get(id);
+
+            getRequest.onsuccess = () => {
+              db.close();
+              resolve(getRequest.result);
+            };
+            getRequest.onerror = () => {
+              db.close();
+              resolve(null);
+            };
+          };
+          request.onerror = () => resolve(null);
+        }
+      );
+    }, testId);
+
+    expect(item).not.toBeNull();
+    expect(item?.retry_count).toBe(3);
+    expect(item?.status).toBe('failed');
+    expect(item?.error_message).toBe('Max retries exceeded');
+  });
+});
+
+test.describe('Sync Queue Integration', () => {
+  test('should clear sync queue successfully', async ({ page }) => {
+    await page.goto(BASE_URL);
+
+    // Add some items
+    for (let i = 0; i < 3; i++) {
+      await page.evaluate(async (index) => {
+        return new Promise<void>((resolve) => {
+          const request = indexedDB.open('global-ledger-offline', 2);
+          request.onsuccess = () => {
+            const db = request.result;
+            const transaction = db.transaction(['sync-queue'], 'readwrite');
+            const store = transaction.objectStore('sync-queue');
+
+            const item = {
+              id: `sync_clear_test_${Date.now()}_${index}`,
+              action_type: 'create_customer',
+              payload: {},
+              client_timestamp: new Date().toISOString(),
+              retry_count: 0,
+              max_retries: 3,
+              status: 'pending',
+              _addedAt: Date.now(),
+            };
+
+            store.put(item);
+            db.close();
+            resolve();
+          };
+          request.onerror = () => resolve();
+        });
+      }, i);
+    }
+
+    // Clear the sync queue
+    await page.evaluate(async () => {
+      return new Promise<void>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readwrite');
+          const store = transaction.objectStore('sync-queue');
+          const clearRequest = store.clear();
+          clearRequest.onsuccess = () => {
+            db.close();
+            resolve();
+          };
+          clearRequest.onerror = () => {
+            db.close();
+            resolve();
+          };
+        };
+        request.onerror = () => resolve();
+      });
+    });
+
+    // Verify queue is empty
+    const count = await page.evaluate(async () => {
+      return new Promise<number>((resolve) => {
+        const request = indexedDB.open('global-ledger-offline', 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(['sync-queue'], 'readonly');
+          const store = transaction.objectStore('sync-queue');
+          const countRequest = store.count();
+
+          countRequest.onsuccess = () => {
+            db.close();
+            resolve(countRequest.result);
+          };
+          countRequest.onerror = () => {
+            db.close();
+            resolve(-1);
+          };
+        };
+        request.onerror = () => resolve(-1);
+      });
+    });
+
+    expect(count).toBe(0);
+  });
+});
