@@ -51,3 +51,6 @@ next-env.d.ts
 docs
 .ralph
 .ralphrcplaywright-report/
+.ralphrc
+test-results/
+playwright-report
