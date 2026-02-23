@@ -2,28 +2,43 @@ import { HeroSection } from "@/components/marketing/HeroSection";
 import { FeaturesSection } from "@/components/marketing/FeaturesSection";
 import { TrustBar } from "@/components/marketing/TrustBar";
 import { Testimonials } from "@/components/marketing/Testimonials";
+import { FAQSection } from "@/components/marketing/FAQSection";
 import { CTASection } from "@/components/marketing/CTASection";
 
 /**
  * Marketing landing page - Global Ledger
- * Complete landing page with hero, features, trust bar, testimonials, and CTA
+ * Complete landing page following the 11 essential elements framework:
+ * 1. URL with keywords (/)
+ * 2. Company Logo (MarketingNavbar in layout)
+ * 3. SEO-Optimized Title (HeroSection)
+ * 4. Primary CTA (HeroSection)
+ * 5. Social Proof (TrustBar)
+ * 6. Images/Videos (HeroSection floating cards)
+ * 7. Core Benefits (FeaturesSection)
+ * 8. Customer Testimonials (Testimonials)
+ * 9. FAQ Section (FAQSection)
+ * 10. Final CTA (CTASection)
+ * 11. Footer (MarketingFooter in layout)
  */
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section */}
+      {/* Element 3-5: Hero Section with Title, CTA, and Social Proof badges */}
       <HeroSection />
 
-      {/* Features Section */}
+      {/* Element 7: Core Benefits/Features */}
       <FeaturesSection />
 
-      {/* Trust Bar */}
+      {/* Element 5: Social Proof Stats */}
       <TrustBar />
 
-      {/* Testimonials */}
+      {/* Element 8: Customer Testimonials */}
       <Testimonials />
 
-      {/* CTA Section */}
+      {/* Element 9: FAQ Section */}
+      <FAQSection />
+
+      {/* Element 10: Final CTA */}
       <CTASection />
     </>
   );

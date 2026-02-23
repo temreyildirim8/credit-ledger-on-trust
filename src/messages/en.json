@@ -716,5 +716,24 @@
         "description": "See your latest transactions and keep track of customer payments and debts."
       }
     }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about Global Ledger",
+    "q1": "Is Global Ledger really free to use?",
+    "a1": "Yes! Global Ledger offers a free forever plan that includes up to 10 customers, unlimited transactions, offline mode, and basic reports. No credit card required to get started.",
+    "q2": "Can I use Global Ledger without internet?",
+    "a2": "Absolutely! Global Ledger is built as a Progressive Web App (PWA) with full offline support. You can add customers, record debts, and track payments even without internet. Your data syncs automatically when you're back online.",
+    "q3": "How does the automatic backup work?",
+    "a3": "Your data is automatically synced to our secure cloud servers whenever you have an internet connection. All data is encrypted using bank-grade AES-256 encryption, so your records are always safe and accessible.",
+    "q4": "What currencies and languages are supported?",
+    "a4": "Global Ledger supports multiple currencies including TRY (Turkish Lira), IDR (Indonesian Rupiah), NGN (Nigerian Naira), EGP (Egyptian Pound), ZAR (South African Rand), and more. The app is available in 7 languages: Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu.",
+    "q5": "How do I send payment reminders to customers?",
+    "a5": "You can send reminders directly through WhatsApp with pre-filled messages. Just open a customer's details and tap the WhatsApp button. Pro users also get automated SMS reminders.",
+    "q6": "Can I export my data?",
+    "a6": "Yes! You can export your customer statements as PDF files and your transaction history as CSV spreadsheets. This feature is available on both free and paid plans.",
+    "stillHaveQuestions": "Still have questions?",
+    "contactSupport": "Contact our support team"
   }
 }
