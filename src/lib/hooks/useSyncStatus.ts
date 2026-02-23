@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "./useAuth";
+import { offlineCache } from "@/lib/pwa/offline-cache";
+import { syncService } from "@/lib/pwa/sync-service";
 
 // Type declaration for Background Sync API (not in standard TypeScript lib)
 interface SyncManager {
@@ -47,45 +48,37 @@ const INITIAL_STATUS: SyncStatus = {
 /**
  * Hook to manage offline sync status
  * - Tracks online/offline state
- * - Monitors sync_queue table for pending items
+ * - Monitors IndexedDB sync queue for pending items
  * - Provides sync trigger functionality
  */
 export function useSyncStatus() {
   const [status, setStatus] = useState<SyncStatus>(INITIAL_STATUS);
   const { user } = useAuth();
-  const supabase = createClient();
 
-  // Fetch pending sync count from database
+  // Fetch pending sync count from IndexedDB
   const fetchPendingCount = useCallback(async () => {
-    if (!user) return;
-
     try {
-      const { count, error } = await supabase
-        .from("sync_queue")
-        .select("*", { count: "exact", head: true })
-        .eq("user_id", user.id)
-        .eq("status", "pending");
-
-      if (error) throw error;
-
+      const count = await offlineCache.getPendingSyncCount();
       setStatus((prev) => ({
         ...prev,
-        pendingCount: count || 0,
+        pendingCount: count,
       }));
     } catch (error) {
       console.error("Failed to fetch sync queue count:", error);
     }
-  }, [user, supabase]);
+  }, []);
 
   // Handle online/offline events
   useEffect(() => {
-    const handleOnline = () => {
+    const handleOnline = async () => {
       setStatus((prev) => ({
         ...prev,
         connectionStatus: "online",
         errorMessage: null,
       }));
+
       // Trigger sync when coming back online
+      await syncService.triggerBackgroundSync();
       fetchPendingCount();
     };
 
@@ -111,37 +104,24 @@ export function useSyncStatus() {
     };
   }, [fetchPendingCount]);
 
-  // Subscribe to sync_queue changes
+  // Subscribe to sync service changes
   useEffect(() => {
-    if (!user) return;
-
-    const channel = supabase
-      .channel("sync-queue-changes")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "sync_queue",
-          filter: `user_id=eq.${user.id}`,
-        },
-        () => {
-          fetchPendingCount();
-        }
-      )
-      .subscribe();
+    const unsubscribe = syncService.subscribe((count) => {
+      setStatus((prev) => ({
+        ...prev,
+        pendingCount: count,
+      }));
+    });
 
     // Initial fetch
     fetchPendingCount();
 
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [user, supabase, fetchPendingCount]);
+    return unsubscribe;
+  }, [fetchPendingCount]);
 
   // Listen for service worker sync messages
   useEffect(() => {
-    const handleServiceWorkerMessage = (event: MessageEvent) => {
+    const handleServiceWorkerMessage = async (event: MessageEvent) => {
       if (event.data?.type === "SYNC_COMPLETE") {
         setStatus((prev) => ({
           ...prev,
@@ -160,6 +140,43 @@ export function useSyncStatus() {
           errorMessage: event.data.error || "Sync failed",
         }));
       }
+
+      // Handle sync trigger from service worker (background sync)
+      if (event.data?.type === "TRIGGER_SYNC") {
+        console.log("[useSyncStatus] Received TRIGGER_SYNC from service worker");
+        setStatus((prev) => ({ ...prev, isSyncing: true, queueStatus: "syncing" }));
+
+        try {
+          const result = await syncService.processSyncQueue();
+
+          if (result.failed > 0) {
+            setStatus((prev) => ({
+              ...prev,
+              queueStatus: "error",
+              isSyncing: false,
+              errorMessage: `${result.failed} items failed to sync`,
+            }));
+          } else {
+            setStatus((prev) => ({
+              ...prev,
+              queueStatus: "idle",
+              isSyncing: false,
+              lastSyncedAt: new Date(event.data.timestamp),
+              pendingCount: 0,
+            }));
+          }
+
+          await fetchPendingCount();
+        } catch (error) {
+          console.error("[useSyncStatus] Sync failed:", error);
+          setStatus((prev) => ({
+            ...prev,
+            queueStatus: "error",
+            isSyncing: false,
+            errorMessage: "Sync failed",
+          }));
+        }
+      }
     };
 
     if ("serviceWorker" in navigator) {
@@ -174,32 +191,33 @@ export function useSyncStatus() {
         );
       };
     }
-  }, []);
+  }, [fetchPendingCount]);
 
   // Trigger manual sync
   const triggerSync = useCallback(async () => {
-    if (!("serviceWorker" in navigator) || !navigator.serviceWorker.controller) {
-      // Fallback: just refresh pending count
-      setStatus((prev) => ({ ...prev, isSyncing: true, queueStatus: "syncing" }));
-      fetchPendingCount();
-      return;
-    }
-
     setStatus((prev) => ({ ...prev, isSyncing: true, queueStatus: "syncing" }));
 
     try {
-      const registration = await navigator.serviceWorker.ready;
-      // Check if Background Sync API is available
-      if (registration.sync) {
-        await registration.sync.register("sync-transactions");
+      const result = await syncService.processSyncQueue();
+
+      if (result.failed > 0) {
+        setStatus((prev) => ({
+          ...prev,
+          queueStatus: "error",
+          isSyncing: false,
+          errorMessage: `${result.failed} items failed to sync`,
+        }));
       } else {
-        // Fallback: post message to service worker
-        navigator.serviceWorker.controller?.postMessage({ type: "TRIGGER_SYNC" });
-        // Simulate sync completion after a short delay
-        setTimeout(() => {
-          fetchPendingCount();
-        }, 1000);
+        setStatus((prev) => ({
+          ...prev,
+          queueStatus: "idle",
+          isSyncing: false,
+          lastSyncedAt: new Date(),
+          pendingCount: 0,
+        }));
       }
+
+      await fetchPendingCount();
     } catch (error) {
       console.error("Failed to trigger sync:", error);
       setStatus((prev) => ({

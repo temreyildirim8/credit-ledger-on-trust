@@ -1,4 +1,4 @@
-const CACHE_NAME = 'global-ledger-v2';
+const CACHE_NAME = 'global-ledger-v3';
 const OFFLINE_URL = '/offline.html';
 
 // Assets to cache immediately on install
@@ -129,21 +129,41 @@ self.addEventListener('sync', (event) => {
   console.log('[SW] Background sync event:', event.tag);
 
   if (event.tag === 'sync-transactions') {
-    event.waitUntil(syncTransactions());
+    event.waitUntil(handleBackgroundSync());
   }
 });
 
-async function syncTransactions() {
-  console.log('[SW] Syncing offline transactions...');
-  // This would communicate with IndexedDB to sync pending transactions
-  // For now, just post a message to the main thread
-  const clients = await self.clients.matchAll();
-  clients.forEach((client) => {
-    client.postMessage({
-      type: 'SYNC_COMPLETE',
-      timestamp: Date.now()
+/**
+ * Handle background sync by notifying the main app to process the sync queue.
+ * The actual sync logic is in the TypeScript sync-service which has access to
+ * IndexedDB and Supabase client.
+ */
+async function handleBackgroundSync() {
+  console.log('[SW] Handling background sync...');
+
+  try {
+    // Notify all clients to process their sync queues
+    const clients = await self.clients.matchAll({ type: 'window' });
+
+    if (clients.length === 0) {
+      console.log('[SW] No active clients to notify');
+      // Schedule a retry for when a client becomes available
+      return;
+    }
+
+    // Send message to all clients to trigger sync
+    clients.forEach((client) => {
+      client.postMessage({
+        type: 'TRIGGER_SYNC',
+        timestamp: Date.now()
+      });
     });
-  });
+
+    console.log('[SW] Notified clients to process sync queue');
+  } catch (error) {
+    console.error('[SW] Background sync error:', error);
+    throw error; // This will cause the sync to be retried
+  }
 }
 
 // Handle push notifications
@@ -200,5 +220,19 @@ self.addEventListener('message', (event) => {
       caches.open(CACHE_NAME)
         .then((cache) => cache.addAll(event.data.urls))
     );
+  }
+
+  // Handle manual sync trigger from main app
+  if (event.data.type === 'TRIGGER_SYNC') {
+    event.waitUntil(handleBackgroundSync());
+  }
+});
+
+// Periodic background sync (if supported)
+self.addEventListener('periodicsync', (event) => {
+  console.log('[SW] Periodic sync event:', event.tag);
+
+  if (event.tag === 'sync-transactions-periodic') {
+    event.waitUntil(handleBackgroundSync());
   }
 });

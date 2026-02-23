@@ -5,6 +5,7 @@ import { Sidebar } from "../sidebar";
 import { BottomNav } from "../bottom-nav";
 import { AppHeader } from "../app-header";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useBackgroundSync } from "@/lib/hooks/useBackgroundSync";
 
 const SIDEBAR_EXPANDED_WIDTH = 240;
 const SIDEBAR_COLLAPSED_WIDTH = 80;
@@ -22,6 +23,9 @@ type AppShellProps = {
  * Sidebar is collapsible: expanded (240px) / collapsed (80px)
  */
 export function AppShell({ children, title, subtitle }: AppShellProps) {
+  // Initialize background sync processor
+  useBackgroundSync();
+
   // Track sidebar collapsed state for content margin
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window === "undefined") return false;
