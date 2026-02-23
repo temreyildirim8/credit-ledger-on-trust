@@ -18,7 +18,53 @@ export default defineConfig({
       name: "setup",
       testMatch: /.*\.setup\.ts/,
     },
-    // Desktop browsers - use authenticated state
+    // Auth tests - run WITHOUT authentication state (for login/signup tests)
+    {
+      name: "chromium-auth",
+      testMatch: /auth\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+        // No storageState - tests run without authentication
+      },
+      dependencies: ["setup"],
+    },
+    {
+      name: "firefox-auth",
+      testMatch: /auth\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Firefox"],
+        // No storageState - tests run without authentication
+      },
+      dependencies: ["setup"],
+    },
+    {
+      name: "webkit-auth",
+      testMatch: /auth\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Safari"],
+        // No storageState - tests run without authentication
+      },
+      dependencies: ["setup"],
+    },
+    {
+      name: "Mobile Chrome-auth",
+      testMatch: /auth\.spec\.ts$/,
+      use: {
+        ...devices["Pixel 5"],
+        // No storageState - tests run without authentication
+      },
+      dependencies: ["setup"],
+    },
+    {
+      name: "Mobile Safari-auth",
+      testMatch: /auth\.spec\.ts$/,
+      use: {
+        ...devices["iPhone 12"],
+        // No storageState - tests run without authentication
+      },
+      dependencies: ["setup"],
+    },
+    // Desktop browsers - use authenticated state (for dashboard, customers, etc.)
     {
       name: "chromium",
       use: {

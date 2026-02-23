@@ -54,3 +54,4 @@ docs
 .ralphrc
 test-results/
 playwright-report
+testsprite_tests

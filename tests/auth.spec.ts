@@ -3,6 +3,9 @@ import { test, expect } from '@playwright/test';
 /**
  * E2E Tests for Global Ledger Authentication
  * Covers login, signup, and protected route redirects
+ *
+ * NOTE: These tests run in separate projects (chromium-auth, firefox-auth, etc.)
+ * that do NOT have authentication state, to properly test login/signup pages.
  */
 
 const TEST_LOCALE = 'en';
