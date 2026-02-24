@@ -106,6 +106,60 @@ export default defineConfig({
       },
       dependencies: ["setup"],
     },
+    // Integration tests - auth flow (runs without auth state)
+    {
+      name: "integration-auth-flow",
+      testMatch: /integration\/auth-flow\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+      dependencies: ["setup"],
+    },
+    {
+      name: "integration-onboarding-flow",
+      testMatch: /integration\/onboarding-flow\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+      dependencies: ["setup"],
+    },
+    // Integration tests - authenticated flows
+    {
+      name: "integration-customer-flow",
+      testMatch: /integration\/customer-flow\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
+    },
+    {
+      name: "integration-transaction-flow",
+      testMatch: /integration\/transaction-flow\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
+    },
+    {
+      name: "integration-offline-sync",
+      testMatch: /integration\/offline-sync-flow\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
+    },
+    {
+      name: "integration-export-flow",
+      testMatch: /integration\/export-flow\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
+    },
   ],
   webServer: {
     command: "npm run dev",
