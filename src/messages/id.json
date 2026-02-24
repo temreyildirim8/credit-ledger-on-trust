@@ -106,7 +106,7 @@
   },
   "home": {
     "meta": {
-      "title": "Global Ledger - Buku Kredit Digital untuk UMKM",
+      "title": "Hutang-Ku - Buku Kredit Digital untuk UMKM",
       "description": "Ganti buku catatan kertas Anda dengan aplikasi buku kredit cerdas, aman, dan selalu tersedia untuk usaha kecil."
     },
     "hero": {
@@ -132,8 +132,8 @@
   },
   "features": {
     "meta": {
-      "title": "Fitur - Global Ledger",
-      "description": "Jelajahi semua fitur canggih aplikasi buku kredit Global Ledger"
+      "title": "Fitur - Hutang-Ku",
+      "description": "Jelajahi semua fitur canggih aplikasi buku kredit Hutang-Ku"
     },
     "title": "Semua yang Anda Butuhkan untuk Mengelola Kredit",
     "subtitle": "Dibuat untuk UMKM, dipercaya oleh pemilik toko di seluruh dunia",
@@ -164,7 +164,7 @@
   },
   "pricing": {
     "meta": {
-      "title": "Harga - Global Ledger",
+      "title": "Harga - Hutang-Ku",
       "description": "Harga terjangkau untuk setiap ukuran bisnis. Mulai gratis, upgrade saat Anda butuhkan."
     },
     "title": "Harga Sederhana & Transparan",
@@ -216,27 +216,27 @@
     },
     "faq": {
       "title": "Pertanyaan yang Sering Diajukan",
-      "q1": "Apakah Global Ledger benar-benar gratis?",
-      "a1": "Ya! Global Ledger menawarkan paket gratis selamanya yang mencakup hingga 50 pelanggan, transaksi tidak terbatas, mode offline, dan laporan dasar. Tidak perlu kartu kredit untuk memulai.",
-      "q2": "Bisakah saya menggunakan Global Ledger tanpa internet?",
-      "a2": "Tentu saja! Global Ledger dibangun sebagai Progressive Web App (PWA) dengan dukungan offline penuh. Anda dapat menambahkan pelanggan, mencatat utang, dan melacak pembayaran bahkan tanpa internet. Data Anda disinkronkan secara otomatis saat Anda kembali online.",
+      "q1": "Apakah Hutang-Ku benar-benar gratis?",
+      "a1": "Ya! Hutang-Ku menawarkan paket gratis selamanya yang mencakup hingga 50 pelanggan, transaksi tidak terbatas, mode offline, dan laporan dasar. Tidak perlu kartu kredit untuk memulai.",
+      "q2": "Bisakah saya menggunakan Hutang-Ku tanpa internet?",
+      "a2": "Tentu saja! Hutang-Ku dibangun sebagai Progressive Web App (PWA) dengan dukungan offline penuh. Anda dapat menambahkan pelanggan, mencatat utang, dan melacak pembayaran bahkan tanpa internet. Data Anda disinkronkan secara otomatis saat Anda kembali online.",
       "q3": "Bagaimana cara kerja cadangan otomatis?",
       "a3": "Data Anda secara otomatis disinkronkan ke server cloud aman kami setiap kali Anda memiliki koneksi internet. Semua data dienkripsi menggunakan enkripsi AES-256 tingkat bank, sehingga catatan Anda selalu aman dan dapat diakses.",
       "q4": "Mata uang dan bahasa apa saja yang didukung?",
-      "a4": "Global Ledger mendukung banyak mata uang termasuk TRY, IDR, NGN, EGP, ZAR, dan lainnya. Aplikasi tersedia dalam 7 bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu."
+      "a4": "Hutang-Ku mendukung banyak mata uang termasuk TRY, IDR, NGN, EGP, ZAR, dan lainnya. Aplikasi tersedia dalam 7 bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu."
     },
     "cta": {
       "title": "Siap untuk Memulai?",
-      "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Global Ledger untuk mengelola kredit pelanggan mereka.",
+      "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Hutang-Ku untuk mengelola kredit pelanggan mereka.",
       "button": "Mulai Gratis Hari Ini"
     }
   },
   "about": {
     "meta": {
-      "title": "Tentang Kami - Global Ledger",
-      "description": "Pelajari lebih lanjut tentang misi Global Ledger untuk mendemokratisasikan manajemen kredit bagi UMKM"
+      "title": "Tentang Kami - Hutang-Ku",
+      "description": "Pelajari lebih lanjut tentang misi Hutang-Ku untuk mendemokratisasikan manajemen kredit bagi UMKM"
     },
-    "title": "Tentang Global Ledger",
+    "title": "Tentang Hutang-Ku",
     "subtitle": "Memberdayakan UMKM di seluruh dunia",
     "intro": "Kami membangun masa depan teknologi keuangan, membuat manajemen kredit dapat diakses dan transparan untuk semua orang.",
     "mission": {
@@ -259,7 +259,7 @@
   },
   "contact": {
     "meta": {
-      "title": "Hubungi Kami - Global Ledger",
+      "title": "Hubungi Kami - Hutang-Ku",
       "description": "Hubungi tim kami untuk dukungan, pertanyaan, atau masukan"
     },
     "title": "Hubungi Kami",
@@ -284,7 +284,7 @@
       },
       "office": {
         "title": "Kantor",
-        "company": "Global Ledger Inc.",
+        "company": "Hutang-Ku Inc.",
         "address": "Istanbul, Turki"
       }
     },
@@ -328,7 +328,7 @@
       "remind": "Ingatkan"
     },
     "empty": {
-      "title": "Selamat Datang di Global Ledger",
+      "title": "Selamat Datang di Hutang-Ku",
       "description": "Mulai melacak kredit pelanggan Anda dengan menambahkan pelanggan pertama Anda. Anda dapat mencatat hutang dan pembayaran untuk melacak siapa yang berhutang kepada Anda.",
       "addCustomer": "Tambahkan Pelanggan Pertama Anda",
       "viewReports": "Lihat Laporan"
@@ -558,7 +558,7 @@
       "signUp": "Daftar",
       "success": "Berhasil masuk",
       "error": "Email atau kata sandi tidak valid",
-      "brandName": "Global Ledger",
+      "brandName": "Hutang-Ku",
       "heroTitle": "Lacak kredit. Bangun kepercayaan.",
       "heroSubtitle": "Cara sederhana untuk mengelola kredit pelanggan untuk bisnis kecil Anda.",
       "feature1Title": "Direktori Pelanggan",
@@ -600,7 +600,7 @@
       "signIn": "Masuk",
       "success": "Akun berhasil dibuat",
       "error": "Gagal membuat akun",
-      "brandName": "Global Ledger",
+      "brandName": "Hutang-Ku",
       "heroTitle": "Mulai lacak kredit hari ini",
       "heroSubtitle": "Gratis selamanya untuk bisnis kecil. Tingkatkan saat Anda berkembang.",
       "benefit1": "Paket gratis: Hingga 10 pelanggan",
@@ -657,7 +657,7 @@
         "success": "Berhasil!",
         "successDescription": "Kata sandi Anda telah berhasil direset. Anda sekarang dapat masuk dengan kata sandi baru Anda."
       },
-      "brandName": "Global Ledger",
+      "brandName": "Hutang-Ku",
       "heroTitle": "Lupa kata sandi?",
       "heroSubtitle": "Jangan khawatir, kami akan membantu Anda meresetnya dengan aman.",
       "feature1Title": "Reset Aman",
@@ -826,15 +826,15 @@
   "faq": {
     "badge": "FAQ",
     "title": "Pertanyaan yang Sering Diajukan",
-    "subtitle": "Semua yang perlu Anda ketahui tentang Global Ledger",
-    "q1": "Apakah Global Ledger benar-benar gratis?",
-    "a1": "Ya! Global Ledger menawarkan rencana gratis selamanya yang mencakup hingga 10 pelanggan, transaksi tidak terbatas, mode offline, dan laporan dasar. Tidak perlu kartu kredit untuk memulai.",
-    "q2": "Bisakah saya menggunakan Global Ledger tanpa internet?",
-    "a2": "Tentu saja! Global Ledger dibangun sebagai Progressive Web App (PWA) dengan dukungan offline penuh. Anda dapat menambahkan pelanggan, mencatat hutang, dan melacak pembayaran bahkan tanpa internet. Data Anda disinkronkan secara otomatis saat Anda kembali online.",
+    "subtitle": "Semua yang perlu Anda ketahui tentang Hutang-Ku",
+    "q1": "Apakah Hutang-Ku benar-benar gratis?",
+    "a1": "Ya! Hutang-Ku menawarkan rencana gratis selamanya yang mencakup hingga 10 pelanggan, transaksi tidak terbatas, mode offline, dan laporan dasar. Tidak perlu kartu kredit untuk memulai.",
+    "q2": "Bisakah saya menggunakan Hutang-Ku tanpa internet?",
+    "a2": "Tentu saja! Hutang-Ku dibangun sebagai Progressive Web App (PWA) dengan dukungan offline penuh. Anda dapat menambahkan pelanggan, mencatat hutang, dan melacak pembayaran bahkan tanpa internet. Data Anda disinkronkan secara otomatis saat Anda kembali online.",
     "q3": "Bagaimana cara kerja cadangan otomatis?",
     "a3": "Data Anda secara otomatis disinkronkan ke server cloud aman kami setiap kali Anda memiliki koneksi internet. Semua data dienkripsi menggunakan enkripsi AES-256 tingkat bank, sehingga catatan Anda selalu aman dan dapat diakses.",
     "q4": "Mata uang dan bahasa apa saja yang didukung?",
-    "a4": "Global Ledger mendukung banyak mata uang termasuk TRY (Lira Turki), IDR (Rupiah Indonesia), NGN (Naira Nigeria), EGP (Pound Mesir), ZAR (Rand Afrika Selatan), dan lainnya. Aplikasi tersedia dalam 7 bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu.",
+    "a4": "Hutang-Ku mendukung banyak mata uang termasuk TRY (Lira Turki), IDR (Rupiah Indonesia), NGN (Naira Nigeria), EGP (Pound Mesir), ZAR (Rand Afrika Selatan), dan lainnya. Aplikasi tersedia dalam 7 bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu.",
     "q5": "Bagaimana cara mengirim pengingat pembayaran kepada pelanggan?",
     "a5": "Anda dapat mengirim pengingat langsung melalui WhatsApp dengan pesan yang sudah diisi. Cukup buka detail pelanggan dan ketuk tombol WhatsApp. Pengguna Pro juga mendapatkan pengingat SMS otomatis.",
     "q6": "Bisakah saya mengekspor data saya?",
@@ -851,7 +851,7 @@
   },
   "metadata": {
     "general": {
-      "title": "Global Ledger - Buku Kredit Digital untuk UMKM",
+      "title": "Hutang-Ku - Buku Kredit Digital untuk UMKM",
       "description": "Ganti buku catatan kertas Anda dengan aplikasi buku kredit cerdas, aman, dan selalu tersedia."
     }
   },
@@ -884,7 +884,7 @@
       },
       "terms": {
         "title": "Ketentuan Layanan",
-        "description": "Syarat dan ketentuan yang mengatur penggunaan Global Ledger Anda"
+        "description": "Syarat dan ketentuan yang mengatur penggunaan Hutang-Ku Anda"
       },
       "cookies": {
         "title": "Kebijakan Cookie",
@@ -912,7 +912,7 @@
     "privacyPage": {
       "title": "Kebijakan Privasi",
       "lastUpdated": "Terakhir Diperbarui: 22 Februari 2026",
-      "intro": "Di Global Ledger, kami menganggap privasi Anda dengan serius. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, mengungkapkan, dan melindungi informasi Anda saat menggunakan layanan kami.",
+      "intro": "Di Hutang-Ku, kami menganggap privasi Anda dengan serius. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, mengungkapkan, dan melindungi informasi Anda saat menggunakan layanan kami.",
       "sections": {
         "collect": {
           "title": "Informasi yang Kami Kumpulkan",
@@ -943,15 +943,15 @@
     "termsPage": {
       "title": "Ketentuan Layanan",
       "lastUpdated": "Terakhir Diperbarui: 22 Februari 2026",
-      "intro": "Selamat datang di Global Ledger. Dengan menggunakan layanan kami, Anda menyetujui ketentuan ini. Harap baca dengan seksama.",
+      "intro": "Selamat datang di Hutang-Ku. Dengan menggunakan layanan kami, Anda menyetujui ketentuan ini. Harap baca dengan seksama.",
       "sections": {
         "acceptance": {
           "title": "Penerimaan Ketentuan",
-          "content": "Dengan mengakses atau menggunakan Global Ledger, Anda setuju untuk terikat oleh Ketentuan Layanan ini dan semua hukum dan peraturan yang berlaku. Jika Anda tidak setuju dengan ketentuan ini, Anda dilarang menggunakan atau mengakses layanan ini."
+          "content": "Dengan mengakses atau menggunakan Hutang-Ku, Anda setuju untuk terikat oleh Ketentuan Layanan ini dan semua hukum dan peraturan yang berlaku. Jika Anda tidak setuju dengan ketentuan ini, Anda dilarang menggunakan atau mengakses layanan ini."
         },
         "description": {
           "title": "Deskripsi Layanan",
-          "content": "Global Ledger menyediakan aplikasi buku kredit digital untuk UMKM untuk melacak hutang dan pembayaran pelanggan. Layanan ini mencakup fungsionalitas offline, cadangan cloud, dan fitur pelaporan."
+          "content": "Hutang-Ku menyediakan aplikasi buku kredit digital untuk UMKM untuk melacak hutang dan pembayaran pelanggan. Layanan ini mencakup fungsionalitas offline, cadangan cloud, dan fitur pelaporan."
         },
         "accounts": {
           "title": "Akun Pengguna",
@@ -959,7 +959,7 @@
         },
         "acceptable": {
           "title": "Penggunaan yang Dapat Diterima",
-          "content": "Anda setuju untuk menggunakan Global Ledger hanya untuk tujuan yang sah. Anda tidak boleh: menggunakan layanan untuk menyimpan atau mengirimkan kode berbahaya, mencoba mendapatkan akses tidak sah ke sistem kami, mengganggu atau mengganggu layanan, atau menggunakan layanan untuk melanggar hukum."
+          "content": "Anda setuju untuk menggunakan Hutang-Ku hanya untuk tujuan yang sah. Anda tidak boleh: menggunakan layanan untuk menyimpan atau mengirimkan kode berbahaya, mencoba mendapatkan akses tidak sah ke sistem kami, mengganggu atau mengganggu layanan, atau menggunakan layanan untuk melanggar hukum."
         },
         "payment": {
           "title": "Ketentuan Pembayaran",
@@ -971,7 +971,7 @@
         },
         "limitation": {
           "title": "Batasan Tanggung Jawab",
-          "content": "Global Ledger tidak bertanggung jawab atas kerusakan tidak langsung, insidental, khusus, konsekuensial, atau hukuman yang diakibatkan oleh penggunaan Anda atau ketidakmampuan Anda menggunakan layanan. Total tanggung jawab kami tidak akan melebihi jumlah yang Anda bayarkan kepada kami dalam 12 bulan sebelum klaim."
+          "content": "Hutang-Ku tidak bertanggung jawab atas kerusakan tidak langsung, insidental, khusus, konsekuensial, atau hukuman yang diakibatkan oleh penggunaan Anda atau ketidakmampuan Anda menggunakan layanan. Total tanggung jawab kami tidak akan melebihi jumlah yang Anda bayarkan kepada kami dalam 12 bulan sebelum klaim."
         },
         "changes": {
           "title": "Perubahan Ketentuan",

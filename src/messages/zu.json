@@ -106,7 +106,7 @@
   },
   "home": {
     "meta": {
-      "title": "Global Ledger - I-Bhuku Lekredithi Edijithali Yama-UMKM",
+      "title": "Mali-X - I-Bhuku Lekredithi Edijithali Yama-UMKM",
       "description": "Sebentisana ibhuku lekhathi lakho ne-app yokuphathwa ikredithi ekhaliphile, ethulelekile, iyatholakala sonke kunezisekelo ezincane."
     },
     "hero": {
@@ -132,8 +132,8 @@
   },
   "features": {
     "meta": {
-      "title": "Izici - Global Ledger",
-      "description": "Hlola izici zonke ezinqande ze-app yokuphathwa ikredithi ye-Global Ledger"
+      "title": "Izici - Mali-X",
+      "description": "Hlola izici zonke ezinqande ze-app yokuphathwa ikredithi ye-Mali-X"
     },
     "title": "Konke Okudingekile Ukuze Uphathe Ikredithi",
     "subtitle": "Kwakhiwe kuma-UMKM, ethembeka ngabanikazi bezitolo emhlabeni jikelele",
@@ -164,7 +164,7 @@
   },
   "pricing": {
     "meta": {
-      "title": "Amanani - Global Ledger",
+      "title": "Amanani - Mali-X",
       "description": "Amanani ahlongozwans kuso sonke isayizi zoshishalo. Qala mahhala, vuselela lapho udinga khona."
     },
     "title": "Amanani Ahlakahle Ahlakaniphile",
@@ -216,27 +216,27 @@
     },
     "faq": {
       "title": "Imibuzo Evame Ukubuzwa",
-      "q1": "Ingabe i-Global Ledger yamahhala ngempela?",
-      "a1": "Yebo! I-Global Ledger inikeza uhlelo lwamahhala phakade oluhlanganisa abathengi abangama-50, ukuthengiselana okungagcini, imodi ye-offline, namabhuloho okuyisisekelo. Awudingi ikhadi lesikweletu ukuqala.",
-      "q2": "Ngingasebenzisa i-Global Ledger ngaphandle kwe-inthanethi?",
-      "a2": "Ngempela! I-Global Ledger yakhiwe njenge-Progressive Web App (PWA) ngenkxaso ephelele ye-offline. Ungafaka abathengi, bhala izikweletu, futhi ulandele izinkokhelo ngisho ngaphandle kwe-inthanethi. Idata yakho i-synchronize ngokuzenzakalelayo uma ubuyela ku-online.",
+      "q1": "Ingabe i-Mali-X yamahhala ngempela?",
+      "a1": "Yebo! I-Mali-X inikeza uhlelo lwamahhala phakade oluhlanganisa abathengi abangama-50, ukuthengiselana okungagcini, imodi ye-offline, namabhuloho okuyisisekelo. Awudingi ikhadi lesikweletu ukuqala.",
+      "q2": "Ngingasebenzisa i-Mali-X ngaphandle kwe-inthanethi?",
+      "a2": "Ngempela! I-Mali-X yakhiwe njenge-Progressive Web App (PWA) ngenkxaso ephelele ye-offline. Ungafaka abathengi, bhala izikweletu, futhi ulandele izinkokhelo ngisho ngaphandle kwe-inthanethi. Idata yakho i-synchronize ngokuzenzakalelayo uma ubuyela ku-online.",
       "q3": "I-backup ezenzakalelayo isebenza kanjani?",
       "a3": "Idata yakho i-synchronize ngokuzenzakalelayo kumaserver ethu we-cloud avikelekile noma nini uma une-connection ye-inthanethi. Idata yonke iyakhodwa kusetshenziswa ukukhoda kwe-AES-256 yesigaba sebanki, ngakho-ke amarekhodi akho ahlala evikelekile futhi atholakala.",
       "q4": "Yiziphi izimali nezilimi ezisekelwayo?",
-      "a4": "I-Global Ledger ixhasa izimali eziningi kufaka phakathi i-TRY, IDR, NGN, EGP, ZAR, nokuningi. I-app itholakala ngezilimi eziyi-7: IsiTurki, IsiHindi, Isi-Indonesian, IsiNgisi, Isi-Arabhu, IsiSpanishi, kanye IsiZulu."
+      "a4": "I-Mali-X ixhasa izimali eziningi kufaka phakathi i-TRY, IDR, NGN, EGP, ZAR, nokuningi. I-app itholakala ngezilimi eziyi-7: IsiTurki, IsiHindi, Isi-Indonesian, IsiNgisi, Isi-Arabhu, IsiSpanishi, kanye IsiZulu."
     },
     "cta": {
       "title": "Ukulungele Ukuqala?",
-      "description": "Joyina izinkampani ezinkulungwane ezisebenzisa i-Global Ledger ukuphatha ikredithi yamakhasimende azo.",
+      "description": "Joyina izinkampani ezinkulungwane ezisebenzisa i-Mali-X ukuphatha ikredithi yamakhasimende azo.",
       "button": "Qala Mahhala Namuhla"
     }
   },
   "about": {
     "meta": {
-      "title": "Nge Thina - Global Ledger",
-      "description": "Funda kabanzi nge mission ka-Global Ledger yokuphatha ukulungisa ikredithi kuma-UMKM"
+      "title": "Nge Thina - Mali-X",
+      "description": "Funda kabanzi nge mission ka-Mali-X yokuphatha ukulungisa ikredithi kuma-UMKM"
     },
-    "title": "Nge Global Ledger",
+    "title": "Nge Mali-X",
     "subtitle": "Ukubonga amakhosi kuma-UMKM emhlabeni jikelele",
     "intro": "Sakha usuku lwobuchwepheshe bemali, siphaza ukuphathwa ikredithi kube lula futhi ivulelekile kuwonke.",
     "mission": {
@@ -259,7 +259,7 @@
   },
   "contact": {
     "meta": {
-      "title": "Thinta Kami - Global Ledger",
+      "title": "Thinta Kami - Mali-X",
       "description": "Thinta iqhembakethu lethu ukuze uthole usizo, imibuzo, noma izinzwakalo"
     },
     "title": "Thinta Kami",
@@ -284,7 +284,7 @@
       },
       "office": {
         "title": "Ihhovisi",
-        "company": "Global Ledger Inc.",
+        "company": "Mali-X Inc.",
         "address": "Istanbul, iTurkey"
       }
     },
@@ -328,7 +328,7 @@
       "remind": "Khumbaza"
     },
     "empty": {
-      "title": "Siyakwamukela Ku-Global Ledger",
+      "title": "Siyakwamukela Ku-Mali-X",
       "description": "Qala ukulandela ikredithi yamakhasimende akho ngokwengeza umakhasimende wakho wokuqala. Ungabhalisa ikredithi nokukhokha ukuze ulande ukuthi ubani okufanele akukhokhe.",
       "addCustomer": "Yengeza Umakhasimende Wakho Wokuqala",
       "viewReports": "Buka Imibiko"
@@ -558,7 +558,7 @@
       "signUp": "Bhalisa",
       "success": "Ukungena okuphumelelile",
       "error": "I-imeyili noma iphasiwedi alungavumelekile",
-      "brandName": "Global Ledger",
+      "brandName": "Mali-X",
       "heroTitle": "Landa ummango. Yakha isithembiso.",
       "heroSubtitle": "Indlela elula yokuphatha ummango wabathengi webhizinisi lakho elincane.",
       "feature1Title": "Uhlu Labathengi",
@@ -600,7 +600,7 @@
       "signIn": "Ngena",
       "success": "I-akhawunti yakhiwe okuphumelelile",
       "error": "Yehlula ukwakha i-akhawunti",
-      "brandName": "Global Ledger",
+      "brandName": "Mali-X",
       "heroTitle": "Qala ukulanda ummango namuhla",
       "heroSubtitle": "Mahhala kuze kube phakade webhizinisi elincane. Khuphula uma ukhula.",
       "benefit1": "Iphulani lamahhala: Kwabathengi abangu-10",
@@ -657,7 +657,7 @@
         "success": "Iphumelela!",
         "successDescription": "Iphasiwedi yakho isethwe kabusha ngempumelelo. Manje unganga nge-phasiwedi yakho entsha."
       },
-      "brandName": "Global Ledger",
+      "brandName": "Mali-X",
       "heroTitle": "Ukhohlwe iphasiwedi?",
       "heroSubtitle": "Ungakhathazeki, sizokusiza uyisethe kabusha ngokuphepha.",
       "feature1Title": "Ukusetha Kabusha Okuphephile",
@@ -826,15 +826,15 @@
   "faq": {
     "badge": "FAQ",
     "title": "Imibuzo Evame Ukubuzwa",
-    "subtitle": "Konke okudingeka ukwazi mayelana ne-Global Ledger",
-    "q1": "Ingabe i-Global Ledger yamahhala ngempela?",
-    "a1": "Yebo! I-Global Ledger inikeza uhlelo lwamahhala kuze kube phakade oluhlanganisa abathengi abangu-10, ukuthengiselana okungakhawulelwanga, imodi ye-Offline, namabhikihli okwamanje. Akukho khadi lekiredithi edingekayo ukuze uqale.",
-    "q2": "Ngingayisebenzisa i-Global Ledger ngaphandle kwe-inthanethi?",
-    "a2": "Kakululekile! I-Global Ledger yakhiwe njenge-Progressive Web App (PWA) enosizo lwangaphandle olugcwele. Ungawengeza amakhasimende, ukurekhoda ikredithi, futhi ulandele ukukhokha ngisho nangaphandle kwe-inthanethi. Idatha yakho ivumelaniswa ngokuzenzakalela uma ubuyela ku-inthanethi.",
+    "subtitle": "Konke okudingeka ukwazi mayelana ne-Mali-X",
+    "q1": "Ingabe i-Mali-X yamahhala ngempela?",
+    "a1": "Yebo! I-Mali-X inikeza uhlelo lwamahhala kuze kube phakade oluhlanganisa abathengi abangu-10, ukuthengiselana okungakhawulelwanga, imodi ye-Offline, namabhikihli okwamanje. Akukho khadi lekiredithi edingekayo ukuze uqale.",
+    "q2": "Ngingayisebenzisa i-Mali-X ngaphandle kwe-inthanethi?",
+    "a2": "Kakululekile! I-Mali-X yakhiwe njenge-Progressive Web App (PWA) enosizo lwangaphandle olugcwele. Ungawengeza amakhasimende, ukurekhoda ikredithi, futhi ulandele ukukhokha ngisho nangaphandle kwe-inthanethi. Idatha yakho ivumelaniswa ngokuzenzakalela uma ubuyela ku-inthanethi.",
     "q3": "I-backup ezenzakalelayo isebenza kanjani?",
     "a3": "Idatha yakho ivumelaniswa ngokuzenzakalela kumaseva ethu aphephile e-cloud nanoma nini uma unoxhumano lwe-inthanethi. Yonke idatha ibhaliswa ngokusebenzisa ukubhalisa kwe-AES-256 komzinga webhange, ngakho-ke amarekhodi akho ahlale ephephile futhi atholakala.",
     "q4": "Yimaphi amasheke namalimi axhaswayo?",
-    "a4": "I-Global Ledger ixhasa izimali eziningi okuhlanganisa i-TRY (Turkish Lira), i-IDR (Indonesian Rupiah), i-NGN (Nigerian Naira), i-EGP (Egyptian Pound), i-ZAR (South African Rand), nokuningi. I-app itholakala ngamalimi ayi-7: Turkish, Hindi, Indonesian, English, Arabic, Spanish, kanye ne-Zulu.",
+    "a4": "I-Mali-X ixhasa izimali eziningi okuhlanganisa i-TRY (Turkish Lira), i-IDR (Indonesian Rupiah), i-NGN (Nigerian Naira), i-EGP (Egyptian Pound), i-ZAR (South African Rand), nokuningi. I-app itholakala ngamalimi ayi-7: Turkish, Hindi, Indonesian, English, Arabic, Spanish, kanye ne-Zulu.",
     "q5": "Ngingathumela kanjani izikhumbuzi zokukhokha kubakhasimende?",
     "a5": "Ungathumela izikhumbuzi ngokuqondile nge-WhatsApp ngemilayezo egcwele. Vula nje imininingwane yomthengi bese uchofoza inkinobho ye-WhatsApp. Abasebenzisi be-Pro bathola futhi izikhumbuzi ze-SMS ezizenzakalelayo.",
     "q6": "Ngingakhipha idatha yami?",
@@ -851,7 +851,7 @@
   },
   "metadata": {
     "general": {
-      "title": "Global Ledger - I-Bhuku Lekredithi Edijithali Yama-UMKM",
+      "title": "Mali-X - I-Bhuku Lekredithi Edijithali Yama-UMKM",
       "description": "Sebentisana ibhuku lekhathi lakho ne-app yokuphathwa ikredithi ekhaliphile, ethulelekile, iyatholakala sonke."
     }
   },
@@ -884,7 +884,7 @@
       },
       "terms": {
         "title": "Izimo Zokusebenza",
-        "description": "Izimo nemigomo elawula ukusebenzisa kwakho i-Global Ledger"
+        "description": "Izimo nemigomo elawula ukusebenzisa kwakho i-Mali-X"
       },
       "cookies": {
         "title": "Inqubomgomo Yamakhuki",
@@ -912,7 +912,7 @@
     "privacyPage": {
       "title": "Inqubomgomo Yobumfihlo",
       "lastUpdated": "Kugciniswe: 22 Febhuwari 2026",
-      "intro": "E-Global Ledger, sithatha ubumfihlo bakho ngokuzwela. Le nqubomgomo yokuvikela incazela indlela esiqoqa, sisebenzise, sixoxe, futhi sivikela ngayo ulwazi lwakho uma usebenzisa insizakalo yethu.",
+      "intro": "E-Mali-X, sithatha ubumfihlo bakho ngokuzwela. Le nqubomgomo yokuvikela incazela indlela esiqoqa, sisebenzise, sixoxe, futhi sivikela ngayo ulwazi lwakho uma usebenzisa insizakalo yethu.",
       "sections": {
         "collect": {
           "title": "Ulwazi Esiluqoqayo",
@@ -943,15 +943,15 @@
     "termsPage": {
       "title": "Izimo Zokusebenza",
       "lastUpdated": "Kugciniswe: 22 Febhuwari 2026",
-      "intro": "Siyakwamukela ku-Global Ledger. Ngokusebenzisa insizakalo yethu, uyavuma lezi zimo. Sicela uzifunde ngokucophelela.",
+      "intro": "Siyakwamukela ku-Mali-X. Ngokusebenzisa insizakalo yethu, uyavuma lezi zimo. Sicela uzifunde ngokucophelela.",
       "sections": {
         "acceptance": {
           "title": "Ukwamukelwa Kwezimo",
-          "content": "Ngokufinyelela noma ukusebenzisa i-Global Ledger, uyavuma ukuba ujabuliswe yilezi Izimo Zokusebenza nawo wonke umthetho nemithethonqubo esebenzayo. Uma ungavumelani nanoma yiziphi kulezi zimo, uvinjelwe ukusebenzisa noma ukufinyelela le nsizakalo."
+          "content": "Ngokufinyelela noma ukusebenzisa i-Mali-X, uyavuma ukuba ujabuliswe yilezi Izimo Zokusebenza nawo wonke umthetho nemithethonqubo esebenzayo. Uma ungavumelani nanoma yiziphi kulezi zimo, uvinjelwe ukusebenzisa noma ukufinyelela le nsizakalo."
         },
         "description": {
           "title": "Incazelo Yensizakalo",
-          "content": "I-Global Ledger inikeza uhlelo lokusebenza lwebhuku lekhredithi yedijithali yama-UMKM ukulandela izikweletu zamakhasimende nezinkokhelo. Insizakalo ihlanganisa ukusebenza kwangaphandle, isipele sewefu, nezici zokubika."
+          "content": "I-Mali-X inikeza uhlelo lokusebenza lwebhuku lekhredithi yedijithali yama-UMKM ukulandela izikweletu zamakhasimende nezinkokhelo. Insizakalo ihlanganisa ukusebenza kwangaphandle, isipele sewefu, nezici zokubika."
         },
         "accounts": {
           "title": "Akhawunti Zomsebenzisi",
@@ -959,7 +959,7 @@
         },
         "acceptable": {
           "title": "Ukusebenzisa Okwamukelekayo",
-          "content": "Uyavuma ukusebenzisa i-Global Ledger kuphela ngezinhloso ezomthetho. Awukwazi: ukusebenzisa insizakalo ukugcina noma ukudlulisa ikhodi enobungozi, ukuzama ukufinyelela okungavunyelwe kumajini ethu, ukuphazamisa noma ukuphazamisa insizakalo, noma ukusebenzisa insizakalo ukwephula omunye umthetho."
+          "content": "Uyavuma ukusebenzisa i-Mali-X kuphela ngezinhloso ezomthetho. Awukwazi: ukusebenzisa insizakalo ukugcina noma ukudlulisa ikhodi enobungozi, ukuzama ukufinyelela okungavunyelwe kumajini ethu, ukuphazamisa noma ukuphazamisa insizakalo, noma ukusebenzisa insizakalo ukwephula omunye umthetho."
         },
         "payment": {
           "title": "Izimo Zokukhokha",
@@ -971,7 +971,7 @@
         },
         "limitation": {
           "title": "Umkhawulo Wobunikazi",
-          "content": "I-Global Ledger angeke ibe nomgqomo noma yikuphi ukulimala okungaqondile, okungahleleki, okukhethekile, okungomphumela, noma okuqondiswayo okusuka ekusebenziseni kwakho noma ukungakwazi ukusebenzisa insizakalo. Ubunikazi bethu obuphelele abuzi ndawo enani olikhokhele kithi ezinyangeni eziyi-12 ezedlule isimangalo."
+          "content": "I-Mali-X angeke ibe nomgqomo noma yikuphi ukulimala okungaqondile, okungahleleki, okukhethekile, okungomphumela, noma okuqondiswayo okusuka ekusebenziseni kwakho noma ukungakwazi ukusebenzisa insizakalo. Ubunikazi bethu obuphelele abuzi ndawo enani olikhokhele kithi ezinyangeni eziyi-12 ezedlule isimangalo."
         },
         "changes": {
           "title": "Izinguquko Ezizimweni",

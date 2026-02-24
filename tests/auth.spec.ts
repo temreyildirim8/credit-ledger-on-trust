@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 /**
- * E2E Tests for Global Ledger Authentication
+ * E2E Tests for Ledgerly Authentication
  * Covers login, signup, and protected route redirects
  *
  * NOTE: These tests run in separate projects (chromium-auth, firefox-auth, etc.)
@@ -71,7 +71,7 @@ test.describe('Authentication Flow', () => {
       await page.setViewportSize({ width: 1280, height: 720 });
 
       // Check for brand name
-      const brandName = page.getByText(/global ledger/i);
+      const brandName = page.getByText(/ledgerly/i);
       await expect(brandName.first()).toBeVisible();
     });
   });

@@ -106,7 +106,7 @@
   },
   "home": {
     "meta": {
-      "title": "Global Ledger - Libro Mayor de Crédito Digital para Micro-EMPRESAS",
+      "title": "Fiado-X - Libro Mayor de Crédito Digital para Micro-EMPRESAS",
       "description": "Reemplaza tu cuaderno de papel con una aplicación de libro mayor de crédito inteligente, segura y siempre disponible para pequeñas empresas."
     },
     "hero": {
@@ -132,8 +132,8 @@
   },
   "features": {
     "meta": {
-      "title": "Características - Global Ledger",
-      "description": "Explora todas las poderosas características de la aplicación de libro mayor de crédito Global Ledger"
+      "title": "Características - Fiado-X",
+      "description": "Explora todas las poderosas características de la aplicación de libro mayor de crédito Fiado-X"
     },
     "title": "Todo Lo Que Necesitas Para Gestionar Crédito",
     "subtitle": "Construido para micro-empresas, confiado por dueños de tiendas en todo el mundo",
@@ -164,7 +164,7 @@
   },
   "pricing": {
     "meta": {
-      "title": "Precios - Global Ledger",
+      "title": "Precios - Fiado-X",
       "description": "Precios asequibles para cada tamaño de negocio. Comienza gratis, actualiza cuando lo necesites."
     },
     "title": "Precios Simples y Transparentes",
@@ -216,27 +216,27 @@
     },
     "faq": {
       "title": "Preguntas Frecuentes",
-      "q1": "¿Global Ledger es realmente gratis?",
-      "a1": "¡Sí! Global Ledger ofrece un plan gratuito para siempre que incluye hasta 50 clientes, transacciones ilimitadas, modo sin conexión e informes básicos. No se requiere tarjeta de crédito para comenzar.",
-      "q2": "¿Puedo usar Global Ledger sin internet?",
-      "a2": "¡Por supuesto! Global Ledger está construido como una Aplicación Web Progresiva (PWA) con soporte completo sin conexión. Puedes agregar clientes, registrar deudas y realizar seguimientos de pagos incluso sin internet. Tus datos se sincronizan automáticamente cuando vuelves a estar en línea.",
+      "q1": "¿Fiado-X es realmente gratis?",
+      "a1": "¡Sí! Fiado-X ofrece un plan gratuito para siempre que incluye hasta 50 clientes, transacciones ilimitadas, modo sin conexión e informes básicos. No se requiere tarjeta de crédito para comenzar.",
+      "q2": "¿Puedo usar Fiado-X sin internet?",
+      "a2": "¡Por supuesto! Fiado-X está construido como una Aplicación Web Progresiva (PWA) con soporte completo sin conexión. Puedes agregar clientes, registrar deudas y realizar seguimientos de pagos incluso sin internet. Tus datos se sincronizan automáticamente cuando vuelves a estar en línea.",
       "q3": "¿Cómo funciona la copia de seguridad automática?",
       "a3": "Tus datos se sincronizan automáticamente con nuestros servidores en la nube seguros cada vez que tienes conexión a internet. Todos los datos están encriptados usando encriptación AES-256 de nivel bancario, por lo que tus registros siempre están seguros y accesibles.",
       "q4": "¿Qué monedas e idiomas son compatibles?",
-      "a4": "Global Ledger admite múltiples monedas incluyendo TRY, IDR, NGN, EGP, ZAR y más. La aplicación está disponible en 7 idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú."
+      "a4": "Fiado-X admite múltiples monedas incluyendo TRY, IDR, NGN, EGP, ZAR y más. La aplicación está disponible en 7 idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú."
     },
     "cta": {
       "title": "¿Listo para Comenzar?",
-      "description": "Únete a miles de negocios que usan Global Ledger para gestionar el crédito de sus clientes.",
+      "description": "Únete a miles de negocios que usan Fiado-X para gestionar el crédito de sus clientes.",
       "button": "Comienza Gratis Hoy"
     }
   },
   "about": {
     "meta": {
-      "title": "Acerca de Nosotros - Global Ledger",
-      "description": "Conoce más sobre la misión de Global Ledger de democratizar la gestión de crédito para micro-empresas"
+      "title": "Acerca de Nosotros - Fiado-X",
+      "description": "Conoce más sobre la misión de Fiado-X de democratizar la gestión de crédito para micro-empresas"
     },
-    "title": "Acerca de Global Ledger",
+    "title": "Acerca de Fiado-X",
     "subtitle": "Empoderando micro-empresas en todo el mundo",
     "intro": "Estamos construyendo el futuro de la tecnología financiera, haciendo que la gestión del crédito sea accesible y transparente para todos.",
     "mission": {
@@ -259,7 +259,7 @@
   },
   "contact": {
     "meta": {
-      "title": "Contactanos - Global Ledger",
+      "title": "Contactanos - Fiado-X",
       "description": "Ponte en contacto con nuestro equipo para soporte, preguntas o comentarios"
     },
     "title": "Ponte en Contacto",
@@ -284,7 +284,7 @@
       },
       "office": {
         "title": "Oficina",
-        "company": "Global Ledger Inc.",
+        "company": "Fiado-X Inc.",
         "address": "Estambul, Turquía"
       }
     },
@@ -328,7 +328,7 @@
       "remind": "Recordar"
     },
     "empty": {
-      "title": "Bienvenido a Global Ledger",
+      "title": "Bienvenido a Fiado-X",
       "description": "Comienza a rastrear el crédito de tus clientes agregando tu primer cliente. Puedes registrar deudas y pagos para llevar un seguimiento de quién te debe dinero.",
       "addCustomer": "Agrega Tu Primer Cliente",
       "viewReports": "Ver Reportes"
@@ -558,7 +558,7 @@
       "signUp": "Regístrate",
       "success": "Sesión iniciada correctamente",
       "error": "Correo electrónico o contraseña inválidos",
-      "brandName": "Global Ledger",
+      "brandName": "Fiado-X",
       "heroTitle": "Rastrea crédito. Construye confianza.",
       "heroSubtitle": "La forma sencilla de gestionar el crédito de clientes para tu pequeño negocio.",
       "feature1Title": "Directorio de Clientes",
@@ -600,7 +600,7 @@
       "signIn": "Inicia sesión",
       "success": "Cuenta creada exitosamente",
       "error": "Error al crear la cuenta",
-      "brandName": "Global Ledger",
+      "brandName": "Fiado-X",
       "heroTitle": "Comienza a rastrear crédito hoy",
       "heroSubtitle": "Gratis para siempre para pequeños negocios. Actualiza a medida que creces.",
       "benefit1": "Plan gratis: Hasta 10 clientes",
@@ -657,7 +657,7 @@
         "success": "¡Éxito!",
         "successDescription": "Tu contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña."
       },
-      "brandName": "Global Ledger",
+      "brandName": "Fiado-X",
       "heroTitle": "¿Olvidaste tu contraseña?",
       "heroSubtitle": "No te preocupes, te ayudaremos a restablecerla de forma segura.",
       "feature1Title": "Restablecimiento Seguro",
@@ -713,7 +713,7 @@
   },
   "metadata": {
     "general": {
-      "title": "Global Ledger - Libro Mayor de Crédito Digital para Micro-EMPRESAS",
+      "title": "Fiado-X - Libro Mayor de Crédito Digital para Micro-EMPRESAS",
       "description": "Reemplaza tu cuaderno de papel con una aplicación de libro mayor de crédito inteligente, segura y siempre disponible."
     }
   },
@@ -746,7 +746,7 @@
       },
       "terms": {
         "title": "Términos de Servicio",
-        "description": "Los términos y condiciones que rigen tu uso de Global Ledger"
+        "description": "Los términos y condiciones que rigen tu uso de Fiado-X"
       },
       "cookies": {
         "title": "Política de Cookies",
@@ -774,7 +774,7 @@
     "privacyPage": {
       "title": "Política de Privacidad",
       "lastUpdated": "Última Actualización: 22 de Febrero de 2026",
-      "intro": "En Global Ledger, tomamos tu privacidad en serio. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando usas nuestro servicio.",
+      "intro": "En Fiado-X, tomamos tu privacidad en serio. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando usas nuestro servicio.",
       "sections": {
         "collect": {
           "title": "Información que Recopilamos",
@@ -805,15 +805,15 @@
     "termsPage": {
       "title": "Términos de Servicio",
       "lastUpdated": "Última Actualización: 22 de Febrero de 2026",
-      "intro": "Bienvenido a Global Ledger. Al usar nuestro servicio, aceptas estos términos. Por favor léalos cuidadosamente.",
+      "intro": "Bienvenido a Fiado-X. Al usar nuestro servicio, aceptas estos términos. Por favor léalos cuidadosamente.",
       "sections": {
         "acceptance": {
           "title": "Aceptación de Términos",
-          "content": "Al acceder o usar Global Ledger, aceptas estar sujeto a estos Términos de Servicio y todas las leyes y regulaciones aplicables. Si no estás de acuerdo con alguno de estos términos, se te prohíbe usar o acceder a este servicio."
+          "content": "Al acceder o usar Fiado-X, aceptas estar sujeto a estos Términos de Servicio y todas las leyes y regulaciones aplicables. Si no estás de acuerdo con alguno de estos términos, se te prohíbe usar o acceder a este servicio."
         },
         "description": {
           "title": "Descripción del Servicio",
-          "content": "Global Ledger proporciona una aplicación de libro mayor de crédito digital para micro-PYMES para rastrear deudas y pagos de clientes. El servicio incluye funcionalidad sin conexión, respaldo en la nube y funciones de informes."
+          "content": "Fiado-X proporciona una aplicación de libro mayor de crédito digital para micro-PYMES para rastrear deudas y pagos de clientes. El servicio incluye funcionalidad sin conexión, respaldo en la nube y funciones de informes."
         },
         "accounts": {
           "title": "Cuentas de Usuario",
@@ -821,7 +821,7 @@
         },
         "acceptable": {
           "title": "Uso Aceptable",
-          "content": "Aceptas usar Global Ledger solo para fines legales. No puedes: usar el servicio para almacenar o transmitir código malicioso, intentar obtener acceso no autorizado a nuestros sistemas, interferir o interrumpir el servicio, o usar el servicio para violar leyes."
+          "content": "Aceptas usar Fiado-X solo para fines legales. No puedes: usar el servicio para almacenar o transmitir código malicioso, intentar obtener acceso no autorizado a nuestros sistemas, interferir o interrumpir el servicio, o usar el servicio para violar leyes."
         },
         "payment": {
           "title": "Términos de Pago",
@@ -833,7 +833,7 @@
         },
         "limitation": {
           "title": "Limitación de Responsabilidad",
-          "content": "Global Ledger no será responsable de ningún daño indirecto, incidental, especial, consecuente o punitivo resultante de tu uso o incapacidad para usar el servicio. Nuestra responsabilidad total no excederá la cantidad que nos pagaste en los 12 meses anteriores al reclamo."
+          "content": "Fiado-X no será responsable de ningún daño indirecto, incidental, especial, consecuente o punitivo resultante de tu uso o incapacidad para usar el servicio. Nuestra responsabilidad total no excederá la cantidad que nos pagaste en los 12 meses anteriores al reclamo."
         },
         "changes": {
           "title": "Cambios a los Términos",
@@ -993,15 +993,15 @@
   "faq": {
     "badge": "FAQ",
     "title": "Preguntas Frecuentes",
-    "subtitle": "Todo lo que necesitas saber sobre Global Ledger",
-    "q1": "¿Global Ledger es realmente gratis?",
-    "a1": "¡Sí! Global Ledger ofrece un plan gratis para siempre que incluye hasta 10 clientes, transacciones ilimitadas, modo sin conexión e informes básicos. No se requiere tarjeta de crédito para empezar.",
-    "q2": "¿Puedo usar Global Ledger sin internet?",
-    "a2": "¡Por supuesto! Global Ledger está construido como una Progressive Web App (PWA) con soporte completo sin conexión. Puedes agregar clientes, registrar deudas y rastrear pagos incluso sin internet. Tus datos se sincronizan automáticamente cuando vuelves a estar en línea.",
+    "subtitle": "Todo lo que necesitas saber sobre Fiado-X",
+    "q1": "¿Fiado-X es realmente gratis?",
+    "a1": "¡Sí! Fiado-X ofrece un plan gratis para siempre que incluye hasta 10 clientes, transacciones ilimitadas, modo sin conexión e informes básicos. No se requiere tarjeta de crédito para empezar.",
+    "q2": "¿Puedo usar Fiado-X sin internet?",
+    "a2": "¡Por supuesto! Fiado-X está construido como una Progressive Web App (PWA) con soporte completo sin conexión. Puedes agregar clientes, registrar deudas y rastrear pagos incluso sin internet. Tus datos se sincronizan automáticamente cuando vuelves a estar en línea.",
     "q3": "¿Cómo funciona la copia de seguridad automática?",
     "a3": "Tus datos se sincronizan automáticamente con nuestros servidores seguros en la nube siempre que tienes conexión a internet. Todos los datos están encriptados usando encriptación AES-256 de grado bancario, así que tus registros siempre están seguros y accesibles.",
     "q4": "¿Qué monedas e idiomas son compatibles?",
-    "a4": "Global Ledger soporta múltiples monedas incluyendo TRY (Lira Turca), IDR (Rupia Indonesia), NGN (Naira Nigeriana), EGP (Libra Egipcia), ZAR (Rand Sudafricano) y más. La aplicación está disponible en 7 idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú.",
+    "a4": "Fiado-X soporta múltiples monedas incluyendo TRY (Lira Turca), IDR (Rupia Indonesia), NGN (Naira Nigeriana), EGP (Libra Egipcia), ZAR (Rand Sudafricano) y más. La aplicación está disponible en 7 idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú.",
     "q5": "¿Cómo envío recordatorios de pago a los clientes?",
     "a5": "Puedes enviar recordatorios directamente a través de WhatsApp con mensajes pre-llenados. Solo abre los detalles de un cliente y toca el botón de WhatsApp. Los usuarios Pro también obtienen recordatorios SMS automáticos.",
     "q6": "¿Puedo exportar mis datos?",

@@ -1,9 +1,14 @@
 import { Globe, DollarSign, Cloud } from "lucide-react";
+import { useLocale } from "next-intl";
+import { getBrandName } from "@/lib/branding";
 
 /**
  * Features section - Built for the way you do business
  */
 export function FeaturesSection() {
+  const locale = useLocale();
+  const brandName = getBrandName(locale);
+
   const features = [
     {
       icon: Globe,
@@ -30,7 +35,7 @@ export function FeaturesSection() {
             Built for the way you do business
           </h2>
           <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-            From the bazaar in Istanbul to the market in Jakarta, Global Ledger adapts to your local needs.
+            From the bazaar in Istanbul to the market in Jakarta, {brandName} adapts to your local needs.
           </p>
         </div>
 

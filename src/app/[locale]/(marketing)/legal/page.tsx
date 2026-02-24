@@ -4,13 +4,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Shield, FileText, Cookie, Scale, Lock, Gavel } from 'lucide-react';
 import { Link } from '@/routing';
+import { DEFAULT_BRAND } from '@/lib/branding';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Legal Center',
-    description: 'Legal information, privacy policy, terms of service, and compliance documentation for Global Ledger. Understand how we protect your data and your rights.',
+    description: `Legal information, privacy policy, terms of service, and compliance documentation for ${DEFAULT_BRAND}. Understand how we protect your data and your rights.`,
     openGraph: {
-      title: 'Legal Center - Global Ledger',
+      title: `Legal Center - ${DEFAULT_BRAND}`,
       description: 'Legal information, privacy policy, terms of service, and compliance documentation.',
       url: '/legal',
     },

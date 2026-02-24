@@ -106,7 +106,7 @@
   },
   "home": {
     "meta": {
-      "title": "Global Ledger - Küçük İşletmeler İçin Dijital Veresiye Defteri",
+      "title": "Veresiye-X - Küçük İşletmeler İçin Dijital Veresiye Defteri",
       "description": "Kağıt defterinizi küçük işletmeler için akıllı, güvenli ve her zaman erişilebilir bir veresiye defteri uygulamasıyla değiştirin."
     },
     "hero": {
@@ -132,8 +132,8 @@
   },
   "features": {
     "meta": {
-      "title": "Özellikler - Global Ledger",
-      "description": "Global Ledger veresiye defteri uygulamasının tüm güçlü özelliklerini keşfedin"
+      "title": "Özellikler - Veresiye-X",
+      "description": "Veresiye-X veresiye defteri uygulamasının tüm güçlü özelliklerini keşfedin"
     },
     "title": "Veresiye Yönetimi İçin İhtiyacınız Olan Her Şey",
     "subtitle": "Küçük işletmeler için yapıldı, dünya çapında dükkan sahipleri tarafından güveniliyor",
@@ -178,13 +178,13 @@
     },
     "cta": {
       "title": "Başlamaya Hazır mısınız?",
-      "description": "Global Ledger'i kullanarak vereslerini yöneten binlerce dükkan sahibine katılın.",
+      "description": "Veresiye-X'i kullanarak vereslerini yöneten binlerce dükkan sahibine katılın.",
       "button": "Bugün Ücretsiz Başlayın"
     }
   },
   "pricing": {
     "meta": {
-      "title": "Fiyatlandırma - Global Ledger",
+      "title": "Fiyatlandırma - Veresiye-X",
       "description": "Her işletme büyüklüğü için uygun fiyatlandırma. Ücretsiz başlayın, büyüdükçe yükseltin."
     },
     "title": "Basit, Şeffaf Fiyatlandırma",
@@ -253,10 +253,10 @@
   },
   "about": {
     "meta": {
-      "title": "Hakkımızda - Global Ledger",
+      "title": "Hakkımızda - Veresiye-X",
       "description": "Küçük işletmeler için veresiye yönetimini demokratikleştirme misyonumuzu öğrenin"
     },
-    "title": "Global Ledger Hakkında",
+    "title": "Veresiye-X Hakkında",
     "subtitle": "Dünya çapındaki küçük işletmeleri güçlendirme",
     "intro": "Finansal teknolojinin geleceğini inşa ediyoruz, herkes için veresiye yönetimini erişilebilir ve şeffaf hale getiriyoruz.",
     "mission": {
@@ -278,13 +278,13 @@
     },
     "cta": {
       "title": "İşletmenizi Dönüştürmeye Hazır mısınız?",
-      "description": "Global Ledger'a geçen binlerce dükkan sahibine katılın.",
+      "description": "Veresiye-X'a geçen binlerce dükkan sahibine katılın.",
       "button": "Ücretsiz Başlayın"
     }
   },
   "contact": {
     "meta": {
-      "title": "İletişim - Global Ledger",
+      "title": "İletişim - Veresiye-X",
       "description": "Destek, sorular veya geri bildirim için ekibimizle iletişime geçin"
     },
     "title": "İletişime Geçin",
@@ -300,7 +300,7 @@
     },
     "info": {
       "email": "Bize e-posta gönderin",
-      "emailAddress": "destek@globalledger.app",
+      "emailAddress": "destek@veresiye-x.app",
       "responseTime": "Genellikle 24 saat içinde yanıt veriyoruz",
       "liveChat": {
         "title": "Canlı Sohbet",
@@ -309,7 +309,7 @@
       },
       "office": {
         "title": "Ofis",
-        "company": "Global Ledger Inc.",
+        "company": "Veresiye-X Inc.",
         "address": "İstanbul, Türkiye"
       }
     },
@@ -353,7 +353,7 @@
       "remind": "Hatırlat"
     },
     "empty": {
-      "title": "Global Ledger'a Hoş Geldiniz",
+      "title": "Veresiye-X'a Hoş Geldiniz",
       "description": "İlk müşterinizi ekleyerek müşteri kredisi takibine başlayın. Kimin size borçlandığını takip etmek için borç ve ödemeleri kaydedebilirsiniz.",
       "addCustomer": "İlk Müşterinizi Ekleyin",
       "viewReports": "Raporları Görüntüle"
@@ -556,15 +556,15 @@
   "faq": {
     "badge": "SSS",
     "title": "Sıkça Sorulan Sorular",
-    "subtitle": "Global Ledger hakkında bilmeniz gereken her şey",
-    "q1": "Global Ledger gerçekten ücretsiz mi?",
-    "a1": "Evet! Global Ledger, 10 müşteriye kadar, sınırsız işlem, çevrimdışı mod ve temel raporlar içeren sonsuza kadar ücretsiz bir plan sunar. Başlamak için kredi kartı gerekmez.",
-    "q2": "Global Ledger'ı internet olmadan kullanabilir miyim?",
-    "a2": "Kesinlikle! Global Ledger, tam çevrimdışı destekle Progressive Web App (PWA) olarak oluşturulmuştur. İnternet olmadan müşteri ekleyebilir, borç kaydedebilir ve ödemeleri takip edebilirsiniz. Verileriniz tekrar çevrimiçi olduğunuzda otomatik olarak senkronize olur.",
+    "subtitle": "Veresiye-X hakkında bilmeniz gereken her şey",
+    "q1": "Veresiye-X gerçekten ücretsiz mi?",
+    "a1": "Evet! Veresiye-X, 10 müşteriye kadar, sınırsız işlem, çevrimdışı mod ve temel raporlar içeren sonsuza kadar ücretsiz bir plan sunar. Başlamak için kredi kartı gerekmez.",
+    "q2": "Veresiye-X'ı internet olmadan kullanabilir miyim?",
+    "a2": "Kesinlikle! Veresiye-X, tam çevrimdışı destekle Progressive Web App (PWA) olarak oluşturulmuştur. İnternet olmadan müşteri ekleyebilir, borç kaydedebilir ve ödemeleri takip edebilirsiniz. Verileriniz tekrar çevrimiçi olduğunuzda otomatik olarak senkronize olur.",
     "q3": "Otomatik yedekleme nasıl çalışır?",
     "a3": "İnternet bağlantınız olduğunda verileriniz otomatik olarak güvenli bulut sunucularımıza senkronize edilir. Tüm veriler banka düzeyinde AES-256 şifrelemesi kullanılarak şifrelenir, bu nedenle kayıtlarınız her zaman güvende ve erişilebilir durumdadır.",
     "q4": "Hangi para birimleri ve diller destekleniyor?",
-    "a4": "Global Ledger, TRY (Türk Lirası), IDR (Endonezya Rupisi), NGN (Nijerya Nairası), EGP (Mısır Lirası), ZAR (Güney Afrika Randı) ve daha fazlası dahil olmak üzere birden fazla para birimini destekler. Uygulama 7 dilde mevcuttur: Türkçe, Hintçe, Endonezce, İngilizce, Arapça, İspanyolca ve Zuluca.",
+    "a4": "Veresiye-X, TRY (Türk Lirası), IDR (Endonezya Rupisi), NGN (Nijerya Nairası), EGP (Mısır Lirası), ZAR (Güney Afrika Randı) ve daha fazlası dahil olmak üzere birden fazla para birimini destekler. Uygulama 7 dilde mevcuttur: Türkçe, Hintçe, Endonezce, İngilizce, Arapça, İspanyolca ve Zuluca.",
     "q5": "Müşterilere ödeme hatırlatıcılarını nasıl gönderebilirim?",
     "a5": "Önceden doldurulmuş mesajlarla doğrudan WhatsApp üzerinden hatırlatıcı gönderebilirsiniz. Sadece müşterinin detaylarını açın ve WhatsApp düğmesine dokunun. Pro kullanıcılar ayrıca otomatik SMS hatırlatıcıları alır.",
     "q6": "Verilerimi dışa aktarabilir miyim?",
@@ -691,7 +691,7 @@
       "signUp": "Kayıt ol",
       "success": "Başarıyla giriş yapıldı",
       "error": "Geçersiz e-posta veya şifre",
-      "brandName": "Veresiye Defterim",
+      "brandName": "Veresiye-X",
       "heroTitle": "Veresiyi takip et. Güveni inşa et.",
       "heroSubtitle": "Küçük işletmeniz için müşteri veresiyesini yönetmenin basit yolu.",
       "feature1Title": "Müşteri Rehberi",
@@ -734,7 +734,7 @@
       "signIn": "Giriş yapın",
       "success": "Hesap başarıyla oluşturuldu",
       "error": "Hesap oluşturulamadı",
-      "brandName": "Veresiye Defterim",
+      "brandName": "Veresiye-X",
       "heroTitle": "Bugün veresiyi takip etmeye başla",
       "heroSubtitle": "Küçük işletmeler için sonsuza kadar ücretsiz. Büyüdükçe yükseltin.",
       "benefit1": "Ücretsiz plan: 10 müşteriye kadar",
@@ -790,7 +790,7 @@
         "success": "Başarılı!",
         "successDescription": "Şifreniz başarıyla sıfırlandı. Artık yeni şifrenizle giriş yapabilirsiniz."
       },
-      "brandName": "Global Ledger",
+      "brandName": "Veresiye-X",
       "heroTitle": "Şifrenizi mi unuttunuz?",
       "heroSubtitle": "Endişelenmeyin, güvenli bir şekilde sıfırlamanıza yardımcı olacağız.",
       "feature1Title": "Güvenli Sıfırlama",
@@ -846,7 +846,7 @@
   },
   "metadata": {
     "general": {
-      "title": "Global Ledger - Küçük İşletmeler İçin Dijital Veresiye Defteri",
+      "title": "Veresiye-X - Küçük İşletmeler İçin Dijital Veresiye Defteri",
       "description": "Kağıt defterinizi akıllı, güvenli ve her zaman erişilebilir bir veresiye defteri uygulamasıyla değiştirin."
     }
   },
@@ -909,7 +909,7 @@
       },
       "terms": {
         "title": "Kullanım Şartları",
-        "description": "Global Ledger kullanımınızı yöneten şartlar ve koşullar"
+        "description": "Veresiye-X kullanımınızı yöneten şartlar ve koşullar"
       },
       "cookies": {
         "title": "Çerez Politikası",
@@ -937,7 +937,7 @@
     "privacyPage": {
       "title": "Gizlilik Politikası",
       "lastUpdated": "Son Güncelleme: 22 Şubat 2026",
-      "intro": "Global Ledger olarak gizliliğinizi ciddiye alıyoruz. Bu Gizlilik Politikası, hizmetimizi kullandığınızda bilgilerinizi nasıl topladığımızı, kullandığımızı, açıkladığımızı ve koruduğumuzu açıklar.",
+      "intro": "Veresiye-X olarak gizliliğinizi ciddiye alıyoruz. Bu Gizlilik Politikası, hizmetimizi kullandığınızda bilgilerinizi nasıl topladığımızı, kullandığımızı, açıkladığımızı ve koruduğumuzu açıklar.",
       "sections": {
         "collect": {
           "title": "Topladığımız Bilgiler",
@@ -961,22 +961,22 @@
         },
         "contact": {
           "title": "Bize Ulaşın",
-          "content": "Bu Gizlilik Politikası hakkında sorularınız varsa, lütfen privacy@globalledger.app adresinden bize ulaşın"
+          "content": "Bu Gizlilik Politikası hakkında sorularınız varsa, lütfen privacy@veresiye-x.app adresinden bize ulaşın"
         }
       }
     },
     "termsPage": {
       "title": "Kullanım Şartları",
       "lastUpdated": "Son Güncelleme: 22 Şubat 2026",
-      "intro": "Global Ledger'a hoş geldiniz. Hizmetimizi kullanarak bu şartları kabul etmiş olursunuz. Lütfen dikkatlice okuyun.",
+      "intro": "Veresiye-X'a hoş geldiniz. Hizmetimizi kullanarak bu şartları kabul etmiş olursunuz. Lütfen dikkatlice okuyun.",
       "sections": {
         "acceptance": {
           "title": "Şartların Kabulü",
-          "content": "Global Ledger'a erişerek veya kullanarak, bu Kullanım Şartları ve tüm geçerli yasa ve yönetmeliklere bağlı olmayı kabul edersiniz. Bu şartlardan herhangi birini kabul etmiyorsanız, bu hizmeti kullanmanız veya erişmeniz yasaktır."
+          "content": "Veresiye-X'a erişerek veya kullanarak, bu Kullanım Şartları ve tüm geçerli yasa ve yönetmeliklere bağlı olmayı kabul edersiniz. Bu şartlardan herhangi birini kabul etmiyorsanız, bu hizmeti kullanmanız veya erişmeniz yasaktır."
         },
         "description": {
           "title": "Hizmet Açıklaması",
-          "content": "Global Ledger, mikro KOBİ'lerin müşteri borçlarını ve ödemelerini takip etmesi için dijital bir kredi defteri uygulaması sağlar. Hizmet, çevrimdışı işlevsellik, bulut yedekleme ve raporlama özelliklerini içerir."
+          "content": "Veresiye-X, mikro KOBİ'lerin müşteri borçlarını ve ödemelerini takip etmesi için dijital bir kredi defteri uygulaması sağlar. Hizmet, çevrimdışı işlevsellik, bulut yedekleme ve raporlama özelliklerini içerir."
         },
         "accounts": {
           "title": "Kullanıcı Hesapları",
@@ -984,7 +984,7 @@
         },
         "acceptable": {
           "title": "Kabul Edilebilir Kullanım",
-          "content": "Global Ledger'ı yalnızca yasal amaçlarla kullanmayı kabul edersiniz. Şunları yapamazsınız: hizmeti kötü amaçlı kod depolamak veya iletmek için kullanmak, sistemlerimize yetkisiz erişim elde etmeye çalışmak, hizmete müdahale etmek veya aksatmak, veya herhangi bir yasa ihlal etmek için hizmeti kullanmak."
+          "content": "Veresiye-X'ı yalnızca yasal amaçlarla kullanmayı kabul edersiniz. Şunları yapamazsınız: hizmeti kötü amaçlı kod depolamak veya iletmek için kullanmak, sistemlerimize yetkisiz erişim elde etmeye çalışmak, hizmete müdahale etmek veya aksatmak, veya herhangi bir yasa ihlal etmek için hizmeti kullanmak."
         },
         "payment": {
           "title": "Ödeme Şartları",
@@ -996,7 +996,7 @@
         },
         "limitation": {
           "title": "Sorumluluk Sınırlaması",
-          "content": "Global Ledger, hizmeti kullanmanızdan veya kullanamamanızdan kaynaklanan dolaylı, tesadüfi, özel, sonuçsal veya cezai hasarlardan sorumlu tutulamaz. Toplam sorumluluğumuz, talepten önceki 12 ay içinde bize ödediğiniz tutarı aşamaz."
+          "content": "Veresiye-X, hizmeti kullanmanızdan veya kullanamamanızdan kaynaklanan dolaylı, tesadüfi, özel, sonuçsal veya cezai hasarlardan sorumlu tutulamaz. Toplam sorumluluğumuz, talepten önceki 12 ay içinde bize ödediğiniz tutarı aşamaz."
         },
         "changes": {
           "title": "Şartlardaki Değişiklikler",
@@ -1004,7 +1004,7 @@
         },
         "contact": {
           "title": "Bize Ulaşın",
-          "content": "Bu Kullanım Şartları hakkında sorularınız varsa, lütfen legal@globalledger.app adresinden bize ulaşın"
+          "content": "Bu Kullanım Şartları hakkında sorularınız varsa, lütfen legal@veresiye-x.app adresinden bize ulaşın"
         }
       }
     }

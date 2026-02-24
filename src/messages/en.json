@@ -106,7 +106,7 @@
   },
   "home": {
     "meta": {
-      "title": "Global Ledger - Digital Credit Ledger for Micro-SMEs",
+      "title": "Ledgerly - Digital Credit Ledger for Micro-SMEs",
       "description": "Replace your paper notebook with a smart, secure, and always-available credit ledger application for small businesses."
     },
     "hero": {
@@ -132,8 +132,8 @@
   },
   "features": {
     "meta": {
-      "title": "Features - Global Ledger",
-      "description": "Explore all the powerful features of Global Ledger credit ledger application"
+      "title": "Features - Ledgerly",
+      "description": "Explore all the powerful features of Ledgerly credit ledger application"
     },
     "title": "Everything You Need to Manage Credit",
     "subtitle": "Built for micro-SMEs, trusted by shop owners worldwide",
@@ -164,7 +164,7 @@
   },
   "pricing": {
     "meta": {
-      "title": "Pricing - Global Ledger",
+      "title": "Pricing - Ledgerly",
       "description": "Affordable pricing for every business size. Start free, upgrade when you need."
     },
     "title": "Simple, Transparent Pricing",
@@ -216,27 +216,27 @@
     },
     "faq": {
       "title": "Frequently Asked Questions",
-      "q1": "Is Global Ledger really free to use?",
-      "a1": "Yes! Global Ledger offers a free forever plan that includes up to 50 customers, unlimited transactions, offline mode, and basic reports. No credit card required to get started.",
-      "q2": "Can I use Global Ledger without internet?",
-      "a2": "Absolutely! Global Ledger is built as a Progressive Web App (PWA) with full offline support. You can add customers, record debts, and track payments even without internet. Your data syncs automatically when you're back online.",
+      "q1": "Is Ledgerly really free to use?",
+      "a1": "Yes! Ledgerly offers a free forever plan that includes up to 50 customers, unlimited transactions, offline mode, and basic reports. No credit card required to get started.",
+      "q2": "Can I use Ledgerly without internet?",
+      "a2": "Absolutely! Ledgerly is built as a Progressive Web App (PWA) with full offline support. You can add customers, record debts, and track payments even without internet. Your data syncs automatically when you're back online.",
       "q3": "How does the automatic backup work?",
       "a3": "Your data is automatically synced to our secure cloud servers whenever you have an internet connection. All data is encrypted using bank-grade AES-256 encryption, so your records are always safe and accessible.",
       "q4": "What currencies and languages are supported?",
-      "a4": "Global Ledger supports multiple currencies including TRY, IDR, NGN, EGP, ZAR, and more. The app is available in 7 languages: Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu."
+      "a4": "Ledgerly supports multiple currencies including TRY, IDR, NGN, EGP, ZAR, and more. The app is available in 7 languages: Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu."
     },
     "cta": {
       "title": "Ready to Get Started?",
-      "description": "Join thousands of businesses using Global Ledger to manage their customer credit.",
+      "description": "Join thousands of businesses using Ledgerly to manage their customer credit.",
       "button": "Start Free Today"
     }
   },
   "about": {
     "meta": {
-      "title": "About Us - Global Ledger",
-      "description": "Learn more about Global Ledger's mission to democratize credit management for micro-SMEs"
+      "title": "About Us - Ledgerly",
+      "description": "Learn more about Ledgerly's mission to democratize credit management for micro-SMEs"
     },
-    "title": "About Global Ledger",
+    "title": "About Ledgerly",
     "subtitle": "Empowering micro-SMEs worldwide",
     "intro": "We're building the future of financial technology, making credit management accessible and transparent for everyone.",
     "mission": {
@@ -259,7 +259,7 @@
   },
   "contact": {
     "meta": {
-      "title": "Contact Us - Global Ledger",
+      "title": "Contact Us - Ledgerly",
       "description": "Get in touch with our team for support, questions, or feedback"
     },
     "title": "Get in Touch",
@@ -275,7 +275,7 @@
     },
     "info": {
       "email": "Email us at",
-      "emailAddress": "support@globalledger.app",
+      "emailAddress": "support@ledgerly.app",
       "responseTime": "We typically respond within 24 hours",
       "liveChat": {
         "title": "Live Chat",
@@ -284,7 +284,7 @@
       },
       "office": {
         "title": "Office",
-        "company": "Global Ledger Inc.",
+        "company": "Ledgerly Inc.",
         "address": "Istanbul, Turkey"
       }
     },
@@ -327,7 +327,7 @@
       "remind": "Remind"
     },
     "empty": {
-      "title": "Welcome to Global Ledger",
+      "title": "Welcome to Ledgerly",
       "description": "Start tracking your customer credit by adding your first customer. You can record debts and payments to keep track of who owes you money.",
       "addCustomer": "Add Your First Customer",
       "viewReports": "View Reports"
@@ -582,7 +582,7 @@
       "signUp": "Sign up",
       "success": "Signed in successfully",
       "error": "Invalid email or password",
-      "brandName": "Global Ledger",
+      "brandName": "Ledgerly",
       "heroTitle": "Track credit. Build trust.",
       "heroSubtitle": "The simple way to manage customer credit for your small business.",
       "feature1Title": "Customer Directory",
@@ -625,7 +625,7 @@
       "signIn": "Sign in",
       "success": "Account created successfully",
       "error": "Failed to create account",
-      "brandName": "Global Ledger",
+      "brandName": "Ledgerly",
       "heroTitle": "Start tracking credit today",
       "heroSubtitle": "Free forever for small businesses. Upgrade as you grow.",
       "benefit1": "Free plan: Up to 10 customers",
@@ -681,7 +681,7 @@
         "success": "Success!",
         "successDescription": "Your password has been successfully reset. You can now sign in with your new password."
       },
-      "brandName": "Global Ledger",
+      "brandName": "Ledgerly",
       "heroTitle": "Forgot your password?",
       "heroSubtitle": "No worries, we'll help you reset it securely.",
       "feature1Title": "Secure Reset",
@@ -826,7 +826,7 @@
   },
   "metadata": {
     "general": {
-      "title": "Global Ledger - Digital Credit Ledger for Micro-SMEs",
+      "title": "Ledgerly - Digital Credit Ledger for Micro-SMEs",
       "description": "Replace your paper notebook with a smart, secure, and always-available credit ledger application."
     }
   },
@@ -882,15 +882,15 @@
   "faq": {
     "badge": "FAQ",
     "title": "Frequently Asked Questions",
-    "subtitle": "Everything you need to know about Global Ledger",
-    "q1": "Is Global Ledger really free to use?",
-    "a1": "Yes! Global Ledger offers a free forever plan that includes up to 10 customers, unlimited transactions, offline mode, and basic reports. No credit card required to get started.",
-    "q2": "Can I use Global Ledger without internet?",
-    "a2": "Absolutely! Global Ledger is built as a Progressive Web App (PWA) with full offline support. You can add customers, record debts, and track payments even without internet. Your data syncs automatically when you're back online.",
+    "subtitle": "Everything you need to know about Ledgerly",
+    "q1": "Is Ledgerly really free to use?",
+    "a1": "Yes! Ledgerly offers a free forever plan that includes up to 10 customers, unlimited transactions, offline mode, and basic reports. No credit card required to get started.",
+    "q2": "Can I use Ledgerly without internet?",
+    "a2": "Absolutely! Ledgerly is built as a Progressive Web App (PWA) with full offline support. You can add customers, record debts, and track payments even without internet. Your data syncs automatically when you're back online.",
     "q3": "How does the automatic backup work?",
     "a3": "Your data is automatically synced to our secure cloud servers whenever you have an internet connection. All data is encrypted using bank-grade AES-256 encryption, so your records are always safe and accessible.",
     "q4": "What currencies and languages are supported?",
-    "a4": "Global Ledger supports multiple currencies including TRY (Turkish Lira), IDR (Indonesian Rupiah), NGN (Nigerian Naira), EGP (Egyptian Pound), ZAR (South African Rand), and more. The app is available in 7 languages: Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu.",
+    "a4": "Ledgerly supports multiple currencies including TRY (Turkish Lira), IDR (Indonesian Rupiah), NGN (Nigerian Naira), EGP (Egyptian Pound), ZAR (South African Rand), and more. The app is available in 7 languages: Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu.",
     "q5": "How do I send payment reminders to customers?",
     "a5": "You can send reminders directly through WhatsApp with pre-filled messages. Just open a customer's details and tap the WhatsApp button. Pro users also get automated SMS reminders.",
     "q6": "Can I export my data?",
@@ -908,7 +908,7 @@
       },
       "terms": {
         "title": "Terms of Service",
-        "description": "The terms and conditions governing your use of Global Ledger"
+        "description": "The terms and conditions governing your use of Ledgerly"
       },
       "cookies": {
         "title": "Cookie Policy",
@@ -936,7 +936,7 @@
     "privacyPage": {
       "title": "Privacy Policy",
       "lastUpdated": "Last Updated: February 22, 2026",
-      "intro": "At Global Ledger, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service.",
+      "intro": "At Ledgerly, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service.",
       "sections": {
         "collect": {
           "title": "Information We Collect",
@@ -960,22 +960,22 @@
         },
         "contact": {
           "title": "Contact Us",
-          "content": "If you have questions about this Privacy Policy, please contact us at privacy@globalledger.app"
+          "content": "If you have questions about this Privacy Policy, please contact us at privacy@ledgerly.app"
         }
       }
     },
     "termsPage": {
       "title": "Terms of Service",
       "lastUpdated": "Last Updated: February 22, 2026",
-      "intro": "Welcome to Global Ledger. By using our service, you agree to these terms. Please read them carefully.",
+      "intro": "Welcome to Ledgerly. By using our service, you agree to these terms. Please read them carefully.",
       "sections": {
         "acceptance": {
           "title": "Acceptance of Terms",
-          "content": "By accessing or using Global Ledger, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this service."
+          "content": "By accessing or using Ledgerly, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this service."
         },
         "description": {
           "title": "Description of Service",
-          "content": "Global Ledger provides a digital credit ledger application for micro-SMEs to track customer debts and payments. The service includes offline functionality, cloud backup, and reporting features."
+          "content": "Ledgerly provides a digital credit ledger application for micro-SMEs to track customer debts and payments. The service includes offline functionality, cloud backup, and reporting features."
         },
         "accounts": {
           "title": "User Accounts",
@@ -983,7 +983,7 @@
         },
         "acceptable": {
           "title": "Acceptable Use",
-          "content": "You agree to use Global Ledger only for lawful purposes. You may not: use the service to store or transmit malicious code, attempt to gain unauthorized access to our systems, interfere with or disrupt the service, or use the service to violate any laws."
+          "content": "You agree to use Ledgerly only for lawful purposes. You may not: use the service to store or transmit malicious code, attempt to gain unauthorized access to our systems, interfere with or disrupt the service, or use the service to violate any laws."
         },
         "payment": {
           "title": "Payment Terms",
@@ -995,7 +995,7 @@
         },
         "limitation": {
           "title": "Limitation of Liability",
-          "content": "Global Ledger shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service. Our total liability shall not exceed the amount you paid us in the 12 months preceding the claim."
+          "content": "Ledgerly shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service. Our total liability shall not exceed the amount you paid us in the 12 months preceding the claim."
         },
         "changes": {
           "title": "Changes to Terms",
@@ -1003,7 +1003,7 @@
         },
         "contact": {
           "title": "Contact Us",
-          "content": "If you have questions about these Terms of Service, please contact us at legal@globalledger.app"
+          "content": "If you have questions about these Terms of Service, please contact us at legal@ledgerly.app"
         }
       }
     }

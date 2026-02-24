@@ -1,5 +1,6 @@
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import type { Customer } from '@/lib/services/customers.service';
+import { getBrandName } from '@/lib/branding';
 
 interface Transaction {
   id: string;
@@ -264,7 +265,7 @@ export async function generateCustomerStatementPDF(options: PDFStatementOptions)
     color: primaryColor,
   });
 
-  currentPage.drawText(businessInfo.name || 'Global Ledger', {
+  currentPage.drawText(businessInfo.name || getBrandName(locale || 'en'), {
     x: margin + 15,
     y: y - 20,
     size: 22,
@@ -597,7 +598,7 @@ const shopReportLabels: Record<string, Record<string, string>> = {
     customerName: 'Customer',
     balance: 'Balance',
     lastActivity: 'Last Activity',
-    footer: 'This is a computer-generated report from Global Ledger.',
+    footer: 'This is a computer-generated report from Ledgerly.',
     noData: 'No data available for this period',
   },
   tr: {
@@ -623,7 +624,7 @@ const shopReportLabels: Record<string, Record<string, string>> = {
     customerName: 'Musteri',
     balance: 'Bakiye',
     lastActivity: 'Son Islem',
-    footer: 'Bu belge Global Ledger tarafindan olusturulmustur.',
+    footer: 'Bu belge Veresiye-X tarafindan olusturulmustur.',
     noData: 'Bu donem icin veri bulunamadi',
   },
   es: {
@@ -649,7 +650,7 @@ const shopReportLabels: Record<string, Record<string, string>> = {
     customerName: 'Cliente',
     balance: 'Saldo',
     lastActivity: 'Ultima Actividad',
-    footer: 'Este es un informe generado por Global Ledger.',
+    footer: 'Este es un informe generado por Fiado-X.',
     noData: 'Sin datos disponibles para este periodo',
   },
   id: {
@@ -675,7 +676,7 @@ const shopReportLabels: Record<string, Record<string, string>> = {
     customerName: 'Pelanggan',
     balance: 'Saldo',
     lastActivity: 'Aktivitas Terakhir',
-    footer: 'Ini adalah laporan yang dihasilkan oleh Global Ledger.',
+    footer: 'Ini adalah laporan yang dihasilkan oleh Hutang-Ku.',
     noData: 'Tidak ada data tersedia untuk periode ini',
   },
   hi: {
@@ -701,7 +702,7 @@ const shopReportLabels: Record<string, Record<string, string>> = {
     customerName: 'ग्राहक',
     balance: 'शेष',
     lastActivity: 'अंतिम गतिविधि',
-    footer: 'यह Global Ledger द्वारा उत्पन्न रिपोर्ट है।',
+    footer: 'यह Udhar-X द्वारा उत्पन्न रिपोर्ट है।',
     noData: 'इस अवधि के लिए कोई डेटा उपलब्ध नहीं है',
   },
   ar: {
@@ -727,7 +728,7 @@ const shopReportLabels: Record<string, Record<string, string>> = {
     customerName: 'العميل',
     balance: 'الرصيد',
     lastActivity: 'آخر نشاط',
-    footer: 'هذا تقرير مولد بواسطة Global Ledger.',
+    footer: 'هذا تقرير مولد بواسطة Dayn-X.',
     noData: 'لا توجد بيانات متاحة لهذه الفترة',
   },
   zu: {
@@ -753,7 +754,7 @@ const shopReportLabels: Record<string, Record<string, string>> = {
     customerName: 'Ikhasimende',
     balance: 'Isisindo',
     lastActivity: 'Umsebenzi Wokugcina',
-    footer: 'Lesi sibalo esenziwe ngokhompyutha ku-Global Ledger.',
+    footer: 'Lesi sibalo esenziwe ngokhompyutha ku-Mali-X.',
     noData: 'Awukho ulwazi olukhona lesi sikhathi',
   },
 };
@@ -844,7 +845,7 @@ export async function generateShopReportPDF(
     color: primaryColor,
   });
 
-  currentPage.drawText(businessInfo.name || 'Global Ledger', {
+  currentPage.drawText(businessInfo.name || getBrandName(locale || 'en'), {
     x: margin + 15,
     y: y - 20,
     size: 22,

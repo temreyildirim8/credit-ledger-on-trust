@@ -6,7 +6,7 @@ import { FAQSection } from "@/components/marketing/FAQSection";
 import { CTASection } from "@/components/marketing/CTASection";
 
 /**
- * Marketing landing page - Global Ledger
+ * Marketing landing page - Ledgerly
  * Complete landing page following the 11 essential elements framework:
  * 1. URL with keywords (/)
  * 2. Company Logo (MarketingNavbar in layout)

@@ -1,14 +1,19 @@
 import { Quote, Star } from "lucide-react";
+import { useLocale } from "next-intl";
+import { getBrandName } from "@/lib/branding";
 
 /**
  * Testimonials section - Shopowner quotes
  */
 export function Testimonials() {
+  const locale = useLocale();
+  const brandName = getBrandName(locale);
+
   const testimonials = [
     {
       name: "Ahmet Yılmaz",
       role: "Bakkal Owner, Istanbul",
-      content: "Global Ledger changed how I manage my customer debts. No more lost notebooks, no more calculation errors.",
+      content: `${brandName} changed how I manage my customer debts. No more lost notebooks, no more calculation errors.`,
       rating: 5,
     },
     {
@@ -33,7 +38,7 @@ export function Testimonials() {
             For business owners going places
           </h2>
           <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-            Hear from shop owners who transformed their business with Global Ledger
+            Hear from shop owners who transformed their business with {brandName}
           </p>
         </div>
 

@@ -3,20 +3,21 @@ import { Metadata } from 'next';
 import { Card, CardContent } from '@/components/ui/card';
 import { Award, Users } from 'lucide-react';
 import Link from 'next/link';
+import { DEFAULT_BRAND } from '@/lib/branding';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'About Us',
-    description: 'Global Ledger helps micro-SMEs in emerging markets digitize their credit ledger. Our mission is to replace paper notebooks with smart, secure, and accessible tools for small business owners.',
+    description: `${DEFAULT_BRAND} helps micro-SMEs in emerging markets digitize their credit ledger. Our mission is to replace paper notebooks with smart, secure, and accessible tools for small business owners.`,
     openGraph: {
-      title: 'About Us - Global Ledger',
-      description: 'Global Ledger helps micro-SMEs in emerging markets digitize their credit ledger. Learn about our mission to empower small businesses.',
+      title: `About Us - ${DEFAULT_BRAND}`,
+      description: `${DEFAULT_BRAND} helps micro-SMEs in emerging markets digitize their credit ledger. Learn about our mission to empower small businesses.`,
       url: '/about',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'About Us - Global Ledger',
-      description: 'Global Ledger helps micro-SMEs in emerging markets digitize their credit ledger.',
+      title: `About Us - ${DEFAULT_BRAND}`,
+      description: `${DEFAULT_BRAND} helps micro-SMEs in emerging markets digitize their credit ledger.`,
     },
   };
 }

@@ -3,6 +3,8 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { X } from "lucide-react";
 import { useSubscription } from "@/lib/hooks/useSubscription";
+import { useLocale } from "next-intl";
+import { getBrandName } from "@/lib/branding";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -24,6 +26,8 @@ interface PWAInstallProviderProps {
 export function PWAInstallProvider({
   children,
 }: PWAInstallProviderProps) {
+  const locale = useLocale();
+  const brandName = getBrandName(locale);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
   // Check if app is already installed on initial render
@@ -134,7 +138,7 @@ function PWAInstallPrompt() {
               Install App
             </h3>
             <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-              Install Global Ledger for quick access and offline support.
+              Install {brandName} for quick access and offline support.
             </p>
 
             <div className="flex gap-2 mt-3">

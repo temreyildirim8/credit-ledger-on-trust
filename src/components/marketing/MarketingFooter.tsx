@@ -2,13 +2,16 @@
 
 import { Link } from "@/routing";
 import { Github, Twitter, Linkedin } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { getBrandName } from "@/lib/branding";
 
 /**
  * Marketing footer - Multi-column links and social icons
  */
 export function MarketingFooter() {
   const t = useTranslations('nav');
+  const locale = useLocale();
+  const brandName = getBrandName(locale);
 
   const footerSections = [
     {
@@ -92,8 +95,8 @@ export function MarketingFooter() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-display font-bold text-lg">Global Ledger</h3>
-                <p className="text-xs text-gray-400 -mt-1">Veresiye Defteri</p>
+                <h3 className="font-display font-bold text-lg">{brandName}</h3>
+                <p className="text-xs text-gray-400 -mt-1">Credit Ledger</p>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
@@ -140,7 +143,7 @@ export function MarketingFooter() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm">
-            © 2025 Global Ledger. All rights reserved.
+            © 2025 {brandName}. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
             <Link href="/login" className="text-gray-400 hover:text-white transition-colors py-1.5 min-h-[44px] flex items-center">

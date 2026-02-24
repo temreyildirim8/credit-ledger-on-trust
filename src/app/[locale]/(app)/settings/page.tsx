@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { userProfilesService } from '@/lib/services/user-profiles.service';
+import { getBrandName } from '@/lib/branding';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -58,10 +60,12 @@ export default function SettingsPage() {
   const t = useTranslations('settings');
   const tCommon = useTranslations('common');
   const tAccount = useTranslations('settings.sections.account');
+  const localeHook = useLocale();
 
   const pathname = usePathname();
   const router = useRouter();
   const locale = pathname.split('/')[1] || 'en';
+  const brandName = getBrandName(localeHook);
   const { user, signOut } = useAuth();
   const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
@@ -604,7 +608,7 @@ export default function SettingsPage() {
 
       {/* Version */}
       <p className="text-center text-xs text-text-secondary">
-        Global Ledger v1.0.0 (Beta)
+        {brandName} v1.0.0 (Beta)
       </p>
 
       {/* Sign Out Confirmation Dialog */}

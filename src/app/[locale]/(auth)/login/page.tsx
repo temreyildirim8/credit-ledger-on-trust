@@ -46,7 +46,7 @@ export default function LoginPage() {
                 <BookOpen className="w-7 h-7 text-white" />
               </div>
               <span className="text-2xl font-bold tracking-tight">
-                {t("login.brandName") || "Global Ledger"}
+                {t("login.brandName") || "Ledgerly"}
               </span>
             </div>
             <h1 className="text-4xl xl:text-5xl font-bold leading-tight mb-4">
@@ -115,7 +115,7 @@ export default function LoginPage() {
               <BookOpen className="w-6 h-6 text-white" />
             </div>
             <span className="text-xl font-bold text-[var(--color-text)]">
-              {t("login.brandName") || "Global Ledger"}
+              {t("login.brandName") || "Ledgerly"}
             </span>
           </div>
 

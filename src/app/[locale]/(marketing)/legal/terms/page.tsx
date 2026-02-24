@@ -4,14 +4,15 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { FileText, ArrowLeft } from 'lucide-react';
 import { Link } from '@/routing';
+import { DEFAULT_BRAND } from '@/lib/branding';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Terms of Service',
-    description: 'Terms and conditions governing your use of Global Ledger services. Read our service agreement, acceptable use policy, and user responsibilities.',
+    description: `Terms and conditions governing your use of ${DEFAULT_BRAND} services. Read our service agreement, acceptable use policy, and user responsibilities.`,
     openGraph: {
-      title: 'Terms of Service - Global Ledger',
-      description: 'Terms and conditions governing your use of Global Ledger services.',
+      title: `Terms of Service - ${DEFAULT_BRAND}`,
+      description: `Terms and conditions governing your use of ${DEFAULT_BRAND} services.`,
       url: '/legal/terms',
     },
     robots: {

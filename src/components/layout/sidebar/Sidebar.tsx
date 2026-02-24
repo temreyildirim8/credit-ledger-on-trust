@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { usePathname } from "@/routing";
 import { Link } from "@/routing";
 import { useAuth } from "@/lib/hooks/useAuth";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { getBrandName } from "@/lib/branding";
 import {
   LayoutDashboard,
   Users,
@@ -68,6 +69,7 @@ export function Sidebar({ className }: SidebarProps) {
   const pathname = usePathname();
   const { signOut } = useAuth();
   const t = useTranslations("nav");
+  const localeHook = useLocale();
 
   // Collapsed state persisted to localStorage
   const [isCollapsed, setIsCollapsed] = useState(() => {
@@ -90,6 +92,7 @@ export function Sidebar({ className }: SidebarProps) {
   const segments = pathname.split("/");
   const locale = segments[1] || "en";
   const basePath = `/${locale}`;
+  const brandName = getBrandName(localeHook);
 
   const handleLogout = async () => {
     try {
@@ -156,7 +159,7 @@ export function Sidebar({ className }: SidebarProps) {
           {!isCollapsed && (
             <div className="overflow-hidden">
               <h1 className="font-display font-semibold text-base text-text whitespace-nowrap">
-                Global Ledger
+                {brandName}
               </h1>
               <p className="text-xs text-text-secondary whitespace-nowrap">
                 Credit Management

@@ -1,13 +1,18 @@
 import { Link } from "@/routing";
+import { useLocale } from "next-intl";
+import { getBrandName } from "@/lib/branding";
 
 /**
  * Footer component for marketing pages
  */
 export function Footer() {
+  const locale = useLocale();
+  const brandName = getBrandName(locale);
+
   return (
     <footer className="footer">
       <div className="footer__container">
-        <p className="footer__text">© 2025 Global Ledger. All rights reserved.</p>
+        <p className="footer__text">© 2025 {brandName}. All rights reserved.</p>
         <div className="footer__links">
           <Link href="/about" className="footer__link">
             About

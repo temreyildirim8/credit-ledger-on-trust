@@ -3,20 +3,21 @@ import { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Languages, DollarSign, WifiOff, Cloud, MessageSquare, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
+import { DEFAULT_BRAND } from '@/lib/branding';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Features',
-    description: 'Discover Global Ledger features: multi-currency support, offline mode, SMS payment reminders, PDF/CSV reports, WhatsApp integration, and more. Built for micro-SMEs.',
+    description: `Discover ${DEFAULT_BRAND} features: multi-currency support, offline mode, SMS payment reminders, PDF/CSV reports, WhatsApp integration, and more. Built for micro-SMEs.`,
     openGraph: {
-      title: 'Features - Global Ledger',
-      description: 'Discover Global Ledger features: multi-currency support, offline mode, SMS payment reminders, and more.',
+      title: `Features - ${DEFAULT_BRAND}`,
+      description: `Discover ${DEFAULT_BRAND} features: multi-currency support, offline mode, SMS payment reminders, and more.`,
       url: '/features',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Features - Global Ledger',
-      description: 'Discover Global Ledger features for micro-SMEs.',
+      title: `Features - ${DEFAULT_BRAND}`,
+      description: `Discover ${DEFAULT_BRAND} features for micro-SMEs.`,
     },
   };
 }

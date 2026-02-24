@@ -1,18 +1,19 @@
 import { Metadata } from 'next';
+import { DEFAULT_BRAND } from '@/lib/branding';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Contact Us',
-    description: 'Get in touch with Global Ledger support. We offer email support, live chat, and office visits. Contact us for sales inquiries, technical support, or partnership opportunities.',
+    description: `Get in touch with ${DEFAULT_BRAND} support. We offer email support, live chat, and office visits. Contact us for sales inquiries, technical support, or partnership opportunities.`,
     openGraph: {
-      title: 'Contact Us - Global Ledger',
-      description: 'Get in touch with Global Ledger support. We offer email support, live chat, and office visits.',
+      title: `Contact Us - ${DEFAULT_BRAND}`,
+      description: `Get in touch with ${DEFAULT_BRAND} support. We offer email support, live chat, and office visits.`,
       url: '/contact',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Contact Us - Global Ledger',
-      description: 'Get in touch with Global Ledger support.',
+      title: `Contact Us - ${DEFAULT_BRAND}`,
+      description: `Get in touch with ${DEFAULT_BRAND} support.`,
     },
   };
 }

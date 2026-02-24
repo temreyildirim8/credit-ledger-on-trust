@@ -7,9 +7,10 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { PWAProvider } from "@/components/pwa/PWAProvider";
 import { AuthProviderWrapper } from "@/components/auth/AuthProviderWrapper";
+import { getBrandName } from "@/lib/branding";
 import "../globals.css";
 
-// Global Ledger font pairing - Manrope for display/headings, Inter for body/numbers
+// Ledgerly font pairing - Manrope for display/headings, Inter for body/numbers
 // Figma spec: Manrope for display, Inter for body text
 const manrope = Manrope({
   variable: "--font-display",
@@ -100,11 +101,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const metadata = getMetadata(locale as Locale, t);
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const brandName = getBrandName(locale);
 
   return {
     title: {
       default: metadata.title,
-      template: `%s | Global Ledger`,
+      template: `%s | ${brandName}`,
     },
     description: metadata.description,
     keywords: [
@@ -120,9 +122,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "debt tracking",
       "payment reminders",
     ],
-    authors: [{ name: "Global Ledger Team" }],
-    creator: "Global Ledger",
-    publisher: "Global Ledger",
+    authors: [{ name: `${brandName} Team` }],
+    creator: brandName,
+    publisher: brandName,
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `/${locale}`,
@@ -140,7 +142,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: metadata.title,
       description: metadata.description,
       url: `${baseUrl}/${locale}`,
-      siteName: "Global Ledger",
+      siteName: brandName,
       locale: localeToOGLocale[locale] || "en_US",
       type: "website",
       images: [
@@ -148,7 +150,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: "Global Ledger - Digital Credit Ledger for Micro-SMEs",
+          alt: `${brandName} - Digital Credit Ledger for Micro-SMEs`,
         },
       ],
     },
@@ -175,7 +177,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
-      title: "Global Ledger",
+      title: brandName,
     },
     icons: {
       icon: [

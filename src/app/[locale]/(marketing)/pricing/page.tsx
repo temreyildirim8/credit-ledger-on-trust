@@ -5,19 +5,20 @@ import { Button } from '@/components/ui/button';
 import { Check, Star, Building2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Link } from '@/routing';
+import { DEFAULT_BRAND } from '@/lib/branding';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Pricing',
     description: 'Affordable pricing plans for micro-SMEs. Start free with 10 customers, upgrade to Pro for unlimited customers and SMS reminders. No credit card required.',
     openGraph: {
-      title: 'Pricing - Global Ledger',
+      title: `Pricing - ${DEFAULT_BRAND}`,
       description: 'Affordable pricing plans for micro-SMEs. Start free with 10 customers, upgrade to Pro for unlimited customers and SMS reminders.',
       url: '/pricing',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Pricing - Global Ledger',
+      title: `Pricing - ${DEFAULT_BRAND}`,
       description: 'Affordable pricing plans for micro-SMEs. Start free, upgrade when you need.',
     },
   };

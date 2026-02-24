@@ -3,7 +3,8 @@
 import { Link } from "@/routing";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { getBrandName } from "@/lib/branding";
 
 /**
  * Marketing navbar - dark green top bar with navigation and CTAs
@@ -11,6 +12,8 @@ import { useTranslations } from "next-intl";
 export function MarketingNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = useTranslations('nav');
+  const locale = useLocale();
+  const brandName = getBrandName(locale);
 
   const navItems = [
     { name: t('features'), href: "/features" },
@@ -56,9 +59,9 @@ export function MarketingNavbar() {
             </div>
             <div>
               <h1 className="font-display font-bold text-lg leading-tight">
-                Global Ledger
+                {brandName}
               </h1>
-              <p className="text-[10px] text-white/70 -mt-1">Veresiye Defteri</p>
+              <p className="text-[10px] text-white/70 -mt-1">Credit Ledger</p>
             </div>
           </Link>
 
