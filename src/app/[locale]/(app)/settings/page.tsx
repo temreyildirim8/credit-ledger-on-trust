@@ -153,8 +153,8 @@ export default function SettingsPage() {
     try {
       await signOut();
       toast.success(tCommon('success') || 'Signed out successfully');
-      // Use window.location.replace for immediate navigation to login
-      window.location.replace(`/${locale}/login`);
+      // Redirect to marketing home page after sign out
+      window.location.replace(`/${locale}`);
     } catch (error) {
       toast.error(tCommon('tryAgain'));
       console.error('Sign out error:', error);

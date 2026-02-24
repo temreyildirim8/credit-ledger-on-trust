@@ -97,7 +97,8 @@ export function Sidebar({ className }: SidebarProps) {
   const handleLogout = async () => {
     try {
       await signOut();
-      window.location.replace(`/${locale}/login`);
+      // Redirect to marketing home page after sign out
+      window.location.replace(`/${locale}`);
     } catch (error) {
       console.error("Sign out error:", error);
     }
