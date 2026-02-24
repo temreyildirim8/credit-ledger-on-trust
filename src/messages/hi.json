@@ -603,6 +603,15 @@
       "success": "नया सत्यापन ईमेल भेजा गया!",
       "enterEmail": "अपना ईमेल पता दर्ज करें",
       "emailPlaceholder": "आपका@ईमेल.com"
+    },
+    "googleSignIn": {
+      "button": "Google से जारी रखें",
+      "error": "Google से साइन इन करने में विफल",
+      "linkButton": "Google खाता लिंक करें",
+      "unlinkButton": "Google खाता अनलिंक करें",
+      "linkSuccess": "Google खाता सफलतापूर्वक लिंक किया गया",
+      "unlinkSuccess": "Google खाता अनलिंक किया गया",
+      "alreadyLinked": "Google खाता पहले से लिंक है"
     }
   },
   "reports": {

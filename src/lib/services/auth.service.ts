@@ -92,4 +92,45 @@ export const authService = {
     if (error) throw error;
     return data;
   },
+
+  async signInWithGoogle(redirectTo?: string) {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${siteUrl}/auth/callback${redirectTo ? `?next=${encodeURIComponent(redirectTo)}` : ""}`,
+      },
+    });
+    if (error) throw error;
+    return data;
+  },
+
+  async linkGoogleAccount() {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const { data, error } = await supabase.auth.linkIdentity({
+      provider: "google",
+      options: {
+        redirectTo: `${siteUrl}/auth/callback`,
+      },
+    });
+    if (error) throw error;
+    return data;
+  },
+
+  async unlinkGoogleAccount() {
+    // Get the user's identities first
+    const { data: identities, error: identitiesError } = await supabase.auth.getUserIdentities();
+    if (identitiesError) throw identitiesError;
+
+    const googleIdentity = identities?.identities?.find(
+      (identity) => identity.provider === "google"
+    );
+
+    if (!googleIdentity) {
+      throw new Error("No Google account linked");
+    }
+
+    const { error } = await supabase.auth.unlinkIdentity(googleIdentity);
+    if (error) throw error;
+  },
 };

@@ -603,6 +603,15 @@
       "success": "¡Nuevo correo de verificación enviado!",
       "enterEmail": "Ingresa tu dirección de correo electrónico",
       "emailPlaceholder": "tu@correo.com"
+    },
+    "googleSignIn": {
+      "button": "Continuar con Google",
+      "error": "Error al iniciar sesión con Google",
+      "linkButton": "Vincular Cuenta de Google",
+      "unlinkButton": "Desvincular Cuenta de Google",
+      "linkSuccess": "Cuenta de Google vinculada exitosamente",
+      "unlinkSuccess": "Cuenta de Google desvinculada",
+      "alreadyLinked": "La cuenta de Google ya está vinculada"
     }
   },
   "notFound": {

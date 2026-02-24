@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
 
 type FormState = 'idle' | 'loading' | 'success';
 
@@ -145,6 +146,20 @@ export function SignupForm() {
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {t('signup.submit')}
             </Button>
+
+            <div className="relative w-full">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-border" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-card px-2 text-muted-foreground">
+                  {t('common.or')}
+                </span>
+              </div>
+            </div>
+
+            <GoogleSignInButton redirectTo={`/${locale}/onboarding`} />
+
             <p className="text-sm text-muted-foreground text-center">
               {t('signup.hasAccount')}{' '}
               <a href={`/${locale}/login`} className="text-primary hover:underline">

@@ -20,6 +20,7 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Loader2, MailCheck, Clock } from "lucide-react";
 import { toast } from "sonner";
+import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 
 type AuthError = {
   code?: string;
@@ -289,6 +290,20 @@ export function LoginForm() {
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {t("login.submit")}
           </Button>
+
+          <div className="relative w-full">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-border" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-card px-2 text-muted-foreground">
+                {t("common.or")}
+              </span>
+            </div>
+          </div>
+
+          <GoogleSignInButton redirectTo={redirectParam || `/${locale}/dashboard`} />
+
           <p className="text-sm text-muted-foreground text-center">
             {t("login.noAccount")}{" "}
             <a

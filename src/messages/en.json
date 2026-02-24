@@ -627,6 +627,15 @@
       "success": "New verification email sent!",
       "enterEmail": "Enter your email address",
       "emailPlaceholder": "your@email.com"
+    },
+    "googleSignIn": {
+      "button": "Continue with Google",
+      "error": "Failed to sign in with Google",
+      "linkButton": "Link Google Account",
+      "unlinkButton": "Unlink Google Account",
+      "linkSuccess": "Google account linked successfully",
+      "unlinkSuccess": "Google account unlinked",
+      "alreadyLinked": "Google account is already linked"
     }
   },
   "reports": {

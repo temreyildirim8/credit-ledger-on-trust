@@ -752,6 +752,15 @@
       "success": "Yeni doğrulama e-postası gönderildi!",
       "enterEmail": "E-posta adresinizi girin",
       "emailPlaceholder": "ornek@email.com"
+    },
+    "googleSignIn": {
+      "button": "Google ile Devam Et",
+      "error": "Google ile giriş başarısız",
+      "linkButton": "Google Hesabını Bağla",
+      "unlinkButton": "Google Hesabını Kaldır",
+      "linkSuccess": "Google hesabı başarıyla bağlandı",
+      "unlinkSuccess": "Google hesabı kaldırıldı",
+      "alreadyLinked": "Google hesabı zaten bağlı"
     }
   },
   "notFound": {

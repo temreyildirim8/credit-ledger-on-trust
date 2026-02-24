@@ -741,6 +741,15 @@
       "success": "تم إرسال بريد التحقق الجديد!",
       "enterEmail": "أدخل عنوان بريدك الإلكتروني",
       "emailPlaceholder": "بريد@إلكتروني.com"
+    },
+    "googleSignIn": {
+      "button": "المتابعة مع Google",
+      "error": "فشل تسجيل الدخول باستخدام Google",
+      "linkButton": "ربط حساب Google",
+      "unlinkButton": "فصل حساب Google",
+      "linkSuccess": "تم ربط حساب Google بنجاح",
+      "unlinkSuccess": "تم فصل حساب Google",
+      "alreadyLinked": "حساب Google مربوط بالفعل"
     }
   },
   "notFound": {

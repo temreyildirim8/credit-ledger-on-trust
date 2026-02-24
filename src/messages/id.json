@@ -603,6 +603,15 @@
       "success": "Email verifikasi baru terkirim!",
       "enterEmail": "Masukkan alamat email Anda",
       "emailPlaceholder": "email@anda.com"
+    },
+    "googleSignIn": {
+      "button": "Lanjutkan dengan Google",
+      "error": "Gagal masuk dengan Google",
+      "linkButton": "Hubungkan Akun Google",
+      "unlinkButton": "Putuskan Akun Google",
+      "linkSuccess": "Akun Google berhasil dihubungkan",
+      "unlinkSuccess": "Akun Google diputuskan",
+      "alreadyLinked": "Akun Google sudah terhubung"
     }
   },
   "reports": {

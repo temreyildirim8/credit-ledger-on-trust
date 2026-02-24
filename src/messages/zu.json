@@ -603,6 +603,15 @@
       "success": "I-imeyili entsha yokugunyaza ithunyelwe!",
       "enterEmail": "Faka ikheli le-imeyili yakho",
       "emailPlaceholder": "imeyili@yakho.com"
+    },
+    "googleSignIn": {
+      "button": "Qhubeka nge-Google",
+      "error": "Ihlulekile ukungena nge-Google",
+      "linkButton": "Xhumanisa I-akhawunti ye-Google",
+      "unlinkButton": "Khipha I-akhawunti ye-Google",
+      "linkSuccess": "I-akhawunti ye-Google ixhunyiwe ngempumelelo",
+      "unlinkSuccess": "I-akhawunti ye-Google ikhishiwe",
+      "alreadyLinked": "I-akhawunti ye-Google isivele ixhunyiwe"
     }
   },
   "reports": {
