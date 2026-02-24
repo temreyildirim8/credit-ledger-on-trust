@@ -17,11 +17,22 @@ import { test as setup, expect } from '@playwright/test';
 
 const AUTH_FILE = 'playwright/.auth/user.json';
 
-// Test credentials from fix_plan.md
-const TEST_EMAIL = 'temreyildirim8@gmail.com';
-const TEST_PASSWORD = 'Roamless123*';
+// Test credentials from environment variables
+// Set these in your .env.local or export them before running tests:
+// export TEST_USER_EMAIL=your-email@example.com
+// export TEST_USER_PASSWORD=your-password
+const TEST_EMAIL = process.env.TEST_USER_EMAIL || '';
+const TEST_PASSWORD = process.env.TEST_USER_PASSWORD || '';
 const TEST_LOCALE = 'en';
 const BASE_URL = `http://localhost:3000/${TEST_LOCALE}`;
+
+// Validate credentials are set
+if (!TEST_EMAIL || !TEST_PASSWORD) {
+  throw new Error(
+    'TEST_USER_EMAIL and TEST_USER_PASSWORD environment variables must be set.\n' +
+    'Example: export TEST_USER_EMAIL=your-email@example.com TEST_USER_PASSWORD=your-password'
+  );
+}
 
 setup('authenticate', async ({ page }) => {
   // Navigate to login page

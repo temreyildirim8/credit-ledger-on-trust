@@ -14,9 +14,16 @@ import { test as base, expect } from '@playwright/test';
 const TEST_LOCALE = 'en';
 const BASE_URL = `http://localhost:3000/${TEST_LOCALE}`;
 
-// Test credentials from fix_plan.md
-const TEST_EMAIL = 'temreyildirim8@gmail.com';
-const TEST_PASSWORD = 'Roamless123*';
+// Test credentials from environment variables
+const TEST_EMAIL = process.env.TEST_USER_EMAIL || '';
+const TEST_PASSWORD = process.env.TEST_USER_PASSWORD || '';
+
+// Validate credentials are set
+if (!TEST_EMAIL || !TEST_PASSWORD) {
+  throw new Error(
+    'TEST_USER_EMAIL and TEST_USER_PASSWORD environment variables must be set for auth flow tests.'
+  );
+}
 
 // Create a separate test fixture for auth flow tests (without authenticated state)
 const test = base.extend({
