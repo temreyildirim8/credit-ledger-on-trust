@@ -102,7 +102,9 @@
     "features": "Features",
     "pricing": "Pricing",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "howItWorks": "How it Works",
+    "reviews": "Reviews"
   },
   "home": {
     "meta": {
