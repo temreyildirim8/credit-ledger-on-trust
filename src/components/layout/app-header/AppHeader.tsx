@@ -3,6 +3,8 @@
 import { Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SyncStatusIndicator } from "@/components/layout/sync-status";
+import { useAuth } from "@/lib/hooks/useAuth";
+import { useTranslations } from "next-intl";
 
 interface AppHeaderProps {
   title?: string;
@@ -19,15 +21,18 @@ export function AppHeader({
   subtitle,
   className,
 }: AppHeaderProps) {
-  // Get user name from auth context or use default
-  const userName = "Ahmed"; // TODO: Get from auth context
+  const { user } = useAuth();
+  const t = useTranslations("dashboard.greeting");
 
-  // Get greeting based on time of day
+  // Get user name from auth metadata or use default
+  const userName = user?.user_metadata?.full_name || user?.email?.split("@")[0] || "User";
+
+  // Get greeting based on time of day using i18n
   const getGreeting = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return "Good morning";
-    if (hour < 17) return "Good afternoon";
-    return "Good evening";
+    if (hour < 12) return t("morning");
+    if (hour < 17) return t("afternoon");
+    return t("evening");
   };
 
   return (
