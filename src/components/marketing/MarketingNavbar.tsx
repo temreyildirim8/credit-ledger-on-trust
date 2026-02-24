@@ -68,7 +68,7 @@ export function MarketingNavbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-white/90 hover:text-white transition-colors text-sm font-medium"
+                className="text-white/90 hover:text-white transition-colors text-sm font-medium py-2 px-1 min-h-[44px] flex items-center"
               >
                 {item.name}
               </Link>
@@ -79,13 +79,13 @@ export function MarketingNavbar() {
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/login"
-              className="text-white/90 hover:text-white transition-colors text-sm font-medium"
+              className="text-white/90 hover:text-white transition-colors text-sm font-medium py-2 px-1 min-h-[44px] flex items-center"
             >
               {t('login')}
             </Link>
             <Link
               href="/signup"
-              className="bg-white text-[var(--color-accent)] hover:bg-white/90 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="bg-white text-[var(--color-accent)] hover:bg-white/90 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-lg hover:shadow-xl min-h-[44px] flex items-center"
             >
               {t('signup')}
             </Link>
@@ -111,28 +111,28 @@ export function MarketingNavbar() {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div id="mobile-menu" className="md:hidden bg-[var(--color-accent)] border-t border-white/10">
-          <div className="px-4 py-4 space-y-3">
+          <div className="px-4 py-4 space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block text-white/90 hover:text-white py-2 text-sm font-medium"
+                className="block text-white/90 hover:text-white hover:bg-white/10 py-3 px-2 text-sm font-medium min-h-[48px] flex items-center rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="pt-4 space-y-3 border-t border-white/10">
+            <div className="pt-3 space-y-2 border-t border-white/10 mt-3">
               <Link
                 href="/login"
-                className="block text-white/90 hover:text-white py-2 text-sm font-medium"
+                className="block text-white/90 hover:text-white hover:bg-white/10 py-3 px-2 text-sm font-medium min-h-[48px] flex items-center rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t('login')}
               </Link>
               <Link
                 href="/signup"
-                className="block bg-white text-[var(--color-accent)] hover:bg-white/90 px-4 py-2.5 rounded-lg text-sm font-semibold text-center transition-all duration-200"
+                className="block bg-white text-[var(--color-accent)] hover:bg-white/90 px-4 py-3 rounded-lg text-sm font-semibold text-center transition-all duration-200 min-h-[48px] flex items-center justify-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t('signup')}

@@ -100,14 +100,14 @@ export function MarketingFooter() {
               Digital credit ledger for micro-SMEs. Replace your paper notebook with a smart, secure, and always-available solution.
             </p>
             {/* Social links */}
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
                   <a
                     key={social.name}
                     href={social.href}
-                    className="w-10 h-10 rounded-full bg-gray-800 hover:bg-[var(--color-accent)] flex items-center justify-center transition-colors duration-200"
+                    className="w-11 h-11 rounded-full bg-gray-800 hover:bg-[var(--color-accent)] flex items-center justify-center transition-colors duration-200"
                     aria-label={social.name}
                   >
                     <Icon className="h-5 w-5" />
@@ -121,12 +121,12 @@ export function MarketingFooter() {
           {footerSections.map((section) => (
             <div key={section.title}>
               <h4 className="font-semibold mb-4">{section.title}</h4>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors text-sm"
+                      className="text-gray-400 hover:text-white transition-colors text-sm py-1.5 block min-h-[44px] flex items-center"
                     >
                       {link.name}
                     </Link>
@@ -143,10 +143,10 @@ export function MarketingFooter() {
             © 2025 Global Ledger. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link href="/login" className="text-gray-400 hover:text-white transition-colors">
+            <Link href="/login" className="text-gray-400 hover:text-white transition-colors py-1.5 min-h-[44px] flex items-center">
               {t('login')}
             </Link>
-            <Link href="/signup" className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium">
+            <Link href="/signup" className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium py-1.5 min-h-[44px] flex items-center">
               {t('signup')}
             </Link>
           </div>
