@@ -427,6 +427,99 @@
         "contactSalesSuccess": "Our sales team will contact you shortly!",
         "upgradeError": "Failed to upgrade plan. Please try again.",
         "footerNote": "You can change or cancel your plan at any time. No hidden fees."
+      }
+    }
+  },
+  "billing": {
+    "title": "Billing & Subscription",
+    "subtitle": "Manage your plan, billing, and payment methods",
+    "currentPlan": "Current Plan",
+    "active": "Active",
+    "upgrade": "Upgrade",
+    "customersUsed": "Customers Used",
+    "approachingLimit": "Approaching limit. Consider upgrading for more capacity.",
+    "planFeatures": "Plan Features",
+    "billingSummary": "Billing Summary",
+    "nextBillingDate": "Next Billing Date",
+    "noUpcomingPayment": "No upcoming payment",
+    "paymentMethod": "Payment Method",
+    "noneAdded": "None added",
+    "billingCycle": "Billing Cycle",
+    "freePlan": "Free Forever",
+    "paymentHistory": "Payment History",
+    "noPaymentHistory": "No payment history",
+    "noPaymentHistoryDescription": "Your payment history will appear here after you upgrade.",
+    "downloadInvoice": "Download Invoice",
+    "updatePayment": "Update Payment",
+    "upgradeCTATitle": "Need more customers?",
+    "upgradeCTADescription": "Upgrade to Pro for unlimited customers",
+    "viewPlans": "View Plans"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account and preferences",
+    "betaFounder": "Beta Founder",
+    "betaDescription": "Early adopter benefits - 50% off forever!",
+    "sections": {
+      "profile": {
+        "title": "Profile",
+        "description": "Manage your personal information",
+        "fullName": "Full Name",
+        "email": "Email",
+        "phone": "Phone",
+        "saveChanges": "Save Changes",
+        "saved": "Profile saved successfully"
+      },
+      "business": {
+        "title": "Business",
+        "description": "Business name, currency, language",
+        "businessName": "Business Name",
+        "businessNamePlaceholder": "My Shop",
+        "currency": "Currency",
+        "language": "Language",
+        "timezone": "Timezone",
+        "saveChanges": "Save Changes",
+        "saved": "Business settings saved"
+      },
+      "notifications": {
+        "title": "Notifications",
+        "description": "Push notifications and reminders",
+        "pushEnabled": "Push Notifications",
+        "pushDescription": "Receive alerts on your device",
+        "remindersEnabled": "Payment Reminders",
+        "remindersDescription": "Remind customers about debts",
+        "weeklyReport": "Weekly Report",
+        "weeklyReportDescription": "Summary of weekly activity"
+      },
+      "subscription": {
+        "title": "Subscription",
+        "description": "Plan and billing",
+        "currentPlan": "Current Plan",
+        "planName": "Beta Founder",
+        "features": {
+          "customers": "Up to 50 customers",
+          "transactions": "Unlimited transactions",
+          "offline": "Offline mode",
+          "export": "Data export"
+        },
+        "viewPricing": "View Pricing Plans",
+        "manageBilling": "Manage Billing",
+        "upgrade": "Upgrade Plan"
+      },
+      "upgradeModal": {
+        "title": "Upgrade Your Plan",
+        "description": "Choose a plan that fits your business needs",
+        "mostPopular": "Most Popular",
+        "currentPlan": "Current Plan",
+        "currentPlanActive": "Current Plan Active",
+        "cancel": "Cancel",
+        "processing": "Processing...",
+        "contactSales": "Contact Sales",
+        "upgradeTo": "Upgrade to {plan}",
+        "upgradeSuccess": "Successfully upgraded to {plan}!",
+        "contactSalesSuccess": "Our sales team will contact you shortly!",
+        "upgradeError": "Failed to upgrade plan. Please try again.",
+        "footerNote": "You can change or cancel your plan at any time. No hidden fees."
       },
       "data": {
         "title": "Data & Backup",
