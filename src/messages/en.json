@@ -285,39 +285,58 @@
   },
   "contact": {
     "meta": {
-      "title": "Contact Us - Ledgerly",
+      "title": "Contact Us - Global Ledger",
       "description": "Get in touch with our team for support, questions, or feedback"
     },
-    "title": "Get in Touch",
-    "subtitle": "We'd love to hear from you",
+    "hero": {
+      "badge": "Contact Us",
+      "title": "Get in Touch",
+      "subtitle": "Have questions about Global Ledger? We're here to help. Reach out to our team for support, sales inquiries, or partnership opportunities."
+    },
     "form": {
-      "title": "Send us a Message",
-      "name": "Your Name",
-      "email": "Email Address",
+      "fullName": "Full Name",
+      "workEmail": "Work Email",
       "subject": "Subject",
-      "message": "Message",
+      "subjects": {
+        "general": "General Inquiry",
+        "sales": "Sales Inquiry",
+        "support": "Technical Support",
+        "partnership": "Partnership"
+      },
+      "message": "How can we help?",
+      "messagePlaceholder": "Tell us more about your business needs...",
       "submit": "Send Message",
-      "sending": "Sending..."
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "privacyNote": "By clicking \"Send Message\", you agree to our",
+      "privacyLink": "Privacy Policy"
     },
     "info": {
-      "email": "Email us at",
-      "emailAddress": "support@ledgerly.app",
-      "responseTime": "We typically respond within 24 hours",
-      "liveChat": {
-        "title": "Live Chat",
-        "description": "Chat with our support team during business hours.",
-        "button": "Start Chat"
+      "email": {
+        "title": "Email Support",
+        "description": "Our support team is here to help you with any questions or issues.",
+        "responseTime": "We typically respond within 24 hours"
+      },
+      "helpCenter": {
+        "title": "Help Center",
+        "description": "Browse our documentation and FAQs for quick answers.",
+        "button": "Visit Help Center"
       },
       "office": {
         "title": "Office",
-        "company": "Ledgerly Inc.",
-        "address": "Istanbul, Turkey"
+        "company": "Global Ledger Inc.",
+        "address": "Levent, Büyükdere Cd. No:199 Şişli, Istanbul, TR"
       }
     },
+    "global": {
+      "title": "Global Presence",
+      "subtitle": "We don't just build software. We build local teams who understand your market."
+    },
     "cta": {
-      "title": "Need Quick Help?",
-      "description": "Check out our Help Center for answers to common questions.",
-      "button": "Visit Help Center"
+      "title": "Ready to transform your business?",
+      "description": "Join thousands of shopkeepers who trust Global Ledger with their credit management.",
+      "primaryButton": "Get Started Free",
+      "secondaryButton": "View Pricing"
     },
     "success": "Message sent successfully!",
     "error": "Failed to send message. Please try again."
