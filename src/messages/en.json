@@ -29,6 +29,22 @@
     "yes": "Yes",
     "no": "No"
   },
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again or go back to the home page.",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home",
+    "goToDashboard": "Go to Dashboard",
+    "errorId": "Error ID",
+    "appError": {
+      "title": "Page Error",
+      "description": "An error occurred while loading this page. Please try again or navigate to a different section."
+    },
+    "globalError": {
+      "title": "Application Error",
+      "description": "We encountered an unexpected error. Please try again or return to the home page."
+    }
+  },
   "nav": {
     "dashboard": "Dashboard",
     "customers": "Customers",

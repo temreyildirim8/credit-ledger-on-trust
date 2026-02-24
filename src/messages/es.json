@@ -29,6 +29,22 @@
     "yes": "Sí",
     "no": "No"
   },
+  "errorBoundary": {
+    "title": "Algo salió mal",
+    "description": "Se produjo un error inesperado. Por favor, inténtelo de nuevo o vuelva a la página principal.",
+    "tryAgain": "Intentar de nuevo",
+    "goHome": "Ir al Inicio",
+    "goToDashboard": "Ir al Panel",
+    "errorId": "ID del Error",
+    "appError": {
+      "title": "Error de Página",
+      "description": "Se produjo un error al cargar esta página. Por favor, inténtelo de nuevo o navegue a otra sección."
+    },
+    "globalError": {
+      "title": "Error de Aplicación",
+      "description": "Hemos encontrado un error inesperado. Por favor, inténtelo de nuevo o vuelva a la página principal."
+    }
+  },
   "nav": {
     "dashboard": "Panel",
     "customers": "Clientes",

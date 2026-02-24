@@ -29,6 +29,22 @@
     "yes": "Ya",
     "no": "Tidak"
   },
+  "errorBoundary": {
+    "title": "Terjadi Kesalahan",
+    "description": "Terjadi kesalahan tak terduga. Silakan coba lagi atau kembali ke beranda.",
+    "tryAgain": "Coba Lagi",
+    "goHome": "Ke Beranda",
+    "goToDashboard": "Ke Dashboard",
+    "errorId": "ID Kesalahan",
+    "appError": {
+      "title": "Kesalahan Halaman",
+      "description": "Terjadi kesalahan saat memuat halaman ini. Silakan coba lagi atau navigasi ke bagian lain."
+    },
+    "globalError": {
+      "title": "Kesalahan Aplikasi",
+      "description": "Kami mengalami kesalahan tak terduga. Silakan coba lagi atau kembali ke beranda."
+    }
+  },
   "nav": {
     "dashboard": "Dashboard",
     "customers": "Pelanggan",

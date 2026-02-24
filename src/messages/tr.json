@@ -29,6 +29,22 @@
     "yes": "Evet",
     "no": "Hayır"
   },
+  "errorBoundary": {
+    "title": "Bir hata oluştu",
+    "description": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin veya ana sayfaya dönün.",
+    "tryAgain": "Tekrar Dene",
+    "goHome": "Ana Sayfa",
+    "goToDashboard": "Kontrol Paneline Git",
+    "errorId": "Hata Kimliği",
+    "appError": {
+      "title": "Sayfa Hatası",
+      "description": "Bu sayfa yüklenirken bir hata oluştu. Lütfen tekrar deneyin veya başka bir bölüme gidin."
+    },
+    "globalError": {
+      "title": "Uygulama Hatası",
+      "description": "Beklenmeyen bir hata ile karşılaştık. Lütfen tekrar deneyin veya ana sayfaya dönün."
+    }
+  },
   "nav": {
     "dashboard": "Kontrol Paneli",
     "customers": "Müşteriler",

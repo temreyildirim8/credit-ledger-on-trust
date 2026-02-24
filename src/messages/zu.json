@@ -29,6 +29,22 @@
     "yes": "Yebo",
     "no": "Cha"
   },
+  "errorBoundary": {
+    "title": "Kwenzeke Iphutha",
+    "description": "Kwenzeke iphutha elingalindelekanga. Sicela uzame futhi noma ubuyele ekhaya.",
+    "tryAgain": "Zama Futhi",
+    "goHome": "Ekhaya",
+    "goToDashboard": "Iya ku-Dashboard",
+    "errorId": "I-ID Yephutha",
+    "appError": {
+      "title": "Iphutha Lekhasi",
+      "description": "Kwenzeke iphutha ngokulayisha leli khasi. Sicela uzame futhi noma uye esigabeni esihlukile."
+    },
+    "globalError": {
+      "title": "Iphutha Le-App",
+      "description": "Sihlangabezane nephutha elingalindelekanga. Sicela uzame futhi noma ubuyele ekhaya."
+    }
+  },
   "nav": {
     "dashboard": "I-Dashboard",
     "customers": "Abathengi",
