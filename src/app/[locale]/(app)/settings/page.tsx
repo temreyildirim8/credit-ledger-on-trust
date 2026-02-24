@@ -43,6 +43,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useTranslations } from 'next-intl';
+import { SubscriptionUpgradeModal } from '@/components/settings/SubscriptionUpgradeModal';
 
 type SettingsTab = 'profile' | 'business' | 'notifications' | 'subscription' | 'data' | 'support' | 'account';
 
@@ -64,6 +65,7 @@ export default function SettingsPage() {
   const { user, signOut } = useAuth();
   const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
+  const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
 
   // Settings sections
   const settingsSections: SettingsSection[] = [
@@ -344,8 +346,12 @@ export default function SettingsPage() {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="outline" className="flex-1">
-                      {t('sections.subscription.viewPricing')}
+                    <Button
+                      variant="default"
+                      className="flex-1 bg-accent hover:bg-accent-hover"
+                      onClick={() => setUpgradeModalOpen(true)}
+                    >
+                      {t('sections.subscription.upgrade')}
                     </Button>
                     <Button variant="outline" className="flex-1">
                       {t('sections.subscription.manageBilling')}
@@ -470,6 +476,13 @@ export default function SettingsPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Subscription Upgrade Modal */}
+      <SubscriptionUpgradeModal
+        open={upgradeModalOpen}
+        onOpenChange={setUpgradeModalOpen}
+        currentPlan="free"
+      />
     </div>
   );
 }
