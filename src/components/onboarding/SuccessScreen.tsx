@@ -1,48 +1,58 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { CardContent } from '@/components/ui/card';
-import confetti from 'canvas-confetti';
+
+// Dynamic import type for canvas-confetti
+type ConfettiType = (options: Record<string, unknown>) => void;
 
 export function SuccessScreen() {
   const t = useTranslations('onboarding');
   const [mounted, setMounted] = useState(false);
 
+  const triggerConfetti = useCallback(async () => {
+    // Dynamically import canvas-confetti only when needed
+    const confettiModule = await import('canvas-confetti');
+    const confetti = confettiModule.default as ConfettiType;
+
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    const randomInRange = (min: number, max: number) =>
+      Math.random() * (max - min) + min;
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      });
+    }, 250);
+  }, []);
+
   useEffect(() => {
     setMounted(true);
 
-    // Trigger confetti on mount
+    // Trigger confetti on mount (only in browser)
     if (typeof window !== 'undefined') {
-      const duration = 3000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-      const randomInRange = (min: number, max: number) =>
-        Math.random() * (max - min) + min;
-
-      const interval = setInterval(() => {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          clearInterval(interval);
-          return;
-        }
-
-        const particleCount = 50 * (timeLeft / duration);
-        confetti({
-          ...defaults,
-          particleCount,
-          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-        });
-        confetti({
-          ...defaults,
-          particleCount,
-          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-        });
-      }, 250);
+      triggerConfetti().catch(console.error);
     }
-  }, []);
+  }, [triggerConfetti]);
 
   return (
     <CardContent className="flex flex-col items-center justify-center py-12 text-center">

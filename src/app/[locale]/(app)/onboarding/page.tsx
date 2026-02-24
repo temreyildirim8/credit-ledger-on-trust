@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Card } from '@/components/ui/card';
@@ -9,11 +9,18 @@ import { Progress } from '@/components/ui/progress';
 import { CurrencySelection } from '@/components/onboarding/CurrencySelection';
 import { LanguageSelection } from '@/components/onboarding/LanguageSelection';
 import { CategorySelection } from '@/components/onboarding/CategorySelection';
-import { SuccessScreen } from '@/components/onboarding/SuccessScreen';
 import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { userProfilesService } from '@/lib/services/user-profiles.service';
 import { toast } from 'sonner';
+
+// Lazy load SuccessScreen - only loaded when user reaches final step
+// This reduces initial bundle size since canvas-confetti is ~25KB
+const SuccessScreen = lazy(() =>
+  import('@/components/onboarding/SuccessScreen').then((mod) => ({
+    default: mod.SuccessScreen,
+  }))
+);
 
 const TOTAL_STEPS = 4;
 
@@ -147,7 +154,17 @@ export default function OnboardingPage() {
           />
         );
       case 4:
-        return <SuccessScreen />;
+        return (
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              </div>
+            }
+          >
+            <SuccessScreen />
+          </Suspense>
+        );
       default:
         return null;
     }
