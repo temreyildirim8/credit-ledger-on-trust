@@ -7,8 +7,13 @@ import { Link } from '@/routing';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Legal Center - Global Ledger',
-    description: 'Legal information, privacy policy, terms of service, and compliance documentation for Global Ledger.',
+    title: 'Legal Center',
+    description: 'Legal information, privacy policy, terms of service, and compliance documentation for Global Ledger. Understand how we protect your data and your rights.',
+    openGraph: {
+      title: 'Legal Center - Global Ledger',
+      description: 'Legal information, privacy policy, terms of service, and compliance documentation.',
+      url: '/legal',
+    },
   };
 }
 

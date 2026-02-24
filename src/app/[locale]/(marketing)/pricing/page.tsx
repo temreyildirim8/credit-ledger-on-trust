@@ -8,8 +8,18 @@ import { Link } from '@/routing';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Pricing - Global Ledger',
-    description: 'Affordable pricing for every business size. Start free, upgrade when you need.',
+    title: 'Pricing',
+    description: 'Affordable pricing plans for micro-SMEs. Start free with 10 customers, upgrade to Pro for unlimited customers and SMS reminders. No credit card required.',
+    openGraph: {
+      title: 'Pricing - Global Ledger',
+      description: 'Affordable pricing plans for micro-SMEs. Start free with 10 customers, upgrade to Pro for unlimited customers and SMS reminders.',
+      url: '/pricing',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Pricing - Global Ledger',
+      description: 'Affordable pricing plans for micro-SMEs. Start free, upgrade when you need.',
+    },
   };
 }
 

@@ -64,12 +64,22 @@ const industryMetadata: Record<
   }),
 };
 
+// Locale to Open Graph locale mapping
+const localeToOGLocale: Record<string, string> = {
+  en: "en_US",
+  tr: "tr_TR",
+  es: "es_ES",
+  hi: "hi_IN",
+  id: "id_ID",
+  ar: "ar_AR",
+  zu: "zu_ZA",
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
 
   // Validate locale
   if (!routing.locales.includes(locale as Locale)) {
-    // notFound();
     console.warn("Unknown locale in layout:", locale);
   }
   // Get messages for the locale
@@ -89,12 +99,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const getMetadata = industryMetadata[industry] || industryMetadata.general;
   const metadata = getMetadata(locale as Locale, t);
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
   return {
-    title: metadata.title,
+    title: {
+      default: metadata.title,
+      template: `%s | Global Ledger`,
+    },
     description: metadata.description,
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
-    ),
+    keywords: [
+      "credit ledger",
+      "veresiye",
+      "micro-SME",
+      "small business",
+      "accounts receivable",
+      "customer management",
+      "digital ledger",
+      "POS",
+      "shop management",
+      "debt tracking",
+      "payment reminders",
+    ],
+    authors: [{ name: "Global Ledger Team" }],
+    creator: "Global Ledger",
+    publisher: "Global Ledger",
+    metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `/${locale}`,
       languages: {
@@ -110,8 +139,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: metadata.title,
       description: metadata.description,
-      locale: locale,
+      url: `${baseUrl}/${locale}`,
+      siteName: "Global Ledger",
+      locale: localeToOGLocale[locale] || "en_US",
       type: "website",
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Global Ledger - Digital Credit Ledger for Micro-SMEs",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metadata.title,
+      description: metadata.description,
+      images: ["/og-image.png"],
+      creator: "@globalledger",
+      site: "@globalledger",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
     manifest: "/manifest.json",
     appleWebApp: {
@@ -120,9 +178,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: "Global Ledger",
     },
     icons: {
-      icon: "/icons/icon.svg",
-      apple: "/icons/icon.svg",
+      icon: [
+        { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+        { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+        { url: "/icons/icon.svg", type: "image/svg+xml" },
+      ],
+      apple: [
+        { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
     },
+    category: "Business",
+    classification: "Finance/Business Software",
   };
 }
 

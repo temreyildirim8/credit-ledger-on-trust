@@ -7,8 +7,17 @@ import { Link } from '@/routing';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Terms of Service - Global Ledger',
-    description: 'The terms and conditions governing your use of Global Ledger services.',
+    title: 'Terms of Service',
+    description: 'Terms and conditions governing your use of Global Ledger services. Read our service agreement, acceptable use policy, and user responsibilities.',
+    openGraph: {
+      title: 'Terms of Service - Global Ledger',
+      description: 'Terms and conditions governing your use of Global Ledger services.',
+      url: '/legal/terms',
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 

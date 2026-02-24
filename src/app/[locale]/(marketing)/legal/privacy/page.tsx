@@ -7,8 +7,17 @@ import { Link } from '@/routing';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Privacy Policy - Global Ledger',
-    description: 'Learn how Global Ledger collects, uses, and protects your personal information.',
+    title: 'Privacy Policy',
+    description: 'Learn how Global Ledger collects, uses, and protects your personal information. We are committed to safeguarding your privacy and ensuring GDPR compliance.',
+    openGraph: {
+      title: 'Privacy Policy - Global Ledger',
+      description: 'Learn how Global Ledger collects, uses, and protects your personal information.',
+      url: '/legal/privacy',
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 

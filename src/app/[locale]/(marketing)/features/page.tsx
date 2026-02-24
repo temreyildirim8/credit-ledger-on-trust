@@ -6,8 +6,18 @@ import Link from 'next/link';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Features - Global Ledger',
-    description: 'Explore all the powerful features of Global Ledger credit ledger application',
+    title: 'Features',
+    description: 'Discover Global Ledger features: multi-currency support, offline mode, SMS payment reminders, PDF/CSV reports, WhatsApp integration, and more. Built for micro-SMEs.',
+    openGraph: {
+      title: 'Features - Global Ledger',
+      description: 'Discover Global Ledger features: multi-currency support, offline mode, SMS payment reminders, and more.',
+      url: '/features',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Features - Global Ledger',
+      description: 'Discover Global Ledger features for micro-SMEs.',
+    },
   };
 }
 
