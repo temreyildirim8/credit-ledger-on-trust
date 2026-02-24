@@ -16,17 +16,6 @@ const publicPages = [
   "/legal/terms",
 ] as const;
 
-// Protected app pages - not indexed but included for completeness
-const appPages = [
-  "/dashboard",
-  "/customers",
-  "/transactions",
-  "/reports",
-  "/settings",
-  "/onboarding",
-  "/quick-add",
-] as const;
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
