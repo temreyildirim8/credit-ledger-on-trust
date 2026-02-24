@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/hooks/useAuth';
+import { userProfilesService } from '@/lib/services/user-profiles.service';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -23,6 +24,7 @@ import {
   Mail,
   Phone,
   Globe,
+  Loader2,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import {
@@ -58,11 +60,14 @@ export default function SettingsPage() {
   const tAccount = useTranslations('settings.sections.account');
 
   const pathname = usePathname();
+  const router = useRouter();
   const locale = pathname.split('/')[1] || 'en';
   const { user, signOut } = useAuth();
   const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
   const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
 
   // Settings sections
   const settingsSections: SettingsSection[] = [
@@ -94,6 +99,32 @@ export default function SettingsPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [darkMode, setDarkMode] = useState(false);
 
+  // Load user profile data on mount
+  useEffect(() => {
+    const loadUserProfile = async () => {
+      if (!user?.id) return;
+
+      try {
+        setIsLoading(true);
+        const profile = await userProfilesService.getProfile(user.id);
+        if (profile) {
+          setName(profile.full_name || user?.user_metadata?.name || '');
+          setPhone(profile.phone || '');
+          setBusinessName(profile.shop_name || '');
+          setCurrency(profile.currency || 'TRY');
+          setLanguage(profile.language || locale);
+        }
+      } catch (error) {
+        console.error('Error loading user profile:', error);
+        toast.error(t('errors.loadFailed') || 'Failed to load profile');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadUserProfile();
+  }, [user?.id, user?.user_metadata?.name, locale, t]);
+
   const handleSignOut = async () => {
     try {
       await signOut();
@@ -106,12 +137,70 @@ export default function SettingsPage() {
     }
   };
 
-  const handleSaveProfile = () => {
-    toast.success(t('sections.profile.saved'));
+  const handleSaveProfile = async () => {
+    if (!user?.id) return;
+
+    setIsSaving(true);
+    try {
+      // Check if profile exists, create if not
+      const existingProfile = await userProfilesService.getProfile(user.id);
+
+      if (existingProfile) {
+        await userProfilesService.updateProfile(user.id, {
+          full_name: name,
+          phone: phone,
+        });
+      } else {
+        await userProfilesService.createProfile(user.id, {
+          full_name: name,
+          phone: phone,
+        });
+      }
+
+      toast.success(t('sections.profile.saved'));
+    } catch (error) {
+      console.error('Error saving profile:', error);
+      toast.error(t('errors.saveFailed') || 'Failed to save profile');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
-  const handleSaveBusiness = () => {
-    toast.success(t('sections.business.saved'));
+  const handleSaveBusiness = async () => {
+    if (!user?.id) return;
+
+    setIsSaving(true);
+    try {
+      // Check if profile exists, create if not
+      const existingProfile = await userProfilesService.getProfile(user.id);
+
+      if (existingProfile) {
+        await userProfilesService.updateProfile(user.id, {
+          shop_name: businessName,
+          currency: currency,
+          language: language,
+        });
+      } else {
+        await userProfilesService.createProfile(user.id, {
+          shop_name: businessName,
+          currency: currency,
+          language: language,
+        });
+      }
+
+      toast.success(t('sections.business.saved'));
+
+      // If language changed, navigate to the new locale
+      if (language !== locale) {
+        const currentPath = pathname.replace(`/${locale}`, `/${language}`);
+        router.replace(currentPath);
+      }
+    } catch (error) {
+      console.error('Error saving business settings:', error);
+      toast.error(t('errors.saveFailed') || 'Failed to save settings');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleExportData = (format: 'csv' | 'pdf') => {
@@ -199,8 +288,15 @@ export default function SettingsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
+              {/* Loading State */}
+              {isLoading && (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="h-8 w-8 animate-spin text-accent" />
+                </div>
+              )}
+
               {/* Profile Section */}
-              {activeTab === 'profile' && (
+              {!isLoading && activeTab === 'profile' && (
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">{t('sections.profile.fullName')}</Label>
@@ -231,14 +327,15 @@ export default function SettingsPage() {
                       placeholder="+90 555 123 4567"
                     />
                   </div>
-                  <Button onClick={handleSaveProfile} className="w-full bg-accent hover:bg-accent-hover text-white">
+                  <Button onClick={handleSaveProfile} disabled={isSaving} className="w-full bg-accent hover:bg-accent-hover text-white">
+                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     {t('sections.profile.saveChanges')}
                   </Button>
                 </div>
               )}
 
               {/* Business Section */}
-              {activeTab === 'business' && (
+              {!isLoading && activeTab === 'business' && (
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="businessName">{t('sections.business.businessName')}</Label>
@@ -280,14 +377,15 @@ export default function SettingsPage() {
                       </SelectContent>
                     </Select>
                   </div>
-                  <Button onClick={handleSaveBusiness} className="w-full bg-accent hover:bg-accent-hover text-white">
+                  <Button onClick={handleSaveBusiness} disabled={isSaving} className="w-full bg-accent hover:bg-accent-hover text-white">
+                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     {t('sections.business.saveChanges')}
                   </Button>
                 </div>
               )}
 
               {/* Notifications Section */}
-              {activeTab === 'notifications' && (
+              {!isLoading && activeTab === 'notifications' && (
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
                     <div>
@@ -314,7 +412,7 @@ export default function SettingsPage() {
               )}
 
               {/* Subscription Section */}
-              {activeTab === 'subscription' && (
+              {!isLoading && activeTab === 'subscription' && (
                 <div className="space-y-5">
                   <div className="p-4 bg-accent/10 rounded-xl border border-accent/20">
                     <div className="flex items-center justify-between mb-3">
@@ -359,7 +457,7 @@ export default function SettingsPage() {
               )}
 
               {/* Data Section */}
-              {activeTab === 'data' && (
+              {!isLoading && activeTab === 'data' && (
                 <div className="space-y-5">
                   <div>
                     <p className="font-medium mb-3 text-text">{t('sections.data.export')}</p>
@@ -395,7 +493,7 @@ export default function SettingsPage() {
               )}
 
               {/* Support Section */}
-              {activeTab === 'support' && (
+              {!isLoading && activeTab === 'support' && (
                 <div className="space-y-3">
                   <Button variant="outline" className="w-full justify-start">
                     <HelpCircle className="h-4 w-4 mr-2" />
@@ -419,7 +517,7 @@ export default function SettingsPage() {
               )}
 
               {/* Account Section */}
-              {activeTab === 'account' && (
+              {!isLoading && activeTab === 'account' && (
                 <div className="space-y-3">
                   <Button variant="outline" className="w-full justify-start">
                     <Shield className="h-4 w-4 mr-2" />
