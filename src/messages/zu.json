@@ -160,6 +160,25 @@
     "reports": {
       "title": "Izingxenye Ezinhle Zikashwazi",
       "description": "Thola ukwaziswa ngeshishalo lakho ngezingxenye eziningi nezingcai."
+    },
+    "howItWorks": {
+      "step1": {
+        "title": "Engeza Amakhasimende Akho",
+        "description": "Engeza amakhasimende ngokushesha ngedatha yabo yokuxhumana. Hlela isisekelo sakho samakhasimende ngemizuzwana."
+      },
+      "step2": {
+        "title": "Qamba Izenzo",
+        "description": "Landela izikweletu nama-payments kalula. Isebenza ngaphandle kwe-internet futhi ivumelanisa uma uphinde uqale ku-internet."
+      },
+      "step3": {
+        "title": "Thola Ukwaziswa",
+        "description": "Buka imibiko nehlaziyiwe ukuze uqonde ibizinisi lakho kangcono. Yenza izinqumo ezaziwayo."
+      }
+    },
+    "cta": {
+      "title": "Ukulungele Ukuqala?",
+      "description": "Joyina izinkampani eziningi ezisebenzisa i-Ledgerly ukulawula ikhredithi yamakhasimende azo.",
+      "button": "Qala Mahhala Namuhla"
     }
   },
   "pricing": {
@@ -255,6 +274,11 @@
         "Ukuthuthuka nokuphucwa okuqhubeka",
         "Ukhuseleko nokufihla njengezinqalo ezisisekelo"
       ]
+    },
+    "cta": {
+      "title": "Ukulungele Ukuqala?",
+      "description": "Joyina izinkampani eziningi ezisebenzisa i-Ledgerly ukulawula ikhredithi yamakhasimende azo.",
+      "button": "Qala Mahhala Namuhla"
     }
   },
   "contact": {
@@ -544,6 +568,9 @@
     }
   },
   "auth": {
+    "common": {
+      "or": "noma"
+    },
     "login": {
       "title": "Welcomed Emuva",
       "subtitle": "Ngena ku-akhawunti yakho",
@@ -673,6 +700,7 @@
     "resetPassword": {
       "title": "Setha Kabusha Iphasiwedi",
       "subtitle": "Faka iphasiwedi yakho entsha",
+      "brandName": "Mali-X",
       "password": "Iphasiwedi Entsha",
       "passwordPlaceholder": "Faka iphasiwedi entsha",
       "confirmPassword": "Qinisekisa Iphasiwedi",
@@ -685,6 +713,9 @@
       "invalidToken": "Ilinki lokusetha kabushi elingavumelekile noma esidlule",
       "passwordsMismatch": "Iphasiwedi ayihambisani",
       "passwordTooShort": "Iphasiwedi kumele ibe ama-6 okungenani amagama"
+    },
+    "verifyOTP": {
+      "brandName": "Mali-X"
     },
     "otpExpired": {
       "title": "Ilinki Lokugunyaza Isele",
@@ -774,9 +805,14 @@
       "title": "Umiselwe Konke!",
       "subtitle": "I-akhawunti yakho ilungele ukusebenza",
       "description": "Ungashintsha lezi zilungiselelo ngesikhathi esizayo kuphrofayela yakho",
+      "message": "Izintandokazi zakho zilondolozwe ngempumelelo!",
       "action": "Yiya Ku-Dashboard"
     },
     "categories": {
+      "category": {
+        "title": "Ibizinisi Lakho Yini?",
+        "subtitle": "Khetha isigaba esichaza kahle ibizinisi lakho"
+      },
       "bakkal": "Isitolo Sekhaphetsheni",
       "kirana": "Isitolo Sikakirana",
       "warung": "I-Warung / I-Mini Market",
@@ -788,6 +824,7 @@
       "services": "Izinsizakalo",
       "other": "Okunye"
     },
+    "saving": "Iyagcina...",
     "skip": "Yeqa okwamanje",
     "next": "Okulandelayo",
     "back": "Emuva",

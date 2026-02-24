@@ -189,6 +189,19 @@
     },
     "title": "Basit, Şeffaf Fiyatlandırma",
     "subtitle": "Ücretsiz başlayın, büyüdükçe yükseltin",
+    "basic": {
+      "name": "Temel",
+      "price": "₺150",
+      "period": "ay",
+      "description": "Büyüyen işletmeler için",
+      "features": [
+        "50 müşteri",
+        "Veri dışa aktarma (PDF/CSV)",
+        "Gelişmiş raporlar",
+        "E-posta desteği"
+      ],
+      "cta": "Temel Başlat"
+    },
     "free": {
       "name": "Her Zaman Ücretsiz",
       "price": "₺0",
@@ -537,6 +550,10 @@
       "action": "Kontrol Paneline Git"
     },
     "categories": {
+      "category": {
+        "title": "İşletmeniz Nedir?",
+        "subtitle": "İşletmenizi en iyi tanımlayan kategoriyi seçin"
+      },
       "bakkal": "Bakkal / Market",
       "kirana": "Kirana Dükkanı",
       "warung": "Warung / Mini Market",
@@ -547,6 +564,14 @@
       "wholesale": "Toptancı",
       "services": "Hizmetler",
       "other": "Diğer"
+    },
+    "saving": "Kaydediliyor...",
+    "success": {
+      "title": "Hazırsınız!",
+      "subtitle": "Hesabınız kullanıma hazır",
+      "description": "Bu ayarları daha sonra profilinizden değiştirebilirsiniz",
+      "message": "Tercihleriniz başarıyla kaydedildi!",
+      "action": "Kontrol Paneline Git"
     },
     "skip": "Şimdilik Atla",
     "next": "İleri",
@@ -677,6 +702,9 @@
     }
   },
   "auth": {
+    "common": {
+      "or": "veya"
+    },
     "login": {
       "title": "Tekrar Hoş Geldiniz",
       "subtitle": "Hesabınıza giriş yapın",
@@ -806,6 +834,7 @@
     "resetPassword": {
       "title": "Şifre Sıfırlama",
       "subtitle": "Yeni şifrenizi girin",
+      "brandName": "Ledgerly",
       "password": "Yeni Şifre",
       "passwordPlaceholder": "Yeni şifre girin",
       "confirmPassword": "Şifre Tekrarı",
@@ -818,6 +847,9 @@
       "invalidToken": "Geçersiz veya süresi dolmuş bağlantı",
       "passwordsMismatch": "Şifreler eşleşmiyor",
       "passwordTooShort": "Şifre en az 6 karakter olmalı"
+    },
+    "verifyOTP": {
+      "brandName": "Ledgerly"
     },
     "otpExpired": {
       "title": "Doğrulama Bağlantısının Süresi Doldu",

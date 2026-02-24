@@ -160,6 +160,25 @@
     "reports": {
       "title": "Informes Detallados",
       "description": "Obtén información sobre tu negocio con informes y análisis completos."
+    },
+    "howItWorks": {
+      "step1": {
+        "title": "Agrega tus Clientes",
+        "description": "Agrega clientes rápidamente con sus datos de contacto. Organiza tu base de clientes en segundos."
+      },
+      "step2": {
+        "title": "Registra Transacciones",
+        "description": "Rastrea deudas y pagos fácilmente. Funciona sin conexión y se sincroniza cuando vuelves a estar conectado."
+      },
+      "step3": {
+        "title": "Obtén Información",
+        "description": "Ver informes y análisis para entender mejor tu negocio. Toma decisiones informadas."
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Empezar?",
+      "description": "Únete a miles de negocios que usan Ledgerly para gestionar el crédito de sus clientes.",
+      "button": "Comienza Gratis Hoy"
     }
   },
   "pricing": {
@@ -255,6 +274,11 @@
         "Innovación y mejora continua",
         "Seguridad y privacidad como principios fundamentales"
       ]
+    },
+    "cta": {
+      "title": "¿Listo para Empezar?",
+      "description": "Únete a miles de negocios que usan Ledgerly para gestionar el crédito de sus clientes.",
+      "button": "Comienza Gratis Hoy"
     }
   },
   "contact": {
@@ -544,6 +568,9 @@
     }
   },
   "auth": {
+    "common": {
+      "or": "o"
+    },
     "login": {
       "title": "Bienvenido de nuevo",
       "subtitle": "Inicia sesión en tu cuenta",
@@ -673,6 +700,7 @@
     "resetPassword": {
       "title": "Restablecer Contraseña",
       "subtitle": "Ingresa tu nueva contraseña",
+      "brandName": "Fiado-X",
       "password": "Nueva Contraseña",
       "passwordPlaceholder": "Ingresa nueva contraseña",
       "confirmPassword": "Confirmar Contraseña",
@@ -685,6 +713,9 @@
       "invalidToken": "Enlace de restablecimiento inválido o expirado",
       "passwordsMismatch": "Las contraseñas no coinciden",
       "passwordTooShort": "La contraseña debe tener al menos 6 caracteres"
+    },
+    "verifyOTP": {
+      "brandName": "Fiado-X"
     },
     "otpExpired": {
       "title": "Enlace de Verificación Expirado",
@@ -941,9 +972,14 @@
       "title": "¡Todo Listo!",
       "subtitle": "Tu cuenta está lista para usar",
       "description": "Siempre puedes cambiar estas configuraciones más tarde en tu perfil",
+      "message": "¡Tus preferencias se han guardado exitosamente!",
       "action": "Ir al Panel"
     },
     "categories": {
+      "category": {
+        "title": "¿Cuál es Tu Negocio?",
+        "subtitle": "Selecciona la categoría que mejor describe tu negocio"
+      },
       "bakkal": "Tienda de Ultramarinos",
       "kirana": "Tienda Kirana",
       "warung": "Warung / Minimercado",
@@ -955,6 +991,7 @@
       "services": "Servicios",
       "other": "Otro"
     },
+    "saving": "Guardando...",
     "skip": "Omitir por ahora",
     "next": "Siguiente",
     "back": "Atrás",

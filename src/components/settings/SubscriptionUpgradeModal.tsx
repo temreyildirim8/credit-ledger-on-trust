@@ -35,7 +35,7 @@ export function SubscriptionUpgradeModal({
   onOpenChange,
   currentPlan = 'free',
 }: SubscriptionUpgradeModalProps) {
-  const t = useTranslations('settings.upgradeModal');
+  const t = useTranslations('settings.sections.upgradeModal');
   const tPricing = useTranslations('pricing');
   const [selectedPlan, setSelectedPlan] = useState<PlanKey | null>(null);
   const [isLoading, setIsLoading] = useState(false);

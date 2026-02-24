@@ -160,6 +160,25 @@
     "reports": {
       "title": "Detailed Reports",
       "description": "Get insights into your business with comprehensive reports and analytics."
+    },
+    "howItWorks": {
+      "step1": {
+        "title": "Add Your Customers",
+        "description": "Quickly add customers with their contact details. Organize your customer base in seconds."
+      },
+      "step2": {
+        "title": "Record Transactions",
+        "description": "Track debts and payments easily. Works offline and syncs when you're back online."
+      },
+      "step3": {
+        "title": "Get Insights",
+        "description": "View reports and analytics to understand your business better. Make informed decisions."
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Join thousands of businesses using Ledgerly to manage their customer credit.",
+      "button": "Start Free Today"
     }
   },
   "pricing": {
@@ -255,6 +274,11 @@
         "Continuous innovation and improvement",
         "Security and privacy as foundational principles"
       ]
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Join thousands of businesses using Ledgerly to manage their customer credit.",
+      "button": "Start Free Today"
     }
   },
   "contact": {
@@ -568,6 +592,9 @@
     }
   },
   "auth": {
+    "common": {
+      "or": "or"
+    },
     "login": {
       "title": "Welcome Back",
       "subtitle": "Sign in to your account",
@@ -697,6 +724,7 @@
     "resetPassword": {
       "title": "Reset Password",
       "subtitle": "Enter your new password",
+      "brandName": "Ledgerly",
       "password": "New Password",
       "passwordPlaceholder": "Enter new password",
       "confirmPassword": "Confirm Password",
@@ -709,6 +737,9 @@
       "invalidToken": "Invalid or expired reset link",
       "passwordsMismatch": "Passwords do not match",
       "passwordTooShort": "Password must be at least 6 characters"
+    },
+    "verifyOTP": {
+      "brandName": "Ledgerly"
     },
     "otpExpired": {
       "title": "Verification Link Expired",
@@ -794,13 +825,11 @@
       "title": "What's Your Business?",
       "subtitle": "Select the category that best describes your business"
     },
-    "success": {
-      "title": "You're All Set!",
-      "subtitle": "Your account is ready to use",
-      "description": "You can always change these settings later in your profile",
-      "action": "Go to Dashboard"
-    },
     "categories": {
+      "category": {
+        "title": "What's Your Business?",
+        "subtitle": "Select the category that best describes your business"
+      },
       "bakkal": "Bakkal / Grocery Store",
       "kirana": "Kirana Shop",
       "warung": "Warung / Mini Market",
@@ -811,6 +840,14 @@
       "wholesale": "Wholesale",
       "services": "Services",
       "other": "Other"
+    },
+    "saving": "Saving...",
+    "success": {
+      "title": "You're All Set!",
+      "subtitle": "Your account is ready to use",
+      "description": "You can always change these settings later in your profile",
+      "message": "Your preferences have been saved successfully!",
+      "action": "Go to Dashboard"
     },
     "skip": "Skip for now",
     "next": "Next",

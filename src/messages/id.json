@@ -160,6 +160,25 @@
     "reports": {
       "title": "Laporan Mendetail",
       "description": "Dapatkan wawasan tentang bisnis Anda dengan laporan dan analitik yang komprehensif."
+    },
+    "howItWorks": {
+      "step1": {
+        "title": "Tambahkan Pelanggan Anda",
+        "description": "Tambahkan pelanggan dengan cepat dengan detail kontak mereka. Atur basis pelanggan Anda dalam hitungan detik."
+      },
+      "step2": {
+        "title": "Catat Transaksi",
+        "description": "Lacak hutang dan pembayaran dengan mudah. Berfungsi offline dan disinkronkan saat Anda kembali online."
+      },
+      "step3": {
+        "title": "Dapatkan Wawasan",
+        "description": "Lihat laporan dan analitik untuk memahami bisnis Anda lebih baik. Buat keputusan yang tepat."
+      }
+    },
+    "cta": {
+      "title": "Siap Untuk Memulai?",
+      "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Ledgerly untuk mengelola kredit pelanggan mereka.",
+      "button": "Mulai Gratis Hari Ini"
     }
   },
   "pricing": {
@@ -255,6 +274,11 @@
         "Inovasi dan peningkatan terus-menerus",
         "Keamanan dan privasi sebagai prinsip dasar"
       ]
+    },
+    "cta": {
+      "title": "Siap Untuk Memulai?",
+      "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Ledgerly untuk mengelola kredit pelanggan mereka.",
+      "button": "Mulai Gratis Hari Ini"
     }
   },
   "contact": {
@@ -544,6 +568,9 @@
     }
   },
   "auth": {
+    "common": {
+      "or": "atau"
+    },
     "login": {
       "title": "Selamat Datang Kembali",
       "subtitle": "Masuk ke akun Anda",
@@ -673,6 +700,7 @@
     "resetPassword": {
       "title": "Reset Kata Sandi",
       "subtitle": "Masukkan kata sandi baru Anda",
+      "brandName": "Hutang-Ku",
       "password": "Kata Sandi Baru",
       "passwordPlaceholder": "Masukkan kata sandi baru",
       "confirmPassword": "Konfirmasi Kata Sandi",
@@ -685,6 +713,9 @@
       "invalidToken": "Link reset tidak valid atau kadaluarsa",
       "passwordsMismatch": "Kata sandi tidak cocok",
       "passwordTooShort": "Kata sandi harus minimal 6 karakter"
+    },
+    "verifyOTP": {
+      "brandName": "Hutang-Ku"
     },
     "otpExpired": {
       "title": "Link Verifikasi Kadaluarsa",
@@ -774,9 +805,14 @@
       "title": "Semua Siap!",
       "subtitle": "Akun Anda siap digunakan",
       "description": "Anda selalu dapat mengubah pengaturan ini nanti di profil Anda",
+      "message": "Preferensi Anda telah berhasil disimpan!",
       "action": "Ke Dashboard"
     },
     "categories": {
+      "category": {
+        "title": "Apa Bisnis Anda?",
+        "subtitle": "Pilih kategori yang paling menggambarkan bisnis Anda"
+      },
       "bakkal": "Toko Kelontong",
       "kirana": "Toko Kirana",
       "warung": "Warung / Minimarket",
@@ -788,6 +824,7 @@
       "services": "Jasa",
       "other": "Lainnya"
     },
+    "saving": "Menyimpan...",
     "skip": "Lewati untuk sekarang",
     "next": "Berikutnya",
     "back": "Kembali",
