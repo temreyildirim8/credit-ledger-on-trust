@@ -243,11 +243,13 @@
     },
     "recentActivity": {
       "title": "Actividad Reciente",
-      "empty": "Sin actividad reciente"
+      "empty": "Sin actividad reciente",
+      "emptyDescription": "Start by adding your first customer or recording a transaction"
     },
     "overdueDebts": {
       "title": "Deudas Vencidas",
       "empty": "Sin pagos vencidos",
+      "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "Recordar"
     },
     "empty": {

@@ -243,11 +243,13 @@
     },
     "recentActivity": {
       "title": "Ukuqamba Okuqoshiwe",
-      "empty": "Awukho kuqamba okuqoshiwe"
+      "empty": "Awukho kuqamba okuqoshiwe",
+      "emptyDescription": "Start by adding your first customer or recording a transaction"
     },
     "overdueDebts": {
       "title": "Ikredithi Esiphethe Ivesi",
       "empty": "Awukho ukukhokha okuphethe ivesi",
+      "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "Khumbaza"
     },
     "empty": {

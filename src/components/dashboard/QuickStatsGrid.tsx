@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { TrendingUp, TrendingDown, Users, DollarSign } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface StatCardProps {
   label: string;
@@ -49,6 +50,8 @@ export function QuickStatsGrid({
   activeCustomers = 0,
   thisMonth = 0,
 }: QuickStatsGridProps) {
+  const t = useTranslations("dashboard.stats");
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("tr-TR", {
       style: "currency",
@@ -61,25 +64,25 @@ export function QuickStatsGrid({
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
       <StatCard
-        label="Total Owed"
+        label={t("totalOwed")}
         value={formatCurrency(totalDebt)}
         icon={<TrendingUp className="h-4 w-4 md:h-5 md:w-5" />}
         variant="debt"
       />
       <StatCard
-        label="Collected"
+        label={t("collected")}
         value={formatCurrency(totalCollected)}
         icon={<TrendingDown className="h-4 w-4 md:h-5 md:w-5" />}
         variant="collected"
       />
       <StatCard
-        label="Active Customers"
+        label={t("activeCustomers")}
         value={activeCustomers}
         icon={<Users className="h-4 w-4 md:h-5 md:w-5" />}
         variant="customers"
       />
       <StatCard
-        label="This Month"
+        label={t("thisMonth")}
         value={formatCurrency(thisMonth)}
         icon={<DollarSign className="h-4 w-4 md:h-5 md:w-5" />}
         variant="month"

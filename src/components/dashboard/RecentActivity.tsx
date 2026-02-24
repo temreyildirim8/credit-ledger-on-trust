@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
 import { tr, enUS, es } from "date-fns/locale";
 import type { Locale } from "date-fns";
+import { useTranslations } from "next-intl";
 
 // Locale map for date-fns
 const localeMap: Record<string, Locale> = { en: enUS, tr, es };
@@ -25,6 +26,8 @@ interface RecentActivityProps {
 
 export function RecentActivity({ activities = [], locale = "en" }: RecentActivityProps) {
   const dateLocale: Locale = localeMap[locale] || enUS;
+  const t = useTranslations("dashboard.recentActivity");
+  const tTypes = useTranslations("transactions.type");
 
   const formatCurrencyValue = (amount: number) => {
     return new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
@@ -40,9 +43,9 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
       <Card className="border-border">
         <div className="p-8 text-center">
           <Clock className="h-12 w-12 mx-auto text-text-secondary mb-3" />
-          <h3 className="text-lg font-semibold text-text mb-1">No activity yet</h3>
+          <h3 className="text-lg font-semibold text-text mb-1">{t("empty")}</h3>
           <p className="text-sm text-text-secondary">
-            Start by adding your first customer or recording a transaction
+            {t("emptyDescription")}
           </p>
         </div>
       </Card>
@@ -68,7 +71,7 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
                       isDebt ? "bg-debt text-white" : "bg-payment text-white"
                     )}
                   >
-                    {activity.type === "debt" ? "Debt" : "Payment"}
+                    {tTypes(activity.type)}
                   </div>
                   <span className="font-medium text-text text-sm">
                     {activity.customerName}

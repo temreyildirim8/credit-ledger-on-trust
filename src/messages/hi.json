@@ -243,11 +243,13 @@
     },
     "recentActivity": {
       "title": "हाल की गतिविधि",
-      "empty": "कोई हाल की गतिविधि नहीं"
+      "empty": "कोई हाल की गतिविधि नहीं",
+      "emptyDescription": "Start by adding your first customer or recording a transaction"
     },
     "overdueDebts": {
       "title": "अवैतनिक ऋण",
       "empty": "कोई अवैतनिक भुगतान नहीं",
+      "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "याद दिलाएं"
     },
     "empty": {

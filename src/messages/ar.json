@@ -243,11 +243,13 @@
     },
     "recentActivity": {
       "title": "النشاط الأخير",
-      "empty": "لا يوجد نشاط حديث"
+      "empty": "لا يوجد نشاط حديث",
+      "emptyDescription": "Start by adding your first customer or recording a transaction"
     },
     "overdueDebts": {
       "title": "الديون المتأخرة",
       "empty": "لا توجد مدفوعات متأخرة",
+      "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "تذكير"
     },
     "empty": {

@@ -243,11 +243,13 @@
     },
     "recentActivity": {
       "title": "Aktivitas Terbaru",
-      "empty": "Tidak ada aktivitas terbaru"
+      "empty": "Tidak ada aktivitas terbaru",
+      "emptyDescription": "Start by adding your first customer or recording a transaction"
     },
     "overdueDebts": {
       "title": "Hutang Jatuh Tempo",
       "empty": "Tidak ada pembayaran jatuh tempo",
+      "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "Ingatkan"
     },
     "empty": {

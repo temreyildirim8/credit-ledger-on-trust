@@ -284,11 +284,13 @@
     },
     "recentActivity": {
       "title": "Son Aktivite",
-      "empty": "Son aktivite yok"
+      "empty": "Son aktivite yok",
+      "emptyDescription": "Start by adding your first customer or recording a transaction"
     },
     "overdueDebts": {
       "title": "Gecikmiş Borçlar",
       "empty": "Gecikmiş ödeme yok",
+      "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "Hatırlat"
     },
     "empty": {

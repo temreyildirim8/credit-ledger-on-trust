@@ -243,7 +243,8 @@
     },
     "recentActivity": {
       "title": "Recent Activity",
-      "empty": "No recent activity"
+      "empty": "No activity yet",
+      "emptyDescription": "Start by adding your first customer or recording a transaction"
     },
     "overdueDebts": {
       "title": "Overdue Debts",
