@@ -40,10 +40,16 @@ export function SignupForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Double-submit protection
+    if (formState === 'loading') {
+      return;
+    }
+
     setFormState('loading');
 
     try {
-      const result = await signUp(email, password, name);
+      const result = await signUp(email, password, name.trim());
 
       // Check if user needs email confirmation
       // If session is null after signup, email confirmation is required
@@ -111,6 +117,7 @@ export function SignupForm() {
                 placeholder={t('signup.namePlaceholder')}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
                 disabled={isLoading}
               />
             </div>

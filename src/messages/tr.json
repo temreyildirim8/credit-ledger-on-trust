@@ -585,7 +585,9 @@
         "email": "E-posta",
         "phone": "Telefon",
         "saveChanges": "Değişiklikleri Kaydet",
-        "saved": "Profil başarıyla kaydedildi"
+        "saved": "Profil başarıyla kaydedildi",
+        "nameRequired": "İsim gereklidir",
+        "noChanges": "Kaydedilecek değişiklik yok"
       },
       "business": {
         "title": "İşletme",
@@ -596,7 +598,8 @@
         "language": "Dil",
         "timezone": "Saat Dilimi",
         "saveChanges": "Değişiklikleri Kaydet",
-        "saved": "İşletme ayarları kaydedildi"
+        "saved": "İşletme ayarları kaydedildi",
+        "noChanges": "Kaydedilecek değişiklik yok"
       },
       "notifications": {
         "title": "Bildirimler",

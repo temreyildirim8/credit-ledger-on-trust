@@ -452,7 +452,9 @@
         "email": "Email",
         "phone": "Telepon",
         "saveChanges": "Simpan Perubahan",
-        "saved": "Profil berhasil disimpan"
+        "saved": "Profil berhasil disimpan",
+        "nameRequired": "Nama wajib diisi",
+        "noChanges": "Tidak ada perubahan untuk disimpan"
       },
       "business": {
         "title": "Bisnis",
@@ -463,7 +465,8 @@
         "language": "Bahasa",
         "timezone": "Zona Waktu",
         "saveChanges": "Simpan Perubahan",
-        "saved": "Pengaturan bisnis disimpan"
+        "saved": "Pengaturan bisnis disimpan",
+        "noChanges": "Tidak ada perubahan untuk disimpan"
       },
       "notifications": {
         "title": "Notifikasi",

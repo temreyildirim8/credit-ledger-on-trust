@@ -452,7 +452,9 @@
         "email": "I-Email",
         "phone": "Icefone",
         "saveChanges": "Gcina Izinguquko",
-        "saved": "Iphrofayili igcine kahle"
+        "saved": "Iphrofayili igcine kahle",
+        "nameRequired": "Igima liyadingeka",
+        "noChanges": "Akukho zinguquko zokugcina"
       },
       "business": {
         "title": "Ushishalo",
@@ -463,7 +465,8 @@
         "language": "Ulimi",
         "timezone": "Isikhathi Sethulu",
         "saveChanges": "Gcina Izinguquko",
-        "saved": "Izilungiselelo zomshishalo ziqoshiwe"
+        "saved": "Izilungiselelo zomshishalo ziqoshiwe",
+        "noChanges": "Akukho zinguquko zokugcina"
       },
       "notifications": {
         "title": "Izaziso",

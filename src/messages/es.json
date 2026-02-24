@@ -452,7 +452,9 @@
         "email": "Correo Electrónico",
         "phone": "Teléfono",
         "saveChanges": "Guardar Cambios",
-        "saved": "Perfil guardado con éxito"
+        "saved": "Perfil guardado con éxito",
+        "nameRequired": "El nombre es obligatorio",
+        "noChanges": "No hay cambios para guardar"
       },
       "business": {
         "title": "Negocio",
@@ -463,7 +465,8 @@
         "language": "Idioma",
         "timezone": "Zona Horaria",
         "saveChanges": "Guardar Cambios",
-        "saved": "Configuración del negocio guardada"
+        "saved": "Configuración del negocio guardada",
+        "noChanges": "No hay cambios para guardar"
       },
       "notifications": {
         "title": "Notificaciones",

@@ -85,6 +85,13 @@ export default function SettingsPage() {
   const [email, setEmail] = useState(user?.email || '');
   const [phone, setPhone] = useState('');
 
+  // Original values for change detection
+  const [originalName, setOriginalName] = useState('');
+  const [originalPhone, setOriginalPhone] = useState('');
+  const [originalBusinessName, setOriginalBusinessName] = useState('');
+  const [originalCurrency, setOriginalCurrency] = useState('TRY');
+  const [originalLanguage, setOriginalLanguage] = useState(locale);
+
   // Business state
   const [businessName, setBusinessName] = useState('');
   const [currency, setCurrency] = useState('TRY');
@@ -108,11 +115,24 @@ export default function SettingsPage() {
         setIsLoading(true);
         const profile = await userProfilesService.getProfile(user.id);
         if (profile) {
-          setName(profile.full_name || user?.user_metadata?.name || '');
-          setPhone(profile.phone || '');
-          setBusinessName(profile.shop_name || '');
-          setCurrency(profile.currency || 'TRY');
-          setLanguage(profile.language || locale);
+          const loadedName = profile.full_name || user?.user_metadata?.name || '';
+          const loadedPhone = profile.phone || '';
+          const loadedBusinessName = profile.shop_name || '';
+          const loadedCurrency = profile.currency || 'TRY';
+          const loadedLanguage = profile.language || locale;
+
+          setName(loadedName);
+          setPhone(loadedPhone);
+          setBusinessName(loadedBusinessName);
+          setCurrency(loadedCurrency);
+          setLanguage(loadedLanguage);
+
+          // Store original values for change detection
+          setOriginalName(loadedName);
+          setOriginalPhone(loadedPhone);
+          setOriginalBusinessName(loadedBusinessName);
+          setOriginalCurrency(loadedCurrency);
+          setOriginalLanguage(loadedLanguage);
         }
       } catch (error) {
         console.error('Error loading user profile:', error);
@@ -140,6 +160,21 @@ export default function SettingsPage() {
   const handleSaveProfile = async () => {
     if (!user?.id) return;
 
+    // Validation for empty required fields
+    if (!name.trim()) {
+      toast.error(t('sections.profile.nameRequired') || 'Name is required');
+      return;
+    }
+
+    // Check if anything changed
+    const nameChanged = name.trim() !== originalName.trim();
+    const phoneChanged = phone.trim() !== originalPhone.trim();
+
+    if (!nameChanged && !phoneChanged) {
+      toast.info(t('sections.profile.noChanges') || 'No changes to save');
+      return;
+    }
+
     setIsSaving(true);
     try {
       // Check if profile exists, create if not
@@ -147,15 +182,19 @@ export default function SettingsPage() {
 
       if (existingProfile) {
         await userProfilesService.updateProfile(user.id, {
-          full_name: name,
-          phone: phone,
+          full_name: name.trim(),
+          phone: phone.trim() || undefined,
         });
       } else {
         await userProfilesService.createProfile(user.id, {
-          full_name: name,
-          phone: phone,
+          full_name: name.trim(),
+          phone: phone.trim() || undefined,
         });
       }
+
+      // Update original values after successful save
+      setOriginalName(name.trim());
+      setOriginalPhone(phone.trim());
 
       toast.success(t('sections.profile.saved'));
     } catch (error) {
@@ -169,6 +208,16 @@ export default function SettingsPage() {
   const handleSaveBusiness = async () => {
     if (!user?.id) return;
 
+    // Check if anything changed
+    const businessNameChanged = businessName.trim() !== originalBusinessName.trim();
+    const currencyChanged = currency !== originalCurrency;
+    const languageChanged = language !== originalLanguage;
+
+    if (!businessNameChanged && !currencyChanged && !languageChanged) {
+      toast.info(t('sections.business.noChanges') || 'No changes to save');
+      return;
+    }
+
     setIsSaving(true);
     try {
       // Check if profile exists, create if not
@@ -176,17 +225,22 @@ export default function SettingsPage() {
 
       if (existingProfile) {
         await userProfilesService.updateProfile(user.id, {
-          shop_name: businessName,
+          shop_name: businessName.trim() || undefined,
           currency: currency,
           language: language,
         });
       } else {
         await userProfilesService.createProfile(user.id, {
-          shop_name: businessName,
+          shop_name: businessName.trim() || undefined,
           currency: currency,
           language: language,
         });
       }
+
+      // Update original values after successful save
+      setOriginalBusinessName(businessName.trim());
+      setOriginalCurrency(currency);
+      setOriginalLanguage(language);
 
       toast.success(t('sections.business.saved'));
 

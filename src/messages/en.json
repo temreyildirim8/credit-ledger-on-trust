@@ -476,7 +476,9 @@
         "email": "Email",
         "phone": "Phone",
         "saveChanges": "Save Changes",
-        "saved": "Profile saved successfully"
+        "saved": "Profile saved successfully",
+        "nameRequired": "Name is required",
+        "noChanges": "No changes to save"
       },
       "business": {
         "title": "Business",
@@ -487,7 +489,8 @@
         "language": "Language",
         "timezone": "Timezone",
         "saveChanges": "Save Changes",
-        "saved": "Business settings saved"
+        "saved": "Business settings saved",
+        "noChanges": "No changes to save"
       },
       "notifications": {
         "title": "Notifications",
