@@ -5,7 +5,6 @@ import { getMessages } from "next-intl/server";
 import { routing, type Locale } from "@/routing";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import { PWAProvider } from "@/components/pwa/PWAProvider";
 import { AuthProviderWrapper } from "@/components/auth/AuthProviderWrapper";
 import { getBrandName } from "@/lib/branding";
 import "../globals.css";
@@ -230,7 +229,6 @@ export default async function LocaleLayout({ children, params }: Props) {
         suppressHydrationWarning
       >
         <ThemeProvider defaultTheme="dark" storageKey="credit-ledger-theme">
-          <PWAProvider />
           <NextIntlClientProvider messages={messages}>
             {/* Auth context must be provided via AuthProviderWrapper */}
             <AuthProviderWrapper>{children}</AuthProviderWrapper>

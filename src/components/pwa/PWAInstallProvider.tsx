@@ -104,6 +104,8 @@ export function PWAInstallProvider({
 function PWAInstallPrompt() {
   const { install } = useContext(PWAInstallContext)!;
   const [isVisible, setIsVisible] = useState(false);
+  const locale = useLocale();
+  const brandName = getBrandName(locale);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 2000);

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import { AppShell } from "@/components/layout/app-shell";
+import { PWAProvider } from "@/components/pwa/PWAProvider";
 import { PWAInstallProvider } from "@/components/pwa/PWAInstallProvider";
 
 type Props = {
@@ -16,7 +17,8 @@ type Props = {
  * Protected app layout
  * Requires authentication - redirects to login if not authenticated
  * Uses AppShell component with sidebar (desktop) and bottom nav (mobile)
- * PWA install prompt only available in app (not marketing pages) and only for paid users
+ * PWA functionality (service worker + install prompt) only available in app, not marketing pages
+ * PWA install prompt only shown to paid users
  */
 export default function AppLayout({ children }: Props) {
   const { user, loading } = useAuth();
@@ -50,8 +52,11 @@ export default function AppLayout({ children }: Props) {
   }
 
   return (
-    <PWAInstallProvider>
-      <AppShell>{children}</AppShell>
-    </PWAInstallProvider>
+    <>
+      <PWAProvider />
+      <PWAInstallProvider>
+        <AppShell>{children}</AppShell>
+      </PWAInstallProvider>
+    </>
   );
 }
