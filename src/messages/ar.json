@@ -548,7 +548,8 @@
           "export": "تصدير البيانات"
         },
         "viewPricing": "عرض خطط التسعير",
-        "manageBilling": "إدارة الفواتير"
+        "manageBilling": "إدارة الفواتير",
+        "upgrade": "ترقية الخطة"
       },
       "data": {
         "title": "البيانات والنسخ الاحتياطي",
@@ -578,6 +579,21 @@
         "signOut": "تسجيل الخروج",
         "signOutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟ يمكنك دائمًا تسجيل الدخول مرة أخرى باستخدام بريدك الإلكتروني.",
         "signOutTitle": "تسجيل الخروج"
+      },
+      "upgradeModal": {
+        "title": "ترقية خطتك",
+        "description": "اختر خطة تناسب احتياجات عملك",
+        "mostPopular": "الأكثر شعبية",
+        "currentPlan": "الخطة الحالية",
+        "currentPlanActive": "الخطة الحالية نشطة",
+        "cancel": "إلغاء",
+        "processing": "جاري المعالجة...",
+        "contactSales": "اتصل بالمبيعات",
+        "upgradeTo": "الترقية إلى {plan}",
+        "upgradeSuccess": "تم الترقية إلى {plan} بنجاح!",
+        "contactSalesSuccess": "سيتصل بك فريق المبيعات قريبًا!",
+        "upgradeError": "فشل في ترقية الخطة. يرجى المحاولة مرة أخرى.",
+        "footerNote": "يمكنك تغيير أو إلغاء خطتك في أي وقت. لا توجد رسوم خفية."
       }
     }
   },
@@ -862,5 +878,30 @@
         }
       }
     }
+  },
+  "billing": {
+    "title": "الفواتير والاشتراك",
+    "subtitle": "إدارة خطتك وفواتيرك وطرق الدفع",
+    "currentPlan": "الخطة الحالية",
+    "active": "نشط",
+    "upgrade": "ترقية",
+    "customersUsed": "العملاء المستخدمون",
+    "approachingLimit": "تقترب من الحد الأقصى. فكر في الترقية لمزيد من السعة.",
+    "planFeatures": "مميزات الخطة",
+    "billingSummary": "ملخص الفواتير",
+    "nextBillingDate": "تاريخ الفاتورة القادمة",
+    "noUpcomingPayment": "لا توجد مدفوعات قادمة",
+    "paymentMethod": "طريقة الدفع",
+    "noneAdded": "لم تتم الإضافة",
+    "billingCycle": "دورة الفوترة",
+    "freePlan": "مجاني للأبد",
+    "paymentHistory": "سجل المدفوعات",
+    "noPaymentHistory": "لا يوجد سجل مدفوعات",
+    "noPaymentHistoryDescription": "سيظهر سجل المدفوعات هنا بعد الترقية.",
+    "downloadInvoice": "تحميل الفاتورة",
+    "updatePayment": "تحديث الدفع",
+    "upgradeCTATitle": "هل تحتاج المزيد من العملاء؟",
+    "upgradeCTADescription": "قم بالترقية إلى Pro للحصول على عملاء غير محدودين",
+    "viewPlans": "عرض الخطط"
   }
 }

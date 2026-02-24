@@ -559,7 +559,8 @@
           "export": "Veri dışa aktarma"
         },
         "viewPricing": "Fiyatlandırmayı Görüntüle",
-        "manageBilling": "Faturalandırmayı Yönet"
+        "manageBilling": "Faturalandırmayı Yönet",
+        "upgrade": "Planı Yükselt"
       },
       "data": {
         "title": "Veri ve Yedekleme",
@@ -589,6 +590,21 @@
         "signOut": "Çıkış Yap",
         "signOutConfirm": "Çıkış yapmak istediğinizden emin misiniz? Her zaman e-posta ile tekrar giriş yapabilirsiniz.",
         "signOutTitle": "Çıkış Yap"
+      },
+      "upgradeModal": {
+        "title": "Planınızı Yükseltin",
+        "description": "İşletmenizin ihtiyaçlarına uygun bir plan seçin",
+        "mostPopular": "En Popüler",
+        "currentPlan": "Mevcut Plan",
+        "currentPlanActive": "Mevcut Plan Aktif",
+        "cancel": "İptal",
+        "processing": "İşleniyor...",
+        "contactSales": "Satışla İletişime Geçin",
+        "upgradeTo": "{plan} planına yükselt",
+        "upgradeSuccess": "{plan} planına başarıyla yükseltildi!",
+        "contactSalesSuccess": "Satış ekibimiz kısa süre içinde sizinle iletişime geçecek!",
+        "upgradeError": "Plan yükseltilemedi. Lütfen tekrar deneyin.",
+        "footerNote": "Planınızı istediğiniz zaman değiştirebilir veya iptal edebilirsiniz. Gizli ücret yok."
       }
     }
   },
@@ -903,5 +919,30 @@
         }
       }
     }
+  },
+  "billing": {
+    "title": "Faturalandırma ve Abonelik",
+    "subtitle": "Planınızı, faturalandırmayı ve ödeme yöntemlerinizi yönetin",
+    "currentPlan": "Mevcut Plan",
+    "active": "Aktif",
+    "upgrade": "Yükselt",
+    "customersUsed": "Kullanılan Müşteri",
+    "approachingLimit": "Sınıra yaklaşıyorsunuz. Daha fazla kapasite için yükseltmeyi düşünün.",
+    "planFeatures": "Plan Özellikleri",
+    "billingSummary": "Fatura Özeti",
+    "nextBillingDate": "Sonraki Fatura Tarihi",
+    "noUpcomingPayment": "Yaklaşan ödeme yok",
+    "paymentMethod": "Ödeme Yöntemi",
+    "noneAdded": "Eklenmedi",
+    "billingCycle": "Fatura Döngüsü",
+    "freePlan": "Süresiz Ücretsiz",
+    "paymentHistory": "Ödeme Geçmişi",
+    "noPaymentHistory": "Ödeme geçmişi yok",
+    "noPaymentHistoryDescription": "Yükselttikten sonra ödeme geçmişiniz burada görünecek.",
+    "downloadInvoice": "Faturayı İndir",
+    "updatePayment": "Ödemeyi Güncelle",
+    "upgradeCTATitle": "Daha fazla müşteriye mi ihtiyacınız var?",
+    "upgradeCTADescription": "Sınırsız müşteri için Pro planına yükseltin",
+    "viewPlans": "Planları Görüntüle"
   }
 }

@@ -194,15 +194,32 @@
       "email": "Alamat Email",
       "subject": "Subjek",
       "message": "Pesan",
-      "submit": "Kirim Pesan"
+      "submit": "Kirim Pesan",
+      "title": "Kirim Kami Pesan",
+      "sending": "Mengirim..."
     },
     "info": {
       "email": "Email kami di",
       "emailAddress": "support@globalledger.app",
-      "responseTime": "Kami biasanya merespons dalam 24 jam"
+      "responseTime": "Kami biasanya merespons dalam 24 jam",
+      "liveChat": {
+        "title": "Obrolan Langsung",
+        "description": "Chat dengan tim dukungan kami selama jam kerja.",
+        "button": "Mulai Obrolan"
+      },
+      "office": {
+        "title": "Kantor",
+        "company": "Global Ledger Inc.",
+        "address": "Istanbul, Turki"
+      }
     },
     "success": "Pesan berhasil dikirim!",
-    "error": "Gagal mengirim pesan. Silakan coba lagi."
+    "error": "Gagal mengirim pesan. Silakan coba lagi.",
+    "cta": {
+      "title": "Butuh Bantuan Cepat?",
+      "description": "Kunjungi Pusat Bantuan kami untuk jawaban pertanyaan umum.",
+      "button": "Kunjungi Pusat Bantuan"
+    }
   },
   "dashboard": {
     "title": "Dashboard",
@@ -393,7 +410,8 @@
           "export": "Ekspor data"
         },
         "viewPricing": "Lihat Rencana Harga",
-        "manageBilling": "Kelola Penagihan"
+        "manageBilling": "Kelola Penagihan",
+        "upgrade": "Tingkatkan Paket"
       },
       "data": {
         "title": "Data & Backup",
@@ -423,6 +441,21 @@
         "signOut": "Keluar",
         "signOutConfirm": "Apakah Anda yakin ingin keluar? Anda selalu dapat masuk kembali dengan email Anda.",
         "signOutTitle": "Keluar"
+      },
+      "upgradeModal": {
+        "title": "Tingkatkan Paket Anda",
+        "description": "Pilih paket yang sesuai dengan kebutuhan bisnis Anda",
+        "mostPopular": "Paling Populer",
+        "currentPlan": "Paket Saat Ini",
+        "currentPlanActive": "Paket Saat Ini Aktif",
+        "cancel": "Batal",
+        "processing": "Memproses...",
+        "contactSales": "Hubungi Penjualan",
+        "upgradeTo": "Tingkatkan ke {plan}",
+        "upgradeSuccess": "Berhasil ditingkatkan ke {plan}!",
+        "contactSalesSuccess": "Tim penjualan kami akan segera menghubungi Anda!",
+        "upgradeError": "Gagal meningkatkan paket. Silakan coba lagi.",
+        "footerNote": "Anda dapat mengubah atau membatalkan paket kapan saja. Tidak ada biaya tersembunyi."
       }
     }
   },
@@ -440,7 +473,30 @@
       "noAccount": "Tidak punya akun?",
       "signUp": "Daftar",
       "success": "Berhasil masuk",
-      "error": "Email atau kata sandi tidak valid"
+      "error": "Email atau kata sandi tidak valid",
+      "brandName": "Global Ledger",
+      "heroTitle": "Lacak kredit. Bangun kepercayaan.",
+      "heroSubtitle": "Cara sederhana untuk mengelola kredit pelanggan untuk bisnis kecil Anda.",
+      "feature1Title": "Direktori Pelanggan",
+      "feature1Desc": "Lacak siapa yang berhutang apa",
+      "feature2Title": "Laporan Cerdas",
+      "feature2Desc": "Wawasan piutang Anda",
+      "feature3Title": "Aman & Offline",
+      "feature3Desc": "Bekerja tanpa internet",
+      "feature4Title": "Multi-Mata Uang",
+      "feature4Desc": "TRY, IDR, NGN, EGP, ZAR & lainnya",
+      "about": "Tentang",
+      "contact": "Kontak",
+      "pricing": "Harga",
+      "verifiedSuccess": "Email berhasil diverifikasi! Anda sekarang dapat masuk.",
+      "verificationFailed": "Verifikasi email gagal. Silakan coba lagi.",
+      "enterEmail": "Silakan masukkan alamat email Anda",
+      "resendSuccess": "Email verifikasi telah dikirim ulang!",
+      "resendError": "Gagal mengirim email",
+      "emailNotConfirmedTitle": "Email Belum Diverifikasi",
+      "emailNotConfirmedDescription": "Alamat email Anda belum diverifikasi. Silakan periksa kotak masuk Anda dan klik tautan verifikasi.",
+      "resendEmailButton": "Kirim Ulang Email Verifikasi",
+      "goToLogin": "Ke Halaman Login"
     },
     "signup": {
       "title": "Buat Akun",
@@ -459,7 +515,30 @@
       "hasAccount": "Sudah punya akun?",
       "signIn": "Masuk",
       "success": "Akun berhasil dibuat",
-      "error": "Gagal membuat akun"
+      "error": "Gagal membuat akun",
+      "brandName": "Global Ledger",
+      "heroTitle": "Mulai lacak kredit hari ini",
+      "heroSubtitle": "Gratis selamanya untuk bisnis kecil. Tingkatkan saat Anda berkembang.",
+      "benefit1": "Paket gratis: Hingga 10 pelanggan",
+      "benefit2": "Bekerja offline dengan sinkron otomatis",
+      "benefit3": "Dukungan multi-mata uang",
+      "benefit4": "Laporan PDF & ekspor CSV",
+      "benefit5": "Tersedia dalam 7 bahasa",
+      "feature1Title": "Buku Pelanggan",
+      "feature1Desc": "Lacak semua hutang",
+      "feature2Title": "Laporan",
+      "feature2Desc": "Analitik & wawasan",
+      "feature3Title": "Aman",
+      "feature3Desc": "Keamanan tingkat bank",
+      "feature4Title": "PWA",
+      "feature4Desc": "Instal sebagai aplikasi",
+      "about": "Tentang",
+      "contact": "Kontak",
+      "pricing": "Harga",
+      "successTitle": "Pendaftaran Berhasil!",
+      "successDescription1": "Kami telah mengirim tautan verifikasi ke alamat email Anda.",
+      "successDescription2": "Silakan periksa kotak masuk (dan folder spam), lalu klik tautan untuk memverifikasi akun Anda.",
+      "passwordHint": "Minimal 6 karakter"
     },
     "forgotPassword": {
       "title": "Lupa Kata Sandi",
@@ -799,5 +878,30 @@
         }
       }
     }
+  },
+  "billing": {
+    "title": "Penagihan & Langganan",
+    "subtitle": "Kelola paket, penagihan, dan metode pembayaran Anda",
+    "currentPlan": "Paket Saat Ini",
+    "active": "Aktif",
+    "upgrade": "Tingkatkan",
+    "customersUsed": "Pelanggan Terpakai",
+    "approachingLimit": "Mendekati batas. Pertimbangkan untuk meningkatkan kapasitas.",
+    "planFeatures": "Fitur Paket",
+    "billingSummary": "Ringkasan Penagihan",
+    "nextBillingDate": "Tanggal Penagihan Berikutnya",
+    "noUpcomingPayment": "Tidak ada pembayaran mendatang",
+    "paymentMethod": "Metode Pembayaran",
+    "noneAdded": "Belum ditambahkan",
+    "billingCycle": "Siklus Penagihan",
+    "freePlan": "Gratis Selamanya",
+    "paymentHistory": "Riwayat Pembayaran",
+    "noPaymentHistory": "Tidak ada riwayat pembayaran",
+    "noPaymentHistoryDescription": "Riwayat pembayaran Anda akan muncul di sini setelah Anda meningkatkan paket.",
+    "downloadInvoice": "Unduh Faktur",
+    "updatePayment": "Perbarui Pembayaran",
+    "upgradeCTATitle": "Butuh lebih banyak pelanggan?",
+    "upgradeCTADescription": "Tingkatkan ke Pro untuk pelanggan tidak terbatas",
+    "viewPlans": "Lihat Paket"
   }
 }

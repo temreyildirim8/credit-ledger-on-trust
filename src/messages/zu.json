@@ -194,15 +194,32 @@
       "email": "Ikheli Le-Email",
       "subject": "Isihloko",
       "message": "Umlayezo",
-      "submit": "Thumela Umlayezo"
+      "submit": "Thumela Umlayezo",
+      "title": "Sithumele Umyalezo",
+      "sending": "Iyathumela..."
     },
     "info": {
       "email": "Thumela i-email kwethu",
       "emailAddress": "support@globalledger.app",
-      "responseTime": "Saqhubeka kwamahora angama-24"
+      "responseTime": "Saqhubeka kwamahora angama-24",
+      "liveChat": {
+        "title": "Ingxoxo Ephilayo",
+        "description": "Xoxa nothimba lethu lusekelo ngesikhathi sebhizinisi.",
+        "button": "Qala Ingxoxo"
+      },
+      "office": {
+        "title": "Ihhovisi",
+        "company": "Global Ledger Inc.",
+        "address": "Istanbul, iTurkey"
+      }
     },
     "success": "Umlayezo uthumelekahle!",
-    "error": "Umlayezo ungathunyelwa. Sicela uzage usapho."
+    "error": "Umlayezo ungathunyelwa. Sicela uzage usapho.",
+    "cta": {
+      "title": "Udinga Usizo Olusheshayo?",
+      "description": "Bheka Isikhungo Sethu Sosizo imibuzo evamile.",
+      "button": "Vakashela Isikhungo Sosizo"
+    }
   },
   "dashboard": {
     "title": "I-Dashboard",
@@ -393,7 +410,8 @@
           "export": "Ukudlulisa idath"
         },
         "viewPricing": "Buka Izingxenye Zamanani",
-        "manageBilling": "Phata I-Billing"
+        "manageBilling": "Phata I-Billing",
+        "upgrade": "Khuphula Iphulani"
       },
       "data": {
         "title": "Idathi Ne-Backup",
@@ -423,6 +441,21 @@
         "signOut": "Phuma",
         "signOutConfirm": "Uyaqinisekisa ufuna ukuphuma? Ungavame ukungena khona nge-email yakho.",
         "signOutTitle": "Phuma"
+      },
+      "upgradeModal": {
+        "title": "Khuphula Iphulani Lakho",
+        "description": "Khetha iphulani elihambelana nezidingo zakho zebhizinisi",
+        "mostPopular": "Eydumile kakhulu",
+        "currentPlan": "Iphulani Lamanje",
+        "currentPlanActive": "Iphulani Lamanje Liyasebenza",
+        "cancel": "Khansela",
+        "processing": "Iyakusebenza...",
+        "contactSales": "Xhumana Ndayimade",
+        "upgradeTo": "Khuphula ku-{plan}",
+        "upgradeSuccess": "Kuphumelele ukukhuphula ku-{plan}!",
+        "contactSalesSuccess": "Ithimba lethu lendayimade lizokuxhumana maduze!",
+        "upgradeError": "Ihlulekile ukukhuphula iphulani. Sicela uzame futhi.",
+        "footerNote": "Ungashintsha noma ukhansele iphulani lakho noma kunini. Akukho izindleko ezifihliwe."
       }
     }
   },
@@ -440,7 +473,30 @@
       "noAccount": "Awuna akhawunti?",
       "signUp": "Bhalisa",
       "success": "Ukungena okuphumelelile",
-      "error": "I-imeyili noma iphasiwedi alungavumelekile"
+      "error": "I-imeyili noma iphasiwedi alungavumelekile",
+      "brandName": "Global Ledger",
+      "heroTitle": "Landa ummango. Yakha isithembiso.",
+      "heroSubtitle": "Indlela elula yokuphatha ummango wabathengi webhizinisi lakho elincane.",
+      "feature1Title": "Uhlu Labathengi",
+      "feature1Desc": "Bona okumele ongakuholela",
+      "feature2Title": "Imbiko Ekhokhelwayo",
+      "feature2Desc": "Ulwazi ngokufanelekile kwakho",
+      "feature3Title": "Kuphephile & Kungasebenzi",
+      "feature3Desc": "Kusebenza ngaphandle kwe-inthanethi",
+      "feature4Title": "Imali Eziningi",
+      "feature4Desc": "TRY, IDR, NGN, EGP, ZAR & ningi",
+      "about": "Mayelana",
+      "contact": "Xhumana",
+      "pricing": "Intengo",
+      "verifiedSuccess": "I-imeyili ivunyiwe ngempumelelo! Manje ungangena.",
+      "verificationFailed": "Ukuvunywa kwe-imeyili kuhlulekile. Sicela uzame futhi.",
+      "enterEmail": "Sicela ufake ikheli lakho le-imeyili",
+      "resendSuccess": "I-imeyili yokuvunywa ithunyelwe futhi!",
+      "resendError": "Ihlulekile ukuthumela i-imeyili",
+      "emailNotConfirmedTitle": "I-Imeyili Ayikavunywa",
+      "emailNotConfirmedDescription": "Ikheli lakho le-imeyili alikavunywa. Sicela uhlole ibhokisi lakho bese uchofoza isixhumanisi sokuvunywa.",
+      "resendEmailButton": "Thumela Kabusha I-Imeyili Yokuvunywa",
+      "goToLogin": "iya Ekhasini Logeniso"
     },
     "signup": {
       "title": "Yakha I-akhawunti",
@@ -459,7 +515,30 @@
       "hasAccount": "Unesakhawunti already?",
       "signIn": "Ngena",
       "success": "I-akhawunti yakhiwe okuphumelelile",
-      "error": "Yehlula ukwakha i-akhawunti"
+      "error": "Yehlula ukwakha i-akhawunti",
+      "brandName": "Global Ledger",
+      "heroTitle": "Qala ukulanda ummango namuhla",
+      "heroSubtitle": "Mahhala kuze kube phakade webhizinisi elincane. Khuphula uma ukhula.",
+      "benefit1": "Iphulani lamahhala: Kwabathengi abangu-10",
+      "benefit2": "Kusebenza kungasebenzi ngesinkronizeshini ezenzakalelayo",
+      "benefit3": "Ukusekelwa kwemali eziningi",
+      "benefit4": "Izitatimende ze-PDF & okuthunyelwe ko-CSV",
+      "benefit5": "Kutholakala ngolimi olungu-7",
+      "feature1Title": "Incwadi Yabathengi",
+      "feature1Desc": "Landa konke okudingayo",
+      "feature2Title": "Imibiko",
+      "feature2Desc": "Ukuhlaziywa & ulwazi",
+      "feature3Title": "Kuphephile",
+      "feature3Desc": "Ukuphepha kwezinga lebhange",
+      "feature4Title": "PWA",
+      "feature4Desc": "Faka njengohlelo lokusebenza",
+      "about": "Mayelana",
+      "contact": "Xhumana",
+      "pricing": "Intengo",
+      "successTitle": "Ukubhalisa Kuphumelele!",
+      "successDescription1": "Sithumele isixhumanisi sokuvunywa ekheli lakho le-imeyili.",
+      "successDescription2": "Sicela uhlole ibhokisi lakho (nedefolda yokucasula), bese uchofoza isixhumanisi ukuvunywa i-akhawunti yakho.",
+      "passwordHint": "Okungenani amagama angu-6"
     },
     "forgotPassword": {
       "title": "Ukhohlwe Iphasiwedi",
@@ -799,5 +878,30 @@
         }
       }
     }
+  },
+  "billing": {
+    "title": "Intengiso & Ukubhalisa",
+    "subtitle": "Phatha iphulani lakho, intengiso, nezindlela zokukhokha",
+    "currentPlan": "Iphulani Lamanje",
+    "active": "Kuyasebenza",
+    "upgrade": "Khuphula",
+    "customersUsed": "Abathengi Abasetshenzisiwe",
+    "approachingLimit": "Ususeduzelana nomkhawulo. Cabangela ukukhuphula ukwengeza umthamo.",
+    "planFeatures": "Izici Zephulani",
+    "billingSummary": "Isifinyezo Sentengiso",
+    "nextBillingDate": "Usuku Lwelandelayo Lentengiso",
+    "noUpcomingPayment": "Akukho ukhokho oluzayo",
+    "paymentMethod": "Indlela Yokukhokha",
+    "noneAdded": "Akunalutho olufakiwe",
+    "billingCycle": "Isikhathi Sentengiso",
+    "freePlan": "Mahhala Kuze Kubomile",
+    "paymentHistory": "Umlando Wokukhokha",
+    "noPaymentHistory": "Awukho umlando wokukhokha",
+    "noPaymentHistoryDescription": "Umlando wakho wokukhokha uzobonakala lapha ngemva kokukhuphula.",
+    "downloadInvoice": "Layisha Isitifiketi",
+    "updatePayment": "Vuselela Ukukhokha",
+    "upgradeCTATitle": "Udinga abathengi abaningi?",
+    "upgradeCTADescription": "Khuphela ku-Pro wabathengi abangengazi",
+    "viewPlans": "Bona Amaphulani"
   }
 }

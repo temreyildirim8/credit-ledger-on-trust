@@ -410,7 +410,8 @@
           "export": "Exportación de datos"
         },
         "viewPricing": "Ver Planes de Precios",
-        "manageBilling": "Administrar Facturación"
+        "manageBilling": "Administrar Facturación",
+        "upgrade": "Actualizar Plan"
       },
       "data": {
         "title": "Datos y Copia de Seguridad",
@@ -440,6 +441,21 @@
         "signOut": "Cerrar Sesión",
         "signOutConfirm": "¿Estás seguro de que quieres cerrar sesión? Siempre puedes volver a iniciar sesión con tu correo electrónico.",
         "signOutTitle": "Cerrar Sesión"
+      },
+      "upgradeModal": {
+        "title": "Actualiza Tu Plan",
+        "description": "Elige un plan que se adapte a las necesidades de tu negocio",
+        "mostPopular": "Más Popular",
+        "currentPlan": "Plan Actual",
+        "currentPlanActive": "Plan Actual Activo",
+        "cancel": "Cancelar",
+        "processing": "Procesando...",
+        "contactSales": "Contactar Ventas",
+        "upgradeTo": "Actualizar a {plan}",
+        "upgradeSuccess": "¡Actualizado exitosamente a {plan}!",
+        "contactSalesSuccess": "¡Nuestro equipo de ventas te contactará pronto!",
+        "upgradeError": "Error al actualizar el plan. Por favor intenta de nuevo.",
+        "footerNote": "Puedes cambiar o cancelar tu plan en cualquier momento. Sin cargos ocultos."
       }
     }
   },
@@ -457,7 +473,30 @@
       "noAccount": "¿No tienes una cuenta?",
       "signUp": "Regístrate",
       "success": "Sesión iniciada correctamente",
-      "error": "Correo electrónico o contraseña inválidos"
+      "error": "Correo electrónico o contraseña inválidos",
+      "brandName": "Global Ledger",
+      "heroTitle": "Rastrea crédito. Construye confianza.",
+      "heroSubtitle": "La forma sencilla de gestionar el crédito de clientes para tu pequeño negocio.",
+      "feature1Title": "Directorio de Clientes",
+      "feature1Desc": "Rastrea quién debe qué",
+      "feature2Title": "Informes Inteligentes",
+      "feature2Desc": "Información sobre tus cuentas por cobrar",
+      "feature3Title": "Seguro y Sin Conexión",
+      "feature3Desc": "Funciona sin internet",
+      "feature4Title": "Multi-Moneda",
+      "feature4Desc": "TRY, IDR, NGN, EGP, ZAR y más",
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "pricing": "Precios",
+      "verifiedSuccess": "¡Email verificado exitosamente! Ahora puedes iniciar sesión.",
+      "verificationFailed": "La verificación de email falló. Por favor intenta de nuevo.",
+      "enterEmail": "Por favor ingresa tu dirección de email",
+      "resendSuccess": "¡Email de verificación reenviado!",
+      "resendError": "Error al enviar email",
+      "emailNotConfirmedTitle": "Email No Verificado",
+      "emailNotConfirmedDescription": "Tu dirección de email no ha sido verificada todavía. Por favor revisa tu bandeja de entrada y haz clic en el enlace de verificación.",
+      "resendEmailButton": "Reenviar Email de Verificación",
+      "goToLogin": "Ir a la Página de Login"
     },
     "signup": {
       "title": "Crear Cuenta",
@@ -476,7 +515,30 @@
       "hasAccount": "¿Ya tienes una cuenta?",
       "signIn": "Inicia sesión",
       "success": "Cuenta creada exitosamente",
-      "error": "Error al crear la cuenta"
+      "error": "Error al crear la cuenta",
+      "brandName": "Global Ledger",
+      "heroTitle": "Comienza a rastrear crédito hoy",
+      "heroSubtitle": "Gratis para siempre para pequeños negocios. Actualiza a medida que creces.",
+      "benefit1": "Plan gratis: Hasta 10 clientes",
+      "benefit2": "Funciona sin conexión con sincronización automática",
+      "benefit3": "Soporte multi-moneda",
+      "benefit4": "Estados de cuenta PDF y exportaciones CSV",
+      "benefit5": "Disponible en 7 idiomas",
+      "feature1Title": "Libro de Clientes",
+      "feature1Desc": "Rastrea todas las deudas",
+      "feature2Title": "Informes",
+      "feature2Desc": "Análisis e información",
+      "feature3Title": "Seguro",
+      "feature3Desc": "Seguridad nivel banco",
+      "feature4Title": "PWA",
+      "feature4Desc": "Instalar como app",
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "pricing": "Precios",
+      "successTitle": "¡Registro Exitoso!",
+      "successDescription1": "Hemos enviado un enlace de verificación a tu dirección de email.",
+      "successDescription2": "Por favor revisa tu bandeja de entrada (y carpeta de spam), luego haz clic en el enlace para verificar tu cuenta.",
+      "passwordHint": "Al menos 6 caracteres"
     },
     "forgotPassword": {
       "title": "Contraseña Olvidada",
@@ -678,5 +740,168 @@
         }
       }
     }
+  },
+  "billing": {
+    "title": "Facturación y Suscripción",
+    "subtitle": "Gestiona tu plan, facturación y métodos de pago",
+    "currentPlan": "Plan Actual",
+    "active": "Activo",
+    "upgrade": "Actualizar",
+    "customersUsed": "Clientes Utilizados",
+    "approachingLimit": "Acercándose al límite. Considera actualizar para más capacidad.",
+    "planFeatures": "Características del Plan",
+    "billingSummary": "Resumen de Facturación",
+    "nextBillingDate": "Próxima Fecha de Facturación",
+    "noUpcomingPayment": "Sin pagos próximos",
+    "paymentMethod": "Método de Pago",
+    "noneAdded": "Ninguno agregado",
+    "billingCycle": "Ciclo de Facturación",
+    "freePlan": "Gratis Para Siempre",
+    "paymentHistory": "Historial de Pagos",
+    "noPaymentHistory": "Sin historial de pagos",
+    "noPaymentHistoryDescription": "Tu historial de pagos aparecerá aquí después de actualizar.",
+    "downloadInvoice": "Descargar Factura",
+    "updatePayment": "Actualizar Pago",
+    "upgradeCTATitle": "¿Necesitas más clientes?",
+    "upgradeCTADescription": "Actualiza a Pro para clientes ilimitados",
+    "viewPlans": "Ver Planes"
+  },
+  "reports": {
+    "title": "Informes y Análisis",
+    "subtitle": "Información sobre tu negocio",
+    "shopSummary": {
+      "title": "Resumen de Tienda",
+      "today": "Hoy",
+      "week": "Esta Semana",
+      "month": "Este Mes",
+      "totalOwed": "Total Adeudado",
+      "collected": "Cobrado",
+      "newDebts": "Nuevas Deudas",
+      "paymentsReceived": "Pagos Recibidos",
+      "activeCustomers": "Clientes Activos"
+    },
+    "debtAging": {
+      "title": "Antigüedad de Deuda",
+      "current": "Actual",
+      "days30": "1-30 días",
+      "days60": "31-60 días",
+      "days90": "61-90 días",
+      "overdue": "Más de 90 días"
+    },
+    "collectionRate": {
+      "title": "Tasa de Cobranza",
+      "thisMonth": "Este Mes",
+      "lastMonth": "El Mes Pasado"
+    },
+    "export": {
+      "title": "Exportar Datos",
+      "description": "Descargar informes y estados de cuenta",
+      "pdf": "Exportar Estado de Cuenta PDF",
+      "csv": "Exportar CSV",
+      "customerStatement": "Estado de Cuenta de Cliente",
+      "noTransactions": "Sin transacciones para exportar",
+      "success": "Exportación completada exitosamente",
+      "error": "Error al exportar datos"
+    },
+    "empty": {
+      "title": "Datos insuficientes",
+      "description": "Agrega más clientes y transacciones para ver informes y análisis.",
+      "action": "Ir al Panel"
+    },
+    "timeFilter": {
+      "today": "Hoy",
+      "week": "Esta Semana",
+      "month": "Este Mes",
+      "year": "Este Año",
+      "all": "Todo el Tiempo"
+    }
+  },
+  "onboarding": {
+    "title": "Comencemos",
+    "subtitle": "Configura tu cuenta en unos pocos pasos rápidos",
+    "step": "Paso {current} de {total}",
+    "currency": {
+      "title": "Selecciona Tu Moneda",
+      "subtitle": "Elige la moneda que usas para tus transacciones comerciales"
+    },
+    "language": {
+      "title": "Selecciona Tu Idioma",
+      "subtitle": "Elige tu idioma preferido para la aplicación"
+    },
+    "category": {
+      "title": "¿Cuál es Tu Negocio?",
+      "subtitle": "Selecciona la categoría que mejor describe tu negocio"
+    },
+    "success": {
+      "title": "¡Todo Listo!",
+      "subtitle": "Tu cuenta está lista para usar",
+      "description": "Siempre puedes cambiar estas configuraciones más tarde en tu perfil",
+      "action": "Ir al Panel"
+    },
+    "categories": {
+      "bakkal": "Tienda de Ultramarinos",
+      "kirana": "Tienda Kirana",
+      "warung": "Warung / Minimercado",
+      "spaza": "Tienda Spaza",
+      "kiosk": "Quiosco",
+      "restaurant": "Restaurante / Cafetería",
+      "retail": "Tienda Minorista",
+      "wholesale": "Mayorista",
+      "services": "Servicios",
+      "other": "Otro"
+    },
+    "skip": "Omitir por ahora",
+    "next": "Siguiente",
+    "back": "Atrás",
+    "finish": "Comenzar"
+  },
+  "quickTour": {
+    "title": "Tour Rápido",
+    "subtitle": "Te mostramos alrededor",
+    "skip": "Omitir Tour",
+    "next": "Siguiente",
+    "back": "Atrás",
+    "finish": "Finalizar",
+    "steps": {
+      "sidebar": {
+        "title": "Navegación",
+        "description": "Usa la barra lateral para navegar entre Panel, Clientes, Transacciones y Configuración. Haz clic en el botón de colapsar para minimizarla."
+      },
+      "quickAdd": {
+        "title": "Agregar Rápido",
+        "description": "Agrega rápidamente una nueva transacción de deuda o pago. Este botón siempre está disponible para entrada rápida."
+      },
+      "stats": {
+        "title": "Tus Estadísticas",
+        "description": "Rastrea tu monto total adeudado, pagos cobrados y clientes activos de un vistazo."
+      },
+      "actions": {
+        "title": "Acciones Rápidas",
+        "description": "Accede a acciones comunes como agregar deuda, registrar pago, agregar cliente o enviar recordatorios."
+      },
+      "activity": {
+        "title": "Actividad Reciente",
+        "description": "Ve tus últimas transacciones y mantente al día con los pagos y deudas de los clientes."
+      }
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Todo lo que necesitas saber sobre Global Ledger",
+    "q1": "¿Global Ledger es realmente gratis?",
+    "a1": "¡Sí! Global Ledger ofrece un plan gratis para siempre que incluye hasta 10 clientes, transacciones ilimitadas, modo sin conexión e informes básicos. No se requiere tarjeta de crédito para empezar.",
+    "q2": "¿Puedo usar Global Ledger sin internet?",
+    "a2": "¡Por supuesto! Global Ledger está construido como una Progressive Web App (PWA) con soporte completo sin conexión. Puedes agregar clientes, registrar deudas y rastrear pagos incluso sin internet. Tus datos se sincronizan automáticamente cuando vuelves a estar en línea.",
+    "q3": "¿Cómo funciona la copia de seguridad automática?",
+    "a3": "Tus datos se sincronizan automáticamente con nuestros servidores seguros en la nube siempre que tienes conexión a internet. Todos los datos están encriptados usando encriptación AES-256 de grado bancario, así que tus registros siempre están seguros y accesibles.",
+    "q4": "¿Qué monedas e idiomas son compatibles?",
+    "a4": "Global Ledger soporta múltiples monedas incluyendo TRY (Lira Turca), IDR (Rupia Indonesia), NGN (Naira Nigeriana), EGP (Libra Egipcia), ZAR (Rand Sudafricano) y más. La aplicación está disponible en 7 idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú.",
+    "q5": "¿Cómo envío recordatorios de pago a los clientes?",
+    "a5": "Puedes enviar recordatorios directamente a través de WhatsApp con mensajes pre-llenados. Solo abre los detalles de un cliente y toca el botón de WhatsApp. Los usuarios Pro también obtienen recordatorios SMS automáticos.",
+    "q6": "¿Puedo exportar mis datos?",
+    "a6": "¡Sí! Puedes exportar los estados de cuenta de tus clientes como archivos PDF y tu historial de transacciones como hojas de cálculo CSV. Esta función está disponible en planes gratuitos y de pago.",
+    "stillHaveQuestions": "¿Todavía tienes preguntas?",
+    "contactSupport": "Contacta a nuestro equipo de soporte"
   }
 }
