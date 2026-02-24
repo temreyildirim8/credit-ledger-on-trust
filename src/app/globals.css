@@ -35,9 +35,7 @@
   --color-payment-text: #0369A1;
   --shadow-blue: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
 
-  /* Typography Scale */
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
+  /* Typography Scale - Font variables are set by Next.js font loader in layout.tsx */
 
   /* Spacing */
   --spacing-unit: 8px;
