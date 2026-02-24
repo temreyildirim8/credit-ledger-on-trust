@@ -65,8 +65,8 @@ export function AppShell({ children, title, subtitle }: AppShellProps) {
           className="app-content"
           role="main"
           style={{
-            marginLeft: contentMargin,
-            transition: "margin-left 0.3s ease-in-out",
+            marginInlineStart: contentMargin,
+            transition: "margin-inline-start 0.3s ease-in-out",
           }}
         >
           {/* Content wrapper with max-width */}

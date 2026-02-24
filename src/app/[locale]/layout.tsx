@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Inter } from "next/font/google";
+import { Manrope, Inter, Noto_Sans_Arabic } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing, type Locale } from "@/routing";
@@ -22,6 +22,14 @@ const manrope = Manrope({
 const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Arabic font for RTL support
+const notoSansArabic = Noto_Sans_Arabic({
+  variable: "--font-arabic",
+  subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
@@ -151,7 +159,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       data-scroll-behavior="smooth"
     >
       <body
-        className={`${manrope.variable} ${inter.variable} antialiased`}
+        className={`${manrope.variable} ${inter.variable} ${notoSansArabic.variable} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider defaultTheme="dark" storageKey="credit-ledger-theme">

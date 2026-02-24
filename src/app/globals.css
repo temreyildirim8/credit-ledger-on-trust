@@ -1214,3 +1214,182 @@ body {
 .animate-in {
   animation: in 0.3s ease-out;
 }
+
+/* ============================================
+   RTL (RIGHT-TO-LEFT) SUPPORT FOR ARABIC
+   ============================================ */
+
+/* RTL-specific adjustments */
+[dir="rtl"] {
+  /* Flip directional elements */
+  text-align: right;
+}
+
+/* Flip icons that have directionality */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Fix for chevron icons in RTL */
+[dir="rtl"] .chevron-directional {
+  transform: rotate(180deg);
+}
+
+/* RTL-aware spacing utilities */
+.space-rtl-2 {
+  margin-inline-start: 0.5rem;
+}
+
+.space-rtl-4 {
+  margin-inline-start: 1rem;
+}
+
+/* RTL-aware text alignment */
+.text-start {
+  text-align: start;
+}
+
+.text-end {
+  text-align: end;
+}
+
+/* Ensure proper icon rotation for navigation in RTL */
+[dir="rtl"] .nav-arrow-start {
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .nav-arrow-end {
+  transform: rotate(-180deg);
+}
+
+/* Fix for tooltips in RTL - they should appear on the correct side */
+[dir="rtl"] [data-side="right"] {
+  transform: translateX(-8px);
+}
+
+[dir="rtl"] [data-side="left"] {
+  transform: translateX(8px);
+}
+
+/* Fix for modal slide animations in RTL */
+[dir="rtl"] .slide-in-from-left {
+  animation-name: slide-in-from-right;
+}
+
+[dir="rtl"] .slide-in-from-right {
+  animation-name: slide-in-from-left;
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Fix for drawer/sidebar components */
+[dir="rtl"] .drawer-left {
+  left: auto;
+  right: 0;
+  border-left: 1px solid var(--color-border);
+  border-right: none;
+}
+
+[dir="rtl"] .drawer-right {
+  right: auto;
+  left: 0;
+  border-right: 1px solid var(--color-border);
+  border-left: none;
+}
+
+/* Fix for close button positioning in RTL */
+[dir="rtl"] .modal-close {
+  right: auto;
+  left: 1rem;
+}
+
+/* Fix for list item icons in RTL */
+[dir="rtl"] .list-icon {
+  margin-right: 0;
+  margin-left: 0.75rem;
+}
+
+/* Fix for breadcrumb separators in RTL */
+[dir="rtl"] .breadcrumb-separator {
+  transform: rotate(180deg);
+}
+
+/* Ensure proper table direction in RTL */
+[dir="rtl"] table {
+  direction: rtl;
+}
+
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right;
+}
+
+/* Fix for input icons in RTL */
+[dir="rtl"] .input-icon-start {
+  left: auto;
+  right: 0.75rem;
+}
+
+[dir="rtl"] .input-icon-end {
+  right: auto;
+  left: 0.75rem;
+}
+
+[dir="rtl"] .input-with-icon-start {
+  padding-left: 0.75rem;
+  padding-right: 2.5rem;
+}
+
+[dir="rtl"] .input-with-icon-end {
+  padding-right: 0.75rem;
+  padding-left: 2.5rem;
+}
+
+/* Fix for progress bar direction in RTL */
+[dir="rtl"] .progress-bar {
+  transform: scaleX(-1);
+}
+
+/* Fix for radio/checkbox alignment in RTL */
+[dir="rtl"] .form-control-with-indicator {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+[dir="rtl"] .form-indicator {
+  left: auto;
+  right: 0;
+}
+
+/* Arabic font support - ensure proper rendering */
+[dir="rtl"] body {
+  font-family: var(--font-arabic), 'Segoe UI', Tahoma, var(--font-body), sans-serif;
+}
+
+/* Fix for number display in RTL - keep numbers LTR for readability */
+[dir="rtl"] .number-ltr {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* Fix for currency display in RTL */
+[dir="rtl"] .currency-display {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

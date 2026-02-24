@@ -28,8 +28,9 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
-      {/* Left Panel - Visual/Branding (hidden on mobile) */}
-      <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] relative overflow-hidden">
+      {/* Start Panel - Visual/Branding (hidden on mobile) */}
+      {/* In RTL: this appears on the right, in LTR: on the left */}
+      <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] relative overflow-hidden rtl:lg:order-last">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -58,41 +59,41 @@ export default function LoginPage() {
 
           {/* Feature highlights */}
           <div className="space-y-5">
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 rtl:flex-row-reverse">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Users className="w-5 h-5" />
               </div>
-              <div>
+              <div className="rtl:text-end">
                 <h3 className="font-semibold text-lg">{t("login.feature1Title") || "Customer Directory"}</h3>
                 <p className="text-white/70 text-sm">{t("login.feature1Desc") || "Keep track of who owes what"}</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 rtl:flex-row-reverse">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                 <TrendingUp className="w-5 h-5" />
               </div>
-              <div>
+              <div className="rtl:text-end">
                 <h3 className="font-semibold text-lg">{t("login.feature2Title") || "Smart Reports"}</h3>
                 <p className="text-white/70 text-sm">{t("login.feature2Desc") || "Insights into your receivables"}</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 rtl:flex-row-reverse">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Shield className="w-5 h-5" />
               </div>
-              <div>
+              <div className="rtl:text-end">
                 <h3 className="font-semibold text-lg">{t("login.feature3Title") || "Secure & Offline"}</h3>
                 <p className="text-white/70 text-sm">{t("login.feature3Desc") || "Works without internet"}</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 rtl:flex-row-reverse">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Globe className="w-5 h-5" />
               </div>
-              <div>
+              <div className="rtl:text-end">
                 <h3 className="font-semibold text-lg">{t("login.feature4Title") || "Multi-Currency"}</h3>
                 <p className="text-white/70 text-sm">{t("login.feature4Desc") || "TRY, IDR, NGN, EGP, ZAR & more"}</p>
               </div>
@@ -100,9 +101,9 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Decorative elements */}
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute -top-10 -left-10 w-60 h-60 bg-white/5 rounded-full blur-2xl" />
+        {/* Decorative elements - RTL-aware positioning */}
+        <div className="absolute -bottom-20 end-[-5rem] w-80 h-80 bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute -top-10 start-[-2.5rem] w-60 h-60 bg-white/5 rounded-full blur-2xl" />
       </div>
 
       {/* Right Panel - Login Form */}

@@ -28,8 +28,9 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
-      {/* Left Panel - Visual/Branding (hidden on mobile) */}
-      <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] relative overflow-hidden">
+      {/* Start Panel - Visual/Branding (hidden on mobile) */}
+      {/* In RTL: this appears on the right, in LTR: on the left */}
+      <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] relative overflow-hidden rtl:lg:order-last">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -58,25 +59,25 @@ export default function SignupPage() {
 
           {/* Benefits list */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 rtl:flex-row-reverse">
               <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
-              <span className="text-white/90">{t("signup.benefit1") || "Free plan: Up to 10 customers"}</span>
+              <span className="text-white/90 rtl:text-end">{t("signup.benefit1") || "Free plan: Up to 10 customers"}</span>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 rtl:flex-row-reverse">
               <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
-              <span className="text-white/90">{t("signup.benefit2") || "Works offline with automatic sync"}</span>
+              <span className="text-white/90 rtl:text-end">{t("signup.benefit2") || "Works offline with automatic sync"}</span>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 rtl:flex-row-reverse">
               <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
-              <span className="text-white/90">{t("signup.benefit3") || "Multi-currency support"}</span>
+              <span className="text-white/90 rtl:text-end">{t("signup.benefit3") || "Multi-currency support"}</span>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 rtl:flex-row-reverse">
               <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
-              <span className="text-white/90">{t("signup.benefit4") || "PDF statements & CSV exports"}</span>
+              <span className="text-white/90 rtl:text-end">{t("signup.benefit4") || "PDF statements & CSV exports"}</span>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 rtl:flex-row-reverse">
               <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
-              <span className="text-white/90">{t("signup.benefit5") || "Available in 7 languages"}</span>
+              <span className="text-white/90 rtl:text-end">{t("signup.benefit5") || "Available in 7 languages"}</span>
             </div>
           </div>
 
@@ -124,9 +125,9 @@ export default function SignupPage() {
           </div>
         </div>
 
-        {/* Decorative elements */}
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute -top-10 -left-10 w-60 h-60 bg-white/5 rounded-full blur-2xl" />
+        {/* Decorative elements - RTL-aware positioning */}
+        <div className="absolute -bottom-20 end-[-5rem] w-80 h-80 bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute -top-10 start-[-2.5rem] w-60 h-60 bg-white/5 rounded-full blur-2xl" />
       </div>
 
       {/* Right Panel - Signup Form */}

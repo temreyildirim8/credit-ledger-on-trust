@@ -111,8 +111,8 @@ export function Sidebar({ className }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "hidden md:flex flex-col bg-surface border-r border-border",
-        "fixed top-0 left-0 bottom-0 z-50",
+        "hidden md:flex flex-col bg-surface border-e border-border",
+        "fixed top-0 start-0 bottom-0 z-50",
         "transition-all duration-300 ease-in-out",
         className
       )}
