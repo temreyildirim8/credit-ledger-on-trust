@@ -12,7 +12,9 @@ export interface Customer {
   transaction_count?: number | null;
   last_transaction_date?: string | null;
   is_deleted?: boolean | null;
+  is_archived?: boolean | null;
   created_at: string | null;
+  updated_at?: string | null;
 }
 
 export const customersService = {

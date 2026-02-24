@@ -571,3 +571,607 @@ export function downloadPDF(pdfBytes: Uint8Array, filename: string): void {
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
 }
+
+// Shop Report Labels
+const shopReportLabels: Record<string, Record<string, string>> = {
+  en: {
+    title: 'Shop Summary Report',
+    subtitle: 'Business Overview',
+    generatedOn: 'Generated on',
+    period: 'Period',
+    page: 'Page',
+    summary: 'Summary',
+    totalOutstanding: 'Total Outstanding',
+    totalCollected: 'Total Collected',
+    newDebts: 'New Debts',
+    paymentsReceived: 'Payments Received',
+    activeCustomers: 'Active Customers',
+    collectionRate: 'Collection Rate',
+    debtAging: 'Debt Aging Analysis',
+    current: 'Current (0-30 days)',
+    days30: '31-60 days',
+    days60: '61-90 days',
+    days90: '91+ days',
+    overdue: 'Overdue',
+    customerBreakdown: 'Customer Breakdown',
+    customerName: 'Customer',
+    balance: 'Balance',
+    lastActivity: 'Last Activity',
+    footer: 'This is a computer-generated report from Global Ledger.',
+    noData: 'No data available for this period',
+  },
+  tr: {
+    title: 'Isletme Ozet Raporu',
+    subtitle: 'Isletme Genel Gorunumu',
+    generatedOn: 'Olusturulma tarihi',
+    period: 'Donem',
+    page: 'Sayfa',
+    summary: 'Ozet',
+    totalOutstanding: 'Toplam Alacak',
+    totalCollected: 'Toplanan Toplam',
+    newDebts: 'Yeni Borclar',
+    paymentsReceived: 'Alinan Odemeler',
+    activeCustomers: 'Aktif Musteriler',
+    collectionRate: 'Tahsilat Orani',
+    debtAging: 'Yaslanma Analizi',
+    current: 'Gunluk (0-30 gun)',
+    days30: '31-60 gun',
+    days60: '61-90 gun',
+    days90: '91+ gun',
+    overdue: 'Gecikmis',
+    customerBreakdown: 'Musteri Dagilimi',
+    customerName: 'Musteri',
+    balance: 'Bakiye',
+    lastActivity: 'Son Islem',
+    footer: 'Bu belge Global Ledger tarafindan olusturulmustur.',
+    noData: 'Bu donem icin veri bulunamadi',
+  },
+  es: {
+    title: 'Informe Resumen de Negocio',
+    subtitle: 'Vision General del Negocio',
+    generatedOn: 'Generado el',
+    period: 'Periodo',
+    page: 'Pagina',
+    summary: 'Resumen',
+    totalOutstanding: 'Total Pendiente',
+    totalCollected: 'Total Recaudado',
+    newDebts: 'Nuevas Deudas',
+    paymentsReceived: 'Pagos Recibidos',
+    activeCustomers: 'Clientes Activos',
+    collectionRate: 'Tasa de Cobranza',
+    debtAging: 'Analisis de Antiguedad',
+    current: 'Actual (0-30 dias)',
+    days30: '31-60 dias',
+    days60: '61-90 dias',
+    days90: '91+ dias',
+    overdue: 'Vencido',
+    customerBreakdown: 'Desglose de Clientes',
+    customerName: 'Cliente',
+    balance: 'Saldo',
+    lastActivity: 'Ultima Actividad',
+    footer: 'Este es un informe generado por Global Ledger.',
+    noData: 'Sin datos disponibles para este periodo',
+  },
+  id: {
+    title: 'Laporan Ringkasan Toko',
+    subtitle: 'Ikhtisar Bisnis',
+    generatedOn: 'Dibuat pada',
+    period: 'Periode',
+    page: 'Halaman',
+    summary: 'Ringkasan',
+    totalOutstanding: 'Total Terutang',
+    totalCollected: 'Total Terkumpul',
+    newDebts: 'Hutang Baru',
+    paymentsReceived: 'Pembayaran Diterima',
+    activeCustomers: 'Pelanggan Aktif',
+    collectionRate: 'Tingkat Penagihan',
+    debtAging: 'Analisis Penuaan',
+    current: 'Saat ini (0-30 hari)',
+    days30: '31-60 hari',
+    days60: '61-90 hari',
+    days90: '91+ hari',
+    overdue: 'Terlambat',
+    customerBreakdown: 'Rincian Pelanggan',
+    customerName: 'Pelanggan',
+    balance: 'Saldo',
+    lastActivity: 'Aktivitas Terakhir',
+    footer: 'Ini adalah laporan yang dihasilkan oleh Global Ledger.',
+    noData: 'Tidak ada data tersedia untuk periode ini',
+  },
+  hi: {
+    title: 'दुकान सारांश रिपोर्ट',
+    subtitle: 'व्यवसाय अवलोकन',
+    generatedOn: 'तैयार की गई तारीख',
+    period: 'अवधि',
+    page: 'पृष्ठ',
+    summary: 'सारांश',
+    totalOutstanding: 'कुल बकाया',
+    totalCollected: 'कुल एकत्रित',
+    newDebts: 'नए ऋण',
+    paymentsReceived: 'प्राप्त भुगतान',
+    activeCustomers: 'सक्रिय ग्राहक',
+    collectionRate: 'संग्रह दर',
+    debtAging: 'उम्र विश्लेषण',
+    current: 'वर्तमान (0-30 दिन)',
+    days30: '31-60 दिन',
+    days60: '61-90 दिन',
+    days90: '91+ दिन',
+    overdue: 'अतिदेय',
+    customerBreakdown: 'ग्राहक विवरण',
+    customerName: 'ग्राहक',
+    balance: 'शेष',
+    lastActivity: 'अंतिम गतिविधि',
+    footer: 'यह Global Ledger द्वारा उत्पन्न रिपोर्ट है।',
+    noData: 'इस अवधि के लिए कोई डेटा उपलब्ध नहीं है',
+  },
+  ar: {
+    title: 'تقرير ملخص المتجر',
+    subtitle: 'نظرة عامة على الأعمال',
+    generatedOn: 'تم إنشاؤه في',
+    period: 'الفترة',
+    page: 'صفحة',
+    summary: 'ملخص',
+    totalOutstanding: 'المجموع المستحق',
+    totalCollected: 'المجموع المحصل',
+    newDebts: 'ديون جديدة',
+    paymentsReceived: 'المدفوعات المستلمة',
+    activeCustomers: 'العملاء النشطون',
+    collectionRate: 'معدل التحصيل',
+    debtAging: 'تحليل تقادم الديون',
+    current: 'الحالي (0-30 يوم)',
+    days30: '31-60 يوم',
+    days60: '61-90 يوم',
+    days90: '91+ يوم',
+    overdue: 'متأخر',
+    customerBreakdown: 'تفصيل العملاء',
+    customerName: 'العميل',
+    balance: 'الرصيد',
+    lastActivity: 'آخر نشاط',
+    footer: 'هذا تقرير مولد بواسطة Global Ledger.',
+    noData: 'لا توجد بيانات متاحة لهذه الفترة',
+  },
+  zu: {
+    title: 'Isibalo Esifushane Sevenkile',
+    subtitle: 'Ukuhlola Ibhizinisi',
+    generatedOn: 'Kwenziwe ngo',
+    period: 'Isikhathi',
+    page: 'Ikhasi',
+    summary: 'Isifushaniso',
+    totalOutstanding: 'Isamba Esisalele',
+    totalCollected: 'Isamba Esiliqoqiwe',
+    newDebts: 'Izikweletu Ezisha',
+    paymentsReceived: 'Inkokhelo Ezamukelwe',
+    activeCustomers: 'Abakhayeli Abasebenzayo',
+    collectionRate: 'Inani Lokuthola',
+    debtAging: 'Ukuhlazulwa Kokuguga',
+    current: 'Okwamanje (0-30 izinsuku)',
+    days30: '31-60 izinsuku',
+    days60: '61-90 izinsuku',
+    days90: '91+ izinsuku',
+    overdue: 'Kuphelelwe isikhathi',
+    customerBreakdown: 'Ukuhlazulwa Kabakhayeli',
+    customerName: 'Ikhasimende',
+    balance: 'Isisindo',
+    lastActivity: 'Umsebenzi Wokugcina',
+    footer: 'Lesi sibalo esenziwe ngokhompyutha ku-Global Ledger.',
+    noData: 'Awukho ulwazi olukhona lesi sikhathi',
+  },
+};
+
+export interface ShopReportData {
+  businessInfo: BusinessInfo;
+  summary: {
+    totalOutstanding: number;
+    totalCollected: number;
+    newDebts: number;
+    paymentsReceived: number;
+    activeCustomers: number;
+    collectionRate: number;
+  };
+  debtAging: {
+    current: number;
+    days30: number;
+    days60: number;
+    days90: number;
+    overdue: number;
+  };
+  customers: Array<{
+    name: string;
+    balance: number;
+    lastActivity: string | null;
+  }>;
+  period: {
+    start: string;
+    end: string;
+  };
+}
+
+export async function generateShopReportPDF(
+  options: ShopReportData & { locale?: string }
+): Promise<Uint8Array> {
+  const { businessInfo, summary, debtAging, customers, period, locale = 'en' } = options;
+
+  const pdfDoc = await PDFDocument.create();
+  const pageWidth = 595; // A4 width in points
+  const pageHeight = 842; // A4 height in points
+  const margin = 50;
+  const contentWidth = pageWidth - margin * 2;
+
+  const t = shopReportLabels[locale] || shopReportLabels.en;
+
+  const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+
+  const primaryColor = rgb(0.231, 0.510, 0.965); // #3B82F6 - Global Blue
+  const textColor = rgb(0.2, 0.2, 0.2);
+  const lightGray = rgb(0.6, 0.6, 0.6);
+  const darkGray = rgb(0.4, 0.4, 0.4);
+  const redColor = rgb(0.8, 0.2, 0.2);
+  const greenColor = rgb(0.2, 0.6, 0.2);
+
+  const formatCurrencyLocal = (amount: number) => formatCurrencyForPDF(amount, businessInfo.currency);
+  const formatDateLocal = (dateStr: string | null) => formatDateForPDF(dateStr, locale);
+
+  let currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
+  let y = pageHeight - margin;
+  let pageNum = 1;
+
+  const checkNewPage = (requiredSpace: number) => {
+    if (y - requiredSpace < margin + 50) {
+      // Add page number to current page
+      currentPage.drawText(`${t.page} ${pageNum}`, {
+        x: pageWidth / 2 - 20,
+        y: 30,
+        size: 9,
+        font: helvetica,
+        color: lightGray,
+      });
+
+      currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
+      y = pageHeight - margin;
+      pageNum++;
+      return true;
+    }
+    return false;
+  };
+
+  // Header with business name
+  currentPage.drawRectangle({
+    x: margin,
+    y: y - 40,
+    width: contentWidth,
+    height: 50,
+    color: primaryColor,
+  });
+
+  currentPage.drawText(businessInfo.name || 'Global Ledger', {
+    x: margin + 15,
+    y: y - 20,
+    size: 22,
+    font: helveticaBold,
+    color: rgb(1, 1, 1),
+  });
+
+  y -= 70;
+
+  // Title
+  currentPage.drawText(t.title, {
+    x: margin,
+    y: y,
+    size: 18,
+    font: helveticaBold,
+    color: textColor,
+  });
+
+  y -= 25;
+
+  // Subtitle and period
+  currentPage.drawText(t.subtitle, {
+    x: margin,
+    y: y,
+    size: 12,
+    font: helvetica,
+    color: darkGray,
+  });
+
+  const periodText = `${t.period}: ${formatDateLocal(period.start)} - ${formatDateLocal(period.end)}`;
+  currentPage.drawText(periodText, {
+    x: margin + 250,
+    y: y,
+    size: 10,
+    font: helvetica,
+    color: lightGray,
+  });
+
+  y -= 20;
+
+  // Generated date
+  const today = new Date();
+  currentPage.drawText(`${t.generatedOn}: ${formatDateLocal(today.toISOString())}`, {
+    x: margin,
+    y: y,
+    size: 9,
+    font: helvetica,
+    color: lightGray,
+  });
+
+  y -= 30;
+
+  // Summary Section
+  currentPage.drawText(t.summary, {
+    x: margin,
+    y: y,
+    size: 14,
+    font: helveticaBold,
+    color: textColor,
+  });
+
+  y -= 15;
+
+  // Summary cards grid (2x3)
+  const cardWidth = (contentWidth - 20) / 2;
+  const cardHeight = 50;
+  const summaryItems = [
+    { label: t.totalOutstanding, value: formatCurrencyLocal(summary.totalOutstanding), color: redColor },
+    { label: t.totalCollected, value: formatCurrencyLocal(summary.totalCollected), color: greenColor },
+    { label: t.newDebts, value: formatCurrencyLocal(summary.newDebts), color: redColor },
+    { label: t.paymentsReceived, value: formatCurrencyLocal(summary.paymentsReceived), color: greenColor },
+    { label: t.activeCustomers, value: summary.activeCustomers.toString(), color: textColor },
+    { label: t.collectionRate, value: `${summary.collectionRate.toFixed(1)}%`, color: textColor },
+  ];
+
+  let cardY = y;
+  for (let i = 0; i < summaryItems.length; i += 2) {
+    checkNewPage(cardHeight + 20);
+
+    // Left card
+    const leftItem = summaryItems[i];
+    currentPage.drawRectangle({
+      x: margin,
+      y: cardY - cardHeight,
+      width: cardWidth,
+      height: cardHeight,
+      color: rgb(0.96, 0.96, 0.96),
+    });
+    currentPage.drawText(leftItem.label, {
+      x: margin + 10,
+      y: cardY - 18,
+      size: 9,
+      font: helvetica,
+      color: darkGray,
+    });
+    currentPage.drawText(leftItem.value, {
+      x: margin + 10,
+      y: cardY - 35,
+      size: 14,
+      font: helveticaBold,
+      color: leftItem.color,
+    });
+
+    // Right card
+    if (summaryItems[i + 1]) {
+      const rightItem = summaryItems[i + 1];
+      currentPage.drawRectangle({
+        x: margin + cardWidth + 20,
+        y: cardY - cardHeight,
+        width: cardWidth,
+        height: cardHeight,
+        color: rgb(0.96, 0.96, 0.96),
+      });
+      currentPage.drawText(rightItem.label, {
+        x: margin + cardWidth + 30,
+        y: cardY - 18,
+        size: 9,
+        font: helvetica,
+        color: darkGray,
+      });
+      currentPage.drawText(rightItem.value, {
+        x: margin + cardWidth + 30,
+        y: cardY - 35,
+        size: 14,
+        font: helveticaBold,
+        color: rightItem.color,
+      });
+    }
+
+    cardY -= cardHeight + 10;
+  }
+
+  y = cardY - 20;
+
+  checkNewPage(180);
+
+  // Debt Aging Section
+  currentPage.drawText(t.debtAging, {
+    x: margin,
+    y: y,
+    size: 14,
+    font: helveticaBold,
+    color: textColor,
+  });
+
+  y -= 15;
+
+  const agingItems = [
+    { label: t.current, value: debtAging.current, color: textColor },
+    { label: t.days30, value: debtAging.days30, color: textColor },
+    { label: t.days60, value: debtAging.days60, color: rgb(0.7, 0.5, 0.1) },
+    { label: t.days90, value: debtAging.days90, color: rgb(0.8, 0.4, 0.1) },
+    { label: t.overdue, value: debtAging.overdue, color: redColor },
+  ];
+
+  for (const item of agingItems) {
+    currentPage.drawText(item.label, {
+      x: margin + 10,
+      y: y - 5,
+      size: 10,
+      font: helvetica,
+      color: darkGray,
+    });
+    currentPage.drawText(formatCurrencyLocal(item.value), {
+      x: margin + contentWidth - 100,
+      y: y - 5,
+      size: 10,
+      font: helveticaBold,
+      color: item.color,
+    });
+    y -= 18;
+  }
+
+  y -= 20;
+
+  checkNewPage(150);
+
+  // Customer Breakdown Section
+  currentPage.drawText(t.customerBreakdown, {
+    x: margin,
+    y: y,
+    size: 14,
+    font: helveticaBold,
+    color: textColor,
+  });
+
+  y -= 20;
+
+  // Table header
+  const tableHeaderY = y + 5;
+  currentPage.drawRectangle({
+    x: margin,
+    y: tableHeaderY - 20,
+    width: contentWidth,
+    height: 20,
+    color: rgb(0.93, 0.93, 0.93),
+  });
+
+  currentPage.drawText(t.customerName, {
+    x: margin + 10,
+    y: tableHeaderY - 13,
+    size: 9,
+    font: helveticaBold,
+    color: darkGray,
+  });
+  currentPage.drawText(t.balance, {
+    x: margin + 250,
+    y: tableHeaderY - 13,
+    size: 9,
+    font: helveticaBold,
+    color: darkGray,
+  });
+  currentPage.drawText(t.lastActivity, {
+    x: margin + 370,
+    y: tableHeaderY - 13,
+    size: 9,
+    font: helveticaBold,
+    color: darkGray,
+  });
+
+  y -= 25;
+
+  // Customer rows
+  if (customers.length === 0) {
+    currentPage.drawText(t.noData, {
+      x: margin + 10,
+      y: y - 5,
+      size: 10,
+      font: helvetica,
+      color: lightGray,
+    });
+    y -= 20;
+  } else {
+    const rowHeight = 18;
+    for (let i = 0; i < Math.min(customers.length, 15); i++) {
+      checkNewPage(rowHeight + 5);
+
+      const customer = customers[i];
+
+      // Alternate row background
+      if (i % 2 === 0) {
+        currentPage.drawRectangle({
+          x: margin,
+          y: y - rowHeight + 5,
+          width: contentWidth,
+          height: rowHeight,
+          color: rgb(0.98, 0.98, 0.98),
+        });
+      }
+
+      // Customer name (truncate if needed)
+      let nameText = customer.name;
+      while (helvetica.widthOfTextAtSize(nameText, 9) > 200 && nameText.length > 5) {
+        nameText = nameText.slice(0, -4) + '...';
+      }
+      currentPage.drawText(nameText, {
+        x: margin + 10,
+        y: y - 3,
+        size: 9,
+        font: helvetica,
+        color: textColor,
+      });
+
+      // Balance
+      const balanceColor = customer.balance > 0 ? redColor : greenColor;
+      currentPage.drawText(formatCurrencyLocal(Math.abs(customer.balance)), {
+        x: margin + 250,
+        y: y - 3,
+        size: 9,
+        font: helveticaBold,
+        color: balanceColor,
+      });
+
+      // Last activity
+      const lastActivity = customer.lastActivity ? formatDateLocal(customer.lastActivity) : '-';
+      currentPage.drawText(lastActivity, {
+        x: margin + 370,
+        y: y - 3,
+        size: 9,
+        font: helvetica,
+        color: darkGray,
+      });
+
+      y -= rowHeight;
+    }
+
+    if (customers.length > 15) {
+      y -= 10;
+      currentPage.drawText(`... and ${customers.length - 15} more customers`, {
+        x: margin + 10,
+        y: y - 3,
+        size: 9,
+        font: helvetica,
+        color: lightGray,
+      });
+    }
+  }
+
+  // Footer
+  y -= 30;
+  checkNewPage(40);
+
+  currentPage.drawLine({
+    start: { x: margin, y: y },
+    end: { x: margin + contentWidth, y: y },
+    thickness: 0.5,
+    color: lightGray,
+  });
+
+  y -= 20;
+
+  currentPage.drawText(t.footer, {
+    x: margin,
+    y: y,
+    size: 8,
+    font: helvetica,
+    color: lightGray,
+  });
+
+  // Final page number
+  currentPage.drawText(`${t.page} ${pageNum}`, {
+    x: pageWidth / 2 - 20,
+    y: 30,
+    size: 9,
+    font: helvetica,
+    color: lightGray,
+  });
+
+  return await pdfDoc.save();
+}
