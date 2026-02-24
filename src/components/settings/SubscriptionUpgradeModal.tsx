@@ -18,11 +18,12 @@ import { toast } from 'sonner';
 interface SubscriptionUpgradeModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  currentPlan?: 'free' | 'pro' | 'enterprise';
+  currentPlan?: 'free' | 'basic' | 'pro' | 'enterprise';
 }
 
 const plans = [
   { key: 'free', icon: null, featured: false },
+  { key: 'basic', icon: Zap, featured: false },
   { key: 'pro', icon: Star, featured: true },
   { key: 'enterprise', icon: Building2, featured: false },
 ] as const;

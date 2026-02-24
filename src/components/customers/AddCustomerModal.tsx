@@ -5,10 +5,11 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Loader2, Crown } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
 import { useSubscription } from '@/lib/hooks/useSubscription';
+import { UpgradePrompt } from '@/components/subscription/UpgradePrompt';
 
 interface AddCustomerModalProps {
   open: boolean;
@@ -86,19 +87,13 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
           <div className="space-y-4 py-4">
             {/* Paywall warning */}
             {isAtLimit && (
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-4">
-                <div className="flex items-start gap-3">
-                  <Crown className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-medium text-orange-800 text-sm">
-                      {tCustomers('paywall.limitReached')}
-                    </p>
-                    <p className="text-orange-700 text-xs mt-1">
-                      {tCustomers('paywall.upgradeMessage')}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <UpgradePrompt
+                variant="card"
+                feature={tCustomers('paywall.limitReached')}
+                message={tCustomers('paywall.upgradeMessage')}
+                size="sm"
+                className="mb-4"
+              />
             )}
 
             {/* Customer count indicator */}

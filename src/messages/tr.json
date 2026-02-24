@@ -45,6 +45,49 @@
       "description": "Beklenmeyen bir hata ile karşılaştık. Lütfen tekrar deneyin veya ana sayfaya dönün."
     }
   },
+  "subscription": {
+    "upgradePrompt": {
+      "title": "Yükseltme Gerekli",
+      "default": "{feature} özelliğini Pro aboneliğiyle açın",
+      "feature": {
+        "dataExport": "PDF dışa aktarma, CSV indirmeleri ve daha fazlasını açın",
+        "advancedReports": "Gelişmiş analitik ve özel raporlar alın",
+        "smsReminders": "Müşterilere SMS ödeme hatırlatmaları gönderin",
+        "apiAccess": "Verilerinizi diğer uygulamalara bağlayın",
+        "multiUserAccess": "Hesabınıza takım üyeleri ekleyin"
+      }
+    },
+    "plans": {
+      "free": {
+        "name": "Ücretsiz",
+        "price": "₺0",
+        "period": "sonsuza kadar",
+        "description": "Yeni başlayan küçük işletmeler için",
+        "features": ["10 müşteri", "Sınırsız işlem", "Temel raporlar", "Çevrimdışı mod"]
+      },
+      "basic": {
+        "name": "Temel",
+        "price": "₺150",
+        "period": "ay",
+        "description": "Büyüyen işletmeler için",
+        "features": ["50 müşteri", "Veri dışa aktarma (PDF/CSV)", "Gelişmiş raporlar", "E-posta desteği"]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "₺300",
+        "period": "ay",
+        "description": "Kurulu işletmeler için",
+        "features": ["Sınırsız müşteri", "SMS hatırlatmaları", "Öncelikli destek", "API erişimi"]
+      },
+      "enterprise": {
+        "name": "Kurumsal",
+        "price": "Özel",
+        "period": "",
+        "description": "Büyük operasyonlar için",
+        "features": ["Pro'daki her şey", "Çoklu kullanıcı erişimi", "Özel entegrasyonlar", "Beyaz etiket seçenekleri"]
+      }
+    }
+  },
   "nav": {
     "dashboard": "Kontrol Paneli",
     "customers": "Müşteriler",

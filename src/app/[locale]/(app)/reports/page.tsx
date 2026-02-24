@@ -24,8 +24,8 @@ import {
   PieChart,
   Calendar,
   Loader2,
-  Crown,
 } from 'lucide-react';
+import { UpgradePrompt } from '@/components/subscription/UpgradePrompt';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { useAuth } from '@/lib/hooks/useAuth';
@@ -604,15 +604,12 @@ export default function ReportsPage() {
                 {t('export.pdf')}
               </Button>
             ) : (
-              <Button
-                variant="outline"
-                className="w-full justify-start opacity-60"
-                disabled
-              >
-                <Crown className="mr-2 h-4 w-4 text-primary" />
-                {t('export.pdf')}
-                <span className="ml-auto text-xs text-muted-foreground">Pro</span>
-              </Button>
+              <UpgradePrompt
+                variant="button"
+                feature="Data Export"
+                message={t('export.pdf')}
+                className="w-full justify-start"
+              />
             )}
 
             {/* CSV Export - Paid feature */}
@@ -631,15 +628,12 @@ export default function ReportsPage() {
                 {t('export.csv')}
               </Button>
             ) : (
-              <Button
-                variant="outline"
-                className="w-full justify-start opacity-60"
-                disabled
-              >
-                <Crown className="mr-2 h-4 w-4 text-primary" />
-                {t('export.csv')}
-                <span className="ml-auto text-xs text-muted-foreground">Pro</span>
-              </Button>
+              <UpgradePrompt
+                variant="button"
+                feature="Data Export"
+                message={t('export.csv')}
+                className="w-full justify-start"
+              />
             )}
 
             {/* Customer Statement - Paid feature */}
@@ -654,28 +648,21 @@ export default function ReportsPage() {
                 {t('export.customerStatement')}
               </Button>
             ) : (
-              <Button
-                variant="outline"
-                className="w-full justify-start opacity-60"
-                disabled
-              >
-                <Crown className="mr-2 h-4 w-4 text-primary" />
-                {t('export.customerStatement')}
-                <span className="ml-auto text-xs text-muted-foreground">Pro</span>
-              </Button>
+              <UpgradePrompt
+                variant="button"
+                feature="Data Export"
+                message={t('export.customerStatement')}
+                className="w-full justify-start"
+              />
             )}
 
             {/* Upgrade prompt for free users */}
             {!isPaidPlan && (
-              <div className="mt-4 p-3 bg-primary/5 border border-primary/20 rounded-lg">
-                <div className="flex items-start gap-2">
-                  <Crown className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                  <div className="text-xs text-muted-foreground">
-                    <p className="font-medium text-foreground">Upgrade to Pro</p>
-                    <p>Unlock PDF exports, CSV downloads, and more features.</p>
-                  </div>
-                </div>
-              </div>
+              <UpgradePrompt
+                variant="card"
+                feature="Data Export"
+                size="sm"
+              />
             )}
           </CardContent>
         </Card>

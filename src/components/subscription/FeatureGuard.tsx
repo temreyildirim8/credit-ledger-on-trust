@@ -30,7 +30,7 @@ export function FeatureGuard({
   onUpgradeClick,
   className,
 }: FeatureGuardProps) {
-  const { hasFeature, loading, isPaidPlan } = useSubscription();
+  const { hasFeature, loading } = useSubscription();
 
   // Show nothing while loading to prevent flash
   if (loading) {

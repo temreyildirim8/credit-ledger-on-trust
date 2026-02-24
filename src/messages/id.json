@@ -45,6 +45,49 @@
       "description": "Kami mengalami kesalahan tak terduga. Silakan coba lagi atau kembali ke beranda."
     }
   },
+  "subscription": {
+    "upgradePrompt": {
+      "title": "Upgrade Diperlukan",
+      "default": "Buka {feature} dengan langganan Pro",
+      "feature": {
+        "dataExport": "Buka ekspor PDF, unduhan CSV, dan lainnya",
+        "advancedReports": "Dapatkan analitik lanjutan dan laporan khusus",
+        "smsReminders": "Kirim pengingat pembayaran SMS ke pelanggan",
+        "apiAccess": "Hubungkan data Anda ke aplikasi lain",
+        "multiUserAccess": "Tambahkan anggota tim ke akun Anda"
+      }
+    },
+    "plans": {
+      "free": {
+        "name": "Gratis",
+        "price": "Rp0",
+        "period": "selamanya",
+        "description": "Untuk toko kecil yang baru memulai",
+        "features": ["10 pelanggan", "Transaksi tanpa batas", "Laporan dasar", "Mode offline"]
+      },
+      "basic": {
+        "name": "Dasar",
+        "price": "Rp69.000",
+        "period": "bulan",
+        "description": "Untuk bisnis yang berkembang",
+        "features": ["50 pelanggan", "Ekspor data (PDF/CSV)", "Laporan lanjutan", "Dukungan email"]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "Rp149.000",
+        "period": "bulan",
+        "description": "Untuk toko yang mapan",
+        "features": ["Pelanggan tanpa batas", "Pengingat SMS", "Dukungan prioritas", "Akses API"]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Khusus",
+        "period": "",
+        "description": "Untuk operasi besar",
+        "features": ["Semua di Pro", "Akses multi-pengguna", "Integrasi khusus", "Opsi white-label"]
+      }
+    }
+  },
   "nav": {
     "dashboard": "Dashboard",
     "customers": "Pelanggan",

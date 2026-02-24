@@ -45,6 +45,49 @@
       "description": "We encountered an unexpected error. Please try again or return to the home page."
     }
   },
+  "subscription": {
+    "upgradePrompt": {
+      "title": "Upgrade Required",
+      "default": "Unlock {feature} with a Pro subscription",
+      "feature": {
+        "dataExport": "Unlock PDF exports, CSV downloads, and more",
+        "advancedReports": "Get advanced analytics and custom reports",
+        "smsReminders": "Send SMS payment reminders to customers",
+        "apiAccess": "Connect your data to other apps",
+        "multiUserAccess": "Add team members to your account"
+      }
+    },
+    "plans": {
+      "free": {
+        "name": "Free",
+        "price": "$0",
+        "period": "forever",
+        "description": "For small shops getting started",
+        "features": ["10 customers", "Unlimited transactions", "Basic reports", "Offline mode"]
+      },
+      "basic": {
+        "name": "Basic",
+        "price": "$4.99",
+        "period": "month",
+        "description": "For growing businesses",
+        "features": ["50 customers", "Data export (PDF/CSV)", "Advanced reports", "Email support"]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$9.99",
+        "period": "month",
+        "description": "For established shops",
+        "features": ["Unlimited customers", "SMS reminders", "Priority support", "API access"]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Custom",
+        "period": "",
+        "description": "For large operations",
+        "features": ["Everything in Pro", "Multi-user access", "Custom integrations", "White-label options"]
+      }
+    }
+  },
   "nav": {
     "dashboard": "Dashboard",
     "customers": "Customers",

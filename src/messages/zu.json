@@ -45,6 +45,49 @@
       "description": "Sihlangabezane nephutha elingalindelekanga. Sicela uzame futhi noma ubuyele ekhaya."
     }
   },
+  "subscription": {
+    "upgradePrompt": {
+      "title": "Kudingeka Ukuvuselelwa",
+      "default": "Vula {feature} ngesibhalo se-Pro",
+      "feature": {
+        "dataExport": "Vula ukukhishwa kwe-PDF, okokulanda i-CSV, nokuningi",
+        "advancedReports": "Thola ukuhlaziywa okuthuthukisiwe nemibiko eyenziwe ngokwezifiso",
+        "smsReminders": "Thumela izikhumbuzi zentlawulo ze-SMS kubathengi",
+        "apiAccess": "Xhumanisa idatha yakho nezinye izinhlelo zokusebenza",
+        "multiUserAccess": "Engeza amalungu eqembu kwi-akhawunti yakho"
+      }
+    },
+    "plans": {
+      "free": {
+        "name": "Mahhala",
+        "price": "R0",
+        "period": "phakade",
+        "description": "Kwitilozane ezincane eziqala",
+        "features": ["10 abathengi", "Ukuthengiselana okungazwelonke", "Imibiko eyisisekelo", "Imodi engesebenzayo"]
+      },
+      "basic": {
+        "name": "Okuyisisekelo",
+        "price": "R89",
+        "period": "inyanga",
+        "description": "Kwebhizinisi elikhulayo",
+        "features": ["50 abathengi", "Ukukhishwa kwedatha (PDF/CSV)", "Imibiko ethuthukisiwe", "Inkxaso ye-imeyili"]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "R179",
+        "period": "inyanga",
+        "description": "Kwitilozane ezisuselwe phansi",
+        "features": ["Abathengi abangazwelonke", "Izikhumbuzi ze-SMS", "Inkxaso yokuqala", "Ukufinyelela kwi-API"]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Ngokwezifiso",
+        "period": "",
+        "description": "Kokusebenza okukhulu",
+        "features": ["Konke ku-Pro", "Ukufinyelela kwabantu abaningi", "Ukuhlanganiswa ngokwezifiso", "Izinketho ze-white-label"]
+      }
+    }
+  },
   "nav": {
     "dashboard": "I-Dashboard",
     "customers": "Abathengi",

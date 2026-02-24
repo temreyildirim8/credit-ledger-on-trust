@@ -45,6 +45,49 @@
       "description": "Hemos encontrado un error inesperado. Por favor, inténtelo de nuevo o vuelva a la página principal."
     }
   },
+  "subscription": {
+    "upgradePrompt": {
+      "title": "Actualización Requerida",
+      "default": "Desbloquea {feature} con una suscripción Pro",
+      "feature": {
+        "dataExport": "Desbloquea exportación PDF, descargas CSV y más",
+        "advancedReports": "Obtén análisis avanzados e informes personalizados",
+        "smsReminders": "Envía recordatorios de pago SMS a clientes",
+        "apiAccess": "Conecta tus datos a otras aplicaciones",
+        "multiUserAccess": "Añade miembros del equipo a tu cuenta"
+      }
+    },
+    "plans": {
+      "free": {
+        "name": "Gratis",
+        "price": "$0",
+        "period": "para siempre",
+        "description": "Para pequeñas tiendas que empiezan",
+        "features": ["10 clientes", "Transacciones ilimitadas", "Informes básicos", "Modo sin conexión"]
+      },
+      "basic": {
+        "name": "Básico",
+        "price": "$4.99",
+        "period": "mes",
+        "description": "Para negocios en crecimiento",
+        "features": ["50 clientes", "Exportación de datos (PDF/CSV)", "Informes avanzados", "Soporte por email"]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$9.99",
+        "period": "mes",
+        "description": "Para tiendas establecidas",
+        "features": ["Clientes ilimitados", "Recordatorios SMS", "Soporte prioritario", "Acceso API"]
+      },
+      "enterprise": {
+        "name": "Empresa",
+        "price": "Personalizado",
+        "period": "",
+        "description": "Para operaciones grandes",
+        "features": ["Todo en Pro", "Acceso multi-usuario", "Integraciones personalizadas", "Opciones de marca blanca"]
+      }
+    }
+  },
   "nav": {
     "dashboard": "Panel",
     "customers": "Clientes",

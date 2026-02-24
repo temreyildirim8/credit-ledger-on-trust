@@ -21,7 +21,7 @@ import { toast } from 'sonner';
 export default function CustomersPage() {
   const { customers, loading, createCustomer, refreshCustomers, archiveCustomer, deleteCustomer } = useCustomers();
   const { createTransaction } = useTransactions();
-  const { isPaidPlan, customerLimit, hasFeature } = useSubscription();
+  const { isPaidPlan } = useSubscription();
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [transactionModalOpen, setTransactionModalOpen] = useState(false);
