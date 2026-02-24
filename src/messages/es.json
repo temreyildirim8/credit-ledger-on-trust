@@ -213,6 +213,22 @@
         "Opción de marca blanca"
       ],
       "cta": "Contactar Ventas"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "q1": "¿Global Ledger es realmente gratis?",
+      "a1": "¡Sí! Global Ledger ofrece un plan gratuito para siempre que incluye hasta 50 clientes, transacciones ilimitadas, modo sin conexión e informes básicos. No se requiere tarjeta de crédito para comenzar.",
+      "q2": "¿Puedo usar Global Ledger sin internet?",
+      "a2": "¡Por supuesto! Global Ledger está construido como una Aplicación Web Progresiva (PWA) con soporte completo sin conexión. Puedes agregar clientes, registrar deudas y realizar seguimientos de pagos incluso sin internet. Tus datos se sincronizan automáticamente cuando vuelves a estar en línea.",
+      "q3": "¿Cómo funciona la copia de seguridad automática?",
+      "a3": "Tus datos se sincronizan automáticamente con nuestros servidores en la nube seguros cada vez que tienes conexión a internet. Todos los datos están encriptados usando encriptación AES-256 de nivel bancario, por lo que tus registros siempre están seguros y accesibles.",
+      "q4": "¿Qué monedas e idiomas son compatibles?",
+      "a4": "Global Ledger admite múltiples monedas incluyendo TRY, IDR, NGN, EGP, ZAR y más. La aplicación está disponible en 7 idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú."
+    },
+    "cta": {
+      "title": "¿Listo para Comenzar?",
+      "description": "Únete a miles de negocios que usan Global Ledger para gestionar el crédito de sus clientes.",
+      "button": "Comienza Gratis Hoy"
     }
   },
   "about": {

@@ -213,6 +213,22 @@
         "Opsi white-label"
       ],
       "cta": "Hubungi Penjualan"
+    },
+    "faq": {
+      "title": "Pertanyaan yang Sering Diajukan",
+      "q1": "Apakah Global Ledger benar-benar gratis?",
+      "a1": "Ya! Global Ledger menawarkan paket gratis selamanya yang mencakup hingga 50 pelanggan, transaksi tidak terbatas, mode offline, dan laporan dasar. Tidak perlu kartu kredit untuk memulai.",
+      "q2": "Bisakah saya menggunakan Global Ledger tanpa internet?",
+      "a2": "Tentu saja! Global Ledger dibangun sebagai Progressive Web App (PWA) dengan dukungan offline penuh. Anda dapat menambahkan pelanggan, mencatat utang, dan melacak pembayaran bahkan tanpa internet. Data Anda disinkronkan secara otomatis saat Anda kembali online.",
+      "q3": "Bagaimana cara kerja cadangan otomatis?",
+      "a3": "Data Anda secara otomatis disinkronkan ke server cloud aman kami setiap kali Anda memiliki koneksi internet. Semua data dienkripsi menggunakan enkripsi AES-256 tingkat bank, sehingga catatan Anda selalu aman dan dapat diakses.",
+      "q4": "Mata uang dan bahasa apa saja yang didukung?",
+      "a4": "Global Ledger mendukung banyak mata uang termasuk TRY, IDR, NGN, EGP, ZAR, dan lainnya. Aplikasi tersedia dalam 7 bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu."
+    },
+    "cta": {
+      "title": "Siap untuk Memulai?",
+      "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Global Ledger untuk mengelola kredit pelanggan mereka.",
+      "button": "Mulai Gratis Hari Ini"
     }
   },
   "about": {

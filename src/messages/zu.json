@@ -213,6 +213,22 @@
         "Ukukhetha okungaphefumleli"
       ],
       "cta": "Thinta Ukuthengisa"
+    },
+    "faq": {
+      "title": "Imibuzo Evame Ukubuzwa",
+      "q1": "Ingabe i-Global Ledger yamahhala ngempela?",
+      "a1": "Yebo! I-Global Ledger inikeza uhlelo lwamahhala phakade oluhlanganisa abathengi abangama-50, ukuthengiselana okungagcini, imodi ye-offline, namabhuloho okuyisisekelo. Awudingi ikhadi lesikweletu ukuqala.",
+      "q2": "Ngingasebenzisa i-Global Ledger ngaphandle kwe-inthanethi?",
+      "a2": "Ngempela! I-Global Ledger yakhiwe njenge-Progressive Web App (PWA) ngenkxaso ephelele ye-offline. Ungafaka abathengi, bhala izikweletu, futhi ulandele izinkokhelo ngisho ngaphandle kwe-inthanethi. Idata yakho i-synchronize ngokuzenzakalelayo uma ubuyela ku-online.",
+      "q3": "I-backup ezenzakalelayo isebenza kanjani?",
+      "a3": "Idata yakho i-synchronize ngokuzenzakalelayo kumaserver ethu we-cloud avikelekile noma nini uma une-connection ye-inthanethi. Idata yonke iyakhodwa kusetshenziswa ukukhoda kwe-AES-256 yesigaba sebanki, ngakho-ke amarekhodi akho ahlala evikelekile futhi atholakala.",
+      "q4": "Yiziphi izimali nezilimi ezisekelwayo?",
+      "a4": "I-Global Ledger ixhasa izimali eziningi kufaka phakathi i-TRY, IDR, NGN, EGP, ZAR, nokuningi. I-app itholakala ngezilimi eziyi-7: IsiTurki, IsiHindi, Isi-Indonesian, IsiNgisi, Isi-Arabhu, IsiSpanishi, kanye IsiZulu."
+    },
+    "cta": {
+      "title": "Ukulungele Ukuqala?",
+      "description": "Joyina izinkampani ezinkulungwane ezisebenzisa i-Global Ledger ukuphatha ikredithi yamakhasimende azo.",
+      "button": "Qala Mahhala Namuhla"
     }
   },
   "about": {
