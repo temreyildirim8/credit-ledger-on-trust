@@ -4,12 +4,17 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { User, Session } from "@supabase/supabase-js";
 import { authService } from "@/lib/services/auth.service";
 
+interface SignUpResult {
+  user: User | null;
+  session: Session | null;
+}
+
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, name?: string) => Promise<void>;
+  signUp: (email: string, password: string, name?: string) => Promise<SignUpResult>;
   signOut: () => Promise<void>;
 }
 
@@ -68,13 +73,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const signUp = async (email: string, password: string, name?: string) => {
+  const signUp = async (email: string, password: string, name?: string): Promise<SignUpResult> => {
     const authData = await authService.signUp({ email, password, name });
     // Immediately update state if session is available (for auto-confirmed users)
     if (authData.session) {
       setSession(authData.session);
       setUser(authData.session.user);
     }
+    return {
+      user: authData.session?.user ?? null,
+      session: authData.session,
+    };
   };
 
   const signOut = async () => {

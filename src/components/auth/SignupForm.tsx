@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/lib/hooks/useAuth';
@@ -18,24 +18,45 @@ export function SignupForm() {
   const t = useTranslations('auth');
   const router = useRouter();
   const pathname = usePathname();
-  const { signUp } = useAuth();
+  const { signUp, user, session } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formState, setFormState] = useState<FormState>('idle');
+  const [requiresEmailConfirmation, setRequiresEmailConfirmation] = useState(false);
 
   // Extract locale from pathname
   const segments = pathname.split('/');
   const locale = segments[1] || 'en';
+
+  // Redirect to onboarding when user becomes authenticated (auto-confirmed signup)
+  useEffect(() => {
+    if (user && session && formState === 'success' && !requiresEmailConfirmation) {
+      // User is authenticated, redirect to onboarding
+      router.replace(`/${locale}/onboarding`);
+    }
+  }, [user, session, formState, requiresEmailConfirmation, router, locale]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState('loading');
 
     try {
-      await signUp(email, password, name);
+      const result = await signUp(email, password, name);
+
+      // Check if user needs email confirmation
+      // If session is null after signup, email confirmation is required
+      const needsConfirmation = !result?.session;
+      setRequiresEmailConfirmation(needsConfirmation);
+
       setFormState('success');
-      toast.success(t('signup.success') || 'Account created successfully');
+
+      if (needsConfirmation) {
+        toast.success(t('signup.success') || 'Account created successfully');
+      } else {
+        // Auto-confirmed - will redirect via useEffect
+        toast.success(t('signup.successAutoConfirmed') || 'Account created! Redirecting...');
+      }
     } catch (error) {
       setFormState('idle');
       toast.error((error instanceof Error ? error.message : String(error)) || t('signup.error') || 'Failed to create account');
@@ -55,22 +76,29 @@ export function SignupForm() {
       </CardHeader>
 
       {isSuccess ? (
-        <CardContent className="space-y-4">
-          <Alert>
-            <CheckCircle2 className="h-4 w-4 text-green-600" />
-            <AlertTitle className="text-green-600">{t('signup.successTitle') || 'Registration Successful!'}</AlertTitle>
-            <AlertDescription className="space-y-2">
-              <p>{t('signup.successDescription1') || 'We have sent a verification link to your email address.'}</p>
-              <p className="text-sm">{t('signup.successDescription2') || 'Please check your inbox (and spam folder), then click the link to verify your account.'}</p>
-            </AlertDescription>
-          </Alert>
-          <Button
-            onClick={() => router.push(`/${locale}/login`)}
-            className="w-full"
-          >
-            {t('signup.goToLogin') || 'Go to Login Page'}
-          </Button>
-        </CardContent>
+        requiresEmailConfirmation ? (
+          <CardContent className="space-y-4">
+            <Alert>
+              <CheckCircle2 className="h-4 w-4 text-green-600" />
+              <AlertTitle className="text-green-600">{t('signup.successTitle') || 'Registration Successful!'}</AlertTitle>
+              <AlertDescription className="space-y-2">
+                <p>{t('signup.successDescription1') || 'We have sent a verification link to your email address.'}</p>
+                <p className="text-sm">{t('signup.successDescription2') || 'Please check your inbox (and spam folder), then click the link to verify your account.'}</p>
+              </AlertDescription>
+            </Alert>
+            <Button
+              onClick={() => router.push(`/${locale}/login`)}
+              className="w-full"
+            >
+              {t('signup.goToLogin') || 'Go to Login Page'}
+            </Button>
+          </CardContent>
+        ) : (
+          <CardContent className="space-y-4 flex flex-col items-center justify-center py-8">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <p className="text-muted-foreground">{t('signup.redirecting') || 'Redirecting to onboarding...'}</p>
+          </CardContent>
+        )
       ) : (
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">

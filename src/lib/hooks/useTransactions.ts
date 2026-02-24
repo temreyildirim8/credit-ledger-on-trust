@@ -90,6 +90,30 @@ export function useTransactions() {
     };
   }, [loadTransactions]);
 
+  // Refresh transactions when the window gains focus (e.g., navigating back from Quick Add)
+  useEffect(() => {
+    const handleFocus = () => {
+      if (user?.id && navigator.onLine) {
+        loadTransactions();
+      }
+    };
+
+    // Also refresh on visibility change (for mobile/tab switching)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && user?.id && navigator.onLine) {
+        loadTransactions();
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [user?.id, loadTransactions]);
+
   const createTransaction = async (transaction: {
     customerId: string;
     type: 'debt' | 'payment';

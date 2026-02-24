@@ -5,6 +5,7 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { authService } from "@/lib/services/auth.service";
+import { userProfilesService } from "@/lib/services/user-profiles.service";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -100,8 +101,20 @@ export function LoginForm() {
         return;
       }
 
-      // Redirect to the page user was trying to access, or dashboard
-      const redirectTo = redirectParam || `/${locale}/dashboard`;
+      // Check if user has completed onboarding
+      const hasCompletedOnboarding = await userProfilesService.hasCompletedOnboarding(currentUser.id);
+      console.log("[LoginForm] Has completed onboarding:", hasCompletedOnboarding);
+
+      // Determine redirect: if redirect param exists and user completed onboarding, use it
+      // Otherwise, redirect to onboarding if not completed, or dashboard if completed
+      let redirectTo: string;
+      if (redirectParam && hasCompletedOnboarding) {
+        redirectTo = redirectParam;
+      } else if (!hasCompletedOnboarding) {
+        redirectTo = `/${locale}/onboarding`;
+      } else {
+        redirectTo = `/${locale}/dashboard`;
+      }
       console.log("[LoginForm] Redirecting to:", redirectTo);
       router.replace(redirectTo);
     } catch (error) {

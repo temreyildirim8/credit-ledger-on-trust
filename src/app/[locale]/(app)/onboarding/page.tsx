@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Card } from '@/components/ui/card';
@@ -20,14 +20,43 @@ const TOTAL_STEPS = 4;
 export default function OnboardingPage() {
   const t = useTranslations('onboarding');
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [checkingOnboarding, setCheckingOnboarding] = useState(true);
   const [formData, setFormData] = useState({
     currency: '',
     language: '',
     category: '',
   });
+
+  // Check if user has already completed onboarding
+  useEffect(() => {
+    const checkOnboardingStatus = async () => {
+      if (authLoading) return;
+
+      if (!user?.id) {
+        setCheckingOnboarding(false);
+        return;
+      }
+
+      try {
+        const hasCompleted = await userProfilesService.hasCompletedOnboarding(user.id);
+        if (hasCompleted) {
+          // User already completed onboarding, redirect to dashboard
+          const locale = window.location.pathname.split('/')[1] || 'en';
+          router.replace(`/${locale}/dashboard`);
+          return;
+        }
+      } catch (error) {
+        console.error('Error checking onboarding status:', error);
+      }
+
+      setCheckingOnboarding(false);
+    };
+
+    checkOnboardingStatus();
+  }, [user?.id, authLoading, router]);
 
   const progress = (currentStep / TOTAL_STEPS) * 100;
 
@@ -123,6 +152,15 @@ export default function OnboardingPage() {
         return null;
     }
   };
+
+  // Show loading state while checking onboarding status
+  if (checkingOnboarding || authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

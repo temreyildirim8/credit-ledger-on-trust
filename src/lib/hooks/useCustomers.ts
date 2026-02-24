@@ -93,6 +93,30 @@ export function useCustomers() {
     };
   }, [loadCustomers]);
 
+  // Refresh customers when the window gains focus (e.g., navigating back from another page)
+  useEffect(() => {
+    const handleFocus = () => {
+      if (user?.id && navigator.onLine) {
+        loadCustomers();
+      }
+    };
+
+    // Also refresh on visibility change (for mobile/tab switching)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && user?.id && navigator.onLine) {
+        loadCustomers();
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [user?.id, loadCustomers]);
+
   const createCustomer = async (customer: {
     name: string;
     phone?: string;

@@ -106,10 +106,11 @@ export async function proxy(request: NextRequest) {
     return redirectResponse;
   }
 
-  // 5. Handle auth routes - redirect authenticated users to dashboard
+  // 5. Handle auth routes - redirect authenticated users to onboarding
+  // (onboarding page will check if completed and redirect to dashboard if needed)
   if (isAuthRoute && user) {
-    const dashboardUrl = new URL(`/${locale}/dashboard`, request.url);
-    const redirectResponse = NextResponse.redirect(dashboardUrl);
+    const onboardingUrl = new URL(`/${locale}/onboarding`, request.url);
+    const redirectResponse = NextResponse.redirect(onboardingUrl);
     // Copy cookies from supabaseResponse to maintain session
     copyCookies(supabaseResponse, redirectResponse);
     return redirectResponse;
