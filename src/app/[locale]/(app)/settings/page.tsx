@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -23,8 +23,6 @@ import {
   Mail,
   Phone,
   Globe,
-  Moon,
-  Sun,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import {
@@ -61,7 +59,6 @@ export default function SettingsPage() {
 
   const pathname = usePathname();
   const locale = pathname.split('/')[1] || 'en';
-  const router = useRouter();
   const { user, signOut } = useAuth();
   const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
@@ -93,7 +90,8 @@ export default function SettingsPage() {
   const [remindersEnabled, setRemindersEnabled] = useState(true);
   const [weeklyReport, setWeeklyReport] = useState(true);
 
-  // Theme state
+  // Theme state (reserved for future use)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [darkMode, setDarkMode] = useState(false);
 
   const handleSignOut = async () => {

@@ -53,7 +53,7 @@ const INITIAL_STATUS: SyncStatus = {
  */
 export function useSyncStatus() {
   const [status, setStatus] = useState<SyncStatus>(INITIAL_STATUS);
-  const { user } = useAuth();
+  useAuth(); // Ensure auth state is loaded
 
   // Fetch pending sync count from IndexedDB
   const fetchPendingCount = useCallback(async () => {

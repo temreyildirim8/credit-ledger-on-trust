@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { transactionsService, type Transaction } from './transactions.service';
+import { transactionsService } from './transactions.service';
 import { supabase } from '@/lib/supabase/client';
 
 // Type the mocked supabase

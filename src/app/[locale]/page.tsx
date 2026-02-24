@@ -7,7 +7,7 @@ export default async function HomePage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  await params; // params must be awaited in Next.js 15+
   const t = await getTranslations();
 
   return (

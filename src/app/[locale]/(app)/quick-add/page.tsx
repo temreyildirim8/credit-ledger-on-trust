@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useTransactions } from '@/lib/hooks/useTransactions';
 import { useCustomers } from '@/lib/hooks/useCustomers';
@@ -16,9 +16,7 @@ import { cn } from '@/lib/utils';
 
 export default function QuickAddPage() {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const locale = pathname.split('/')[1] || 'en';
   const t = useTranslations('quickAdd');
   const tCommon = useTranslations('common');
 

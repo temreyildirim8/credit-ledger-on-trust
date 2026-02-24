@@ -3,7 +3,6 @@
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { TrendingUp, TrendingDown, Users, DollarSign } from "lucide-react";
-import { formatCurrency } from "@/lib/utils/currency";
 
 interface StatCardProps {
   label: string;
@@ -18,13 +17,6 @@ function StatCard({ label, value, icon, variant }: StatCardProps) {
     collected: "bg-payment/10 text-payment-text",
     customers: "bg-accent/10 text-accent",
     month: "bg-surface-alt text-text",
-  };
-
-  const iconStyles = {
-    debt: "text-debt-text",
-    collected: "text-payment-text",
-    customers: "text-accent",
-    month: "text-text",
   };
 
   return (

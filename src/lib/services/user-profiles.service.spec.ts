@@ -62,7 +62,6 @@ describe('userProfilesService', () => {
     });
 
     it('should throw error for other database errors', async () => {
-      const mockError = new Error('Database connection failed');
       const mockSelect = vi.fn().mockReturnValue({
         eq: vi.fn().mockReturnValue({
           single: vi.fn().mockResolvedValue({

@@ -3,7 +3,6 @@
 import { Link } from "@/routing";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
 /**

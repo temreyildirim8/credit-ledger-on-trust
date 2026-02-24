@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, User } from "lucide-react";
+import { Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SyncStatusIndicator } from "@/components/layout/sync-status";
 

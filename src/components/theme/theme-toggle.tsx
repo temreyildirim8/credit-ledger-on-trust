@@ -5,7 +5,7 @@ import { useTheme } from "./theme-provider";
 import { cn } from "@/lib/utils";
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const { theme, setTheme, actualTheme } = useTheme();
+  const { setTheme, actualTheme } = useTheme();
 
   // Use a sensible default that won't cause hydration mismatch
   const isDark = actualTheme === "dark";

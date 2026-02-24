@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
 import { Card, CardContent } from '@/components/ui/card';
-import { Award, Users, Shield, Zap } from 'lucide-react';
+import { Award, Users } from 'lucide-react';
 import Link from 'next/link';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,13 +10,6 @@ export async function generateMetadata(): Promise<Metadata> {
     description: 'Learn more about Global Ledger\'s mission to democratize credit management for micro-SMEs',
   };
 }
-
-const features = [
-  { icon: Award, key: 'mission' },
-  { icon: Users, key: 'vision' },
-  { icon: Shield, key: 'values' },
-  { icon: Zap, key: 'impact' },
-];
 
 export default function AboutPage() {
   const t = useTranslations('about');

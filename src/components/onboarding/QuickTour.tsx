@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -25,14 +25,14 @@ export function QuickTour() {
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const [mounted, setMounted] = useState(false);
 
-  // Tour steps configuration
-  const steps: TourStep[] = [
+  // Tour steps configuration - memoized to prevent recreation on every render
+  const steps: TourStep[] = useMemo(() => [
     {
       id: "sidebar",
       target: "[data-tour='sidebar-nav']",
       title: t("steps.sidebar.title"),
       description: t("steps.sidebar.description"),
-      position: "right",
+      position: "right" as const,
       spotlightPadding: 8,
     },
     {
@@ -40,7 +40,7 @@ export function QuickTour() {
       target: "[data-tour='quick-add-button']",
       title: t("steps.quickAdd.title"),
       description: t("steps.quickAdd.description"),
-      position: "bottom",
+      position: "bottom" as const,
       spotlightPadding: 8,
     },
     {
@@ -48,7 +48,7 @@ export function QuickTour() {
       target: "[data-tour='quick-stats']",
       title: t("steps.stats.title"),
       description: t("steps.stats.description"),
-      position: "bottom",
+      position: "bottom" as const,
       spotlightPadding: 12,
     },
     {
@@ -56,7 +56,7 @@ export function QuickTour() {
       target: "[data-tour='quick-actions']",
       title: t("steps.actions.title"),
       description: t("steps.actions.description"),
-      position: "bottom",
+      position: "bottom" as const,
       spotlightPadding: 12,
     },
     {
@@ -64,10 +64,10 @@ export function QuickTour() {
       target: "[data-tour='recent-activity']",
       title: t("steps.activity.title"),
       description: t("steps.activity.description"),
-      position: "top",
+      position: "top" as const,
       spotlightPadding: 12,
     },
-  ];
+  ], [t]);
 
   // Check if tour should start
   useEffect(() => {

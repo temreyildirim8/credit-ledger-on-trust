@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Star, Zap, Building2 } from 'lucide-react';
+import { Check, Star, Building2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Link } from '@/routing';
 

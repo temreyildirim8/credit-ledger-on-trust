@@ -32,7 +32,6 @@ export function DestructiveActionModal({
   actionType,
   loading = false,
 }: DestructiveActionModalProps) {
-  const t = useTranslations('customers');
   const tCommon = useTranslations('common');
 
   const isArchive = actionType === 'archive';

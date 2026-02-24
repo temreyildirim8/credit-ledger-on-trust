@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { authService } from '@/lib/services/auth.service';
@@ -30,7 +30,7 @@ export function ResetPasswordForm() {
   const [error, setError] = useState<string | null>(null);
 
   // Parse error from URL hash fragment
-  const getErrorFromHash = (): string | null => {
+  const getErrorFromHash = useCallback((): string | null => {
     if (typeof window === 'undefined') return null;
 
     const hash = window.location.hash;
@@ -51,7 +51,7 @@ export function ResetPasswordForm() {
     }
 
     return errorDescription || null;
-  };
+  }, [t]);
 
   useEffect(() => {
     // First, check for error in URL hash
@@ -101,7 +101,7 @@ export function ResetPasswordForm() {
     return () => {
       subscription.unsubscribe();
     };
-  }, [t, getErrorFromHash]);
+  }, [getErrorFromHash]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

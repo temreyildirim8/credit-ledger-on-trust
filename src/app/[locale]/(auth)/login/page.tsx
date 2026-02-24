@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useParams, useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useTranslations } from "next-intl";
@@ -8,9 +8,7 @@ import { BookOpen, Users, TrendingUp, Shield, Globe } from "lucide-react";
 
 export default function LoginPage() {
   const { user, loading } = useAuth();
-  const router = useRouter();
   const params = useParams();
-  const searchParams = useSearchParams();
   const locale = (params?.locale as string) || "en";
   const t = useTranslations("auth");
 

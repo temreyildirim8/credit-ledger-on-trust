@@ -20,11 +20,7 @@ import {
 } from 'lucide-react';
 import { SubscriptionUpgradeModal } from '@/components/settings/SubscriptionUpgradeModal';
 
-interface BillingPageProps {
-  params: Promise<{ locale: string }>;
-}
-
-export default function BillingPage({ params }: BillingPageProps) {
+export default function BillingPage() {
   const t = useTranslations('billing');
   const tPricing = useTranslations('pricing');
   const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);

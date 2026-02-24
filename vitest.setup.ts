@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
+// Mock scrollIntoView for Radix UI components
+Element.prototype.scrollIntoView = vi.fn();
+
 // Mock Next.js navigation
 vi.mock('next/navigation', () => ({
   useRouter: () => ({
@@ -17,7 +20,11 @@ vi.mock('next/navigation', () => ({
 
 // Mock next-intl
 vi.mock('next-intl', () => ({
-  useTranslations: () => (key: string) => key,
+  useTranslations: () => {
+    const tFn = ((key: string) => key) as ((key: string) => string) & { raw: (k: string) => string };
+    tFn.raw = (k: string) => k;
+    return tFn;
+  },
   useLocale: () => 'en',
   useFormatter: () => ({
     number: (value: number) => value.toString(),

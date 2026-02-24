@@ -71,8 +71,6 @@ export function CustomerTable({
   onEdit,
   onArchive,
   onDelete,
-  sortColumn,
-  sortDirection,
   onSort,
 }: CustomerTableProps) {
   const t = useTranslations('customers');

@@ -13,7 +13,7 @@ interface CustomerCardProps {
   onClick?: () => void;
 }
 
-export function CustomerCard({ customer, locale = 'en', onClick }: CustomerCardProps) {
+export function CustomerCard({ customer, onClick }: CustomerCardProps) {
   const hasDebt = customer.balance > 0;
 
   return (

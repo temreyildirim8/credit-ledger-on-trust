@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from './useAuth';
 import { customersService, Customer } from '@/lib/services/customers.service';
-import { offlineCache, CachedCustomer, SyncQueueItem } from '@/lib/pwa/offline-cache';
+import { offlineCache, CachedCustomer } from '@/lib/pwa/offline-cache';
 
 export function useCustomers() {
   const { user } = useAuth();

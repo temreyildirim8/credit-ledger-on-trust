@@ -32,10 +32,10 @@ export default function ReportsPage() {
   const t = useTranslations('reports');
   const locale = useLocale();
   const { user } = useAuth();
-  const { transactions, loading: transactionsLoading } = useTransactions();
+  const { transactions } = useTransactions();
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('month');
   const [profile, setProfile] = useState<ServiceUserProfile | null>(null);
-  const [profileLoading, setProfileLoading] = useState(true);
+  const [, setProfileLoading] = useState(true);
   const [exporting, setExporting] = useState(false);
 
   // Load user profile for business info
