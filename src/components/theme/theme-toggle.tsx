@@ -4,19 +4,26 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "./theme-provider";
 import { cn } from "@/lib/utils";
 
-export function ThemeToggle({ className }: { className?: string }) {
+interface ThemeToggleProps {
+  className?: string;
+  variant?: "full" | "compact";
+}
+
+export function ThemeToggle({ className, variant = "full" }: ThemeToggleProps) {
   const { setTheme, actualTheme } = useTheme();
 
   // Use a sensible default that won't cause hydration mismatch
   const isDark = actualTheme === "dark";
+  const isCompact = variant === "compact";
 
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
-        "flex items-center gap-3 px-3 py-2.5 w-full rounded-lg transition-all duration-200 group",
+        "flex items-center gap-3 rounded-lg transition-all duration-200 group",
         "text-text-secondary hover:bg-surface-alt hover:text-text",
         "relative overflow-hidden",
+        isCompact ? "justify-center h-9 w-9 px-0 py-0" : "px-3 py-2.5 w-full",
         className
       )}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
@@ -33,10 +40,12 @@ export function ThemeToggle({ className }: { className?: string }) {
         )}
       </div>
 
-      {/* Text label */}
-      <span className="font-medium text-sm relative z-10">
-        {isDark ? "Light Mode" : "Dark Mode"}
-      </span>
+      {/* Text label - only show in full variant */}
+      {!isCompact && (
+        <span className="font-medium text-sm relative z-10">
+          {isDark ? "Light Mode" : "Dark Mode"}
+        </span>
+      )}
 
       {/* Subtle glow effect */}
       <div

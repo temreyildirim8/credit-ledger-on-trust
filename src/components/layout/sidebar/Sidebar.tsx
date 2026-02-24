@@ -126,9 +126,11 @@ export function Sidebar({ className }: SidebarProps) {
       {/* Logo Header */}
       <div
         className={cn(
-          "flex items-center border-b border-border transition-all duration-300",
+          "flex items-center border-b border-border transition-all duration-300 cursor-pointer",
           isCollapsed ? "justify-center p-3" : "gap-3 p-5"
         )}
+        onDoubleClick={toggleSidebar}
+        title="Double-click to toggle sidebar"
       >
         <Link
           href="/"
@@ -268,7 +270,7 @@ export function Sidebar({ className }: SidebarProps) {
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
             <div className={isCollapsed ? "flex justify-center" : ""}>
-              <ThemeToggle />
+              <ThemeToggle variant={isCollapsed ? "compact" : "full"} />
             </div>
           </TooltipTrigger>
           {isCollapsed && (
