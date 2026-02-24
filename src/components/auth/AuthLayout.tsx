@@ -39,8 +39,8 @@ export function AuthLayout({
           priority
         />
 
-        {/* Dark gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,23,42,0.9)] via-[rgba(15,23,42,0.4)] to-[rgba(15,23,42,0)]" />
+        {/* Blue gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#3B82F6]/90 via-[#3B82F6]/60 to-[#3B82F6]/30" />
 
         {/* Branding Content - Logo, title, features */}
         <div className="relative z-10 flex flex-col justify-center px-12 xl:px-20 text-white">
