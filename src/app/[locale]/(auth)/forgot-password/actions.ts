@@ -1,9 +1,9 @@
 'use server';
 
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/server';
 
-// Send OTP using Supabase's built-in signInWithOtp
-// This will send a 6-digit code (if email template is configured) or a magic link
+// Send password reset email using Supabase's resetPasswordForEmail
+// This sends an email with a link that contains a token for password reset
 export async function sendPasswordResetOTP(formData: FormData) {
   const email = formData.get('email') as string;
 
@@ -12,39 +12,33 @@ export async function sendPasswordResetOTP(formData: FormData) {
   }
 
   try {
-    // Use Supabase's signInWithOtp - this sends an email with a code/link
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        shouldCreateUser: false,
-      },
+    const supabase = await createClient();
+
+    // Use Supabase's resetPasswordForEmail - this sends a password reset email
+    // The email will contain a link that redirects to /reset-password with a token
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback?next=/reset-password`,
     });
 
     if (error) {
-      console.error('Supabase OTP error:', error);
-      return { error: error.message || 'OTP gönderilemedi' };
+      console.error('Supabase password reset error:', error);
+      return { error: error.message || 'Şifre sıfırlama e-postası gönderilemedi' };
     }
 
-    return { success: true, message: 'OTP kodu gönderildi!' };
+    return { success: true, message: 'Şifre sıfırlama bağlantısı e-posta adresinize gönderildi!' };
   } catch (error) {
-    console.error('Send OTP error:', error);
-    return { error: 'OTP gönderilemedi' };
+    console.error('Send password reset error:', error);
+    return { error: 'Şifre sıfırlama e-postası gönderilemedi' };
   }
 }
 
-// Verify OTP and update password
+// Update password using the session from the reset link
 export async function resetPasswordWithOTP(formData: FormData) {
-  const email = formData.get('email') as string;
-  const otpCode = formData.get('otp') as string;
   const newPassword = formData.get('newPassword') as string;
   const confirmPassword = formData.get('confirmPassword') as string;
 
-  if (!email || !otpCode || !newPassword || !confirmPassword) {
+  if (!newPassword || !confirmPassword) {
     return { error: 'Tüm alanlar gerekli' };
-  }
-
-  if (otpCode.length !== 8) {
-    return { error: 'OTP 8 haneli olmalı' };
   }
 
   if (newPassword !== confirmPassword) {
@@ -56,23 +50,22 @@ export async function resetPasswordWithOTP(formData: FormData) {
   }
 
   try {
-    // First verify OTP and sign in
-    const { data: signInData, error: signInError } = await supabase.auth.verifyOtp({
-      email,
-      token: otpCode,
-      type: 'email',
-    });
+    const supabase = await createClient();
 
-    if (signInError || !signInData.user) {
-      return { error: 'Geçersiz veya süresi dolmuş OTP kodu' };
+    // Check if user has a valid session from the reset link
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      return { error: 'Oturum geçersiz veya süresi dolmuş. Lütfen tekrar deneyin.' };
     }
 
-    // Now update the password
+    // Update the password
     const { error: updateError } = await supabase.auth.updateUser({
       password: newPassword,
     });
 
     if (updateError) {
+      console.error('Password update error:', updateError);
       return { error: 'Şifre güncellenemedi' };
     }
 
