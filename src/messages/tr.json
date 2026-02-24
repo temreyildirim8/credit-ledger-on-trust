@@ -789,7 +789,19 @@
         "title": "Şifre Sıfırlandı",
         "success": "Başarılı!",
         "successDescription": "Şifreniz başarıyla sıfırlandı. Artık yeni şifrenizle giriş yapabilirsiniz."
-      }
+      },
+      "brandName": "Global Ledger",
+      "heroTitle": "Şifrenizi mi unuttunuz?",
+      "heroSubtitle": "Endişelenmeyin, güvenli bir şekilde sıfırlamanıza yardımcı olacağız.",
+      "feature1Title": "Güvenli Sıfırlama",
+      "feature1Desc": "E-postanıza OTP gönderildi",
+      "feature2Title": "Şifreli",
+      "feature2Desc": "Banka düzeyinde güvenlik",
+      "feature3Title": "Hızlı Kurtarma",
+      "feature3Desc": "Dakikalar içinde işinize dönün",
+      "about": "Hakkımızda",
+      "contact": "İletişim",
+      "pricing": "Fiyatlandırma"
     },
     "resetPassword": {
       "title": "Şifre Sıfırlama",

@@ -656,7 +656,19 @@
         "title": "Kata Sandi Direset",
         "success": "Berhasil!",
         "successDescription": "Kata sandi Anda telah berhasil direset. Anda sekarang dapat masuk dengan kata sandi baru Anda."
-      }
+      },
+      "brandName": "Global Ledger",
+      "heroTitle": "Lupa kata sandi?",
+      "heroSubtitle": "Jangan khawatir, kami akan membantu Anda meresetnya dengan aman.",
+      "feature1Title": "Reset Aman",
+      "feature1Desc": "OTP dikirim ke email Anda",
+      "feature2Title": "Terenkripsi",
+      "feature2Desc": "Keamanan tingkat bank",
+      "feature3Title": "Pemulihan Cepat",
+      "feature3Desc": "Kembali ke bisnis dalam hitungan menit",
+      "about": "Tentang",
+      "contact": "Kontak",
+      "pricing": "Harga"
     },
     "resetPassword": {
       "title": "Reset Kata Sandi",

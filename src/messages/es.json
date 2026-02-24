@@ -656,7 +656,19 @@
         "title": "Contraseña Restablecida",
         "success": "¡Éxito!",
         "successDescription": "Tu contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña."
-      }
+      },
+      "brandName": "Global Ledger",
+      "heroTitle": "¿Olvidaste tu contraseña?",
+      "heroSubtitle": "No te preocupes, te ayudaremos a restablecerla de forma segura.",
+      "feature1Title": "Restablecimiento Seguro",
+      "feature1Desc": "OTP enviado a tu correo",
+      "feature2Title": "Encriptado",
+      "feature2Desc": "Seguridad de nivel bancario",
+      "feature3Title": "Recuperación Rápida",
+      "feature3Desc": "Vuelve a tu negocio en minutos",
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "pricing": "Precios"
     },
     "resetPassword": {
       "title": "Restablecer Contraseña",

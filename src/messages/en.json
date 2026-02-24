@@ -680,7 +680,19 @@
         "title": "Password Reset",
         "success": "Success!",
         "successDescription": "Your password has been successfully reset. You can now sign in with your new password."
-      }
+      },
+      "brandName": "Global Ledger",
+      "heroTitle": "Forgot your password?",
+      "heroSubtitle": "No worries, we'll help you reset it securely.",
+      "feature1Title": "Secure Reset",
+      "feature1Desc": "OTP sent to your email",
+      "feature2Title": "Encrypted",
+      "feature2Desc": "Bank-grade security",
+      "feature3Title": "Quick Recovery",
+      "feature3Desc": "Back to business in minutes",
+      "about": "About",
+      "contact": "Contact",
+      "pricing": "Pricing"
     },
     "resetPassword": {
       "title": "Reset Password",

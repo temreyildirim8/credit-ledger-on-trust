@@ -656,7 +656,19 @@
         "title": "Iphasiwedi Isethwe Kabusha",
         "success": "Iphumelela!",
         "successDescription": "Iphasiwedi yakho isethwe kabusha ngempumelelo. Manje unganga nge-phasiwedi yakho entsha."
-      }
+      },
+      "brandName": "Global Ledger",
+      "heroTitle": "Ukhohlwe iphasiwedi?",
+      "heroSubtitle": "Ungakhathazeki, sizokusiza uyisethe kabusha ngokuphepha.",
+      "feature1Title": "Ukusetha Kabusha Okuphephile",
+      "feature1Desc": "I-OTP ithunyelwe ku-imeyili yakho",
+      "feature2Title": "Ikhodiwe",
+      "feature2Desc": "Ukuphepha kwesigaba sebhange",
+      "feature3Title": "Ukulandelana Okusheshayo",
+      "feature3Desc": "Buyela ebhizinisini ngemizuzu",
+      "about": "Mayelana",
+      "contact": "Xhumana",
+      "pricing": "Intengo"
     },
     "resetPassword": {
       "title": "Setha Kabusha Iphasiwedi",
