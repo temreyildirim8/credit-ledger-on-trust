@@ -39,7 +39,7 @@ export function TrustBar() {
             const Icon = stat.icon;
             return (
               <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-md mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface dark:bg-[var(--color-surface)] shadow-md mb-4">
                   <Icon className="h-7 w-7 text-[var(--color-accent)]" />
                 </div>
                 <p className="text-2xl sm:text-3xl font-bold text-[var(--color-text)] mb-1">

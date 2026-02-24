@@ -60,7 +60,7 @@ export function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl shadow-sm border border-[var(--color-border)] overflow-hidden transition-all duration-300 hover:shadow-md"
+              className="bg-surface dark:bg-[var(--color-surface)] rounded-2xl shadow-sm border border-[var(--color-border)] overflow-hidden transition-all duration-300 hover:shadow-md"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
