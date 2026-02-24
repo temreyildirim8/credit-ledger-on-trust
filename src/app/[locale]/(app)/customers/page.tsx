@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useCustomers } from '@/lib/hooks/useCustomers';
 import { useTransactions } from '@/lib/hooks/useTransactions';
+import { useSubscription } from '@/lib/hooks/useSubscription';
 import { CustomerTable } from '@/components/customers/CustomerTable';
 import { CustomerCard } from '@/components/customers/CustomerCard';
 import { CustomerDetailsModal } from '@/components/customers/CustomerDetailsModal';
@@ -20,6 +21,7 @@ import { toast } from 'sonner';
 export default function CustomersPage() {
   const { customers, loading, createCustomer, refreshCustomers, archiveCustomer, deleteCustomer } = useCustomers();
   const { createTransaction } = useTransactions();
+  const { isPaidPlan, customerLimit, hasFeature } = useSubscription();
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [transactionModalOpen, setTransactionModalOpen] = useState(false);
@@ -290,7 +292,7 @@ export default function CustomersPage() {
         onOpenChange={setAddModalOpen}
         onSave={createCustomer}
         currentCustomerCount={customers.length}
-        isPaidPlan={false}
+        isPaidPlan={isPaidPlan}
       />
 
       {/* Customer Details Modal */}

@@ -24,12 +24,14 @@ import {
   PieChart,
   Calendar,
   Loader2,
+  Crown,
 } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { useTransactions } from '@/lib/hooks/useTransactions';
 import { useCustomers } from '@/lib/hooks/useCustomers';
+import { useSubscription } from '@/lib/hooks/useSubscription';
 import { userProfilesService, type UserProfile as ServiceUserProfile } from '@/lib/services/user-profiles.service';
 import { generateTransactionsCSV, downloadCSV, generateCSVFilename } from '@/lib/utils/csv-export';
 import {
@@ -49,6 +51,7 @@ export default function ReportsPage() {
   const { user } = useAuth();
   const { transactions } = useTransactions();
   const { customers } = useCustomers();
+  const { hasFeature, isPaidPlan } = useSubscription();
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('month');
   const [profile, setProfile] = useState<ServiceUserProfile | null>(null);
   const [, setProfileLoading] = useState(true);
@@ -585,41 +588,95 @@ export default function ReportsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Button
-              variant="outline"
-              className="w-full justify-start"
-              onClick={handleExportPDF}
-              disabled={exportingPDF || transactions.length === 0}
-            >
-              {exportingPDF ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <Download className="mr-2 h-4 w-4" />
-              )}
-              {t('export.pdf')}
-            </Button>
-            <Button
-              variant="outline"
-              className="w-full justify-start"
-              onClick={handleExportCSV}
-              disabled={exporting || filteredTransactions.length === 0}
-            >
-              {exporting ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <Download className="mr-2 h-4 w-4" />
-              )}
-              {t('export.csv')}
-            </Button>
-            <Button
-              variant="outline"
-              className="w-full justify-start"
-              onClick={() => setCustomerSelectOpen(true)}
-              disabled={customers.length === 0}
-            >
-              <FileText className="mr-2 h-4 w-4" />
-              {t('export.customerStatement')}
-            </Button>
+            {/* PDF Export - Paid feature */}
+            {hasFeature('dataExport') ? (
+              <Button
+                variant="outline"
+                className="w-full justify-start"
+                onClick={handleExportPDF}
+                disabled={exportingPDF || transactions.length === 0}
+              >
+                {exportingPDF ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Download className="mr-2 h-4 w-4" />
+                )}
+                {t('export.pdf')}
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                className="w-full justify-start opacity-60"
+                disabled
+              >
+                <Crown className="mr-2 h-4 w-4 text-primary" />
+                {t('export.pdf')}
+                <span className="ml-auto text-xs text-muted-foreground">Pro</span>
+              </Button>
+            )}
+
+            {/* CSV Export - Paid feature */}
+            {hasFeature('dataExport') ? (
+              <Button
+                variant="outline"
+                className="w-full justify-start"
+                onClick={handleExportCSV}
+                disabled={exporting || filteredTransactions.length === 0}
+              >
+                {exporting ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Download className="mr-2 h-4 w-4" />
+                )}
+                {t('export.csv')}
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                className="w-full justify-start opacity-60"
+                disabled
+              >
+                <Crown className="mr-2 h-4 w-4 text-primary" />
+                {t('export.csv')}
+                <span className="ml-auto text-xs text-muted-foreground">Pro</span>
+              </Button>
+            )}
+
+            {/* Customer Statement - Paid feature */}
+            {hasFeature('dataExport') ? (
+              <Button
+                variant="outline"
+                className="w-full justify-start"
+                onClick={() => setCustomerSelectOpen(true)}
+                disabled={customers.length === 0}
+              >
+                <FileText className="mr-2 h-4 w-4" />
+                {t('export.customerStatement')}
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                className="w-full justify-start opacity-60"
+                disabled
+              >
+                <Crown className="mr-2 h-4 w-4 text-primary" />
+                {t('export.customerStatement')}
+                <span className="ml-auto text-xs text-muted-foreground">Pro</span>
+              </Button>
+            )}
+
+            {/* Upgrade prompt for free users */}
+            {!isPaidPlan && (
+              <div className="mt-4 p-3 bg-primary/5 border border-primary/20 rounded-lg">
+                <div className="flex items-start gap-2">
+                  <Crown className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                  <div className="text-xs text-muted-foreground">
+                    <p className="font-medium text-foreground">Upgrade to Pro</p>
+                    <p>Unlock PDF exports, CSV downloads, and more features.</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

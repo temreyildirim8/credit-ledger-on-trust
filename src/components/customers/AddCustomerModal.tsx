@@ -8,30 +8,33 @@ import { Label } from '@/components/ui/label';
 import { Loader2, Crown } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
-
-// Free tier customer limit
-const FREE_TIER_CUSTOMER_LIMIT = 10;
+import { useSubscription } from '@/lib/hooks/useSubscription';
 
 interface AddCustomerModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSave: (customer: { name: string; phone?: string; address?: string; notes?: string }) => Promise<unknown>;
   currentCustomerCount?: number;
+  /** @deprecated Now uses useSubscription hook internally */
   isPaidPlan?: boolean;
 }
 
-export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCount = 0, isPaidPlan = false }: AddCustomerModalProps) {
+export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCount = 0, isPaidPlan: isPaidPlanProp }: AddCustomerModalProps) {
   const t = useTranslations('customers.form');
   const tCommon = useTranslations('common');
   const tCustomers = useTranslations('customers');
+  const { isPaidPlan, customerLimit } = useSubscription();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Use prop if provided (for backward compatibility), otherwise use hook value
+  const effectiveIsPaidPlan = isPaidPlanProp ?? isPaidPlan;
+
   // Check if customer limit is reached for free tier
-  const isAtLimit = !isPaidPlan && currentCustomerCount >= FREE_TIER_CUSTOMER_LIMIT;
+  const isAtLimit = !effectiveIsPaidPlan && currentCustomerCount >= customerLimit;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,11 +102,11 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
             )}
 
             {/* Customer count indicator */}
-            {!isPaidPlan && (
+            {!effectiveIsPaidPlan && (
               <div className="flex items-center justify-between text-xs text-[var(--color-text-secondary)]">
                 <span>{tCustomers('paywall.customersUsed', { count: currentCustomerCount })}</span>
-                <span className={currentCustomerCount >= FREE_TIER_CUSTOMER_LIMIT ? 'text-orange-500 font-medium' : ''}>
-                  {FREE_TIER_CUSTOMER_LIMIT} {tCustomers('paywall.limit')}
+                <span className={currentCustomerCount >= customerLimit ? 'text-orange-500 font-medium' : ''}>
+                  {customerLimit} {tCustomers('paywall.limit')}
                 </span>
               </div>
             )}
