@@ -457,6 +457,10 @@
         "upgradeError": "Error al actualizar el plan. Por favor intenta de nuevo.",
         "footerNote": "Puedes cambiar o cancelar tu plan en cualquier momento. Sin cargos ocultos."
       }
+    },
+    "errors": {
+      "loadFailed": "Error al cargar el perfil",
+      "saveFailed": "Error al guardar los cambios"
     }
   },
   "auth": {

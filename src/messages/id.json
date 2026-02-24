@@ -457,6 +457,10 @@
         "upgradeError": "Gagal meningkatkan paket. Silakan coba lagi.",
         "footerNote": "Anda dapat mengubah atau membatalkan paket kapan saja. Tidak ada biaya tersembunyi."
       }
+    },
+    "errors": {
+      "loadFailed": "Gagal memuat profil",
+      "saveFailed": "Gagal menyimpan perubahan"
     }
   },
   "auth": {

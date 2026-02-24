@@ -457,6 +457,10 @@
         "upgradeError": "Ihlulekile ukukhuphula iphulani. Sicela uzame futhi.",
         "footerNote": "Ungashintsha noma ukhansele iphulani lakho noma kunini. Akukho izindleko ezifihliwe."
       }
+    },
+    "errors": {
+      "loadFailed": "Ihlulekile ukulayisha iprofayela",
+      "saveFailed": "Ihlulekile ukugcina inguquko"
     }
   },
   "auth": {

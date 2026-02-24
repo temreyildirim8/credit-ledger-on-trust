@@ -606,6 +606,10 @@
         "upgradeError": "Plan yükseltilemedi. Lütfen tekrar deneyin.",
         "footerNote": "Planınızı istediğiniz zaman değiştirebilir veya iptal edebilirsiniz. Gizli ücret yok."
       }
+    },
+    "errors": {
+      "loadFailed": "Profil yüklenemedi",
+      "saveFailed": "Değişiklikler kaydedilemedi"
     }
   },
   "auth": {
