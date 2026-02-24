@@ -61,8 +61,9 @@ export function AppShell({ children, title, subtitle }: AppShellProps) {
         <Sidebar />
 
         {/* Main Content Area */}
-        <div
+        <main
           className="app-content"
+          role="main"
           style={{
             marginLeft: contentMargin,
             transition: "margin-left 0.3s ease-in-out",
@@ -78,7 +79,7 @@ export function AppShell({ children, title, subtitle }: AppShellProps) {
             {/* Page Content */}
             <div className="animate-in">{children}</div>
           </div>
-        </div>
+        </main>
 
         {/* Mobile Bottom Navigation */}
         <BottomNav />

@@ -15,6 +15,7 @@
   font-family: var(--font-body);
   font-size: 14px;
   color: var(--color-text);
+  min-height: 44px;
 }
 
 .trigger:hover {
