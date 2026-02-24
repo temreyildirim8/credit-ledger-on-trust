@@ -5,6 +5,8 @@ import { X } from "lucide-react";
 import { usePWAInstall } from "@/lib/hooks/usePWAInstall";
 import { useTranslations } from "next-intl";
 
+const PWA_ICON = "/icons/icon.svg";
+
 export function PWAInstallPrompt() {
   const { isInstallable, install } = usePWAInstall();
   const [isVisible, setIsVisible] = useState(false);
@@ -33,8 +35,10 @@ export function PWAInstallPrompt() {
 
         <div className="flex items-start gap-3">
           <div className="flex-shrink-0">
+            {/* Using img for PWA icon compatibility - SVG is optimized */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/icons/icon.svg"
+              src={PWA_ICON}
               alt="App icon"
               className="h-12 w-12 rounded-lg"
             />

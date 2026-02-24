@@ -121,6 +121,7 @@ function PWAInstallPrompt() {
 
         <div className="flex items-start gap-3">
           <div className="flex-shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/icons/icon.svg"
               alt="App icon"
