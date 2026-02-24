@@ -1,8 +1,17 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { OfflineCache, offlineCache, STORES, CachedCustomer, CachedTransaction, SyncQueueItem } from './offline-cache';
 
-// Mock IndexedDB
-const createMockIDBRequest = <T>(result: T): IDBRequest<T> => {
+// Mock IndexedDB types
+interface MockIDBRequest<T> extends IDBRequest<T> {
+  onsuccess: ((ev: Event) => void) | null;
+  onerror: ((ev: Event) => void) | null;
+}
+
+interface MockSuccessEvent<T> extends Event {
+  target: { result: T };
+}
+
+const createMockIDBRequest = <T>(result: T): MockIDBRequest<T> => {
   const request = {
     result,
     error: null,
@@ -14,8 +23,16 @@ const createMockIDBRequest = <T>(result: T): IDBRequest<T> => {
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
-  } as unknown as IDBRequest<T>;
+  } as unknown as MockIDBRequest<T>;
   return request;
+};
+
+const createSuccessEvent = <T>(result: T): MockSuccessEvent<T> => {
+  return { target: { result } } as unknown as MockSuccessEvent<T>;
+};
+
+const createErrorEvent = <T>(request: MockIDBRequest<T>): Event => {
+  return { target: request } as unknown as Event;
 };
 
 interface MockObjectStore {
@@ -100,6 +117,7 @@ describe('OfflineCache', () => {
     };
 
     // Replace global indexedDB
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (global as any).indexedDB = mockIndexedDB;
   });
 
@@ -123,11 +141,11 @@ describe('OfflineCache', () => {
   describe('init', () => {
     it('should create database with correct name and version', async () => {
       const cache = new OfflineCache();
-      const mockRequest = createMockIDBRequest(mockDB as any);
+      const mockRequest = createMockIDBRequest(mockDB as unknown as IDBDatabase);
 
       mockIndexedDB.open.mockImplementation(() => {
         setTimeout(() => {
-          mockRequest.onsuccess?.({ target: mockRequest } as any);
+          mockRequest.onsuccess?.(createSuccessEvent(mockDB as unknown as IDBDatabase));
         }, 0);
         return mockRequest;
       });
@@ -155,10 +173,7 @@ describe('OfflineCache', () => {
       mockIndexedDB.open.mockImplementation(() => {
         setTimeout(() => {
           // Simulate onupgradeneeded
-          const upgradeEvent = {
-            target: { result: mockDB },
-          } as any;
-          mockDB.createObjectStore.mockImplementation((name: string) => ({
+          mockDB.createObjectStore.mockImplementation(() => ({
             createIndex: vi.fn(),
           }));
           cache['init']().catch(() => {}); // Trigger upgrade logic
@@ -175,7 +190,7 @@ describe('OfflineCache', () => {
 
       mockIndexedDB.open.mockImplementation(() => {
         setTimeout(() => {
-          mockRequest.onerror?.({ target: mockRequest } as any);
+          mockRequest.onerror?.(createErrorEvent(mockRequest));
         }, 0);
         return mockRequest;
       });
@@ -185,11 +200,11 @@ describe('OfflineCache', () => {
 
     it('should return existing init promise if already initializing', async () => {
       const cache = new OfflineCache();
-      const mockRequest = createMockIDBRequest(mockDB as any);
+      const mockRequest = createMockIDBRequest(mockDB as unknown as IDBDatabase);
 
       mockIndexedDB.open.mockImplementation(() => {
         setTimeout(() => {
-          mockRequest.onsuccess?.({ target: mockRequest } as any);
+          mockRequest.onsuccess?.(createSuccessEvent(mockDB as unknown as IDBDatabase));
         }, 10);
         return mockRequest;
       });
@@ -208,11 +223,11 @@ describe('OfflineCache', () => {
 
     beforeEach(async () => {
       cache = new OfflineCache();
-      const mockRequest = createMockIDBRequest(mockDB as any);
+      const mockRequest = createMockIDBRequest(mockDB as unknown as IDBDatabase);
 
       mockIndexedDB.open.mockImplementation(() => {
         setTimeout(() => {
-          mockRequest.onsuccess?.({ target: mockRequest } as any);
+          mockRequest.onsuccess?.(createSuccessEvent(mockDB as unknown as IDBDatabase));
         }, 0);
         return mockRequest;
       });
@@ -225,7 +240,7 @@ describe('OfflineCache', () => {
         const putRequest = createMockIDBRequest(undefined);
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onsuccess?.({ target: putRequest } as any);
+            putRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return putRequest;
         });
@@ -246,7 +261,7 @@ describe('OfflineCache', () => {
         const putRequest = createMockIDBRequest(undefined);
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onerror?.({ target: putRequest } as any);
+            putRequest.onerror?.(createErrorEvent(putRequest));
           }, 0);
           return putRequest;
         });
@@ -265,7 +280,7 @@ describe('OfflineCache', () => {
         const getRequest = createMockIDBRequest(cachedData);
         mockObjectStore.get.mockImplementation(() => {
           setTimeout(() => {
-            getRequest.onsuccess?.({ target: getRequest } as any);
+            getRequest.onsuccess?.(createSuccessEvent(cachedData));
           }, 0);
           return getRequest;
         });
@@ -284,7 +299,7 @@ describe('OfflineCache', () => {
         const getRequest = createMockIDBRequest(expiredData);
         mockObjectStore.get.mockImplementation(() => {
           setTimeout(() => {
-            getRequest.onsuccess?.({ target: getRequest } as any);
+            getRequest.onsuccess?.(createSuccessEvent(expiredData));
           }, 0);
           return getRequest;
         });
@@ -298,7 +313,7 @@ describe('OfflineCache', () => {
         const getRequest = createMockIDBRequest(undefined);
         mockObjectStore.get.mockImplementation(() => {
           setTimeout(() => {
-            getRequest.onsuccess?.({ target: getRequest } as any);
+            getRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return getRequest;
         });
@@ -312,7 +327,7 @@ describe('OfflineCache', () => {
         const getRequest = createMockIDBRequest(null);
         mockObjectStore.get.mockImplementation(() => {
           setTimeout(() => {
-            getRequest.onerror?.({ target: getRequest } as any);
+            getRequest.onerror?.(createErrorEvent(getRequest));
           }, 0);
           return getRequest;
         });
@@ -327,11 +342,11 @@ describe('OfflineCache', () => {
 
     beforeEach(async () => {
       cache = new OfflineCache();
-      const mockRequest = createMockIDBRequest(mockDB as any);
+      const mockRequest = createMockIDBRequest(mockDB as unknown as IDBDatabase);
 
       mockIndexedDB.open.mockImplementation(() => {
         setTimeout(() => {
-          mockRequest.onsuccess?.({ target: mockRequest } as any);
+          mockRequest.onsuccess?.(createSuccessEvent(mockDB as unknown as IDBDatabase));
         }, 0);
         return mockRequest;
       });
@@ -359,7 +374,7 @@ describe('OfflineCache', () => {
         const putRequest = createMockIDBRequest(undefined);
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onsuccess?.({ target: putRequest } as any);
+            putRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return putRequest;
         });
@@ -380,7 +395,7 @@ describe('OfflineCache', () => {
         const putRequest = createMockIDBRequest(undefined);
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onerror?.({ target: putRequest } as any);
+            putRequest.onerror?.(createErrorEvent(putRequest));
           }, 0);
           return putRequest;
         });
@@ -394,7 +409,7 @@ describe('OfflineCache', () => {
         const getAllRequest = createMockIDBRequest([mockCustomer]);
         mockIndex.getAll.mockImplementation(() => {
           setTimeout(() => {
-            getAllRequest.onsuccess?.({ target: getAllRequest } as any);
+            getAllRequest.onsuccess?.(createSuccessEvent([mockCustomer]));
           }, 0);
           return getAllRequest;
         });
@@ -420,7 +435,7 @@ describe('OfflineCache', () => {
         const getAllRequest = createMockIDBRequest([expiredCustomer, validCustomer]);
         mockIndex.getAll.mockImplementation(() => {
           setTimeout(() => {
-            getAllRequest.onsuccess?.({ target: getAllRequest } as any);
+            getAllRequest.onsuccess?.(createSuccessEvent([expiredCustomer, validCustomer]));
           }, 0);
           return getAllRequest;
         });
@@ -435,7 +450,7 @@ describe('OfflineCache', () => {
         const getAllRequest = createMockIDBRequest(null);
         mockIndex.getAll.mockImplementation(() => {
           setTimeout(() => {
-            getAllRequest.onerror?.({ target: getAllRequest } as any);
+            getAllRequest.onerror?.(createErrorEvent(getAllRequest));
           }, 0);
           return getAllRequest;
         });
@@ -449,7 +464,7 @@ describe('OfflineCache', () => {
         const putRequest = createMockIDBRequest(undefined);
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onsuccess?.({ target: putRequest } as any);
+            putRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return putRequest;
         });
@@ -470,7 +485,7 @@ describe('OfflineCache', () => {
         const deleteRequest = createMockIDBRequest(undefined);
         mockObjectStore.delete.mockImplementation(() => {
           setTimeout(() => {
-            deleteRequest.onsuccess?.({ target: deleteRequest } as any);
+            deleteRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return deleteRequest;
         });
@@ -484,7 +499,7 @@ describe('OfflineCache', () => {
         const deleteRequest = createMockIDBRequest(undefined);
         mockObjectStore.delete.mockImplementation(() => {
           setTimeout(() => {
-            deleteRequest.onerror?.({ target: deleteRequest } as any);
+            deleteRequest.onerror?.(createErrorEvent(deleteRequest));
           }, 0);
           return deleteRequest;
         });
@@ -499,11 +514,11 @@ describe('OfflineCache', () => {
 
     beforeEach(async () => {
       cache = new OfflineCache();
-      const mockRequest = createMockIDBRequest(mockDB as any);
+      const mockRequest = createMockIDBRequest(mockDB as unknown as IDBDatabase);
 
       mockIndexedDB.open.mockImplementation(() => {
         setTimeout(() => {
-          mockRequest.onsuccess?.({ target: mockRequest } as any);
+          mockRequest.onsuccess?.(createSuccessEvent(mockDB as unknown as IDBDatabase));
         }, 0);
         return mockRequest;
       });
@@ -528,7 +543,7 @@ describe('OfflineCache', () => {
         const putRequest = createMockIDBRequest(undefined);
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onsuccess?.({ target: putRequest } as any);
+            putRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return putRequest;
         });
@@ -553,7 +568,7 @@ describe('OfflineCache', () => {
         const getAllRequest = createMockIDBRequest([tx1, tx2]);
         mockObjectStore.getAll.mockImplementation(() => {
           setTimeout(() => {
-            getAllRequest.onsuccess?.({ target: getAllRequest } as any);
+            getAllRequest.onsuccess?.(createSuccessEvent([tx1, tx2]));
           }, 0);
           return getAllRequest;
         });
@@ -581,7 +596,7 @@ describe('OfflineCache', () => {
         const getAllRequest = createMockIDBRequest([expiredTx, validTx]);
         mockObjectStore.getAll.mockImplementation(() => {
           setTimeout(() => {
-            getAllRequest.onsuccess?.({ target: getAllRequest } as any);
+            getAllRequest.onsuccess?.(createSuccessEvent([expiredTx, validTx]));
           }, 0);
           return getAllRequest;
         });
@@ -598,7 +613,7 @@ describe('OfflineCache', () => {
         const getAllRequest = createMockIDBRequest([txWithNullDate]);
         mockObjectStore.getAll.mockImplementation(() => {
           setTimeout(() => {
-            getAllRequest.onsuccess?.({ target: getAllRequest } as any);
+            getAllRequest.onsuccess?.(createSuccessEvent([txWithNullDate]));
           }, 0);
           return getAllRequest;
         });
@@ -614,7 +629,7 @@ describe('OfflineCache', () => {
         const putRequest = createMockIDBRequest(undefined);
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onsuccess?.({ target: putRequest } as any);
+            putRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return putRequest;
         });
@@ -636,11 +651,11 @@ describe('OfflineCache', () => {
 
     beforeEach(async () => {
       cache = new OfflineCache();
-      const mockRequest = createMockIDBRequest(mockDB as any);
+      const mockRequest = createMockIDBRequest(mockDB as unknown as IDBDatabase);
 
       mockIndexedDB.open.mockImplementation(() => {
         setTimeout(() => {
-          mockRequest.onsuccess?.({ target: mockRequest } as any);
+          mockRequest.onsuccess?.(createSuccessEvent(mockDB as unknown as IDBDatabase));
         }, 0);
         return mockRequest;
       });
@@ -653,7 +668,7 @@ describe('OfflineCache', () => {
         const putRequest = createMockIDBRequest(undefined);
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onsuccess?.({ target: putRequest } as any);
+            putRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return putRequest;
         });
@@ -683,7 +698,7 @@ describe('OfflineCache', () => {
         const putRequest = createMockIDBRequest(undefined);
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onsuccess?.({ target: putRequest } as any);
+            putRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return putRequest;
         });
@@ -737,7 +752,7 @@ describe('OfflineCache', () => {
         const getAllRequest = createMockIDBRequest([item2, item1]); // Return in reverse order
         mockObjectStore.getAll.mockImplementation(() => {
           setTimeout(() => {
-            getAllRequest.onsuccess?.({ target: getAllRequest } as any);
+            getAllRequest.onsuccess?.(createSuccessEvent([item2, item1]));
           }, 0);
           return getAllRequest;
         });
@@ -764,7 +779,7 @@ describe('OfflineCache', () => {
         const getAllRequest = createMockIDBRequest([pendingItem]);
         mockIndex.getAll.mockImplementation(() => {
           setTimeout(() => {
-            getAllRequest.onsuccess?.({ target: getAllRequest } as any);
+            getAllRequest.onsuccess?.(createSuccessEvent([pendingItem]));
           }, 0);
           return getAllRequest;
         });
@@ -794,14 +809,14 @@ describe('OfflineCache', () => {
 
         mockObjectStore.get.mockImplementation(() => {
           setTimeout(() => {
-            getRequest.onsuccess?.({ target: getRequest } as any);
+            getRequest.onsuccess?.(createSuccessEvent(existingItem));
           }, 0);
           return getRequest;
         });
 
         mockObjectStore.put.mockImplementation(() => {
           setTimeout(() => {
-            putRequest.onsuccess?.({ target: putRequest } as any);
+            putRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return putRequest;
         });
@@ -822,7 +837,7 @@ describe('OfflineCache', () => {
 
         mockObjectStore.get.mockImplementation(() => {
           setTimeout(() => {
-            getRequest.onsuccess?.({ target: getRequest } as any);
+            getRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return getRequest;
         });
@@ -838,7 +853,7 @@ describe('OfflineCache', () => {
         const deleteRequest = createMockIDBRequest(undefined);
         mockObjectStore.delete.mockImplementation(() => {
           setTimeout(() => {
-            deleteRequest.onsuccess?.({ target: deleteRequest } as any);
+            deleteRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return deleteRequest;
         });
@@ -854,7 +869,7 @@ describe('OfflineCache', () => {
         const countRequest = createMockIDBRequest(5);
         mockIndex.count.mockImplementation(() => {
           setTimeout(() => {
-            countRequest.onsuccess?.({ target: countRequest } as any);
+            countRequest.onsuccess?.(createSuccessEvent(5));
           }, 0);
           return countRequest;
         });
@@ -872,11 +887,11 @@ describe('OfflineCache', () => {
 
     beforeEach(async () => {
       cache = new OfflineCache();
-      const mockRequest = createMockIDBRequest(mockDB as any);
+      const mockRequest = createMockIDBRequest(mockDB as unknown as IDBDatabase);
 
       mockIndexedDB.open.mockImplementation(() => {
         setTimeout(() => {
-          mockRequest.onsuccess?.({ target: mockRequest } as any);
+          mockRequest.onsuccess?.(createSuccessEvent(mockDB as unknown as IDBDatabase));
         }, 0);
         return mockRequest;
       });
@@ -889,7 +904,7 @@ describe('OfflineCache', () => {
         const clearRequest = createMockIDBRequest(undefined);
         mockObjectStore.clear.mockImplementation(() => {
           setTimeout(() => {
-            clearRequest.onsuccess?.({ target: clearRequest } as any);
+            clearRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return clearRequest;
         });
@@ -909,7 +924,7 @@ describe('OfflineCache', () => {
         const clearRequest = createMockIDBRequest(undefined);
         mockObjectStore.clear.mockImplementation(() => {
           setTimeout(() => {
-            clearRequest.onsuccess?.({ target: clearRequest } as any);
+            clearRequest.onsuccess?.(createSuccessEvent(undefined));
           }, 0);
           return clearRequest;
         });

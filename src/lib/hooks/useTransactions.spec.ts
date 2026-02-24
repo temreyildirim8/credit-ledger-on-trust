@@ -3,6 +3,7 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { useTransactions } from './useTransactions';
 import { transactionsService, Transaction } from '@/lib/services/transactions.service';
 import { offlineCache } from '@/lib/pwa/offline-cache';
+import type { User, Session } from '@supabase/supabase-js';
 
 // Mock the useAuth hook
 vi.mock('./useAuth', () => ({
@@ -49,6 +50,28 @@ const mockTransaction: Transaction = {
   note: null,
 };
 
+// Create mock user and session with minimal required properties
+const createMockUser = (id: string): User => ({
+  id,
+  app_metadata: {},
+  user_metadata: {},
+  aud: 'authenticated',
+  created_at: '2024-01-01T00:00:00Z',
+  email: 'test@example.com',
+  email_confirmed_at: '2024-01-01T00:00:00Z',
+  role: 'authenticated',
+  updated_at: '2024-01-01T00:00:00Z',
+});
+
+const createMockSession = (): Session => ({
+  access_token: 'mock-token',
+  refresh_token: 'mock-refresh-token',
+  expires_in: 3600,
+  expires_at: Date.now() + 3600,
+  token_type: 'bearer',
+  user: createMockUser(mockUserId),
+});
+
 describe('useTransactions', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -59,8 +82,8 @@ describe('useTransactions', () => {
     });
     // Mock useAuth to return a user
     vi.mocked(useAuth).mockReturnValue({
-      user: { id: mockUserId } as any,
-      session: {} as any,
+      user: createMockUser(mockUserId),
+      session: createMockSession(),
       loading: false,
       signIn: vi.fn(),
       signUp: vi.fn(),
