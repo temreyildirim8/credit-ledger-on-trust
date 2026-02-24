@@ -278,13 +278,12 @@ test.describe('CSV Export Flow Integration', () => {
             }
             const content = Buffer.concat(chunks).toString('utf-8');
 
-            // Verify CSV has headers
-            expect(content).toContain('Date,') ||
-            expect(content).toContain('date,') ||
-            expect(content).toContain('Customer,') ||
-            expect(content).toContain('customer,') ||
-            expect(content).toContain('Amount,') ||
-            expect(content).toContain('amount,');
+            // Verify CSV has headers (case-insensitive match)
+            const hasValidHeaders =
+              content.includes('Date,') || content.includes('date,') ||
+              content.includes('Customer,') || content.includes('customer,') ||
+              content.includes('Amount,') || content.includes('amount,');
+            expect(hasValidHeaders).toBe(true);
           }
         }
       }

@@ -38,7 +38,7 @@ async function checkColorContrast(page: Page, selector: string) {
 }
 
 // Helper to get all focusable elements
-async function getFocusableElements(page: Page) {
+async function _getFocusableElements(page: Page) {
   return await page.evaluate(() => {
     const focusableSelectors = [
       'a[href]',
@@ -62,7 +62,7 @@ async function getFocusableElements(page: Page) {
 }
 
 // Helper to check if element is visible to screen readers
-async function isAccessibleToScreenReader(page: Page, selector: string) {
+async function _isAccessibleToScreenReader(page: Page, selector: string) {
   return await page.locator(selector).evaluate((el) => {
     const style = window.getComputedStyle(el);
     const isHidden = style.display === 'none' || style.visibility === 'hidden';
