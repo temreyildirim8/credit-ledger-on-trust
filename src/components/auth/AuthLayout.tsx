@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ReactNode } from "react";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 
 type AuthLayoutProps = {
   children: ReactNode;
@@ -21,7 +22,11 @@ export function AuthLayout({
   footerLinks,
 }: AuthLayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
+    <div className="min-h-screen flex flex-col lg:flex-row relative">
+      {/* Language Switcher - Fixed position in top-right */}
+      <div className="absolute top-4 end-4 z-50">
+        <LanguageSwitcher />
+      </div>
       {/* Left Panel - Visual/Branding (hidden on mobile) */}
       {/* In RTL: this appears on the right, in LTR: on the left */}
       <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] relative overflow-hidden rtl:lg:order-last">

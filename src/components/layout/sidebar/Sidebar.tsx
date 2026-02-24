@@ -19,6 +19,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { SyncStatusIndicator } from "@/components/layout/sync-status";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import {
   Tooltip,
   TooltipContent,
@@ -234,6 +235,27 @@ export function Sidebar({ className }: SidebarProps) {
         ) : (
           <SyncStatusIndicator variant="full" />
         )}
+      </div>
+
+      {/* Language Switcher */}
+      <div
+        className={cn(
+          "transition-all duration-300",
+          isCollapsed ? "flex justify-center px-0 py-2" : "px-3 py-2"
+        )}
+      >
+        <Tooltip delayDuration={0}>
+          <TooltipTrigger asChild>
+            <div className={isCollapsed ? "flex justify-center" : ""}>
+              <LanguageSwitcher />
+            </div>
+          </TooltipTrigger>
+          {isCollapsed && (
+            <TooltipContent side="right">
+              {t("language") || "Language"}
+            </TooltipContent>
+          )}
+        </Tooltip>
       </div>
 
       {/* Theme Toggle */}
