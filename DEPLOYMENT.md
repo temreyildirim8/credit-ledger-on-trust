@@ -105,8 +105,47 @@ In Vercel Dashboard (https://vercel.com), add these environment variables:
 
 ## Supabase Configuration
 
+### Environment Strategy
+
+We use separate Supabase environments for TEST and PRODUCTION:
+
+| Environment | Project ID | Purpose |
+|-------------|------------|---------|
+| TEST | `wohjeoashvprnlnlkaxv` | Development, testing, staging |
+| PRODUCTION | TBD | Live production (create before launch) |
+
+### Creating PRODUCTION Environment
+
+1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
+2. Click **"New Project"**
+3. Configure:
+   - **Project Name**: `global-ledger-prod`
+   - **Region**: `eu-central-1` (Frankfurt) - closest to TR market
+   - **Database Password**: Generate strong password
+4. After creation, copy credentials:
+   - Settings > API > Project URL → `NEXT_PUBLIC_SUPABASE_URL`
+   - Settings > API > anon public → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+5. Run database migrations from `.ralph/specs/database.md`
+6. Configure RLS policies
+
+### Local Environment Files
+
+Create these files locally (not committed to git):
+
+```bash
+# .env.test - TEST environment (current development)
+NEXT_PUBLIC_SUPABASE_URL=https://wohjeoashvprnlnlkaxv.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<test-anon-key>
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# .env.production - PRODUCTION environment (create after prod project setup)
+NEXT_PUBLIC_SUPABASE_URL=https://your-prod-ref.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<prod-anon-key>
+NEXT_PUBLIC_SITE_URL=https://your-production-domain.vercel.app
+```
+
 ### Database
-- Project ID: `wohjeoashvprnlnlkaxv`
+- Project ID: `wohjeoashvprnlnlkaxv` (TEST)
 - Region: `eu-central-1`
 - All tables created and RLS policies configured
 
