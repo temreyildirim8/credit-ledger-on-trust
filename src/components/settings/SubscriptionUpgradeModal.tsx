@@ -23,7 +23,6 @@ interface SubscriptionUpgradeModalProps {
 
 const plans = [
   { key: 'free', icon: null, featured: false },
-  { key: 'basic', icon: Zap, featured: false },
   { key: 'pro', icon: Star, featured: true },
   { key: 'enterprise', icon: Building2, featured: false },
 ] as const;
@@ -140,12 +139,13 @@ export function SubscriptionUpgradeModal({
                   </div>
 
                   <ul className="space-y-2 mb-4">
-                    {tPricing.raw(`${plan.key}.features`).map((feature: string, index: number) => (
-                      <li key={index} className="flex items-start gap-2 text-sm">
-                        <Check className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
-                        <span className="text-text">{feature}</span>
-                      </li>
-                    ))}
+                    {Array.isArray(tPricing.raw(`${plan.key}.features`)) &&
+                      tPricing.raw(`${plan.key}.features`).map((feature: string, index: number) => (
+                        <li key={index} className="flex items-start gap-2 text-sm">
+                          <Check className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
+                          <span className="text-text">{feature}</span>
+                        </li>
+                      ))}
                   </ul>
 
                   {isCurrent && (
