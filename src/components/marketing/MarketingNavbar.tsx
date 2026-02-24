@@ -95,11 +95,14 @@ export function MarketingNavbar() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-6 w-6" aria-hidden="true" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6" aria-hidden="true" />
             )}
           </button>
         </div>
@@ -107,7 +110,7 @@ export function MarketingNavbar() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[var(--color-accent)] border-t border-white/10">
+        <div id="mobile-menu" className="md:hidden bg-[var(--color-accent)] border-t border-white/10">
           <div className="px-4 py-4 space-y-3">
             {navItems.map((item) => (
               <Link
