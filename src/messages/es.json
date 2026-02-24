@@ -194,7 +194,7 @@
       "period": "para siempre",
       "description": "Perfecto para comenzar",
       "features": [
-        "Hasta 50 clientes",
+        "Hasta 10 clientes",
         "Transacciones ilimitadas",
         "Modo sin conexión",
         "Informes básicos",
@@ -236,7 +236,7 @@
     "faq": {
       "title": "Preguntas Frecuentes",
       "q1": "¿Fiado-X es realmente gratis?",
-      "a1": "¡Sí! Fiado-X ofrece un plan gratuito para siempre que incluye hasta 50 clientes, transacciones ilimitadas, modo sin conexión e informes básicos. No se requiere tarjeta de crédito para comenzar.",
+      "a1": "¡Sí! Fiado-X ofrece un plan gratuito para siempre que incluye hasta 10 clientes, transacciones ilimitadas, modo sin conexión e informes básicos. No se requiere tarjeta de crédito para comenzar.",
       "q2": "¿Puedo usar Fiado-X sin internet?",
       "a2": "¡Por supuesto! Fiado-X está construido como una Aplicación Web Progresiva (PWA) con soporte completo sin conexión. Puedes agregar clientes, registrar deudas y realizar seguimientos de pagos incluso sin internet. Tus datos se sincronizan automáticamente cuando vuelves a estar en línea.",
       "q3": "¿Cómo funciona la copia de seguridad automática?",

@@ -194,7 +194,7 @@
       "period": "selamanya",
       "description": "Sempurna untuk memulai",
       "features": [
-        "Hingga 50 pelanggan",
+        "Hingga 10 pelanggan",
         "Transaksi tidak terbatas",
         "Mode offline",
         "Laporan dasar",
@@ -236,7 +236,7 @@
     "faq": {
       "title": "Pertanyaan yang Sering Diajukan",
       "q1": "Apakah Hutang-Ku benar-benar gratis?",
-      "a1": "Ya! Hutang-Ku menawarkan paket gratis selamanya yang mencakup hingga 50 pelanggan, transaksi tidak terbatas, mode offline, dan laporan dasar. Tidak perlu kartu kredit untuk memulai.",
+      "a1": "Ya! Hutang-Ku menawarkan paket gratis selamanya yang mencakup hingga 10 pelanggan, transaksi tidak terbatas, mode offline, dan laporan dasar. Tidak perlu kartu kredit untuk memulai.",
       "q2": "Bisakah saya menggunakan Hutang-Ku tanpa internet?",
       "a2": "Tentu saja! Hutang-Ku dibangun sebagai Progressive Web App (PWA) dengan dukungan offline penuh. Anda dapat menambahkan pelanggan, mencatat utang, dan melacak pembayaran bahkan tanpa internet. Data Anda disinkronkan secara otomatis saat Anda kembali online.",
       "q3": "Bagaimana cara kerja cadangan otomatis?",

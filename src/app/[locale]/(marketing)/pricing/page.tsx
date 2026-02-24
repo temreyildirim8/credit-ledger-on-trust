@@ -50,15 +50,15 @@ export default function PricingPage() {
       {/* Pricing Cards */}
       <section className="py-20 bg-surface dark:bg-[var(--color-surface)]">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 items-end">
             {plans.map((plan) => {
               const Icon = plan.icon;
               return (
                 <Card
                   key={plan.key}
-                  className={`border-2 ${
+                  className={`border-2 flex flex-col ${
                     plan.featured
-                      ? 'border-[var(--color-accent)] shadow-xl relative'
+                      ? 'border-[var(--color-accent)] shadow-2xl relative z-10 md:scale-105 md:-my-4 bg-white dark:bg-gray-900'
                       : 'border-[var(--color-border)]'
                   }`}
                 >
@@ -80,7 +80,7 @@ export default function PricingPage() {
                       {t(`${plan.key}.description`)}
                     </p>
                   </CardHeader>
-                  <CardContent className="pt-0">
+                  <CardContent className="pt-0 flex flex-col flex-1">
                     <div className="text-center mb-6">
                       <span className="text-4xl font-bold text-[var(--color-text)]">
                         {t(`${plan.key}.price`)}
@@ -91,7 +91,7 @@ export default function PricingPage() {
                         </span>
                       )}
                     </div>
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-3 mb-8 flex-grow">
                       {t.raw(`${plan.key}.features`).map((feature: string, index: number) => (
                         <li key={index} className="flex items-start gap-2">
                           <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -101,7 +101,7 @@ export default function PricingPage() {
                     </ul>
                     <Link
                       href="/login"
-                      className="block"
+                      className="block mt-auto"
                     >
                       <Button
                         className={`w-full ${

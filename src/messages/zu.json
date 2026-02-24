@@ -194,7 +194,7 @@
       "period": "nasempela",
       "description": "Impumelelo ukuqala",
       "features": [
-        "Kwabathengi abangama-50",
+        "Kwabathengi abangama-10",
         "Ukuthengiselana okungagcutheki",
         "Indlela yesuphephile",
         "Izingxenye ezisisekelo",
@@ -236,7 +236,7 @@
     "faq": {
       "title": "Imibuzo Evame Ukubuzwa",
       "q1": "Ingabe i-Mali-X yamahhala ngempela?",
-      "a1": "Yebo! I-Mali-X inikeza uhlelo lwamahhala phakade oluhlanganisa abathengi abangama-50, ukuthengiselana okungagcini, imodi ye-offline, namabhuloho okuyisisekelo. Awudingi ikhadi lesikweletu ukuqala.",
+      "a1": "Yebo! I-Mali-X inikeza uhlelo lwamahhala phakade oluhlanganisa abathengi abangama-10, ukuthengiselana okungagcini, imodi ye-offline, namabhuloho okuyisisekelo. Awudingi ikhadi lesikweletu ukuqala.",
       "q2": "Ngingasebenzisa i-Mali-X ngaphandle kwe-inthanethi?",
       "a2": "Ngempela! I-Mali-X yakhiwe njenge-Progressive Web App (PWA) ngenkxaso ephelele ye-offline. Ungafaka abathengi, bhala izikweletu, futhi ulandele izinkokhelo ngisho ngaphandle kwe-inthanethi. Idata yakho i-synchronize ngokuzenzakalelayo uma ubuyela ku-online.",
       "q3": "I-backup ezenzakalelayo isebenza kanjani?",

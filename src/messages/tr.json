@@ -210,7 +210,7 @@
       "period": "sonsuza kadar",
       "description": "Başlamak için mükemmel",
       "features": [
-        "50'ye kadar müşteri",
+        "10'a kadar müşteri",
         "Sınırsız işlem",
         "Çevrimdışı mod",
         "Temel raporlar",
@@ -252,7 +252,7 @@
     "faq": {
       "title": "Sıkça Sorulan Sorular",
       "q1": "Ücretsiz plan gerçekten ücretsiz mi?",
-      "a1": "Evet! Ücretsiz plan 50 müşteriye kadar sonsuza kadar ücretsizdir. Kredi kartı gerekmez.",
+      "a1": "Evet! Ücretsiz plan 10 müşteriye kadar sonsuza kadar ücretsizdir. Kredi kartı gerekmez.",
       "q2": "Planları istediğim zaman değiştirebilir miyim?",
       "a2": "Elbette! Planınızı istediğiniz zaman yükseltebilir veya düşürebilirsiniz.",
       "q3": "Hangi ödeme yöntemlerini kabul ediyorsunuz?",
