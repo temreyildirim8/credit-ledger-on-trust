@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { X } from "lucide-react";
+import { useSubscription } from "@/lib/hooks/useSubscription";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -29,13 +30,17 @@ export function PWAInstallProvider({
   const [isInstalled, setIsInstalled] = useState(
     typeof window !== 'undefined' && window.matchMedia("(display-mode: standalone)").matches
   );
+  const { hasFeature, loading: subscriptionLoading } = useSubscription();
+
+  // Check if user has PWA install feature (paid plans only)
+  const canInstallPWA = hasFeature("pwaInstall");
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       const promptEvent = e as BeforeInstallPromptEvent;
       setDeferredPrompt(promptEvent);
-      setIsInstallable(true);
+      // Don't set isInstallable here - we'll check subscription first
       console.log("[PWA] Install captured, prompt available");
     };
 
@@ -54,6 +59,15 @@ export function PWAInstallProvider({
       window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
+
+  // Only show install prompt if user has paid plan and prompt is available
+  useEffect(() => {
+    if (deferredPrompt && canInstallPWA && !subscriptionLoading) {
+      setIsInstallable(true);
+    } else {
+      setIsInstallable(false);
+    }
+  }, [deferredPrompt, canInstallPWA, subscriptionLoading]);
 
   const install = async () => {
     if (!deferredPrompt) {

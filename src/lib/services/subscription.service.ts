@@ -20,6 +20,7 @@ export interface PlanFeatures {
   apiAccess: boolean;
   customIntegrations: boolean;
   whiteLabel: boolean;
+  pwaInstall: boolean; // PWA install prompt - only for paid plans
 }
 
 // Feature definitions by plan
@@ -38,6 +39,7 @@ export const PLAN_FEATURES: Record<SubscriptionPlan, PlanFeatures> = {
     apiAccess: false,
     customIntegrations: false,
     whiteLabel: false,
+    pwaInstall: false, // Free users cannot install PWA
   },
   basic: {
     maxCustomers: CUSTOMER_LIMITS.basic,
@@ -53,6 +55,7 @@ export const PLAN_FEATURES: Record<SubscriptionPlan, PlanFeatures> = {
     apiAccess: false,
     customIntegrations: false,
     whiteLabel: false,
+    pwaInstall: true, // Basic and above can install PWA
   },
   pro: {
     maxCustomers: CUSTOMER_LIMITS.pro,
@@ -68,6 +71,7 @@ export const PLAN_FEATURES: Record<SubscriptionPlan, PlanFeatures> = {
     apiAccess: true,
     customIntegrations: false,
     whiteLabel: false,
+    pwaInstall: true, // Pro can install PWA
   },
   enterprise: {
     maxCustomers: CUSTOMER_LIMITS.enterprise,
@@ -83,6 +87,7 @@ export const PLAN_FEATURES: Record<SubscriptionPlan, PlanFeatures> = {
     apiAccess: true,
     customIntegrations: true,
     whiteLabel: true,
+    pwaInstall: true, // Enterprise can install PWA
   },
 };
 
