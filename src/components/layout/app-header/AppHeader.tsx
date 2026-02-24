@@ -68,13 +68,19 @@ export function AppHeader({
           <SyncStatusIndicator variant="compact" />
 
           {/* Notifications */}
-          <button className="relative p-2.5 rounded-xl hover:bg-surface-alt transition-colors">
+          <button
+            className="relative p-2.5 rounded-xl hover:bg-surface-alt transition-colors"
+            aria-label="Notifications"
+          >
             <Bell className="w-5 h-5 text-text-secondary" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full" />
           </button>
 
           {/* User Avatar */}
-          <button className="w-10 h-10 rounded-xl bg-accent text-white font-medium flex items-center justify-center shadow-sm">
+          <button
+            className="w-10 h-10 rounded-xl bg-accent text-white font-medium flex items-center justify-center shadow-sm"
+            aria-label="User menu"
+          >
             {userName.charAt(0)}
           </button>
         </div>

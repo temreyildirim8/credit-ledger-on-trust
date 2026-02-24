@@ -302,6 +302,7 @@ export function Sidebar({ className }: SidebarProps) {
                 "flex items-center gap-3 rounded-lg text-error hover:bg-error/5 transition-all duration-200 group",
                 isCollapsed ? "justify-center h-9 w-9" : "px-3 py-2.5 w-full"
               )}
+              aria-label={t("signOut")}
             >
               <LogOut className="w-5 h-5 flex-shrink-0" />
               {!isCollapsed && (
