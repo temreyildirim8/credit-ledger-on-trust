@@ -1,8 +1,9 @@
-import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
-import { Card, CardContent } from '@/components/ui/card';
-import { Award, Users } from 'lucide-react';
-import Link from 'next/link';
+import { AboutHeroSection } from '@/components/marketing/AboutHeroSection';
+import { AboutStorySection } from '@/components/marketing/AboutStorySection';
+import { AboutLocalFocusSection } from '@/components/marketing/AboutLocalFocusSection';
+import { AboutTrustSection } from '@/components/marketing/AboutTrustSection';
+import { AboutCTASection } from '@/components/marketing/AboutCTASection';
 import { DEFAULT_BRAND } from '@/lib/branding';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,118 +23,27 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+/**
+ * About Us page - Matches Figma design
+ * https://www.figma.com/design/lScDg7yDwbuPXjK5g7KCfC/Credit_Ledger_v4?node-id=11-1717
+ */
 export default function AboutPage() {
-  const t = useTranslations('about');
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold font-display mb-4">
-            {t('title')}
-          </h1>
-          <p className="text-xl text-white/90">
-            {t('subtitle')}
-          </p>
-        </div>
-      </section>
+    <>
+      {/* Hero Section - "Digitizing 100M+ Micro-SMEs" */}
+      <AboutHeroSection />
 
-      {/* Intro Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed text-center">
-            {t('intro')}
-          </p>
-        </div>
-      </section>
+      {/* Story Section - "Our Story: From Paper to Cloud" */}
+      <AboutStorySection />
 
-      {/* Mission Section */}
-      <section className="py-16 bg-[var(--color-bg)]">
-        <div className="max-w-4xl mx-auto px-4">
-          <Card className="border-[var(--color-border)]">
-            <CardContent className="p-8">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full bg-[var(--color-accent)] flex items-center justify-center flex-shrink-0">
-                  <Award className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold font-display text-[var(--color-text)] mb-3">
-                    {t('mission.title')}
-                  </h2>
-                  <p className="text-[var(--color-text-secondary)] leading-relaxed">
-                    {t('mission.description')}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      {/* Hyper-Local Focus Section - Regional cards */}
+      <AboutLocalFocusSection />
 
-      {/* Vision Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          <Card className="border-[var(--color-border)]">
-            <CardContent className="p-8">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full bg-[var(--color-accent)] flex items-center justify-center flex-shrink-0">
-                  <Users className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold font-display text-[var(--color-text)] mb-3">
-                    {t('vision.title')}
-                  </h2>
-                  <p className="text-[var(--color-text-secondary)] leading-relaxed">
-                    {t('vision.description')}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      {/* Built for Trust Section - Security features */}
+      <AboutTrustSection />
 
-      {/* Values Section */}
-      <section className="py-16 bg-[var(--color-bg)]">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold font-display text-[var(--color-text)] text-center mb-12">
-            {t('values.title')}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {t.raw('values.items').map((value: string, index: number) => (
-              <Card key={index} className="border-[var(--color-border)]">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-3">
-                    <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-1">
-                      <div className="h-3 w-3 rounded-full bg-green-500" />
-                    </div>
-                    <p className="text-[var(--color-text)]">{value}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold font-display mb-4">
-            {t('cta.title')}
-          </h2>
-          <p className="text-white/90 mb-8">
-            {t('cta.description')}
-          </p>
-          <Link
-            href="/login"
-            className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
-          >
-            {t('cta.button')}
-          </Link>
-        </div>
-      </section>
-    </div>
+      {/* CTA Section - "Ready to join the digital revolution?" */}
+      <AboutCTASection />
+    </>
   );
 }
