@@ -160,6 +160,64 @@ export default defineConfig({
       },
       dependencies: ["setup"],
     },
+    // Smoke tests - run on chromium for speed, covers public routes without auth
+    {
+      name: "smoke-public",
+      testMatch: /smoke\.spec\.ts$/,
+      testIgnore: /Smoke Tests - All Modals|Smoke Tests - Navigation|Smoke Tests - Empty States/,
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+      // No dependencies - public tests don't need auth setup
+    },
+    // Smoke tests that require authentication
+    {
+      name: "smoke-authenticated",
+      testMatch: /smoke\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
+    },
+    // Performance tests - run on chromium for consistent metrics
+    {
+      name: "performance",
+      testMatch: /performance\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+      // No dependencies - public tests don't need auth setup
+    },
+    // Performance tests - authenticated
+    {
+      name: "performance-auth",
+      testMatch: /performance\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
+    },
+    // Accessibility tests - public pages
+    {
+      name: "accessibility",
+      testMatch: /accessibility\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+      // No dependencies - public tests don't need auth setup
+    },
+    // Accessibility tests - authenticated pages
+    {
+      name: "accessibility-auth",
+      testMatch: /accessibility\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
+    },
   ],
   webServer: {
     command: "npm run dev",
