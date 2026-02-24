@@ -27,7 +27,7 @@ export function PWAInstallProvider({
   children,
 }: PWAInstallProviderProps) {
   const locale = useLocale();
-  const brandName = getBrandName(locale);
+  const _brandName = getBrandName(locale);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
   // Check if app is already installed on initial render

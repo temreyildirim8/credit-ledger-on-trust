@@ -1,6 +1,6 @@
 "use client";
 
-import { UserPlus, Receipt, Wallet, Cloud, Shield, TrendingUp, CheckCircle } from "lucide-react";
+import { UserPlus, Receipt, Wallet, TrendingUp, CheckCircle } from "lucide-react";
 
 /**
  * Features section - "How it Works" and "Built for Resilience"

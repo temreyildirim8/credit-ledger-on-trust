@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/routing";
-import { ArrowRight, Play, Download, Shield, CheckCircle } from "lucide-react";
+import { Play, Download, Shield, CheckCircle } from "lucide-react";
 
 /**
  * Hero section - Matches Figma design

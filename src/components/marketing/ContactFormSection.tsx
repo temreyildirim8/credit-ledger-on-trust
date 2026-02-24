@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Mail, MessageCircle, MapPin, Send, ChevronDown } from "lucide-react";
 import { toast } from "sonner";
+import { Link } from "@/routing";
 
 /**
  * Contact Form Section - Matches Figma design
@@ -132,9 +133,9 @@ export function ContactFormSection() {
                 {/* Privacy policy note */}
                 <p className="text-center text-[12px] text-[#64748b]">
                   {t("form.privacyNote")}{" "}
-                  <a href="/legal/privacy" className="underline hover:text-[#3c83f6]">
+                  <Link href="/legal/privacy" className="underline hover:text-[#3c83f6]">
                     {t("form.privacyLink")}
-                  </a>
+                  </Link>
                 </p>
               </form>
             </div>
@@ -181,12 +182,12 @@ export function ContactFormSection() {
                   <p className="mb-3 text-[14px] text-[#64748b]">
                     {t("info.helpCenter.description")}
                   </p>
-                  <a
+                  <Link
                     href="/help"
                     className="inline-flex items-center rounded-lg border border-[#e2e8f0] px-4 py-2 text-[14px] font-medium text-[#0f172a] transition-colors hover:bg-[#f8fafc]"
                   >
                     {t("info.helpCenter.button")}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
