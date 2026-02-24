@@ -412,6 +412,15 @@
     },
     "success": "Müşteri başarıyla eklendi",
     "error": "Müşteri eklenemedi",
+    "validation": {
+      "nameTooShort": "İsim en az 2 karakter olmalı",
+      "nameTooLong": "İsim 100 karakterden az olmalı",
+      "invalidPhone": "Lütfen geçerli bir telefon numarası girin",
+      "fixErrors": "Lütfen formdaki hataları düzeltin"
+    },
+    "form": {
+      "notesPlaceholder": "Bu müşteri hakkında ek notlar"
+    },
     "paywall": {
       "limitReached": "Müşteri limitine ulaşıldı",
       "upgradeMessage": "Sınırsız müşteri ve daha fazla özellik için Pro'ya yükseltin.",

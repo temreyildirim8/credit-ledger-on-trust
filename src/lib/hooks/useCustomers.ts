@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAuth } from './useAuth';
 import { customersService, Customer } from '@/lib/services/customers.service';
 import { offlineCache, CachedCustomer } from '@/lib/pwa/offline-cache';
@@ -10,6 +10,10 @@ export function useCustomers() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
+  // Track if we're currently loading to prevent duplicate calls
+  const isLoadingRef = useRef(false);
+  // Track the last load time to debounce focus events
+  const lastLoadTimeRef = useRef(0);
 
   // Convert CachedCustomer to Customer format
   const cachedToCustomer = (cached: CachedCustomer): Customer => ({
@@ -33,8 +37,18 @@ export function useCustomers() {
     _cachedAt: Date.now(),
   });
 
-  const loadCustomers = useCallback(async () => {
+  const loadCustomers = useCallback(async (force = false) => {
+    // Prevent duplicate concurrent loads
+    if (isLoadingRef.current && !force) return;
+
     if (!user?.id) return;
+
+    // Debounce: don't reload if we loaded in the last 500ms (unless forced)
+    const now = Date.now();
+    if (!force && now - lastLoadTimeRef.current < 500) return;
+
+    isLoadingRef.current = true;
+    lastLoadTimeRef.current = now;
     setLoading(true);
     try {
       // Initialize offline cache
@@ -69,18 +83,23 @@ export function useCustomers() {
       }
     } finally {
       setLoading(false);
+      isLoadingRef.current = false;
     }
   }, [user?.id]);
 
+  // Initial load when user changes
   useEffect(() => {
-    loadCustomers();
-  }, [loadCustomers]);
+    if (user?.id) {
+      loadCustomers(true);
+    }
+  }, [user?.id, loadCustomers]);
 
-  // Listen for online/offline events
+  // Listen for online/offline events - use a ref to avoid re-registering
   useEffect(() => {
     const handleOnline = () => {
       setIsOffline(false);
-      loadCustomers(); // Refresh when back online
+      // Small delay to ensure network is ready
+      setTimeout(() => loadCustomers(true), 100);
     };
     const handleOffline = () => setIsOffline(true);
 
@@ -93,7 +112,7 @@ export function useCustomers() {
     };
   }, [loadCustomers]);
 
-  // Refresh customers when the window gains focus (e.g., navigating back from another page)
+  // Refresh customers when the window gains focus - with debouncing
   useEffect(() => {
     const handleFocus = () => {
       if (user?.id && navigator.onLine) {
@@ -176,7 +195,7 @@ export function useCustomers() {
   };
 
   const refreshCustomers = useCallback(() => {
-    loadCustomers();
+    loadCustomers(true);
   }, [loadCustomers]);
 
   const archiveCustomer = async (customerId: string) => {

@@ -402,7 +402,16 @@
       "pdfError": "Failed to generate PDF"
     },
     "success": "Customer added successfully",
-    "error": "Failed to add customer"
+    "error": "Failed to add customer",
+    "validation": {
+      "nameTooShort": "Name must be at least 2 characters",
+      "nameTooLong": "Name must be less than 100 characters",
+      "invalidPhone": "Please enter a valid phone number",
+      "fixErrors": "Please fix the errors in the form"
+    },
+    "form": {
+      "notesPlaceholder": "Additional notes about this customer"
+    }
   },
   "transactions": {
     "title": "Transactions",

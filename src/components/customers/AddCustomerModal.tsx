@@ -20,6 +20,11 @@ interface AddCustomerModalProps {
   isPaidPlan?: boolean;
 }
 
+interface FormErrors {
+  name?: string;
+  phone?: string;
+}
+
 export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCount = 0, isPaidPlan: isPaidPlanProp }: AddCustomerModalProps) {
   const t = useTranslations('customers.form');
   const tCommon = useTranslations('common');
@@ -30,6 +35,8 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<{ name: boolean; phone: boolean }>({ name: false, phone: false });
 
   // Use prop if provided (for backward compatibility), otherwise use hook value
   const effectiveIsPaidPlan = isPaidPlanProp ?? isPaidPlan;
@@ -37,8 +44,55 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
   // Check if customer limit is reached for free tier
   const isAtLimit = !effectiveIsPaidPlan && currentCustomerCount >= customerLimit;
 
+  // Validation functions
+  const validateName = (value: string): string | undefined => {
+    if (!value.trim()) {
+      return tCommon('required');
+    }
+    if (value.trim().length < 2) {
+      return tCustomers.raw('validation.nameTooShort') || 'Name must be at least 2 characters';
+    }
+    if (value.trim().length > 100) {
+      return tCustomers.raw('validation.nameTooLong') || 'Name must be less than 100 characters';
+    }
+    return undefined;
+  };
+
+  const validatePhone = (value: string): string | undefined => {
+    if (!value.trim()) return undefined; // Phone is optional
+    // Basic phone validation - allows digits, spaces, dashes, parentheses, and +
+    const phoneRegex = /^[+\d][\d\s\-()]{6,20}$/;
+    if (!phoneRegex.test(value.trim())) {
+      return tCustomers.raw('validation.invalidPhone') || 'Please enter a valid phone number';
+    }
+    return undefined;
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {
+      name: validateName(name),
+      phone: validatePhone(phone),
+    };
+    setErrors(newErrors);
+    return !newErrors.name && !newErrors.phone;
+  };
+
+  // Handle field blur for validation feedback
+  const handleNameBlur = () => {
+    setTouched(prev => ({ ...prev, name: true }));
+    setErrors(prev => ({ ...prev, name: validateName(name) }));
+  };
+
+  const handlePhoneBlur = () => {
+    setTouched(prev => ({ ...prev, phone: true }));
+    setErrors(prev => ({ ...prev, phone: validatePhone(phone) }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Mark all fields as touched
+    setTouched({ name: true, phone: true });
 
     // Check customer limit before saving
     if (isAtLimit) {
@@ -46,8 +100,9 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
       return;
     }
 
-    if (!name.trim()) {
-      toast.error(tCommon('required'));
+    // Validate form
+    if (!validateForm()) {
+      toast.error(tCustomers.raw('validation.fixErrors') || 'Please fix the errors in the form');
       return;
     }
 
@@ -65,6 +120,8 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
       setPhone('');
       setAddress('');
       setNotes('');
+      setErrors({});
+      setTouched({ name: false, phone: false });
       onOpenChange(false);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
@@ -74,8 +131,22 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
     }
   };
 
+  // Reset form when modal closes
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      // Reset form state when closing
+      setName('');
+      setPhone('');
+      setAddress('');
+      setNotes('');
+      setErrors({});
+      setTouched({ name: false, phone: false });
+    }
+    onOpenChange(open);
+  };
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-md">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
@@ -107,25 +178,49 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="name">{t('name')}</Label>
+              <Label htmlFor="name" className={errors.name && touched.name ? 'text-destructive' : ''}>
+                {t('name')} <span className="text-destructive">*</span>
+              </Label>
               <Input
                 id="name"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (touched.name) {
+                    setErrors(prev => ({ ...prev, name: validateName(e.target.value) }));
+                  }
+                }}
+                onBlur={handleNameBlur}
                 placeholder={t('namePlaceholder')}
                 disabled={loading}
+                className={errors.name && touched.name ? 'border-destructive focus-visible:ring-destructive' : ''}
               />
+              {errors.name && touched.name && (
+                <p className="text-xs text-destructive">{errors.name}</p>
+              )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="phone">{t('phone')}</Label>
+              <Label htmlFor="phone" className={errors.phone && touched.phone ? 'text-destructive' : ''}>
+                {t('phone')}
+              </Label>
               <Input
                 id="phone"
                 type="tel"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  if (touched.phone) {
+                    setErrors(prev => ({ ...prev, phone: validatePhone(e.target.value) }));
+                  }
+                }}
+                onBlur={handlePhoneBlur}
                 placeholder={t('phonePlaceholder')}
                 disabled={loading}
+                className={errors.phone && touched.phone ? 'border-destructive focus-visible:ring-destructive' : ''}
               />
+              {errors.phone && touched.phone && (
+                <p className="text-xs text-destructive">{errors.phone}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="address">{t('address')}</Label>
@@ -143,7 +238,7 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
                 id="notes"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder={t('addressPlaceholder')}
+                placeholder={t('notesPlaceholder') || t('addressPlaceholder')}
                 disabled={loading}
               />
             </div>
@@ -152,12 +247,12 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
             <Button
               type="button"
               variant="outline"
-              onClick={() => onOpenChange(false)}
+              onClick={() => handleOpenChange(false)}
               disabled={loading}
             >
               {tCommon('cancel')}
             </Button>
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading || isAtLimit}>
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {t('submit')}
             </Button>
