@@ -21,7 +21,7 @@ export function MarketingFooter() {
         { name: tNav("features"), href: "/features" },
         { name: tNav("pricing"), href: "/pricing" },
         { name: t("product.security"), href: "#" }, // TODO: Add security page URL
-        { name: t("product.faq"), href: "#" },
+        { name: t("product.faq"), href: "/#faq" },
       ],
     },
     {
