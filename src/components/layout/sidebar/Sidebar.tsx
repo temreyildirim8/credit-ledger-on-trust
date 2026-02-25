@@ -245,9 +245,9 @@ export function Sidebar({ className }: SidebarProps) {
                 className={cn(
                   "flex items-center gap-2 w-full rounded-lg transition-all duration-200",
                   isInstalled
-                    ? "text-green-600 dark:text-green-400 cursor-default"
+                    ? "text-[var(--color-success)] cursor-default"
                     : "text-accent hover:bg-accent/10",
-                  isCollapsed ? "justify-center h-9 w-9" : "justify-center py-2 px-3"
+                  isCollapsed ? "justify-center h-9 w-9" : "justify-start py-2 px-3"
                 )}
                 aria-label={isInstalled ? t("appInstalled") : t("installApp")}
               >
@@ -281,7 +281,7 @@ export function Sidebar({ className }: SidebarProps) {
       >
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
-            <div className={isCollapsed ? "flex justify-center" : ""}>
+            <div className={isCollapsed ? "flex justify-center" : "w-full"}>
               <LanguageSwitcher variant={isCollapsed ? "compact" : "full"} />
             </div>
           </TooltipTrigger>
@@ -302,7 +302,7 @@ export function Sidebar({ className }: SidebarProps) {
       >
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
-            <div className={isCollapsed ? "flex justify-center" : ""}>
+            <div className={isCollapsed ? "flex justify-center" : "w-full"}>
               <ThemeToggle variant={isCollapsed ? "compact" : "full"} />
             </div>
           </TooltipTrigger>
@@ -326,9 +326,9 @@ export function Sidebar({ className }: SidebarProps) {
             <button
               onClick={toggleSidebar}
               className={cn(
-                "flex items-center justify-center gap-2 w-full rounded-lg transition-all duration-200",
+                "flex items-center gap-2 w-full rounded-lg transition-all duration-200",
                 "text-text-secondary hover:bg-surface-alt hover:text-text",
-                isCollapsed ? "h-9" : "py-2 px-3"
+                isCollapsed ? "justify-center h-9" : "justify-start py-2 px-3"
               )}
               aria-label={isCollapsed ? t("expandSidebar") : t("collapseSidebar")}
             >

@@ -159,14 +159,17 @@ export function CustomerDetailsModal({
                 <div
                   className={cn(
                     'w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0',
-                    hasDebt ? 'bg-red-500' : 'bg-green-500'
+                    hasDebt ? 'bg-[var(--color-error)]' : 'bg-[var(--color-success)]'
                   )}
                 >
                   {customer.name.charAt(0).toUpperCase()}
                 </div>
                 <div>
                   <DialogTitle className="text-xl">{customer.name}</DialogTitle>
-                  <p className="text-sm text-[var(--color-text-secondary)]">
+                  <p className={cn(
+                    'text-sm font-medium',
+                    hasDebt ? 'text-[var(--color-error)]' : 'text-[var(--color-success)]'
+                  )}>
                     {hasDebt ? t('details.owesYou') : t('details.settledUp')}
                   </p>
                 </div>
@@ -179,8 +182,8 @@ export function CustomerDetailsModal({
                 className={cn(
                   'border-2',
                   hasDebt
-                    ? 'border-red-200 bg-red-50'
-                    : 'border-green-200 bg-green-50'
+                    ? 'border-[var(--color-error)]/30 bg-[var(--color-debt)]'
+                    : 'border-[var(--color-success)]/30 bg-[var(--color-payment)]'
                 )}
               >
                 <CardContent className="pt-6">
@@ -191,7 +194,7 @@ export function CustomerDetailsModal({
                     <p
                       className={cn(
                         'text-3xl font-bold',
-                        hasDebt ? 'text-red-600' : 'text-green-600'
+                        hasDebt ? 'text-[var(--color-debt-text)]' : 'text-[var(--color-payment-text)]'
                       )}
                     >
                       {formatCurrency(Math.abs(customer.balance))}
@@ -212,7 +215,7 @@ export function CustomerDetailsModal({
                     onAddDebt?.(customer);
                     onOpenChange(false);
                   }}
-                  className="bg-red-500 hover:bg-red-600 text-white"
+                  className="bg-[var(--color-error)] hover:bg-[var(--color-error)]/80 text-white"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   {t('details.addDebt')}
@@ -222,7 +225,7 @@ export function CustomerDetailsModal({
                     onRecordPayment?.(customer);
                     onOpenChange(false);
                   }}
-                  className="bg-green-500 hover:bg-green-600 text-white"
+                  className="bg-[var(--color-success)] hover:bg-[var(--color-success)]/80 text-white"
                 >
                   <Minus className="h-4 w-4 mr-2" />
                   {t('details.recordPayment')}
@@ -265,7 +268,7 @@ export function CustomerDetailsModal({
                         href={`https://wa.me/${customer.phone.replace(/\D/g, '')}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-green-600 hover:text-green-700"
+                        className="text-[var(--color-success)] hover:text-[var(--color-success)]/80"
                       >
                         <Button variant="ghost" size="icon" className="h-8 w-8">
                           <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
@@ -327,14 +330,14 @@ export function CustomerDetailsModal({
                             className={cn(
                               'w-10 h-10 rounded-full flex items-center justify-center',
                               transaction.type === 'debt'
-                                ? 'bg-red-100'
-                                : 'bg-green-100'
+                                ? 'bg-[var(--color-debt)]'
+                                : 'bg-[var(--color-payment)]'
                             )}
                           >
                             {transaction.type === 'debt' ? (
-                              <TrendingUp className="h-5 w-5 text-red-500" />
+                              <TrendingUp className="h-5 w-5 text-[var(--color-error)]" />
                             ) : (
-                              <TrendingDown className="h-5 w-5 text-green-500" />
+                              <TrendingDown className="h-5 w-5 text-[var(--color-success)]" />
                             )}
                           </div>
                           <div>
@@ -344,8 +347,8 @@ export function CustomerDetailsModal({
                                 className={cn(
                                   'font-medium',
                                   transaction.type === 'debt'
-                                    ? 'border-red-200 text-red-700'
-                                    : 'border-green-200 text-green-700'
+                                    ? 'border-[var(--color-error)]/50 text-[var(--color-debt-text)]'
+                                    : 'border-[var(--color-success)]/50 text-[var(--color-payment-text)]'
                                 )}
                               >
                                 {transaction.type === 'debt'
@@ -369,8 +372,8 @@ export function CustomerDetailsModal({
                           className={cn(
                             'font-semibold text-lg',
                             transaction.type === 'debt'
-                              ? 'text-red-600'
-                              : 'text-green-600'
+                              ? 'text-[var(--color-debt-text)]'
+                              : 'text-[var(--color-payment-text)]'
                           )}
                         >
                           {transaction.type === 'debt' ? '+' : '-'}

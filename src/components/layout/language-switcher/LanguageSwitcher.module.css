@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  width: 100%;
 }
 
 .trigger {
@@ -16,6 +17,7 @@
   font-size: 14px;
   color: var(--color-text);
   min-height: 44px;
+  width: 100%;
 }
 
 .trigger:hover {

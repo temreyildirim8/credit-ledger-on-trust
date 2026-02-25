@@ -23,7 +23,7 @@ export function ThemeToggle({ className, variant = "full" }: ThemeToggleProps) {
         "flex items-center gap-3 rounded-lg transition-all duration-200 group",
         "text-text-secondary hover:bg-surface-alt hover:text-text",
         "relative overflow-hidden",
-        isCompact ? "justify-center h-9 w-9 px-0 py-0" : "px-3 py-2.5 w-full",
+        isCompact ? "justify-center h-9 w-9 px-0 py-0" : "justify-start px-3 py-2.5 w-full",
         className
       )}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
