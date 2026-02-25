@@ -471,6 +471,8 @@
     "count": "{count} cliente | {count} clientes",
     "form": {
       "title": "Agregar Nuevo Cliente",
+      "editTitle": "Editar Cliente",
+      "editDescription": "Actualiza la información del cliente a continuación.",
       "name": "Nombre Completo",
       "namePlaceholder": "Ingresa el nombre del cliente",
       "phone": "Número de Teléfono",
@@ -478,7 +480,8 @@
       "address": "Dirección",
       "addressPlaceholder": "Ingresa la dirección (opcional)",
       "notesPlaceholder": "Notas adicionales sobre este cliente",
-      "submit": "Agregar Cliente"
+      "submit": "Agregar Cliente",
+      "saveChanges": "Guardar Cambios"
     },
     "details": {
       "totalDebt": "Deuda Total",
@@ -505,6 +508,7 @@
       "editCustomer": "Editar Cliente"
     },
     "success": "Cliente agregado con éxito",
+    "editSuccess": "Cliente actualizado con éxito",
     "error": "Error al agregar cliente",
     "validation": {
       "nameTooShort": "El nombre debe tener al menos 2 caracteres",

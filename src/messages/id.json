@@ -477,6 +477,8 @@
     },
     "form": {
       "title": "Tambah Pelanggan Baru",
+      "editTitle": "Edit Pelanggan",
+      "editDescription": "Perbarui informasi pelanggan di bawah.",
       "name": "Nama Lengkap",
       "namePlaceholder": "Masukkan nama pelanggan",
       "phone": "Nomor Telepon",
@@ -484,7 +486,8 @@
       "address": "Alamat",
       "addressPlaceholder": "Masukkan alamat (opsional)",
       "notesPlaceholder": "Catatan tambahan tentang pelanggan ini",
-      "submit": "Tambah Pelanggan"
+      "submit": "Tambah Pelanggan",
+      "saveChanges": "Simpan Perubahan"
     },
     "details": {
       "totalDebt": "Total Hutang",
@@ -511,6 +514,7 @@
       "editCustomer": "Edit Pelanggan"
     },
     "success": "Pelanggan berhasil ditambahkan",
+    "editSuccess": "Pelanggan berhasil diperbarui",
     "error": "Gagal menambahkan pelanggan",
     "validation": {
       "nameTooShort": "Nama harus minimal 2 karakter",

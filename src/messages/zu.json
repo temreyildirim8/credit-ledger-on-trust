@@ -497,6 +497,8 @@
     },
     "form": {
       "title": "Yengeza Umthengi Omusha",
+      "editTitle": "Hlela Umthengi",
+      "editDescription": "Vuselela ulwazi lomthengi ngezansi.",
       "name": "Igama Eliqophelo",
       "namePlaceholder": "Faka igama lomthengi",
       "phone": "Inombolo Yecefone",
@@ -504,7 +506,8 @@
       "address": "Ikheli",
       "addressPlaceholder": "Faka ikheli (okukhetha)",
       "notesPlaceholder": "Amanothi angeziwe ngalomthengi",
-      "submit": "Yengeza Umthengi"
+      "submit": "Yengeza Umthengi",
+      "saveChanges": "Gcina Utshintsho"
     },
     "details": {
       "totalDebt": "Ikredithi Esisonke",
@@ -531,6 +534,7 @@
       "editCustomer": "Hlela Umthengi"
     },
     "success": "Umthengi yengezwekahle",
+    "editSuccess": "Umthengi uvuselelwekahle",
     "error": "Yehlula ukwengeza umthengi",
     "validation": {
       "nameTooShort": "Igama kufanele libe nobuncane bezinhlamvu ezingu-2",

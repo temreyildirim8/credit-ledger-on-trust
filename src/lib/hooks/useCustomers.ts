@@ -263,11 +263,75 @@ export function useCustomers() {
     }
   };
 
+  const updateCustomer = async (customerId: string, updates: {
+    name?: string;
+    phone?: string;
+    address?: string;
+    notes?: string;
+  }): Promise<Customer> => {
+    if (!user?.id) throw new Error('User not authenticated');
+
+    // Find the current customer to get existing values
+    const currentCustomer = customers.find((c) => c.id === customerId);
+    if (!currentCustomer) throw new Error('Customer not found');
+
+    // Optimistic update
+    const optimisticCustomer: Customer = {
+      ...currentCustomer,
+      name: updates.name ?? currentCustomer.name,
+      phone: updates.phone ?? currentCustomer.phone,
+      address: updates.address ?? currentCustomer.address,
+      notes: updates.notes ?? currentCustomer.notes,
+    };
+
+    setCustomers(customers.map((c) => (c.id === customerId ? optimisticCustomer : c)));
+
+    if (navigator.onLine) {
+      try {
+        await customersService.updateCustomer(customerId, {
+          name: updates.name,
+          phone: updates.phone || null,
+          address: updates.address || null,
+          notes: updates.notes || null,
+        });
+
+        // Update cache
+        await offlineCache.setCustomer(customerToCached(optimisticCustomer, user.id));
+
+        return optimisticCustomer;
+      } catch (error) {
+        console.error('Error updating customer:', error);
+        // Revert on error
+        loadCustomers();
+        throw error;
+      }
+    } else {
+      // Queue for sync
+      await offlineCache.addToSyncQueue({
+        action_type: 'update_customer',
+        payload: {
+          customerId,
+          updates,
+        },
+        client_timestamp: new Date().toISOString(),
+        retry_count: 0,
+        max_retries: 3,
+        status: 'pending',
+      });
+
+      // Update cache
+      await offlineCache.setCustomer(customerToCached(optimisticCustomer, user.id));
+
+      return optimisticCustomer;
+    }
+  };
+
   return {
     customers,
     loading,
     isOffline,
     createCustomer,
+    updateCustomer,
     refreshCustomers,
     archiveCustomer,
     deleteCustomer,

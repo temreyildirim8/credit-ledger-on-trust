@@ -8,6 +8,7 @@ import { CustomerTable } from '@/components/customers/CustomerTable';
 import { CustomerCard } from '@/components/customers/CustomerCard';
 import { CustomerDetailsModal } from '@/components/customers/CustomerDetailsModal';
 import { AddCustomerModal } from '@/components/customers/AddCustomerModal';
+import { EditCustomerModal } from '@/components/customers/EditCustomerModal';
 import { DestructiveActionModal } from '@/components/customers/DestructiveActionModal';
 import { AddTransactionModal } from '@/components/transactions/AddTransactionModal';
 import { Button } from '@/components/ui/button';
@@ -19,10 +20,11 @@ import { Customer } from '@/lib/services/customers.service';
 import { toast } from 'sonner';
 
 export default function CustomersPage() {
-  const { customers, loading, createCustomer, refreshCustomers, archiveCustomer, deleteCustomer } = useCustomers();
+  const { customers, loading, createCustomer, updateCustomer, refreshCustomers, archiveCustomer, deleteCustomer } = useCustomers();
   const { createTransaction } = useTransactions();
   const { isPaidPlan } = useSubscription();
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [transactionModalOpen, setTransactionModalOpen] = useState(false);
   const [destructiveModalOpen, setDestructiveModalOpen] = useState(false);
@@ -118,8 +120,13 @@ export default function CustomersPage() {
   };
 
   const handleEdit = (customer: Customer) => {
-    // TODO: Implement edit customer modal
-    console.log('Edit customer:', customer.name);
+    setSelectedCustomer(customer);
+    setEditModalOpen(true);
+  };
+
+  const handleEditSave = async (customerId: string, updates: { name: string; phone?: string; address?: string; notes?: string }) => {
+    await updateCustomer(customerId, updates);
+    refreshCustomers();
   };
 
   const handleArchive = (customer: Customer) => {
@@ -293,6 +300,14 @@ export default function CustomersPage() {
         onSave={createCustomer}
         currentCustomerCount={customers.length}
         isPaidPlan={isPaidPlan}
+      />
+
+      {/* Edit Customer Modal */}
+      <EditCustomerModal
+        open={editModalOpen}
+        onOpenChange={setEditModalOpen}
+        onSave={handleEditSave}
+        customer={selectedCustomer}
       />
 
       {/* Customer Details Modal */}

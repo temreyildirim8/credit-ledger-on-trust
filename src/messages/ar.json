@@ -491,6 +491,8 @@
     "count": "{count} عميل | {count} عميل",
     "form": {
       "title": "إضافة عميل جديد",
+      "editTitle": "تعديل العميل",
+      "editDescription": "قم بتحديث معلومات العميل أدناه.",
       "name": "الاسم الكامل",
       "namePlaceholder": "أدخل اسم العميل",
       "phone": "رقم الهاتف",
@@ -498,7 +500,8 @@
       "address": "العنوان",
       "addressPlaceholder": "أدخل العنوان (اختياري)",
       "notesPlaceholder": "ملاحظات إضافية حول هذا العميل",
-      "submit": "إضافة عميل"
+      "submit": "إضافة عميل",
+      "saveChanges": "حفظ التغييرات"
     },
     "details": {
       "totalDebt": "إجمالي الدين",
@@ -525,6 +528,7 @@
       "editCustomer": "تعديل العميل"
     },
     "success": "تمت إضافة العميل بنجاح",
+    "editSuccess": "تم تحديث العميل بنجاح",
     "error": "فشل إضافة العميل",
     "validation": {
       "nameTooShort": "يجب أن يكون الاسم حرفين على الأقل",

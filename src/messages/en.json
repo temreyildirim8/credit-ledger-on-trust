@@ -463,6 +463,8 @@
     },
     "form": {
       "title": "Add New Customer",
+      "editTitle": "Edit Customer",
+      "editDescription": "Update customer information below.",
       "name": "Full Name",
       "namePlaceholder": "Enter customer name",
       "phone": "Phone Number",
@@ -470,7 +472,8 @@
       "address": "Address",
       "addressPlaceholder": "Enter address (optional)",
       "notesPlaceholder": "Additional notes about this customer",
-      "submit": "Add Customer"
+      "submit": "Add Customer",
+      "saveChanges": "Save Changes"
     },
     "details": {
       "totalDebt": "Total Debt",
@@ -497,6 +500,7 @@
       "editCustomer": "Edit Customer"
     },
     "success": "Customer added successfully",
+    "editSuccess": "Customer updated successfully",
     "error": "Failed to add customer",
     "validation": {
       "nameTooShort": "Name must be at least 2 characters",

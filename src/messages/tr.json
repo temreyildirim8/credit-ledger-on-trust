@@ -482,6 +482,8 @@
     "count": "{count} müşteri | {count} müşteri",
     "form": {
       "title": "Yeni Müşteri Ekle",
+      "editTitle": "Müşteriyi Düzenle",
+      "editDescription": "Müşteri bilgilerini aşağıda güncelleyin.",
       "name": "Tam Ad",
       "namePlaceholder": "Müşteri adını girin",
       "phone": "Telefon Numarası",
@@ -489,7 +491,8 @@
       "address": "Adres",
       "addressPlaceholder": "Adres girin (isteğe bağlı)",
       "notesPlaceholder": "Bu müşteri hakkında ek notlar",
-      "submit": "Müşteri Ekle"
+      "submit": "Müşteri Ekle",
+      "saveChanges": "Değişiklikleri Kaydet"
     },
     "details": {
       "totalDebt": "Toplam Borç",
@@ -516,6 +519,7 @@
       "editCustomer": "Müşteriyi Düzenle"
     },
     "success": "Müşteri başarıyla eklendi",
+    "editSuccess": "Müşteri başarıyla güncellendi",
     "error": "Müşteri eklenemedi",
     "validation": {
       "nameTooShort": "İsim en az 2 karakter olmalı",
