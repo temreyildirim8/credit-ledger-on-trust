@@ -174,7 +174,12 @@ export function Sidebar({ className }: SidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-2 py-4 space-y-1" data-tour="sidebar-nav">
+      <nav
+        className="flex-1 px-2 py-4 space-y-1"
+        data-tour="sidebar-nav"
+        onDoubleClick={toggleSidebar}
+        title="Double-click to toggle sidebar"
+      >
         {navItems.map((item) => {
           const isActive = pathname === `${basePath}${item.href}`;
           const Icon = item.icon;
@@ -249,7 +254,7 @@ export function Sidebar({ className }: SidebarProps) {
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
             <div className={isCollapsed ? "flex justify-center" : ""}>
-              <LanguageSwitcher />
+              <LanguageSwitcher variant={isCollapsed ? "compact" : "full"} />
             </div>
           </TooltipTrigger>
           {isCollapsed && (

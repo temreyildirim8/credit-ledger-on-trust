@@ -26,12 +26,19 @@ const localeFlags: Record<Locale, string> = {
   zu: "🇿🇦",
 };
 
-export default function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  variant?: "full" | "compact";
+}
+
+export default function LanguageSwitcher({
+  variant = "full",
+}: LanguageSwitcherProps) {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const isCompact = variant === "compact";
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -56,29 +63,33 @@ export default function LanguageSwitcher() {
     <div className={styles.container} ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={styles.trigger}
+        className={clsx(styles.trigger, isCompact && styles.triggerCompact)}
         aria-label="Select language"
         aria-expanded={isOpen}
       >
         <span className={styles.flag}>{localeFlags[locale]}</span>
-        <span className={styles.label}>{localeNames[locale]}</span>
-        <svg
-          className={clsx(styles.icon, isOpen && styles.iconOpen)}
-          width="12"
-          height="8"
-          viewBox="0 0 12 8"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            d="M1 1.5L6 6.5L11 1.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        {!isCompact && (
+          <span className={styles.label}>{localeNames[locale]}</span>
+        )}
+        {!isCompact && (
+          <svg
+            className={clsx(styles.icon, isOpen && styles.iconOpen)}
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
       </button>
 
       {isOpen && (
