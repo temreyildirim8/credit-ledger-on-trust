@@ -99,6 +99,7 @@
     "logout": "Çıkış Yap",
     "signOut": "Çıkış Yap",
     "toggleTheme": "Tema Değiştir",
+    "language": "Dil",
     "features": "Özellikler",
     "pricing": "Fiyatlandırma",
     "about": "Hakkında",
@@ -679,7 +680,8 @@
         "helpCenter": "Yardım Merkezi",
         "contactSupport": "Destekle İletişime Geç",
         "callSupport": "Destek Ara",
-        "rateUs": "Mağazada Bizi Değerlendirin"
+        "rateUs": "Mağazada Bizi Değerlendirin",
+        "enjoyingApp": "Uygulamayı beğendiniz mi?"
       },
       "account": {
         "title": "Hesap",

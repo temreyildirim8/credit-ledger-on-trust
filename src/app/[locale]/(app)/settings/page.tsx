@@ -566,7 +566,7 @@ export default function SettingsPage() {
                     {t('sections.support.callSupport')}
                   </Button>
                   <div className="border-t border-border pt-3">
-                    <p className="text-sm text-text-secondary text-center mb-2">Enjoying the app?</p>
+                    <p className="text-sm text-text-secondary text-center mb-2">{t('sections.support.enjoyingApp')}</p>
                     <Button variant="outline" className="w-full">
                       {t('sections.support.rateUs')}
                     </Button>

@@ -36,6 +36,7 @@ export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const [authError, setAuthError] = useState<AuthError>(null);
   const [resendingEmail, setResendingEmail] = useState(false);
   const [otpExpiredEmail, setOtpExpiredEmail] = useState("");
@@ -86,6 +87,9 @@ export function LoginForm() {
         "[LoginForm] Sign in successful, waiting for auth state update...",
       );
       toast.success(t("login.success") || "Signed in successfully");
+
+      // Show redirecting loader
+      setIsRedirecting(true);
 
       // Wait for auth state to propagate through context
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -179,6 +183,18 @@ export function LoginForm() {
       setResendingOtpEmail(false);
     }
   };
+
+  // Show full-page loader while redirecting after successful login
+  if (isRedirecting) {
+    return (
+      <Card className="w-full max-w-md">
+        <CardContent className="flex flex-col items-center justify-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-primary mb-4" />
+          <p className="text-muted-foreground">{t("login.redirecting") || "Redirecting..."}</p>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Card className="w-full max-w-md">

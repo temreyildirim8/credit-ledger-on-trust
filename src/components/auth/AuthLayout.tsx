@@ -35,6 +35,7 @@ export function AuthLayout({
           src="/images/auth-background.webp"
           alt=""
           fill
+          sizes="50vw"
           className="object-cover"
           priority
         />

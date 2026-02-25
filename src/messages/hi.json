@@ -99,6 +99,7 @@
     "logout": "लॉग आउट",
     "signOut": "साइन आउट",
     "toggleTheme": "थीम बदलें",
+    "language": "भाषा",
     "features": "सुविधाएं",
     "pricing": "मूल्य निर्धारण",
     "about": "हमारे बारे में",
@@ -534,7 +535,8 @@
         "helpCenter": "सहायता केंद्र",
         "contactSupport": "सहायता से संपर्क करें",
         "callSupport": "सहायता कॉल करें",
-        "rateUs": "स्टोर पर हमें रेट करें"
+        "rateUs": "स्टोर पर हमें रेट करें",
+        "enjoyingApp": "ऐप का आनंद ले रहे हैं?"
       },
       "account": {
         "title": "खाता",

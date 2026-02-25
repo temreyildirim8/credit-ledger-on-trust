@@ -99,6 +99,7 @@
     "logout": "Cerrar Sesión",
     "signOut": "Cerrar Sesión",
     "toggleTheme": "Cambiar Tema",
+    "language": "Idioma",
     "features": "Características",
     "pricing": "Precios",
     "about": "Acerca de",
@@ -534,7 +535,8 @@
         "helpCenter": "Centro de Ayuda",
         "contactSupport": "Contactar Soporte",
         "callSupport": "Llamar a Soporte",
-        "rateUs": "Califícanos en la Tienda"
+        "rateUs": "Califícanos en la Tienda",
+        "enjoyingApp": "¿Disfrutando la aplicación?"
       },
       "account": {
         "title": "Cuenta",

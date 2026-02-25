@@ -99,6 +99,7 @@
     "logout": "تسجيل الخروج",
     "signOut": "تسجيل الخروج",
     "toggleTheme": "تغيير السمة",
+    "language": "اللغة",
     "features": "الميزات",
     "pricing": "التسعير",
     "about": "حول",
@@ -684,7 +685,8 @@
         "helpCenter": "مركز المساعدة",
         "contactSupport": "اتصل بالدعم",
         "callSupport": "اتصل بالدعم",
-        "rateUs": "قمنا على المتجر"
+        "rateUs": "قمنا على المتجر",
+        "enjoyingApp": "هل تستمتع بالتطبيق؟"
       },
       "account": {
         "title": "الحساب",

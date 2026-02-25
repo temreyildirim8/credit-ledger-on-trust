@@ -131,6 +131,6 @@ export const config = {
   // Match all paths except api, _next/static, _next/image, favicon.ico, etc.
   matcher: [
     // Match all paths except static files and API routes
-    "/((?!api|_next/static|_next/image|favicon.ico|manifest.json|icons).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|manifest.json|icons|images).*)",
   ],
 };

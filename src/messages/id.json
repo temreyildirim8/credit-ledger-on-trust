@@ -99,6 +99,7 @@
     "logout": "Keluar",
     "signOut": "Keluar",
     "toggleTheme": "Ganti Tema",
+    "language": "Bahasa",
     "features": "Fitur",
     "pricing": "Harga",
     "about": "Tentang",
@@ -534,7 +535,8 @@
         "helpCenter": "Pusat Bantuan",
         "contactSupport": "Hubungi Dukungan",
         "callSupport": "Panggil Dukungan",
-        "rateUs": "Beri Kami Nilai di Toko"
+        "rateUs": "Beri Kami Nilai di Toko",
+        "enjoyingApp": "Menikmati aplikasinya?"
       },
       "account": {
         "title": "Akun",

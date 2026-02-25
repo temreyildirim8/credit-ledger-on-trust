@@ -99,6 +99,7 @@
     "logout": "Phuma",
     "signOut": "Phuma",
     "toggleTheme": "Shintsha Isitayela",
+    "language": "Ulimi",
     "features": "Izici",
     "pricing": "Amanani",
     "about": "Nge",
@@ -534,7 +535,8 @@
         "helpCenter": "Isikhungo Sokusiza",
         "contactSupport": "Thinta Usizo",
         "callSupport": "Shintisa Usizo",
-        "rateUs": "Sasisa Isitolo"
+        "rateUs": "Sasisa Isitolo",
+        "enjoyingApp": "Uyajabula ngohlelo?"
       },
       "account": {
         "title": "I-Akhawunti",

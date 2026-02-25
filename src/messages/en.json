@@ -99,6 +99,7 @@
     "logout": "Sign Out",
     "signOut": "Sign Out",
     "toggleTheme": "Toggle Theme",
+    "language": "Language",
     "features": "Features",
     "pricing": "Pricing",
     "about": "About",
@@ -603,7 +604,8 @@
         "helpCenter": "Help Center",
         "contactSupport": "Contact Support",
         "callSupport": "Call Support",
-        "rateUs": "Rate Us on Store"
+        "rateUs": "Rate Us on Store",
+        "enjoyingApp": "Enjoying the app?"
       },
       "account": {
         "title": "Account",
@@ -661,7 +663,8 @@
       "emailNotConfirmedTitle": "Email Not Verified",
       "emailNotConfirmedDescription": "Your email address has not been verified yet. Please check your inbox and click the verification link.",
       "resendEmailButton": "Resend Verification Email",
-      "goToLogin": "Go to Login Page"
+      "goToLogin": "Go to Login Page",
+      "redirecting": "Redirecting..."
     },
     "signup": {
       "title": "Create Account",
