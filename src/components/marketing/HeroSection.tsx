@@ -49,7 +49,7 @@ export function HeroSection() {
                 {t("cta")}
               </Link>
               <Link
-                href="#features"
+                href="/features"
                 className="inline-flex items-center justify-center gap-3 bg-white border-2 border-[#f1f5f9] text-[#0f172a] px-[42px] py-[22px] rounded-full text-[18px] font-bold transition-all duration-200 hover:border-[#e2e8f0]"
               >
                 <Play className="h-5 w-5" />

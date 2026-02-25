@@ -20,7 +20,7 @@ export function MarketingFooter() {
       links: [
         { name: tNav('features'), href: "/features" },
         { name: tNav('pricing'), href: "/pricing" },
-        { name: t('product.security'), href: "#" },
+        { name: t('product.security'), href: "" }, // TODO: Add security page URL
         { name: t('product.faq'), href: "#" },
       ],
     },
@@ -54,9 +54,9 @@ export function MarketingFooter() {
   ];
 
   const socialLinks = [
-    { name: "Twitter", icon: Twitter, href: "#" },
-    { name: "GitHub", icon: Github, href: "#" },
-    { name: "LinkedIn", icon: Linkedin, href: "#" },
+    { name: "Twitter", icon: Twitter, href: "" }, // TODO: Add social URLs
+    { name: "GitHub", icon: Github, href: "" },
+    { name: "LinkedIn", icon: Linkedin, href: "" },
   ];
 
   return (
@@ -107,6 +107,18 @@ export function MarketingFooter() {
             <div className="flex gap-3">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
+                // Render as span if no href (coming soon)
+                if (!social.href) {
+                  return (
+                    <span
+                      key={social.name}
+                      className="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center opacity-50 cursor-not-allowed"
+                      aria-label={`${social.name} (coming soon)`}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </span>
+                  );
+                }
                 return (
                   <a
                     key={social.name}
@@ -128,12 +140,18 @@ export function MarketingFooter() {
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors text-sm py-1.5 block min-h-[44px] flex items-center"
-                    >
-                      {link.name}
-                    </Link>
+                    {link.href ? (
+                      <Link
+                        href={link.href}
+                        className="text-gray-400 hover:text-white transition-colors text-sm py-1.5 block min-h-[44px] flex items-center"
+                      >
+                        {link.name}
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500 text-sm py-1.5 block min-h-[44px] flex items-center cursor-not-allowed">
+                        {link.name}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>

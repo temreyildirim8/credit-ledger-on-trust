@@ -32,7 +32,7 @@ export function MarketingNavbar() {
   // Nav items matching Figma design: Product, Features, Pricing, Company
   const navItems = [
     { name: t('product'), href: "/", onClick: handleProductClick },
-    { name: t('features'), href: "/#features" },
+    { name: t('features'), href: "/features" },
     { name: t('pricing'), href: "/pricing" },
     { name: t('company'), href: "/about" },
   ];
