@@ -228,7 +228,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         className={`${manrope.variable} ${inter.variable} ${notoSansArabic.variable} antialiased`}
         suppressHydrationWarning
       >
-        <ThemeProvider defaultTheme="dark" storageKey="credit-ledger-theme">
+        <ThemeProvider defaultTheme="light" cookieName="credit-ledger-theme">
           <NextIntlClientProvider messages={messages}>
             {/* Auth context must be provided via AuthProviderWrapper */}
             <AuthProviderWrapper>{children}</AuthProviderWrapper>

@@ -6,10 +6,9 @@ import {
   useEffect,
   useState,
   useCallback,
-  useSyncExternalStore,
 } from "react";
 
-type Theme = "light" | "dark" | "system";
+type Theme = "light" | "dark";
 
 interface ThemeContextValue {
   theme: Theme;
@@ -30,47 +29,43 @@ export function useTheme() {
 interface ThemeProviderProps {
   children: React.ReactNode;
   defaultTheme?: Theme;
-  storageKey?: string;
+  cookieName?: string;
 }
 
-// Subscribe to system color scheme changes
-function subscribeToMediaQuery(callback: () => void) {
-  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  mediaQuery.addEventListener("change", callback);
-  return () => mediaQuery.removeEventListener("change", callback);
+// Helper to get cookie value
+function getCookie(name: string): string | null {
+  if (typeof document === "undefined") return null;
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(";").shift() ?? null;
+  return null;
 }
 
-// Server snapshot always returns "light"
-function getServerSnapshot() {
-  return "light" as const;
+// Helper to set cookie
+function setCookie(name: string, value: string, days: number = 365) {
+  if (typeof document === "undefined") return;
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = `${name}=${value}; expires=${expires}; path=/; SameSite=Lax`;
 }
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
-  storageKey = "credit-ledger-theme",
+  defaultTheme = "light",
+  cookieName = "credit-ledger-theme",
 }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window === "undefined") return defaultTheme;
-    const stored = localStorage.getItem(storageKey) as Theme;
-    return stored || defaultTheme;
+    const stored = getCookie(cookieName) as Theme | null;
+    // Only accept valid theme values, otherwise use default
+    if (stored === "light" || stored === "dark") {
+      return stored;
+    }
+    return defaultTheme;
   });
 
-  // Use useSyncExternalStore to derive the system theme reactively
-  // without calling setState in an effect.
-  const systemTheme = useSyncExternalStore(
-    subscribeToMediaQuery,
-    () =>
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? ("dark" as const)
-        : ("light" as const),
-    getServerSnapshot,
-  );
+  const actualTheme: "light" | "dark" = theme;
 
-  const actualTheme: "light" | "dark" =
-    theme === "system" ? systemTheme : theme;
-
-  // Apply theme class to document element (external DOM sync — no setState)
+  // Apply theme class to document element
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove("light", "dark");
@@ -79,10 +74,10 @@ export function ThemeProvider({
 
   const setTheme = useCallback(
     (newTheme: Theme) => {
-      localStorage.setItem(storageKey, newTheme);
+      setCookie(cookieName, newTheme);
       setThemeState(newTheme);
     },
-    [storageKey],
+    [cookieName],
   );
 
   return (
