@@ -15,9 +15,11 @@ function CheckoutSuccessContent() {
   const router = useRouter();
   const locale = useLocale();
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
 
-  const sessionId = searchParams.get('session_id');
+  // Session ID available for future server-side verification
+  const _sessionId = searchParams.get('session_id');
+  void _sessionId; // Prevent unused warning while keeping for future use
 
   useEffect(() => {
     // Trigger confetti animation
