@@ -128,10 +128,11 @@ export function PricingCards() {
                       /{priceInfo.period}
                     </span>
                   )}
-                  {priceInfo.savings && (
+                  {/* Always show "Save 17%" badge on PRO card (yearly savings) */}
+                  {plan.key === 'pro' && (
                     <div className="mt-1">
                       <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 text-xs">
-                        {priceInfo.savings}
+                        {t('save17')}
                       </Badge>
                     </div>
                   )}

@@ -13,7 +13,7 @@ interface ForceLightThemeProps {
  */
 export function ForceLightTheme({ children }: ForceLightThemeProps) {
   const { theme, setTheme } = useTheme();
-  const initialThemeRef = useRef<string | null>(null);
+  const initialThemeRef = useRef<"light" | "dark" | null>(null);
 
   useEffect(() => {
     // Store the current theme preference on first mount
