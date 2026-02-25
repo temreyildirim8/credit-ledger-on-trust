@@ -842,6 +842,30 @@
     "sync": "Sincronizar",
     "willSyncWhenOnline": "Se sincronizará cuando haya conexión"
   },
+  "checkout": {
+    "success": {
+      "title": "¡Pago Exitoso!",
+      "description": "¡Gracias por actualizar! Tu suscripción ahora está activa.",
+      "verifying": "Verificando tu pago...",
+      "errorTitle": "Verificación Fallida",
+      "unlocked": "Funciones Premium Desbloqueadas",
+      "features": {
+        "unlimitedCustomers": "Clientes ilimitados",
+        "smsReminders": "Recordatorios de pago por SMS",
+        "advancedReports": "Informes avanzados",
+        "prioritySupport": "Soporte prioritario"
+      },
+      "goToDashboard": "Ir al Panel",
+      "backToSettings": "Volver a Configuración"
+    },
+    "cancel": {
+      "title": "Pago Cancelado",
+      "description": "Tu pago fue cancelado. No se realizaron cargos.",
+      "helpText": "Si experimentaste algún problema durante el pago, contacta a nuestro equipo de soporte.",
+      "tryAgain": "Intentar de Nuevo",
+      "backToPricing": "Volver a Precios"
+    }
+  },
   "legal": {
     "title": "Centro Legal",
     "subtitle": "Encuentra todos nuestros documentos y políticas legales en un solo lugar",

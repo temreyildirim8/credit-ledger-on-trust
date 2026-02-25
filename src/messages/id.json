@@ -986,6 +986,30 @@
     "sync": "Sinkronkan",
     "willSyncWhenOnline": "Akan disinkronkan saat daring"
   },
+  "checkout": {
+    "success": {
+      "title": "Pembayaran Berhasil!",
+      "description": "Terima kasih telah meningkatkan! Langganan Anda sekarang aktif.",
+      "verifying": "Memverifikasi pembayaran Anda...",
+      "errorTitle": "Verifikasi Gagal",
+      "unlocked": "Fitur Premium Tidak Terkunci",
+      "features": {
+        "unlimitedCustomers": "Pelanggan tidak terbatas",
+        "smsReminders": "Pengingat pembayaran SMS",
+        "advancedReports": "Laporan lanjutan",
+        "prioritySupport": "Dukungan prioritas"
+      },
+      "goToDashboard": "Ke Dashboard",
+      "backToSettings": "Kembali ke Pengaturan"
+    },
+    "cancel": {
+      "title": "Pembayaran Dibatalkan",
+      "description": "Pembayaran Anda dibatalkan. Tidak ada biaya yang dikenakan.",
+      "helpText": "Jika Anda mengalami masalah selama pembayaran, hubungi tim dukungan kami.",
+      "tryAgain": "Coba Lagi",
+      "backToPricing": "Kembali ke Harga"
+    }
+  },
   "legal": {
     "title": "Pusat Hukum",
     "subtitle": "Temukan semua dokumen dan kebijakan hukum kami di satu tempat",

@@ -1006,6 +1006,30 @@
     "sync": "Vumelanisa",
     "willSyncWhenOnline": "Kuzovumelaniswa uma ku-inthanethi"
   },
+  "checkout": {
+    "success": {
+      "title": "Ukukhokha Kupumelele!",
+      "description": "Siyabonga ngokuthuthukisa! Ukubhalisa kwakho manje kuyasebenza.",
+      "verifying": "Kuqinisekiswa ukukokha kwakho...",
+      "errorTitle": "Ukuqinisekisa Kuhlulekile",
+      "unlocked": "Izici Ezivelele Zivuliwe",
+      "features": {
+        "unlimitedCustomers": "Abathengi abangakhawulelwanga",
+        "smsReminders": "Izikhumbuzi zokukhokha ze-SMS",
+        "advancedReports": "Izibalo ezithuthukisiwe",
+        "prioritySupport": "Usizo oluphambili"
+      },
+      "goToDashboard": "Yiya ku-Dashboard",
+      "backToSettings": "Buyela Ezilungiseleweni"
+    },
+    "cancel": {
+      "title": "Ukukhokha Kukhanseliwe",
+      "description": "Ukukhokha kwakho kukhanseliwe. Akukho izindleko ezithathiwe.",
+      "helpText": "Uma ubenezinkinga ngesikhathi sokukhokha, sicela uxhumane nethimba lethu losizo.",
+      "tryAgain": "Zama Futhi",
+      "backToPricing": "Buyela Ezintweni"
+    }
+  },
   "legal": {
     "title": "Isikhungo Somthetho",
     "subtitle": "Thola wonke amadokhumenti nobuhlelo bethu bomthetho indawo eyodwa",

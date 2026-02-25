@@ -1,11 +1,9 @@
 import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Check, Star, Building2 } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 import { Link } from '@/routing';
 import { DEFAULT_BRAND } from '@/lib/branding';
+import { PricingCards } from '@/components/pricing/PricingCards';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -23,12 +21,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
-
-const plans = [
-  { key: 'free', icon: null, featured: false },
-  { key: 'pro', icon: Star, featured: true },
-  { key: 'enterprise', icon: Building2, featured: false },
-];
 
 export default function PricingPage() {
   const t = useTranslations('pricing');
@@ -50,75 +42,7 @@ export default function PricingPage() {
       {/* Pricing Cards */}
       <section className="py-20 bg-surface dark:bg-[var(--color-surface)]">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 items-end">
-            {plans.map((plan) => {
-              const Icon = plan.icon;
-              return (
-                <Card
-                  key={plan.key}
-                  className={`border-2 flex flex-col ${
-                    plan.featured
-                      ? 'border-[var(--color-accent)] shadow-2xl relative z-10 md:scale-105 md:-my-4 bg-white dark:bg-gray-900'
-                      : 'border-[var(--color-border)]'
-                  }`}
-                >
-                  {plan.featured && (
-                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-accent)]">
-                      Most Popular
-                    </Badge>
-                  )}
-                  <CardHeader className="text-center pb-4">
-                    {Icon && (
-                      <div className="h-12 w-12 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center mx-auto mb-4">
-                        <Icon className="h-6 w-6 text-[var(--color-accent)]" />
-                      </div>
-                    )}
-                    <CardTitle className="font-display text-xl">
-                      {t(`${plan.key}.name`)}
-                    </CardTitle>
-                    <p className="text-[var(--color-text-secondary)] text-sm mt-2">
-                      {t(`${plan.key}.description`)}
-                    </p>
-                  </CardHeader>
-                  <CardContent className="pt-0 flex flex-col flex-1">
-                    <div className="text-center mb-6">
-                      <span className="text-4xl font-bold text-[var(--color-text)]">
-                        {t(`${plan.key}.price`)}
-                      </span>
-                      {plan.key !== 'enterprise' && (
-                        <span className="text-[var(--color-text-secondary)]">
-                          /{t(`${plan.key}.period`)}
-                        </span>
-                      )}
-                    </div>
-                    <ul className="space-y-3 mb-8 flex-grow">
-                      {t.raw(`${plan.key}.features`).map((feature: string, index: number) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-[var(--color-text)] text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      href="/login"
-                      className="block mt-auto"
-                    >
-                      <Button
-                        className={`w-full ${
-                          plan.featured
-                            ? 'bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]'
-                            : ''
-                        }`}
-                        variant={plan.featured ? 'default' : 'outline'}
-                      >
-                        {t(`${plan.key}.cta`)}
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+          <PricingCards />
         </div>
       </section>
 

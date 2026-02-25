@@ -999,6 +999,30 @@
     "stillHaveQuestions": "Still have questions?",
     "contactSupport": "Contact our support team"
   },
+  "checkout": {
+    "success": {
+      "title": "Payment Successful!",
+      "description": "Thank you for upgrading! Your subscription is now active.",
+      "verifying": "Verifying your payment...",
+      "errorTitle": "Verification Failed",
+      "unlocked": "Premium Features Unlocked",
+      "features": {
+        "unlimitedCustomers": "Unlimited customers",
+        "smsReminders": "SMS payment reminders",
+        "advancedReports": "Advanced reports",
+        "prioritySupport": "Priority support"
+      },
+      "goToDashboard": "Go to Dashboard",
+      "backToSettings": "Back to Settings"
+    },
+    "cancel": {
+      "title": "Checkout Cancelled",
+      "description": "Your checkout was cancelled. No charges were made.",
+      "helpText": "If you experienced any issues during checkout, please contact our support team for assistance.",
+      "tryAgain": "Try Again",
+      "backToPricing": "Back to Pricing"
+    }
+  },
   "legal": {
     "title": "Legal Center",
     "subtitle": "Find all our legal documents and policies in one place",

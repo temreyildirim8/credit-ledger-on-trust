@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { Check, Star, Building2, Zap, X } from 'lucide-react';
+import { Check, Star, Building2, Zap, X, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface SubscriptionUpgradeModalProps {
@@ -27,7 +27,7 @@ const plans = [
   { key: 'enterprise', icon: Building2, featured: false },
 ] as const;
 
-type PlanKey = typeof plans[number]['key'];
+type PlanKey = (typeof plans)[number]['key'];
 
 export function SubscriptionUpgradeModal({
   open,
@@ -47,21 +47,46 @@ export function SubscriptionUpgradeModal({
   const handleUpgrade = async () => {
     if (!selectedPlan) return;
 
-    setIsLoading(true);
-    try {
-      // TODO: Connect to Stripe/payment provider
-      // For now, simulate the upgrade process
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      if (selectedPlan === 'enterprise') {
-        toast.success(t('contactSalesSuccess'));
-      } else {
-        toast.success(t('upgradeSuccess', { plan: tPricing(`${selectedPlan}.name`) }));
-      }
-
+    // Enterprise plan should contact sales
+    if (selectedPlan === 'enterprise') {
+      toast.success(t('contactSalesSuccess'));
       onOpenChange(false);
       setSelectedPlan(null);
-    } catch {
+      return;
+    }
+
+    // Free plan should not trigger checkout
+    if (selectedPlan === 'free') {
+      toast.info(t('alreadyOnFree', { defaultValue: 'You are already on the Free plan.' }));
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      // Call the Stripe checkout API
+      const response = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          plan: selectedPlan,
+          interval: 'monthly',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to create checkout session');
+      }
+
+      // Redirect to Stripe Checkout
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
       toast.error(t('upgradeError'));
     } finally {
       setIsLoading(false);
@@ -140,12 +165,14 @@ export function SubscriptionUpgradeModal({
 
                   <ul className="space-y-2 mb-4">
                     {Array.isArray(tPricing.raw(`${plan.key}.features`)) &&
-                      tPricing.raw(`${plan.key}.features`).map((feature: string, index: number) => (
-                        <li key={index} className="flex items-start gap-2 text-sm">
-                          <Check className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
-                          <span className="text-text">{feature}</span>
-                        </li>
-                      ))}
+                      tPricing
+                        .raw(`${plan.key}.features`)
+                        .map((feature: string, index: number) => (
+                          <li key={index} className="flex items-start gap-2 text-sm">
+                            <Check className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
+                            <span className="text-text">{feature}</span>
+                          </li>
+                        ))}
                   </ul>
 
                   {isCurrent && (
@@ -176,7 +203,7 @@ export function SubscriptionUpgradeModal({
           >
             {isLoading ? (
               <span className="flex items-center gap-2">
-                <span className="animate-spin">...</span>
+                <Loader2 className="h-4 w-4 animate-spin" />
                 {t('processing')}
               </span>
             ) : selectedPlan === 'enterprise' ? (

@@ -997,6 +997,30 @@
       }
     }
   },
+  "checkout": {
+    "success": {
+      "title": "Ödeme Başarılı!",
+      "description": "Yükselttiğiniz için teşekkürler! Aboneliğiniz artık aktif.",
+      "verifying": "Ödemeniz doğrulanıyor...",
+      "errorTitle": "Doğrulama Başarısız",
+      "unlocked": "Premium Özellikler Açıldı",
+      "features": {
+        "unlimitedCustomers": "Sınırsız müşteri",
+        "smsReminders": "SMS ödeme hatırlatmaları",
+        "advancedReports": "Gelişmiş raporlar",
+        "prioritySupport": "Öncelikli destek"
+      },
+      "goToDashboard": "Panele Git",
+      "backToSettings": "Ayarlara Dön"
+    },
+    "cancel": {
+      "title": "Ödeme İptal Edildi",
+      "description": "Ödemeniz iptal edildi. Herhangi bir ücret alınmadı.",
+      "helpText": "Ödeme sırasında herhangi bir sorun yaşadıysanız, yardım için destek ekibimizle iletişime geçin.",
+      "tryAgain": "Tekrar Dene",
+      "backToPricing": "Fiyatlara Dön"
+    }
+  },
   "legal": {
     "title": "Yasal Merkez",
     "subtitle": "Tüm yasal belgelerimizi ve politikalarımızı tek bir yerde bulun",
