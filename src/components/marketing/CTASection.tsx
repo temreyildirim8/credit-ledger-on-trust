@@ -1,15 +1,20 @@
 import { Link } from "@/routing";
 import { ArrowRight, Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 /**
  * CTA section - Dark green gradient with signup call to action
  */
 export function CTASection() {
+  const t = useTranslations("cta");
+
   const benefits = [
-    "Free forever for up to 50 customers",
-    "Works 100% offline",
-    "No credit card required",
-    "Setup in 2 minutes",
+    t("benefit1"),
+    t("benefit2"),
+    t("benefit3"),
+    t("benefit4"),
+    t("benefit5"),
+    t("benefit6"),
   ];
 
   return (
@@ -23,10 +28,10 @@ export function CTASection() {
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
-          Meet money without borders
+          {t("title")}
         </h2>
         <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-          Join thousands of shop owners who&apos;ve gone digital. Start tracking your credit ledger today.
+          {t("description")}
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -34,12 +39,12 @@ export function CTASection() {
             href="/login"
             className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
-            Get Started for Free
+            {t("cta")}
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
           {benefits.map((benefit, index) => (
             <div key={index} className="flex items-center gap-3 text-left">
               <div className="flex-shrink-0 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">

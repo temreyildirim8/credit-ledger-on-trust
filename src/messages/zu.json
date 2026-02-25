@@ -1245,5 +1245,16 @@
       "cookies": "Amakhuki",
       "licenses": "Amalayisense"
     }
+  },
+  "cta": {
+    "title": "Hlangana nemali ngaphandle kwemikhawulo",
+    "description": "Joyina izinkulungwane zabaphathi bezitolo abashintshile be-digital. Qala ukulandela incwadi yakho yekhredithi namuhla.",
+    "cta": "Qala Mahhala",
+    "benefit1": "Mahhala phakade kwabathengi abangu-10",
+    "benefit2": "Isebenza 100% ngaphandle kwxinhlanhluxa",
+    "benefit3": "Awudingi ikhadi lekhredithi",
+    "benefit4": "Ukusetha kwamaminithi angu-2",
+    "benefit5": "Kutholakala ngolimi olungu-7+",
+    "benefit6": "Ukusekela kwemali eziningi"
   }
 }

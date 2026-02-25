@@ -1225,5 +1225,16 @@
       "cookies": "Cookie",
       "licenses": "Lisensi"
     }
+  },
+  "cta": {
+    "title": "Temui uang tanpa batas",
+    "description": "Bergabunglah dengan ribuan pemilik toko yang telah beralih ke digital. Mulai lacak buku kredit Anda hari ini.",
+    "cta": "Mulai Gratis",
+    "benefit1": "Gratis selamanya hingga 10 pelanggan",
+    "benefit2": "Bekerja 100% offline",
+    "benefit3": "Tidak perlu kartu kredit",
+    "benefit4": "Pengaturan dalam 2 menit",
+    "benefit5": "Tersedia dalam 7+ bahasa",
+    "benefit6": "Dukungan multi-mata uang"
   }
 }

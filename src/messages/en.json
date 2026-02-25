@@ -1212,5 +1212,16 @@
       "cookies": "Cookies",
       "licenses": "Licenses"
     }
+  },
+  "cta": {
+    "title": "Meet money without borders",
+    "description": "Join thousands of shop owners who've gone digital. Start tracking your credit ledger today.",
+    "cta": "Get Started for Free",
+    "benefit1": "Free forever for up to 10 customers",
+    "benefit2": "Works 100% offline",
+    "benefit3": "No credit card required",
+    "benefit4": "Setup in 2 minutes",
+    "benefit5": "Available in 7+ languages",
+    "benefit6": "Multi-currency support"
   }
 }

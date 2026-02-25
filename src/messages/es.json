@@ -1225,5 +1225,16 @@
       "cookies": "Cookies",
       "licenses": "Licencias"
     }
+  },
+  "cta": {
+    "title": "Conoce el dinero sin fronteras",
+    "description": "Únete a miles de propietarios de tiendas que se han digitalizado. Comienza a rastrear tu libro de crédito hoy.",
+    "cta": "Comienza Gratis",
+    "benefit1": "Gratis para siempre hasta 10 clientes",
+    "benefit2": "Funciona 100% sin conexión",
+    "benefit3": "No se requiere tarjeta de crédito",
+    "benefit4": "Configuración en 2 minutos",
+    "benefit5": "Disponible en más de 7 idiomas",
+    "benefit6": "Soporte multimoneda"
   }
 }

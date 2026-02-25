@@ -1236,5 +1236,16 @@
       "cookies": "Çerezler",
       "licenses": "Lisanslar"
     }
+  },
+  "cta": {
+    "title": "Sınırları aşan para ile tanışın",
+    "description": "Dijitalleşen binlerce dükkân sahibine katılın. Bugün veresiye defterinizi takip etmeye başlayın.",
+    "cta": "Ücretsiz Başlayın",
+    "benefit1": "10 müşteriye kadar sonsuza dek ücretsiz",
+    "benefit2": "100% çevrimdışı çalışır",
+    "benefit3": "Kredi kartı gerekmez",
+    "benefit4": "2 dakikada kurulum",
+    "benefit5": "7+ dilde kullanılabilir",
+    "benefit6": "Çoklu para birimi desteği"
   }
 }
