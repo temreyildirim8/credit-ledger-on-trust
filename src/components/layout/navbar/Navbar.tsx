@@ -34,7 +34,7 @@ export default function Navbar() {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="navbar__brand">SaaS</span>
+          <span className="navbar__brand">{t('brandName')}</span>
         </Link>
 
         <div className="navbar__links">
@@ -52,7 +52,7 @@ export default function Navbar() {
         <div className="navbar__actions">
           <LanguageSwitcher />
           <Link href="/login" className="navbar__cta">
-            Get Started
+            {t('getStarted')}
           </Link>
         </div>
       </div>

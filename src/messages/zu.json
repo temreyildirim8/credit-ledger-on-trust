@@ -109,6 +109,7 @@
     }
   },
   "nav": {
+    "brandName": "Ledgerly",
     "dashboard": "I-Dashboard",
     "customers": "Abathengi",
     "transactions": "Ukuthengiselana",
@@ -123,7 +124,8 @@
     "features": "Izici",
     "pricing": "Amanani",
     "about": "Nge",
-    "contact": "Thinta"
+    "contact": "Thinta",
+    "getStarted": "Qala"
   },
   "home": {
     "meta": {

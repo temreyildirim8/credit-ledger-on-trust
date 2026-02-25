@@ -109,6 +109,7 @@
     }
   },
   "nav": {
+    "brandName": "Ledgerly",
     "dashboard": "डैशबोर्ड",
     "customers": "ग्राहक",
     "transactions": "लेनदेन",
@@ -123,7 +124,8 @@
     "features": "सुविधाएं",
     "pricing": "मूल्य निर्धारण",
     "about": "हमारे बारे में",
-    "contact": "संपर्क"
+    "contact": "संपर्क",
+    "getStarted": "शुरू करें"
   },
   "home": {
     "meta": {

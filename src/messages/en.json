@@ -89,6 +89,7 @@
     }
   },
   "nav": {
+    "brandName": "Ledgerly",
     "dashboard": "Dashboard",
     "customers": "Customers",
     "transactions": "Transactions",
@@ -105,7 +106,8 @@
     "about": "About",
     "contact": "Contact",
     "howItWorks": "How it Works",
-    "reviews": "Reviews"
+    "reviews": "Reviews",
+    "getStarted": "Get Started"
   },
   "home": {
     "meta": {

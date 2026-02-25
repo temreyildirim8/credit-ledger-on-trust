@@ -89,6 +89,7 @@
     }
   },
   "nav": {
+    "brandName": "Ledgerly",
     "dashboard": "Dashboard",
     "customers": "Pelanggan",
     "transactions": "Transaksi",
@@ -103,7 +104,8 @@
     "features": "Fitur",
     "pricing": "Harga",
     "about": "Tentang",
-    "contact": "Kontak"
+    "contact": "Kontak",
+    "getStarted": "Mulai"
   },
   "home": {
     "meta": {

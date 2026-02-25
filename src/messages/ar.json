@@ -109,6 +109,7 @@
     }
   },
   "nav": {
+    "brandName": "Ledgerly",
     "dashboard": "لوحة التحكم",
     "customers": "العملاء",
     "transactions": "المعاملات",
@@ -123,7 +124,8 @@
     "features": "الميزات",
     "pricing": "التسعير",
     "about": "حول",
-    "contact": "اتصل"
+    "contact": "اتصل",
+    "getStarted": "ابدأ الآن"
   },
   "home": {
     "meta": {

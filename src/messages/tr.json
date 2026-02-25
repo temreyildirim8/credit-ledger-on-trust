@@ -89,6 +89,7 @@
     }
   },
   "nav": {
+    "brandName": "Ledgerly",
     "dashboard": "Kontrol Paneli",
     "customers": "Müşteriler",
     "transactions": "İşlemler",
@@ -105,7 +106,8 @@
     "about": "Hakkında",
     "contact": "İletişim",
     "howItWorks": "Nasıl Çalışır",
-    "reviews": "Yorumlar"
+    "reviews": "Yorumlar",
+    "getStarted": "Başla"
   },
   "home": {
     "meta": {

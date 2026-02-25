@@ -89,6 +89,7 @@
     }
   },
   "nav": {
+    "brandName": "Ledgerly",
     "dashboard": "Panel",
     "customers": "Clientes",
     "transactions": "Transacciones",
@@ -103,7 +104,8 @@
     "features": "Características",
     "pricing": "Precios",
     "about": "Acerca de",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "getStarted": "Comenzar"
   },
   "home": {
     "meta": {
