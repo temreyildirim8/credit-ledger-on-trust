@@ -114,7 +114,9 @@
     "collapse": "Colapsar",
     "expandSidebar": "Expandir Barra Lateral",
     "collapseSidebar": "Colapsar Barra Lateral",
-    "home": "Inicio"
+    "home": "Inicio",
+    "installApp": "Instalar App",
+    "appInstalled": "App Instalada"
   },
   "home": {
     "meta": {

@@ -133,7 +133,9 @@
     "collapse": "Goqela",
     "expandSidebar": "Yandisa i-Sidebar",
     "collapseSidebar": "Goqela i-Sidebar",
-    "home": "Ekhaya"
+    "home": "Ekhaya",
+    "installApp": "Faka i-App",
+    "appInstalled": "i-App Ifakiwe"
   },
   "home": {
     "meta": {

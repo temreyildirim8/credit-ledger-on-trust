@@ -133,7 +133,9 @@
     "collapse": "طي",
     "expandSidebar": "توسيع الشريط الجانبي",
     "collapseSidebar": "طي الشريط الجانبي",
-    "home": "الرئيسية"
+    "home": "الرئيسية",
+    "installApp": "تثبيت التطبيق",
+    "appInstalled": "التطبيق مثبت"
   },
   "home": {
     "meta": {

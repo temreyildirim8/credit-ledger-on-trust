@@ -16,11 +16,14 @@ import {
   ChevronLeft,
   ChevronRight,
   BookOpen,
+  Download,
+  CheckCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { SyncStatusIndicator } from "@/components/layout/sync-status";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { usePWAInstall } from "@/components/pwa/PWAInstallProvider";
 import {
   Tooltip,
   TooltipContent,
@@ -72,6 +75,7 @@ export function Sidebar({ className }: SidebarProps) {
   const { signOut } = useAuth();
   const t = useTranslations("nav");
   const localeHook = useLocale();
+  const { isInstallable, isInstalled, install } = usePWAInstall();
 
   // Collapsed state persisted to localStorage
   const [isCollapsed, setIsCollapsed] = useState(() => {
@@ -224,6 +228,49 @@ export function Sidebar({ className }: SidebarProps) {
           <SyncStatusIndicator variant="full" />
         )}
       </div>
+
+      {/* PWA Install Button */}
+      {(isInstallable || isInstalled) && (
+        <div
+          className={cn(
+            "transition-all duration-300",
+            isCollapsed ? "flex justify-center px-0 py-2" : "px-3 py-2"
+          )}
+        >
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
+              <button
+                onClick={install}
+                disabled={isInstalled}
+                className={cn(
+                  "flex items-center gap-2 w-full rounded-lg transition-all duration-200",
+                  isInstalled
+                    ? "text-green-600 dark:text-green-400 cursor-default"
+                    : "text-accent hover:bg-accent/10",
+                  isCollapsed ? "justify-center h-9 w-9" : "justify-center py-2 px-3"
+                )}
+                aria-label={isInstalled ? t("appInstalled") : t("installApp")}
+              >
+                {isInstalled ? (
+                  <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                ) : (
+                  <Download className="w-5 h-5 flex-shrink-0" />
+                )}
+                {!isCollapsed && (
+                  <span className="text-sm font-medium">
+                    {isInstalled ? t("appInstalled") : t("installApp")}
+                  </span>
+                )}
+              </button>
+            </TooltipTrigger>
+            {isCollapsed && (
+              <TooltipContent side="right">
+                {isInstalled ? t("appInstalled") : t("installApp")}
+              </TooltipContent>
+            )}
+          </Tooltip>
+        </div>
+      )}
 
       {/* Language Switcher */}
       <div

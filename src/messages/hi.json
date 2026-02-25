@@ -133,7 +133,9 @@
     "collapse": "संक्षिप्त करें",
     "expandSidebar": "साइडबार विस्तृत करें",
     "collapseSidebar": "साइडबार संक्षिप्त करें",
-    "home": "होम"
+    "home": "होम",
+    "installApp": "ऐप इंस्टॉल करें",
+    "appInstalled": "ऐप इंस्टॉल है"
   },
   "home": {
     "meta": {

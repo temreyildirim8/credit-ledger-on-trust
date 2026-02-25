@@ -114,7 +114,9 @@
     "collapse": "Ciutkan",
     "expandSidebar": "Perluas Bilah Samping",
     "collapseSidebar": "Ciutkan Bilah Samping",
-    "home": "Beranda"
+    "home": "Beranda",
+    "installApp": "Instal Aplikasi",
+    "appInstalled": "Aplikasi Terinstal"
   },
   "home": {
     "meta": {

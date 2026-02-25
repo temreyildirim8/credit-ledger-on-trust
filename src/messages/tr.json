@@ -114,7 +114,9 @@
     "collapse": "Daralt",
     "expandSidebar": "Kenar Çubuğunu Genişlet",
     "collapseSidebar": "Kenar Çubuğunu Daralt",
-    "home": "Ana Sayfa"
+    "home": "Ana Sayfa",
+    "installApp": "Uygulamayı Kur",
+    "appInstalled": "Uygulama Kurulu"
   },
   "home": {
     "meta": {

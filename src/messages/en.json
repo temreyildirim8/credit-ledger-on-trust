@@ -114,7 +114,9 @@
     "collapse": "Collapse",
     "expandSidebar": "Expand Sidebar",
     "collapseSidebar": "Collapse Sidebar",
-    "home": "Home"
+    "home": "Home",
+    "installApp": "Install App",
+    "appInstalled": "App Installed"
   },
   "home": {
     "meta": {
