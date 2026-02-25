@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/routing";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Twitter, Linkedin, BookOpen } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { getBrandName } from "@/lib/branding";
 
@@ -9,46 +9,46 @@ import { getBrandName } from "@/lib/branding";
  * Marketing footer - Multi-column links and social icons
  */
 export function MarketingFooter() {
-  const t = useTranslations('footer');
-  const tNav = useTranslations('nav');
+  const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
   const locale = useLocale();
   const brandName = getBrandName(locale);
 
   const footerSections = [
     {
-      title: t('product.title'),
+      title: t("product.title"),
       links: [
-        { name: tNav('features'), href: "/features" },
-        { name: tNav('pricing'), href: "/pricing" },
-        { name: t('product.security'), href: "" }, // TODO: Add security page URL
-        { name: t('product.faq'), href: "#" },
+        { name: tNav("features"), href: "/features" },
+        { name: tNav("pricing"), href: "/pricing" },
+        { name: t("product.security"), href: "#" }, // TODO: Add security page URL
+        { name: t("product.faq"), href: "#" },
       ],
     },
     {
-      title: t('company.title'),
+      title: t("company.title"),
       links: [
-        { name: tNav('about'), href: "/about" },
-        { name: t('company.blog'), href: "#" },
-        { name: t('company.careers'), href: "#" },
-        { name: tNav('contact'), href: "/contact" },
+        { name: tNav("about"), href: "/about" },
+        { name: t("company.blog"), href: "#" },
+        { name: t("company.careers"), href: "#" },
+        { name: tNav("contact"), href: "/contact" },
       ],
     },
     {
-      title: t('resources.title'),
+      title: t("resources.title"),
       links: [
-        { name: t('resources.helpCenter'), href: "#" },
-        { name: t('resources.documentation'), href: "#" },
-        { name: t('resources.community'), href: "#" },
-        { name: t('resources.status'), href: "#" },
+        { name: t("resources.helpCenter"), href: "#" },
+        { name: t("resources.documentation"), href: "#" },
+        { name: t("resources.community"), href: "#" },
+        { name: t("resources.status"), href: "#" },
       ],
     },
     {
-      title: t('legal.title'),
+      title: t("legal.title"),
       links: [
-        { name: t('legal.privacy'), href: "#" },
-        { name: t('legal.terms'), href: "#" },
-        { name: t('legal.cookies'), href: "#" },
-        { name: t('legal.licenses'), href: "#" },
+        { name: t("legal.privacy"), href: "#" },
+        { name: t("legal.terms"), href: "#" },
+        { name: t("legal.cookies"), href: "#" },
+        { name: t("legal.licenses"), href: "#" },
       ],
     },
   ];
@@ -67,41 +67,15 @@ export function MarketingFooter() {
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="text-white"
-                >
-                  <path
-                    d="M12 2L2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7L12 2Z"
-                    fill="currentColor"
-                    fillOpacity="0.2"
-                  />
-                  <path
-                    d="M12 2L2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7L12 2Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M12 10V16M12 16L9 13M12 16L15 13"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <BookOpen className="w-5 h-5 text-white" />
               </div>
               <div>
                 <h3 className="font-display font-bold text-lg">{brandName}</h3>
-                <p className="text-xs text-gray-400 -mt-1">{t('tagline')}</p>
+                <p className="text-xs text-gray-400 -mt-1">{t("tagline")}</p>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              {t('description')}
+              {t("description")}
             </p>
             {/* Social links */}
             <div className="flex gap-3">
@@ -162,14 +136,23 @@ export function MarketingFooter() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm">
-            {t('copyright', { year: new Date().getFullYear(), brand: brandName })}
+            {t("copyright", {
+              year: new Date().getFullYear(),
+              brand: brandName,
+            })}
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link href="/login" className="text-gray-400 hover:text-white transition-colors py-1.5 min-h-[44px] flex items-center">
-              {tNav('login')}
+            <Link
+              href="/login"
+              className="text-gray-400 hover:text-white transition-colors py-1.5 min-h-[44px] flex items-center"
+            >
+              {tNav("login")}
             </Link>
-            <Link href="/signup" className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium py-1.5 min-h-[44px] flex items-center">
-              {tNav('signup')}
+            <Link
+              href="/signup"
+              className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium py-1.5 min-h-[44px] flex items-center"
+            >
+              {tNav("signup")}
             </Link>
           </div>
         </div>
