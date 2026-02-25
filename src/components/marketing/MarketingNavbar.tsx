@@ -14,10 +14,10 @@ export function MarketingNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = useTranslations('nav');
 
-  // Nav items matching Figma design: Product, Solutions, Pricing, Company
+  // Nav items matching Figma design: Product, Features, Pricing, Company
   const navItems = [
     { name: t('product'), href: "/#product" },
-    { name: t('solutions'), href: "/#solutions" },
+    { name: t('features'), href: "/#features" },
     { name: t('pricing'), href: "/pricing" },
     { name: t('company'), href: "/about" },
   ];
