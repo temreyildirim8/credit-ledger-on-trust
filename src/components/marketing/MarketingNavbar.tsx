@@ -2,8 +2,10 @@
 
 import { Link } from "@/routing";
 import { Menu, X, BookOpen } from "lucide-react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import LanguageSwitcher from "@/components/layout/language-switcher/LanguageSwitcher";
 
 /**
  * Marketing navbar - Matches Figma design
@@ -13,10 +15,23 @@ import { useTranslations } from "next-intl";
 export function MarketingNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = useTranslations('nav');
+  const pathname = usePathname();
+
+  // Handle scroll to top for Product link when already on homepage
+  const handleProductClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Check if we're on the homepage (locale-prefixed path like /en, /tr, etc.)
+    const isHomePage = pathname === "/" || /^\/[a-z]{2}$/.test(pathname) || /^\/[a-z]{2}\/$/.test(pathname);
+
+    if (isHomePage) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setMobileMenuOpen(false);
+    }
+  }, [pathname]);
 
   // Nav items matching Figma design: Product, Features, Pricing, Company
   const navItems = [
-    { name: t('product'), href: "/#product" },
+    { name: t('product'), href: "/", onClick: handleProductClick },
     { name: t('features'), href: "/#features" },
     { name: t('pricing'), href: "/pricing" },
     { name: t('company'), href: "/about" },
@@ -41,6 +56,7 @@ export function MarketingNavbar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={item.onClick}
               className="text-sm font-semibold text-[#0f172a] hover:text-[#3c83f6] transition-colors"
             >
               {item.name}
@@ -50,6 +66,7 @@ export function MarketingNavbar() {
 
         {/* Desktop CTAs - matching Figma design */}
         <div className="hidden lg:flex items-center gap-4">
+          <LanguageSwitcher variant="icon" />
           <Link
             href="/login"
             className="text-sm font-bold text-[#0f172a] hover:text-[#3c83f6] transition-colors px-4 py-2"
@@ -89,12 +106,21 @@ export function MarketingNavbar() {
                 key={item.href}
                 href={item.href}
                 className="block text-sm font-semibold text-[#0f172a] hover:text-[#3c83f6] hover:bg-slate-50 py-3 px-2 rounded-lg transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  if (item.onClick) {
+                    item.onClick(e);
+                  } else {
+                    setMobileMenuOpen(false);
+                  }
+                }}
               >
                 {item.name}
               </Link>
             ))}
             <div className="pt-3 space-y-2 border-t border-slate-200 mt-3">
+              <div className="py-3 px-2">
+                <LanguageSwitcher variant="compact" />
+              </div>
               <Link
                 href="/login"
                 className="block text-sm font-semibold text-[#0f172a] hover:text-[#3c83f6] py-3 px-2 rounded-lg transition-colors"

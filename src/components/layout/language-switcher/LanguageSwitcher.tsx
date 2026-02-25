@@ -3,6 +3,7 @@
 import { useLocale } from "next-intl";
 import { useRouter, usePathname, routing, type Locale } from "@/routing";
 import { useState, useRef, useEffect } from "react";
+import { Globe } from "lucide-react";
 import clsx from "clsx";
 import styles from "./LanguageSwitcher.module.css";
 
@@ -27,7 +28,7 @@ const localeFlags: Record<Locale, string> = {
 };
 
 interface LanguageSwitcherProps {
-  variant?: "full" | "compact";
+  variant?: "full" | "compact" | "icon";
 }
 
 export default function LanguageSwitcher({
@@ -39,6 +40,7 @@ export default function LanguageSwitcher({
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const isCompact = variant === "compact";
+  const isIcon = variant === "icon";
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -63,15 +65,19 @@ export default function LanguageSwitcher({
     <div className={styles.container} ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={clsx(styles.trigger, isCompact && styles.triggerCompact)}
+        className={clsx(styles.trigger, (isCompact || isIcon) && styles.triggerCompact)}
         aria-label="Select language"
         aria-expanded={isOpen}
       >
-        <span className={styles.flag}>{localeFlags[locale]}</span>
-        {!isCompact && (
+        {isIcon ? (
+          <Globe className="w-5 h-5 text-slate-700" />
+        ) : (
+          <span className={styles.flag}>{localeFlags[locale]}</span>
+        )}
+        {!isCompact && !isIcon && (
           <span className={styles.label}>{localeNames[locale]}</span>
         )}
-        {!isCompact && (
+        {!isCompact && !isIcon && (
           <svg
             className={clsx(styles.icon, isOpen && styles.iconOpen)}
             width="12"
