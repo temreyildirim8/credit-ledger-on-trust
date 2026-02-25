@@ -113,7 +113,8 @@
     "company": "Company",
     "collapse": "Collapse",
     "expandSidebar": "Expand Sidebar",
-    "collapseSidebar": "Collapse Sidebar"
+    "collapseSidebar": "Collapse Sidebar",
+    "home": "Home"
   },
   "home": {
     "meta": {

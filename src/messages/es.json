@@ -113,7 +113,8 @@
     "company": "Empresa",
     "collapse": "Colapsar",
     "expandSidebar": "Expandir Barra Lateral",
-    "collapseSidebar": "Colapsar Barra Lateral"
+    "collapseSidebar": "Colapsar Barra Lateral",
+    "home": "Inicio"
   },
   "home": {
     "meta": {
