@@ -97,7 +97,7 @@ export function SubscriptionUpgradeModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
         <DialogHeader>
           <DialogTitle className="text-xl font-display flex items-center gap-2">
             <Zap className="h-5 w-5 text-accent" />
@@ -106,7 +106,7 @@ export function SubscriptionUpgradeModal({
           <DialogDescription>{t('description')}</DialogDescription>
         </DialogHeader>
 
-        <div className="grid md:grid-cols-3 gap-4 mt-4">
+        <div className="grid md:grid-cols-3 gap-6 mt-6">
           {plans.map((plan) => {
             const Icon = plan.icon;
             const isSelected = selectedPlan === plan.key;
@@ -137,8 +137,8 @@ export function SubscriptionUpgradeModal({
                   </Badge>
                 )}
 
-                <CardContent className="pt-6 pb-4">
-                  <div className="text-center mb-4">
+                <CardContent className="pt-6 pb-4 px-5">
+                  <div className="text-center mb-5">
                     {Icon && (
                       <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-3">
                         <Icon className="h-5 w-5 text-accent" />
@@ -152,7 +152,7 @@ export function SubscriptionUpgradeModal({
                     </p>
                   </div>
 
-                  <div className="text-center mb-4">
+                  <div className="text-center mb-5">
                     <span className="text-3xl font-bold text-text">
                       {tPricing(`${plan.key}.price`)}
                     </span>
@@ -163,7 +163,7 @@ export function SubscriptionUpgradeModal({
                     )}
                   </div>
 
-                  <ul className="space-y-2 mb-4">
+                  <ul className="space-y-3 mb-4">
                     {Array.isArray(tPricing.raw(`${plan.key}.features`)) &&
                       tPricing
                         .raw(`${plan.key}.features`)
