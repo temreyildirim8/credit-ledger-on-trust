@@ -125,7 +125,12 @@
     "pricing": "التسعير",
     "about": "حول",
     "contact": "اتصل",
-    "getStarted": "ابدأ الآن"
+    "howItWorks": "كيف يعمل",
+    "reviews": "المراجعات",
+    "getStarted": "ابدأ الآن",
+    "product": "المنتج",
+    "solutions": "الحلول",
+    "company": "الشركة"
   },
   "home": {
     "meta": {

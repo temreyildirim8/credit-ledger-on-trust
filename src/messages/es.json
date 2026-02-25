@@ -105,7 +105,12 @@
     "pricing": "Precios",
     "about": "Acerca de",
     "contact": "Contacto",
-    "getStarted": "Comenzar"
+    "howItWorks": "Cómo Funciona",
+    "reviews": "Reseñas",
+    "getStarted": "Comenzar",
+    "product": "Producto",
+    "solutions": "Soluciones",
+    "company": "Empresa"
   },
   "home": {
     "meta": {

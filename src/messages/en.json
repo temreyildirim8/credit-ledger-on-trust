@@ -107,7 +107,10 @@
     "contact": "Contact",
     "howItWorks": "How it Works",
     "reviews": "Reviews",
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "product": "Product",
+    "solutions": "Solutions",
+    "company": "Company"
   },
   "home": {
     "meta": {

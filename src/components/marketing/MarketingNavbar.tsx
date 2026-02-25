@@ -8,28 +8,30 @@ import { useTranslations } from "next-intl";
 /**
  * Marketing navbar - Matches Figma design
  * White background with blur, blue logo, navigation links
+ * Figma: https://www.figma.com/design/lScDg7yDwbuPXjK5g7KCfC/Credit_Ledger_v4?node-id=11-1541
  */
 export function MarketingNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = useTranslations('nav');
 
+  // Nav items matching Figma design: Product, Solutions, Pricing, Company
   const navItems = [
-    { name: t('features'), href: "/features" },
-    { name: t('howItWorks') || "How it Works", href: "/#features" },
+    { name: t('product'), href: "/#product" },
+    { name: t('solutions'), href: "/#solutions" },
     { name: t('pricing'), href: "/pricing" },
-    { name: t('reviews') || "Reviews", href: "/#testimonials" },
+    { name: t('company'), href: "/about" },
   ];
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-[6px] bg-white/80 border-b border-slate-200">
-      <div className="max-w-[1280px] mx-auto h-20 px-6 flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto h-20 px-6 lg:px-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-[32px] bg-[#3c83f6] flex items-center justify-center p-1.5">
-            <BookOpen className="w-5 h-5 text-white" />
+        <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-[#3c83f6] flex items-center justify-center">
+            <BookOpen className="w-[18px] h-[18px] text-white" />
           </div>
-          <span className="font-extrabold text-xl text-slate-900 tracking-tight">
-            Global Ledger
+          <span className="font-extrabold text-xl text-[#0f172a] tracking-tight">
+            {t('brandName')}
           </span>
         </Link>
 
@@ -39,33 +41,33 @@ export function MarketingNavbar() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-semibold text-slate-900 hover:text-[#3c83f6] transition-colors"
+              className="text-sm font-semibold text-[#0f172a] hover:text-[#3c83f6] transition-colors"
             >
               {item.name}
             </Link>
           ))}
         </nav>
 
-        {/* Desktop CTAs */}
-        <div className="hidden lg:flex items-center gap-3">
+        {/* Desktop CTAs - matching Figma design */}
+        <div className="hidden lg:flex items-center gap-4">
           <Link
             href="/login"
-            className="text-sm font-bold text-slate-900 hover:text-[#3c83f6] transition-colors px-5 py-2.5 rounded-full"
+            className="text-sm font-bold text-[#0f172a] hover:text-[#3c83f6] transition-colors px-4 py-2"
           >
             {t('login')}
           </Link>
           <Link
             href="/signup"
-            className="bg-[#3c83f6] text-white text-sm font-bold px-6 py-2.5 rounded-full hover:bg-[#3b82f6] transition-colors shadow-[0px_10px_15px_-3px_rgba(60,131,246,0.25),0px_4px_6px_-4px_rgba(60,131,246,0.25)]"
+            className="bg-[#3c83f6] text-white text-sm font-bold px-6 py-2.5 rounded-lg hover:bg-[#3b82f6] transition-colors shadow-[0px_10px_15px_-3px_rgba(60,131,246,0.2),0px_4px_6px_-4px_rgba(60,131,246,0.2)]"
           >
-            {t('signup')}
+            {t('getStarted')}
           </Link>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu button - always visible on mobile */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
+          className="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-slate-100 transition-colors"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-menu"
@@ -86,7 +88,7 @@ export function MarketingNavbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block text-sm font-semibold text-slate-900 hover:text-[#3c83f6] hover:bg-slate-50 py-3 px-2 rounded-lg transition-colors"
+                className="block text-sm font-semibold text-[#0f172a] hover:text-[#3c83f6] hover:bg-slate-50 py-3 px-2 rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
@@ -95,17 +97,17 @@ export function MarketingNavbar() {
             <div className="pt-3 space-y-2 border-t border-slate-200 mt-3">
               <Link
                 href="/login"
-                className="block text-sm font-semibold text-slate-900 hover:text-[#3c83f6] py-3 px-2 rounded-lg transition-colors"
+                className="block text-sm font-semibold text-[#0f172a] hover:text-[#3c83f6] py-3 px-2 rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t('login')}
               </Link>
               <Link
                 href="/signup"
-                className="block bg-[#3c83f6] text-white text-sm font-bold px-4 py-3 rounded-full text-center transition-colors shadow-[0px_10px_15px_-3px_rgba(60,131,246,0.25)]"
+                className="block bg-[#3c83f6] text-white text-sm font-bold px-4 py-3 rounded-lg text-center transition-colors shadow-[0px_10px_15px_-3px_rgba(60,131,246,0.2)]"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {t('signup')}
+                {t('getStarted')}
               </Link>
             </div>
           </div>

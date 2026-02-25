@@ -105,7 +105,12 @@
     "pricing": "Harga",
     "about": "Tentang",
     "contact": "Kontak",
-    "getStarted": "Mulai"
+    "howItWorks": "Cara Kerja",
+    "reviews": "Ulasan",
+    "getStarted": "Mulai",
+    "product": "Produk",
+    "solutions": "Solusi",
+    "company": "Perusahaan"
   },
   "home": {
     "meta": {
