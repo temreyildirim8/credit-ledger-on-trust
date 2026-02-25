@@ -144,19 +144,30 @@ export function PhoneInput({
     }
   };
 
+  // Track previous external value to avoid unnecessary updates
+  const prevValueRef = React.useRef(value);
+
   // Sync with external value changes
   React.useEffect(() => {
-    if (value && value !== formatPhoneNumber(localNumber, selectedCountry ?? undefined)) {
-      const parsed = parsePhoneNumber(value);
-      if (parsed) {
-        setSelectedCountry(parsed.country);
-        setLocalNumber(parsed.localNumber);
-      } else {
-        // Value doesn't have a recognizable country code
-        setLocalNumber(value);
+    // Only sync if the external value actually changed
+    if (value !== prevValueRef.current) {
+      prevValueRef.current = value;
+
+      if (value) {
+        const currentFormatted = formatPhoneNumber(localNumber, selectedCountry ?? undefined);
+        if (value !== currentFormatted) {
+          const parsed = parsePhoneNumber(value);
+          if (parsed) {
+            setSelectedCountry(parsed.country);
+            setLocalNumber(parsed.localNumber);
+          } else {
+            // Value doesn't have a recognizable country code
+            setLocalNumber(value);
+          }
+        }
       }
     }
-  }, [value]);
+  }, [value, localNumber, selectedCountry]);
 
   return (
     <div className={cn('flex gap-2', className)}>

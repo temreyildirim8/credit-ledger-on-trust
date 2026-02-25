@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from './useAuth';
 import { userProfilesService, UserProfile } from '@/lib/services/user-profiles.service';
 
@@ -23,7 +23,7 @@ export function useUserProfile(): UseUserProfileReturn {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     if (!user?.id) {
       setLoading(false);
       return;
@@ -39,11 +39,11 @@ export function useUserProfile(): UseUserProfileReturn {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user?.id]);
 
   useEffect(() => {
     fetchProfile();
-  }, [user?.id]);
+  }, [fetchProfile]);
 
   return {
     profile,
