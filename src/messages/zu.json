@@ -130,7 +130,10 @@
     "getStarted": "Qala",
     "product": "Umphumela",
     "solutions": "Izixazululo",
-    "company": "Inkampani"
+    "company": "Inkampani",
+    "collapse": "Goqela",
+    "expandSidebar": "Yandisa i-Sidebar",
+    "collapseSidebar": "Goqela i-Sidebar"
   },
   "home": {
     "meta": {
@@ -329,6 +332,30 @@
         "Ukhuseleko nokufihla njengezinqalo ezisisekelo"
       ]
     },
+    "hero": {
+      "badge": "Umiso Wethu",
+      "headline1": "Kudijithali",
+      "headline2": "100M+",
+      "headline3": "I-Micro-",
+      "headline4": "ama-SME",
+      "description": "Sikha amandla abanikazi bezitolo zendawo ezimaketini ezinamathela amahle ngesithembiso sedijithali, ukuphathwa kwekhompyutha okushelelayo, nokuhlanganisa kwemali.",
+      "cta": "Buka Umthelela Wethu",
+      "trustedBy": "Ithembwa ngu-5M+ abanikazi"
+    },
+    "story": {
+      "badge": "Inswela Yethu",
+      "quote": "Kulo munye umnikazi wesitolo ogcina ushishiso lwakhe enhliziyweni yakhe nasekhubhaleni.",
+      "title1": "Indaba Yethu: Esiphepheni",
+      "title2": "iya Ecloudini",
+      "paragraph1": "Selokhu eminyakeni, ama-micro-SME emakethe ezikhulayo asekelwe kumabhuku \"Veresiye\" abhalwe ngesandla—amabhuku ephepha alandela izigidi zemisebenzi yekredithi. Kodwa ezimaketini ezinamathela amahle, iphepha liyabuthakathaka, futhi idatha ilahleka ngokuhamba kwesikhathi.",
+      "paragraph2": "Sasungula i-Global Ledger (Veresiye-X) ukuze sidlulele ngokudijithali. Sibeka amabhuku wendabuko nge",
+      "digitalTrust": "Isithembiso Sedijithali",
+      "paragraph3": "Iphulatifomu yethu ayibhali imisebenzo kuphela; yakha isaziso semali sabangena kubhange, isivumela ukukhula, ukulanda izikweletu ngokushesha, futhi siphande.",
+      "stat1Value": "99.9%",
+      "stat1Label": "Ukuqondiswa Kwerekhodi",
+      "stat2Value": "30%",
+      "stat2Label": "Ukulanda Ikredithi Ngokushesha"
+    },
     "cta": {
       "title": "Ukulungele Ukuqala?",
       "description": "Joyina izinkampani eziningi ezisebenzisa i-Ledgerly ukulawula ikhredithi yamakhasimende azo.",
@@ -435,6 +462,8 @@
     "overdueDebts": {
       "title": "Ikredithi Esiphethe Ivesi",
       "empty": "Awukho ukukhokha okuphethe ivesi",
+      "remind": "Khumbaza",
+      "daysOverdue": "izinsuku ezedlule",
       "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "Khumbaza"
     },
@@ -488,7 +517,18 @@
       "downloadPDF": "Landa Isitatimende (PDF)",
       "generatingPDF": "Idala i-PDF...",
       "pdfDownloaded": "I-PDF yesitatimende ilandiwe",
-      "pdfError": "Ihlulekile ukudala i-PDF"
+      "pdfError": "Ihlulekile ukudala i-PDF",
+      "notFound": "Umthengi akatholakali",
+      "owesYou": "Ukweleta",
+      "settledUp": "Kuphelile",
+      "transactionCount": "{count} izinto",
+      "addDebt": "Yengeza Ikredithi",
+      "recordPayment": "Bhala Ukukhokha",
+      "phone": "Ifoni",
+      "address": "Ikheli",
+      "edit": "Hlela",
+      "call": "Shayela",
+      "editCustomer": "Hlela Umthengi"
     },
     "success": "Umthengi yengezwekahle",
     "error": "Yehlula ukwengeza umthengi",
@@ -497,6 +537,13 @@
       "nameTooLong": "Igama kufanele libe ngaphansi kwezinhlamvu ezingu-100",
       "invalidPhone": "Sicela ufake inombolo yefoni evumelekile",
       "fixErrors": "Sicela ulungise amaphutha efomu"
+    },
+    "table": {
+      "customer": "Umthengi",
+      "phone": "Ifoni",
+      "balance": "Isilinganiso",
+      "lastTransaction": "Ukuthengiselana Kokugcina",
+      "actions": "Izenzo"
     }
   },
   "transactions": {
@@ -1164,5 +1211,34 @@
     "upgradeCTATitle": "Udinga abathengi abaningi?",
     "upgradeCTADescription": "Khuphela ku-Pro wabathengi abangengazi",
     "viewPlans": "Bona Amaphulani"
+  },
+  "footer": {
+    "tagline": "Incwadi Yekhredithi",
+    "description": "Incwadi yekhredithi yedijithali yama-micro-SME. Buyela incwadi yakho yephepha ngesixazululo esihlakaniphile, esivikelekile, futhi esihlala sikhona.",
+    "copyright": "© {year} {brand}. Wonke amalungelo agodliwe.",
+    "product": {
+      "title": "Umphumela",
+      "security": "Ukuvikeleka",
+      "faq": "Imibuzo Evame Ukubuzwa"
+    },
+    "company": {
+      "title": "Inkampani",
+      "blog": "Ibhulogi",
+      "careers": "Amathuba Okusebenza"
+    },
+    "resources": {
+      "title": "Izinsiza",
+      "helpCenter": "Isikhungo Sosizo",
+      "documentation": "Umbhalo Osemthethweni",
+      "community": "Umphakathi",
+      "status": "Isimo"
+    },
+    "legal": {
+      "title": "Umthetho",
+      "privacy": "Ubumfihlo",
+      "terms": "Imigomo",
+      "cookies": "Amakhuki",
+      "licenses": "Amalayisense"
+    }
   }
 }

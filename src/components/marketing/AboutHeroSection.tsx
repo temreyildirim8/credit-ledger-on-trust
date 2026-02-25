@@ -2,12 +2,15 @@
 
 import { Link } from "@/routing";
 import { Globe } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 /**
  * About Us Hero Section - Matches Figma design
  * "Digitizing 100M+ Micro-SMEs" headline with globe visual
  */
 export function AboutHeroSection() {
+  const t = useTranslations("about.hero");
+
   return (
     <section className="relative overflow-hidden bg-white px-5 py-[128px] md:px-20">
       {/* Radial gradient background */}
@@ -25,24 +28,23 @@ export function AboutHeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center bg-[rgba(60,131,246,0.1)] px-3 py-1 rounded-full">
             <span className="text-[12px] font-bold text-[#3c83f6] uppercase tracking-[0.6px]">
-              Our Mission
+              {t("badge")}
             </span>
           </div>
 
           {/* Headline */}
           <h1 className="text-[48px] font-extrabold leading-[1.1] tracking-[-0.025em] text-[#0f172a] md:text-[72px] md:leading-[72px] md:tracking-[-1.8px]">
-            Digitizing
+            {t("headline1")}
             <br />
-            <span className="text-[#3c83f6]">100M+ </span>
-            <span className="text-[#3c83f6]">Micro-</span>
+            <span className="text-[#3c83f6]">{t("headline2")} </span>
+            <span className="text-[#3c83f6]">{t("headline3")}</span>
             <br />
-            <span className="text-[#3c83f6]">SMEs</span>
+            <span className="text-[#3c83f6]">{t("headline4")}</span>
           </h1>
 
           {/* Description */}
           <p className="max-w-[576px] text-[18px] leading-[28px] text-[#475569] md:text-[20px]">
-            Empowering local shopkeepers in high-inflation economies with digital
-            trust, seamless ledger management, and financial inclusion.
+            {t("description")}
           </p>
 
           {/* CTAs */}
@@ -51,7 +53,7 @@ export function AboutHeroSection() {
               href="/signup"
               className="inline-flex items-center justify-center bg-[#0f172a] px-8 py-4 rounded-lg text-[16px] font-bold text-white transition-colors hover:bg-[#1e293b]"
             >
-              View Our Impact
+              {t("cta")}
             </Link>
             <div className="flex items-center gap-4">
               {/* Avatar stack */}
@@ -61,7 +63,7 @@ export function AboutHeroSection() {
                 <div className="-ml-2 h-10 w-10 rounded-full border-2 border-white bg-[#94a3b8]" />
               </div>
               <span className="text-[14px] font-medium text-[#64748b]">
-                Trusted by 5M+ owners
+                {t("trustedBy")}
               </span>
             </div>
           </div>

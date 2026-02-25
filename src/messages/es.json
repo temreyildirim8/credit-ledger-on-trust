@@ -110,7 +110,10 @@
     "getStarted": "Comenzar",
     "product": "Producto",
     "solutions": "Soluciones",
-    "company": "Empresa"
+    "company": "Empresa",
+    "collapse": "Colapsar",
+    "expandSidebar": "Expandir Barra Lateral",
+    "collapseSidebar": "Colapsar Barra Lateral"
   },
   "home": {
     "meta": {
@@ -309,6 +312,30 @@
         "Seguridad y privacidad como principios fundamentales"
       ]
     },
+    "hero": {
+      "badge": "Nuestra Misión",
+      "headline1": "Digitalizando",
+      "headline2": "100M+",
+      "headline3": "Micro-",
+      "headline4": "PYMEs",
+      "description": "Empoderando a los tenderos locales en economías de alta inflación con confianza digital, gestión fluida de libros mayores e inclusión financiera.",
+      "cta": "Ver Nuestro Impacto",
+      "trustedBy": "Confiado por más de 5M de propietarios"
+    },
+    "story": {
+      "badge": "Nuestra Inspiración",
+      "quote": "Para cada tendero que mantiene su negocio en su corazón y un cuaderno.",
+      "title1": "Nuestra Historia: Del Papel",
+      "title2": "a la Nube",
+      "paragraph1": "Durante décadas, las micro-PYMEs en mercados emergentes han dependido de libros \"Fiado\" escritos a mano—libros mayores de papel que rastrean millones en transacciones de crédito. Pero en economías de alta inflación, el papel es frágil, y los datos se pierden con el tiempo.",
+      "paragraph2": "Fundamos Global Ledger (Fiado-X) para cerrar la brecha digital. Estamos reemplazando los cuadernos tradicionales con",
+      "digitalTrust": "Confianza Digital",
+      "paragraph3": "Nuestra plataforma no solo registra transacciones; construye una identidad financiera para los no bancarizados, permitiéndoles escalar, recuperar deudas más rápido y prosperar.",
+      "stat1Value": "99.9%",
+      "stat1Label": "Precisión de Registro",
+      "stat2Value": "30%",
+      "stat2Label": "Recuperación de Deuda Más Rápida"
+    },
     "cta": {
       "title": "¿Listo para Empezar?",
       "description": "Únete a miles de negocios que usan Ledgerly para gestionar el crédito de sus clientes.",
@@ -415,6 +442,8 @@
     "overdueDebts": {
       "title": "Deudas Vencidas",
       "empty": "Sin pagos vencidos",
+      "remind": "Recordar",
+      "daysOverdue": "días vencidos",
       "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "Recordar"
     },
@@ -462,7 +491,18 @@
       "downloadPDF": "Descargar Estado de Cuenta (PDF)",
       "generatingPDF": "Generando PDF...",
       "pdfDownloaded": "PDF del estado de cuenta descargado",
-      "pdfError": "Error al generar el PDF"
+      "pdfError": "Error al generar el PDF",
+      "notFound": "Cliente no encontrado",
+      "owesYou": "Te debe dinero",
+      "settledUp": "Todo pagado",
+      "transactionCount": "{count} transacciones",
+      "addDebt": "Agregar Deuda",
+      "recordPayment": "Registrar Pago",
+      "phone": "Teléfono",
+      "address": "Dirección",
+      "edit": "Editar",
+      "call": "Llamar",
+      "editCustomer": "Editar Cliente"
     },
     "success": "Cliente agregado con éxito",
     "error": "Error al agregar cliente",
@@ -471,6 +511,13 @@
       "nameTooLong": "El nombre debe tener menos de 100 caracteres",
       "invalidPhone": "Por favor ingresa un número de teléfono válido",
       "fixErrors": "Por favor corrige los errores en el formulario"
+    },
+    "table": {
+      "customer": "Cliente",
+      "phone": "Teléfono",
+      "balance": "Saldo",
+      "lastTransaction": "Última Transacción",
+      "actions": "Acciones"
     },
     "paywall": {
       "limitReached": "Límite de clientes alcanzado",
@@ -1144,5 +1191,34 @@
     "a6": "¡Sí! Puedes exportar los estados de cuenta de tus clientes como archivos PDF y tu historial de transacciones como hojas de cálculo CSV. Esta función está disponible en planes gratuitos y de pago.",
     "stillHaveQuestions": "¿Todavía tienes preguntas?",
     "contactSupport": "Contacta a nuestro equipo de soporte"
+  },
+  "footer": {
+    "tagline": "Libro Mayor de Crédito",
+    "description": "Libro mayor de crédito digital para micro-PYMEs. Reemplaza tu cuaderno de papel con una solución inteligente, segura y siempre disponible.",
+    "copyright": "© {year} {brand}. Todos los derechos reservados.",
+    "product": {
+      "title": "Producto",
+      "security": "Seguridad",
+      "faq": "FAQ"
+    },
+    "company": {
+      "title": "Empresa",
+      "blog": "Blog",
+      "careers": "Carreras"
+    },
+    "resources": {
+      "title": "Recursos",
+      "helpCenter": "Centro de Ayuda",
+      "documentation": "Documentación",
+      "community": "Comunidad",
+      "status": "Estado"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "cookies": "Cookies",
+      "licenses": "Licencias"
+    }
   }
 }

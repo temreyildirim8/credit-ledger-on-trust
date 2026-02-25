@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { AlertCircle, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface OverdueCustomer {
   id: string;
@@ -17,6 +18,8 @@ interface OverdueDebtsProps {
 }
 
 export function OverdueDebts({ customers = [], locale = "en" }: OverdueDebtsProps) {
+  const t = useTranslations("dashboard.overdueDebts");
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
       style: "currency",
@@ -35,7 +38,7 @@ export function OverdueDebts({ customers = [], locale = "en" }: OverdueDebtsProp
       <div className="flex items-center gap-2">
         <AlertCircle className="h-5 w-5 text-error flex-shrink-0" />
         <div>
-          <h2 className="text-lg font-semibold text-text">Overdue Payments</h2>
+          <h2 className="text-lg font-semibold text-text">{t("title")}</h2>
           <p className="text-sm text-text-secondary">({customers.length})</p>
         </div>
       </div>
@@ -50,7 +53,7 @@ export function OverdueDebts({ customers = [], locale = "en" }: OverdueDebtsProp
               <div className="flex-1">
                 <p className="font-medium text-text">{customer.name}</p>
                 <p className="text-sm text-error mt-0.5">
-                  {customer.overdueDays} days overdue
+                  {customer.overdueDays} {t("daysOverdue")}
                 </p>
               </div>
               <div className="flex items-center gap-4">
@@ -66,7 +69,7 @@ export function OverdueDebts({ customers = [], locale = "en" }: OverdueDebtsProp
                 >
                   <Send className="h-4 w-4" />
                   <span className="hidden sm:inline text-sm font-medium">
-                    Remind
+                    {t("remind")}
                   </span>
                 </button>
               </div>

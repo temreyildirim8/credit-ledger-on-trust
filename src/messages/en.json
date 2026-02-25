@@ -110,7 +110,10 @@
     "getStarted": "Get Started",
     "product": "Product",
     "solutions": "Solutions",
-    "company": "Company"
+    "company": "Company",
+    "collapse": "Collapse",
+    "expandSidebar": "Expand Sidebar",
+    "collapseSidebar": "Collapse Sidebar"
   },
   "home": {
     "meta": {
@@ -309,6 +312,30 @@
         "Security and privacy as foundational principles"
       ]
     },
+    "hero": {
+      "badge": "Our Mission",
+      "headline1": "Digitizing",
+      "headline2": "100M+",
+      "headline3": "Micro-",
+      "headline4": "SMEs",
+      "description": "Empowering local shopkeepers in high-inflation economies with digital trust, seamless ledger management, and financial inclusion.",
+      "cta": "View Our Impact",
+      "trustedBy": "Trusted by 5M+ owners"
+    },
+    "story": {
+      "badge": "Our Inspiration",
+      "quote": "For every shopkeeper who keeps their business in their heart and a notebook.",
+      "title1": "Our Story: From Paper",
+      "title2": "to Cloud",
+      "paragraph1": "For decades, micro-SMEs in emerging markets have relied on handwritten \"Veresiye\" books—paper ledgers tracking millions in credit transactions. But in high-inflation economies, paper is fragile, and data is lost to time.",
+      "paragraph2": "We founded Global Ledger (Veresiye-X) to bridge the digital divide. We are replacing traditional notebooks with",
+      "digitalTrust": "Digital Trust",
+      "paragraph3": "Our platform doesn't just record transactions; it builds a financial identity for the unbanked, allowing them to scale, recover debts faster, and thrive.",
+      "stat1Value": "99.9%",
+      "stat1Label": "Record Accuracy",
+      "stat2Value": "30%",
+      "stat2Label": "Faster Debt Recovery"
+    },
     "cta": {
       "title": "Ready to Get Started?",
       "description": "Join thousands of businesses using Ledgerly to manage their customer credit.",
@@ -403,7 +430,8 @@
     "overdueDebts": {
       "title": "Overdue Debts",
       "empty": "No overdue payments",
-      "remind": "Remind"
+      "remind": "Remind",
+      "daysOverdue": "days overdue"
     },
     "empty": {
       "title": "Welcome to Ledgerly",
@@ -455,7 +483,18 @@
       "downloadPDF": "Download Statement (PDF)",
       "generatingPDF": "Generating PDF...",
       "pdfDownloaded": "PDF statement downloaded",
-      "pdfError": "Failed to generate PDF"
+      "pdfError": "Failed to generate PDF",
+      "notFound": "Customer not found",
+      "owesYou": "Owes you money",
+      "settledUp": "All settled up",
+      "transactionCount": "{count} transactions",
+      "addDebt": "Add Debt",
+      "recordPayment": "Record Payment",
+      "phone": "Phone",
+      "address": "Address",
+      "edit": "Edit",
+      "call": "Call",
+      "editCustomer": "Edit Customer"
     },
     "success": "Customer added successfully",
     "error": "Failed to add customer",
@@ -464,6 +503,13 @@
       "nameTooLong": "Name must be less than 100 characters",
       "invalidPhone": "Please enter a valid phone number",
       "fixErrors": "Please fix the errors in the form"
+    },
+    "table": {
+      "customer": "Customer",
+      "phone": "Phone",
+      "balance": "Balance",
+      "lastTransaction": "Last Transaction",
+      "actions": "Actions"
     }
   },
   "transactions": {
@@ -1131,6 +1177,35 @@
           "content": "If you have questions about these Terms of Service, please contact us at legal@ledgerly.app"
         }
       }
+    }
+  },
+  "footer": {
+    "tagline": "Credit Ledger",
+    "description": "Digital credit ledger for micro-SMEs. Replace your paper notebook with a smart, secure, and always-available solution.",
+    "copyright": "© {year} {brand}. All rights reserved.",
+    "product": {
+      "title": "Product",
+      "security": "Security",
+      "faq": "FAQ"
+    },
+    "company": {
+      "title": "Company",
+      "blog": "Blog",
+      "careers": "Careers"
+    },
+    "resources": {
+      "title": "Resources",
+      "helpCenter": "Help Center",
+      "documentation": "Documentation",
+      "community": "Community",
+      "status": "Status"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "cookies": "Cookies",
+      "licenses": "Licenses"
     }
   }
 }

@@ -302,20 +302,20 @@ export function Sidebar({ className }: SidebarProps) {
                 "text-text-secondary hover:bg-surface-alt hover:text-text",
                 isCollapsed ? "h-9" : "py-2 px-3"
               )}
-              aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+              aria-label={isCollapsed ? t("expandSidebar") : t("collapseSidebar")}
             >
               {isCollapsed ? (
                 <ChevronRight className="w-5 h-5" />
               ) : (
                 <>
                   <ChevronLeft className="w-5 h-5" />
-                  <span className="text-sm font-medium">Collapse</span>
+                  <span className="text-sm font-medium">{t("collapse")}</span>
                 </>
               )}
             </button>
           </TooltipTrigger>
           {isCollapsed && (
-            <TooltipContent side="right">Expand Sidebar</TooltipContent>
+            <TooltipContent side="right">{t("expandSidebar")}</TooltipContent>
           )}
         </Tooltip>
       </div>

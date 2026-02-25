@@ -110,7 +110,10 @@
     "getStarted": "Mulai",
     "product": "Produk",
     "solutions": "Solusi",
-    "company": "Perusahaan"
+    "company": "Perusahaan",
+    "collapse": "Ciutkan",
+    "expandSidebar": "Perluas Bilah Samping",
+    "collapseSidebar": "Ciutkan Bilah Samping"
   },
   "home": {
     "meta": {
@@ -309,6 +312,30 @@
         "Keamanan dan privasi sebagai prinsip dasar"
       ]
     },
+    "hero": {
+      "badge": "Misi Kami",
+      "headline1": "Digitalisasi",
+      "headline2": "100M+",
+      "headline3": "UMKM",
+      "headline4": "Mikro",
+      "description": "Memberdayakan pemilik toko lokal di ekonomi inflasi tinggi dengan kepercayaan digital, manajemen buku besar yang mulus, dan inklusi keuangan.",
+      "cta": "Lihat Dampak Kami",
+      "trustedBy": "Dipercaya oleh 5M+ pemilik"
+    },
+    "story": {
+      "badge": "Inspirasi Kami",
+      "quote": "Untuk setiap pemilik toko yang menyimpan bisnisnya di hati dan buku catatan.",
+      "title1": "Kisah Kami: Dari Kertas",
+      "title2": "ke Cloud",
+      "paragraph1": "Selama beberapa dekade, UMKM di pasar berkembang telah mengandalkan buku \"Veresiye\" tulisan tangan—buku besar kertas yang melacak jutaan transaksi kredit. Namun di ekonomi inflasi tinggi, kertas rapuh, dan data hilang seiring waktu.",
+      "paragraph2": "Kami mendirikan Global Ledger (Veresiye-X) untuk menjembatani kesenjangan digital. Kami mengganti buku catatan tradisional dengan",
+      "digitalTrust": "Kepercayaan Digital",
+      "paragraph3": "Platform kami tidak hanya mencatat transaksi; ia membangun identitas keuangan bagi yang tidak memiliki rekening bank, memungkinkan mereka untuk berkembang, memulihkan hutang lebih cepat, dan berkembang.",
+      "stat1Value": "99.9%",
+      "stat1Label": "Akurasi Catatan",
+      "stat2Value": "30%",
+      "stat2Label": "Pemulihan Hutang Lebih Cepat"
+    },
     "cta": {
       "title": "Siap Untuk Memulai?",
       "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Ledgerly untuk mengelola kredit pelanggan mereka.",
@@ -415,6 +442,8 @@
     "overdueDebts": {
       "title": "Hutang Jatuh Tempo",
       "empty": "Tidak ada pembayaran jatuh tempo",
+      "remind": "Ingatkan",
+      "daysOverdue": "hari jatuh tempo",
       "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "Ingatkan"
     },
@@ -468,7 +497,18 @@
       "downloadPDF": "Unduh Laporan Rekening (PDF)",
       "generatingPDF": "Membuat PDF...",
       "pdfDownloaded": "PDF laporan rekening telah diunduh",
-      "pdfError": "Gagal membuat PDF"
+      "pdfError": "Gagal membuat PDF",
+      "notFound": "Pelanggan tidak ditemukan",
+      "owesYou": "Masih punya hutang",
+      "settledUp": "Lunas",
+      "transactionCount": "{count} transaksi",
+      "addDebt": "Tambah Hutang",
+      "recordPayment": "Catat Pembayaran",
+      "phone": "Telepon",
+      "address": "Alamat",
+      "edit": "Edit",
+      "call": "Panggil",
+      "editCustomer": "Edit Pelanggan"
     },
     "success": "Pelanggan berhasil ditambahkan",
     "error": "Gagal menambahkan pelanggan",
@@ -477,6 +517,13 @@
       "nameTooLong": "Nama harus kurang dari 100 karakter",
       "invalidPhone": "Silakan masukkan nomor telepon yang valid",
       "fixErrors": "Silakan perbaiki kesalahan dalam formulir"
+    },
+    "table": {
+      "customer": "Pelanggan",
+      "phone": "Telepon",
+      "balance": "Saldo",
+      "lastTransaction": "Transaksi Terakhir",
+      "actions": "Aksi"
     }
   },
   "transactions": {
@@ -1144,5 +1191,34 @@
     "upgradeCTATitle": "Butuh lebih banyak pelanggan?",
     "upgradeCTADescription": "Tingkatkan ke Pro untuk pelanggan tidak terbatas",
     "viewPlans": "Lihat Paket"
+  },
+  "footer": {
+    "tagline": "Buku Kredit",
+    "description": "Buku kredit digital untuk UMKM. Ganti buku catatan kertas Anda dengan solusi yang cerdas, aman, dan selalu tersedia.",
+    "copyright": "© {year} {brand}. Hak cipta dilindungi.",
+    "product": {
+      "title": "Produk",
+      "security": "Keamanan",
+      "faq": "FAQ"
+    },
+    "company": {
+      "title": "Perusahaan",
+      "blog": "Blog",
+      "careers": "Karir"
+    },
+    "resources": {
+      "title": "Sumber Daya",
+      "helpCenter": "Pusat Bantuan",
+      "documentation": "Dokumentasi",
+      "community": "Komunitas",
+      "status": "Status"
+    },
+    "legal": {
+      "title": "Hukum",
+      "privacy": "Privasi",
+      "terms": "Ketentuan",
+      "cookies": "Cookie",
+      "licenses": "Lisensi"
+    }
   }
 }

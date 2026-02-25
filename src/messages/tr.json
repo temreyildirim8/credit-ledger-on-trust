@@ -110,7 +110,10 @@
     "getStarted": "Başla",
     "product": "Ürün",
     "solutions": "Çözümler",
-    "company": "Şirket"
+    "company": "Şirket",
+    "collapse": "Daralt",
+    "expandSidebar": "Kenar Çubuğunu Genişlet",
+    "collapseSidebar": "Kenar Çubuğunu Daralt"
   },
   "home": {
     "meta": {
@@ -322,6 +325,30 @@
         "Güvenlik ve gizlilik temel ilkeler olarak"
       ]
     },
+    "hero": {
+      "badge": "Misyonumuz",
+      "headline1": "Dijitalleştiriyoruz",
+      "headline2": "100M+",
+      "headline3": "Mikro",
+      "headline4": "İşletmeleri",
+      "description": "Yüksek enflasyonlu ekonomilerdeki yerel esnafı dijital güven, sorunsuz defter yönetimi ve finansal kapsayıcılıkla güçlendiriyoruz.",
+      "cta": "Etkimizi Görün",
+      "trustedBy": "5M+ işletmenin güvendiği"
+    },
+    "story": {
+      "badge": "İlham Kaynağımız",
+      "quote": "İşini kalbinde ve bir defterde tutan her esnaf için.",
+      "title1": "Hikayemiz: Kağıttan",
+      "title2": "Buluta",
+      "paragraph1": "On yıllardır, gelişmekte olan piyasalardeki mikro işletmeler, milyonlarca kredi işlemini takip eden el yazısı \"Veresiye\" defterlerine güvendi. Ancak yüksek enflasyonlu ekonomilerde kağıt kırılgandır ve veriler zamanla kaybolur.",
+      "paragraph2": "Dijital uçurumu kapatmak için Global Ledger (Veresiye-X)'ı kurduk. Geleneksel defterleri",
+      "digitalTrust": "Dijital Güven",
+      "paragraph3": "ile değiştiriyoruz. Platformumuz sadece işlemleri kaydetmez; bankasızlar için finansal kimlik oluşturarak ölçeklenmelerine, borçları daha hızlı tahsil etmelerine ve gelişmelerine olanak tanır.",
+      "stat1Value": "%99.9",
+      "stat1Label": "Kayıt Doğruluğu",
+      "stat2Value": "%30",
+      "stat2Label": "Daha Hızlı Tahsilat"
+    },
     "cta": {
       "title": "İşletmenizi Dönüştürmeye Hazır mısınız?",
       "description": "Veresiye-X'a geçen binlerce dükkan sahibine katılın.",
@@ -426,6 +453,8 @@
     "overdueDebts": {
       "title": "Gecikmiş Borçlar",
       "empty": "Gecikmiş ödeme yok",
+      "remind": "Hatırlat",
+      "daysOverdue": "gün gecikmiş",
       "emptyDescription": "Start by adding your first customer or recording a transaction",
       "remind": "Hatırlat"
     },
@@ -473,7 +502,18 @@
       "downloadPDF": "Hesap Özeti İndir (PDF)",
       "generatingPDF": "PDF Oluşturuluyor...",
       "pdfDownloaded": "PDF hesap özeti indirildi",
-      "pdfError": "PDF oluşturulamadı"
+      "pdfError": "PDF oluşturulamadı",
+      "notFound": "Müşteri bulunamadı",
+      "owesYou": "Size borçlu",
+      "settledUp": "Hesap kapandı",
+      "transactionCount": "{count} işlem",
+      "addDebt": "Borç Ekle",
+      "recordPayment": "Ödeme Kaydet",
+      "phone": "Telefon",
+      "address": "Adres",
+      "edit": "Düzenle",
+      "call": "Ara",
+      "editCustomer": "Müşteriyi Düzenle"
     },
     "success": "Müşteri başarıyla eklendi",
     "error": "Müşteri eklenemedi",
@@ -482,6 +522,13 @@
       "nameTooLong": "İsim 100 karakterden az olmalı",
       "invalidPhone": "Lütfen geçerli bir telefon numarası girin",
       "fixErrors": "Lütfen formdaki hataları düzeltin"
+    },
+    "table": {
+      "customer": "Müşteri",
+      "phone": "Telefon",
+      "balance": "Bakiye",
+      "lastTransaction": "Son İşlem",
+      "actions": "İşlemler"
     },
     "paywall": {
       "limitReached": "Müşteri limitine ulaşıldı",
@@ -1155,5 +1202,34 @@
     "upgradeCTATitle": "Daha fazla müşteriye mi ihtiyacınız var?",
     "upgradeCTADescription": "Sınırsız müşteri için Pro planına yükseltin",
     "viewPlans": "Planları Görüntüle"
+  },
+  "footer": {
+    "tagline": "Kredi Defteri",
+    "description": "Mikro KOBİ'ler için dijital kredi defteri. Kağıt defterinizi akıllı, güvenli ve her zaman erişilebilir bir çözümle değiştirin.",
+    "copyright": "© {year} {brand}. Tüm hakları saklıdır.",
+    "product": {
+      "title": "Ürün",
+      "security": "Güvenlik",
+      "faq": "SSS"
+    },
+    "company": {
+      "title": "Şirket",
+      "blog": "Blog",
+      "careers": "Kariyer"
+    },
+    "resources": {
+      "title": "Kaynaklar",
+      "helpCenter": "Yardım Merkezi",
+      "documentation": "Dokümantasyon",
+      "community": "Topluluk",
+      "status": "Durum"
+    },
+    "legal": {
+      "title": "Yasal",
+      "privacy": "Gizlilik",
+      "terms": "Şartlar",
+      "cookies": "Çerezler",
+      "licenses": "Lisanslar"
+    }
   }
 }

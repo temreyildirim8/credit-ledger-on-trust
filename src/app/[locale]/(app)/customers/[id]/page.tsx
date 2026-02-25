@@ -12,6 +12,7 @@ import { formatCurrency } from '@/lib/utils/currency';
 import { formatDistanceToNow } from 'date-fns';
 import { tr, enUS, es } from 'date-fns/locale';
 import type { Locale } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 // Locale map for date-fns
 const localeMap: Record<string, Locale> = { en: enUS, tr, es };
@@ -21,6 +22,8 @@ export default function CustomerDetailsPage() {
   const router = useRouter();
   const pathname = usePathname();
   const { user } = useAuth();
+  const t = useTranslations('customers');
+  const tCommon = useTranslations('common');
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [transactions, setTransactions] = useState<{ id: string; type: string; amount: number; transaction_date: string | null; created_at: string | null; description?: string | null }[]>([]);
   const [loading, setLoading] = useState(true);
@@ -63,7 +66,7 @@ export default function CustomerDetailsPage() {
   if (!customer) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <p className="text-text-secondary">Customer not found</p>
+        <p className="text-text-secondary">{t('details.notFound')}</p>
       </div>
     );
   }
@@ -81,11 +84,11 @@ export default function CustomerDetailsPage() {
           className="mb-2 text-white/80 hover:text-white hover:bg-white/10"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back
+          {tCommon('back')}
         </Button>
         <h1 className="text-2xl font-bold font-display">{customer.name}</h1>
         <p className="text-white/90 text-sm mt-1">
-          {hasDebt ? 'Owes you money' : 'All settled up'}
+          {hasDebt ? t('details.owesYou') : t('details.settledUp')}
         </p>
       </div>
 
@@ -94,7 +97,7 @@ export default function CustomerDetailsPage() {
         <CardContent className="pt-6">
           <div className="text-center">
             <p className="text-sm text-text-secondary mb-2">
-              {hasDebt ? 'Total Debt' : 'Balance'}
+              {hasDebt ? t('details.totalDebt') : t('details.balance')}
             </p>
             <p className={`text-3xl font-bold ${hasDebt ? 'text-debt-text' : 'text-payment-text'}`}>
               {formatCurrency(Math.abs(customer.balance))}
@@ -113,7 +116,7 @@ export default function CustomerDetailsPage() {
               className="gap-2"
             >
               <Phone className="h-4 w-4" />
-              Call
+              {t('details.call')}
             </Button>
             <Button
               variant="outline"
@@ -131,7 +134,7 @@ export default function CustomerDetailsPage() {
       {(customer.phone || customer.address) && (
         <Card className="border-border">
           <CardHeader>
-            <CardTitle className="text-lg">Contact Information</CardTitle>
+            <CardTitle className="text-lg">{t('details.contact')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {customer.phone && (
@@ -163,21 +166,21 @@ export default function CustomerDetailsPage() {
       <Card className="border-border">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg">Transaction History</CardTitle>
+            <CardTitle className="text-lg">{t('details.transactionHistory')}</CardTitle>
             <Button
               variant="outline"
               size="sm"
               className="gap-2"
             >
               <Edit className="h-4 w-4" />
-              Edit Customer
+              {t('details.editCustomer')}
             </Button>
           </div>
         </CardHeader>
         <CardContent>
           {transactions.length === 0 ? (
             <p className="text-center text-text-secondary py-8">
-              No transactions yet
+              {t('details.noTransactions')}
             </p>
           ) : (
             <div className="space-y-3">

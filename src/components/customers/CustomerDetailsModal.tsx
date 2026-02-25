@@ -150,7 +150,7 @@ export function CustomerDetailsModal({
           </div>
         ) : !customer ? (
           <div className="text-center py-12">
-            <p className="text-[var(--color-text-secondary)]">Customer not found</p>
+            <p className="text-[var(--color-text-secondary)]">{t('details.notFound')}</p>
           </div>
         ) : (
           <>
@@ -167,7 +167,7 @@ export function CustomerDetailsModal({
                 <div>
                   <DialogTitle className="text-xl">{customer.name}</DialogTitle>
                   <p className="text-sm text-[var(--color-text-secondary)]">
-                    {hasDebt ? 'Owes you money' : 'All settled up'}
+                    {hasDebt ? t('details.owesYou') : t('details.settledUp')}
                   </p>
                 </div>
               </div>
@@ -198,7 +198,7 @@ export function CustomerDetailsModal({
                     </p>
                     {customer.transaction_count && customer.transaction_count > 0 && (
                       <p className="text-xs text-[var(--color-text-tertiary)] mt-2">
-                        {customer.transaction_count} transactions
+                        {t('details.transactionCount', { count: customer.transaction_count })}
                       </p>
                     )}
                   </div>
@@ -215,7 +215,7 @@ export function CustomerDetailsModal({
                   className="bg-red-500 hover:bg-red-600 text-white"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Add Debt
+                  {t('details.addDebt')}
                 </Button>
                 <Button
                   onClick={() => {
@@ -225,7 +225,7 @@ export function CustomerDetailsModal({
                   className="bg-green-500 hover:bg-green-600 text-white"
                 >
                   <Minus className="h-4 w-4 mr-2" />
-                  Record Payment
+                  {t('details.recordPayment')}
                 </Button>
               </div>
 
@@ -253,7 +253,7 @@ export function CustomerDetailsModal({
                         <Phone className="w-5 h-5 text-[var(--color-accent)]" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-[var(--color-text-tertiary)]">Phone</p>
+                        <p className="text-xs text-[var(--color-text-tertiary)]">{t('details.phone')}</p>
                         <a
                           href={`tel:${customer.phone}`}
                           className="text-[var(--color-accent)] hover:underline font-medium"
@@ -281,7 +281,7 @@ export function CustomerDetailsModal({
                         <MapPin className="w-5 h-5 text-[var(--color-accent)]" />
                       </div>
                       <div>
-                        <p className="text-xs text-[var(--color-text-tertiary)]">Address</p>
+                        <p className="text-xs text-[var(--color-text-tertiary)]">{t('details.address')}</p>
                         <p className="text-sm text-[var(--color-text)]">{customer.address}</p>
                       </div>
                     </div>
@@ -306,7 +306,7 @@ export function CustomerDetailsModal({
                       className="text-[var(--color-text-secondary)]"
                     >
                       <Edit className="h-4 w-4 mr-1" />
-                      Edit
+                      {t('details.edit')}
                     </Button>
                   )}
                 </div>

@@ -10,18 +10,21 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { useTranslations } from 'next-intl';
 
 export function CustomerTableSkeleton() {
+  const t = useTranslations('customers.table');
+
   return (
     <Card className="border-[var(--color-border)]">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Customer</TableHead>
-            <TableHead>Phone</TableHead>
-            <TableHead>Balance</TableHead>
-            <TableHead>Last Transaction</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>{t('customer')}</TableHead>
+            <TableHead>{t('phone')}</TableHead>
+            <TableHead>{t('balance')}</TableHead>
+            <TableHead>{t('lastTransaction')}</TableHead>
+            <TableHead className="text-right">{t('actions')}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

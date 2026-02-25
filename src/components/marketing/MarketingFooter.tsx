@@ -9,45 +9,46 @@ import { getBrandName } from "@/lib/branding";
  * Marketing footer - Multi-column links and social icons
  */
 export function MarketingFooter() {
-  const t = useTranslations('nav');
+  const t = useTranslations('footer');
+  const tNav = useTranslations('nav');
   const locale = useLocale();
   const brandName = getBrandName(locale);
 
   const footerSections = [
     {
-      title: "Product",
+      title: t('product.title'),
       links: [
-        { name: t('features'), href: "/features" },
-        { name: t('pricing'), href: "/pricing" },
-        { name: "Security", href: "#" },
-        { name: "FAQ", href: "#" },
+        { name: tNav('features'), href: "/features" },
+        { name: tNav('pricing'), href: "/pricing" },
+        { name: t('product.security'), href: "#" },
+        { name: t('product.faq'), href: "#" },
       ],
     },
     {
-      title: "Company",
+      title: t('company.title'),
       links: [
-        { name: t('about'), href: "/about" },
-        { name: "Blog", href: "#" },
-        { name: "Careers", href: "#" },
-        { name: t('contact'), href: "/contact" },
+        { name: tNav('about'), href: "/about" },
+        { name: t('company.blog'), href: "#" },
+        { name: t('company.careers'), href: "#" },
+        { name: tNav('contact'), href: "/contact" },
       ],
     },
     {
-      title: "Resources",
+      title: t('resources.title'),
       links: [
-        { name: "Help Center", href: "#" },
-        { name: "Documentation", href: "#" },
-        { name: "Community", href: "#" },
-        { name: "Status", href: "#" },
+        { name: t('resources.helpCenter'), href: "#" },
+        { name: t('resources.documentation'), href: "#" },
+        { name: t('resources.community'), href: "#" },
+        { name: t('resources.status'), href: "#" },
       ],
     },
     {
-      title: "Legal",
+      title: t('legal.title'),
       links: [
-        { name: "Privacy", href: "#" },
-        { name: "Terms", href: "#" },
-        { name: "Cookies", href: "#" },
-        { name: "Licenses", href: "#" },
+        { name: t('legal.privacy'), href: "#" },
+        { name: t('legal.terms'), href: "#" },
+        { name: t('legal.cookies'), href: "#" },
+        { name: t('legal.licenses'), href: "#" },
       ],
     },
   ];
@@ -96,11 +97,11 @@ export function MarketingFooter() {
               </div>
               <div>
                 <h3 className="font-display font-bold text-lg">{brandName}</h3>
-                <p className="text-xs text-gray-400 -mt-1">Credit Ledger</p>
+                <p className="text-xs text-gray-400 -mt-1">{t('tagline')}</p>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Digital credit ledger for micro-SMEs. Replace your paper notebook with a smart, secure, and always-available solution.
+              {t('description')}
             </p>
             {/* Social links */}
             <div className="flex gap-3">
@@ -143,14 +144,14 @@ export function MarketingFooter() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm">
-            © 2025 {brandName}. All rights reserved.
+            {t('copyright', { year: new Date().getFullYear(), brand: brandName })}
           </p>
           <div className="flex items-center gap-6 text-sm">
             <Link href="/login" className="text-gray-400 hover:text-white transition-colors py-1.5 min-h-[44px] flex items-center">
-              {t('login')}
+              {tNav('login')}
             </Link>
             <Link href="/signup" className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium py-1.5 min-h-[44px] flex items-center">
-              {t('signup')}
+              {tNav('signup')}
             </Link>
           </div>
         </div>
