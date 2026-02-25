@@ -9,7 +9,9 @@ import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
 import { useSubscription } from '@/lib/hooks/useSubscription';
+import { useUserProfile } from '@/lib/hooks/useUserProfile';
 import { UpgradePrompt } from '@/components/subscription/UpgradePrompt';
+import { PhoneInput, PhoneInputValue } from '@/components/ui/phone-input';
 
 interface AddCustomerModalProps {
   open: boolean;
@@ -30,6 +32,7 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
   const tCommon = useTranslations('common');
   const tCustomers = useTranslations('customers');
   const { isPaidPlan, customerLimit } = useSubscription();
+  const { currency } = useUserProfile();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -203,20 +206,21 @@ export function AddCustomerModal({ open, onOpenChange, onSave, currentCustomerCo
               <Label htmlFor="phone" className={errors.phone && touched.phone ? 'text-destructive' : ''}>
                 {t('phone')}
               </Label>
-              <Input
+              <PhoneInput
                 id="phone"
-                type="tel"
                 value={phone}
-                onChange={(e) => {
-                  setPhone(e.target.value);
+                onChange={(value: PhoneInputValue) => {
+                  setPhone(value.formatted);
                   if (touched.phone) {
-                    setErrors(prev => ({ ...prev, phone: validatePhone(e.target.value) }));
+                    setErrors(prev => ({ ...prev, phone: validatePhone(value.formatted) }));
                   }
                 }}
                 onBlur={handlePhoneBlur}
+                currencyCode={currency}
                 placeholder={t('phonePlaceholder')}
                 disabled={loading}
-                className={errors.phone && touched.phone ? 'border-destructive focus-visible:ring-destructive' : ''}
+                error={!!(errors.phone && touched.phone)}
+                ariaLabel={t('phone')}
               />
               {errors.phone && touched.phone && (
                 <p className="text-xs text-destructive">{errors.phone}</p>

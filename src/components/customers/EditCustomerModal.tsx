@@ -9,6 +9,8 @@ import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
 import { Customer } from '@/lib/services/customers.service';
+import { useUserProfile } from '@/lib/hooks/useUserProfile';
+import { PhoneInput, PhoneInputValue } from '@/components/ui/phone-input';
 
 interface EditCustomerModalProps {
   open: boolean;
@@ -26,6 +28,7 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
   const t = useTranslations('customers.form');
   const tCommon = useTranslations('common');
   const tCustomers = useTranslations('customers');
+  const { currency } = useUserProfile();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -171,20 +174,21 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
               <Label htmlFor="edit-phone" className={errors.phone && touched.phone ? 'text-destructive' : ''}>
                 {t('phone')}
               </Label>
-              <Input
+              <PhoneInput
                 id="edit-phone"
-                type="tel"
                 value={phone}
-                onChange={(e) => {
-                  setPhone(e.target.value);
+                onChange={(value: PhoneInputValue) => {
+                  setPhone(value.formatted);
                   if (touched.phone) {
-                    setErrors(prev => ({ ...prev, phone: validatePhone(e.target.value) }));
+                    setErrors(prev => ({ ...prev, phone: validatePhone(value.formatted) }));
                   }
                 }}
                 onBlur={handlePhoneBlur}
+                currencyCode={currency}
                 placeholder={t('phonePlaceholder')}
                 disabled={loading}
-                className={errors.phone && touched.phone ? 'border-destructive focus-visible:ring-destructive' : ''}
+                error={!!(errors.phone && touched.phone)}
+                ariaLabel={t('phone')}
               />
               {errors.phone && touched.phone && (
                 <p className="text-xs text-destructive">{errors.phone}</p>
