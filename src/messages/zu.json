@@ -331,37 +331,68 @@
       "title": "Thinta Kami - Mali-X",
       "description": "Thinta iqhembakethu lethu ukuze uthole usizo, imibuzo, noma izinzwakalo"
     },
+    "hero": {
+      "badge": "Thinta",
+      "title": "Thinta Kami",
+      "subtitle": "Unamibuzo nge-Global Ledger? Silapha ukunisiza. Xhumana nathi ngenhloso yokusiza, ukuthengisa, noma ubuzwe."
+    },
     "title": "Thinta Kami",
     "subtitle": "Sinqoka ukusiza",
     "form": {
+      "title": "Sithumele Umyalezo",
+      "fullName": "Igama Eliqopho",
+      "workEmail": "I-Email Yomsebenzi",
       "name": "Igama Lakho",
       "email": "Ikheli Le-Email",
       "subject": "Isihloko",
-      "message": "Umlayezo",
+      "subjects": {
+        "general": "Umbuzo Jikelele",
+        "sales": "Umbuzo Wokuthengisa",
+        "support": "Usizo Lwezobuchwepheshe",
+        "partnership": "Ubuzwe"
+      },
+      "message": "Singakusiza Kanjani?",
+      "messagePlaceholder": "Sitshele kabanzi ngezidingo zebhizinisi lakho...",
       "submit": "Thumela Umlayezo",
-      "title": "Sithumele Umyalezo",
-      "sending": "Iyathumela..."
+      "sending": "Iyathumela...",
+      "success": "Umlayezo uthumelekahle!",
+      "privacyNote": "Ngokuchofoza \"Thumela Umlayezo\", uvuma",
+      "privacyLink": "Inqubomgomo Yethu Yokufihla"
     },
     "info": {
-      "email": "Thumela i-email kwethu",
+      "email": {
+        "title": "Usizo Lwe-Email",
+        "description": "Ithimba lethu losizo lilapha ukukusiza nabo yimuphi umbuzo noma inkinga.",
+        "responseTime": "Saqhubeka kwamahora angama-24"
+      },
       "emailAddress": "support@globalledger.app",
-      "responseTime": "Saqhubeka kwamahora angama-24",
-      "liveChat": {
-        "title": "Ingxoxo Ephilayo",
-        "description": "Xoxa nothimba lethu lusekelo ngesikhathi sebhizinisi.",
-        "button": "Qala Ingxoxo"
+      "helpCenter": {
+        "title": "Isikhungo Sosizo",
+        "description": "Hlola imibhalo yethu ne-FAQ ukuze uthole izimpendulo ezikhawulayo.",
+        "button": "Vakashela Isikhungo Sosizo"
       },
       "office": {
         "title": "Ihhovisi",
         "company": "Mali-X Inc.",
         "address": "Istanbul, iTurkey"
+      },
+      "liveChat": {
+        "title": "Ingxoxo Ephilayo",
+        "description": "Xoxa nothimba lethu lusekelo ngesikhathi sebhizinisi.",
+        "button": "Qala Ingxoxo"
       }
+    },
+    "global": {
+      "title": "Ubukho Emhlabeni Jikelele",
+      "subtitle": "Asakheli isofthiwe kuphela. Sakha amaqembu endawo aqonda imakethe yakho."
     },
     "success": "Umlayezo uthumelekahle!",
     "error": "Umlayezo ungathunyelwa. Sicela uzage usapho.",
     "cta": {
       "title": "Udinga Usizo Olusheshayo?",
       "description": "Bheka Isikhungo Sethu Sosizo imibuzo evamile.",
+      "primaryButton": "Qala Mahhala",
+      "secondaryButton": "Buka Amanani",
       "button": "Vakashela Isikhungo Sosizo"
     }
   },

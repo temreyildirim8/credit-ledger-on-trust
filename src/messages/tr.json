@@ -326,35 +326,64 @@
       "title": "İletişim - Veresiye-X",
       "description": "Destek, sorular veya geri bildirim için ekibimizle iletişime geçin"
     },
-    "title": "İletişime Geçin",
-    "subtitle": "Sizinle tanışmak isteriz",
+    "hero": {
+      "badge": "İletişim",
+      "title": "Bizimle İletişime Geçin",
+      "subtitle": "Global Ledger hakkında sorularınız mı var? Buradayız. Destek, satış veya ortaklık için ekibimize ulaşın."
+    },
     "form": {
       "title": "Bize Mesaj Gönderin",
+      "fullName": "Ad Soyad",
+      "workEmail": "İş E-postası",
       "name": "Adınız",
       "email": "E-posta Adresi",
       "subject": "Konu",
-      "message": "Mesaj",
+      "subjects": {
+        "general": "Genel Soru",
+        "sales": "Satış Sorusu",
+        "support": "Teknik Destek",
+        "partnership": "Ortaklık"
+      },
+      "message": "Size nasıl yardımcı olabiliriz?",
+      "messagePlaceholder": "İşletme ihtiyaçlarınız hakkında daha fazla bilgi verin...",
       "submit": "Mesaj Gönder",
-      "sending": "Gönderiliyor..."
+      "sending": "Gönderiliyor...",
+      "success": "Mesaj başarıyla gönderildi!",
+      "privacyNote": "\"Mesaj Gönder\" butonuna tıklayarak",
+      "privacyLink": "Gizlilik Politikamızı kabul etmiş olursunuz"
     },
     "info": {
-      "email": "Bize e-posta gönderin",
+      "email": {
+        "title": "E-posta Desteği",
+        "description": "Destek ekibimiz tüm soru ve sorunlarınızda yardımcı olmak için burada.",
+        "responseTime": "Genellikle 24 saat içinde yanıt veriyoruz"
+      },
       "emailAddress": "destek@veresiye-x.app",
-      "responseTime": "Genellikle 24 saat içinde yanıt veriyoruz",
+      "helpCenter": {
+        "title": "Yardım Merkezi",
+        "description": "Hızlı yanıtlar için belge ve SSS'lerimize göz atın.",
+        "button": "Yardım Merkezini Ziyaret Et"
+      },
+      "office": {
+        "title": "Ofis",
+        "company": "Global Ledger Inc.",
+        "address": "Levent, Büyükdere Cd. No:199 Şişli, İstanbul, TR"
+      },
       "liveChat": {
         "title": "Canlı Sohbet",
         "description": "Çalışma saatleri boyunca destek ekibimizle sohbet edin.",
         "button": "Sohbeti Başlat"
-      },
-      "office": {
-        "title": "Ofis",
-        "company": "Veresiye-X Inc.",
-        "address": "İstanbul, Türkiye"
       }
     },
+    "global": {
+      "title": "Küresel Varlık",
+      "subtitle": "Sadece yazılım geliştirmiyoruz. Pazarınızı anlayan yerel ekipler kuruyoruz."
+    },
     "cta": {
-      "title": "Hızlı Yardım mı Lazım?",
-      "description": "Yaygın soruların cevapları için Yardım Merkezimize göz atın.",
+      "title": "İşletmenizi dönüştürmeye hazır mısınız?",
+      "description": "Global Ledger'a güvenen binlerce dükkan sahibine katılın.",
+      "primaryButton": "Ücretsiz Başlayın",
+      "secondaryButton": "Fiyatları Görüntüle",
       "button": "Yardım Merkezini Ziyaret Et"
     },
     "success": "Mesaj başarıyla gönderildi!",

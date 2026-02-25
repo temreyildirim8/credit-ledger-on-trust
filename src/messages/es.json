@@ -311,35 +311,66 @@
       "title": "Contactanos - Fiado-X",
       "description": "Ponte en contacto con nuestro equipo para soporte, preguntas o comentarios"
     },
+    "hero": {
+      "badge": "Contacto",
+      "title": "Ponte en Contacto",
+      "subtitle": "¿Tienes preguntas sobre Global Ledger? Estamos aquí para ayudar. Contáctanos para soporte, ventas u oportunidades de asociación."
+    },
     "title": "Ponte en Contacto",
     "subtitle": "Nos encantaría saber de ti",
     "form": {
       "title": "Envíanos un Mensaje",
+      "fullName": "Nombre Completo",
+      "workEmail": "Correo de Trabajo",
       "name": "Tu Nombre",
       "email": "Correo Electrónico",
       "subject": "Asunto",
-      "message": "Mensaje",
+      "subjects": {
+        "general": "Consulta General",
+        "sales": "Consulta de Ventas",
+        "support": "Soporte Técnico",
+        "partnership": "Asociación"
+      },
+      "message": "¿Cómo podemos ayudarte?",
+      "messagePlaceholder": "Cuéntanos más sobre las necesidades de tu negocio...",
       "submit": "Enviar Mensaje",
-      "sending": "Enviando..."
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado con éxito!",
+      "privacyNote": "Al hacer clic en \"Enviar Mensaje\", aceptas nuestra",
+      "privacyLink": "Política de Privacidad"
     },
     "info": {
-      "email": "Envíanos un correo",
+      "email": {
+        "title": "Soporte por Email",
+        "description": "Nuestro equipo de soporte está aquí para ayudarte con cualquier pregunta o problema.",
+        "responseTime": "Por lo general respondemos dentro de 24 horas"
+      },
       "emailAddress": "soporte@globalledger.app",
-      "responseTime": "Por lo general respondemos dentro de 24 horas",
-      "liveChat": {
-        "title": "Chat en Vivo",
-        "description": "Chatea con nuestro equipo de soporte durante el horario laboral.",
-        "button": "Iniciar Chat"
+      "helpCenter": {
+        "title": "Centro de Ayuda",
+        "description": "Consulta nuestra documentación y preguntas frecuentes para obtener respuestas rápidas.",
+        "button": "Visitar Centro de Ayuda"
       },
       "office": {
         "title": "Oficina",
         "company": "Fiado-X Inc.",
         "address": "Estambul, Turquía"
+      },
+      "liveChat": {
+        "title": "Chat en Vivo",
+        "description": "Chatea con nuestro equipo de soporte durante el horario laboral.",
+        "button": "Iniciar Chat"
       }
+    },
+    "global": {
+      "title": "Presencia Global",
+      "subtitle": "No solo construimos software. Construimos equipos locales que entienden tu mercado."
     },
     "cta": {
       "title": "¿Necesitas Ayuda Rápida?",
       "description": "Revisa nuestro Centro de Ayuda para respuestas a preguntas comunes.",
+      "primaryButton": "Comenzar Gratis",
+      "secondaryButton": "Ver Precios",
       "button": "Visitar Centro de Ayuda"
     },
     "success": "¡Mensaje enviado con éxito!",

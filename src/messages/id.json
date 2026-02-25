@@ -311,37 +311,68 @@
       "title": "Hubungi Kami - Hutang-Ku",
       "description": "Hubungi tim kami untuk dukungan, pertanyaan, atau masukan"
     },
+    "hero": {
+      "badge": "Hubungi Kami",
+      "title": "Hubungi Kami",
+      "subtitle": "Ada pertanyaan tentang Global Ledger? Kami siap membantu. Hubungi kami untuk dukungan, penjualan, atau kemitraan."
+    },
     "title": "Hubungi Kami",
     "subtitle": "Kami ingin mendengar dari Anda",
     "form": {
+      "title": "Kirim Kami Pesan",
+      "fullName": "Nama Lengkap",
+      "workEmail": "Email Kerja",
       "name": "Nama Anda",
       "email": "Alamat Email",
       "subject": "Subjek",
-      "message": "Pesan",
+      "subjects": {
+        "general": "Pertanyaan Umum",
+        "sales": "Pertanyaan Penjualan",
+        "support": "Dukungan Teknis",
+        "partnership": "Kemitraan"
+      },
+      "message": "Bagaimana kami bisa membantu Anda?",
+      "messagePlaceholder": "Ceritakan lebih banyak tentang kebutuhan bisnis Anda...",
       "submit": "Kirim Pesan",
-      "title": "Kirim Kami Pesan",
-      "sending": "Mengirim..."
+      "sending": "Mengirim...",
+      "success": "Pesan berhasil dikirim!",
+      "privacyNote": "Dengan mengklik \"Kirim Pesan\", Anda menyetujui",
+      "privacyLink": "Kebijakan Privasi kami"
     },
     "info": {
-      "email": "Email kami di",
+      "email": {
+        "title": "Dukungan Email",
+        "description": "Tim dukungan kami siap membantu Anda dengan pertanyaan atau masalah apa pun.",
+        "responseTime": "Kami biasanya merespons dalam 24 jam"
+      },
       "emailAddress": "support@globalledger.app",
-      "responseTime": "Kami biasanya merespons dalam 24 jam",
-      "liveChat": {
-        "title": "Obrolan Langsung",
-        "description": "Chat dengan tim dukungan kami selama jam kerja.",
-        "button": "Mulai Obrolan"
+      "helpCenter": {
+        "title": "Pusat Bantuan",
+        "description": "Jelajahi dokumentasi dan FAQ kami untuk jawaban cepat.",
+        "button": "Kunjungi Pusat Bantuan"
       },
       "office": {
         "title": "Kantor",
         "company": "Hutang-Ku Inc.",
         "address": "Istanbul, Turki"
+      },
+      "liveChat": {
+        "title": "Obrolan Langsung",
+        "description": "Chat dengan tim dukungan kami selama jam kerja.",
+        "button": "Mulai Obrolan"
       }
+    },
+    "global": {
+      "title": "Kehadiran Global",
+      "subtitle": "Kami tidak hanya membangun perangkat lunak. Kami membangun tim lokal yang memahami pasar Anda."
     },
     "success": "Pesan berhasil dikirim!",
     "error": "Gagal mengirim pesan. Silakan coba lagi.",
     "cta": {
       "title": "Butuh Bantuan Cepat?",
       "description": "Kunjungi Pusat Bantuan kami untuk jawaban pertanyaan umum.",
+      "primaryButton": "Mulai Gratis",
+      "secondaryButton": "Lihat Harga",
       "button": "Kunjungi Pusat Bantuan"
     }
   },

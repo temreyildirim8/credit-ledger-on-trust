@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
-import { useAuth } from '@/lib/hooks/useAuth';
-import { userProfilesService } from '@/lib/services/user-profiles.service';
-import { getBrandName } from '@/lib/branding';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import { Badge } from '@/components/ui/badge';
+import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
+import { useAuth } from "@/lib/hooks/useAuth";
+import { userProfilesService } from "@/lib/services/user-profiles.service";
+import { getBrandName } from "@/lib/branding";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
 import {
   LogOut,
   User,
@@ -27,8 +27,8 @@ import {
   Phone,
   Globe,
   Loader2,
-} from 'lucide-react';
-import { toast } from 'sonner';
+} from "lucide-react";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogContent,
@@ -36,18 +36,25 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { useTranslations } from 'next-intl';
-import { SubscriptionUpgradeModal } from '@/components/settings/SubscriptionUpgradeModal';
+} from "@/components/ui/select";
+import { useTranslations } from "next-intl";
+import { SubscriptionUpgradeModal } from "@/components/settings/SubscriptionUpgradeModal";
 
-type SettingsTab = 'profile' | 'business' | 'notifications' | 'subscription' | 'data' | 'support' | 'account';
+type SettingsTab =
+  | "profile"
+  | "business"
+  | "notifications"
+  | "subscription"
+  | "data"
+  | "support"
+  | "account";
 
 interface SettingsSection {
   id: SettingsTab;
@@ -57,17 +64,17 @@ interface SettingsSection {
 }
 
 export default function SettingsPage() {
-  const t = useTranslations('settings');
-  const tCommon = useTranslations('common');
-  const tAccount = useTranslations('settings.sections.account');
+  const t = useTranslations("settings");
+  const tCommon = useTranslations("common");
+  const tAccount = useTranslations("settings.sections.account");
   const localeHook = useLocale();
 
   const pathname = usePathname();
   const router = useRouter();
-  const locale = pathname.split('/')[1] || 'en';
+  const locale = pathname.split("/")[1] || "en";
   const brandName = getBrandName(localeHook);
   const { user, signOut } = useAuth();
-  const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
+  const [activeTab, setActiveTab] = useState<SettingsTab>("profile");
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
   const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -75,30 +82,65 @@ export default function SettingsPage() {
 
   // Settings sections
   const settingsSections: SettingsSection[] = [
-    { id: 'profile', titleKey: 'sections.profile.title', descriptionKey: 'sections.profile.description', icon: User },
-    { id: 'business', titleKey: 'sections.business.title', descriptionKey: 'sections.business.description', icon: Building2 },
-    { id: 'notifications', titleKey: 'sections.notifications.title', descriptionKey: 'sections.notifications.description', icon: Bell },
-    { id: 'subscription', titleKey: 'sections.subscription.title', descriptionKey: 'sections.subscription.description', icon: CreditCard },
-    { id: 'data', titleKey: 'sections.data.title', descriptionKey: 'sections.data.description', icon: Download },
-    { id: 'support', titleKey: 'sections.support.title', descriptionKey: 'sections.support.description', icon: HelpCircle },
-    { id: 'account', titleKey: 'sections.account.title', descriptionKey: 'sections.account.description', icon: Shield },
+    {
+      id: "profile",
+      titleKey: "sections.profile.title",
+      descriptionKey: "sections.profile.description",
+      icon: User,
+    },
+    {
+      id: "business",
+      titleKey: "sections.business.title",
+      descriptionKey: "sections.business.description",
+      icon: Building2,
+    },
+    {
+      id: "notifications",
+      titleKey: "sections.notifications.title",
+      descriptionKey: "sections.notifications.description",
+      icon: Bell,
+    },
+    {
+      id: "subscription",
+      titleKey: "sections.subscription.title",
+      descriptionKey: "sections.subscription.description",
+      icon: CreditCard,
+    },
+    {
+      id: "data",
+      titleKey: "sections.data.title",
+      descriptionKey: "sections.data.description",
+      icon: Download,
+    },
+    {
+      id: "support",
+      titleKey: "sections.support.title",
+      descriptionKey: "sections.support.description",
+      icon: HelpCircle,
+    },
+    {
+      id: "account",
+      titleKey: "sections.account.title",
+      descriptionKey: "sections.account.description",
+      icon: Shield,
+    },
   ];
 
   // Profile state
-  const [name, setName] = useState(user?.user_metadata?.name || '');
-  const [email, setEmail] = useState(user?.email || '');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState(user?.user_metadata?.name || "");
+  const [email, setEmail] = useState(user?.email || "");
+  const [phone, setPhone] = useState("");
 
   // Original values for change detection
-  const [originalName, setOriginalName] = useState('');
-  const [originalPhone, setOriginalPhone] = useState('');
-  const [originalBusinessName, setOriginalBusinessName] = useState('');
-  const [originalCurrency, setOriginalCurrency] = useState('TRY');
+  const [originalName, setOriginalName] = useState("");
+  const [originalPhone, setOriginalPhone] = useState("");
+  const [originalBusinessName, setOriginalBusinessName] = useState("");
+  const [originalCurrency, setOriginalCurrency] = useState("TRY");
   const [originalLanguage, setOriginalLanguage] = useState(locale);
 
   // Business state
-  const [businessName, setBusinessName] = useState('');
-  const [currency, setCurrency] = useState('TRY');
+  const [businessName, setBusinessName] = useState("");
+  const [currency, setCurrency] = useState("TRY");
   const [language, setLanguage] = useState(locale);
 
   // Notifications state
@@ -119,10 +161,11 @@ export default function SettingsPage() {
         setIsLoading(true);
         const profile = await userProfilesService.getProfile(user.id);
         if (profile) {
-          const loadedName = profile.full_name || user?.user_metadata?.name || '';
-          const loadedPhone = profile.phone || '';
-          const loadedBusinessName = profile.shop_name || '';
-          const loadedCurrency = profile.currency || 'TRY';
+          const loadedName =
+            profile.full_name || user?.user_metadata?.name || "";
+          const loadedPhone = profile.phone || "";
+          const loadedBusinessName = profile.shop_name || "";
+          const loadedCurrency = profile.currency || "TRY";
           const loadedLanguage = profile.language || locale;
 
           setName(loadedName);
@@ -139,8 +182,8 @@ export default function SettingsPage() {
           setOriginalLanguage(loadedLanguage);
         }
       } catch (error) {
-        console.error('Error loading user profile:', error);
-        toast.error(t('errors.loadFailed') || 'Failed to load profile');
+        console.error("Error loading user profile:", error);
+        toast.error(t("errors.loadFailed") || "Failed to load profile");
       } finally {
         setIsLoading(false);
       }
@@ -152,12 +195,12 @@ export default function SettingsPage() {
   const handleSignOut = async () => {
     try {
       await signOut();
-      toast.success(tCommon('success') || 'Signed out successfully');
+      toast.success(tCommon("success") || "Signed out successfully");
       // Redirect to marketing home page after sign out
       window.location.replace(`/${locale}`);
     } catch (error) {
-      toast.error(tCommon('tryAgain'));
-      console.error('Sign out error:', error);
+      toast.error(tCommon("tryAgain"));
+      console.error("Sign out error:", error);
     }
   };
 
@@ -166,7 +209,7 @@ export default function SettingsPage() {
 
     // Validation for empty required fields
     if (!name.trim()) {
-      toast.error(t('sections.profile.nameRequired') || 'Name is required');
+      toast.error(t("sections.profile.nameRequired") || "Name is required");
       return;
     }
 
@@ -175,7 +218,7 @@ export default function SettingsPage() {
     const phoneChanged = phone.trim() !== originalPhone.trim();
 
     if (!nameChanged && !phoneChanged) {
-      toast.info(t('sections.profile.noChanges') || 'No changes to save');
+      toast.info(t("sections.profile.noChanges") || "No changes to save");
       return;
     }
 
@@ -200,10 +243,10 @@ export default function SettingsPage() {
       setOriginalName(name.trim());
       setOriginalPhone(phone.trim());
 
-      toast.success(t('sections.profile.saved'));
+      toast.success(t("sections.profile.saved"));
     } catch (error) {
-      console.error('Error saving profile:', error);
-      toast.error(t('errors.saveFailed') || 'Failed to save profile');
+      console.error("Error saving profile:", error);
+      toast.error(t("errors.saveFailed") || "Failed to save profile");
     } finally {
       setIsSaving(false);
     }
@@ -213,12 +256,13 @@ export default function SettingsPage() {
     if (!user?.id) return;
 
     // Check if anything changed
-    const businessNameChanged = businessName.trim() !== originalBusinessName.trim();
+    const businessNameChanged =
+      businessName.trim() !== originalBusinessName.trim();
     const currencyChanged = currency !== originalCurrency;
     const languageChanged = language !== originalLanguage;
 
     if (!businessNameChanged && !currencyChanged && !languageChanged) {
-      toast.info(t('sections.business.noChanges') || 'No changes to save');
+      toast.info(t("sections.business.noChanges") || "No changes to save");
       return;
     }
 
@@ -246,7 +290,7 @@ export default function SettingsPage() {
       setOriginalCurrency(currency);
       setOriginalLanguage(language);
 
-      toast.success(t('sections.business.saved'));
+      toast.success(t("sections.business.saved"));
 
       // If language changed, navigate to the new locale
       if (language !== locale) {
@@ -254,14 +298,14 @@ export default function SettingsPage() {
         router.replace(currentPath);
       }
     } catch (error) {
-      console.error('Error saving business settings:', error);
-      toast.error(t('errors.saveFailed') || 'Failed to save settings');
+      console.error("Error saving business settings:", error);
+      toast.error(t("errors.saveFailed") || "Failed to save settings");
     } finally {
       setIsSaving(false);
     }
   };
 
-  const handleExportData = (format: 'csv' | 'pdf') => {
+  const handleExportData = (format: "csv" | "pdf") => {
     toast.success(`Exporting data as ${format.toUpperCase()}...`);
   };
 
@@ -276,8 +320,8 @@ export default function SettingsPage() {
           <div className="flex items-center gap-3">
             <Award className="h-8 w-8 text-white/80" />
             <div>
-              <h1 className="text-2xl font-bold font-display">{t('title')}</h1>
-              <p className="text-white/90 text-sm">{t('subtitle')}</p>
+              <h1 className="text-2xl font-bold font-display">{t("title")}</h1>
+              <p className="text-white/90 text-sm">{t("subtitle")}</p>
             </div>
           </div>
         </div>
@@ -291,11 +335,9 @@ export default function SettingsPage() {
               <Award className="h-6 w-6 text-white" />
             </div>
             <div>
-              <p className="font-semibold text-text">
-                {t('betaFounder')}
-              </p>
+              <p className="font-semibold text-text">{t("betaFounder")}</p>
               <p className="text-sm text-text-secondary">
-                {t('betaDescription')}
+                {t("betaDescription")}
               </p>
             </div>
           </div>
@@ -309,26 +351,32 @@ export default function SettingsPage() {
             <CardContent className="p-3">
               {settingsSections.map((section) => {
                 const Icon = section.icon;
-                const title = typeof section.titleKey === 'string' ? section.titleKey : t(section.titleKey);
-                const description = typeof section.descriptionKey === 'string' ? section.descriptionKey : t(section.descriptionKey);
+                const title = t(section.titleKey as Parameters<typeof t>[0]);
+                const description = t(
+                  section.descriptionKey as Parameters<typeof t>[0],
+                );
                 return (
                   <button
                     key={section.id}
                     onClick={() => setActiveTab(section.id)}
                     className={`w-full flex items-center gap-3 p-3 rounded-xl text-left transition-all ${
                       activeTab === section.id
-                        ? 'bg-accent text-white shadow-sm'
-                        : 'hover:bg-surface-alt text-text'
+                        ? "bg-accent text-white shadow-sm"
+                        : "hover:bg-surface-alt text-text"
                     }`}
                   >
                     <Icon className="h-5 w-5" />
                     <div className="flex-1">
                       <p className="font-medium text-sm">{title}</p>
-                      <p className={`text-xs ${activeTab === section.id ? 'text-white/70' : 'text-text-secondary'}`}>
+                      <p
+                        className={`text-xs ${activeTab === section.id ? "text-white/70" : "text-text-secondary"}`}
+                      >
                         {description}
                       </p>
                     </div>
-                    {activeTab === section.id && <ChevronRight className="h-4 w-4" />}
+                    {activeTab === section.id && (
+                      <ChevronRight className="h-4 w-4" />
+                    )}
                   </button>
                 );
               })}
@@ -342,7 +390,7 @@ export default function SettingsPage() {
             <CardHeader className="border-b border-border">
               <CardTitle className="flex items-center gap-2">
                 <ActiveIcon className="h-5 w-5 text-accent" />
-                {activeSection ? t(activeSection.titleKey) : ''}
+                {activeSection ? t(activeSection.titleKey) : ""}
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
@@ -354,19 +402,21 @@ export default function SettingsPage() {
               )}
 
               {/* Profile Section */}
-              {!isLoading && activeTab === 'profile' && (
+              {!isLoading && activeTab === "profile" && (
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">{t('sections.profile.fullName')}</Label>
+                    <Label htmlFor="name">
+                      {t("sections.profile.fullName")}
+                    </Label>
                     <Input
                       id="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder={t('sections.profile.fullName')}
+                      placeholder={t("sections.profile.fullName")}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">{t('sections.profile.email')}</Label>
+                    <Label htmlFor="email">{t("sections.profile.email")}</Label>
                     <Input
                       id="email"
                       type="email"
@@ -376,7 +426,7 @@ export default function SettingsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">{t('sections.profile.phone')}</Label>
+                    <Label htmlFor="phone">{t("sections.profile.phone")}</Label>
                     <Input
                       id="phone"
                       type="tel"
@@ -385,27 +435,39 @@ export default function SettingsPage() {
                       placeholder="+90 555 123 4567"
                     />
                   </div>
-                  <Button onClick={handleSaveProfile} disabled={isSaving} className="w-full bg-accent hover:bg-accent-hover text-white">
-                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {t('sections.profile.saveChanges')}
+                  <Button
+                    onClick={handleSaveProfile}
+                    disabled={isSaving}
+                    className="w-full bg-accent hover:bg-accent-hover text-white"
+                  >
+                    {isSaving && (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    )}
+                    {t("sections.profile.saveChanges")}
                   </Button>
                 </div>
               )}
 
               {/* Business Section */}
-              {!isLoading && activeTab === 'business' && (
+              {!isLoading && activeTab === "business" && (
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="businessName">{t('sections.business.businessName')}</Label>
+                    <Label htmlFor="businessName">
+                      {t("sections.business.businessName")}
+                    </Label>
                     <Input
                       id="businessName"
                       value={businessName}
                       onChange={(e) => setBusinessName(e.target.value)}
-                      placeholder={t('sections.business.businessNamePlaceholder')}
+                      placeholder={t(
+                        "sections.business.businessNamePlaceholder",
+                      )}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="currency">{t('sections.business.currency')}</Label>
+                    <Label htmlFor="currency">
+                      {t("sections.business.currency")}
+                    </Label>
                     <Select value={currency} onValueChange={setCurrency}>
                       <SelectTrigger className="w-full">
                         <SelectValue />
@@ -415,15 +477,21 @@ export default function SettingsPage() {
                         <SelectItem value="USD">$ US Dollar</SelectItem>
                         <SelectItem value="EUR">€ Euro</SelectItem>
                         <SelectItem value="INR">₹ Indian Rupee</SelectItem>
-                        <SelectItem value="IDR">Rp Indonesian Rupiah</SelectItem>
+                        <SelectItem value="IDR">
+                          Rp Indonesian Rupiah
+                        </SelectItem>
                         <SelectItem value="NGN">₦ Nigerian Naira</SelectItem>
                         <SelectItem value="EGP">£ Egyptian Pound</SelectItem>
-                        <SelectItem value="ZAR">R South African Rand</SelectItem>
+                        <SelectItem value="ZAR">
+                          R South African Rand
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="language">{t('sections.business.language')}</Label>
+                    <Label htmlFor="language">
+                      {t("sections.business.language")}
+                    </Label>
                     <Select value={language} onValueChange={setLanguage}>
                       <SelectTrigger className="w-full">
                         <SelectValue />
@@ -435,67 +503,106 @@ export default function SettingsPage() {
                       </SelectContent>
                     </Select>
                   </div>
-                  <Button onClick={handleSaveBusiness} disabled={isSaving} className="w-full bg-accent hover:bg-accent-hover text-white">
-                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {t('sections.business.saveChanges')}
+                  <Button
+                    onClick={handleSaveBusiness}
+                    disabled={isSaving}
+                    className="w-full bg-accent hover:bg-accent-hover text-white"
+                  >
+                    {isSaving && (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    )}
+                    {t("sections.business.saveChanges")}
                   </Button>
                 </div>
               )}
 
               {/* Notifications Section */}
-              {!isLoading && activeTab === 'notifications' && (
+              {!isLoading && activeTab === "notifications" && (
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-text">{t('sections.notifications.pushEnabled')}</p>
-                      <p className="text-sm text-text-secondary">{t('sections.notifications.pushDescription')}</p>
+                      <p className="font-medium text-text">
+                        {t("sections.notifications.pushEnabled")}
+                      </p>
+                      <p className="text-sm text-text-secondary">
+                        {t("sections.notifications.pushDescription")}
+                      </p>
                     </div>
-                    <Switch checked={pushEnabled} onCheckedChange={setPushEnabled} />
+                    <Switch
+                      checked={pushEnabled}
+                      onCheckedChange={setPushEnabled}
+                    />
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-text">{t('sections.notifications.remindersEnabled')}</p>
-                      <p className="text-sm text-text-secondary">{t('sections.notifications.remindersDescription')}</p>
+                      <p className="font-medium text-text">
+                        {t("sections.notifications.remindersEnabled")}
+                      </p>
+                      <p className="text-sm text-text-secondary">
+                        {t("sections.notifications.remindersDescription")}
+                      </p>
                     </div>
-                    <Switch checked={remindersEnabled} onCheckedChange={setRemindersEnabled} />
+                    <Switch
+                      checked={remindersEnabled}
+                      onCheckedChange={setRemindersEnabled}
+                    />
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-text">{t('sections.notifications.weeklyReport')}</p>
-                      <p className="text-sm text-text-secondary">{t('sections.notifications.weeklyReportDescription')}</p>
+                      <p className="font-medium text-text">
+                        {t("sections.notifications.weeklyReport")}
+                      </p>
+                      <p className="text-sm text-text-secondary">
+                        {t("sections.notifications.weeklyReportDescription")}
+                      </p>
                     </div>
-                    <Switch checked={weeklyReport} onCheckedChange={setWeeklyReport} />
+                    <Switch
+                      checked={weeklyReport}
+                      onCheckedChange={setWeeklyReport}
+                    />
                   </div>
                 </div>
               )}
 
               {/* Subscription Section */}
-              {!isLoading && activeTab === 'subscription' && (
+              {!isLoading && activeTab === "subscription" && (
                 <div className="space-y-5">
                   <div className="p-4 bg-accent/10 rounded-xl border border-accent/20">
                     <div className="flex items-center justify-between mb-3">
                       <div>
-                        <p className="font-semibold text-text">{t('sections.subscription.currentPlan')}</p>
-                        <p className="text-sm text-text-secondary">{t('sections.subscription.planName')}</p>
+                        <p className="font-semibold text-text">
+                          {t("sections.subscription.currentPlan")}
+                        </p>
+                        <p className="text-sm text-text-secondary">
+                          {t("sections.subscription.planName")}
+                        </p>
                       </div>
                       <Badge className="bg-accent text-white">50% Off</Badge>
                     </div>
                     <div className="space-y-2 text-sm">
                       <div className="flex items-center gap-2">
                         <div className="h-2 w-2 rounded-full bg-success" />
-                        <span>{t('sections.subscription.features.customers')}</span>
+                        <span>
+                          {t("sections.subscription.features.customers")}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="h-2 w-2 rounded-full bg-success" />
-                        <span>{t('sections.subscription.features.transactions')}</span>
+                        <span>
+                          {t("sections.subscription.features.transactions")}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="h-2 w-2 rounded-full bg-success" />
-                        <span>{t('sections.subscription.features.offline')}</span>
+                        <span>
+                          {t("sections.subscription.features.offline")}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="h-2 w-2 rounded-full bg-success" />
-                        <span>{t('sections.subscription.features.export')}</span>
+                        <span>
+                          {t("sections.subscription.features.export")}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -505,89 +612,99 @@ export default function SettingsPage() {
                       className="flex-1 bg-accent hover:bg-accent-hover"
                       onClick={() => setUpgradeModalOpen(true)}
                     >
-                      {t('sections.subscription.upgrade')}
+                      {t("sections.subscription.upgrade")}
                     </Button>
                     <Button variant="outline" className="flex-1">
-                      {t('sections.subscription.manageBilling')}
+                      {t("sections.subscription.manageBilling")}
                     </Button>
                   </div>
                 </div>
               )}
 
               {/* Data Section */}
-              {!isLoading && activeTab === 'data' && (
+              {!isLoading && activeTab === "data" && (
                 <div className="space-y-5">
                   <div>
-                    <p className="font-medium mb-3 text-text">{t('sections.data.export')}</p>
-                    <p className="text-sm text-text-secondary mb-4">{t('sections.data.exportDescription')}</p>
+                    <p className="font-medium mb-3 text-text">
+                      {t("sections.data.export")}
+                    </p>
+                    <p className="text-sm text-text-secondary mb-4">
+                      {t("sections.data.exportDescription")}
+                    </p>
                     <div className="flex gap-2">
                       <Button
                         variant="outline"
-                        onClick={() => handleExportData('csv')}
+                        onClick={() => handleExportData("csv")}
                         className="flex-1"
                       >
                         <Download className="h-4 w-4 mr-2" />
-                        {t('sections.data.exportCSV')}
+                        {t("sections.data.exportCSV")}
                       </Button>
                       <Button
                         variant="outline"
-                        onClick={() => handleExportData('pdf')}
+                        onClick={() => handleExportData("pdf")}
                         className="flex-1"
                       >
                         <Download className="h-4 w-4 mr-2" />
-                        {t('sections.data.exportPDF')}
+                        {t("sections.data.exportPDF")}
                       </Button>
                     </div>
                   </div>
                   <div className="p-4 bg-surface-alt rounded-xl border border-border">
-                    <p className="font-medium mb-2 text-text">{t('sections.data.backup')}</p>
-                    <p className="text-sm text-text-secondary mb-3">{t('sections.data.backupDescription')}</p>
+                    <p className="font-medium mb-2 text-text">
+                      {t("sections.data.backup")}
+                    </p>
+                    <p className="text-sm text-text-secondary mb-3">
+                      {t("sections.data.backupDescription")}
+                    </p>
                     <div className="flex items-center gap-2 text-sm text-text-secondary">
                       <div className="h-2 w-2 rounded-full bg-success" />
-                      {t('sections.data.lastBackup')}
+                      {t("sections.data.lastBackup")}
                     </div>
                   </div>
                 </div>
               )}
 
               {/* Support Section */}
-              {!isLoading && activeTab === 'support' && (
+              {!isLoading && activeTab === "support" && (
                 <div className="space-y-3">
                   <Button variant="outline" className="w-full justify-start">
                     <HelpCircle className="h-4 w-4 mr-2" />
-                    {t('sections.support.helpCenter')}
+                    {t("sections.support.helpCenter")}
                   </Button>
                   <Button variant="outline" className="w-full justify-start">
                     <Mail className="h-4 w-4 mr-2" />
-                    {t('sections.support.contactSupport')}
+                    {t("sections.support.contactSupport")}
                   </Button>
                   <Button variant="outline" className="w-full justify-start">
                     <Phone className="h-4 w-4 mr-2" />
-                    {t('sections.support.callSupport')}
+                    {t("sections.support.callSupport")}
                   </Button>
                   <div className="border-t border-border pt-3">
-                    <p className="text-sm text-text-secondary text-center mb-2">{t('sections.support.enjoyingApp')}</p>
+                    <p className="text-sm text-text-secondary text-center mb-2">
+                      {t("sections.support.enjoyingApp")}
+                    </p>
                     <Button variant="outline" className="w-full">
-                      {t('sections.support.rateUs')}
+                      {t("sections.support.rateUs")}
                     </Button>
                   </div>
                 </div>
               )}
 
               {/* Account Section */}
-              {!isLoading && activeTab === 'account' && (
+              {!isLoading && activeTab === "account" && (
                 <div className="space-y-3">
                   <Button variant="outline" className="w-full justify-start">
                     <Shield className="h-4 w-4 mr-2" />
-                    {tAccount('privacyPolicy')}
+                    {tAccount("privacyPolicy")}
                   </Button>
                   <Button variant="outline" className="w-full justify-start">
                     <Globe className="h-4 w-4 mr-2" />
-                    {tAccount('termsOfService')}
+                    {tAccount("termsOfService")}
                   </Button>
                   <Button variant="outline" className="w-full justify-start">
                     <Globe className="h-4 w-4 mr-2" />
-                    {tAccount('licenses')}
+                    {tAccount("licenses")}
                   </Button>
                   <div className="border-t border-border pt-3">
                     <Button
@@ -596,7 +713,7 @@ export default function SettingsPage() {
                       onClick={() => setSignOutDialogOpen(true)}
                     >
                       <LogOut className="h-4 w-4 mr-2" />
-                      {tAccount('signOut')}
+                      {tAccount("signOut")}
                     </Button>
                   </div>
                 </div>
@@ -615,17 +732,18 @@ export default function SettingsPage() {
       <Dialog open={signOutDialogOpen} onOpenChange={setSignOutDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{tAccount('signOutTitle')}</DialogTitle>
-            <DialogDescription>
-              {tAccount('signOutConfirm')}
-            </DialogDescription>
+            <DialogTitle>{tAccount("signOutTitle")}</DialogTitle>
+            <DialogDescription>{tAccount("signOutConfirm")}</DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setSignOutDialogOpen(false)}>
-              {tCommon('cancel')}
+            <Button
+              variant="outline"
+              onClick={() => setSignOutDialogOpen(false)}
+            >
+              {tCommon("cancel")}
             </Button>
             <Button variant="destructive" onClick={handleSignOut}>
-              {tAccount('signOut')}
+              {tAccount("signOut")}
             </Button>
           </DialogFooter>
         </DialogContent>
