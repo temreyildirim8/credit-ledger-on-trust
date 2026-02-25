@@ -1,9 +1,9 @@
 import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
-import { Card, CardContent } from '@/components/ui/card';
 import { Link } from '@/routing';
 import { DEFAULT_BRAND } from '@/lib/branding';
 import { PricingCards } from '@/components/pricing/PricingCards';
+import { FAQSection } from '@/components/marketing/FAQSection';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -46,41 +46,8 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-[var(--color-bg)]">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold font-display text-[var(--color-text)] text-center mb-12">
-            {t('faq.title')}
-          </h2>
-          <div className="space-y-6">
-            {[
-              {
-                qKey: 'faq.q1',
-                aKey: 'faq.a1',
-              },
-              {
-                qKey: 'faq.q2',
-                aKey: 'faq.a2',
-              },
-              {
-                qKey: 'faq.q3',
-                aKey: 'faq.a3',
-              },
-              {
-                qKey: 'faq.q4',
-                aKey: 'faq.a4',
-              },
-            ].map((faq, index) => (
-              <Card key={index} className="border-[var(--color-border)]">
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-[var(--color-text)] mb-2">{t(faq.qKey)}</h3>
-                  <p className="text-[var(--color-text-secondary)]">{t(faq.aKey)}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* FAQ Section - Same as homepage */}
+      <FAQSection />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white">
