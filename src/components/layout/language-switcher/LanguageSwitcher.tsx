@@ -8,12 +8,12 @@ import styles from "./LanguageSwitcher.module.css";
 
 const localeNames: Record<Locale, string> = {
   en: "English",
-  tr: "Türkçe",
-  es: "Español",
-  hi: "हिन्दी",
-  id: "Bahasa Indonesia",
-  ar: "العربية",
-  zu: "isiZulu",
+  tr: "Turkish",
+  es: "Spanish",
+  hi: "Hindi",
+  id: "Indonesian",
+  ar: "Arabic",
+  zu: "Zulu",
 };
 
 const localeFlags: Record<Locale, string> = {
