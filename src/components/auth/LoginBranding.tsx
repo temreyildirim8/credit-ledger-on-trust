@@ -1,8 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Users, TrendingUp, Shield, Globe } from "lucide-react";
-import Image from "next/image";
+import { Users, TrendingUp, Shield, Globe, BookOpen } from "lucide-react";
 
 /**
  * Login page branding content for left panel
@@ -16,14 +15,8 @@ export function LoginBranding() {
       {/* Logo/Brand */}
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden">
-            <Image
-              src="/images/icons/icon-logo.svg"
-              alt=""
-              width={28}
-              height={28}
-              className="w-7 h-7"
-            />
+          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+            <BookOpen className="w-6 h-6 text-white" />
           </div>
           <span className="text-2xl font-bold tracking-tight text-white">
             {t("login.brandName") || "Ledgerly"}

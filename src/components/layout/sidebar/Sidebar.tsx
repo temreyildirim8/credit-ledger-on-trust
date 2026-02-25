@@ -15,6 +15,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -138,27 +139,7 @@ export function Sidebar({ className }: SidebarProps) {
           onClick={(e) => isCollapsed && e.preventDefault()}
         >
           <div className="w-10 h-10 rounded-xl bg-accent text-white flex items-center justify-center transition-transform group-hover:scale-105 flex-shrink-0">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path
-                d="M3 11L12 3l9 8v10a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1z"
-                fill="white"
-                fillOpacity="0.2"
-              />
-              <path
-                d="M3 11L12 3l9 8v10a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1z"
-                stroke="white"
-              />
-              <path d="M12 10V16M12 16L9 13M12 16L15 13" stroke="white" />
-            </svg>
+            <BookOpen className="w-5 h-5" />
           </div>
           {!isCollapsed && (
             <div className="overflow-hidden">
