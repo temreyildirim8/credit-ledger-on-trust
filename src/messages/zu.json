@@ -245,6 +245,11 @@
     },
     "title": "Amanani Ahlakahle Ahlakaniphile",
     "subtitle": "Qala mahhala, vuselela uma ukhula",
+    "monthly": "Nyenye",
+    "yearly": "Ngonyaka",
+    "save17": "Londoloza 17%",
+    "mostPopular": "Okudumile Kakhulu",
+    "toggleBilling": "Shintsha isikhathi sokukhokha",
     "free": {
       "name": "Mahhala Nasempela",
       "price": "$0",

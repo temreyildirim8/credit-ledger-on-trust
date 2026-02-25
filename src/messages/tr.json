@@ -226,6 +226,11 @@
     },
     "title": "Basit, Şeffaf Fiyatlandırma",
     "subtitle": "Ücretsiz başlayın, büyüdükçe yükseltin",
+    "monthly": "Aylık",
+    "yearly": "Yıllık",
+    "save17": "%17 Tasarruf",
+    "mostPopular": "En Popüler",
+    "toggleBilling": "Fatura dönemini değiştir",
     "basic": {
       "name": "Temel",
       "price": "₺150",

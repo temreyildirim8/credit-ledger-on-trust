@@ -226,6 +226,11 @@
     },
     "title": "Simple, Transparent Pricing",
     "subtitle": "Start free, upgrade when you grow",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "save17": "Save 17%",
+    "mostPopular": "Most Popular",
+    "toggleBilling": "Toggle billing period",
     "free": {
       "name": "Free Forever",
       "price": "$0",

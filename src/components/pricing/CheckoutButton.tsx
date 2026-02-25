@@ -10,10 +10,11 @@ import { useAuth } from '@/lib/hooks/useAuth';
 interface CheckoutButtonProps {
   plan: 'free' | 'pro' | 'enterprise';
   featured?: boolean;
+  interval?: 'monthly' | 'yearly';
   children: React.ReactNode;
 }
 
-export function CheckoutButton({ plan, featured, children }: CheckoutButtonProps) {
+export function CheckoutButton({ plan, featured, interval = 'monthly', children }: CheckoutButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
 
@@ -46,7 +47,7 @@ export function CheckoutButton({ plan, featured, children }: CheckoutButtonProps
         },
         body: JSON.stringify({
           plan,
-          interval: 'monthly',
+          interval,
         }),
       });
 

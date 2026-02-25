@@ -226,6 +226,11 @@
     },
     "title": "Harga Sederhana & Transparan",
     "subtitle": "Mulai gratis, upgrade saat Anda tumbuh",
+    "monthly": "Bulanan",
+    "yearly": "Tahunan",
+    "save17": "Hemat 17%",
+    "mostPopular": "Paling Populer",
+    "toggleBilling": "Ubah periode penagihan",
     "free": {
       "name": "Gratis Selamanya",
       "price": "$0",

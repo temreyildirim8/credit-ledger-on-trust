@@ -226,6 +226,11 @@
     },
     "title": "Precios Simples y Transparentes",
     "subtitle": "Comienza gratis, actualiza cuando crezcas",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "save17": "Ahorra 17%",
+    "mostPopular": "Más Popular",
+    "toggleBilling": "Cambiar período de facturación",
     "free": {
       "name": "Gratis Para Siempre",
       "price": "$0",
