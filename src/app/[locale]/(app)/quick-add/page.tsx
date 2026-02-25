@@ -71,7 +71,7 @@ export default function QuickAddPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-br from-accent to-accent-hover rounded-2xl p-6 text-white">
+      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white">
         <h1 className="text-2xl font-bold font-display flex items-center gap-2">
           <Plus className="h-6 w-6" />
           {t('title')}

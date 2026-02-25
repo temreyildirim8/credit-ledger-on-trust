@@ -34,7 +34,7 @@ export default function TransactionsPage() {
   return (
     <div className="space-y-5">
       {/* Header Card */}
-      <div className="bg-gradient-to-br from-accent to-accent-hover rounded-2xl p-6 text-white shadow-md">
+      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white shadow-md">
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold font-display">
@@ -47,7 +47,7 @@ export default function TransactionsPage() {
           <Button
             onClick={() => setModalOpen(true)}
             size="sm"
-            className="gap-2 bg-white text-accent hover:bg-white/90 shadow-sm"
+            className="gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 shadow-sm"
           >
             <Plus className="h-4 w-4" />
             {t('addNew')}

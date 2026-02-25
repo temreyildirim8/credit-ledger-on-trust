@@ -271,7 +271,7 @@ export default function SettingsPage() {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-gradient-to-br from-accent to-accent-hover rounded-2xl p-6 text-white shadow-md">
+      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white shadow-md">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
             <Award className="h-8 w-8 text-white/80" />
