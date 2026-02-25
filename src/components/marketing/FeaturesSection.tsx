@@ -1,42 +1,45 @@
 "use client";
 
 import { UserPlus, Receipt, Wallet, TrendingUp, CheckCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 /**
  * Features section - "How it Works" and "Built for Resilience"
  * Matches Figma design with 3-step process and feature list
  */
 export function FeaturesSection() {
+  const t = useTranslations("features");
+
   const steps = [
     {
       icon: UserPlus,
-      title: "Add Customer",
-      description: "Quickly set up profiles for your regular clients in seconds. Import from contacts or add manually.",
+      title: t("howItWorks.step1.title"),
+      description: t("howItWorks.step1.description"),
     },
     {
       icon: Receipt,
-      title: "Record Debt",
-      description: "Track sales in real-time. Our system automatically adjusts for inflation to protect your margins.",
+      title: t("howItWorks.step2.title"),
+      description: t("howItWorks.step2.description"),
     },
     {
       icon: Wallet,
-      title: "Get Paid",
-      description: "Send automated WhatsApp reminders and payment links. Clear debts faster and improve cash flow.",
+      title: t("howItWorks.step3.title"),
+      description: t("howItWorks.step3.description"),
     },
   ];
 
   const features = [
     {
-      title: "Inflation Protection",
-      description: "Automatically convert debts to stable currencies or adjust based on daily index values to maintain purchasing power.",
+      title: t("resilience.feature1.title"),
+      description: t("resilience.feature1.description"),
     },
     {
-      title: "Cloud Sync & Offline Mode",
-      description: "Continue recording transactions without internet. Everything syncs instantly once you are back online.",
+      title: t("resilience.feature2.title"),
+      description: t("resilience.feature2.description"),
     },
     {
-      title: "Military-Grade Security",
-      description: "Your data is encrypted end-to-end. Never worry about losing paper books to fire, theft, or wear and tear.",
+      title: t("resilience.feature3.title"),
+      description: t("resilience.feature3.description"),
     },
   ];
 
@@ -48,11 +51,10 @@ export function FeaturesSection() {
           {/* Header */}
           <div className="text-center mb-20">
             <h2 className="text-[36px] font-black leading-[40px] tracking-[-0.9px] text-[#0f172a] mb-6">
-              Simple steps to digitize
+              {t("howItWorks.title")}
             </h2>
             <p className="text-[18px] leading-[28px] text-[#475569] max-w-[672px] mx-auto">
-              Ditch the paper and start managing your business credit with three simple
-              steps designed for efficiency.
+              {t("howItWorks.description")}
             </p>
           </div>
 
@@ -94,9 +96,9 @@ export function FeaturesSection() {
               {/* Content */}
               <div className="flex-1 max-w-[576px]">
                 <h2 className="text-[48px] font-black leading-[48px] text-white mb-8">
-                  Built for Resilience in
+                  {t("resilience.title1")}
                   <br />
-                  Inflationary Markets
+                  {t("resilience.title2")}
                 </h2>
 
                 {/* Feature List */}
@@ -129,8 +131,8 @@ export function FeaturesSection() {
                   <div className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-[32px] aspect-square w-full flex items-center justify-center">
                     <div className="text-white text-center p-12">
                       <TrendingUp className="h-20 w-20 mx-auto mb-6 text-[#3c83f6]" />
-                      <p className="text-xl font-bold mb-2">Financial Analytics</p>
-                      <p className="text-white/60">Track your business performance</p>
+                      <p className="text-xl font-bold mb-2">{t("resilience.dashboardTitle")}</p>
+                      <p className="text-white/60">{t("resilience.dashboardSubtitle")}</p>
                     </div>
                   </div>
                 </div>

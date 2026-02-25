@@ -111,11 +111,15 @@
       "description": "Ganti buku catatan kertas Anda dengan aplikasi buku kredit cerdas, aman, dan selalu tersedia untuk usaha kecil."
     },
     "hero": {
-      "title": "Uang untuk Di Sini, Di Sana & Di Mana Saja",
-      "subtitle": "Buku kredit cerdas untuk UMKM",
-      "description": "Ganti buku catatan kertas Anda dengan solusi digital yang bekerja offline, sinkron otomatis, dan membantu bisnis Anda tumbuh.",
-      "cta": "Mulai Gratis Hari Ini",
-      "secondary": "Lihat Cara Kerjanya"
+      "badge": "Dipercaya 50.000+ UMKM",
+      "title1": "Buku Digital",
+      "title2": "untuk Usaha",
+      "title3": "Lokal Anda",
+      "description": "Lindungi keuntungan Anda dari inflasi dan jangan pernah kehilangan catatan lagi. Aman, sinkron cloud, dan dirancang khusus untuk UMKM di ekonomi berkembang.",
+      "cta": "Instal PWA",
+      "secondary": "Tonton Demo",
+      "imageTitle": "Buku Digital Aman",
+      "imageSubtitle": "Data Anda, selalu terlindungi"
     },
     "trust": {
       "bankGradeSecurity": "Keamanan Tingkat Bank",
@@ -138,6 +142,40 @@
     },
     "title": "Semua yang Anda Butuhkan untuk Mengelola Kredit",
     "subtitle": "Dibuat untuk UMKM, dipercaya oleh pemilik toko di seluruh dunia",
+    "howItWorks": {
+      "title": "Langkah sederhana untuk digitalisasi",
+      "description": "Tinggalkan kertas dan mulai kelola kredit bisnis Anda dengan tiga langkah sederhana yang dirancang untuk efisiensi.",
+      "step1": {
+        "title": "Tambah Pelanggan",
+        "description": "Siapkan profil pelanggan tetap Anda dalam hitungan detik. Impor dari kontak atau tambah manual."
+      },
+      "step2": {
+        "title": "Catat Hutang",
+        "description": "Lacak penjualan secara real-time. Sistem kami secara otomatis menyesuaikan inflasi untuk melindungi margin Anda."
+      },
+      "step3": {
+        "title": "Terima Pembayaran",
+        "description": "Kirim pengingat WhatsApp otomatis dan tautan pembayaran. Tagih hutang lebih cepat dan tingkatkan arus kas."
+      }
+    },
+    "resilience": {
+      "title1": "Dibangun untuk Ketahanan di",
+      "title2": "Pasar Inflasi Tinggi",
+      "feature1": {
+        "title": "Perlindungan Inflasi",
+        "description": "Otomatis konversi hutang ke mata uang stabil atau sesuaikan berdasarkan nilai indeks harian untuk menjaga daya beli."
+      },
+      "feature2": {
+        "title": "Sinkron Cloud & Mode Offline",
+        "description": "Lanjutkan mencatat transaksi tanpa internet. Semua langsung sinkron saat Anda kembali online."
+      },
+      "feature3": {
+        "title": "Keamanan Tingkat Militer",
+        "description": "Data Anda dienkripsi end-to-end. Tidak perlu khawatir kehilangan buku kertas karena kebakaran, pencurian, atau aus."
+      },
+      "dashboardTitle": "Analitik Keuangan",
+      "dashboardSubtitle": "Lacak performa bisnis Anda"
+    },
     "localLanguage": {
       "title": "Dukungan Bahasa Lokal",
       "description": "Bekerja dalam bahasa Anda dengan dukungan 7 bahasa termasuk Hindi, Turki, Spanyol, dan lainnya."
@@ -161,20 +199,6 @@
     "reports": {
       "title": "Laporan Mendetail",
       "description": "Dapatkan wawasan tentang bisnis Anda dengan laporan dan analitik yang komprehensif."
-    },
-    "howItWorks": {
-      "step1": {
-        "title": "Tambahkan Pelanggan Anda",
-        "description": "Tambahkan pelanggan dengan cepat dengan detail kontak mereka. Atur basis pelanggan Anda dalam hitungan detik."
-      },
-      "step2": {
-        "title": "Catat Transaksi",
-        "description": "Lacak hutang dan pembayaran dengan mudah. Berfungsi offline dan disinkronkan saat Anda kembali online."
-      },
-      "step3": {
-        "title": "Dapatkan Wawasan",
-        "description": "Lihat laporan dan analitik untuk memahami bisnis Anda lebih baik. Buat keputusan yang tepat."
-      }
     },
     "cta": {
       "title": "Siap Untuk Memulai?",

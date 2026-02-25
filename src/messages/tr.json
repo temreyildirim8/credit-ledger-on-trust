@@ -113,11 +113,15 @@
       "description": "Kağıt defterinizi küçük işletmeler için akıllı, güvenli ve her zaman erişilebilir bir veresiye defteri uygulamasıyla değiştirin."
     },
     "hero": {
-      "title": "Para Burada, Orada ve Her Yerde İçin",
-      "subtitle": "Küçük işletmeler için akıllı veresiye defteri",
-      "description": "Kağıt defterinizi çevrimdışı çalışan, otomatik olarak senkronize olan ve işinizi büyütmenize yardımcı olan bir dijital çözümle değiştirin.",
-      "cta": "Bugün Ücretsiz Başlayın",
-      "secondary": "Nasıl Çalıştığını Gör"
+      "badge": "50.000+ KOBİ'nin Güvendiği",
+      "title1": "Yerel İşletmeniz İçin",
+      "title2": "Dijital",
+      "title3": "Veresiye Defteri",
+      "description": "Kârınızı enflasyondan koruyun ve bir kaydı asla tekrar kaybetmeyin. Güvenli, bulut senkronizasyonlu ve gelişmekte olan ekonomilerdeki mikro-KOBİ'ler için özel olarak tasarlanmıştır.",
+      "cta": "PWA Kur",
+      "secondary": "Demo İzle",
+      "imageTitle": "Güvenli Dijital Defter",
+      "imageSubtitle": "Verileriniz her zaman güvende"
     },
     "trust": {
       "bankGradeSecurity": "Banka Düzeyinde Güvenlik",
@@ -140,6 +144,40 @@
     },
     "title": "Veresiye Yönetimi İçin İhtiyacınız Olan Her Şey",
     "subtitle": "Küçük işletmeler için yapıldı, dünya çapında dükkan sahipleri tarafından güveniliyor",
+    "howItWorks": {
+      "title": "Dijitalleşmek için basit adımlar",
+      "description": "Kağıdı bırakın ve verimlilik için tasarlanmış üç basit adımla iş kredinizi yönetmeye başlayın.",
+      "step1": {
+        "title": "Müşteri Ekle",
+        "description": "Düzenli müşterileriniz için profilleri saniyeler içinde hızlıca oluşturun. Kişilerden içe aktarın veya manuel olarak ekleyin."
+      },
+      "step2": {
+        "title": "Borç Kaydet",
+        "description": "Satışları gerçek zamanlı olarak takip edin. Sistemimiz kar marjlarınızı korumak için otomatik olarak enflasyona göre ayarlar."
+      },
+      "step3": {
+        "title": "Tahsil Et",
+        "description": "Otomatik WhatsApp hatırlatmaları ve ödeme bağlantıları gönderin. Borçları daha hızlı tahsil edin ve nakit akışını iyileştirin."
+      }
+    },
+    "resilience": {
+      "title1": "Enflasyonist Piyasalarda",
+      "title2": "Dayanıklılık İçin Tasarlandı",
+      "feature1": {
+        "title": "Enflasyon Koruması",
+        "description": "Borçları otomatik olarak istikrarlı para birimlerine dönüştürün veya satın alma gücünü korumak için günlük endeks değerlerine göre ayarlayın."
+      },
+      "feature2": {
+        "title": "Bulut Senkronizasyonu ve Çevrimdışı Mod",
+        "description": "İnternet olmadan işlemleri kaydetmeye devam edin. Çevrimiçi olduğunuzda her şey anında senkronize olur."
+      },
+      "feature3": {
+        "title": "Askeri Düzeyde Güvenlik",
+        "description": "Verileriniz uçtan uca şifrelenir. Kağıt defterlerinizi yangın, hırsızlık veya aşınmaya kaybetme endişesi yok."
+      },
+      "dashboardTitle": "Finansal Analitik",
+      "dashboardSubtitle": "İş performansınızı takip edin"
+    },
     "localLanguage": {
       "title": "Yerel Dil Desteği",
       "description": "Türkçe, Hintçe, İspanyolca ve daha fazla dil dahil 7 dilde çalışır."
@@ -163,21 +201,6 @@
     "reports": {
       "title": "Detaylı Raporlar",
       "description": "Kapsamlı raporlar ve analizlerle işiniz hakkında bilgi edinin."
-    },
-    "howItWorks": {
-      "title": "Nasıl Çalışır?",
-      "step1": {
-        "title": "Müşteri Ekleyin",
-        "description": "İsim ve telefon numarası ile müşterilerinizi hızlıca ekleyin"
-      },
-      "step2": {
-        "title": "İşlem Kaydedin",
-        "description": "Saniyeler içinde borç veya ödeme ekleyin, çevrimdışı bile"
-      },
-      "step3": {
-        "title": "Takip Edin ve Hatırlatın",
-        "description": "Bakiyeleri görüntüleyin ve otomatik ödeme hatırlatıcıları gönderin"
-      }
     },
     "cta": {
       "title": "Başlamaya Hazır mısınız?",

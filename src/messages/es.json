@@ -111,11 +111,15 @@
       "description": "Reemplaza tu cuaderno de papel con una aplicación de libro mayor de crédito inteligente, segura y siempre disponible para pequeñas empresas."
     },
     "hero": {
-      "title": "Dinero para Aquí, Allá y en Todas Partes",
-      "subtitle": "El libro mayor de crédito inteligente para micro-empresas",
-      "description": "Reemplaza tu cuaderno de papel con una solución digital que funciona sin conexión, se sincroniza automáticamente y te ayuda a hacer crecer tu negocio.",
-      "cta": "Comienza Gratis Hoy",
-      "secondary": "Ver Cómo Funciona"
+      "badge": "Más de 50,000 PYMEs confían en nosotros",
+      "title1": "El Libro Mayor Digital",
+      "title2": "para Tu",
+      "title3": "Negocio Local",
+      "description": "Protege tus ganancias de la inflación y nunca pierdas un registro. Seguro, sincronizado en la nube y diseñado específicamente para micro-PYMEs en economías en desarrollo.",
+      "cta": "Instalar PWA",
+      "secondary": "Ver Demo",
+      "imageTitle": "Libro Mayor Digital Seguro",
+      "imageSubtitle": "Tus datos, siempre protegidos"
     },
     "trust": {
       "bankGradeSecurity": "Seguridad de Nivel Bancario",
@@ -138,6 +142,40 @@
     },
     "title": "Todo Lo Que Necesitas Para Gestionar Crédito",
     "subtitle": "Construido para micro-empresas, confiado por dueños de tiendas en todo el mundo",
+    "howItWorks": {
+      "title": "Pasos simples para digitalizar",
+      "description": "Deja el papel y comienza a gestionar el crédito de tu negocio con tres simples pasos diseñados para la eficiencia.",
+      "step1": {
+        "title": "Agregar Cliente",
+        "description": "Configura rápidamente perfiles para tus clientes regulares en segundos. Importa de contactos o agrega manualmente."
+      },
+      "step2": {
+        "title": "Registrar Deuda",
+        "description": "Rastrea ventas en tiempo real. Nuestro sistema ajusta automáticamente por inflación para proteger tus márgenes."
+      },
+      "step3": {
+        "title": "Cobrar",
+        "description": "Envía recordatorios automáticos de WhatsApp y enlaces de pago. Cobra deudas más rápido y mejora el flujo de caja."
+      }
+    },
+    "resilience": {
+      "title1": "Construido para la Resiliencia en",
+      "title2": "Mercados Inflacionarios",
+      "feature1": {
+        "title": "Protección contra Inflación",
+        "description": "Convierte automáticamente deudas a monedas estables o ajusta según valores de índice diario para mantener el poder adquisitivo."
+      },
+      "feature2": {
+        "title": "Sincronización Cloud y Modo Offline",
+        "description": "Continúa registrando transacciones sin internet. Todo se sincroniza instantáneamente cuando vuelves a estar en línea."
+      },
+      "feature3": {
+        "title": "Seguridad de Grado Militar",
+        "description": "Tus datos están encriptados de extremo a extremo. Nunca te preocupes por perder libros de papel por fuego, robo o desgaste."
+      },
+      "dashboardTitle": "Analítica Financiera",
+      "dashboardSubtitle": "Rastrea el rendimiento de tu negocio"
+    },
     "localLanguage": {
       "title": "Soporte de Idioma Local",
       "description": "Funciona en tu idioma con soporte para 7 idiomas incluyendo hindi, turco, español y más."
@@ -161,20 +199,6 @@
     "reports": {
       "title": "Informes Detallados",
       "description": "Obtén información sobre tu negocio con informes y análisis completos."
-    },
-    "howItWorks": {
-      "step1": {
-        "title": "Agrega tus Clientes",
-        "description": "Agrega clientes rápidamente con sus datos de contacto. Organiza tu base de clientes en segundos."
-      },
-      "step2": {
-        "title": "Registra Transacciones",
-        "description": "Rastrea deudas y pagos fácilmente. Funciona sin conexión y se sincroniza cuando vuelves a estar conectado."
-      },
-      "step3": {
-        "title": "Obtén Información",
-        "description": "Ver informes y análisis para entender mejor tu negocio. Toma decisiones informadas."
-      }
     },
     "cta": {
       "title": "¿Listo para Empezar?",

@@ -63,28 +63,48 @@
         "price": "R0",
         "period": "phakade",
         "description": "Kwitilozane ezincane eziqala",
-        "features": ["10 abathengi", "Ukuthengiselana okungazwelonke", "Imibiko eyisisekelo", "Imodi engesebenzayo"]
+        "features": [
+          "10 abathengi",
+          "Ukuthengiselana okungazwelonke",
+          "Imibiko eyisisekelo",
+          "Imodi engesebenzayo"
+        ]
       },
       "basic": {
         "name": "Okuyisisekelo",
         "price": "R89",
         "period": "inyanga",
         "description": "Kwebhizinisi elikhulayo",
-        "features": ["50 abathengi", "Ukukhishwa kwedatha (PDF/CSV)", "Imibiko ethuthukisiwe", "Inkxaso ye-imeyili"]
+        "features": [
+          "50 abathengi",
+          "Ukukhishwa kwedatha (PDF/CSV)",
+          "Imibiko ethuthukisiwe",
+          "Inkxaso ye-imeyili"
+        ]
       },
       "pro": {
         "name": "Pro",
         "price": "R179",
         "period": "inyanga",
         "description": "Kwitilozane ezisuselwe phansi",
-        "features": ["Abathengi abangazwelonke", "Izikhumbuzi ze-SMS", "Inkxaso yokuqala", "Ukufinyelela kwi-API"]
+        "features": [
+          "Abathengi abangazwelonke",
+          "Izikhumbuzi ze-SMS",
+          "Inkxaso yokuqala",
+          "Ukufinyelela kwi-API"
+        ]
       },
       "enterprise": {
         "name": "Enterprise",
         "price": "Ngokwezifiso",
         "period": "",
         "description": "Kokusebenza okukhulu",
-        "features": ["Konke ku-Pro", "Ukufinyelela kwabantu abaningi", "Ukuhlanganiswa ngokwezifiso", "Izinketho ze-white-label"]
+        "features": [
+          "Konke ku-Pro",
+          "Ukufinyelela kwabantu abaningi",
+          "Ukuhlanganiswa ngokwezifiso",
+          "Izinketho ze-white-label"
+        ]
       }
     }
   },
@@ -111,11 +131,15 @@
       "description": "Sebentisana ibhuku lekhathi lakho ne-app yokuphathwa ikredithi ekhaliphile, ethulelekile, iyatholakala sonke kunezisekelo ezincane."
     },
     "hero": {
-      "title": "Imali lapha, khona nasaphi na",
-      "subtitle": "Ibhuku lekredithi eliqotho lama-UMKM",
-      "description": "Sebentisana ibhuku lekhathi lakho ngesixazululo sedijithi esebenza ngaphandle kwenternet, u-syncronize ukuze kusiza ukukhulisa ushishalo lakho.",
-      "cta": "Qala Mahhala Namhlanje",
-      "secondary": "Buka Ukuthi Kusebenza Kanjani"
+      "badge": "Ithembwa ngu-50,000+ ama-SME",
+      "title1": "I-Bhuku Ledijithali",
+      "title2": "Lebhizinisi Lakho",
+      "title3": "Lendawo",
+      "description": "Vikela inzuzo yakho kwintela futhi ungalahlekelwa irekhodi. Ikhuselekile, i-sync ye-cloud, futhi yakhelwe ngokukhethekile ama-micro-SME ezimaketini ezikhulayo.",
+      "cta": "Faka i-PWA",
+      "secondary": "Buka i-Demo",
+      "imageTitle": "I-Bhuku Ledijithali Elikhuselekile",
+      "imageSubtitle": "Idatha yakho, ihlale ikhuselekile"
     },
     "trust": {
       "bankGradeSecurity": "Ukhuseleko Lwemali Ezingeni Eliphezulu",
@@ -163,23 +187,43 @@
       "description": "Thola ukwaziswa ngeshishalo lakho ngezingxenye eziningi nezingcai."
     },
     "howItWorks": {
+      "title": "Izinyathelo ezilula zokwenza idijithali",
+      "description": "Shiya iphepha uqale ukuphatha ikhredithi yakho yebhizinisi ngezinyathelo ezintathu ezilula ezakhiwe ukuze kube nokusebenza kahle.",
       "step1": {
-        "title": "Engeza Amakhasimende Akho",
-        "description": "Engeza amakhasimende ngokushesha ngedatha yabo yokuxhumana. Hlela isisekelo sakho samakhasimende ngemizuzwana."
+        "title": "Engeza Umthengi",
+        "description": "Misa ama-profiles kwabathengi bakho abajwayelekile ngemizuzwana. Ngena kusukela koontact noma engeza ngesandla."
       },
       "step2": {
-        "title": "Qamba Izenzo",
-        "description": "Landela izikweletu nama-payments kalula. Isebenza ngaphandle kwe-internet futhi ivumelanisa uma uphinde uqale ku-internet."
+        "title": "Qamba Isikweletu",
+        "description": "Landela ukuthengisa ngokubonakalayo. Isistimu yethu ihlela ngokuzenzakalela ngokwentela ukuvikela amaphuzu akho."
       },
       "step3": {
-        "title": "Thola Ukwaziswa",
-        "description": "Buka imibiko nehlaziyiwe ukuze uqonde ibizinisi lakho kangcono. Yenza izinqumo ezaziwayo."
+        "title": "Thola Intlawulo",
+        "description": "Thumela izikhumbuzi ze-WhatsApp ezenzakalelayo namakhonkco entlawulo. Thola izikweletu ngokushesha futhi ukhulise ukugijima kwemali."
       }
     },
     "cta": {
       "title": "Ukulungele Ukuqala?",
       "description": "Joyina izinkampani eziningi ezisebenzisa i-Ledgerly ukulawula ikhredithi yamakhasimende azo.",
       "button": "Qala Mahhala Namuhla"
+    },
+    "resilience": {
+      "title1": "Yakhelwe Ukuqina Ezimaketini",
+      "title2": "Ezinamathela Amahle",
+      "feature1": {
+        "title": "Ukuvikela Intela",
+        "description": "Guqula ngokuzenzakalela izikweletu zemali ezinzima noma hlela ngokwamanye amanani ensuku ukugcina amandla okuthenga."
+      },
+      "feature2": {
+        "title": "I-Cloud Sync kanye Ne-Offline Mode",
+        "description": "Qhubeka urekhoda ukuthengiselana ngaphandle kwenternet. Konke ku-sync ngokushesha uma ubuya ku-online."
+      },
+      "feature3": {
+        "title": "Ukhuseleko LweMphathandle",
+        "description": "Idatha yakho iqinisekisiwe ukusuka ekuqaleni ukuya ekugcineni. Ungakhathazeki ukulahlekelwa amabhuku ephepha ngenxa yomlilo, ukweba, noma ukugqoka."
+      },
+      "dashboardTitle": "Ukuhlaziywa Kwemali",
+      "dashboardSubtitle": "Landela ukusebenza kobubhizinisi bakho"
     }
   },
   "pricing": {
