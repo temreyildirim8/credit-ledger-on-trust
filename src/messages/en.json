@@ -63,7 +63,7 @@
         "price": "$0",
         "period": "forever",
         "description": "For small shops getting started",
-        "features": ["10 customers", "Unlimited transactions", "Basic reports", "Offline mode"]
+        "features": ["5 customers", "50 transactions", "Email support"]
       },
       "basic": {
         "name": "Basic",
@@ -232,10 +232,8 @@
       "period": "forever",
       "description": "Perfect for getting started",
       "features": [
-        "Up to 10 customers",
-        "Unlimited transactions",
-        "Offline mode",
-        "Basic reports",
+        "Up to 5 customers",
+        "Up to 50 transactions",
         "Email support"
       ],
       "cta": "Get Started Free"
@@ -1036,17 +1034,17 @@
     "title": "Frequently Asked Questions",
     "subtitle": "Everything you need to know about Ledgerly",
     "q1": "Is Ledgerly really free to use?",
-    "a1": "Yes! Ledgerly offers a free forever plan that includes up to 10 customers, unlimited transactions, offline mode, and basic reports. No credit card required to get started.",
-    "q2": "Can I use Ledgerly without internet?",
-    "a2": "Absolutely! Ledgerly is built as a Progressive Web App (PWA) with full offline support. You can add customers, record debts, and track payments even without internet. Your data syncs automatically when you're back online.",
+    "a1": "Yes! Ledgerly offers a free forever plan that includes up to 5 customers and 50 transactions. No credit card required to get started. For unlimited customers, transactions, offline mode, and reports, upgrade to Pro.",
+    "q2": "What features are included in the free plan?",
+    "a2": "The free plan includes: up to 5 customers, up to 50 transactions, customer management, and transaction tracking. Offline mode, reports, and data export require a Pro subscription.",
     "q3": "How does the automatic backup work?",
-    "a3": "Your data is automatically synced to our secure cloud servers whenever you have an internet connection. All data is encrypted using bank-grade AES-256 encryption, so your records are always safe and accessible.",
+    "a3": "Your data is automatically synced to our secure cloud servers whenever you have an internet connection. All data is encrypted using bank-grade AES-256 encryption, so your records are always safe and accessible. This feature is available on Pro plans.",
     "q4": "What currencies and languages are supported?",
     "a4": "Ledgerly supports multiple currencies including TRY (Turkish Lira), IDR (Indonesian Rupiah), NGN (Nigerian Naira), EGP (Egyptian Pound), ZAR (South African Rand), and more. The app is available in multiple languages including Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu.",
     "q5": "How do I send payment reminders to customers?",
     "a5": "You can send reminders directly through WhatsApp with pre-filled messages. Just open a customer's details and tap the WhatsApp button. Pro users also get automated SMS reminders.",
     "q6": "Can I export my data?",
-    "a6": "Yes! You can export your customer statements as PDF files and your transaction history as CSV spreadsheets. This feature is available on both free and paid plans.",
+    "a6": "Yes! Pro users can export customer statements as PDF files and transaction history as CSV spreadsheets. Data export is a Pro feature.",
     "stillHaveQuestions": "Still have questions?",
     "contactSupport": "Contact our support team"
   },
@@ -1217,11 +1215,11 @@
     "title": "Meet money without borders",
     "description": "Join thousands of shop owners who've gone digital. Start tracking your credit ledger today.",
     "cta": "Get Started for Free",
-    "benefit1": "Free forever for up to 10 customers",
-    "benefit2": "Works 100% offline",
+    "benefit1": "Free forever for up to 5 customers",
+    "benefit2": "Up to 50 transactions",
     "benefit3": "No credit card required",
     "benefit4": "Setup in 2 minutes",
-    "benefit5": "Available in 7+ languages",
+    "benefit5": "Available in multiple languages",
     "benefit6": "Multi-currency support"
   }
 }

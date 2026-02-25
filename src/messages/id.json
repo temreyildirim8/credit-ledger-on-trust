@@ -63,7 +63,7 @@
         "price": "Rp0",
         "period": "selamanya",
         "description": "Untuk toko kecil yang baru memulai",
-        "features": ["10 pelanggan", "Transaksi tanpa batas", "Laporan dasar", "Mode offline"]
+        "features": ["5 pelanggan", "50 transaksi", "Dukungan email"]
       },
       "basic": {
         "name": "Dasar",
@@ -232,10 +232,8 @@
       "period": "selamanya",
       "description": "Sempurna untuk memulai",
       "features": [
-        "Hingga 10 pelanggan",
-        "Transaksi tidak terbatas",
-        "Mode offline",
-        "Laporan dasar",
+        "Hingga 5 pelanggan",
+        "Hingga 50 transaksi",
         "Dukungan email"
       ],
       "cta": "Mulai Gratis"
@@ -757,8 +755,8 @@
       "brandName": "Hutang-Ku",
       "heroTitle": "Mulai lacak kredit hari ini",
       "heroSubtitle": "Gratis selamanya untuk bisnis kecil. Tingkatkan saat Anda berkembang.",
-      "benefit1": "Paket gratis: Hingga 10 pelanggan",
-      "benefit2": "Bekerja offline dengan sinkron otomatis",
+      "benefit1": "Paket gratis: Hingga 5 pelanggan",
+      "benefit2": "Hingga 50 transaksi",
       "benefit3": "Dukungan multi-mata uang",
       "benefit4": "Laporan PDF & ekspor CSV",
       "benefit5": "Tersedia dalam banyak bahasa",
@@ -990,19 +988,19 @@
   "faq": {
     "badge": "FAQ",
     "title": "Pertanyaan yang Sering Diajukan",
-    "subtitle": "Semua yang perlu Anda ketahui tentang Hutang-Ku",
-    "q1": "Apakah Hutang-Ku benar-benar gratis?",
-    "a1": "Ya! Hutang-Ku menawarkan rencana gratis selamanya yang mencakup hingga 10 pelanggan, transaksi tidak terbatas, mode offline, dan laporan dasar. Tidak perlu kartu kredit untuk memulai.",
-    "q2": "Bisakah saya menggunakan Hutang-Ku tanpa internet?",
-    "a2": "Tentu saja! Hutang-Ku dibangun sebagai Progressive Web App (PWA) dengan dukungan offline penuh. Anda dapat menambahkan pelanggan, mencatat hutang, dan melacak pembayaran bahkan tanpa internet. Data Anda disinkronkan secara otomatis saat Anda kembali online.",
+    "subtitle": "Semua yang perlu Anda ketahui tentang Ledgerly",
+    "q1": "Apakah Ledgerly benar-benar gratis?",
+    "a1": "Ya! Ledgerly menawarkan rencana gratis selamanya yang mencakup hingga 5 pelanggan dan 50 transaksi. Tidak perlu kartu kredit untuk memulai. Untuk pelanggan dan transaksi tidak terbatas, mode offline, dan laporan, tingkatkan ke Pro.",
+    "q2": "Fitur apa saja yang termasuk dalam rencana gratis?",
+    "a2": "Rencana gratis mencakup: hingga 5 pelanggan, hingga 50 transaksi, manajemen pelanggan, dan pelacakan transaksi. Mode offline, laporan, dan ekspor data memerlukan langganan Pro.",
     "q3": "Bagaimana cara kerja cadangan otomatis?",
-    "a3": "Data Anda secara otomatis disinkronkan ke server cloud aman kami setiap kali Anda memiliki koneksi internet. Semua data dienkripsi menggunakan enkripsi AES-256 tingkat bank, sehingga catatan Anda selalu aman dan dapat diakses.",
+    "a3": "Data Anda secara otomatis disinkronkan ke server cloud aman kami setiap kali Anda memiliki koneksi internet. Semua data dienkripsi menggunakan enkripsi AES-256 tingkat bank. Fitur ini tersedia di rencana Pro.",
     "q4": "Mata uang dan bahasa apa saja yang didukung?",
-    "a4": "Hutang-Ku mendukung banyak mata uang termasuk TRY (Lira Turki), IDR (Rupiah Indonesia), NGN (Naira Nigeria), EGP (Pound Mesir), ZAR (Rand Afrika Selatan), dan lainnya. Aplikasi tersedia dalam banyak bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu.",
+    "a4": "Ledgerly mendukung banyak mata uang termasuk TRY (Lira Turki), IDR (Rupiah Indonesia), NGN (Naira Nigeria), EGP (Pound Mesir), ZAR (Rand Afrika Selatan), dan lainnya. Aplikasi tersedia dalam banyak bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu.",
     "q5": "Bagaimana cara mengirim pengingat pembayaran kepada pelanggan?",
     "a5": "Anda dapat mengirim pengingat langsung melalui WhatsApp dengan pesan yang sudah diisi. Cukup buka detail pelanggan dan ketuk tombol WhatsApp. Pengguna Pro juga mendapatkan pengingat SMS otomatis.",
     "q6": "Bisakah saya mengekspor data saya?",
-    "a6": "Ya! Anda dapat mengekspor rekening pelanggan sebagai file PDF dan riwayat transaksi sebagai spreadsheet CSV. Fitur ini tersedia di rencana gratis dan berbayar.",
+    "a6": "Ya! Pengguna Pro dapat mengekspor rekening pelanggan sebagai file PDF dan riwayat transaksi sebagai spreadsheet CSV. Ekspor data adalah fitur Pro.",
     "stillHaveQuestions": "Masih ada pertanyaan?",
     "contactSupport": "Hubungi tim dukungan kami"
   },
@@ -1230,11 +1228,11 @@
     "title": "Temui uang tanpa batas",
     "description": "Bergabunglah dengan ribuan pemilik toko yang telah beralih ke digital. Mulai lacak buku kredit Anda hari ini.",
     "cta": "Mulai Gratis",
-    "benefit1": "Gratis selamanya hingga 10 pelanggan",
-    "benefit2": "Bekerja 100% offline",
+    "benefit1": "Gratis selamanya hingga 5 pelanggan",
+    "benefit2": "Hingga 50 transaksi",
     "benefit3": "Tidak perlu kartu kredit",
     "benefit4": "Pengaturan dalam 2 menit",
-    "benefit5": "Tersedia dalam 7+ bahasa",
+    "benefit5": "Tersedia dalam banyak bahasa",
     "benefit6": "Dukungan multi-mata uang"
   }
 }

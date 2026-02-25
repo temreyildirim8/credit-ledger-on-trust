@@ -63,7 +63,7 @@
         "price": "$0",
         "period": "para siempre",
         "description": "Para pequeñas tiendas que empiezan",
-        "features": ["10 clientes", "Transacciones ilimitadas", "Informes básicos", "Modo sin conexión"]
+        "features": ["5 clientes", "50 transacciones", "Soporte por email"]
       },
       "basic": {
         "name": "Básico",
@@ -232,10 +232,8 @@
       "period": "para siempre",
       "description": "Perfecto para comenzar",
       "features": [
-        "Hasta 10 clientes",
-        "Transacciones ilimitadas",
-        "Modo sin conexión",
-        "Informes básicos",
+        "Hasta 5 clientes",
+        "Hasta 50 transacciones",
         "Soporte por correo electrónico"
       ],
       "cta": "Comenzar Gratis"
@@ -1181,19 +1179,19 @@
   "faq": {
     "badge": "FAQ",
     "title": "Preguntas Frecuentes",
-    "subtitle": "Todo lo que necesitas saber sobre Fiado-X",
-    "q1": "¿Fiado-X es realmente gratis?",
-    "a1": "¡Sí! Fiado-X ofrece un plan gratis para siempre que incluye hasta 10 clientes, transacciones ilimitadas, modo sin conexión e informes básicos. No se requiere tarjeta de crédito para empezar.",
-    "q2": "¿Puedo usar Fiado-X sin internet?",
-    "a2": "¡Por supuesto! Fiado-X está construido como una Progressive Web App (PWA) con soporte completo sin conexión. Puedes agregar clientes, registrar deudas y rastrear pagos incluso sin internet. Tus datos se sincronizan automáticamente cuando vuelves a estar en línea.",
+    "subtitle": "Todo lo que necesitas saber sobre Ledgerly",
+    "q1": "¿Ledgerly es realmente gratis?",
+    "a1": "¡Sí! Ledgerly ofrece un plan gratis para siempre que incluye hasta 5 clientes y 50 transacciones. No se requiere tarjeta de crédito para empezar. Para clientes ilimitados, transacciones, modo sin conexión e informes, actualiza a Pro.",
+    "q2": "¿Qué características incluye el plan gratis?",
+    "a2": "El plan gratis incluye: hasta 5 clientes, hasta 50 transacciones, gestión de clientes y seguimiento de transacciones. El modo sin conexión, informes y exportación de datos requieren una suscripción Pro.",
     "q3": "¿Cómo funciona la copia de seguridad automática?",
-    "a3": "Tus datos se sincronizan automáticamente con nuestros servidores seguros en la nube siempre que tienes conexión a internet. Todos los datos están encriptados usando encriptación AES-256 de grado bancario, así que tus registros siempre están seguros y accesibles.",
+    "a3": "Tus datos se sincronizan automáticamente con nuestros servidores seguros en la nube siempre que tienes conexión a internet. Todos los datos están encriptados usando encriptación AES-256 de grado bancario. Esta característica está disponible en planes Pro.",
     "q4": "¿Qué monedas e idiomas son compatibles?",
-    "a4": "Fiado-X soporta múltiples monedas incluyendo TRY (Lira Turca), IDR (Rupia Indonesia), NGN (Naira Nigeriana), EGP (Libra Egipcia), ZAR (Rand Sudafricano) y más. La aplicación está disponible en múltiples idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú.",
+    "a4": "Ledgerly soporta múltiples monedas incluyendo TRY (Lira Turca), IDR (Rupia Indonesia), NGN (Naira Nigeriana), EGP (Libra Egipcia), ZAR (Rand Sudafricano) y más. La aplicación está disponible en múltiples idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú.",
     "q5": "¿Cómo envío recordatorios de pago a los clientes?",
     "a5": "Puedes enviar recordatorios directamente a través de WhatsApp con mensajes pre-llenados. Solo abre los detalles de un cliente y toca el botón de WhatsApp. Los usuarios Pro también obtienen recordatorios SMS automáticos.",
     "q6": "¿Puedo exportar mis datos?",
-    "a6": "¡Sí! Puedes exportar los estados de cuenta de tus clientes como archivos PDF y tu historial de transacciones como hojas de cálculo CSV. Esta función está disponible en planes gratuitos y de pago.",
+    "a6": "¡Sí! Los usuarios Pro pueden exportar los estados de cuenta de clientes como archivos PDF y el historial de transacciones como hojas de cálculo CSV. La exportación de datos es una característica Pro.",
     "stillHaveQuestions": "¿Todavía tienes preguntas?",
     "contactSupport": "Contacta a nuestro equipo de soporte"
   },
@@ -1230,11 +1228,11 @@
     "title": "Conoce el dinero sin fronteras",
     "description": "Únete a miles de propietarios de tiendas que se han digitalizado. Comienza a rastrear tu libro de crédito hoy.",
     "cta": "Comienza Gratis",
-    "benefit1": "Gratis para siempre hasta 10 clientes",
-    "benefit2": "Funciona 100% sin conexión",
+    "benefit1": "Gratis para siempre hasta 5 clientes",
+    "benefit2": "Hasta 50 transacciones",
     "benefit3": "No se requiere tarjeta de crédito",
     "benefit4": "Configuración en 2 minutos",
-    "benefit5": "Disponible en más de 7 idiomas",
+    "benefit5": "Disponible en múltiples idiomas",
     "benefit6": "Soporte multimoneda"
   }
 }

@@ -64,10 +64,9 @@
         "period": "phakade",
         "description": "Kwitilozane ezincane eziqala",
         "features": [
-          "10 abathengi",
-          "Ukuthengiselana okungazwelonke",
-          "Imibiko eyisisekelo",
-          "Imodi engesebenzayo"
+          "5 abathengi",
+          "50 ukuthengiselana",
+          "Usizo nge-email"
         ]
       },
       "basic": {
@@ -252,10 +251,8 @@
       "period": "nasempela",
       "description": "Impumelelo ukuqala",
       "features": [
-        "Kwabathengi abangama-10",
-        "Ukuthengiselana okungagcutheki",
-        "Indlela yesuphephile",
-        "Izingxenye ezisisekelo",
+        "Kwabathengi abangu-5",
+        "Ukuthengiselana okungu-50",
         "Usizo nge-email"
       ],
       "cta": "Qala Mahhala"
@@ -777,8 +774,8 @@
       "brandName": "Mali-X",
       "heroTitle": "Qala ukulanda ummango namuhla",
       "heroSubtitle": "Mahhala kuze kube phakade webhizinisi elincane. Khuphula uma ukhula.",
-      "benefit1": "Iphulani lamahhala: Kwabathengi abangu-10",
-      "benefit2": "Kusebenza kungasebenzi ngesinkronizeshini ezenzakalelayo",
+      "benefit1": "Iphulani lamahhala: Kwabathengi abangu-5",
+      "benefit2": "Kwokuthengiselana okungu-50",
       "benefit3": "Ukusekelwa kwemali eziningi",
       "benefit4": "Izitatimende ze-PDF & okuthunyelwe ko-CSV",
       "benefit5": "Kutholakala ngamalimi amaningi",
@@ -1010,19 +1007,19 @@
   "faq": {
     "badge": "FAQ",
     "title": "Imibuzo Evame Ukubuzwa",
-    "subtitle": "Konke okudingeka ukwazi mayelana ne-Mali-X",
-    "q1": "Ingabe i-Mali-X yamahhala ngempela?",
-    "a1": "Yebo! I-Mali-X inikeza uhlelo lwamahhala kuze kube phakade oluhlanganisa abathengi abangu-10, ukuthengiselana okungakhawulelwanga, imodi ye-Offline, namabhikihli okwamanje. Akukho khadi lekiredithi edingekayo ukuze uqale.",
-    "q2": "Ngingayisebenzisa i-Mali-X ngaphandle kwe-inthanethi?",
-    "a2": "Kakululekile! I-Mali-X yakhiwe njenge-Progressive Web App (PWA) enosizo lwangaphandle olugcwele. Ungawengeza amakhasimende, ukurekhoda ikredithi, futhi ulandele ukukhokha ngisho nangaphandle kwe-inthanethi. Idatha yakho ivumelaniswa ngokuzenzakalela uma ubuyela ku-inthanethi.",
+    "subtitle": "Konke okudingeka ukwazi mayelana ne-Ledgerly",
+    "q1": "Ingabe i-Ledgerly yamahhala ngempela?",
+    "a1": "Yebo! I-Ledgerly inikeza uhlelo lwamahhala kuze kube phakade oluhlanganisa abathengi abangu-5 kanye nokuthengiselana okungu-50. Akukho khadi lekiredithi edingekayo ukuze uqale. Ukuze uthole abathengi abangakhawulelwanga, ukuthengiselana, imodi ye-Offline, namabhikihli, thuthukisa ku-Pro.",
+    "q2": "Yiziphi izizo ezifakiwe ohlelweni lwamahhala?",
+    "a2": "Uhlelo lwamahhala luhlanganisa: abathengi abangu-5, ukuthengiselana okungu-50, ukuphathwa kwamakhasimende, nokulandelela ukuthengiselana. Imodi ye-Offline, amabhikihli, nokukhipha idatha kudinga ukubhalisa kwe-Pro.",
     "q3": "I-backup ezenzakalelayo isebenza kanjani?",
-    "a3": "Idatha yakho ivumelaniswa ngokuzenzakalela kumaseva ethu aphephile e-cloud nanoma nini uma unoxhumano lwe-inthanethi. Yonke idatha ibhaliswa ngokusebenzisa ukubhalisa kwe-AES-256 komzinga webhange, ngakho-ke amarekhodi akho ahlale ephephile futhi atholakala.",
+    "a3": "Idatha yakho ivumelaniswa ngokuzenzakalela kumaseva ethu aphephile e-cloud nanoma nini uma unoxhumano lwe-inthanethi. Yonke idatha ibhaliswa ngokusebenzisa ukubhalisa kwe-AES-256 komzinga webhange. Le nkinikishi itholakala ohlelweni lwe-Pro.",
     "q4": "Yimaphi amasheke namalimi axhaswayo?",
-    "a4": "I-Mali-X ixhasa izimali eziningi okuhlanganisa i-TRY (Turkish Lira), i-IDR (Indonesian Rupiah), i-NGN (Nigerian Naira), i-EGP (Egyptian Pound), i-ZAR (South African Rand), nokuningi. I-app itholakala ngamalimi amaningi: Turkish, Hindi, Indonesian, English, Arabic, Spanish, kanye ne-Zulu.",
+    "a4": "I-Ledgerly ixhasa izimali eziningi okuhlanganisa i-TRY (Turkish Lira), i-IDR (Indonesian Rupiah), i-NGN (Nigerian Naira), i-EGP (Egyptian Pound), i-ZAR (South African Rand), nokuningi. I-app itholakala ngamalimi amaningi: Turkish, Hindi, Indonesian, English, Arabic, Spanish, kanye ne-Zulu.",
     "q5": "Ngingathumela kanjani izikhumbuzi zokukhokha kubakhasimende?",
     "a5": "Ungathumela izikhumbuzi ngokuqondile nge-WhatsApp ngemilayezo egcwele. Vula nje imininingwane yomthengi bese uchofoza inkinobho ye-WhatsApp. Abasebenzisi be-Pro bathola futhi izikhumbuzi ze-SMS ezizenzakalelayo.",
     "q6": "Ngingakhipha idatha yami?",
-    "a6": "Yebo! Ungakhipha izitatimende zamakhasimende njengezinhlelo ze-PDF kanye nomlando wakho wokuthengiselana njenge-spreadsheets ze-CSV. Le nkinga itholakala kuzo zombili izinhlelo zamahhala nezikhokhelwayo.",
+    "a6": "Yebo! Abasebenzisi be-Pro bangakhipha izitatimende zamakhasimende njengezinhlelo ze-PDF kanye nomlando wokuthengiselana njenge-spreadsheets ze-CSV. Ukukhipha idatha yinto ye-Pro.",
     "stillHaveQuestions": "Usesandleni imibuzo?",
     "contactSupport": "Sithinte ithimba lethu losizo"
   },
@@ -1250,11 +1247,11 @@
     "title": "Hlangana nemali ngaphandle kwemikhawulo",
     "description": "Joyina izinkulungwane zabaphathi bezitolo abashintshile be-digital. Qala ukulandela incwadi yakho yekhredithi namuhla.",
     "cta": "Qala Mahhala",
-    "benefit1": "Mahhala phakade kwabathengi abangu-10",
-    "benefit2": "Isebenza 100% ngaphandle kwxinhlanhluxa",
+    "benefit1": "Mahhala phakade kwabathengi abangu-5",
+    "benefit2": "Kwokuthengiselana okungu-50",
     "benefit3": "Awudingi ikhadi lekhredithi",
     "benefit4": "Ukusetha kwamaminithi angu-2",
-    "benefit5": "Kutholakala ngolimi olungu-7+",
+    "benefit5": "Kutholakala ngamalimi amaningi",
     "benefit6": "Ukusekela kwemali eziningi"
   }
 }

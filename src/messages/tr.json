@@ -63,7 +63,7 @@
         "price": "₺0",
         "period": "sonsuza kadar",
         "description": "Yeni başlayan küçük işletmeler için",
-        "features": ["10 müşteri", "Sınırsız işlem", "Temel raporlar", "Çevrimdışı mod"]
+        "features": ["5 müşteri", "50 işlem", "E-posta desteği"]
       },
       "basic": {
         "name": "Temel",
@@ -245,10 +245,8 @@
       "period": "sonsuza kadar",
       "description": "Başlamak için mükemmel",
       "features": [
-        "10'a kadar müşteri",
-        "Sınırsız işlem",
-        "Çevrimdışı mod",
-        "Temel raporlar",
+        "5'e kadar müşteri",
+        "50'ye kadar işlem",
         "E-posta desteği"
       ],
       "cta": "Ücretsiz Başla"
@@ -698,19 +696,19 @@
   "faq": {
     "badge": "SSS",
     "title": "Sıkça Sorulan Sorular",
-    "subtitle": "Veresiye-X hakkında bilmeniz gereken her şey",
-    "q1": "Veresiye-X gerçekten ücretsiz mi?",
-    "a1": "Evet! Veresiye-X, 10 müşteriye kadar, sınırsız işlem, çevrimdışı mod ve temel raporlar içeren sonsuza kadar ücretsiz bir plan sunar. Başlamak için kredi kartı gerekmez.",
-    "q2": "Veresiye-X'ı internet olmadan kullanabilir miyim?",
-    "a2": "Kesinlikle! Veresiye-X, tam çevrimdışı destekle Progressive Web App (PWA) olarak oluşturulmuştur. İnternet olmadan müşteri ekleyebilir, borç kaydedebilir ve ödemeleri takip edebilirsiniz. Verileriniz tekrar çevrimiçi olduğunuzda otomatik olarak senkronize olur.",
+    "subtitle": "Ledgerly hakkında bilmeniz gereken her şey",
+    "q1": "Ledgerly gerçekten ücretsiz mi?",
+    "a1": "Evet! Ledgerly, 5 müşteriye kadar ve 50 işleme kadar sonsuza kadar ücretsiz bir plan sunar. Başlamak için kredi kartı gerekmez. Sınırsız müşteri, işlem, çevrimdışı mod ve raporlar için Pro'ya yükseltin.",
+    "q2": "Ücretsiz planda hangi özellikler var?",
+    "a2": "Ücretsiz plan şunları içerir: 5 müşteriye kadar, 50 işleme kadar, müşteri yönetimi ve işlem takibi. Çevrimdışı mod, raporlar ve veri dışa aktarma Pro aboneliği gerektirir.",
     "q3": "Otomatik yedekleme nasıl çalışır?",
-    "a3": "İnternet bağlantınız olduğunda verileriniz otomatik olarak güvenli bulut sunucularımıza senkronize edilir. Tüm veriler banka düzeyinde AES-256 şifrelemesi kullanılarak şifrelenir, bu nedenle kayıtlarınız her zaman güvende ve erişilebilir durumdadır.",
+    "a3": "İnternet bağlantınız olduğunda verileriniz otomatik olarak güvenli bulut sunucularımıza senkronize edilir. Tüm veriler banka düzeyinde AES-256 şifrelemesi kullanılarak şifrelenir, bu nedenle kayıtlarınız her zaman güvende ve erişilebilir durumdadır. Bu özellik Pro planlarında mevcuttur.",
     "q4": "Hangi para birimleri ve diller destekleniyor?",
-    "a4": "Veresiye-X, TRY (Türk Lirası), IDR (Endonezya Rupisi), NGN (Nijerya Nairası), EGP (Mısır Lirası), ZAR (Güney Afrika Randı) ve daha fazlası dahil olmak üzere birden fazla para birimini destekler. Uygulama birçok dilde mevcuttur: Türkçe, Hintçe, Endonezce, İngilizce, Arapça, İspanyolca ve Zuluca.",
+    "a4": "Ledgerly, TRY (Türk Lirası), IDR (Endonezya Rupisi), NGN (Nijerya Nairası), EGP (Mısır Lirası), ZAR (Güney Afrika Randı) ve daha fazlası dahil olmak üzere birden fazla para birimini destekler. Uygulama birçok dilde mevcuttur: Türkçe, Hintçe, Endonezce, İngilizce, Arapça, İspanyolca ve Zuluca.",
     "q5": "Müşterilere ödeme hatırlatıcılarını nasıl gönderebilirim?",
     "a5": "Önceden doldurulmuş mesajlarla doğrudan WhatsApp üzerinden hatırlatıcı gönderebilirsiniz. Sadece müşterinin detaylarını açın ve WhatsApp düğmesine dokunun. Pro kullanıcılar ayrıca otomatik SMS hatırlatıcıları alır.",
     "q6": "Verilerimi dışa aktarabilir miyim?",
-    "a6": "Evet! Müşteri ekstrelerinizi PDF dosyası olarak ve işlem geçmişinizi CSV elektronik tablosu olarak dışa aktarabilirsiniz. Bu özellik hem ücretsiz hem de ücretli planlarda mevcuttur.",
+    "a6": "Evet! Pro kullanıcıları müşteri ekstrelerini PDF dosyası olarak ve işlem geçmişini CSV elektronik tablosu olarak dışa aktarabilir. Veri dışa aktarma bir Pro özelliğidir.",
     "stillHaveQuestions": "Hala sorularınız mı var?",
     "contactSupport": "Destek ekibimizle iletişime geçin"
   },
@@ -883,8 +881,8 @@
       "brandName": "Veresiye-X",
       "heroTitle": "Bugün veresiyeyi takip etmeye başla",
       "heroSubtitle": "Küçük işletmeler için sonsuza kadar ücretsiz. Büyüdükçe yükseltin.",
-      "benefit1": "Ücretsiz plan: 10 müşteriye kadar",
-      "benefit2": "Otomatik senkronizasyonla çevrimdışı çalışır",
+      "benefit1": "Ücretsiz plan: 5 müşteriye kadar",
+      "benefit2": "50 işleme kadar",
       "benefit3": "Çoklu para birimi desteği",
       "benefit4": "PDF ekstreler & CSV dışa aktarımları",
       "benefit5": "Birçok dilde mevcut",
@@ -1241,11 +1239,11 @@
     "title": "Sınırları aşan para ile tanışın",
     "description": "Dijitalleşen binlerce dükkân sahibine katılın. Bugün veresiye defterinizi takip etmeye başlayın.",
     "cta": "Ücretsiz Başlayın",
-    "benefit1": "10 müşteriye kadar sonsuza dek ücretsiz",
-    "benefit2": "100% çevrimdışı çalışır",
+    "benefit1": "5 müşteriye kadar sonsuza dek ücretsiz",
+    "benefit2": "50 işleme kadar",
     "benefit3": "Kredi kartı gerekmez",
     "benefit4": "2 dakikada kurulum",
-    "benefit5": "7+ dilde kullanılabilir",
+    "benefit5": "Birden çok dilde kullanılabilir",
     "benefit6": "Çoklu para birimi desteği"
   }
 }
