@@ -6,6 +6,87 @@ import { routing } from "./routing";
 // Create the next-intl middleware
 const intlMiddleware = createMiddleware(routing);
 
+// Cookie name to track if user has been redirected based on auto-detection
+const LOCALE_DETECTED_COOKIE = "locale-detected";
+
+// Mapping from Accept-Language prefixes to our supported locales
+// Based on target markets: TR (Turkey), ID (Indonesia), NG (Nigeria), EG (Egypt), ZA (South Africa), ES/LatAm
+const LANGUAGE_TO_LOCALE: Record<string, string> = {
+  // Turkish - Turkey
+  tr: "tr",
+  "tr-TR": "tr",
+  // Indonesian - Indonesia
+  id: "id",
+  "id-ID": "id",
+  in: "id", // 'in' is the ISO 639-1 code for Indonesian (Indonesian language code)
+  "in-ID": "id",
+  // Arabic - Egypt and other Arabic-speaking countries
+  ar: "ar",
+  "ar-EG": "ar", // Egypt
+  "ar-SA": "ar", // Saudi Arabia
+  "ar-AE": "ar", // UAE
+  "ar-MA": "ar", // Morocco
+  "ar-DZ": "ar", // Algeria
+  "ar-TN": "ar", // Tunisia
+  // Spanish - Spain and Latin America
+  es: "es",
+  "es-ES": "es", // Spain
+  "es-MX": "es", // Mexico
+  "es-AR": "es", // Argentina
+  "es-CO": "es", // Colombia
+  "es-CL": "es", // Chile
+  "es-PE": "es", // Peru
+  "es-VE": "es", // Venezuela
+  // Hindi - India
+  hi: "hi",
+  "hi-IN": "hi",
+  // Zulu - South Africa
+  zu: "zu",
+  "zu-ZA": "zu",
+  // English fallback - default
+  en: "en",
+  "en-US": "en",
+  "en-GB": "en",
+  "en-NG": "en", // Nigeria
+  "en-ZA": "en", // South Africa (English more common than Zulu)
+  "en-PH": "en", // Philippines
+};
+
+/**
+ * Detect the best matching locale from Accept-Language header
+ */
+function detectLocaleFromHeader(acceptLanguage: string | null): string {
+  if (!acceptLanguage) {
+    return routing.defaultLocale;
+  }
+
+  // Parse Accept-Language header (e.g., "tr-TR,tr;q=0.9,en;q=0.8")
+  const languages = acceptLanguage
+    .split(",")
+    .map((lang) => {
+      const [code, qValue] = lang.trim().split(";");
+      const quality = qValue ? parseFloat(qValue.split("=")[1]) : 1;
+      return { code: code.trim(), quality };
+    })
+    .sort((a, b) => b.quality - a.quality);
+
+  // Try to find a matching locale
+  for (const { code } of languages) {
+    // Try exact match first (e.g., "tr-TR")
+    if (LANGUAGE_TO_LOCALE[code]) {
+      return LANGUAGE_TO_LOCALE[code];
+    }
+
+    // Try language prefix (e.g., "tr" from "tr-TR")
+    const prefix = code.split("-")[0].toLowerCase();
+    if (LANGUAGE_TO_LOCALE[prefix]) {
+      return LANGUAGE_TO_LOCALE[prefix];
+    }
+  }
+
+  return routing.defaultLocale;
+}
+
 /**
  * Combined middleware for i18n and authentication
  * Uses @supabase/ssr for proper session handling with getUser()
@@ -61,6 +142,41 @@ export async function proxy(request: NextRequest) {
   const isValidLocale = supportedLocales.includes(locale);
   const hasLocalePrefix = isValidLocale;
 
+  // Helper to copy cookies from one response to another (defined early for use below)
+  const copyCookies = (from: NextResponse, to: NextResponse) => {
+    from.cookies.getAll().forEach((cookie) => {
+      to.cookies.set(cookie.name, cookie.value);
+    });
+  };
+
+  // 3.5. Auto-detect locale for first-time visitors on root path
+  // Only redirect if:
+  // - Path is exactly "/" (root)
+  // - User doesn't have locale-detected cookie
+  const localeDetectedCookie = request.cookies.get(LOCALE_DETECTED_COOKIE);
+
+  if (pathname === "/" && !localeDetectedCookie) {
+    const acceptLanguage = request.headers.get("Accept-Language");
+    const detectedLocale = detectLocaleFromHeader(acceptLanguage);
+
+    // Redirect to detected locale
+    const redirectUrl = new URL(`/${detectedLocale}`, request.url);
+    const redirectResponse = NextResponse.redirect(redirectUrl);
+
+    // Set cookie to remember that we've detected locale (expires in 1 year)
+    redirectResponse.cookies.set(LOCALE_DETECTED_COOKIE, detectedLocale, {
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+      path: "/",
+      sameSite: "lax",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    // Copy Supabase cookies to maintain session
+    copyCookies(supabaseResponse, redirectResponse);
+    return redirectResponse;
+  }
+
   // Protected routes (require authentication)
   const protectedPaths = [
     "dashboard",
@@ -86,13 +202,6 @@ export async function proxy(request: NextRequest) {
   ];
   const isAuthRoute =
     hasLocalePrefix && authPaths.includes(secondSegment || "");
-
-  // Helper to copy cookies from one response to another
-  const copyCookies = (from: NextResponse, to: NextResponse) => {
-    from.cookies.getAll().forEach((cookie) => {
-      to.cookies.set(cookie.name, cookie.value);
-    });
-  };
 
   // 4. Handle protected routes - redirect unauthenticated users to login
   if (isProtectedRoute && !user) {
