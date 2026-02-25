@@ -52,31 +52,36 @@ export const BRAND_METADATA: Record<
   en: {
     name: "Ledgerly",
     tagline: "Track credit. Build trust.",
-    description: "The simple way to manage customer credit for your small business.",
+    description:
+      "The simple way to manage customer credit for your small business.",
     supportEmail: "support@ledgerly.app",
   },
   tr: {
     name: "Veresiye-X",
-    tagline: "Veresiyi takip et. Güveni inşa et.",
-    description: "Küçük işletmeniz için müşteri veresiyesini yönetmenin basit yolu.",
+    tagline: "Veresiyeyi takip et. Güveni inşa et.",
+    description:
+      "Küçük işletmeniz için müşteri veresiyesini yönetmenin basit yolu.",
     supportEmail: "destek@veresiye-x.app",
   },
   es: {
     name: "Fiado-X",
     tagline: "Controla el fiado. Construye confianza.",
-    description: "La forma simple de gestionar el crédito de tus clientes para tu pequeño negocio.",
+    description:
+      "La forma simple de gestionar el crédito de tus clientes para tu pequeño negocio.",
     supportEmail: "soporte@fiado-x.app",
   },
   id: {
     name: "Hutang-Ku",
     tagline: "Catat hutang. Bangun kepercayaan.",
-    description: "Cara sederhana mengelola piutang pelanggan untuk usaha kecil Anda.",
+    description:
+      "Cara sederhana mengelola piutang pelanggan untuk usaha kecil Anda.",
     supportEmail: "dukungan@hutang-ku.app",
   },
   hi: {
     name: "Udhar-X",
     tagline: "उधार ट्रैक करें। विश्वास बनाएं।",
-    description: "अपने छोटे व्यवसाय के लिए ग्राहक क्रेडिट प्रबंधित करने का आसान तरीका।",
+    description:
+      "अपने छोटे व्यवसाय के लिए ग्राहक क्रेडिट प्रबंधित करने का आसान तरीका।",
     supportEmail: "support@udhar-x.app",
   },
   ar: {
@@ -88,7 +93,8 @@ export const BRAND_METADATA: Record<
   zu: {
     name: "Mali-X",
     tagline: "Landa imali. Akha isithembiso.",
-    description: "Indlela elula yokuphatha ukuholiwe kwezikhashana zakho ngebhizinisi lakho elincane.",
+    description:
+      "Indlela elula yokuphatha ukuholiwe kwezikhashana zakho ngebhizinisi lakho elincane.",
     supportEmail: "support@mali-x.app",
   },
 } as const;
@@ -101,7 +107,8 @@ export function getBrandMetadata(locale: string) {
     BRAND_METADATA[locale] ?? {
       name: DEFAULT_BRAND,
       tagline: "Track credit. Build trust.",
-      description: "The simple way to manage customer credit for your small business.",
+      description:
+        "The simple way to manage customer credit for your small business.",
       supportEmail: "support@ledgerly.app",
     }
   );

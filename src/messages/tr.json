@@ -553,12 +553,6 @@
       "title": "İşletmeniz Nedir?",
       "subtitle": "İşletmenizi en iyi tanımlayan kategoriyi seçin"
     },
-    "success": {
-      "title": "Hazırsınız!",
-      "subtitle": "Hesabınız kullanıma hazır",
-      "description": "Bu ayarları daha sonra profilinizden değiştirebilirsiniz",
-      "action": "Kontrol Paneline Git"
-    },
     "categories": {
       "category": {
         "title": "İşletmeniz Nedir?",
@@ -731,7 +725,7 @@
       "success": "Başarıyla giriş yapıldı",
       "error": "Geçersiz e-posta veya şifre",
       "brandName": "Veresiye-X",
-      "heroTitle": "Veresiyi takip et. Güveni inşa et.",
+      "heroTitle": "Veresiyeyi takip et. Güveni inşa et.",
       "heroSubtitle": "Küçük işletmeniz için müşteri veresiyesini yönetmenin basit yolu.",
       "feature1Title": "Müşteri Rehberi",
       "feature1Desc": "Kimin ne borcu olduğunu takip edin",
@@ -774,7 +768,7 @@
       "success": "Hesap başarıyla oluşturuldu",
       "error": "Hesap oluşturulamadı",
       "brandName": "Veresiye-X",
-      "heroTitle": "Bugün veresiyi takip etmeye başla",
+      "heroTitle": "Bugün veresiyeyi takip etmeye başla",
       "heroSubtitle": "Küçük işletmeler için sonsuza kadar ücretsiz. Büyüdükçe yükseltin.",
       "benefit1": "Ücretsiz plan: 10 müşteriye kadar",
       "benefit2": "Otomatik senkronizasyonla çevrimdışı çalışır",
