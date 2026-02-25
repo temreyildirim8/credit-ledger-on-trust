@@ -53,7 +53,7 @@ export function ContactFormSection() {
                       onChange={(e) =>
                         setFormData({ ...formData, fullName: e.target.value })
                       }
-                      placeholder="John Doe"
+                      placeholder={t("form.fullNamePlaceholder")}
                       required
                       className="h-12 rounded-lg border border-[#e2e8f0] bg-white px-4 py-3 text-[16px] text-[#0f172a] placeholder:text-[#6b7280] focus:border-[#3c83f6] focus:outline-none focus:ring-2 focus:ring-[#3c83f6]/20"
                     />
@@ -68,7 +68,7 @@ export function ContactFormSection() {
                       onChange={(e) =>
                         setFormData({ ...formData, workEmail: e.target.value })
                       }
-                      placeholder="john@company.com"
+                      placeholder={t("form.workEmailPlaceholder")}
                       required
                       className="h-12 rounded-lg border border-[#e2e8f0] bg-white px-4 py-3 text-[16px] text-[#0f172a] placeholder:text-[#6b7280] focus:border-[#3c83f6] focus:outline-none focus:ring-2 focus:ring-[#3c83f6]/20"
                     />

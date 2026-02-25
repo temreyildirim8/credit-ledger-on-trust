@@ -178,7 +178,7 @@
     },
     "localLanguage": {
       "title": "Dukungan Bahasa Lokal",
-      "description": "Bekerja dalam bahasa Anda dengan dukungan 7 bahasa termasuk Hindi, Turki, Spanyol, dan lainnya."
+      "description": "Bekerja dalam bahasa Anda dengan dukungan banyak bahasa termasuk Hindi, Turki, Spanyol, dan lainnya."
     },
     "multiCurrency": {
       "title": "Perlindungan Multi-Mata Uang",
@@ -267,7 +267,7 @@
       "q3": "Bagaimana cara kerja cadangan otomatis?",
       "a3": "Data Anda secara otomatis disinkronkan ke server cloud aman kami setiap kali Anda memiliki koneksi internet. Semua data dienkripsi menggunakan enkripsi AES-256 tingkat bank, sehingga catatan Anda selalu aman dan dapat diakses.",
       "q4": "Mata uang dan bahasa apa saja yang didukung?",
-      "a4": "Hutang-Ku mendukung banyak mata uang termasuk TRY, IDR, NGN, EGP, ZAR, dan lainnya. Aplikasi tersedia dalam 7 bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu."
+      "a4": "Hutang-Ku mendukung banyak mata uang termasuk TRY, IDR, NGN, EGP, ZAR, dan lainnya. Aplikasi tersedia dalam banyak bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu."
     },
     "cta": {
       "title": "Siap untuk Memulai?",
@@ -321,7 +321,9 @@
     "form": {
       "title": "Kirim Kami Pesan",
       "fullName": "Nama Lengkap",
+      "fullNamePlaceholder": "Budi Santoso",
       "workEmail": "Email Kerja",
+      "workEmailPlaceholder": "budi@perusahaan.com",
       "name": "Nama Anda",
       "email": "Alamat Email",
       "subject": "Subjek",
@@ -698,7 +700,7 @@
       "benefit2": "Bekerja offline dengan sinkron otomatis",
       "benefit3": "Dukungan multi-mata uang",
       "benefit4": "Laporan PDF & ekspor CSV",
-      "benefit5": "Tersedia dalam 7 bahasa",
+      "benefit5": "Tersedia dalam banyak bahasa",
       "feature1Title": "Buku Pelanggan",
       "feature1Desc": "Lacak semua hutang",
       "feature2Title": "Laporan",
@@ -935,7 +937,7 @@
     "q3": "Bagaimana cara kerja cadangan otomatis?",
     "a3": "Data Anda secara otomatis disinkronkan ke server cloud aman kami setiap kali Anda memiliki koneksi internet. Semua data dienkripsi menggunakan enkripsi AES-256 tingkat bank, sehingga catatan Anda selalu aman dan dapat diakses.",
     "q4": "Mata uang dan bahasa apa saja yang didukung?",
-    "a4": "Hutang-Ku mendukung banyak mata uang termasuk TRY (Lira Turki), IDR (Rupiah Indonesia), NGN (Naira Nigeria), EGP (Pound Mesir), ZAR (Rand Afrika Selatan), dan lainnya. Aplikasi tersedia dalam 7 bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu.",
+    "a4": "Hutang-Ku mendukung banyak mata uang termasuk TRY (Lira Turki), IDR (Rupiah Indonesia), NGN (Naira Nigeria), EGP (Pound Mesir), ZAR (Rand Afrika Selatan), dan lainnya. Aplikasi tersedia dalam banyak bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu.",
     "q5": "Bagaimana cara mengirim pengingat pembayaran kepada pelanggan?",
     "a5": "Anda dapat mengirim pengingat langsung melalui WhatsApp dengan pesan yang sudah diisi. Cukup buka detail pelanggan dan ketuk tombol WhatsApp. Pengguna Pro juga mendapatkan pengingat SMS otomatis.",
     "q6": "Bisakah saya mengekspor data saya?",

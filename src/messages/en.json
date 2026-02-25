@@ -180,7 +180,7 @@
     },
     "localLanguage": {
       "title": "Local Language Support",
-      "description": "Works in your language with support for 7 languages including Hindi, Turkish, Spanish, and more."
+      "description": "Works in your language with support for multiple languages including Hindi, Turkish, Spanish, and more."
     },
     "multiCurrency": {
       "title": "Multi-Currency Protection",
@@ -269,7 +269,7 @@
       "q3": "How does the automatic backup work?",
       "a3": "Your data is automatically synced to our secure cloud servers whenever you have an internet connection. All data is encrypted using bank-grade AES-256 encryption, so your records are always safe and accessible.",
       "q4": "What currencies and languages are supported?",
-      "a4": "Ledgerly supports multiple currencies including TRY, IDR, NGN, EGP, ZAR, and more. The app is available in 7 languages: Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu."
+      "a4": "Ledgerly supports multiple currencies including TRY, IDR, NGN, EGP, ZAR, and more. The app is available in multiple languages including Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu."
     },
     "cta": {
       "title": "Ready to Get Started?",
@@ -320,7 +320,9 @@
     },
     "form": {
       "fullName": "Full Name",
+      "fullNamePlaceholder": "John Doe",
       "workEmail": "Work Email",
+      "workEmailPlaceholder": "john@company.com",
       "subject": "Subject",
       "subjects": {
         "general": "General Inquiry",
@@ -714,7 +716,7 @@
       "benefit2": "Works offline with automatic sync",
       "benefit3": "Multi-currency support",
       "benefit4": "PDF statements & CSV exports",
-      "benefit5": "Available in 7 languages",
+      "benefit5": "Available in multiple languages",
       "feature1Title": "Customer Ledger",
       "feature1Desc": "Track all debts",
       "feature2Title": "Reports",
@@ -982,7 +984,7 @@
     "q3": "How does the automatic backup work?",
     "a3": "Your data is automatically synced to our secure cloud servers whenever you have an internet connection. All data is encrypted using bank-grade AES-256 encryption, so your records are always safe and accessible.",
     "q4": "What currencies and languages are supported?",
-    "a4": "Ledgerly supports multiple currencies including TRY (Turkish Lira), IDR (Indonesian Rupiah), NGN (Nigerian Naira), EGP (Egyptian Pound), ZAR (South African Rand), and more. The app is available in 7 languages: Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu.",
+    "a4": "Ledgerly supports multiple currencies including TRY (Turkish Lira), IDR (Indonesian Rupiah), NGN (Nigerian Naira), EGP (Egyptian Pound), ZAR (South African Rand), and more. The app is available in multiple languages including Turkish, Hindi, Indonesian, English, Arabic, Spanish, and Zulu.",
     "q5": "How do I send payment reminders to customers?",
     "a5": "You can send reminders directly through WhatsApp with pre-filled messages. Just open a customer's details and tap the WhatsApp button. Pro users also get automated SMS reminders.",
     "q6": "Can I export my data?",

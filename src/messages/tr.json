@@ -180,7 +180,7 @@
     },
     "localLanguage": {
       "title": "Yerel Dil Desteği",
-      "description": "Türkçe, Hintçe, İspanyolca ve daha fazla dil dahil 7 dilde çalışır."
+      "description": "Türkçe, Hintçe, İspanyolca ve daha fazla dil dahil birçok dilde çalışır."
     },
     "multiCurrency": {
       "title": "Çok Para Birimi Koruması",
@@ -334,7 +334,9 @@
     "form": {
       "title": "Bize Mesaj Gönderin",
       "fullName": "Ad Soyad",
+      "fullNamePlaceholder": "Ahmet Yılmaz",
       "workEmail": "İş E-postası",
+      "workEmailPlaceholder": "ahmet@sirket.com",
       "name": "Adınız",
       "email": "E-posta Adresi",
       "subject": "Konu",
@@ -645,7 +647,7 @@
     "q3": "Otomatik yedekleme nasıl çalışır?",
     "a3": "İnternet bağlantınız olduğunda verileriniz otomatik olarak güvenli bulut sunucularımıza senkronize edilir. Tüm veriler banka düzeyinde AES-256 şifrelemesi kullanılarak şifrelenir, bu nedenle kayıtlarınız her zaman güvende ve erişilebilir durumdadır.",
     "q4": "Hangi para birimleri ve diller destekleniyor?",
-    "a4": "Veresiye-X, TRY (Türk Lirası), IDR (Endonezya Rupisi), NGN (Nijerya Nairası), EGP (Mısır Lirası), ZAR (Güney Afrika Randı) ve daha fazlası dahil olmak üzere birden fazla para birimini destekler. Uygulama 7 dilde mevcuttur: Türkçe, Hintçe, Endonezce, İngilizce, Arapça, İspanyolca ve Zuluca.",
+    "a4": "Veresiye-X, TRY (Türk Lirası), IDR (Endonezya Rupisi), NGN (Nijerya Nairası), EGP (Mısır Lirası), ZAR (Güney Afrika Randı) ve daha fazlası dahil olmak üzere birden fazla para birimini destekler. Uygulama birçok dilde mevcuttur: Türkçe, Hintçe, Endonezce, İngilizce, Arapça, İspanyolca ve Zuluca.",
     "q5": "Müşterilere ödeme hatırlatıcılarını nasıl gönderebilirim?",
     "a5": "Önceden doldurulmuş mesajlarla doğrudan WhatsApp üzerinden hatırlatıcı gönderebilirsiniz. Sadece müşterinin detaylarını açın ve WhatsApp düğmesine dokunun. Pro kullanıcılar ayrıca otomatik SMS hatırlatıcıları alır.",
     "q6": "Verilerimi dışa aktarabilir miyim?",
@@ -826,7 +828,7 @@
       "benefit2": "Otomatik senkronizasyonla çevrimdışı çalışır",
       "benefit3": "Çoklu para birimi desteği",
       "benefit4": "PDF ekstreler & CSV dışa aktarımları",
-      "benefit5": "7 dilde mevcut",
+      "benefit5": "Birçok dilde mevcut",
       "feature1Title": "Müşteri Defteri",
       "feature1Desc": "Tüm borçları takip et",
       "feature2Title": "Raporlar",

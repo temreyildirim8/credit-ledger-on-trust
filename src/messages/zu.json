@@ -164,7 +164,7 @@
     "subtitle": "Kwakhiwe kuma-UMKM, ethembeka ngabanikazi bezitolo emhlabeni jikelele",
     "localLanguage": {
       "title": "Ukuxhasa Kolimi Lwasekhaya",
-      "description": "Isebenza kolimi lakho nokuhlasela amalimi ayisikhombisa kuqukethi isiHindi, isiTurkish, isiSpanish, nanye."
+      "description": "Isebenza kolimi lakho nokuxhasa amalimi amaningi kuqukethi isiHindi, isiTurkish, isiSpanish, nalokunye."
     },
     "multiCurrency": {
       "title": "Ukuvikela Imali Eziningi",
@@ -287,7 +287,7 @@
       "q3": "I-backup ezenzakalelayo isebenza kanjani?",
       "a3": "Idata yakho i-synchronize ngokuzenzakalelayo kumaserver ethu we-cloud avikelekile noma nini uma une-connection ye-inthanethi. Idata yonke iyakhodwa kusetshenziswa ukukhoda kwe-AES-256 yesigaba sebanki, ngakho-ke amarekhodi akho ahlala evikelekile futhi atholakala.",
       "q4": "Yiziphi izimali nezilimi ezisekelwayo?",
-      "a4": "I-Mali-X ixhasa izimali eziningi kufaka phakathi i-TRY, IDR, NGN, EGP, ZAR, nokuningi. I-app itholakala ngezilimi eziyi-7: IsiTurki, IsiHindi, Isi-Indonesian, IsiNgisi, Isi-Arabhu, IsiSpanishi, kanye IsiZulu."
+      "a4": "I-Mali-X ixhasa izimali eziningi kufaka phakathi i-TRY, IDR, NGN, EGP, ZAR, nokuningi. I-app itholakala ngamalimi amaningi: IsiTurki, IsiHindi, Isi-Indonesian, IsiNgisi, Isi-Arabhu, IsiSpanishi, kanye IsiZulu."
     },
     "cta": {
       "title": "Ukulungele Ukuqala?",
@@ -341,7 +341,9 @@
     "form": {
       "title": "Sithumele Umyalezo",
       "fullName": "Igama Eliqopho",
+      "fullNamePlaceholder": "Johan van der Merwe",
       "workEmail": "I-Email Yomsebenzi",
+      "workEmailPlaceholder": "johan@company.com",
       "name": "Igama Lakho",
       "email": "Ikheli Le-Email",
       "subject": "Isihloko",
@@ -718,7 +720,7 @@
       "benefit2": "Kusebenza kungasebenzi ngesinkronizeshini ezenzakalelayo",
       "benefit3": "Ukusekelwa kwemali eziningi",
       "benefit4": "Izitatimende ze-PDF & okuthunyelwe ko-CSV",
-      "benefit5": "Kutholakala ngolimi olungu-7",
+      "benefit5": "Kutholakala ngamalimi amaningi",
       "feature1Title": "Incwadi Yabathengi",
       "feature1Desc": "Landa konke okudingayo",
       "feature2Title": "Imibiko",
@@ -955,7 +957,7 @@
     "q3": "I-backup ezenzakalelayo isebenza kanjani?",
     "a3": "Idatha yakho ivumelaniswa ngokuzenzakalela kumaseva ethu aphephile e-cloud nanoma nini uma unoxhumano lwe-inthanethi. Yonke idatha ibhaliswa ngokusebenzisa ukubhalisa kwe-AES-256 komzinga webhange, ngakho-ke amarekhodi akho ahlale ephephile futhi atholakala.",
     "q4": "Yimaphi amasheke namalimi axhaswayo?",
-    "a4": "I-Mali-X ixhasa izimali eziningi okuhlanganisa i-TRY (Turkish Lira), i-IDR (Indonesian Rupiah), i-NGN (Nigerian Naira), i-EGP (Egyptian Pound), i-ZAR (South African Rand), nokuningi. I-app itholakala ngamalimi ayi-7: Turkish, Hindi, Indonesian, English, Arabic, Spanish, kanye ne-Zulu.",
+    "a4": "I-Mali-X ixhasa izimali eziningi okuhlanganisa i-TRY (Turkish Lira), i-IDR (Indonesian Rupiah), i-NGN (Nigerian Naira), i-EGP (Egyptian Pound), i-ZAR (South African Rand), nokuningi. I-app itholakala ngamalimi amaningi: Turkish, Hindi, Indonesian, English, Arabic, Spanish, kanye ne-Zulu.",
     "q5": "Ngingathumela kanjani izikhumbuzi zokukhokha kubakhasimende?",
     "a5": "Ungathumela izikhumbuzi ngokuqondile nge-WhatsApp ngemilayezo egcwele. Vula nje imininingwane yomthengi bese uchofoza inkinobho ye-WhatsApp. Abasebenzisi be-Pro bathola futhi izikhumbuzi ze-SMS ezizenzakalelayo.",
     "q6": "Ngingakhipha idatha yami?",

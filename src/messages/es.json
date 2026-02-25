@@ -178,7 +178,7 @@
     },
     "localLanguage": {
       "title": "Soporte de Idioma Local",
-      "description": "Funciona en tu idioma con soporte para 7 idiomas incluyendo hindi, turco, español y más."
+      "description": "Funciona en tu idioma con soporte para múltiples idiomas incluyendo hindi, turco, español y más."
     },
     "multiCurrency": {
       "title": "Protección Multidivisa",
@@ -267,7 +267,7 @@
       "q3": "¿Cómo funciona la copia de seguridad automática?",
       "a3": "Tus datos se sincronizan automáticamente con nuestros servidores en la nube seguros cada vez que tienes conexión a internet. Todos los datos están encriptados usando encriptación AES-256 de nivel bancario, por lo que tus registros siempre están seguros y accesibles.",
       "q4": "¿Qué monedas e idiomas son compatibles?",
-      "a4": "Fiado-X admite múltiples monedas incluyendo TRY, IDR, NGN, EGP, ZAR y más. La aplicación está disponible en 7 idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú."
+      "a4": "Fiado-X admite múltiples monedas incluyendo TRY, IDR, NGN, EGP, ZAR y más. La aplicación está disponible en múltiples idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú."
     },
     "cta": {
       "title": "¿Listo para Comenzar?",
@@ -321,7 +321,9 @@
     "form": {
       "title": "Envíanos un Mensaje",
       "fullName": "Nombre Completo",
+      "fullNamePlaceholder": "Juan Pérez",
       "workEmail": "Correo de Trabajo",
+      "workEmailPlaceholder": "juan@empresa.com",
       "name": "Tu Nombre",
       "email": "Correo Electrónico",
       "subject": "Asunto",
@@ -698,7 +700,7 @@
       "benefit2": "Funciona sin conexión con sincronización automática",
       "benefit3": "Soporte multi-moneda",
       "benefit4": "Estados de cuenta PDF y exportaciones CSV",
-      "benefit5": "Disponible en 7 idiomas",
+      "benefit5": "Disponible en múltiples idiomas",
       "feature1Title": "Libro de Clientes",
       "feature1Desc": "Rastrea todas las deudas",
       "feature2Title": "Informes",
@@ -1102,7 +1104,7 @@
     "q3": "¿Cómo funciona la copia de seguridad automática?",
     "a3": "Tus datos se sincronizan automáticamente con nuestros servidores seguros en la nube siempre que tienes conexión a internet. Todos los datos están encriptados usando encriptación AES-256 de grado bancario, así que tus registros siempre están seguros y accesibles.",
     "q4": "¿Qué monedas e idiomas son compatibles?",
-    "a4": "Fiado-X soporta múltiples monedas incluyendo TRY (Lira Turca), IDR (Rupia Indonesia), NGN (Naira Nigeriana), EGP (Libra Egipcia), ZAR (Rand Sudafricano) y más. La aplicación está disponible en 7 idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú.",
+    "a4": "Fiado-X soporta múltiples monedas incluyendo TRY (Lira Turca), IDR (Rupia Indonesia), NGN (Naira Nigeriana), EGP (Libra Egipcia), ZAR (Rand Sudafricano) y más. La aplicación está disponible en múltiples idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú.",
     "q5": "¿Cómo envío recordatorios de pago a los clientes?",
     "a5": "Puedes enviar recordatorios directamente a través de WhatsApp con mensajes pre-llenados. Solo abre los detalles de un cliente y toca el botón de WhatsApp. Los usuarios Pro también obtienen recordatorios SMS automáticos.",
     "q6": "¿Puedo exportar mis datos?",
