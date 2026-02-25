@@ -42,7 +42,7 @@ export function FAQSection() {
   ];
 
   return (
-    <section className="py-20 bg-[var(--color-bg)]">
+    <section id="faq" className="py-20 bg-[var(--color-bg)]">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-wide mb-2">
