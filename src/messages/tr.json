@@ -398,6 +398,7 @@
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Adres",
       "addressPlaceholder": "Adres girin (isteğe bağlı)",
+      "notesPlaceholder": "Bu müşteri hakkında ek notlar",
       "submit": "Müşteri Ekle"
     },
     "details": {
@@ -420,9 +421,6 @@
       "nameTooLong": "İsim 100 karakterden az olmalı",
       "invalidPhone": "Lütfen geçerli bir telefon numarası girin",
       "fixErrors": "Lütfen formdaki hataları düzeltin"
-    },
-    "form": {
-      "notesPlaceholder": "Bu müşteri hakkında ek notlar"
     },
     "paywall": {
       "limitReached": "Müşteri limitine ulaşıldı",

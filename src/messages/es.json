@@ -382,6 +382,7 @@
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Dirección",
       "addressPlaceholder": "Ingresa la dirección (opcional)",
+      "notesPlaceholder": "Notas adicionales sobre este cliente",
       "submit": "Agregar Cliente"
     },
     "details": {
@@ -399,6 +400,12 @@
     },
     "success": "Cliente agregado con éxito",
     "error": "Error al agregar cliente",
+    "validation": {
+      "nameTooShort": "El nombre debe tener al menos 2 caracteres",
+      "nameTooLong": "El nombre debe tener menos de 100 caracteres",
+      "invalidPhone": "Por favor ingresa un número de teléfono válido",
+      "fixErrors": "Por favor corrige los errores en el formulario"
+    },
     "paywall": {
       "limitReached": "Límite de clientes alcanzado",
       "upgradeMessage": "Actualiza a Pro para clientes ilimitados y más funciones.",

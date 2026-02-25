@@ -388,6 +388,7 @@
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Ikheli",
       "addressPlaceholder": "Faka ikheli (okukhetha)",
+      "notesPlaceholder": "Amanothi angeziwe ngalomthengi",
       "submit": "Yengeza Umthengi"
     },
     "details": {
@@ -404,7 +405,13 @@
       "pdfError": "Ihlulekile ukudala i-PDF"
     },
     "success": "Umthengi yengezwekahle",
-    "error": "Yehlula ukwengeza umthengi"
+    "error": "Yehlula ukwengeza umthengi",
+    "validation": {
+      "nameTooShort": "Igama kufanele libe nobuncane bezinhlamvu ezingu-2",
+      "nameTooLong": "Igama kufanele libe ngaphansi kwezinhlamvu ezingu-100",
+      "invalidPhone": "Sicela ufake inombolo yefoni evumelekile",
+      "fixErrors": "Sicela ulungise amaphutha efomu"
+    }
   },
   "transactions": {
     "title": "Ukuthengiselana",

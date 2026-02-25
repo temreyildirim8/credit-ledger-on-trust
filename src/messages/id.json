@@ -388,6 +388,7 @@
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Alamat",
       "addressPlaceholder": "Masukkan alamat (opsional)",
+      "notesPlaceholder": "Catatan tambahan tentang pelanggan ini",
       "submit": "Tambah Pelanggan"
     },
     "details": {
@@ -404,7 +405,13 @@
       "pdfError": "Gagal membuat PDF"
     },
     "success": "Pelanggan berhasil ditambahkan",
-    "error": "Gagal menambahkan pelanggan"
+    "error": "Gagal menambahkan pelanggan",
+    "validation": {
+      "nameTooShort": "Nama harus minimal 2 karakter",
+      "nameTooLong": "Nama harus kurang dari 100 karakter",
+      "invalidPhone": "Silakan masukkan nomor telepon yang valid",
+      "fixErrors": "Silakan perbaiki kesalahan dalam formulir"
+    }
   },
   "transactions": {
     "title": "Transaksi",

@@ -408,6 +408,7 @@
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Address",
       "addressPlaceholder": "Enter address (optional)",
+      "notesPlaceholder": "Additional notes about this customer",
       "submit": "Add Customer"
     },
     "details": {
@@ -430,9 +431,6 @@
       "nameTooLong": "Name must be less than 100 characters",
       "invalidPhone": "Please enter a valid phone number",
       "fixErrors": "Please fix the errors in the form"
-    },
-    "form": {
-      "notesPlaceholder": "Additional notes about this customer"
     }
   },
   "transactions": {
