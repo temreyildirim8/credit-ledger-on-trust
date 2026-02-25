@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useTheme } from "./theme-provider";
 
 interface ForceLightThemeProps {
@@ -13,10 +13,13 @@ interface ForceLightThemeProps {
  */
 export function ForceLightTheme({ children }: ForceLightThemeProps) {
   const { theme, setTheme } = useTheme();
+  const initialThemeRef = useRef<string | null>(null);
 
   useEffect(() => {
-    // Store the current theme preference
-    const savedTheme = theme;
+    // Store the current theme preference on first mount
+    if (initialThemeRef.current === null) {
+      initialThemeRef.current = theme;
+    }
 
     // Force light theme
     if (theme !== "light") {
@@ -25,10 +28,11 @@ export function ForceLightTheme({ children }: ForceLightThemeProps) {
 
     // Restore original theme on unmount
     return () => {
-      if (savedTheme !== "light") {
-        setTheme(savedTheme);
+      if (initialThemeRef.current && initialThemeRef.current !== "light") {
+        setTheme(initialThemeRef.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty deps - only run on mount/unmount
 
   return <>{children}</>;
