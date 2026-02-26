@@ -126,7 +126,7 @@ export function PaidPlanGuard({
 }
 
 interface PlanGuardProps {
-  allowedPlans: Array<"free" | "basic" | "pro" | "enterprise">;
+  allowedPlans: Array<"free" | "pro" | "enterprise">;
   children: ReactNode;
   fallback?: ReactNode;
 }

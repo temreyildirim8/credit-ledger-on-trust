@@ -290,7 +290,7 @@
     "faq": {
       "title": "Frequently Asked Questions",
       "q1": "Is Ledgerly really free to use?",
-      "a1": "Yes! Ledgerly offers a free forever plan that includes up to 10 customers, unlimited transactions, offline mode, and basic reports. No credit card required to get started.",
+      "a1": "Yes! Ledgerly offers a free forever plan that includes up to 5 customers, unlimited transactions, offline mode, and basic reports. No credit card required to get started.",
       "q2": "Can I use Ledgerly without internet?",
       "a2": "Absolutely! Ledgerly is built as a Progressive Web App (PWA) with full offline support. You can add customers, record debts, and track payments even without internet. Your data syncs automatically when you're back online.",
       "q3": "How does the automatic backup work?",
@@ -828,7 +828,7 @@
       "brandName": "Ledgerly",
       "heroTitle": "Start tracking credit today",
       "heroSubtitle": "Free forever for small businesses. Upgrade as you grow.",
-      "benefit1": "Free plan: Up to 10 customers",
+      "benefit1": "Free plan: Up to 5 customers",
       "benefit2": "Works offline with automatic sync",
       "benefit3": "Multi-currency support",
       "benefit4": "PDF statements & CSV exports",

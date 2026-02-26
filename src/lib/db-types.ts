@@ -27,7 +27,6 @@ export type {
 
 export {
   Constants,
-  CUSTOMER_LIMITS,
   TRANSACTION_TYPES,
   SYNC_STATUS,
   SYNC_ACTION_TYPES,

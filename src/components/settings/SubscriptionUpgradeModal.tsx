@@ -18,7 +18,7 @@ import { toast } from 'sonner';
 interface SubscriptionUpgradeModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  currentPlan?: 'free' | 'basic' | 'pro' | 'enterprise';
+  currentPlan?: 'free' | 'pro' | 'enterprise';
 }
 
 const plans = [
@@ -97,7 +97,7 @@ export function SubscriptionUpgradeModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[95vw] md:w-auto md:max-w-5xl lg:max-w-6xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 md:p-8">
+      <DialogContent className="w-[95vw] max-w-[95vw] max-h-[90vh] overflow-y-auto p-4 sm:p-6 md:p-8">
         <DialogHeader>
           <DialogTitle className="text-xl font-display flex items-center gap-2">
             <Zap className="h-5 w-5 text-accent" />

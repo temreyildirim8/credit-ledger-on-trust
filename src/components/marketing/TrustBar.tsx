@@ -2,6 +2,7 @@ import { Shield, Users, Clock } from "lucide-react";
 
 /**
  * Trust bar - Social proof and reliability indicators
+ * Figma: Light background, blue accents, centered stats
  */
 export function TrustBar() {
   const stats = [
@@ -23,13 +24,13 @@ export function TrustBar() {
   ];
 
   return (
-    <section className="py-16 bg-[var(--color-bg)]">
+    <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <p className="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-wide mb-2">
+          <p className="text-sm font-semibold text-[#3c83f6] uppercase tracking-wide mb-2">
             Trusted by businesses small and large
           </p>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-[var(--color-text)]">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#0f172a]">
             Join thousands of shop owners worldwide
           </h2>
         </div>
@@ -39,13 +40,13 @@ export function TrustBar() {
             const Icon = stat.icon;
             return (
               <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface dark:bg-[var(--color-surface)] shadow-md mb-4">
-                  <Icon className="h-7 w-7 text-[var(--color-accent)]" />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#f8fafc] shadow-md mb-4">
+                  <Icon className="h-7 w-7 text-[#3c83f6]" />
                 </div>
-                <p className="text-2xl sm:text-3xl font-bold text-[var(--color-text)] mb-1">
+                <p className="text-2xl sm:text-3xl font-bold text-[#0f172a] mb-1">
                   {stat.value}
                 </p>
-                <p className="text-sm text-[var(--color-text-secondary)]">
+                <p className="text-sm text-[#64748b]">
                   {stat.label}
                 </p>
               </div>

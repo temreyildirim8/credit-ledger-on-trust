@@ -149,7 +149,7 @@ export function Sidebar({ className }: SidebarProps) {
         title="Double-click to toggle sidebar"
       >
         <Link
-          href="/"
+          href="/dashboard"
           className="flex items-center gap-3 group"
           onClick={(e) => isCollapsed && e.preventDefault()}
         >

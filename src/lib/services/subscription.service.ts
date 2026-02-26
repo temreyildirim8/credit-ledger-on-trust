@@ -1,13 +1,13 @@
 import { supabase } from '@/lib/supabase/client';
 import type { Subscription, SubscriptionPlan, TablesInsert, TablesUpdate } from '@/lib/database.types';
-import { CUSTOMER_LIMITS } from '@/lib/database.types';
+import { configService } from './config.service';
 
 export interface SubscriptionWithFeatures extends Subscription {
   features: PlanFeatures;
 }
 
 export interface PlanFeatures {
-  maxCustomers: number;
+  maxCustomers: number | null; // null = unlimited
   unlimitedTransactions: boolean;
   offlineMode: boolean;
   basicReports: boolean;
@@ -20,83 +20,46 @@ export interface PlanFeatures {
   apiAccess: boolean;
   customIntegrations: boolean;
   whiteLabel: boolean;
-  pwaInstall: boolean; // PWA install prompt - only for paid plans
-  themeChange: boolean; // Theme toggle - only for paid plans
+  pwaInstall: boolean;
+  themeChange: boolean;
 }
 
-// Feature definitions by plan
-export const PLAN_FEATURES: Record<SubscriptionPlan, PlanFeatures> = {
-  free: {
-    maxCustomers: CUSTOMER_LIMITS.free,
-    unlimitedTransactions: true,
-    offlineMode: true,
-    basicReports: true,
-    advancedReports: false,
-    smsReminders: false,
-    emailSupport: true,
-    prioritySupport: false,
-    dataExport: false,
-    multiUserAccess: false,
-    apiAccess: false,
-    customIntegrations: false,
-    whiteLabel: false,
-    pwaInstall: false, // Free users cannot install PWA
-    themeChange: false, // Free users cannot change theme
-  },
-  basic: {
-    maxCustomers: CUSTOMER_LIMITS.basic,
-    unlimitedTransactions: true,
-    offlineMode: true,
-    basicReports: true,
-    advancedReports: true,
-    smsReminders: false,
-    emailSupport: true,
-    prioritySupport: false,
-    dataExport: true,
-    multiUserAccess: false,
-    apiAccess: false,
-    customIntegrations: false,
-    whiteLabel: false,
-    pwaInstall: true, // Basic and above can install PWA
-    themeChange: true, // Basic and above can change theme
-  },
-  pro: {
-    maxCustomers: CUSTOMER_LIMITS.pro,
-    unlimitedTransactions: true,
-    offlineMode: true,
-    basicReports: true,
-    advancedReports: true,
-    smsReminders: true,
-    emailSupport: true,
-    prioritySupport: true,
-    dataExport: true,
-    multiUserAccess: false,
-    apiAccess: true,
-    customIntegrations: false,
-    whiteLabel: false,
-    pwaInstall: true, // Pro can install PWA
-    themeChange: true, // Pro can change theme
-  },
-  enterprise: {
-    maxCustomers: CUSTOMER_LIMITS.enterprise,
-    unlimitedTransactions: true,
-    offlineMode: true,
-    basicReports: true,
-    advancedReports: true,
-    smsReminders: true,
-    emailSupport: true,
-    prioritySupport: true,
-    dataExport: true,
-    multiUserAccess: true,
-    apiAccess: true,
-    customIntegrations: true,
-    whiteLabel: true,
-    pwaInstall: true, // Enterprise can install PWA
-    themeChange: true, // Enterprise can change theme
-  },
+// Fallback features (used when config service fails)
+const DEFAULT_FEATURES: PlanFeatures = {
+  maxCustomers: 5,
+  unlimitedTransactions: true,
+  offlineMode: true,
+  basicReports: true,
+  advancedReports: false,
+  smsReminders: false,
+  emailSupport: true,
+  prioritySupport: false,
+  dataExport: false,
+  multiUserAccess: false,
+  apiAccess: false,
+  customIntegrations: false,
+  whiteLabel: false,
+  pwaInstall: false,
+  themeChange: false,
 };
 
 export const subscriptionsService = {
+  /**
+   * Get plan features from config service
+   */
+  async getPlanFeatures(plan: SubscriptionPlan): Promise<PlanFeatures> {
+    try {
+      const config = await configService.getPlanConfig(plan);
+      return {
+        maxCustomers: config.customerLimit,
+        ...config.features,
+      };
+    } catch (error) {
+      console.error('Failed to fetch plan config, using defaults:', error);
+      return DEFAULT_FEATURES;
+    }
+  },
+
   /**
    * Get user's current subscription
    * Creates a free subscription if none exists
@@ -116,9 +79,11 @@ export const subscriptionsService = {
       throw error;
     }
 
+    const features = await this.getPlanFeatures(data.plan);
+
     return {
       ...data,
-      features: PLAN_FEATURES[data.plan],
+      features,
     };
   },
 
@@ -142,9 +107,11 @@ export const subscriptionsService = {
 
     if (error) throw error;
 
+    const features = await this.getPlanFeatures('free');
+
     return {
       ...data,
-      features: PLAN_FEATURES.free,
+      features,
     };
   },
 
@@ -167,9 +134,11 @@ export const subscriptionsService = {
 
     if (error) throw error;
 
+    const features = await this.getPlanFeatures(plan);
+
     return {
       ...data,
-      features: PLAN_FEATURES[plan],
+      features,
     };
   },
 
@@ -182,7 +151,8 @@ export const subscriptionsService = {
 
     const featureValue = subscription.features[feature];
 
-    // For numeric features (like maxCustomers), having any positive number means access
+    // For numeric features (like maxCustomers), null means unlimited, any number means limited access
+    if (featureValue === null) return true;
     if (typeof featureValue === 'number') {
       return featureValue > 0;
     }
@@ -192,14 +162,15 @@ export const subscriptionsService = {
 
   /**
    * Get customer limit for user's plan
+   * Returns null for unlimited, or a number for limited plans
    */
-  async getCustomerLimit(userId: string): Promise<number> {
+  async getCustomerLimit(userId: string): Promise<number | null> {
     const subscription = await this.getSubscription(userId);
-    return subscription?.features.maxCustomers ?? CUSTOMER_LIMITS.free;
+    return subscription?.features.maxCustomers ?? 5;
   },
 
   /**
-   * Check if user is on a paid plan (basic, pro, or enterprise)
+   * Check if user is on a paid plan (pro or enterprise)
    */
   async isPaidPlan(userId: string): Promise<boolean> {
     const subscription = await this.getSubscription(userId);

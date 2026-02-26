@@ -546,7 +546,12 @@
       "address": "العنوان",
       "edit": "تعديل",
       "call": "اتصال",
-      "editCustomer": "تعديل العميل"
+      "editCustomer": "تعديل العميل",
+      "lastActivity": "آخر نشاط",
+      "actions": "إجراءات",
+      "archive": "أرشيف",
+      "delete": "حذف",
+      "status": "الحالة"
     },
     "success": "تمت إضافة العميل بنجاح",
     "editSuccess": "تم تحديث العميل بنجاح",

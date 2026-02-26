@@ -6,7 +6,6 @@ import {
   subscriptionsService,
   SubscriptionWithFeatures,
   PlanFeatures,
-  PLAN_FEATURES,
 } from "@/lib/services/subscription.service";
 import type { SubscriptionPlan } from "@/lib/database.types";
 
@@ -17,14 +16,31 @@ interface SubscriptionContextType {
   plan: SubscriptionPlan;
   features: PlanFeatures;
   isPaidPlan: boolean;
-  customerLimit: number;
+  customerLimit: number | null; // null = unlimited
   hasFeature: (feature: keyof PlanFeatures) => boolean;
   isFeatureEnabled: (feature: keyof PlanFeatures) => boolean;
   upgradePlan: (plan: SubscriptionPlan) => Promise<void>;
   refresh: () => Promise<void>;
 }
 
-const defaultFeatures = PLAN_FEATURES.free;
+// Default features for free plan (fallback when loading)
+const defaultFeatures: PlanFeatures = {
+  maxCustomers: 5,
+  unlimitedTransactions: true,
+  offlineMode: true,
+  basicReports: true,
+  advancedReports: false,
+  smsReminders: false,
+  emailSupport: true,
+  prioritySupport: false,
+  dataExport: false,
+  multiUserAccess: false,
+  apiAccess: false,
+  customIntegrations: false,
+  whiteLabel: false,
+  pwaInstall: false,
+  themeChange: false,
+};
 
 const SubscriptionContext = createContext<SubscriptionContextType | undefined>(undefined);
 
@@ -66,6 +82,8 @@ export function SubscriptionProvider({ children }: { children: React.ReactNode }
   const hasFeature = useCallback(
     (feature: keyof PlanFeatures): boolean => {
       const featureValue = features[feature];
+      // null for maxCustomers means unlimited
+      if (featureValue === null) return true;
       if (typeof featureValue === "number") {
         return featureValue > 0;
       }
@@ -147,16 +165,22 @@ export function useFeature(feature: keyof PlanFeatures): boolean {
 /**
  * Hook to check if user can add more customers
  * Returns { canAdd, currentCount, limit }
+ * Note: limit can be null for unlimited plans
  */
 export function useCustomerLimit(currentCustomerCount: number = 0) {
   const { customerLimit, isPaidPlan } = useSubscription();
 
+  // null means unlimited
+  const isUnlimited = customerLimit === null;
+  const effectiveLimit = customerLimit ?? Infinity;
+
   return {
-    canAdd: currentCustomerCount < customerLimit,
+    canAdd: isUnlimited || currentCustomerCount < effectiveLimit,
     currentCount: currentCustomerCount,
-    limit: customerLimit,
-    isAtLimit: currentCustomerCount >= customerLimit,
-    isNearLimit: currentCustomerCount >= customerLimit * 0.8,
+    limit: customerLimit, // null for unlimited
+    isAtLimit: !isUnlimited && currentCustomerCount >= effectiveLimit,
+    isNearLimit: !isUnlimited && currentCustomerCount >= effectiveLimit * 0.8,
+    isUnlimited,
     isPaidPlan,
   };
 }

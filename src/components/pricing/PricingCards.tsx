@@ -42,6 +42,10 @@ const pricingData: Record<PlanKey, Record<BillingInterval, PriceInfo>> = {
   },
 };
 
+/**
+ * Pricing Cards - Figma design
+ * White cards, blue accent for PRO, rounded-xl, checkmark features
+ */
 export function PricingCards() {
   const t = useTranslations("pricing");
   const [billingInterval, setBillingInterval] =
@@ -54,8 +58,8 @@ export function PricingCards() {
         <span
           className={`text-sm font-medium transition-colors ${
             billingInterval === "monthly"
-              ? "text-[var(--color-text)]"
-              : "text-[var(--color-text-secondary)]"
+              ? "text-[#0f172a]"
+              : "text-[#64748b]"
           }`}
         >
           {t("monthly")}
@@ -66,12 +70,12 @@ export function PricingCards() {
               prev === "monthly" ? "yearly" : "monthly",
             )
           }
-          className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2"
+          className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#3c83f6] focus:ring-offset-2"
           style={{
             backgroundColor:
               billingInterval === "yearly"
-                ? "var(--color-accent)"
-                : "var(--color-border)",
+                ? "#3c83f6"
+                : "#e2e8f0",
           }}
           aria-label={t("toggleBilling")}
         >
@@ -84,8 +88,8 @@ export function PricingCards() {
         <span
           className={`text-sm font-medium transition-colors ${
             billingInterval === "yearly"
-              ? "text-[var(--color-text)]"
-              : "text-[var(--color-text-secondary)]"
+              ? "text-[#0f172a]"
+              : "text-[#64748b]"
           }`}
         >
           {t("yearly")}
@@ -93,7 +97,7 @@ export function PricingCards() {
         {billingInterval === "yearly" && (
           <Badge
             variant="secondary"
-            className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+            className="bg-[#dcfce7] text-[#16a34a]"
           >
             {t("save17")}
           </Badge>
@@ -111,35 +115,35 @@ export function PricingCards() {
               key={plan.key}
               className={`border-2 flex flex-col ${
                 plan.featured
-                  ? "border-[var(--color-accent)] shadow-2xl relative z-10 md:scale-105 md:-my-4 bg-white dark:bg-gray-900"
-                  : "border-[var(--color-border)]"
+                  ? "border-[#3c83f6] shadow-2xl relative z-10 md:scale-105 md:-my-4 bg-white"
+                  : "border-[#e2e8f0]"
               }`}
             >
               {plan.featured && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-accent)]">
+                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#3c83f6]">
                   {t("mostPopular")}
                 </Badge>
               )}
               <CardHeader className="text-center pb-4">
                 {Icon && (
-                  <div className="h-12 w-12 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center mx-auto mb-4">
-                    <Icon className="h-6 w-6 text-[var(--color-accent)]" />
+                  <div className="h-12 w-12 rounded-full bg-[rgba(60,131,246,0.1)] flex items-center justify-center mx-auto mb-4">
+                    <Icon className="h-6 w-6 text-[#3c83f6]" />
                   </div>
                 )}
-                <CardTitle className="font-display text-xl">
+                <CardTitle className="text-xl">
                   {t(`${plan.key}.name`)}
                 </CardTitle>
-                <p className="text-[var(--color-text-secondary)] text-sm mt-2">
+                <p className="text-[#64748b] text-sm mt-2">
                   {t(`${plan.key}.description`)}
                 </p>
               </CardHeader>
               <CardContent className="pt-0 flex flex-col flex-1">
                 <div className="text-center mb-6">
-                  <span className="text-4xl font-bold text-[var(--color-text)]">
+                  <span className="text-4xl font-bold text-[#0f172a]">
                     {priceInfo.price}
                   </span>
                   {plan.key !== "enterprise" && (
-                    <span className="text-[var(--color-text-secondary)]">
+                    <span className="text-[#64748b]">
                       /{t(priceInfo.periodKey)}
                     </span>
                   )}
@@ -148,7 +152,7 @@ export function PricingCards() {
                     <div className="mt-1">
                       <Badge
                         variant="secondary"
-                        className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 text-xs"
+                        className="bg-[#dcfce7] text-[#16a34a] text-xs"
                       >
                         {t("save17")}
                       </Badge>
@@ -160,8 +164,8 @@ export function PricingCards() {
                     .raw(`${plan.key}.features`)
                     .map((feature: string, index: number) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-[var(--color-text)] text-sm">
+                        <Check className="h-5 w-5 text-[#16a34a] flex-shrink-0 mt-0.5" />
+                        <span className="text-[#0f172a] text-sm">
                           {feature}
                         </span>
                       </li>

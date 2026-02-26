@@ -9,6 +9,7 @@
  * - transactions: Debt/payment records
  * - subscriptions: Plan tracking (freemium paywall)
  * - sync_queue: Offline sync management
+ * - config: Application configuration (plan limits, features, etc.)
  *
  * Views:
  * - customer_balances: Customer balance aggregation
@@ -115,6 +116,30 @@ export type Database = {
           stripe_subscription_id?: string | null;
           updated_at?: string | null;
           user_id?: string;
+        };
+        Relationships: [];
+      };
+      config: {
+        Row: {
+          key: string;
+          value: Json;
+          description: string | null;
+          created_at: string | null;
+          updated_at: string | null;
+        };
+        Insert: {
+          key: string;
+          value: Json;
+          description?: string | null;
+          created_at?: string | null;
+          updated_at?: string | null;
+        };
+        Update: {
+          key?: string;
+          value?: Json;
+          description?: string | null;
+          created_at?: string | null;
+          updated_at?: string | null;
         };
         Relationships: [];
       };
@@ -279,7 +304,7 @@ export type Database = {
       };
     };
     Enums: {
-      subscription_plan: "free" | "basic" | "pro" | "enterprise";
+      subscription_plan: "free" | "pro" | "enterprise";
     };
     CompositeTypes: {
       [_ in never]: never;
@@ -306,6 +331,7 @@ export type Customer = Tables<"customers">;
 export type Transaction = Tables<"transactions">;
 export type Subscription = Tables<"subscriptions">;
 export type SyncQueue = Tables<"sync_queue">;
+export type Config = Tables<"config">;
 
 // View types
 export type CustomerBalance =
@@ -318,17 +344,9 @@ export type SubscriptionPlan = Enums<"subscription_plan">;
 export const Constants = {
   public: {
     Enums: {
-      subscription_plan: ["free", "basic", "pro", "enterprise"] as const,
+      subscription_plan: ["free", "pro", "enterprise"] as const,
     },
   },
-} as const;
-
-// Customer limits by plan
-export const CUSTOMER_LIMITS: Record<SubscriptionPlan, number> = {
-  free: 10,
-  basic: 100,
-  pro: 1000,
-  enterprise: 10000,
 } as const;
 
 // Transaction types

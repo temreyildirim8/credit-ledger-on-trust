@@ -14,27 +14,33 @@ import LanguageSwitcher from "@/components/layout/language-switcher/LanguageSwit
  */
 export function MarketingNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const t = useTranslations('nav');
+  const t = useTranslations("nav");
   const pathname = usePathname();
 
   // Handle scroll to top for Product link when already on homepage
-  const handleProductClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Check if we're on the homepage (locale-prefixed path like /en, /tr, etc.)
-    const isHomePage = pathname === "/" || /^\/[a-z]{2}$/.test(pathname) || /^\/[a-z]{2}\/$/.test(pathname);
+  const handleProductClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      // Check if we're on the homepage (locale-prefixed path like /en, /tr, etc.)
+      const isHomePage =
+        pathname === "/" ||
+        /^\/[a-z]{2}$/.test(pathname) ||
+        /^\/[a-z]{2}\/$/.test(pathname);
 
-    if (isHomePage) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setMobileMenuOpen(false);
-    }
-  }, [pathname]);
+      if (isHomePage) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setMobileMenuOpen(false);
+      }
+    },
+    [pathname],
+  );
 
   // Nav items matching Figma design: Product, Features, Pricing, Company
   const navItems = [
-    { name: t('product'), href: "/", onClick: handleProductClick },
-    { name: t('features'), href: "/features" },
-    { name: t('pricing'), href: "/pricing" },
-    { name: t('company'), href: "/about" },
+    { name: t("product"), href: "/", onClick: handleProductClick },
+    { name: t("features"), href: "/features" },
+    { name: t("pricing"), href: "/pricing" },
+    { name: t("company"), href: "/about" },
   ];
 
   return (
@@ -46,7 +52,7 @@ export function MarketingNavbar() {
             <BookOpen className="w-[18px] h-[18px] text-white" />
           </div>
           <span className="font-extrabold text-xl text-[#0f172a] tracking-tight">
-            {t('brandName')}
+            {t("brandName")}
           </span>
         </Link>
 
@@ -66,18 +72,20 @@ export function MarketingNavbar() {
 
         {/* Desktop CTAs - matching Figma design */}
         <div className="hidden lg:flex items-center gap-4">
-          <LanguageSwitcher variant="icon" />
+          <div className="w-auto">
+            <LanguageSwitcher variant="icon" />{" "}
+          </div>
           <Link
             href="/login"
-            className="text-sm font-bold text-[#0f172a] hover:text-[#3c83f6] transition-colors px-4 py-2"
+            className="text-sm font-bold text-[#0f172a] hover:text-[#3c83f6] transition-colors px-4 py-2 w-24"
           >
-            {t('login')}
+            {t("login")}
           </Link>
           <Link
             href="/signup"
-            className="bg-[#3c83f6] text-white text-sm font-bold px-6 py-2.5 rounded-lg hover:bg-[#3b82f6] transition-colors shadow-[0px_10px_15px_-3px_rgba(60,131,246,0.2),0px_4px_6px_-4px_rgba(60,131,246,0.2)]"
+            className="bg-[#3c83f6] text-white text-sm font-bold px-6 py-2.5 rounded-lg hover:bg-[#3b82f6] transition-colors shadow-[0px_10px_15px_-3px_rgba(60,131,246,0.2),0px_4px_6px_-4px_rgba(60,131,246,0.2)] w-auto"
           >
-            {t('getStarted')}
+            {t("getStarted")}
           </Link>
         </div>
 
@@ -99,7 +107,10 @@ export function MarketingNavbar() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div id="mobile-menu" className="lg:hidden bg-white border-t border-slate-200">
+        <div
+          id="mobile-menu"
+          className="lg:hidden bg-white border-t border-slate-200"
+        >
           <div className="px-6 py-4 space-y-1">
             {navItems.map((item) => (
               <Link
@@ -126,14 +137,14 @@ export function MarketingNavbar() {
                 className="block text-sm font-semibold text-[#0f172a] hover:text-[#3c83f6] py-3 px-2 rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {t('login')}
+                {t("login")}
               </Link>
               <Link
                 href="/signup"
                 className="block bg-[#3c83f6] text-white text-sm font-bold px-4 py-3 rounded-lg text-center transition-colors shadow-[0px_10px_15px_-3px_rgba(60,131,246,0.2)]"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {t('getStarted')}
+                {t("getStarted")}
               </Link>
             </div>
           </div>
