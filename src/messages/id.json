@@ -27,7 +27,8 @@
     "on": "pada",
     "off": "Mati",
     "yes": "Ya",
-    "no": "Tidak"
+    "no": "Tidak",
+    "defaultBusinessName": "Usaha Saya"
   },
   "errorBoundary": {
     "title": "Terjadi Kesalahan",
@@ -93,6 +94,7 @@
     "dashboard": "Dashboard",
     "customers": "Pelanggan",
     "transactions": "Transaksi",
+    "reports": "Laporan",
     "quickAdd": "Tambah Cepat",
     "settings": "Pengaturan",
     "login": "Masuk",
@@ -116,7 +118,10 @@
     "collapseSidebar": "Ciutkan Bilah Samping",
     "home": "Beranda",
     "installApp": "Instal Aplikasi",
-    "appInstalled": "Aplikasi Terinstal"
+    "appInstalled": "Aplikasi Terinstal",
+    "upgradeForPWA": "Upgrade ke Pro",
+    "upgradeForPWADesc": "Upgrade ke Pro untuk menginstal aplikasi",
+    "upgradeForTheme": "Upgrade ke Pro untuk Mode Gelap"
   },
   "home": {
     "meta": {
@@ -233,6 +238,12 @@
     "save17": "Hemat 17%",
     "mostPopular": "Paling Populer",
     "toggleBilling": "Ubah periode penagihan",
+    "periods": {
+      "forever": "selamanya",
+      "month": "bulan",
+      "year": "tahun",
+      "contact": "hubungi"
+    },
     "free": {
       "name": "Gratis Selamanya",
       "price": "$0",
@@ -334,7 +345,7 @@
       "title1": "Kisah Kami: Dari Kertas",
       "title2": "ke Cloud",
       "paragraph1": "Selama beberapa dekade, UMKM di pasar berkembang telah mengandalkan buku \"Veresiye\" tulisan tangan—buku besar kertas yang melacak jutaan transaksi kredit. Namun di ekonomi inflasi tinggi, kertas rapuh, dan data hilang seiring waktu.",
-      "paragraph2": "Kami mendirikan Global Ledger (Veresiye-X) untuk menjembatani kesenjangan digital. Kami mengganti buku catatan tradisional dengan",
+      "paragraph2": "Kami mendirikan Ledgerly (Veresiye-X) untuk menjembatani kesenjangan digital. Kami mengganti buku catatan tradisional dengan",
       "digitalTrust": "Kepercayaan Digital",
       "paragraph3": "Platform kami tidak hanya mencatat transaksi; ia membangun identitas keuangan bagi yang tidak memiliki rekening bank, memungkinkan mereka untuk berkembang, memulihkan hutang lebih cepat, dan berkembang.",
       "stat1Value": "99.9%",
@@ -356,7 +367,7 @@
     "hero": {
       "badge": "Hubungi Kami",
       "title": "Hubungi Kami",
-      "subtitle": "Ada pertanyaan tentang Global Ledger? Kami siap membantu. Hubungi kami untuk dukungan, penjualan, atau kemitraan."
+      "subtitle": "Ada pertanyaan tentang Ledgerly? Kami siap membantu. Hubungi kami untuk dukungan, penjualan, atau kemitraan."
     },
     "title": "Hubungi Kami",
     "subtitle": "Kami ingin mendengar dari Anda",
@@ -443,15 +454,14 @@
     "recentActivity": {
       "title": "Aktivitas Terbaru",
       "empty": "Tidak ada aktivitas terbaru",
-      "emptyDescription": "Start by adding your first customer or recording a transaction"
+      "emptyDescription": "Mulai dengan menambahkan pelanggan pertama atau mencatat transaksi"
     },
     "overdueDebts": {
       "title": "Hutang Jatuh Tempo",
       "empty": "Tidak ada pembayaran jatuh tempo",
       "remind": "Ingatkan",
       "daysOverdue": "hari jatuh tempo",
-      "emptyDescription": "Start by adding your first customer or recording a transaction",
-      "remind": "Ingatkan"
+      "emptyDescription": "Mulai dengan menambahkan pelanggan pertama atau mencatat transaksi"
     },
     "empty": {
       "title": "Selamat Datang di Hutang-Ku",
@@ -474,7 +484,7 @@
       "noSearchResults": "Tidak ada pelanggan ditemukan",
       "addFirst": "Tambahkan pelanggan pertama Anda"
     },
-    "count": "{count} pelanggan | {count} pelanggan",
+    "count": "{count} pelanggan",
     "paywall": {
       "limitReached": "Batas pelanggan tercapai",
       "upgradeMessage": "Upgrade ke Pro untuk pelanggan tidak terbatas dan fitur lainnya.",
@@ -485,15 +495,21 @@
       "title": "Tambah Pelanggan Baru",
       "editTitle": "Edit Pelanggan",
       "editDescription": "Perbarui informasi pelanggan di bawah.",
+      "customId": "ID Pelanggan",
+      "customIdPlaceholder": "cth., PLG-001, ABC123",
+      "customIdOptional": "(opsional)",
       "name": "Nama Lengkap",
       "namePlaceholder": "Masukkan nama pelanggan",
       "phone": "Nomor Telepon",
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Alamat",
       "addressPlaceholder": "Masukkan alamat (opsional)",
+      "notes": "Catatan",
       "notesPlaceholder": "Catatan tambahan tentang pelanggan ini",
       "submit": "Tambah Pelanggan",
-      "saveChanges": "Simpan Perubahan"
+      "saveChanges": "Simpan Perubahan",
+      "databaseId": "ID Database",
+      "nonEditable": "(tidak dapat diedit)"
     },
     "details": {
       "totalDebt": "Total Hutang",
@@ -526,7 +542,10 @@
       "nameTooShort": "Nama harus minimal 2 karakter",
       "nameTooLong": "Nama harus kurang dari 100 karakter",
       "invalidPhone": "Silakan masukkan nomor telepon yang valid",
-      "fixErrors": "Silakan perbaiki kesalahan dalam formulir"
+      "fixErrors": "Silakan perbaiki kesalahan dalam formulir",
+      "invalidId": "Hanya huruf, angka, tanda hubung, dan garis bawah yang diizinkan",
+      "idTooShort": "ID harus minimal 3 karakter",
+      "idTooLong": "ID harus kurang dari 50 karakter"
     },
     "table": {
       "customer": "Pelanggan",
@@ -539,6 +558,7 @@
   "transactions": {
     "title": "Transaksi",
     "addNew": "Tambah Baru",
+    "searchPlaceholder": "Cari berdasarkan pelanggan, deskripsi, atau jumlah...",
     "filter": {
       "all": "Semua",
       "debts": "Hutang",
@@ -546,11 +566,18 @@
     },
     "empty": {
       "noTransactions": "Belum ada transaksi",
-      "noFilterResults": "Tidak ada {filter} ditemukan"
+      "noFilterResults": "Tidak ada {filter} ditemukan",
+      "noSearchResults": "Tidak ada transaksi yang cocok dengan pencarian Anda"
     },
-    "count": "{count} transaksi | {count} transaksi",
+    "count": "{count} transaksi",
+    "type": {
+      "debt": "Hutang",
+      "payment": "Pembayaran"
+    },
     "form": {
       "title": "Transaksi Baru",
+      "editTitle": "Edit Transaksi",
+      "editDescription": "Perbarui detail transaksi",
       "description": "Tambahkan transaksi hutang atau pembayaran",
       "type": "Tipe",
       "debt": "Hutang",
@@ -561,9 +588,19 @@
       "amountPlaceholder": "0.00",
       "note": "Catatan",
       "notePlaceholder": "Deskripsi (opsional)",
-      "submit": "Simpan"
+      "date": "Tanggal",
+      "submit": "Simpan",
+      "saveChanges": "Simpan Perubahan"
+    },
+    "table": {
+      "customer": "Pelanggan",
+      "amount": "Jumlah",
+      "description": "Deskripsi",
+      "date": "Tanggal",
+      "actions": "Aksi"
     },
     "success": "Transaksi ditambahkan!",
+    "editSuccess": "Transaksi diperbarui!",
     "error": "Gagal menambahkan transaksi",
     "validation": {
       "customerRequired": "Pelanggan wajib",
@@ -833,6 +870,18 @@
       "title": "Reset Kata Sandi",
       "subtitle": "Masukkan kata sandi baru Anda",
       "brandName": "Hutang-Ku",
+      "heroTitle": "Buat kata sandi baru",
+      "heroSubtitle": "Kata sandi baru Anda harus aman dan mudah diingat.",
+      "tipsTitle": "Persyaratan kata sandi:",
+      "tip1": "Minimal 8 karakter",
+      "tip2": "Satu huruf besar",
+      "tip3": "Satu angka",
+      "feature1Title": "Penyimpanan Terenkripsi",
+      "feature1Desc": "Kata sandi di-hash",
+      "feature2Title": "Koneksi Aman",
+      "feature2Desc": "HTTPS terenkripsi",
+      "feature3Title": "Kunci Otomatis",
+      "feature3Desc": "Setelah 5 percobaan gagal",
       "password": "Kata Sandi Baru",
       "passwordPlaceholder": "Masukkan kata sandi baru",
       "confirmPassword": "Konfirmasi Kata Sandi",
@@ -879,10 +928,14 @@
       "collected": "Dikumpulkan",
       "newDebts": "Hutang Baru",
       "paymentsReceived": "Pembayaran Diterima",
-      "activeCustomers": "Pelanggan Aktif"
+      "activeCustomers": "Pelanggan Aktif",
+      "collectionRate": "Tingkat Penagihan",
+      "withOutstandingBalance": "Dengan saldo tertunggak",
+      "fromLastMonth": "dari bulan lalu"
     },
     "debtAging": {
       "title": "Usia Hutang",
+      "description": "Hutang tertunggak berdasarkan usia",
       "current": "Saat Ini",
       "days30": "1-30 hari",
       "days60": "31-60 hari",
@@ -900,9 +953,21 @@
       "pdf": "Ekspor Laporan Rekening PDF",
       "csv": "Ekspor CSV",
       "customerStatement": "Rekening Pelanggan",
+      "selectCustomer": "Pilih Pelanggan",
+      "selectCustomerDescription": "Pilih pelanggan untuk membuat rekening akun mereka",
+      "noCustomers": "Tidak ada pelanggan tersedia",
       "noTransactions": "Tidak ada transaksi untuk diekspor",
+      "generating": "Membuat...",
+      "csvSuccess": "CSV berhasil diekspor",
+      "csvError": "Gagal mengekspor CSV",
+      "pdfSuccess": "Laporan PDF berhasil diekspor",
+      "pdfError": "Gagal mengekspor PDF",
+      "statementSuccess": "Rekening pelanggan berhasil diekspor",
+      "statementError": "Gagal membuat rekening pelanggan",
       "success": "Ekspor berhasil",
-      "error": "Gagal mengekspor data"
+      "error": "Gagal mengekspor data",
+      "outstanding": "tertunggak",
+      "settled": "lunas"
     },
     "empty": {
       "title": "Data tidak cukup",

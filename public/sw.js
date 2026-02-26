@@ -222,7 +222,7 @@ self.addEventListener('push', (event) => {
   console.log('[SW] Push notification received');
 
   const data = event.data?.json() || {};
-  const title = data.title || 'Global Ledger';
+  const title = data.title || 'Ledgerly';
   const options = {
     body: data.body || 'You have a new notification',
     icon: '/icons/icon.svg',

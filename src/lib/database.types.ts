@@ -35,6 +35,7 @@ export type Database = {
           id: string;
           is_deleted: boolean | null;
           name: string;
+          national_id: string | null;
           notes: string | null;
           phone: string | null;
           tenant_id: string | null;
@@ -47,6 +48,7 @@ export type Database = {
           id?: string;
           is_deleted?: boolean | null;
           name: string;
+          national_id?: string | null;
           notes?: string | null;
           phone?: string | null;
           tenant_id?: string | null;
@@ -59,6 +61,7 @@ export type Database = {
           id?: string;
           is_deleted?: boolean | null;
           name?: string;
+          national_id?: string | null;
           notes?: string | null;
           phone?: string | null;
           tenant_id?: string | null;
@@ -253,12 +256,15 @@ export type Database = {
     Views: {
       customer_balances: {
         Row: {
+          address: string | null;
           balance: number | null;
           created_at: string | null;
           id: string | null;
           is_deleted: boolean | null;
           last_transaction_date: string | null;
           name: string | null;
+          national_id: string | null;
+          notes: string | null;
           phone: string | null;
           transaction_count: number | null;
           user_id: string | null;

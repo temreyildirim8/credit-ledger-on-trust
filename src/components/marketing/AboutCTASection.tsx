@@ -24,8 +24,8 @@ export function AboutCTASection() {
             </h2>
 
             <p className="max-w-[730px] text-[18px] leading-[28px] text-[#cbd5e1]">
-              Start your journey with Global Ledger today and see why millions
-              of shopkeepers trust us with their business.
+              Start your journey with Ledgerly today and see why millions of
+              shopkeepers trust us with their business.
             </p>
 
             <div className="mt-4 flex flex-wrap items-center justify-center gap-4">

@@ -21,6 +21,7 @@ export interface PlanFeatures {
   customIntegrations: boolean;
   whiteLabel: boolean;
   pwaInstall: boolean; // PWA install prompt - only for paid plans
+  themeChange: boolean; // Theme toggle - only for paid plans
 }
 
 // Feature definitions by plan
@@ -40,6 +41,7 @@ export const PLAN_FEATURES: Record<SubscriptionPlan, PlanFeatures> = {
     customIntegrations: false,
     whiteLabel: false,
     pwaInstall: false, // Free users cannot install PWA
+    themeChange: false, // Free users cannot change theme
   },
   basic: {
     maxCustomers: CUSTOMER_LIMITS.basic,
@@ -56,6 +58,7 @@ export const PLAN_FEATURES: Record<SubscriptionPlan, PlanFeatures> = {
     customIntegrations: false,
     whiteLabel: false,
     pwaInstall: true, // Basic and above can install PWA
+    themeChange: true, // Basic and above can change theme
   },
   pro: {
     maxCustomers: CUSTOMER_LIMITS.pro,
@@ -72,6 +75,7 @@ export const PLAN_FEATURES: Record<SubscriptionPlan, PlanFeatures> = {
     customIntegrations: false,
     whiteLabel: false,
     pwaInstall: true, // Pro can install PWA
+    themeChange: true, // Pro can change theme
   },
   enterprise: {
     maxCustomers: CUSTOMER_LIMITS.enterprise,
@@ -88,6 +92,7 @@ export const PLAN_FEATURES: Record<SubscriptionPlan, PlanFeatures> = {
     customIntegrations: true,
     whiteLabel: true,
     pwaInstall: true, // Enterprise can install PWA
+    themeChange: true, // Enterprise can change theme
   },
 };
 

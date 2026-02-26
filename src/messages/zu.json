@@ -27,7 +27,8 @@
     "on": "ea",
     "off": "Valiwe",
     "yes": "Yebo",
-    "no": "Cha"
+    "no": "Cha",
+    "defaultBusinessName": "Ubhizinisi Bami"
   },
   "errorBoundary": {
     "title": "Kwenzeke Iphutha",
@@ -112,6 +113,7 @@
     "dashboard": "I-Dashboard",
     "customers": "Abathengi",
     "transactions": "Ukuthengiselana",
+    "reports": "Izimbiko",
     "quickAdd": "Yengeza Ngokushesha",
     "settings": "Izilungiselelo",
     "login": "Ngena",
@@ -135,7 +137,10 @@
     "collapseSidebar": "Goqela i-Sidebar",
     "home": "Ekhaya",
     "installApp": "Faka i-App",
-    "appInstalled": "i-App Ifakiwe"
+    "appInstalled": "i-App Ifakiwe",
+    "upgradeForPWA": "Thuthukisa ku-Pro",
+    "upgradeForPWADesc": "Thuthukisa ku-Pro ukufaka i-app",
+    "upgradeForTheme": "Thuthukisa ku-Pro ku-Dark Mode"
   },
   "home": {
     "meta": {
@@ -252,6 +257,12 @@
     "save17": "Londoloza 17%",
     "mostPopular": "Okudumile Kakhulu",
     "toggleBilling": "Shintsha isikhathi sokukhokha",
+    "periods": {
+      "forever": "ingunaphakade",
+      "month": "inyanga",
+      "year": "unyaka",
+      "contact": "xhumana"
+    },
     "free": {
       "name": "Mahhala Nasempela",
       "price": "$0",
@@ -353,7 +364,7 @@
       "title1": "Indaba Yethu: Esiphepheni",
       "title2": "iya Ecloudini",
       "paragraph1": "Selokhu eminyakeni, ama-micro-SME emakethe ezikhulayo asekelwe kumabhuku \"Veresiye\" abhalwe ngesandla—amabhuku ephepha alandela izigidi zemisebenzi yekredithi. Kodwa ezimaketini ezinamathela amahle, iphepha liyabuthakathaka, futhi idatha ilahleka ngokuhamba kwesikhathi.",
-      "paragraph2": "Sasungula i-Global Ledger (Veresiye-X) ukuze sidlulele ngokudijithali. Sibeka amabhuku wendabuko nge",
+      "paragraph2": "Sasungula i-Ledgerly (Veresiye-X) ukuze sidlulele ngokudijithali. Sibeka amabhuku wendabuko nge",
       "digitalTrust": "Isithembiso Sedijithali",
       "paragraph3": "Iphulatifomu yethu ayibhali imisebenzo kuphela; yakha isaziso semali sabangena kubhange, isivumela ukukhula, ukulanda izikweletu ngokushesha, futhi siphande.",
       "stat1Value": "99.9%",
@@ -375,7 +386,7 @@
     "hero": {
       "badge": "Thinta",
       "title": "Thinta Kami",
-      "subtitle": "Unamibuzo nge-Global Ledger? Silapha ukunisiza. Xhumana nathi ngenhloso yokusiza, ukuthengisa, noma ubuzwe."
+      "subtitle": "Unamibuzo nge-Ledgerly? Silapha ukunisiza. Xhumana nathi ngenhloso yokusiza, ukuthengisa, noma ubuzwe."
     },
     "title": "Thinta Kami",
     "subtitle": "Sinqoka ukusiza",
@@ -462,15 +473,14 @@
     "recentActivity": {
       "title": "Ukuqamba Okuqoshiwe",
       "empty": "Awukho kuqamba okuqoshiwe",
-      "emptyDescription": "Start by adding your first customer or recording a transaction"
+      "emptyDescription": "Qala ngokwengeza umakhasimende wokuqala noma ubhale umsebenzi"
     },
     "overdueDebts": {
       "title": "Ikredithi Esiphethe Ivesi",
       "empty": "Awukho ukukhokha okuphethe ivesi",
       "remind": "Khumbaza",
       "daysOverdue": "izinsuku ezedlule",
-      "emptyDescription": "Start by adding your first customer or recording a transaction",
-      "remind": "Khumbaza"
+      "emptyDescription": "Qala ngokwengeza umakhasimende wokuqala noma ubhale umsebenzi"
     },
     "empty": {
       "title": "Siyakwamukela Ku-Mali-X",
@@ -493,7 +503,7 @@
       "noSearchResults": "Awukho mthengi atholakele",
       "addFirst": "Yengeza umthengi wakhookuqala"
     },
-    "count": "{count} omthengi | {count} abathengi",
+    "count": "{count} abathengi",
     "paywall": {
       "limitReached": "Umkhawulo wamakhasimende ufinyelelwe",
       "upgradeMessage": "Yenza i-Upgrade ku-Pro ukuze uthole amakhasimende angakhawulelwanga nezinye izici.",
@@ -504,15 +514,21 @@
       "title": "Yengeza Umthengi Omusha",
       "editTitle": "Hlela Umthengi",
       "editDescription": "Vuselela ulwazi lomthengi ngezansi.",
+      "customId": "ID Yomthengi",
+      "customIdPlaceholder": "isb., CUST-001, ABC123",
+      "customIdOptional": "(okukhetha)",
       "name": "Igama Eliqophelo",
       "namePlaceholder": "Faka igama lomthengi",
       "phone": "Inombolo Yecefone",
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Ikheli",
       "addressPlaceholder": "Faka ikheli (okukhetha)",
+      "notes": "Amanothi",
       "notesPlaceholder": "Amanothi angeziwe ngalomthengi",
       "submit": "Yengeza Umthengi",
-      "saveChanges": "Gcina Utshintsho"
+      "saveChanges": "Gcina Utshintsho",
+      "databaseId": "ID Yedatabase",
+      "nonEditable": "(akukho ukuhlelwa)"
     },
     "details": {
       "totalDebt": "Ikredithi Esisonke",
@@ -545,7 +561,10 @@
       "nameTooShort": "Igama kufanele libe nobuncane bezinhlamvu ezingu-2",
       "nameTooLong": "Igama kufanele libe ngaphansi kwezinhlamvu ezingu-100",
       "invalidPhone": "Sicela ufake inombolo yefoni evumelekile",
-      "fixErrors": "Sicela ulungise amaphutha efomu"
+      "fixErrors": "Sicela ulungise amaphutha efomu",
+      "invalidId": "Izinhlamvu, izinombolo, izinxobo kanye ne-underscores kuphela ezimukelwa",
+      "idTooShort": "I-ID kufanele ibe okungenani nezinhlamvu ezi-3",
+      "idTooLong": "I-ID kufanele ibe ngaphansi kwezinhlamvu eziyi-50"
     },
     "table": {
       "customer": "Umthengi",
@@ -558,6 +577,7 @@
   "transactions": {
     "title": "Ukuthengiselana",
     "addNew": "Yengeza Omusha",
+    "searchPlaceholder": "Sesha ngekhlayenti, incazelo, noma inani...",
     "filter": {
       "all": "Wonke",
       "debts": "Ikredithi",
@@ -565,11 +585,18 @@
     },
     "empty": {
       "noTransactions": "Awukho ukuthengiselana ukuphela",
-      "noFilterResults": "Awukho {filter} atholakele"
+      "noFilterResults": "Awukho {filter} atholakele",
+      "noSearchResults": "Awukho ukuthengiselana ofana neshephu sakho"
     },
-    "count": "{count} ukuthengiselana | {count} ukuthengiselana",
+    "count": "{count} ukuthengiselana",
+    "type": {
+      "debt": "Ikredithi",
+      "payment": "Ukukhokha"
+    },
     "form": {
       "title": "Ukuthengiselana Omusha",
+      "editTitle": "Hlela Ukuthengiselana",
+      "editDescription": "Vuselela imininingwane yokuthengiselana",
       "description": "Yengeza ukuthengiselana lekredithi noma ukukhokha",
       "type": "Uhlobo",
       "debt": "Ikredithi",
@@ -580,9 +607,19 @@
       "amountPlaceholder": "0.00",
       "note": "Inothi",
       "notePlaceholder": "Incazelo (okukhetha)",
-      "submit": "Gcina"
+      "date": "Usuku",
+      "submit": "Gcina",
+      "saveChanges": "Gcina Ishintsho"
+    },
+    "table": {
+      "customer": "Umthengi",
+      "amount": "Inani",
+      "description": "Incazelo",
+      "date": "Usuku",
+      "actions": "Izenzo"
     },
     "success": "Ukuthengiselana kuqoshwe!",
+    "editSuccess": "Ukuthengiselana kuvuselelwe!",
     "error": "Yehlula ukwengeza ukuthengiselana",
     "validation": {
       "customerRequired": "Umthengi udingekile",
@@ -852,6 +889,18 @@
       "title": "Setha Kabusha Iphasiwedi",
       "subtitle": "Faka iphasiwedi yakho entsha",
       "brandName": "Mali-X",
+      "heroTitle": "Yakha iphasiwedi entsha",
+      "heroSubtitle": "Iphasiwedi yakho entsha kumele ibe ephephile futhi ilula ukuyikhumbula.",
+      "tipsTitle": "Izidingo zephasiwedi:",
+      "tip1": "Okungenani izinhlamvu ezingu-8",
+      "tip2": "Inhlamvu enkodwa eyodwa",
+      "tip3": "Inombolo eyodwa",
+      "feature1Title": "Isitoreji Esifakiwe",
+      "feature1Desc": "Iphasiwedi zi-hash",
+      "feature2Title": "Uxhumaniso Oluphephile",
+      "feature2Desc": "I-HTTPS efakiwe",
+      "feature3Title": "Ukuvalwa Okuzenzakalelayo",
+      "feature3Desc": "Emva kwezinhlanu izikhathi ezingaphumelelanga",
       "password": "Iphasiwedi Entsha",
       "passwordPlaceholder": "Faka iphasiwedi entsha",
       "confirmPassword": "Qinisekisa Iphasiwedi",
@@ -898,10 +947,14 @@
       "collected": "Kuqoqiwe",
       "newDebts": "Ikredithi Entsha",
       "paymentsReceived": "Ukukhokha Okwamukelwe",
-      "activeCustomers": "Abathengi Asebenzayo"
+      "activeCustomers": "Abathengi Asebenzayo",
+      "collectionRate": "Inani Lokuthola",
+      "withOutstandingBalance": "Ngesabelo esisele",
+      "fromLastMonth": "kusukela inyanga edlule"
     },
     "debtAging": {
       "title": "Ukuguga Kwekredithi",
+      "description": "Ikredithi eseleyo ngobudala",
       "current": "Okwamanje",
       "days30": "1-30 izinsuku",
       "days60": "31-60 izinsuku",
@@ -919,9 +972,21 @@
       "pdf": "Khipha Isitatimende Se-PDF",
       "csv": "Khipha I-CSV",
       "customerStatement": "Isitatimende Somthengi",
+      "selectCustomer": "Khetha Umthengi",
+      "selectCustomerDescription": "Khetha umthengi ukudala isitatimende sakhe se-akhawunti",
+      "noCustomers": "Awukho abathengi abatholakalayo",
       "noTransactions": "Awukho ukuthengiselana okukhiqwayo",
+      "generating": "Iyakha...",
+      "csvSuccess": "I-CSV ikhishiwe ngempumelelo",
+      "csvError": "Ihlulekile ukukhipha i-CSV",
+      "pdfSuccess": "Imibiko ye-PDF ikhishiwe ngempumelelo",
+      "pdfError": "Ihlulekile ukukhipha i-PDF",
+      "statementSuccess": "Isitatimende somthengi sikhishiwe ngempumelelo",
+      "statementError": "Ihlulekile ukudala isitatimende somthengi",
       "success": "Ukukhipha kupumelele",
-      "error": "Ihlulekile ukukhipha idatha"
+      "error": "Ihlulekile ukukhipha idatha",
+      "outstanding": "okusele",
+      "settled": "kuhleliwe"
     },
     "empty": {
       "title": "Idatha ayanele",

@@ -31,8 +31,10 @@
   --color-warning: #F59E0B;
   --color-debt: #FEF2F2;
   --color-debt-text: #991B1B;
+  --color-debt-badge: #EF4444;
   --color-payment: #F0FDF4;
   --color-payment-text: #0369A1;
+  --color-payment-badge: #3B82F6;
   --shadow-blue: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
 
   /* Typography Scale - Font variables are set by Next.js font loader in layout.tsx */
@@ -110,8 +112,10 @@
   --color-warning: #FBBF24;
   --color-debt: #450A0A;
   --color-debt-text: #FCA5A5;
+  --color-debt-badge: #F87171;
   --color-payment: #0C4A6E;
   --color-payment-text: #7DD3FC;
+  --color-payment-badge: #60A5FA;
   --shadow-blue: 0 4px 14px 0 rgba(96, 165, 250, 0.39);
 }
 
@@ -220,6 +224,7 @@ html[data-market="global"] {
 @media (max-width: 767px) {
   .app-content-inner {
     padding: 16px;
+    padding-bottom: calc(68px + 26px); /* Bottom nav (68px) + extra spacing */
   }
 }
 

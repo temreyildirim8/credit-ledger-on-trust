@@ -27,7 +27,8 @@
     "on": "on",
     "off": "Off",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "defaultBusinessName": "My Business"
   },
   "errorBoundary": {
     "title": "Something went wrong",
@@ -93,6 +94,7 @@
     "dashboard": "Dashboard",
     "customers": "Customers",
     "transactions": "Transactions",
+    "reports": "Reports",
     "quickAdd": "Quick Add",
     "settings": "Settings",
     "login": "Log In",
@@ -116,7 +118,10 @@
     "collapseSidebar": "Collapse Sidebar",
     "home": "Home",
     "installApp": "Install App",
-    "appInstalled": "App Installed"
+    "appInstalled": "App Installed",
+    "upgradeForPWA": "Upgrade for App",
+    "upgradeForPWADesc": "Upgrade to Pro to install the app",
+    "upgradeForTheme": "Upgrade for Dark Mode"
   },
   "home": {
     "meta": {
@@ -233,6 +238,12 @@
     "save17": "Save 17%",
     "mostPopular": "Most Popular",
     "toggleBilling": "Toggle billing period",
+    "periods": {
+      "forever": "forever",
+      "month": "month",
+      "year": "year",
+      "contact": "contact"
+    },
     "free": {
       "name": "Free Forever",
       "price": "$0",
@@ -334,7 +345,7 @@
       "title1": "Our Story: From Paper",
       "title2": "to Cloud",
       "paragraph1": "For decades, micro-SMEs in emerging markets have relied on handwritten \"Veresiye\" books—paper ledgers tracking millions in credit transactions. But in high-inflation economies, paper is fragile, and data is lost to time.",
-      "paragraph2": "We founded Global Ledger (Veresiye-X) to bridge the digital divide. We are replacing traditional notebooks with",
+      "paragraph2": "We founded Ledgerly (Veresiye-X) to bridge the digital divide. We are replacing traditional notebooks with",
       "digitalTrust": "Digital Trust",
       "paragraph3": "Our platform doesn't just record transactions; it builds a financial identity for the unbanked, allowing them to scale, recover debts faster, and thrive.",
       "stat1Value": "99.9%",
@@ -350,13 +361,13 @@
   },
   "contact": {
     "meta": {
-      "title": "Contact Us - Global Ledger",
+      "title": "Contact Us - Ledgerly",
       "description": "Get in touch with our team for support, questions, or feedback"
     },
     "hero": {
       "badge": "Contact Us",
       "title": "Get in Touch",
-      "subtitle": "Have questions about Global Ledger? We're here to help. Reach out to our team for support, sales inquiries, or partnership opportunities."
+      "subtitle": "Have questions about Ledgerly? We're here to help. Reach out to our team for support, sales inquiries, or partnership opportunities."
     },
     "form": {
       "fullName": "Full Name",
@@ -391,7 +402,7 @@
       },
       "office": {
         "title": "Office",
-        "company": "Global Ledger Inc.",
+        "company": "Ledgerly Inc.",
         "address": "Levent, Büyükdere Cd. No:199 Şişli, Istanbul, TR"
       }
     },
@@ -401,7 +412,7 @@
     },
     "cta": {
       "title": "Ready to transform your business?",
-      "description": "Join thousands of shopkeepers who trust Global Ledger with their credit management.",
+      "description": "Join thousands of shopkeepers who trust Ledgerly with their credit management.",
       "primaryButton": "Get Started Free",
       "secondaryButton": "View Pricing"
     },
@@ -458,9 +469,11 @@
     "empty": {
       "noCustomers": "No customers yet",
       "noSearchResults": "No customers found",
+      "noSearchResultsDesc": "Try a different search term",
+      "description": "Add your first customer to start tracking credit",
       "addFirst": "Add your first customer"
     },
-    "count": "{count} customer | {count} customers",
+    "count": "{count} customers",
     "paywall": {
       "limitReached": "Customer limit reached",
       "upgradeMessage": "Upgrade to Pro for unlimited customers and more features.",
@@ -471,15 +484,25 @@
       "title": "Add New Customer",
       "editTitle": "Edit Customer",
       "editDescription": "Update customer information below.",
+      "customId": "National ID Number",
+      "customIdPlaceholder": "e.g., 12345678901",
+      "customIdOptional": "(optional)",
+      "setUniqueId": "Generate Unique Code",
+      "generatingId": "Checking...",
+      "idAvailable": "This code is available",
+      "idTaken": "This code is taken, generating another...",
       "name": "Full Name",
       "namePlaceholder": "Enter customer name",
       "phone": "Phone Number",
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Address",
       "addressPlaceholder": "Enter address (optional)",
+      "notes": "Notes",
       "notesPlaceholder": "Additional notes about this customer",
       "submit": "Add Customer",
-      "saveChanges": "Save Changes"
+      "saveChanges": "Save Changes",
+      "databaseId": "Database ID",
+      "nonEditable": "(non-editable)"
     },
     "details": {
       "totalDebt": "Total Debt",
@@ -503,7 +526,12 @@
       "address": "Address",
       "edit": "Edit",
       "call": "Call",
-      "editCustomer": "Edit Customer"
+      "editCustomer": "Edit Customer",
+      "lastActivity": "Last Activity",
+      "actions": "Actions",
+      "archive": "Archive",
+      "delete": "Delete",
+      "status": "Status"
     },
     "success": "Customer added successfully",
     "editSuccess": "Customer updated successfully",
@@ -512,7 +540,11 @@
       "nameTooShort": "Name must be at least 2 characters",
       "nameTooLong": "Name must be less than 100 characters",
       "invalidPhone": "Please enter a valid phone number",
-      "fixErrors": "Please fix the errors in the form"
+      "fixErrors": "Please fix the errors in the form",
+      "invalidId": "Only letters, numbers, dashes and underscores allowed",
+      "idTooShort": "ID must be at least 3 characters",
+      "idTooLong": "ID must be less than 50 characters",
+      "idTaken": "This customer code is already in use"
     },
     "table": {
       "customer": "Customer",
@@ -525,6 +557,7 @@
   "transactions": {
     "title": "Transactions",
     "addNew": "Add New",
+    "searchPlaceholder": "Search by customer, description, or amount...",
     "filter": {
       "all": "All",
       "debts": "Debts",
@@ -532,11 +565,18 @@
     },
     "empty": {
       "noTransactions": "No transactions yet",
-      "noFilterResults": "No {filter} found"
+      "noFilterResults": "No {filter} found",
+      "noSearchResults": "No transactions match your search"
     },
-    "count": "{count} transaction | {count} transactions",
+    "count": "{count} transactions",
+    "type": {
+      "debt": "Debt",
+      "payment": "Payment"
+    },
     "form": {
       "title": "New Transaction",
+      "editTitle": "Edit Transaction",
+      "editDescription": "Update the transaction details",
       "description": "Add a debt or payment transaction",
       "type": "Type",
       "debt": "Debt",
@@ -547,9 +587,19 @@
       "amountPlaceholder": "0.00",
       "note": "Note",
       "notePlaceholder": "Description (optional)",
-      "submit": "Save"
+      "date": "Date",
+      "submit": "Save",
+      "saveChanges": "Save Changes"
+    },
+    "table": {
+      "customer": "Customer",
+      "amount": "Amount",
+      "description": "Description",
+      "date": "Date",
+      "actions": "Actions"
     },
     "success": "Transaction added!",
+    "editSuccess": "Transaction updated!",
     "error": "Failed to add transaction",
     "validation": {
       "customerRequired": "Customer is required",
@@ -610,6 +660,9 @@
     "subtitle": "Manage your account and preferences",
     "betaFounder": "Beta Founder",
     "betaDescription": "Early adopter benefits - 50% off forever!",
+    "subscription": {
+      "upgrade": "Upgrade Plan"
+    },
     "sections": {
       "profile": {
         "title": "Profile",
@@ -845,6 +898,18 @@
       "title": "Reset Password",
       "subtitle": "Enter your new password",
       "brandName": "Ledgerly",
+      "heroTitle": "Create new password",
+      "heroSubtitle": "Your new password must be secure and memorable.",
+      "tipsTitle": "Password requirements:",
+      "tip1": "At least 8 characters",
+      "tip2": "One uppercase letter",
+      "tip3": "One number",
+      "feature1Title": "Encrypted Storage",
+      "feature1Desc": "Passwords are hashed",
+      "feature2Title": "Secure Connection",
+      "feature2Desc": "HTTPS encrypted",
+      "feature3Title": "Auto-lockout",
+      "feature3Desc": "After 5 failed attempts",
       "password": "New Password",
       "passwordPlaceholder": "Enter new password",
       "confirmPassword": "Confirm Password",
@@ -891,10 +956,14 @@
       "collected": "Collected",
       "newDebts": "New Debts",
       "paymentsReceived": "Payments Received",
-      "activeCustomers": "Active Customers"
+      "activeCustomers": "Active Customers",
+      "collectionRate": "Collection Rate",
+      "withOutstandingBalance": "With outstanding balance",
+      "fromLastMonth": "from last month"
     },
     "debtAging": {
       "title": "Debt Aging",
+      "description": "Outstanding debts by age",
       "current": "Current",
       "days30": "1-30 days",
       "days60": "31-60 days",
@@ -909,12 +978,60 @@
     "export": {
       "title": "Export Data",
       "description": "Download reports and statements",
-      "pdf": "Export PDF Statement",
-      "csv": "Export CSV",
+      "pdf": "Export PDF Report",
+      "csv": "Export CSV Data",
       "customerStatement": "Customer Statement",
+      "selectCustomer": "Select Customer",
+      "selectCustomerDescription": "Choose a customer to generate their account statement",
+      "noCustomers": "No customers available",
       "noTransactions": "No transactions to export",
+      "generating": "Generating...",
+      "csvSuccess": "CSV exported successfully",
+      "csvError": "Failed to export CSV",
+      "pdfSuccess": "PDF report exported successfully",
+      "pdfError": "Failed to export PDF",
+      "statementSuccess": "Customer statement exported successfully",
+      "statementError": "Failed to generate customer statement",
       "success": "Export completed successfully",
-      "error": "Failed to export data"
+      "error": "Failed to export data",
+      "outstanding": "outstanding",
+      "settled": "settled"
+    },
+    "trends": {
+      "title": "Trends",
+      "monthlyCollection": "Monthly Collection",
+      "debtVsPayment": "Debt vs Payment",
+      "customerActivity": "Customer Activity",
+      "collectionRate": "Collection Rate Trend"
+    },
+    "customerPerformance": {
+      "title": "Customer Performance",
+      "avgPaymentTime": "Avg. Payment Time",
+      "reliabilityScore": "Reliability Score",
+      "riskCategory": "Risk Category",
+      "totalTransactions": "Total Transactions",
+      "lastPayment": "Last Payment",
+      "lowRisk": "Low Risk",
+      "mediumRisk": "Medium Risk",
+      "highRisk": "High Risk"
+    },
+    "comparison": {
+      "title": "Period Comparison",
+      "thisMonth": "This Month",
+      "lastMonth": "Last Month",
+      "thisQuarter": "This Quarter",
+      "lastQuarter": "Last Quarter",
+      "thisYear": "This Year",
+      "lastYear": "Last Year",
+      "change": "Change",
+      "vsLastPeriod": "vs last period"
+    },
+    "tax": {
+      "title": "Tax Summary",
+      "period": "Period",
+      "totalSales": "Total Sales (Credit)",
+      "totalCollected": "Total Collected",
+      "outstanding": "Outstanding"
     },
     "empty": {
       "title": "Not enough data",

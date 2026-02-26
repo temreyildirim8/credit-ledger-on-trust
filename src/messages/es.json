@@ -27,7 +27,8 @@
     "on": "en",
     "off": "Desactivado",
     "yes": "Sí",
-    "no": "No"
+    "no": "No",
+    "defaultBusinessName": "Mi Negocio"
   },
   "errorBoundary": {
     "title": "Algo salió mal",
@@ -93,6 +94,7 @@
     "dashboard": "Panel",
     "customers": "Clientes",
     "transactions": "Transacciones",
+    "reports": "Informes",
     "quickAdd": "Agregar Rápido",
     "settings": "Configuración",
     "login": "Iniciar Sesión",
@@ -116,7 +118,10 @@
     "collapseSidebar": "Colapsar Barra Lateral",
     "home": "Inicio",
     "installApp": "Instalar App",
-    "appInstalled": "App Instalada"
+    "appInstalled": "App Instalada",
+    "upgradeForPWA": "Actualizar a Pro",
+    "upgradeForPWADesc": "Actualiza a Pro para instalar la app",
+    "upgradeForTheme": "Actualizar a Pro para Modo Oscuro"
   },
   "home": {
     "meta": {
@@ -233,6 +238,12 @@
     "save17": "Ahorra 17%",
     "mostPopular": "Más Popular",
     "toggleBilling": "Cambiar período de facturación",
+    "periods": {
+      "forever": "siempre",
+      "month": "mes",
+      "year": "año",
+      "contact": "contacto"
+    },
     "free": {
       "name": "Gratis Para Siempre",
       "price": "$0",
@@ -334,7 +345,7 @@
       "title1": "Nuestra Historia: Del Papel",
       "title2": "a la Nube",
       "paragraph1": "Durante décadas, las micro-PYMEs en mercados emergentes han dependido de libros \"Fiado\" escritos a mano—libros mayores de papel que rastrean millones en transacciones de crédito. Pero en economías de alta inflación, el papel es frágil, y los datos se pierden con el tiempo.",
-      "paragraph2": "Fundamos Global Ledger (Fiado-X) para cerrar la brecha digital. Estamos reemplazando los cuadernos tradicionales con",
+      "paragraph2": "Fundamos Ledgerly (Fiado-X) para cerrar la brecha digital. Estamos reemplazando los cuadernos tradicionales con",
       "digitalTrust": "Confianza Digital",
       "paragraph3": "Nuestra plataforma no solo registra transacciones; construye una identidad financiera para los no bancarizados, permitiéndoles escalar, recuperar deudas más rápido y prosperar.",
       "stat1Value": "99.9%",
@@ -356,7 +367,7 @@
     "hero": {
       "badge": "Contacto",
       "title": "Ponte en Contacto",
-      "subtitle": "¿Tienes preguntas sobre Global Ledger? Estamos aquí para ayudar. Contáctanos para soporte, ventas u oportunidades de asociación."
+      "subtitle": "¿Tienes preguntas sobre Ledgerly? Estamos aquí para ayudar. Contáctanos para soporte, ventas u oportunidades de asociación."
     },
     "title": "Ponte en Contacto",
     "subtitle": "Nos encantaría saber de ti",
@@ -443,15 +454,14 @@
     "recentActivity": {
       "title": "Actividad Reciente",
       "empty": "Sin actividad reciente",
-      "emptyDescription": "Start by adding your first customer or recording a transaction"
+      "emptyDescription": "Comienza agregando tu primer cliente o registrando una transacción"
     },
     "overdueDebts": {
       "title": "Deudas Vencidas",
       "empty": "Sin pagos vencidos",
       "remind": "Recordar",
       "daysOverdue": "días vencidos",
-      "emptyDescription": "Start by adding your first customer or recording a transaction",
-      "remind": "Recordar"
+      "emptyDescription": "Comienza agregando tu primer cliente o registrando una transacción"
     },
     "empty": {
       "title": "Bienvenido a Fiado-X",
@@ -474,20 +484,26 @@
       "noSearchResults": "No se encontraron clientes",
       "addFirst": "Agrega tu primer cliente"
     },
-    "count": "{count} cliente | {count} clientes",
+    "count": "{count} clientes",
     "form": {
       "title": "Agregar Nuevo Cliente",
       "editTitle": "Editar Cliente",
       "editDescription": "Actualiza la información del cliente a continuación.",
+      "customId": "ID de Cliente",
+      "customIdPlaceholder": "ej., CLI-001, ABC123",
+      "customIdOptional": "(opcional)",
       "name": "Nombre Completo",
       "namePlaceholder": "Ingresa el nombre del cliente",
       "phone": "Número de Teléfono",
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Dirección",
       "addressPlaceholder": "Ingresa la dirección (opcional)",
+      "notes": "Notas",
       "notesPlaceholder": "Notas adicionales sobre este cliente",
       "submit": "Agregar Cliente",
-      "saveChanges": "Guardar Cambios"
+      "saveChanges": "Guardar Cambios",
+      "databaseId": "ID de Base de Datos",
+      "nonEditable": "(no editable)"
     },
     "details": {
       "totalDebt": "Deuda Total",
@@ -520,7 +536,10 @@
       "nameTooShort": "El nombre debe tener al menos 2 caracteres",
       "nameTooLong": "El nombre debe tener menos de 100 caracteres",
       "invalidPhone": "Por favor ingresa un número de teléfono válido",
-      "fixErrors": "Por favor corrige los errores en el formulario"
+      "fixErrors": "Por favor corrige los errores en el formulario",
+      "invalidId": "Solo se permiten letras, números, guiones y guiones bajos",
+      "idTooShort": "El ID debe tener al menos 3 caracteres",
+      "idTooLong": "El ID debe tener menos de 50 caracteres"
     },
     "table": {
       "customer": "Cliente",
@@ -539,6 +558,7 @@
   "transactions": {
     "title": "Transacciones",
     "addNew": "Agregar Nueva",
+    "searchPlaceholder": "Buscar por cliente, descripción o monto...",
     "filter": {
       "all": "Todas",
       "debts": "Deudas",
@@ -546,11 +566,18 @@
     },
     "empty": {
       "noTransactions": "Aún no hay transacciones",
-      "noFilterResults": "No se encontraron {filter}"
+      "noFilterResults": "No se encontraron {filter}",
+      "noSearchResults": "No hay transacciones que coincidan con tu búsqueda"
     },
-    "count": "{count} transacción | {count} transacciones",
+    "count": "{count} transacciones",
+    "type": {
+      "debt": "Deuda",
+      "payment": "Pago"
+    },
     "form": {
       "title": "Nueva Transacción",
+      "editTitle": "Editar Transacción",
+      "editDescription": "Actualizar los detalles de la transacción",
       "description": "Agregar una transacción de deuda o pago",
       "type": "Tipo",
       "debt": "Deuda",
@@ -561,9 +588,19 @@
       "amountPlaceholder": "0.00",
       "note": "Nota",
       "notePlaceholder": "Descripción (opcional)",
-      "submit": "Guardar"
+      "date": "Fecha",
+      "submit": "Guardar",
+      "saveChanges": "Guardar Cambios"
+    },
+    "table": {
+      "customer": "Cliente",
+      "amount": "Monto",
+      "description": "Descripción",
+      "date": "Fecha",
+      "actions": "Acciones"
     },
     "success": "¡Transacción agregada!",
+    "editSuccess": "¡Transacción actualizada!",
     "error": "Error al agregar transacción",
     "validation": {
       "customerRequired": "El cliente es obligatorio",
@@ -833,6 +870,18 @@
       "title": "Restablecer Contraseña",
       "subtitle": "Ingresa tu nueva contraseña",
       "brandName": "Fiado-X",
+      "heroTitle": "Crear nueva contraseña",
+      "heroSubtitle": "Tu nueva contraseña debe ser segura y fácil de recordar.",
+      "tipsTitle": "Requisitos de contraseña:",
+      "tip1": "Al menos 8 caracteres",
+      "tip2": "Una letra mayúscula",
+      "tip3": "Un número",
+      "feature1Title": "Almacenamiento Encriptado",
+      "feature1Desc": "Contraseñas hasheadas",
+      "feature2Title": "Conexión Segura",
+      "feature2Desc": "HTTPS encriptado",
+      "feature3Title": "Bloqueo Automático",
+      "feature3Desc": "Después de 5 intentos fallidos",
       "password": "Nueva Contraseña",
       "passwordPlaceholder": "Ingresa nueva contraseña",
       "confirmPassword": "Confirmar Contraseña",
@@ -1070,10 +1119,14 @@
       "collected": "Cobrado",
       "newDebts": "Nuevas Deudas",
       "paymentsReceived": "Pagos Recibidos",
-      "activeCustomers": "Clientes Activos"
+      "activeCustomers": "Clientes Activos",
+      "collectionRate": "Tasa de Cobranza",
+      "withOutstandingBalance": "Con saldo pendiente",
+      "fromLastMonth": "del mes pasado"
     },
     "debtAging": {
       "title": "Antigüedad de Deuda",
+      "description": "Deudas pendientes por antigüedad",
       "current": "Actual",
       "days30": "1-30 días",
       "days60": "31-60 días",
@@ -1091,9 +1144,21 @@
       "pdf": "Exportar Estado de Cuenta PDF",
       "csv": "Exportar CSV",
       "customerStatement": "Estado de Cuenta de Cliente",
+      "selectCustomer": "Seleccionar Cliente",
+      "selectCustomerDescription": "Elige un cliente para generar su estado de cuenta",
+      "noCustomers": "No hay clientes disponibles",
       "noTransactions": "Sin transacciones para exportar",
+      "generating": "Generando...",
+      "csvSuccess": "CSV exportado exitosamente",
+      "csvError": "Error al exportar CSV",
+      "pdfSuccess": "Informe PDF exportado exitosamente",
+      "pdfError": "Error al exportar PDF",
+      "statementSuccess": "Estado de cuenta del cliente exportado exitosamente",
+      "statementError": "Error al generar el estado de cuenta del cliente",
       "success": "Exportación completada exitosamente",
-      "error": "Error al exportar datos"
+      "error": "Error al exportar datos",
+      "outstanding": "pendiente",
+      "settled": "saldado"
     },
     "empty": {
       "title": "Datos insuficientes",

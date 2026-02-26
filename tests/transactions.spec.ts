@@ -1,62 +1,72 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
 /**
- * E2E Tests for Global Ledger Transaction Management
+ * E2E Tests for Ledgerly Transaction Management
  * Covers transaction list, add debt/payment, filtering, sorting, and empty states
  */
 
-const TEST_LOCALE = 'en';
+const TEST_LOCALE = "en";
 const BASE_URL = `http://localhost:3000/${TEST_LOCALE}`;
 
 /**
  * Helper to skip test if not authenticated
  */
-async function skipIfUnauthenticated(page: import('@playwright/test').Page): Promise<boolean> {
-  if (page.url().includes('/login')) {
+async function skipIfUnauthenticated(
+  page: import("@playwright/test").Page,
+): Promise<boolean> {
+  if (page.url().includes("/login")) {
     test.skip();
     return true;
   }
   return false;
 }
 
-test.describe('Transaction Management', () => {
-  test.describe('Transaction List Page', () => {
+test.describe("Transaction Management", () => {
+  test.describe("Transaction List Page", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(`${BASE_URL}/transactions`);
     });
 
-    test('should display transaction list page header', async ({ page }) => {
+    test("should display transaction list page header", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Check for page title
-      await expect(page.getByRole('heading', { name: /transactions/i })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: /transactions/i }),
+      ).toBeVisible();
     });
 
-    test('should display add transaction button', async ({ page }) => {
+    test("should display add transaction button", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Check for Add button
-      const addButton = page.getByRole('button', { name: /add.*new|\+|new.*transaction/i });
+      const addButton = page.getByRole("button", {
+        name: /add.*new|\+|new.*transaction/i,
+      });
       await expect(addButton).toBeVisible();
     });
 
-    test('should display filter buttons', async ({ page }) => {
+    test("should display filter buttons", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Check for filter buttons
-      await expect(page.getByRole('button', { name: /all/i })).toBeVisible();
-      await expect(page.getByRole('button', { name: /debt/i })).toBeVisible();
-      await expect(page.getByRole('button', { name: /payment/i })).toBeVisible();
+      await expect(page.getByRole("button", { name: /all/i })).toBeVisible();
+      await expect(page.getByRole("button", { name: /debt/i })).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: /payment/i }),
+      ).toBeVisible();
     });
 
-    test('should show loading state initially', async ({ page }) => {
+    test("should show loading state initially", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Page should load with header visible
-      await expect(page.getByRole('heading', { name: /transactions/i })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: /transactions/i }),
+      ).toBeVisible();
     });
 
-    test('should show transaction count in header', async ({ page }) => {
+    test("should show transaction count in header", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Check for count text (e.g., "X transactions")
@@ -67,283 +77,333 @@ test.describe('Transaction Management', () => {
     });
   });
 
-  test.describe('Transaction Empty State', () => {
+  test.describe("Transaction Empty State", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(`${BASE_URL}/transactions`);
     });
 
-    test('should display empty state when no transactions exist', async ({ page }) => {
+    test("should display empty state when no transactions exist", async ({
+      page,
+    }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Wait for page to load
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState("networkidle");
 
       // The page should either show an empty state or transaction cards
       // Check for transaction heading (h1 with "Transactions")
-      const heading = page.getByRole('heading', { name: /transactions/i, level: 1 });
-      const hasHeading = await heading.first().isVisible().catch(() => false);
+      const heading = page.getByRole("heading", {
+        name: /transactions/i,
+        level: 1,
+      });
+      const hasHeading = await heading
+        .first()
+        .isVisible()
+        .catch(() => false);
 
       // Page should show the transactions heading
       expect(hasHeading).toBe(true);
     });
 
-    test('should display helpful message in empty state', async ({ page }) => {
+    test("should display helpful message in empty state", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Look for empty state
-      const emptyMessage = page.getByText(/no.*transaction|add.*first|start.*tracking/i);
+      const emptyMessage = page.getByText(
+        /no.*transaction|add.*first|start.*tracking/i,
+      );
       const hasEmptyMessage = await emptyMessage.isVisible().catch(() => false);
 
       if (hasEmptyMessage) {
         // Add button should still be visible
-        const addButton = page.getByRole('button', { name: /add.*new|\+/i });
+        const addButton = page.getByRole("button", { name: /add.*new|\+/i });
         await expect(addButton).toBeVisible();
       }
     });
   });
 
-  test.describe('Add Transaction Modal', () => {
+  test.describe("Add Transaction Modal", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(`${BASE_URL}/transactions`);
     });
 
-    test('should open add transaction modal when button is clicked', async ({ page }) => {
+    test("should open add transaction modal when button is clicked", async ({
+      page,
+    }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Click add transaction button
-      const addButton = page.getByRole('button', { name: /add.*new|\+|new.*transaction/i });
+      const addButton = page.getByRole("button", {
+        name: /add.*new|\+|new.*transaction/i,
+      });
       await addButton.click();
 
       // Modal should appear
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await expect(page.getByRole("dialog")).toBeVisible();
     });
 
-    test('should display transaction type toggle (debt/payment)', async ({ page }) => {
+    test("should display transaction type toggle (debt/payment)", async ({
+      page,
+    }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Check for debt and payment buttons
-      const debtButton = page.getByRole('button', { name: /debt/i }).first();
-      const paymentButton = page.getByRole('button', { name: /payment/i }).first();
+      const debtButton = page.getByRole("button", { name: /debt/i }).first();
+      const paymentButton = page
+        .getByRole("button", { name: /payment/i })
+        .first();
 
       await expect(debtButton).toBeVisible();
       await expect(paymentButton).toBeVisible();
     });
 
-    test('should display customer selector', async ({ page }) => {
+    test("should display customer selector", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Check for customer select label inside the dialog
-      const dialog = page.getByRole('dialog');
+      const dialog = page.getByRole("dialog");
       const customerLabel = dialog.getByText(/customer/i).first();
       await expect(customerLabel).toBeVisible();
 
       // Check for select trigger (combobox role)
-      const customerSelect = dialog.getByRole('combobox').first();
+      const customerSelect = dialog.getByRole("combobox").first();
       await expect(customerSelect).toBeVisible();
     });
 
-    test('should display amount input', async ({ page }) => {
+    test("should display amount input", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Check for amount input
       const amountInput = page.getByLabel(/amount/i);
       await expect(amountInput).toBeVisible();
     });
 
-    test('should display note input', async ({ page }) => {
+    test("should display note input", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Check for note input
       const noteInput = page.getByLabel(/note/i);
       await expect(noteInput).toBeVisible();
     });
 
-    test('should toggle between debt and payment types', async ({ page }) => {
+    test("should toggle between debt and payment types", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Click payment button
-      const paymentButton = page.getByRole('button', { name: /payment/i }).first();
+      const paymentButton = page
+        .getByRole("button", { name: /payment/i })
+        .first();
       await paymentButton.click();
 
       // Should show selected state
       await expect(paymentButton).toBeVisible();
 
       // Click debt button
-      const debtButton = page.getByRole('button', { name: /debt/i }).first();
+      const debtButton = page.getByRole("button", { name: /debt/i }).first();
       await debtButton.click();
 
       await expect(debtButton).toBeVisible();
     });
 
-    test('should show validation error for empty customer', async ({ page }) => {
+    test("should show validation error for empty customer", async ({
+      page,
+    }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Enter amount without selecting customer
-      await page.getByLabel(/amount/i).fill('100');
+      await page.getByLabel(/amount/i).fill("100");
 
       // Submit
-      const submitButton = page.getByRole('button', { name: /save|submit|add/i }).last();
+      const submitButton = page
+        .getByRole("button", { name: /save|submit|add/i })
+        .last();
       await submitButton.click();
 
       // Dialog should still be visible (validation failed)
-      const dialogVisible = await page.getByRole('dialog').isVisible();
+      const dialogVisible = await page.getByRole("dialog").isVisible();
       expect(dialogVisible).toBe(true);
     });
 
-    test('should show validation error for invalid amount', async ({ page }) => {
+    test("should show validation error for invalid amount", async ({
+      page,
+    }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Enter invalid amount
-      await page.getByLabel(/amount/i).fill('0');
+      await page.getByLabel(/amount/i).fill("0");
 
       // Submit
-      const submitButton = page.getByRole('button', { name: /save|submit|add/i }).last();
+      const submitButton = page
+        .getByRole("button", { name: /save|submit|add/i })
+        .last();
       await submitButton.click();
 
       // Dialog should still be visible
-      const dialogVisible = await page.getByRole('dialog').isVisible();
+      const dialogVisible = await page.getByRole("dialog").isVisible();
       expect(dialogVisible).toBe(true);
     });
 
-    test('should close modal when cancel is clicked', async ({ page }) => {
+    test("should close modal when cancel is clicked", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Click cancel
-      const cancelButton = page.getByRole('button', { name: /cancel/i });
+      const cancelButton = page.getByRole("button", { name: /cancel/i });
       await cancelButton.click();
 
       // Modal should close
-      await expect(page.getByRole('dialog')).not.toBeVisible();
+      await expect(page.getByRole("dialog")).not.toBeVisible();
     });
 
-    test('should accept large amounts (for currencies like IDR)', async ({ page }) => {
+    test("should accept large amounts (for currencies like IDR)", async ({
+      page,
+    }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Enter large amount
       const amountInput = page.getByLabel(/amount/i);
-      await amountInput.fill('10000000');
+      await amountInput.fill("10000000");
 
       // Should accept the value
-      await expect(amountInput).toHaveValue('10000000');
+      await expect(amountInput).toHaveValue("10000000");
     });
   });
 
-  test.describe('Transaction Filtering', () => {
+  test.describe("Transaction Filtering", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(`${BASE_URL}/transactions`);
     });
 
-    test('should filter to show all transactions', async ({ page }) => {
+    test("should filter to show all transactions", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Click "All" filter
-      const allButton = page.getByRole('button', { name: /all/i }).first();
+      const allButton = page.getByRole("button", { name: /all/i }).first();
       await allButton.click();
 
       // Button should be in active state
       await expect(allButton).toBeVisible();
     });
 
-    test('should filter to show only debts', async ({ page }) => {
+    test("should filter to show only debts", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Click "Debts" filter
-      const debtsButton = page.getByRole('button', { name: /debt/i }).first();
+      const debtsButton = page.getByRole("button", { name: /debt/i }).first();
       await debtsButton.click();
 
       // Button should be in active state
       await expect(debtsButton).toBeVisible();
     });
 
-    test('should filter to show only payments', async ({ page }) => {
+    test("should filter to show only payments", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Click "Payments" filter
-      const paymentsButton = page.getByRole('button', { name: /payment/i }).first();
+      const paymentsButton = page
+        .getByRole("button", { name: /payment/i })
+        .first();
       await paymentsButton.click();
 
       // Button should be in active state
       await expect(paymentsButton).toBeVisible();
     });
 
-    test('should show empty state when filter has no results', async ({ page }) => {
+    test("should show empty state when filter has no results", async ({
+      page,
+    }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Try debt filter
-      const debtsButton = page.getByRole('button', { name: /debt/i }).first();
+      const debtsButton = page.getByRole("button", { name: /debt/i }).first();
       await debtsButton.click();
 
       // Check if empty state or list is shown
-      const hasContent = await page.locator('[class*="card"]').first().isVisible().catch(() => false);
-      const hasEmpty = await page.getByText(/no.*debt|no.*result/i).isVisible().catch(() => false);
+      const hasContent = await page
+        .locator('[class*="card"]')
+        .first()
+        .isVisible()
+        .catch(() => false);
+      const hasEmpty = await page
+        .getByText(/no.*debt|no.*result/i)
+        .isVisible()
+        .catch(() => false);
 
       expect(hasContent || hasEmpty).toBe(true);
     });
 
-    test('should switch between filters correctly', async ({ page }) => {
+    test("should switch between filters correctly", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Switch through all filters
-      await page.getByRole('button', { name: /debt/i }).first().click();
+      await page.getByRole("button", { name: /debt/i }).first().click();
       await page.waitForTimeout(100);
 
-      await page.getByRole('button', { name: /payment/i }).first().click();
+      await page
+        .getByRole("button", { name: /payment/i })
+        .first()
+        .click();
       await page.waitForTimeout(100);
 
-      await page.getByRole('button', { name: /all/i }).first().click();
+      await page.getByRole("button", { name: /all/i }).first().click();
 
       // Page should still be functional
-      await expect(page.getByRole('heading', { name: /transactions/i })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: /transactions/i }),
+      ).toBeVisible();
     });
   });
 
-  test.describe('Transaction Display', () => {
+  test.describe("Transaction Display", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(`${BASE_URL}/transactions`);
     });
 
-    test('should display transaction cards with correct info', async ({ page }) => {
+    test("should display transaction cards with correct info", async ({
+      page,
+    }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Check if transactions exist
       const transactionCard = page.locator('[class*="card"]').first();
-      const hasTransactions = await transactionCard.isVisible().catch(() => false);
+      const hasTransactions = await transactionCard
+        .isVisible()
+        .catch(() => false);
 
       if (hasTransactions) {
         // Transaction card should show badge
@@ -353,13 +413,16 @@ test.describe('Transaction Management', () => {
       }
     });
 
-    test('should show debt badge in red', async ({ page }) => {
+    test("should show debt badge in red", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Filter to debts
-      await page.getByRole('button', { name: /debt/i }).first().click();
+      await page.getByRole("button", { name: /debt/i }).first().click();
 
-      const debtBadge = page.locator('[class*="badge"]').filter({ hasText: /debt/i }).first();
+      const debtBadge = page
+        .locator('[class*="badge"]')
+        .filter({ hasText: /debt/i })
+        .first();
       const hasDebtBadge = await debtBadge.isVisible().catch(() => false);
 
       // Check if badge exists with debt styling
@@ -368,13 +431,19 @@ test.describe('Transaction Management', () => {
       }
     });
 
-    test('should show payment badge in green', async ({ page }) => {
+    test("should show payment badge in green", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       // Filter to payments
-      await page.getByRole('button', { name: /payment/i }).first().click();
+      await page
+        .getByRole("button", { name: /payment/i })
+        .first()
+        .click();
 
-      const paymentBadge = page.locator('[class*="badge"]').filter({ hasText: /payment/i }).first();
+      const paymentBadge = page
+        .locator('[class*="badge"]')
+        .filter({ hasText: /payment/i })
+        .first();
       const hasPaymentBadge = await paymentBadge.isVisible().catch(() => false);
 
       if (hasPaymentBadge) {
@@ -382,83 +451,116 @@ test.describe('Transaction Management', () => {
       }
     });
 
-    test('should display transaction amount', async ({ page }) => {
+    test("should display transaction amount", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       const transactionCard = page.locator('[class*="card"]').first();
-      const hasTransactions = await transactionCard.isVisible().catch(() => false);
+      const hasTransactions = await transactionCard
+        .isVisible()
+        .catch(() => false);
 
       if (hasTransactions) {
         // Amount should be visible (numbers with currency)
         const amountText = transactionCard.getByText(/[\d,]+/);
-        const hasAmount = await amountText.first().isVisible().catch(() => false);
+        const hasAmount = await amountText
+          .first()
+          .isVisible()
+          .catch(() => false);
         expect(hasAmount || true).toBe(true);
       }
     });
 
-    test('should display transaction date', async ({ page }) => {
+    test("should display transaction date", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       const transactionCard = page.locator('[class*="card"]').first();
-      const hasTransactions = await transactionCard.isVisible().catch(() => false);
+      const hasTransactions = await transactionCard
+        .isVisible()
+        .catch(() => false);
 
       if (hasTransactions) {
         // Date should be visible (e.g., "2 hours ago", "yesterday")
         const dateText = page.getByText(/ago|yesterday|today|date/i);
-        const hasDate = await dateText.first().isVisible().catch(() => false);
+        const hasDate = await dateText
+          .first()
+          .isVisible()
+          .catch(() => false);
         expect(hasDate || true).toBe(true);
       }
     });
 
-    test('should display customer name on transaction', async ({ page }) => {
+    test("should display customer name on transaction", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
 
       const transactionCard = page.locator('[class*="card"]').first();
-      const hasTransactions = await transactionCard.isVisible().catch(() => false);
+      const hasTransactions = await transactionCard
+        .isVisible()
+        .catch(() => false);
 
       if (hasTransactions) {
         // Customer name should be visible
-        const customerName = transactionCard.locator('span, p').filter({ hasText: /[A-Z]/ });
-        const hasName = await customerName.first().isVisible().catch(() => false);
+        const customerName = transactionCard
+          .locator("span, p")
+          .filter({ hasText: /[A-Z]/ });
+        const hasName = await customerName
+          .first()
+          .isVisible()
+          .catch(() => false);
         expect(hasName || true).toBe(true);
       }
     });
   });
 
-  test.describe('Quick Add Transaction Flow', () => {
-    test('should be able to access quick add from quick-add route', async ({ page }) => {
+  test.describe("Quick Add Transaction Flow", () => {
+    test("should be able to access quick add from quick-add route", async ({
+      page,
+    }) => {
       await page.goto(`${BASE_URL}/quick-add`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Quick add page should have transaction form elements
-      const hasCustomerSelect = await page.getByLabel(/customer/i).isVisible().catch(() => false);
-      const hasAmountInput = await page.getByLabel(/amount/i).isVisible().catch(() => false);
+      const hasCustomerSelect = await page
+        .getByLabel(/customer/i)
+        .isVisible()
+        .catch(() => false);
+      const hasAmountInput = await page
+        .getByLabel(/amount/i)
+        .isVisible()
+        .catch(() => false);
 
       // Either modal or inline form should have these elements
       expect(hasCustomerSelect || hasAmountInput || true).toBe(true);
     });
   });
 
-  test.describe('Responsive Design', () => {
-    test('should display transaction list properly on mobile', async ({ page }) => {
+  test.describe("Responsive Design", () => {
+    test("should display transaction list properly on mobile", async ({
+      page,
+    }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${BASE_URL}/transactions`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Header should be visible
-      await expect(page.getByRole('heading', { name: /transactions/i })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: /transactions/i }),
+      ).toBeVisible();
 
       // Add button should be accessible
-      const addButton = page.getByRole('button', { name: /add.*new|\+/i });
+      const addButton = page.getByRole("button", { name: /add.*new|\+/i });
       await expect(addButton).toBeVisible();
 
       // Filters should be accessible
-      await expect(page.getByRole('button', { name: /all/i }).first()).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: /all/i }).first(),
+      ).toBeVisible();
     });
 
-    test('should display transaction cards stacked on mobile', async ({ page }) => {
+    test("should display transaction cards stacked on mobile", async ({
+      page,
+    }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${BASE_URL}/transactions`);
 
@@ -474,77 +576,90 @@ test.describe('Transaction Management', () => {
       }
     });
 
-    test('should display add transaction modal on mobile', async ({ page }) => {
+    test("should display add transaction modal on mobile", async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${BASE_URL}/transactions`);
 
       if (await skipIfUnauthenticated(page)) return;
 
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
 
       // Modal should be visible and usable
-      const dialog = page.getByRole('dialog');
+      const dialog = page.getByRole("dialog");
       await expect(dialog).toBeVisible();
       // Check for customer label inside dialog - use first() to handle multiple matches
       await expect(dialog.getByText(/customer/i).first()).toBeVisible();
       // Check for amount input inside dialog
-      await expect(dialog.locator('#amount')).toBeVisible();
+      await expect(dialog.locator("#amount")).toBeVisible();
     });
 
-    test('should display filter buttons horizontally scrollable on mobile', async ({ page }) => {
+    test("should display filter buttons horizontally scrollable on mobile", async ({
+      page,
+    }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${BASE_URL}/transactions`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Filter buttons should all be visible
-      await expect(page.getByRole('button', { name: /all/i }).first()).toBeVisible();
-      await expect(page.getByRole('button', { name: /debt/i }).first()).toBeVisible();
-      await expect(page.getByRole('button', { name: /payment/i }).first()).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: /all/i }).first(),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: /debt/i }).first(),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: /payment/i }).first(),
+      ).toBeVisible();
     });
   });
 
-  test.describe('Accessibility', () => {
-    test('transaction list page should be accessible', async ({ page }) => {
+  test.describe("Accessibility", () => {
+    test("transaction list page should be accessible", async ({ page }) => {
       await page.goto(`${BASE_URL}/transactions`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Check for proper heading structure - look for the page title h1
-      const heading = page.getByRole('heading', { name: /transactions/i, level: 1 });
+      const heading = page.getByRole("heading", {
+        name: /transactions/i,
+        level: 1,
+      });
       await expect(heading).toBeVisible();
 
       // Check for accessible buttons
-      const buttons = page.getByRole('button');
+      const buttons = page.getByRole("button");
       const buttonCount = await buttons.count();
       expect(buttonCount).toBeGreaterThan(0);
     });
 
-    test('add transaction modal should trap focus', async ({ page }) => {
+    test("add transaction modal should trap focus", async ({ page }) => {
       await page.goto(`${BASE_URL}/transactions`);
 
       if (await skipIfUnauthenticated(page)) return;
 
-      await page.getByRole('button', { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.getByRole("button", { name: /add.*new|\+/i }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Tab through modal elements
-      await page.keyboard.press('Tab');
-      await page.keyboard.press('Tab');
+      await page.keyboard.press("Tab");
+      await page.keyboard.press("Tab");
 
       // Focus should remain in modal
-      const focusedElement = page.locator(':focus');
+      const focusedElement = page.locator(":focus");
       await expect(focusedElement).toBeVisible();
     });
 
-    test('filter buttons should have accessible names', async ({ page }) => {
+    test("filter buttons should have accessible names", async ({ page }) => {
       await page.goto(`${BASE_URL}/transactions`);
 
       if (await skipIfUnauthenticated(page)) return;
 
-      const allButton = page.getByRole('button', { name: /all/i }).first();
-      const debtsButton = page.getByRole('button', { name: /debt/i }).first();
-      const paymentsButton = page.getByRole('button', { name: /payment/i }).first();
+      const allButton = page.getByRole("button", { name: /all/i }).first();
+      const debtsButton = page.getByRole("button", { name: /debt/i }).first();
+      const paymentsButton = page
+        .getByRole("button", { name: /payment/i })
+        .first();
 
       await expect(allButton).toBeVisible();
       await expect(debtsButton).toBeVisible();

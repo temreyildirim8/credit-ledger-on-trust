@@ -96,4 +96,30 @@ export const transactionsService = {
       name: c.name,
     }));
   },
+
+  async updateTransaction(transactionId: string, transaction: {
+    customer_id?: string;
+    type?: 'debt' | 'payment';
+    amount?: number;
+    description?: string | null;
+    transaction_date?: string;
+  }): Promise<Transaction> {
+    const { data, error } = await supabase
+      .from('transactions')
+      .update(transaction)
+      .eq('id', transactionId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return {
+      id: data.id,
+      customer_id: data.customer_id,
+      type: data.type as 'debt' | 'payment',
+      amount: data.amount,
+      description: data.description,
+      transaction_date: data.transaction_date,
+      created_at: data.created_at,
+    };
+  },
 };

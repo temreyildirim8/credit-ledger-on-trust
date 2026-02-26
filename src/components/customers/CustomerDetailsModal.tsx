@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Phone,
   MapPin,
@@ -20,18 +20,21 @@ import {
   TrendingUp,
   TrendingDown,
   FileText,
-} from 'lucide-react';
-import { Customer, customersService } from '@/lib/services/customers.service';
-import { userProfilesService } from '@/lib/services/user-profiles.service';
-import { formatCurrency } from '@/lib/utils/currency';
-import { formatDistanceToNow } from 'date-fns';
-import { tr, enUS, es, id, hi, ar } from 'date-fns/locale';
-import type { Locale } from 'date-fns';
-import { cn } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
-import { useAuth } from '@/lib/hooks/useAuth';
-import { generateCustomerStatementPDF, downloadPDF } from '@/lib/utils/pdf-statement';
-import { toast } from 'sonner';
+} from "lucide-react";
+import { Customer, customersService } from "@/lib/services/customers.service";
+import { userProfilesService } from "@/lib/services/user-profiles.service";
+import { formatCurrency } from "@/lib/utils/currency";
+import { formatDistanceToNow } from "date-fns";
+import { tr, enUS, es, id, hi, ar } from "date-fns/locale";
+import type { Locale } from "date-fns";
+import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
+import { useAuth } from "@/lib/hooks/useAuth";
+import {
+  generateCustomerStatementPDF,
+  downloadPDF,
+} from "@/lib/utils/pdf-statement";
+import { toast } from "sonner";
 
 // Locale map for date-fns
 const localeMap: Record<string, Locale> = { en: enUS, tr, es, id, hi, ar };
@@ -62,17 +65,17 @@ export function CustomerDetailsModal({
   onAddDebt,
   onRecordPayment,
   onEdit,
-  locale = 'en',
+  locale = "en",
 }: CustomerDetailsModalProps) {
   const { user } = useAuth();
-  const t = useTranslations('customers');
+  const t = useTranslations("customers");
   const dateLocale = localeMap[locale] || enUS;
 
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
   const [generatingPDF, setGeneratingPDF] = useState(false);
-  const [userCurrency, setUserCurrency] = useState<string>('TRY');
+  const [userCurrency, setUserCurrency] = useState<string>("TRY");
 
   useEffect(() => {
     if (!user?.id || !customerId || !open) return;
@@ -80,18 +83,20 @@ export function CustomerDetailsModal({
     const loadData = async () => {
       setLoading(true);
       try {
-        const [customerData, transactionsData, userProfile] = await Promise.all([
-          customersService.getCustomerById(user.id, customerId),
-          customersService.getCustomerTransactions(user.id, customerId),
-          userProfilesService.getProfile(user.id),
-        ]);
+        const [customerData, transactionsData, userProfile] = await Promise.all(
+          [
+            customersService.getCustomerById(user.id, customerId),
+            customersService.getCustomerTransactions(user.id, customerId),
+            userProfilesService.getProfile(user.id),
+          ],
+        );
         setCustomer(customerData);
         setTransactions(transactionsData);
         if (userProfile?.currency) {
           setUserCurrency(userProfile.currency);
         }
       } catch (error) {
-        console.error('Error loading customer:', error);
+        console.error("Error loading customer:", error);
       } finally {
         setLoading(false);
       }
@@ -103,7 +108,7 @@ export function CustomerDetailsModal({
   const hasDebt = customer ? customer.balance > 0 : false;
 
   const formatTransactionDate = (date: string | null | undefined) => {
-    if (!date) return '';
+    if (!date) return "";
     return formatDistanceToNow(new Date(date), {
       addSuffix: true,
       locale: dateLocale,
@@ -119,7 +124,7 @@ export function CustomerDetailsModal({
         customer,
         transactions,
         businessInfo: {
-          name: user?.user_metadata?.full_name || 'My Business',
+          name: user?.user_metadata?.full_name || "My Business",
           currency: userCurrency,
           language: locale,
         },
@@ -127,15 +132,15 @@ export function CustomerDetailsModal({
       });
 
       // Generate filename with customer name and date
-      const dateStr = new Date().toISOString().split('T')[0];
-      const sanitizedName = customer.name.replace(/[^a-zA-Z0-9]/g, '_');
+      const dateStr = new Date().toISOString().split("T")[0];
+      const sanitizedName = customer.name.replace(/[^a-zA-Z0-9]/g, "_");
       const filename = `statement_${sanitizedName}_${dateStr}.pdf`;
 
       downloadPDF(pdfBytes, filename);
-      toast.success(t('details.pdfDownloaded'));
+      toast.success(t("details.pdfDownloaded"));
     } catch (error) {
-      console.error('Error generating PDF:', error);
-      toast.error(t('details.pdfError'));
+      console.error("Error generating PDF:", error);
+      toast.error(t("details.pdfError"));
     } finally {
       setGeneratingPDF(false);
     }
@@ -145,32 +150,50 @@ export function CustomerDetailsModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
         {loading ? (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-[var(--color-accent)]" />
-          </div>
+          <>
+            <DialogHeader className="sr-only">
+              <DialogTitle>Müşteri Detayları</DialogTitle>
+            </DialogHeader>
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-[var(--color-accent)]" />
+            </div>
+          </>
         ) : !customer ? (
-          <div className="text-center py-12">
-            <p className="text-[var(--color-text-secondary)]">{t('details.notFound')}</p>
-          </div>
+          <>
+            <DialogHeader className="sr-only">
+              <DialogTitle>Müşteri Detayları</DialogTitle>
+            </DialogHeader>
+            <div className="text-center py-12">
+              <p className="text-[var(--color-text-secondary)]">
+                {t("details.notFound")}
+              </p>
+            </div>
+          </>
         ) : (
           <>
             <DialogHeader>
               <div className="flex items-center gap-4">
                 <div
                   className={cn(
-                    'w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0',
-                    hasDebt ? 'bg-[var(--color-error)]' : 'bg-[var(--color-success)]'
+                    "w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0",
+                    hasDebt
+                      ? "bg-[var(--color-error)]"
+                      : "bg-[var(--color-success)]",
                   )}
                 >
                   {customer.name.charAt(0).toUpperCase()}
                 </div>
                 <div>
                   <DialogTitle className="text-xl">{customer.name}</DialogTitle>
-                  <p className={cn(
-                    'text-sm font-medium',
-                    hasDebt ? 'text-[var(--color-error)]' : 'text-[var(--color-success)]'
-                  )}>
-                    {hasDebt ? t('details.owesYou') : t('details.settledUp')}
+                  <p
+                    className={cn(
+                      "text-sm font-medium",
+                      hasDebt
+                        ? "text-[var(--color-error)]"
+                        : "text-[var(--color-success)]",
+                    )}
+                  >
+                    {hasDebt ? t("details.owesYou") : t("details.settledUp")}
                   </p>
                 </div>
               </div>
@@ -180,30 +203,35 @@ export function CustomerDetailsModal({
               {/* Balance Card */}
               <Card
                 className={cn(
-                  'border-2',
+                  "border-2",
                   hasDebt
-                    ? 'border-[var(--color-error)]/30 bg-[var(--color-debt)]'
-                    : 'border-[var(--color-success)]/30 bg-[var(--color-payment)]'
+                    ? "border-[var(--color-error)]/30 bg-[var(--color-debt)]"
+                    : "border-[var(--color-success)]/30 bg-[var(--color-payment)]",
                 )}
               >
                 <CardContent className="pt-6">
                   <div className="text-center">
                     <p className="text-sm text-[var(--color-text-secondary)] mb-1">
-                      {hasDebt ? t('details.totalDebt') : t('details.balance')}
+                      {hasDebt ? t("details.totalDebt") : t("details.balance")}
                     </p>
                     <p
                       className={cn(
-                        'text-3xl font-bold',
-                        hasDebt ? 'text-[var(--color-debt-text)]' : 'text-[var(--color-payment-text)]'
+                        "text-3xl font-bold",
+                        hasDebt
+                          ? "text-[var(--color-debt-text)]"
+                          : "text-[var(--color-payment-text)]",
                       )}
                     >
                       {formatCurrency(Math.abs(customer.balance))}
                     </p>
-                    {customer.transaction_count && customer.transaction_count > 0 && (
-                      <p className="text-xs text-[var(--color-text-tertiary)] mt-2">
-                        {t('details.transactionCount', { count: customer.transaction_count })}
-                      </p>
-                    )}
+                    {customer.transaction_count &&
+                      customer.transaction_count > 0 && (
+                        <p className="text-xs text-[var(--color-text-tertiary)] mt-2">
+                          {t("details.transactionCount", {
+                            count: customer.transaction_count,
+                          })}
+                        </p>
+                      )}
                   </div>
                 </CardContent>
               </Card>
@@ -218,7 +246,7 @@ export function CustomerDetailsModal({
                   className="bg-[var(--color-error)] hover:bg-[var(--color-error)]/80 text-white"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  {t('details.addDebt')}
+                  {t("details.addDebt")}
                 </Button>
                 <Button
                   onClick={() => {
@@ -228,27 +256,60 @@ export function CustomerDetailsModal({
                   className="bg-[var(--color-success)] hover:bg-[var(--color-success)]/80 text-white"
                 >
                   <Minus className="h-4 w-4 mr-2" />
-                  {t('details.recordPayment')}
+                  {t("details.recordPayment")}
                 </Button>
               </div>
 
-              {/* PDF Statement Button */}
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={handleDownloadPDF}
-                disabled={generatingPDF}
-              >
-                {generatingPDF ? (
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                ) : (
-                  <FileText className="h-4 w-4 mr-2" />
+              {/* PDF Statement and Edit Buttons */}
+              <div className="grid grid-cols-2 gap-3">
+                <Button
+                  variant="outline"
+                  onClick={handleDownloadPDF}
+                  disabled={generatingPDF}
+                >
+                  {generatingPDF ? (
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  ) : (
+                    <FileText className="h-4 w-4 mr-2" />
+                  )}
+                  {generatingPDF
+                    ? t("details.generatingPDF")
+                    : t("details.downloadPDF")}
+                </Button>
+                {onEdit && (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      onEdit(customer);
+                      onOpenChange(false);
+                    }}
+                  >
+                    <Edit className="h-4 w-4 mr-2" />
+                    {t("details.edit")}
+                  </Button>
                 )}
-                {generatingPDF ? t('details.generatingPDF') : t('details.downloadPDF')}
-              </Button>
+              </div>
+
+              {/* ID Info */}
+              <div className="space-y-1 px-1">
+                <p className="text-xs text-[var(--color-text-tertiary)] font-mono truncate">
+                  <span className="font-sans text-[var(--color-text-tertiary)] not-italic mr-1">
+                    ID:
+                  </span>
+                  {customer.id}
+                </p>
+                {customer.national_id && (
+                  <p className="text-xs text-[var(--color-text-secondary)]">
+                    <span className="text-[var(--color-text-tertiary)] mr-1">
+                      {t("form.customId")}:
+                    </span>
+                    {customer.national_id}
+                  </p>
+                )}
+              </div>
 
               {/* Contact Info */}
-              {(customer.phone || customer.address) && (
+              {(customer.phone || customer.address || customer.notes) && (
                 <div className="space-y-3">
                   {customer.phone && (
                     <div className="flex items-center gap-3 p-3 bg-[var(--color-surface-alt)] rounded-xl">
@@ -256,7 +317,9 @@ export function CustomerDetailsModal({
                         <Phone className="w-5 h-5 text-[var(--color-accent)]" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-[var(--color-text-tertiary)]">{t('details.phone')}</p>
+                        <p className="text-xs text-[var(--color-text-tertiary)]">
+                          {t("details.phone")}
+                        </p>
                         <a
                           href={`tel:${customer.phone}`}
                           className="text-[var(--color-accent)] hover:underline font-medium"
@@ -265,13 +328,17 @@ export function CustomerDetailsModal({
                         </a>
                       </div>
                       <a
-                        href={`https://wa.me/${customer.phone.replace(/\D/g, '')}`}
+                        href={`https://wa.me/${customer.phone.replace(/\D/g, "")}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[var(--color-success)] hover:text-[var(--color-success)]/80"
                       >
                         <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                          <svg
+                            className="h-5 w-5"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                           </svg>
                         </Button>
@@ -284,8 +351,27 @@ export function CustomerDetailsModal({
                         <MapPin className="w-5 h-5 text-[var(--color-accent)]" />
                       </div>
                       <div>
-                        <p className="text-xs text-[var(--color-text-tertiary)]">{t('details.address')}</p>
-                        <p className="text-sm text-[var(--color-text)]">{customer.address}</p>
+                        <p className="text-xs text-[var(--color-text-tertiary)]">
+                          {t("details.address")}
+                        </p>
+                        <p className="text-sm text-[var(--color-text)]">
+                          {customer.address}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {customer.notes && (
+                    <div className="flex items-start gap-3 p-3 bg-[var(--color-surface-alt)] rounded-xl">
+                      <div className="w-10 h-10 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center flex-shrink-0">
+                        <FileText className="w-5 h-5 text-[var(--color-accent)]" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-[var(--color-text-tertiary)]">
+                          {t("form.notes")}
+                        </p>
+                        <p className="text-sm text-[var(--color-text)]">
+                          {customer.notes}
+                        </p>
                       </div>
                     </div>
                   )}
@@ -294,29 +380,13 @@ export function CustomerDetailsModal({
 
               {/* Transaction History */}
               <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-[var(--color-text)]">
-                    {t('details.transactionHistory')}
-                  </h3>
-                  {onEdit && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        onEdit(customer);
-                        onOpenChange(false);
-                      }}
-                      className="text-[var(--color-text-secondary)]"
-                    >
-                      <Edit className="h-4 w-4 mr-1" />
-                      {t('details.edit')}
-                    </Button>
-                  )}
-                </div>
+                <h3 className="font-semibold text-[var(--color-text)]">
+                  {t("details.transactionHistory")}
+                </h3>
 
                 {transactions.length === 0 ? (
                   <p className="text-center text-[var(--color-text-secondary)] py-8">
-                    {t('details.noTransactions')}
+                    {t("details.noTransactions")}
                   </p>
                 ) : (
                   <div className="space-y-2">
@@ -328,13 +398,13 @@ export function CustomerDetailsModal({
                         <div className="flex items-center gap-3">
                           <div
                             className={cn(
-                              'w-10 h-10 rounded-full flex items-center justify-center',
-                              transaction.type === 'debt'
-                                ? 'bg-[var(--color-debt)]'
-                                : 'bg-[var(--color-payment)]'
+                              "w-10 h-10 rounded-full flex items-center justify-center",
+                              transaction.type === "debt"
+                                ? "bg-[var(--color-debt)]"
+                                : "bg-[var(--color-payment)]",
                             )}
                           >
-                            {transaction.type === 'debt' ? (
+                            {transaction.type === "debt" ? (
                               <TrendingUp className="h-5 w-5 text-[var(--color-error)]" />
                             ) : (
                               <TrendingDown className="h-5 w-5 text-[var(--color-success)]" />
@@ -345,19 +415,20 @@ export function CustomerDetailsModal({
                               <Badge
                                 variant="outline"
                                 className={cn(
-                                  'font-medium',
-                                  transaction.type === 'debt'
-                                    ? 'border-[var(--color-error)]/50 text-[var(--color-debt-text)]'
-                                    : 'border-[var(--color-success)]/50 text-[var(--color-payment-text)]'
+                                  "font-medium",
+                                  transaction.type === "debt"
+                                    ? "border-[var(--color-error)]/50 text-[var(--color-debt-text)]"
+                                    : "border-[var(--color-success)]/50 text-[var(--color-payment-text)]",
                                 )}
                               >
-                                {transaction.type === 'debt'
-                                  ? t('details.debt')
-                                  : t('details.payment')}
+                                {transaction.type === "debt"
+                                  ? t("details.debt")
+                                  : t("details.payment")}
                               </Badge>
                               <span className="text-xs text-[var(--color-text-tertiary)]">
                                 {formatTransactionDate(
-                                  transaction.transaction_date || transaction.created_at
+                                  transaction.transaction_date ||
+                                    transaction.created_at,
                                 )}
                               </span>
                             </div>
@@ -370,13 +441,13 @@ export function CustomerDetailsModal({
                         </div>
                         <p
                           className={cn(
-                            'font-semibold text-lg',
-                            transaction.type === 'debt'
-                              ? 'text-[var(--color-debt-text)]'
-                              : 'text-[var(--color-payment-text)]'
+                            "font-semibold text-lg",
+                            transaction.type === "debt"
+                              ? "text-[var(--color-debt-text)]"
+                              : "text-[var(--color-payment-text)]",
                           )}
                         >
-                          {transaction.type === 'debt' ? '+' : '-'}
+                          {transaction.type === "debt" ? "+" : "-"}
                           {formatCurrency(transaction.amount)}
                         </p>
                       </div>

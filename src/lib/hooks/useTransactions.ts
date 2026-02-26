@@ -175,11 +175,93 @@ export function useTransactions() {
     loadTransactions();
   }, [loadTransactions]);
 
+  const updateTransaction = async (transactionId: string, transaction: {
+    customerId?: string;
+    type?: 'debt' | 'payment';
+    amount?: number;
+    note?: string;
+    date?: string;
+  }) => {
+    if (!user?.id) throw new Error('User not authenticated');
+
+    if (navigator.onLine) {
+      // Online: update directly
+      const updateData: {
+        customer_id?: string;
+        type?: 'debt' | 'payment';
+        amount?: number;
+        description?: string | null;
+        transaction_date?: string;
+      } = {};
+
+      if (transaction.customerId) updateData.customer_id = transaction.customerId;
+      if (transaction.type) updateData.type = transaction.type;
+      if (transaction.amount !== undefined) updateData.amount = transaction.amount;
+      if (transaction.note !== undefined) updateData.description = transaction.note || null;
+      if (transaction.date) updateData.transaction_date = transaction.date;
+
+      const updatedTransaction = await transactionsService.updateTransaction(transactionId, updateData);
+
+      // Update local state
+      setTransactions(transactions.map(t =>
+        t.id === transactionId
+          ? { ...t, ...updatedTransaction }
+          : t
+      ));
+
+      // Update cache
+      await offlineCache.setTransaction(transactionToCached({
+        ...transactions.find(t => t.id === transactionId)!,
+        ...updatedTransaction,
+      }));
+
+      return updatedTransaction;
+    } else {
+      // Offline: update optimistically
+      const currentTransaction = transactions.find(t => t.id === transactionId);
+      if (!currentTransaction) throw new Error('Transaction not found');
+
+      const optimisticTransaction: Transaction = {
+        ...currentTransaction,
+        customer_id: transaction.customerId || currentTransaction.customer_id,
+        type: transaction.type || currentTransaction.type,
+        amount: transaction.amount !== undefined ? transaction.amount : currentTransaction.amount,
+        description: transaction.note !== undefined ? transaction.note : currentTransaction.description,
+        transaction_date: transaction.date || currentTransaction.transaction_date,
+      };
+
+      // Update local state optimistically
+      setTransactions(transactions.map(t =>
+        t.id === transactionId ? optimisticTransaction : t
+      ));
+
+      // Queue for background sync
+      await offlineCache.addToSyncQueue({
+        action_type: 'update_transaction',
+        payload: {
+          userId: user.id,
+          transactionId,
+          transaction,
+        },
+        client_timestamp: new Date().toISOString(),
+        retry_count: 0,
+        max_retries: 3,
+        status: 'pending',
+      });
+
+      // Update cache optimistically
+      await offlineCache.setTransaction(transactionToCached(optimisticTransaction));
+
+      return optimisticTransaction;
+    }
+  };
+
   return {
     transactions,
     loading,
     isOffline,
     createTransaction,
+    updateTransaction,
     refreshTransactions,
   };
 }

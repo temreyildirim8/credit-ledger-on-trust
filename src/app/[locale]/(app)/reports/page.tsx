@@ -1,17 +1,23 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useState, useEffect } from "react";
+import { useTranslations, useLocale } from "next-intl";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 import {
   BarChart3,
   TrendingUp,
@@ -24,41 +30,51 @@ import {
   PieChart,
   Calendar,
   Loader2,
-} from 'lucide-react';
-import { UpgradePrompt } from '@/components/subscription/UpgradePrompt';
-import Link from 'next/link';
-import { toast } from 'sonner';
-import { useAuth } from '@/lib/hooks/useAuth';
-import { useTransactions } from '@/lib/hooks/useTransactions';
-import { useCustomers } from '@/lib/hooks/useCustomers';
-import { useSubscription } from '@/lib/hooks/useSubscription';
-import { userProfilesService, type UserProfile as ServiceUserProfile } from '@/lib/services/user-profiles.service';
-import { generateTransactionsCSV, downloadCSV, generateCSVFilename } from '@/lib/utils/csv-export';
+} from "lucide-react";
+import { UpgradePrompt } from "@/components/subscription/UpgradePrompt";
+import Link from "next/link";
+import { toast } from "sonner";
+import { useAuth } from "@/lib/hooks/useAuth";
+import { useTransactions } from "@/lib/hooks/useTransactions";
+import { useCustomers } from "@/lib/hooks/useCustomers";
+import { useSubscription } from "@/lib/hooks/useSubscription";
+import {
+  userProfilesService,
+  type UserProfile as ServiceUserProfile,
+} from "@/lib/services/user-profiles.service";
+import {
+  generateTransactionsCSV,
+  downloadCSV,
+  generateCSVFilename,
+} from "@/lib/utils/csv-export";
 import {
   generateShopReportPDF,
   generateCustomerStatementPDF,
   downloadPDF,
   type ShopReportData,
-} from '@/lib/utils/pdf-statement';
-import type { Transaction } from '@/lib/services/transactions.service';
-import { cn } from '@/lib/utils';
+} from "@/lib/utils/pdf-statement";
+import type { Transaction } from "@/lib/services/transactions.service";
+import { cn } from "@/lib/utils";
 
-type TimeFilter = 'today' | 'week' | 'month';
+type TimeFilter = "today" | "week" | "month";
 
 export default function ReportsPage() {
-  const t = useTranslations('reports');
+  const t = useTranslations("reports");
+  const tCommon = useTranslations("common");
   const locale = useLocale();
   const { user } = useAuth();
   const { transactions } = useTransactions();
   const { customers } = useCustomers();
   const { hasFeature, isPaidPlan } = useSubscription();
-  const [timeFilter, setTimeFilter] = useState<TimeFilter>('month');
+  const [timeFilter, setTimeFilter] = useState<TimeFilter>("month");
   const [profile, setProfile] = useState<ServiceUserProfile | null>(null);
   const [, setProfileLoading] = useState(true);
   const [exporting, setExporting] = useState(false);
   const [exportingPDF, setExportingPDF] = useState(false);
   const [customerSelectOpen, setCustomerSelectOpen] = useState(false);
-  const [generatingCustomerPDF, setGeneratingCustomerPDF] = useState<string | null>(null);
+  const [generatingCustomerPDF, setGeneratingCustomerPDF] = useState<
+    string | null
+  >(null);
 
   // Load user profile for business info
   useEffect(() => {
@@ -69,7 +85,7 @@ export default function ReportsPage() {
         const data = await userProfilesService.getProfile(user.id);
         setProfile(data);
       } catch (error) {
-        console.error('Error loading profile:', error);
+        console.error("Error loading profile:", error);
       } finally {
         setProfileLoading(false);
       }
@@ -81,20 +97,24 @@ export default function ReportsPage() {
   // Filter transactions by time period
   const getFilteredTransactions = (): Transaction[] => {
     const now = new Date();
-    const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const startOfDay = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+    );
     const startOfWeek = new Date(startOfDay);
     startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
     let startDate: Date;
     switch (timeFilter) {
-      case 'today':
+      case "today":
         startDate = startOfDay;
         break;
-      case 'week':
+      case "week":
         startDate = startOfWeek;
         break;
-      case 'month':
+      case "month":
       default:
         startDate = startOfMonth;
         break;
@@ -118,7 +138,7 @@ export default function ReportsPage() {
 
     for (const tx of filteredTransactions) {
       uniqueCustomers.add(tx.customer_id);
-      if (tx.type === 'debt') {
+      if (tx.type === "debt") {
         totalOwed += tx.amount;
         newDebts += tx.amount;
       } else {
@@ -128,7 +148,8 @@ export default function ReportsPage() {
       }
     }
 
-    const collectionRate = newDebts > 0 ? (paymentsReceived / newDebts) * 100 : 0;
+    const collectionRate =
+      newDebts > 0 ? (paymentsReceived / newDebts) * 100 : 0;
 
     return {
       totalOwed: Math.max(0, totalOwed),
@@ -136,29 +157,29 @@ export default function ReportsPage() {
       newDebts,
       paymentsReceived,
       activeCustomers: uniqueCustomers.size,
-      collectionRate: Math.min(100, collectionRate)
+      collectionRate: Math.min(100, collectionRate),
     };
   };
 
   const stats = calculateStats();
   const hasData = transactions.length > 0;
-  const currency = profile?.currency || 'USD';
+  const currency = profile?.currency || "USD";
 
   const formatCurrency = (value: number) => {
     const currencyLocaleMap: Record<string, string> = {
-      TRY: 'tr-TR',
-      USD: 'en-US',
-      EUR: 'de-DE',
-      GBP: 'en-GB',
-      IDR: 'id-ID',
-      NGN: 'en-NG',
-      EGP: 'ar-EG',
-      ZAR: 'en-ZA',
-      INR: 'en-IN',
+      TRY: "tr-TR",
+      USD: "en-US",
+      EUR: "de-DE",
+      GBP: "en-GB",
+      IDR: "id-ID",
+      NGN: "en-NG",
+      EGP: "ar-EG",
+      ZAR: "en-ZA",
+      INR: "en-IN",
     };
-    const localeCode = currencyLocaleMap[currency] || 'en-US';
+    const localeCode = currencyLocaleMap[currency] || "en-US";
     return new Intl.NumberFormat(localeCode, {
-      style: 'currency',
+      style: "currency",
       currency: currency,
       minimumFractionDigits: 0,
       maximumFractionDigits: 2,
@@ -168,7 +189,7 @@ export default function ReportsPage() {
   // Handle CSV export
   const handleExportCSV = async () => {
     if (filteredTransactions.length === 0) {
-      toast.warning('No transactions to export');
+      toast.warning(t("export.noTransactions"));
       return;
     }
 
@@ -180,25 +201,39 @@ export default function ReportsPage() {
         currency: currency,
         locale: locale,
         dateRange: {
-          start: timeFilter === 'today' ? new Date().toISOString().split('T')[0] :
-                 timeFilter === 'week' ? new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] :
-                 new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0],
-          end: new Date().toISOString().split('T')[0],
+          start:
+            timeFilter === "today"
+              ? new Date().toISOString().split("T")[0]
+              : timeFilter === "week"
+                ? new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+                    .toISOString()
+                    .split("T")[0]
+                : new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+                    .toISOString()
+                    .split("T")[0],
+          end: new Date().toISOString().split("T")[0],
         },
       });
 
-      const filename = generateCSVFilename('all', undefined, {
-        start: timeFilter === 'today' ? new Date().toISOString().split('T')[0] :
-               timeFilter === 'week' ? new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] :
-               new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0],
-        end: new Date().toISOString().split('T')[0],
+      const filename = generateCSVFilename("all", undefined, {
+        start:
+          timeFilter === "today"
+            ? new Date().toISOString().split("T")[0]
+            : timeFilter === "week"
+              ? new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+                  .toISOString()
+                  .split("T")[0]
+              : new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+                  .toISOString()
+                  .split("T")[0],
+        end: new Date().toISOString().split("T")[0],
       });
 
       downloadCSV(csvContent, filename);
-      toast.success('CSV exported successfully');
+      toast.success(t("export.csvSuccess"));
     } catch (error) {
-      console.error('Error exporting CSV:', error);
-      toast.error('Failed to export CSV');
+      console.error("Error exporting CSV:", error);
+      toast.error(t("export.csvError"));
     } finally {
       setExporting(false);
     }
@@ -216,14 +251,17 @@ export default function ReportsPage() {
     };
 
     // Group debts by customer and calculate aging
-    const customerDebts: Record<string, { debts: Array<{ date: Date; amount: number }>; payments: number }> = {};
+    const customerDebts: Record<
+      string,
+      { debts: Array<{ date: Date; amount: number }>; payments: number }
+    > = {};
 
     for (const tx of transactions) {
       if (!customerDebts[tx.customer_id]) {
         customerDebts[tx.customer_id] = { debts: [], payments: 0 };
       }
 
-      if (tx.type === 'debt') {
+      if (tx.type === "debt") {
         customerDebts[tx.customer_id].debts.push({
           date: new Date(tx.transaction_date || tx.created_at || 0),
           amount: tx.amount,
@@ -238,7 +276,9 @@ export default function ReportsPage() {
       let remainingPayments = customerData.payments;
 
       // Sort debts by date (oldest first) for FIFO payment application
-      const sortedDebts = [...customerData.debts].sort((a, b) => a.date.getTime() - b.date.getTime());
+      const sortedDebts = [...customerData.debts].sort(
+        (a, b) => a.date.getTime() - b.date.getTime(),
+      );
 
       for (const debt of sortedDebts) {
         let effectiveAmount = debt.amount;
@@ -255,7 +295,9 @@ export default function ReportsPage() {
         }
 
         // Calculate age of remaining debt
-        const ageDays = Math.floor((now.getTime() - debt.date.getTime()) / (1000 * 60 * 60 * 24));
+        const ageDays = Math.floor(
+          (now.getTime() - debt.date.getTime()) / (1000 * 60 * 60 * 24),
+        );
 
         if (ageDays <= 30) {
           aging.current += effectiveAmount;
@@ -283,14 +325,18 @@ export default function ReportsPage() {
       const now = new Date();
       let periodStart: Date;
       switch (timeFilter) {
-        case 'today':
-          periodStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        case "today":
+          periodStart = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+          );
           break;
-        case 'week':
+        case "week":
           periodStart = new Date(now);
           periodStart.setDate(periodStart.getDate() - 7);
           break;
-        case 'month':
+        case "month":
         default:
           periodStart = new Date(now.getFullYear(), now.getMonth(), 1);
           break;
@@ -298,7 +344,10 @@ export default function ReportsPage() {
 
       const reportData: ShopReportData = {
         businessInfo: {
-          name: profile?.shop_name || user?.user_metadata?.full_name || 'My Business',
+          name:
+            profile?.shop_name ||
+            user?.user_metadata?.full_name ||
+            tCommon("defaultBusinessName"),
           currency: currency,
           language: locale,
         },
@@ -312,16 +361,16 @@ export default function ReportsPage() {
         },
         debtAging: debtAging,
         customers: customers
-          .filter(c => c.balance > 0)
+          .filter((c) => c.balance > 0)
           .sort((a, b) => b.balance - a.balance)
-          .map(c => ({
+          .map((c) => ({
             name: c.name,
             balance: c.balance,
             lastActivity: c.last_transaction_date || c.created_at || null,
           })),
         period: {
-          start: periodStart.toISOString().split('T')[0],
-          end: now.toISOString().split('T')[0],
+          start: periodStart.toISOString().split("T")[0],
+          end: now.toISOString().split("T")[0],
         },
       };
 
@@ -330,14 +379,14 @@ export default function ReportsPage() {
         locale,
       });
 
-      const dateStr = now.toISOString().split('T')[0];
+      const dateStr = now.toISOString().split("T")[0];
       const filename = `shop_report_${timeFilter}_${dateStr}.pdf`;
 
       downloadPDF(pdfBytes, filename);
-      toast.success('PDF report exported successfully');
+      toast.success(t("export.pdfSuccess"));
     } catch (error) {
-      console.error('Error exporting PDF:', error);
-      toast.error('Failed to export PDF');
+      console.error("Error exporting PDF:", error);
+      toast.error(t("export.pdfError"));
     } finally {
       setExportingPDF(false);
     }
@@ -345,13 +394,13 @@ export default function ReportsPage() {
 
   // Handle Customer Statement PDF export
   const handleCustomerStatementPDF = async (customerId: string) => {
-    const customer = customers.find(c => c.id === customerId);
+    const customer = customers.find((c) => c.id === customerId);
     if (!customer) return;
 
     setGeneratingCustomerPDF(customerId);
     try {
       const customerTransactions = transactions
-        .filter(tx => tx.customer_id === customerId)
+        .filter((tx) => tx.customer_id === customerId)
         .sort((a, b) => {
           const dateA = new Date(a.transaction_date || a.created_at || 0);
           const dateB = new Date(b.transaction_date || b.created_at || 0);
@@ -372,7 +421,7 @@ export default function ReportsPage() {
           is_archived: customer.is_archived || false,
           transaction_count: customerTransactions.length,
         },
-        transactions: customerTransactions.map(tx => ({
+        transactions: customerTransactions.map((tx) => ({
           id: tx.id,
           type: tx.type,
           amount: tx.amount,
@@ -381,23 +430,26 @@ export default function ReportsPage() {
           description: tx.description,
         })),
         businessInfo: {
-          name: profile?.shop_name || user?.user_metadata?.full_name || 'My Business',
+          name:
+            profile?.shop_name ||
+            user?.user_metadata?.full_name ||
+            tCommon("defaultBusinessName"),
           currency: currency,
           language: locale,
         },
         locale,
       });
 
-      const dateStr = new Date().toISOString().split('T')[0];
-      const sanitizedName = customer.name.replace(/[^a-zA-Z0-9]/g, '_');
+      const dateStr = new Date().toISOString().split("T")[0];
+      const sanitizedName = customer.name.replace(/[^a-zA-Z0-9]/g, "_");
       const filename = `statement_${sanitizedName}_${dateStr}.pdf`;
 
       downloadPDF(pdfBytes, filename);
-      toast.success('Customer statement exported successfully');
+      toast.success(t("export.statementSuccess"));
       setCustomerSelectOpen(false);
     } catch (error) {
-      console.error('Error generating customer statement:', error);
-      toast.error('Failed to generate customer statement');
+      console.error("Error generating customer statement:", error);
+      toast.error(t("export.statementError"));
     } finally {
       setGeneratingCustomerPDF(null);
     }
@@ -405,10 +457,12 @@ export default function ReportsPage() {
 
   if (!hasData) {
     return (
-      <div className="space-y-6 p-6">
+      <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
-          <p className="text-muted-foreground">{t('subtitle')}</p>
+          <h1 className="text-2xl font-semibold text-foreground">
+            {t("title")}
+          </h1>
+          <p className="text-muted-foreground">{t("subtitle")}</p>
         </div>
 
         {/* Empty State */}
@@ -418,14 +472,14 @@ export default function ReportsPage() {
               <BarChart3 className="h-10 w-10 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-semibold text-foreground mb-2">
-              {t('empty.title')}
+              {t("empty.title")}
             </h3>
             <p className="text-muted-foreground text-center max-w-sm mb-6">
-              {t('empty.description')}
+              {t("empty.description")}
             </p>
             <Button asChild>
               <Link href="./dashboard">
-                {t('empty.action')}
+                {t("empty.action")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -436,28 +490,44 @@ export default function ReportsPage() {
   }
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
-          <p className="text-muted-foreground">{t('subtitle')}</p>
-        </div>
+      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white dark:bg-none dark:p-0 dark:text-foreground">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-semibold">{t("title")}</h1>
+            <p className="text-white/90 mt-1 dark:text-muted-foreground">
+              {t("subtitle")}
+            </p>
+          </div>
 
-        {/* Time Filter */}
-        <Tabs value={timeFilter} onValueChange={(v) => setTimeFilter(v as TimeFilter)}>
-          <TabsList>
-            <TabsTrigger value="today" className="text-xs sm:text-sm">
-              {t('timeFilter.today')}
-            </TabsTrigger>
-            <TabsTrigger value="week" className="text-xs sm:text-sm">
-              {t('timeFilter.week')}
-            </TabsTrigger>
-            <TabsTrigger value="month" className="text-xs sm:text-sm">
-              {t('timeFilter.month')}
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
+          {/* Time Filter */}
+          <Tabs
+            value={timeFilter}
+            onValueChange={(v) => setTimeFilter(v as TimeFilter)}
+          >
+            <TabsList className="bg-white/20 dark:bg-muted">
+              <TabsTrigger
+                value="today"
+                className="text-xs sm:text-sm data-[state=active]:bg-white data-[state=active]:text-accent"
+              >
+                {t("timeFilter.today")}
+              </TabsTrigger>
+              <TabsTrigger
+                value="week"
+                className="text-xs sm:text-sm data-[state=active]:bg-white data-[state=active]:text-accent"
+              >
+                {t("timeFilter.week")}
+              </TabsTrigger>
+              <TabsTrigger
+                value="month"
+                className="text-xs sm:text-sm data-[state=active]:bg-white data-[state=active]:text-accent"
+              >
+                {t("timeFilter.month")}
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
       </div>
 
       {/* Shop Summary Cards */}
@@ -465,7 +535,7 @@ export default function ReportsPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t('shopSummary.totalOwed')}
+              {t("shopSummary.totalOwed")}
             </CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -485,7 +555,7 @@ export default function ReportsPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t('shopSummary.collected')}
+              {t("shopSummary.collected")}
             </CardTitle>
             <TrendingDown className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -505,7 +575,7 @@ export default function ReportsPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t('shopSummary.activeCustomers')}
+              {t("shopSummary.activeCustomers")}
             </CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -514,7 +584,7 @@ export default function ReportsPage() {
               {stats.activeCustomers}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              With outstanding balance
+              {t("shopSummary.withOutstandingBalance")}
             </p>
           </CardContent>
         </Card>
@@ -522,7 +592,7 @@ export default function ReportsPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Collection Rate
+              {t("shopSummary.collectionRate")}
             </CardTitle>
             <PieChart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -531,7 +601,7 @@ export default function ReportsPage() {
               {stats.collectionRate}%
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              <span className="text-green-500">+5.3% from last month</span>
+              <span className="text-green-500">+5.3% {t("shopSummary.fromLastMonth")}</span>
             </p>
           </CardContent>
         </Card>
@@ -544,33 +614,41 @@ export default function ReportsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
-              {t('debtAging.title')}
+              {t("debtAging.title")}
             </CardTitle>
-            <CardDescription>
-              Outstanding debts by age
-            </CardDescription>
+            <CardDescription>{t("debtAging.description")}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm">{t('debtAging.current')}</span>
-                <span className="font-medium">{formatCurrency(debtAging.current)}</span>
+                <span className="text-sm">{t("debtAging.current")}</span>
+                <span className="font-medium">
+                  {formatCurrency(debtAging.current)}
+                </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">{t('debtAging.days30')}</span>
-                <span className="font-medium">{formatCurrency(debtAging.days30)}</span>
+                <span className="text-sm">{t("debtAging.days30")}</span>
+                <span className="font-medium">
+                  {formatCurrency(debtAging.days30)}
+                </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">{t('debtAging.days60')}</span>
-                <span className="font-medium text-yellow-600">{formatCurrency(debtAging.days60)}</span>
+                <span className="text-sm">{t("debtAging.days60")}</span>
+                <span className="font-medium text-yellow-600">
+                  {formatCurrency(debtAging.days60)}
+                </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">{t('debtAging.days90')}</span>
-                <span className="font-medium text-orange-600">{formatCurrency(debtAging.days90)}</span>
+                <span className="text-sm">{t("debtAging.days90")}</span>
+                <span className="font-medium text-orange-600">
+                  {formatCurrency(debtAging.days90)}
+                </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">{t('debtAging.overdue')}</span>
-                <span className="font-medium text-red-600">{formatCurrency(debtAging.overdue)}</span>
+                <span className="text-sm">{t("debtAging.overdue")}</span>
+                <span className="font-medium text-red-600">
+                  {formatCurrency(debtAging.overdue)}
+                </span>
               </div>
             </div>
           </CardContent>
@@ -581,15 +659,15 @@ export default function ReportsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileText className="h-5 w-5" />
-              {t('export.title')}
+              {t("export.title")}
             </CardTitle>
             <CardDescription>
-              {t('export.description') || 'Download reports and statements'}
+              {t("export.description")}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {/* PDF Export - Paid feature */}
-            {hasFeature('dataExport') ? (
+            {hasFeature("dataExport") ? (
               <Button
                 variant="outline"
                 className="w-full justify-start"
@@ -601,19 +679,19 @@ export default function ReportsPage() {
                 ) : (
                   <Download className="mr-2 h-4 w-4" />
                 )}
-                {t('export.pdf')}
+                {t("export.pdf")}
               </Button>
             ) : (
               <UpgradePrompt
                 variant="button"
                 feature="Data Export"
-                message={t('export.pdf')}
+                message={t("export.pdf")}
                 className="w-full justify-start"
               />
             )}
 
             {/* CSV Export - Paid feature */}
-            {hasFeature('dataExport') ? (
+            {hasFeature("dataExport") ? (
               <Button
                 variant="outline"
                 className="w-full justify-start"
@@ -625,19 +703,19 @@ export default function ReportsPage() {
                 ) : (
                   <Download className="mr-2 h-4 w-4" />
                 )}
-                {t('export.csv')}
+                {t("export.csv")}
               </Button>
             ) : (
               <UpgradePrompt
                 variant="button"
                 feature="Data Export"
-                message={t('export.csv')}
+                message={t("export.csv")}
                 className="w-full justify-start"
               />
             )}
 
             {/* Customer Statement - Paid feature */}
-            {hasFeature('dataExport') ? (
+            {hasFeature("dataExport") ? (
               <Button
                 variant="outline"
                 className="w-full justify-start"
@@ -645,24 +723,20 @@ export default function ReportsPage() {
                 disabled={customers.length === 0}
               >
                 <FileText className="mr-2 h-4 w-4" />
-                {t('export.customerStatement')}
+                {t("export.customerStatement")}
               </Button>
             ) : (
               <UpgradePrompt
                 variant="button"
                 feature="Data Export"
-                message={t('export.customerStatement')}
+                message={t("export.customerStatement")}
                 className="w-full justify-start"
               />
             )}
 
             {/* Upgrade prompt for free users */}
             {!isPaidPlan && (
-              <UpgradePrompt
-                variant="card"
-                feature="Data Export"
-                size="sm"
-              />
+              <UpgradePrompt variant="card" feature="Data Export" size="sm" />
             )}
           </CardContent>
         </Card>
@@ -672,19 +746,21 @@ export default function ReportsPage() {
       <Dialog open={customerSelectOpen} onOpenChange={setCustomerSelectOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{t('export.selectCustomer') || 'Select Customer'}</DialogTitle>
+            <DialogTitle>
+              {t("export.selectCustomer")}
+            </DialogTitle>
             <DialogDescription>
-              {t('export.selectCustomerDescription') || 'Choose a customer to generate their account statement'}
+              {t("export.selectCustomerDescription")}
             </DialogDescription>
           </DialogHeader>
           <div className="max-h-[400px] overflow-y-auto space-y-2 py-4">
             {customers.length === 0 ? (
               <p className="text-center text-muted-foreground py-4">
-                {t('export.noCustomers') || 'No customers available'}
+                {t("export.noCustomers")}
               </p>
             ) : (
               customers
-                .filter(c => !c.is_archived)
+                .filter((c) => !c.is_archived)
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .map((customer) => (
                   <Button
@@ -697,25 +773,33 @@ export default function ReportsPage() {
                     {generatingCustomerPDF === customer.id ? (
                       <Loader2 className="mr-3 h-4 w-4 animate-spin" />
                     ) : (
-                      <div className={cn(
-                        "w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium mr-3",
-                        customer.balance > 0 ? "bg-red-500" : "bg-green-500"
-                      )}>
+                      <div
+                        className={cn(
+                          "w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium mr-3",
+                          customer.balance > 0 ? "bg-red-500" : "bg-green-500",
+                        )}
+                      >
                         {customer.name.charAt(0).toUpperCase()}
                       </div>
                     )}
                     <div className="flex-1 text-left">
                       <p className="font-medium">{customer.name}</p>
-                      <p className={cn(
-                        "text-xs",
-                        customer.balance > 0 ? "text-red-500" : "text-green-500"
-                      )}>
+                      <p
+                        className={cn(
+                          "text-xs",
+                          customer.balance > 0
+                            ? "text-red-500"
+                            : "text-green-500",
+                        )}
+                      >
                         {formatCurrency(Math.abs(customer.balance))}
-                        {customer.balance > 0 ? ' outstanding' : ' settled'}
+                        {customer.balance > 0 ? ` ${t("export.outstanding")}` : ` ${t("export.settled")}`}
                       </p>
                     </div>
                     {generatingCustomerPDF === customer.id && (
-                      <span className="text-xs text-muted-foreground">Generating...</span>
+                      <span className="text-xs text-muted-foreground">
+                        {t("export.generating")}
+                      </span>
                     )}
                   </Button>
                 ))

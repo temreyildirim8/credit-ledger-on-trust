@@ -315,13 +315,15 @@ export default function SettingsPage() {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white shadow-md">
+      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white shadow-md dark:bg-none dark:p-0 dark:shadow-none dark:text-foreground">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
-            <Award className="h-8 w-8 text-white/80" />
+            <Award className="h-8 w-8 text-white/80 dark:text-accent" />
             <div>
               <h1 className="text-2xl font-bold font-display">{t("title")}</h1>
-              <p className="text-white/90 text-sm">{t("subtitle")}</p>
+              <p className="text-white/90 text-sm dark:text-muted-foreground">
+                {t("subtitle")}
+              </p>
             </div>
           </div>
         </div>
@@ -500,6 +502,10 @@ export default function SettingsPage() {
                         <SelectItem value="en">English</SelectItem>
                         <SelectItem value="tr">Türkçe</SelectItem>
                         <SelectItem value="es">Español</SelectItem>
+                        <SelectItem value="ar">العربية</SelectItem>
+                        <SelectItem value="hi">हिन्दी</SelectItem>
+                        <SelectItem value="id">Bahasa Indonesia</SelectItem>
+                        <SelectItem value="zu">Zulu</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

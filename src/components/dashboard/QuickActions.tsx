@@ -19,8 +19,8 @@ interface ActionButtonProps {
 
 function ActionButton({ label, icon, href, variant }: ActionButtonProps) {
   const variantStyles = {
-    primary: "bg-accent text-white hover:bg-accent-hover shadow-sm",
-    secondary: "bg-surface text-text hover:bg-surface-alt border-border",
+    primary: "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] shadow-sm",
+    secondary: "bg-[var(--color-surface)] text-[var(--color-text)] hover:bg-[var(--color-surface-alt)] border border-[var(--color-border)]",
   };
 
   return (
@@ -31,7 +31,7 @@ function ActionButton({ label, icon, href, variant }: ActionButtonProps) {
         variantStyles[variant]
       )}
     >
-      <div className="p-2.5 rounded-full bg-current">
+      <div className="p-2.5 rounded-full bg-current/20">
         {icon}
       </div>
       <span className="text-xs font-medium">{label}</span>

@@ -9,11 +9,11 @@ import styles from "./LanguageSwitcher.module.css";
 
 const localeNames: Record<Locale, string> = {
   en: "English",
-  tr: "Turkish",
-  es: "Spanish",
-  hi: "Hindi",
+  tr: "Türkçe",
+  es: "Español",
+  ar: "العربية",
+  hi: "हिन्दी",
   id: "Indonesian",
-  ar: "Arabic",
   zu: "Zulu",
 };
 
@@ -65,7 +65,10 @@ export default function LanguageSwitcher({
     <div className={styles.container} ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={clsx(styles.trigger, (isCompact || isIcon) && styles.triggerCompact)}
+        className={clsx(
+          styles.trigger,
+          (isCompact || isIcon) && styles.triggerCompact,
+        )}
         aria-label="Select language"
         aria-expanded={isOpen}
       >

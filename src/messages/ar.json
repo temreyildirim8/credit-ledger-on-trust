@@ -27,7 +27,8 @@
     "on": "على",
     "off": "إيقاف",
     "yes": "نعم",
-    "no": "لا"
+    "no": "لا",
+    "defaultBusinessName": "عملي"
   },
   "errorBoundary": {
     "title": "حدث خطأ ما",
@@ -112,6 +113,7 @@
     "dashboard": "لوحة التحكم",
     "customers": "العملاء",
     "transactions": "المعاملات",
+    "reports": "التقارير",
     "quickAdd": "إضافة سريعة",
     "settings": "الإعدادات",
     "login": "تسجيل الدخول",
@@ -135,7 +137,10 @@
     "collapseSidebar": "طي الشريط الجانبي",
     "home": "الرئيسية",
     "installApp": "تثبيت التطبيق",
-    "appInstalled": "التطبيق مثبت"
+    "appInstalled": "التطبيق مثبت",
+    "upgradeForPWA": "الترقية إلى Pro",
+    "upgradeForPWADesc": "قم بالترقية إلى Pro لتثبيت التطبيق",
+    "upgradeForTheme": "الترقية إلى Pro للوضع الداكن"
   },
   "home": {
     "meta": {
@@ -252,6 +257,12 @@
     "save17": "وفر 17%",
     "mostPopular": "الأكثر شعبية",
     "toggleBilling": "تغيير فترة الفوترة",
+    "periods": {
+      "forever": "للأبد",
+      "month": "شهر",
+      "year": "سنة",
+      "contact": "تواصل"
+    },
     "free": {
       "name": "مجاني للأبد",
       "price": "$0",
@@ -353,7 +364,7 @@
       "title1": "قصتنا: من الورق",
       "title2": "إلى السحابة",
       "paragraph1": "لعقود من الزمان، اعتمدت المشاريع الصغيرة في الأسواق الناشئة على دفاتر \"الحساب\" المكتوبة بخط اليد—سجلات ورقية تتبع ملايين المعاملات الائتمانية. لكن في الاقتصادات ذات التضخم المرتفع، الورق هش، والبيانات تضيع مع مرور الوقت.",
-      "paragraph2": "أسسنا Global Ledger (Dayn-X) لسد الفجوة الرقمية. نحن نستبدل الدفاتر التقليدية بـ",
+      "paragraph2": "أسسنا Ledgerly (Dayn-X) لسد الفجوة الرقمية. نحن نستبدل الدفاتر التقليدية بـ",
       "digitalTrust": "الثقة الرقمية",
       "paragraph3": "منصتنا لا تسجل المعاملات فقط؛ بل تبني هوية مالية لمن لا يمتلكون حسابات بنكية، مما يسمح لهم بالتوسع واسترداد الديون بشكل أسرع والازدهار.",
       "stat1Value": "99.9%",
@@ -375,7 +386,7 @@
     "hero": {
       "badge": "اتصل بنا",
       "title": "تواصل معنا",
-      "subtitle": "هل لديك أسئلة حول Global Ledger؟ نحن هنا للمساعدة. تواصل مع فريقنا للدعم أو المبيعات أو الشراكة."
+      "subtitle": "هل لديك أسئلة حول Ledgerly؟ نحن هنا للمساعدة. تواصل مع فريقنا للدعم أو المبيعات أو الشراكة."
     },
     "title": "تواصل معنا",
     "subtitle": "نود سماع منك",
@@ -462,15 +473,14 @@
     "recentActivity": {
       "title": "النشاط الأخير",
       "empty": "لا يوجد نشاط حديث",
-      "emptyDescription": "Start by adding your first customer or recording a transaction"
+      "emptyDescription": "ابدأ بإضافة أول عميل أو تسجيل معاملة"
     },
     "overdueDebts": {
       "title": "الديون المتأخرة",
       "empty": "لا توجد مدفوعات متأخرة",
       "remind": "تذكير",
       "daysOverdue": "يوم متأخر",
-      "emptyDescription": "Start by adding your first customer or recording a transaction",
-      "remind": "تذكير"
+      "emptyDescription": "ابدأ بإضافة أول عميل أو تسجيل معاملة"
     },
     "empty": {
       "title": "مرحبًا بك في Dayn-X",
@@ -493,20 +503,26 @@
       "noSearchResults": "لم يتم العثور على عملاء",
       "addFirst": "أضف أول عميل لك"
     },
-    "count": "{count} عميل | {count} عميل",
+    "count": "{count} عميل",
     "form": {
       "title": "إضافة عميل جديد",
       "editTitle": "تعديل العميل",
       "editDescription": "قم بتحديث معلومات العميل أدناه.",
+      "customId": "معرف العميل",
+      "customIdPlaceholder": "مثال، CUST-001، ABC123",
+      "customIdOptional": "(اختياري)",
       "name": "الاسم الكامل",
       "namePlaceholder": "أدخل اسم العميل",
       "phone": "رقم الهاتف",
       "phonePlaceholder": "+90 555 123 4567",
       "address": "العنوان",
       "addressPlaceholder": "أدخل العنوان (اختياري)",
+      "notes": "ملاحظات",
       "notesPlaceholder": "ملاحظات إضافية حول هذا العميل",
       "submit": "إضافة عميل",
-      "saveChanges": "حفظ التغييرات"
+      "saveChanges": "حفظ التغييرات",
+      "databaseId": "معرف قاعدة البيانات",
+      "nonEditable": "(غير قابل للتعديل)"
     },
     "details": {
       "totalDebt": "إجمالي الدين",
@@ -539,7 +555,10 @@
       "nameTooShort": "يجب أن يكون الاسم حرفين على الأقل",
       "nameTooLong": "يجب أن يكون الاسم أقل من 100 حرف",
       "invalidPhone": "الرجاء إدخال رقم هاتف صالح",
-      "fixErrors": "الرجاء تصحيح الأخطاء في النموذج"
+      "fixErrors": "الرجاء تصحيح الأخطاء في النموذج",
+      "invalidId": "يُسمح فقط بالحروف والأرقام والشرطات والشرطات السفلية",
+      "idTooShort": "يجب أن يكون المعرف 3 أحرف على الأقل",
+      "idTooLong": "يجب أن يكون المعرف أقل من 50 حرفاً"
     },
     "table": {
       "customer": "العميل",
@@ -558,6 +577,7 @@
   "transactions": {
     "title": "المعاملات",
     "addNew": "إضافة جديد",
+    "searchPlaceholder": "ابحث بالعميل، الوصف، أو المبلغ...",
     "filter": {
       "all": "الكل",
       "debts": "الديون",
@@ -565,11 +585,18 @@
     },
     "empty": {
       "noTransactions": "لا توجد معاملات بعد",
-      "noFilterResults": "لم يتم العثور على {filter}"
+      "noFilterResults": "لم يتم العثور على {filter}",
+      "noSearchResults": "لا توجد معاملات تطابق بحثك"
     },
-    "count": "{count} معاملة | {count} معاملة",
+    "count": "{count} معاملة",
+    "type": {
+      "debt": "دين",
+      "payment": "دفعة"
+    },
     "form": {
       "title": "معاملة جديدة",
+      "editTitle": "تعديل المعاملة",
+      "editDescription": "تحديث تفاصيل المعاملة",
       "description": "إضافة معاملة دين أو دفعة",
       "type": "النوع",
       "debt": "دين",
@@ -580,9 +607,19 @@
       "amountPlaceholder": "0.00",
       "note": "ملاحظة",
       "notePlaceholder": "الوصف (اختياري)",
-      "submit": "حفظ"
+      "date": "التاريخ",
+      "submit": "حفظ",
+      "saveChanges": "حفظ التغييرات"
+    },
+    "table": {
+      "customer": "العميل",
+      "amount": "المبلغ",
+      "description": "الوصف",
+      "date": "التاريخ",
+      "actions": "إجراءات"
     },
     "success": "تمت إضافة المعاملة!",
+    "editSuccess": "تم تحديث المعاملة!",
     "error": "فشل إضافة المعاملة",
     "validation": {
       "customerRequired": "العميل مطلوب",
@@ -625,10 +662,14 @@
       "collected": "المجموع",
       "newDebts": "ديون جديدة",
       "paymentsReceived": "المدفوعات المستلمة",
-      "activeCustomers": "العملاء النشطون"
+      "activeCustomers": "العملاء النشطون",
+      "collectionRate": "معدل التحصيل",
+      "withOutstandingBalance": "برصيد مستحق",
+      "fromLastMonth": "من الشهر الماضي"
     },
     "debtAging": {
       "title": "شيخوخة الديون",
+      "description": "الديون المستحقة حسب العمر",
       "current": "الحالي",
       "days30": "1-30 يوم",
       "days60": "31-60 يوم",
@@ -646,9 +687,21 @@
       "pdf": "تصدير كشف PDF",
       "csv": "تصدير CSV",
       "customerStatement": "كشف العميل",
+      "selectCustomer": "اختر العميل",
+      "selectCustomerDescription": "اختر عميلاً لإنشاء كشف حسابه",
+      "noCustomers": "لا يوجد عملاء متاحين",
       "noTransactions": "لا توجد معاملات للتصدير",
+      "generating": "جاري الإنشاء...",
+      "csvSuccess": "تم تصدير CSV بنجاح",
+      "csvError": "فشل تصدير CSV",
+      "pdfSuccess": "تم تصدير تقرير PDF بنجاح",
+      "pdfError": "فشل تصدير PDF",
+      "statementSuccess": "تم تصدير كشف العميل بنجاح",
+      "statementError": "فشل إنشاء كشف العميل",
       "success": "تم التصدير بنجاح",
-      "error": "فشل تصدير البيانات"
+      "error": "فشل تصدير البيانات",
+      "outstanding": "مستحق",
+      "settled": "مسوي"
     },
     "empty": {
       "title": "بيانات غير كافية",
@@ -996,6 +1049,18 @@
       "title": "إعادة تعيين كلمة المرور",
       "subtitle": "أدخل كلمة المرور الجديدة",
       "brandName": "Dayn-X",
+      "heroTitle": "إنشاء كلمة مرور جديدة",
+      "heroSubtitle": "يجب أن تكون كلمة المرور الجديدة آمنة وسهلة التذكر.",
+      "tipsTitle": "متطلبات كلمة المرور:",
+      "tip1": "8 أحرف على الأقل",
+      "tip2": "حرف كبير واحد",
+      "tip3": "رقم واحد",
+      "feature1Title": "تخزين مشفر",
+      "feature1Desc": "كلمات المرور مشفرة",
+      "feature2Title": "اتصال آمن",
+      "feature2Desc": "HTTPS مشفر",
+      "feature3Title": "قفل تلقائي",
+      "feature3Desc": "بعد 5 محاولات فاشلة",
       "password": "كلمة المرور الجديدة",
       "passwordPlaceholder": "أدخل كلمة المرور الجديدة",
       "confirmPassword": "تأكيد كلمة المرور",

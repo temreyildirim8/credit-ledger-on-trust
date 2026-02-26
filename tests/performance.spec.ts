@@ -1,7 +1,7 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page } from "@playwright/test";
 
 /**
- * Performance Tests for Global Ledger
+ * Performance Tests for Ledgerly
  *
  * These tests measure performance metrics using:
  * - Web Vitals (FCP, LCP, TTI, CLS)
@@ -15,7 +15,7 @@ import { test, expect, Page } from '@playwright/test';
  * - Cumulative Layout Shift (CLS): < 0.1
  */
 
-const TEST_LOCALE = 'en';
+const TEST_LOCALE = "en";
 const BASE_URL = `http://localhost:3000/${TEST_LOCALE}`;
 
 // Performance budgets (in milliseconds)
@@ -44,18 +44,18 @@ async function getWebVitals(page: Page) {
       };
 
       // Observe paint timing
-      if ('PerformanceObserver' in window) {
+      if ("PerformanceObserver" in window) {
         // First Contentful Paint
         try {
           const fcpObserver = new PerformanceObserver((list) => {
             const entries = list.getEntries();
             for (const entry of entries) {
-              if (entry.name === 'first-contentful-paint') {
+              if (entry.name === "first-contentful-paint") {
                 metrics.fcp = entry.startTime;
               }
             }
           });
-          fcpObserver.observe({ type: 'paint', buffered: true });
+          fcpObserver.observe({ type: "paint", buffered: true });
         } catch {
           // FCP not supported
         }
@@ -69,7 +69,10 @@ async function getWebVitals(page: Page) {
               metrics.lcp = lastEntry.startTime;
             }
           });
-          lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+          lcpObserver.observe({
+            type: "largest-contentful-paint",
+            buffered: true,
+          });
         } catch {
           // LCP not supported
         }
@@ -79,20 +82,23 @@ async function getWebVitals(page: Page) {
           let clsValue = 0;
           const clsObserver = new PerformanceObserver((list) => {
             for (const entry of list.getEntries()) {
-              if ('value' in entry && !(entry as { hadRecentInput?: boolean }).hadRecentInput) {
+              if (
+                "value" in entry &&
+                !(entry as { hadRecentInput?: boolean }).hadRecentInput
+              ) {
                 clsValue += (entry as { value: number }).value;
               }
             }
             metrics.cls = clsValue;
           });
-          clsObserver.observe({ type: 'layout-shift', buffered: true });
+          clsObserver.observe({ type: "layout-shift", buffered: true });
         } catch {
           // CLS not supported
         }
       }
 
       // Get DOM Content Loaded and Load timing
-      const navigationEntries = performance.getEntriesByType('navigation');
+      const navigationEntries = performance.getEntriesByType("navigation");
       if (navigationEntries.length > 0) {
         const navEntry = navigationEntries[0] as PerformanceNavigationTiming;
         // Approximate TTI as DOM Content Loaded + some buffer
@@ -108,7 +114,7 @@ async function getWebVitals(page: Page) {
 // Helper to get navigation timing
 async function getNavigationTiming(page: Page) {
   return await page.evaluate(() => {
-    const entries = performance.getEntriesByType('navigation');
+    const entries = performance.getEntriesByType("navigation");
     if (entries.length > 0) {
       const nav = entries[0] as PerformanceNavigationTiming;
       return {
@@ -128,12 +134,14 @@ async function getNavigationTiming(page: Page) {
 // Helper to count resources by type
 async function getResourceCounts(page: Page) {
   return await page.evaluate(() => {
-    const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+    const resources = performance.getEntriesByType(
+      "resource",
+    ) as PerformanceResourceTiming[];
     const counts: Record<string, number> = {};
 
     for (const resource of resources) {
       const url = new URL(resource.name);
-      const ext = url.pathname.split('.').pop() || 'other';
+      const ext = url.pathname.split(".").pop() || "other";
       counts[ext] = (counts[ext] || 0) + 1;
     }
 
@@ -147,7 +155,9 @@ async function getResourceCounts(page: Page) {
 // Helper to get total resource size (if available)
 async function getResourceSizes(page: Page) {
   return await page.evaluate(() => {
-    const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+    const resources = performance.getEntriesByType(
+      "resource",
+    ) as PerformanceResourceTiming[];
     let totalSize = 0;
 
     for (const resource of resources) {
@@ -163,37 +173,43 @@ async function getResourceSizes(page: Page) {
   });
 }
 
-test.describe('Performance Tests - Marketing Pages', () => {
-  test('home page should meet FCP budget', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+test.describe("Performance Tests - Marketing Pages", () => {
+  test("home page should meet FCP budget", async ({ page }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     const vitals = await getWebVitals(page);
 
     if (vitals.fcp !== null) {
-      console.log(`Home page FCP: ${vitals.fcp.toFixed(0)}ms (budget: ${PERFORMANCE_BUDGETS.FCP}ms)`);
+      console.log(
+        `Home page FCP: ${vitals.fcp.toFixed(0)}ms (budget: ${PERFORMANCE_BUDGETS.FCP}ms)`,
+      );
       expect(vitals.fcp).toBeLessThan(PERFORMANCE_BUDGETS.FCP);
     } else {
       // If FCP not available, check basic load time
       const timing = await getNavigationTiming(page);
       if (timing) {
-        expect(timing.domContentLoaded).toBeLessThan(PERFORMANCE_BUDGETS.DOM_CONTENT_LOADED);
+        expect(timing.domContentLoaded).toBeLessThan(
+          PERFORMANCE_BUDGETS.DOM_CONTENT_LOADED,
+        );
       }
     }
   });
 
-  test('home page should meet LCP budget', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+  test("home page should meet LCP budget", async ({ page }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     const vitals = await getWebVitals(page);
 
     if (vitals.lcp !== null) {
-      console.log(`Home page LCP: ${vitals.lcp.toFixed(0)}ms (budget: ${PERFORMANCE_BUDGETS.LCP}ms)`);
+      console.log(
+        `Home page LCP: ${vitals.lcp.toFixed(0)}ms (budget: ${PERFORMANCE_BUDGETS.LCP}ms)`,
+      );
       expect(vitals.lcp).toBeLessThan(PERFORMANCE_BUDGETS.LCP);
     }
   });
 
-  test('home page should have low CLS', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+  test("home page should have low CLS", async ({ page }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     // Scroll to trigger any lazy-loaded content
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -207,17 +223,17 @@ test.describe('Performance Tests - Marketing Pages', () => {
     }
   });
 
-  test('home page load time should be acceptable', async ({ page }) => {
+  test("home page load time should be acceptable", async ({ page }) => {
     const startTime = Date.now();
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'load' });
+    await page.goto(`${BASE_URL}/`, { waitUntil: "load" });
     const loadTime = Date.now() - startTime;
 
     console.log(`Home page load time: ${loadTime}ms`);
     expect(loadTime).toBeLessThan(PERFORMANCE_BUDGETS.LOAD);
   });
 
-  test('pricing page should meet performance budgets', async ({ page }) => {
-    await page.goto(`${BASE_URL}/pricing`, { waitUntil: 'networkidle' });
+  test("pricing page should meet performance budgets", async ({ page }) => {
+    await page.goto(`${BASE_URL}/pricing`, { waitUntil: "networkidle" });
 
     const vitals = await getWebVitals(page);
 
@@ -227,8 +243,8 @@ test.describe('Performance Tests - Marketing Pages', () => {
     }
   });
 
-  test('about page should meet performance budgets', async ({ page }) => {
-    await page.goto(`${BASE_URL}/about`, { waitUntil: 'networkidle' });
+  test("about page should meet performance budgets", async ({ page }) => {
+    await page.goto(`${BASE_URL}/about`, { waitUntil: "networkidle" });
 
     const vitals = await getWebVitals(page);
 
@@ -239,9 +255,9 @@ test.describe('Performance Tests - Marketing Pages', () => {
   });
 });
 
-test.describe('Performance Tests - Auth Pages', () => {
-  test('login page should meet performance budgets', async ({ page }) => {
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle' });
+test.describe("Performance Tests - Auth Pages", () => {
+  test("login page should meet performance budgets", async ({ page }) => {
+    await page.goto(`${BASE_URL}/login`, { waitUntil: "networkidle" });
 
     const vitals = await getWebVitals(page);
 
@@ -251,8 +267,8 @@ test.describe('Performance Tests - Auth Pages', () => {
     }
   });
 
-  test('signup page should meet performance budgets', async ({ page }) => {
-    await page.goto(`${BASE_URL}/signup`, { waitUntil: 'networkidle' });
+  test("signup page should meet performance budgets", async ({ page }) => {
+    await page.goto(`${BASE_URL}/signup`, { waitUntil: "networkidle" });
 
     const vitals = await getWebVitals(page);
 
@@ -263,11 +279,11 @@ test.describe('Performance Tests - Auth Pages', () => {
   });
 });
 
-test.describe('Performance Tests - App Pages (Authenticated)', () => {
-  test.use({ storageState: 'playwright/.auth/user.json' });
+test.describe("Performance Tests - App Pages (Authenticated)", () => {
+  test.use({ storageState: "playwright/.auth/user.json" });
 
-  test('dashboard should meet performance budgets', async ({ page }) => {
-    await page.goto(`${BASE_URL}/dashboard`, { waitUntil: 'networkidle' });
+  test("dashboard should meet performance budgets", async ({ page }) => {
+    await page.goto(`${BASE_URL}/dashboard`, { waitUntil: "networkidle" });
 
     const vitals = await getWebVitals(page);
 
@@ -278,8 +294,8 @@ test.describe('Performance Tests - App Pages (Authenticated)', () => {
     }
   });
 
-  test('customers page should meet performance budgets', async ({ page }) => {
-    await page.goto(`${BASE_URL}/customers`, { waitUntil: 'networkidle' });
+  test("customers page should meet performance budgets", async ({ page }) => {
+    await page.goto(`${BASE_URL}/customers`, { waitUntil: "networkidle" });
 
     const vitals = await getWebVitals(page);
 
@@ -289,8 +305,10 @@ test.describe('Performance Tests - App Pages (Authenticated)', () => {
     }
   });
 
-  test('transactions page should meet performance budgets', async ({ page }) => {
-    await page.goto(`${BASE_URL}/transactions`, { waitUntil: 'networkidle' });
+  test("transactions page should meet performance budgets", async ({
+    page,
+  }) => {
+    await page.goto(`${BASE_URL}/transactions`, { waitUntil: "networkidle" });
 
     const vitals = await getWebVitals(page);
 
@@ -301,20 +319,22 @@ test.describe('Performance Tests - App Pages (Authenticated)', () => {
   });
 });
 
-test.describe('Performance Tests - Resource Analysis', () => {
-  test('home page should not load excessive resources', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+test.describe("Performance Tests - Resource Analysis", () => {
+  test("home page should not load excessive resources", async ({ page }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     const counts = await getResourceCounts(page);
     console.log(`Home page total resources: ${counts.total}`);
-    console.log('Resources by type:', counts.byType);
+    console.log("Resources by type:", counts.byType);
 
     // Should not load more than 100 resources
     expect(counts.total).toBeLessThan(100);
   });
 
-  test('home page total resource size should be reasonable', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+  test("home page total resource size should be reasonable", async ({
+    page,
+  }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     const sizes = await getResourceSizes(page);
     console.log(`Home page total size: ${sizes.totalKB}KB`);
@@ -323,36 +343,40 @@ test.describe('Performance Tests - Resource Analysis', () => {
     expect(sizes.totalKB).toBeLessThan(2048);
   });
 
-  test('JavaScript bundle should be reasonable size', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+  test("JavaScript bundle should be reasonable size", async ({ page }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     const resources = await page.evaluate(() => {
-      const entries = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+      const entries = performance.getEntriesByType(
+        "resource",
+      ) as PerformanceResourceTiming[];
       return entries
-        .filter((r) => r.name.includes('.js'))
+        .filter((r) => r.name.includes(".js"))
         .map((r) => ({
-          name: r.name.split('/').pop(),
+          name: r.name.split("/").pop(),
           size: r.transferSize,
         }));
     });
 
     const totalJS = resources.reduce((sum, r) => sum + r.size, 0);
     console.log(`Total JS size: ${Math.round(totalJS / 1024)}KB`);
-    console.log('JS files:', resources);
+    console.log("JS files:", resources);
 
     // Should be less than 1MB of JS
     expect(totalJS).toBeLessThan(1024 * 1024);
   });
 
-  test('CSS bundle should be reasonable size', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+  test("CSS bundle should be reasonable size", async ({ page }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     const resources = await page.evaluate(() => {
-      const entries = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+      const entries = performance.getEntriesByType(
+        "resource",
+      ) as PerformanceResourceTiming[];
       return entries
-        .filter((r) => r.name.includes('.css'))
+        .filter((r) => r.name.includes(".css"))
         .map((r) => ({
-          name: r.name.split('/').pop(),
+          name: r.name.split("/").pop(),
           size: r.transferSize,
         }));
     });
@@ -365,14 +389,16 @@ test.describe('Performance Tests - Resource Analysis', () => {
   });
 });
 
-test.describe('Performance Tests - Navigation Timing', () => {
-  test('home page navigation timing should be within budget', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+test.describe("Performance Tests - Navigation Timing", () => {
+  test("home page navigation timing should be within budget", async ({
+    page,
+  }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     const timing = await getNavigationTiming(page);
 
     if (timing) {
-      console.log('Navigation timing:', timing);
+      console.log("Navigation timing:", timing);
 
       // DNS lookup should be fast
       expect(timing.dns).toBeLessThan(100);
@@ -384,18 +410,22 @@ test.describe('Performance Tests - Navigation Timing', () => {
       expect(timing.response).toBeLessThan(1000);
 
       // DOM Content Loaded should be within budget
-      expect(timing.domContentLoaded).toBeLessThan(PERFORMANCE_BUDGETS.DOM_CONTENT_LOADED);
+      expect(timing.domContentLoaded).toBeLessThan(
+        PERFORMANCE_BUDGETS.DOM_CONTENT_LOADED,
+      );
     }
   });
 });
 
-test.describe('Performance Tests - i18n Performance', () => {
-  const locales = ['en', 'tr', 'id'];
+test.describe("Performance Tests - i18n Performance", () => {
+  const locales = ["en", "tr", "id"];
 
   for (const locale of locales) {
     test(`locale ${locale} should load within budget`, async ({ page }) => {
       const startTime = Date.now();
-      await page.goto(`http://localhost:3000/${locale}/`, { waitUntil: 'load' });
+      await page.goto(`http://localhost:3000/${locale}/`, {
+        waitUntil: "load",
+      });
       const loadTime = Date.now() - startTime;
 
       console.log(`Locale ${locale} load time: ${loadTime}ms`);
@@ -404,13 +434,13 @@ test.describe('Performance Tests - i18n Performance', () => {
   }
 });
 
-test.describe('Performance Tests - Mobile Performance', () => {
-  test('mobile home page should load within budget', async ({ page }) => {
+test.describe("Performance Tests - Mobile Performance", () => {
+  test("mobile home page should load within budget", async ({ page }) => {
     // Simulate mobile
     await page.setViewportSize({ width: 375, height: 667 });
 
     const startTime = Date.now();
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'load' });
+    await page.goto(`${BASE_URL}/`, { waitUntil: "load" });
     const loadTime = Date.now() - startTime;
 
     console.log(`Mobile home page load time: ${loadTime}ms`);
@@ -419,11 +449,11 @@ test.describe('Performance Tests - Mobile Performance', () => {
     expect(loadTime).toBeLessThan(PERFORMANCE_BUDGETS.LOAD * 1.5);
   });
 
-  test('mobile login page should load within budget', async ({ page }) => {
+  test("mobile login page should load within budget", async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
 
     const startTime = Date.now();
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'load' });
+    await page.goto(`${BASE_URL}/login`, { waitUntil: "load" });
     const loadTime = Date.now() - startTime;
 
     console.log(`Mobile login page load time: ${loadTime}ms`);
@@ -431,14 +461,16 @@ test.describe('Performance Tests - Mobile Performance', () => {
   });
 });
 
-test.describe('Performance Tests - Caching', () => {
-  test('static assets should be cacheable', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+test.describe("Performance Tests - Caching", () => {
+  test("static assets should be cacheable", async ({ page }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     const cacheableResources = await page.evaluate(() => {
-      const entries = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+      const entries = performance.getEntriesByType(
+        "resource",
+      ) as PerformanceResourceTiming[];
       return entries
-        .filter((r) => r.name.includes('/_next/static/'))
+        .filter((r) => r.name.includes("/_next/static/"))
         .map((r) => ({
           name: r.name,
           cached: r.transferSize === 0,
@@ -453,18 +485,20 @@ test.describe('Performance Tests - Caching', () => {
     expect(cacheableResources.length).toBeGreaterThan(0);
   });
 
-  test('second page load should be faster (cache hit)', async ({ page }) => {
+  test("second page load should be faster (cache hit)", async ({ page }) => {
     // First load
     const firstStartTime = Date.now();
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'load' });
+    await page.goto(`${BASE_URL}/`, { waitUntil: "load" });
     const firstLoadTime = Date.now() - firstStartTime;
 
     // Second load (should hit cache)
     const secondStartTime = Date.now();
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'load' });
+    await page.goto(`${BASE_URL}/`, { waitUntil: "load" });
     const secondLoadTime = Date.now() - secondStartTime;
 
-    console.log(`First load: ${firstLoadTime}ms, Second load: ${secondLoadTime}ms`);
+    console.log(
+      `First load: ${firstLoadTime}ms, Second load: ${secondLoadTime}ms`,
+    );
 
     // Second load should generally be faster or similar
     // (may not always be true due to network variability)
@@ -472,15 +506,18 @@ test.describe('Performance Tests - Caching', () => {
   });
 });
 
-test.describe('Performance Tests - API Response Time', () => {
-  test.use({ storageState: 'playwright/.auth/user.json' });
+test.describe("Performance Tests - API Response Time", () => {
+  test.use({ storageState: "playwright/.auth/user.json" });
 
-  test('dashboard API calls should be fast', async ({ page }) => {
+  test("dashboard API calls should be fast", async ({ page }) => {
     // Track API response times
     const apiTimes: number[] = [];
 
-    page.on('response', (response) => {
-      if (response.url().includes('/rest/v1/') || response.url().includes('/api/')) {
+    page.on("response", (response) => {
+      if (
+        response.url().includes("/rest/v1/") ||
+        response.url().includes("/api/")
+      ) {
         const timing = response.timing();
         if (timing.responseEnd) {
           apiTimes.push(timing.responseEnd);
@@ -488,7 +525,7 @@ test.describe('Performance Tests - API Response Time', () => {
       }
     });
 
-    await page.goto(`${BASE_URL}/dashboard`, { waitUntil: 'networkidle' });
+    await page.goto(`${BASE_URL}/dashboard`, { waitUntil: "networkidle" });
 
     if (apiTimes.length > 0) {
       const avgTime = apiTimes.reduce((a, b) => a + b, 0) / apiTimes.length;
@@ -500,14 +537,15 @@ test.describe('Performance Tests - API Response Time', () => {
   });
 });
 
-test.describe('Performance Tests - Memory Usage', () => {
-  test('home page should not have memory leaks', async ({ page }) => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+test.describe("Performance Tests - Memory Usage", () => {
+  test("home page should not have memory leaks", async ({ page }) => {
+    await page.goto(`${BASE_URL}/`, { waitUntil: "networkidle" });
 
     // Get initial memory (if available in Chrome)
     const initialMemory = await page.evaluate(() => {
-      if ('memory' in performance) {
-        return (performance as { memory?: { usedJSHeapSize: number } }).memory?.usedJSHeapSize;
+      if ("memory" in performance) {
+        return (performance as { memory?: { usedJSHeapSize: number } }).memory
+          ?.usedJSHeapSize;
       }
       return null;
     });
@@ -519,14 +557,17 @@ test.describe('Performance Tests - Memory Usage', () => {
 
     // Force garbage collection if possible (Chrome flag needed)
     const finalMemory = await page.evaluate(() => {
-      if ('memory' in performance) {
-        return (performance as { memory?: { usedJSHeapSize: number } }).memory?.usedJSHeapSize;
+      if ("memory" in performance) {
+        return (performance as { memory?: { usedJSHeapSize: number } }).memory
+          ?.usedJSHeapSize;
       }
       return null;
     });
 
     if (initialMemory && finalMemory) {
-      console.log(`Initial memory: ${Math.round(initialMemory / 1024 / 1024)}MB`);
+      console.log(
+        `Initial memory: ${Math.round(initialMemory / 1024 / 1024)}MB`,
+      );
       console.log(`Final memory: ${Math.round(finalMemory / 1024 / 1024)}MB`);
 
       // Memory should not increase by more than 50%
@@ -535,9 +576,11 @@ test.describe('Performance Tests - Memory Usage', () => {
   });
 });
 
-test.describe('Performance Tests - Time to First Byte (TTFB)', () => {
-  test('home page TTFB should be fast', async ({ page }) => {
-    const response = await page.goto(`${BASE_URL}/`, { waitUntil: 'domcontentloaded' });
+test.describe("Performance Tests - Time to First Byte (TTFB)", () => {
+  test("home page TTFB should be fast", async ({ page }) => {
+    const response = await page.goto(`${BASE_URL}/`, {
+      waitUntil: "domcontentloaded",
+    });
 
     if (response) {
       const timing = response.timing();
@@ -549,9 +592,9 @@ test.describe('Performance Tests - Time to First Byte (TTFB)', () => {
     }
   });
 
-  test('API routes TTFB should be fast', async ({ page }) => {
+  test("API routes TTFB should be fast", async ({ page }) => {
     const response = await page.goto(`${BASE_URL}/api/health`, {
-      waitUntil: 'domcontentloaded',
+      waitUntil: "domcontentloaded",
     });
 
     if (response) {

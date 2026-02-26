@@ -97,7 +97,7 @@ export function SubscriptionUpgradeModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
+      <DialogContent className="w-[95vw] md:w-auto md:max-w-5xl lg:max-w-6xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 md:p-8">
         <DialogHeader>
           <DialogTitle className="text-xl font-display flex items-center gap-2">
             <Zap className="h-5 w-5 text-accent" />
@@ -106,7 +106,7 @@ export function SubscriptionUpgradeModal({
           <DialogDescription>{t('description')}</DialogDescription>
         </DialogHeader>
 
-        <div className="grid md:grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mt-6">
           {plans.map((plan) => {
             const Icon = plan.icon;
             const isSelected = selectedPlan === plan.key;

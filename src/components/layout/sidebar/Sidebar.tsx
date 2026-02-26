@@ -18,12 +18,14 @@ import {
   BookOpen,
   Download,
   CheckCircle,
+  BarChart3,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { SyncStatusIndicator } from "@/components/layout/sync-status";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { usePWAInstall } from "@/components/pwa/PWAInstallProvider";
+import { useSubscription } from "@/lib/hooks/useSubscription";
 import {
   Tooltip,
   TooltipContent,
@@ -48,6 +50,11 @@ const navItems = [
     key: "transactions",
     href: "/transactions",
     icon: Receipt,
+  },
+  {
+    key: "reports",
+    href: "/reports",
+    icon: BarChart3,
   },
   {
     key: "quickAdd",
@@ -76,6 +83,10 @@ export function Sidebar({ className }: SidebarProps) {
   const t = useTranslations("nav");
   const localeHook = useLocale();
   const { isInstallable, isInstalled, install } = usePWAInstall();
+  const { hasFeature } = useSubscription();
+
+  // Check if theme change is allowed (Pro feature)
+  const canChangeTheme = hasFeature("themeChange");
 
   // Collapsed state persisted to localStorage
   const [isCollapsed, setIsCollapsed] = useState(() => {
@@ -90,7 +101,7 @@ export function Sidebar({ className }: SidebarProps) {
     localStorage.setItem("sidebar-collapsed", String(isCollapsed));
     // Dispatch custom event for AppShell to respond
     window.dispatchEvent(
-      new CustomEvent("sidebar-toggle", { detail: { collapsed: isCollapsed } })
+      new CustomEvent("sidebar-toggle", { detail: { collapsed: isCollapsed } }),
     );
   }, [isCollapsed]);
 
@@ -124,7 +135,7 @@ export function Sidebar({ className }: SidebarProps) {
         "hidden md:flex flex-col bg-surface border-e border-border",
         "fixed top-0 start-0 bottom-0 z-50",
         "transition-all duration-300 ease-in-out",
-        className
+        className,
       )}
       style={{ width: sidebarWidth }}
     >
@@ -132,7 +143,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div
         className={cn(
           "flex items-center border-b border-border transition-all duration-300 cursor-pointer",
-          isCollapsed ? "justify-center p-3" : "gap-3 p-5"
+          isCollapsed ? "justify-center p-3" : "gap-3 p-5",
         )}
         onDoubleClick={toggleSidebar}
         title="Double-click to toggle sidebar"
@@ -179,7 +190,7 @@ export function Sidebar({ className }: SidebarProps) {
                 isCollapsed ? "justify-center px-0 py-2.5" : "px-3 py-2.5",
                 isActive
                   ? "bg-accent text-white shadow-sm"
-                  : "text-text-secondary hover:bg-surface-alt hover:text-text"
+                  : "text-text-secondary hover:bg-surface-alt hover:text-text",
               )}
             >
               {/* Active indicator background */}
@@ -215,69 +226,17 @@ export function Sidebar({ className }: SidebarProps) {
         })}
       </nav>
 
-      {/* Sync Status Indicator */}
-      <div
-        className={cn(
-          "border-t border-border transition-all duration-300",
-          isCollapsed ? "flex justify-center px-2 py-2" : "px-3 py-2"
-        )}
-      >
-        {isCollapsed ? (
-          <SyncStatusIndicator variant="compact" />
-        ) : (
-          <SyncStatusIndicator variant="full" />
-        )}
-      </div>
-
-      {/* PWA Install Button */}
-      {(isInstallable || isInstalled) && (
-        <div
-          className={cn(
-            "transition-all duration-300",
-            isCollapsed ? "flex justify-center px-0 py-2" : "px-3 py-2"
-          )}
-        >
-          <Tooltip delayDuration={0}>
-            <TooltipTrigger asChild>
-              <button
-                onClick={install}
-                disabled={isInstalled}
-                className={cn(
-                  "flex items-center gap-2 w-full rounded-lg transition-all duration-200",
-                  isInstalled
-                    ? "text-[var(--color-success)] cursor-default"
-                    : "text-accent hover:bg-accent/10",
-                  isCollapsed ? "justify-center h-9 w-9" : "justify-start py-2 px-3"
-                )}
-                aria-label={isInstalled ? t("appInstalled") : t("installApp")}
-              >
-                {isInstalled ? (
-                  <CheckCircle className="w-5 h-5 flex-shrink-0" />
-                ) : (
-                  <Download className="w-5 h-5 flex-shrink-0" />
-                )}
-                {!isCollapsed && (
-                  <span className="text-sm font-medium">
-                    {isInstalled ? t("appInstalled") : t("installApp")}
-                  </span>
-                )}
-              </button>
-            </TooltipTrigger>
-            {isCollapsed && (
-              <TooltipContent side="right">
-                {isInstalled ? t("appInstalled") : t("installApp")}
-              </TooltipContent>
-            )}
-          </Tooltip>
-        </div>
-      )}
-
       {/* Language Switcher */}
       <div
         className={cn(
-          "transition-all duration-300",
-          isCollapsed ? "flex justify-center px-0 py-2" : "px-3 py-2"
+          "border-t border-border transition-all duration-300",
+          isCollapsed ? "flex justify-center px-0 py-2" : "px-3 py-2",
         )}
+        onClick={() => {
+          if (isCollapsed) {
+            setIsCollapsed(false);
+          }
+        }}
       >
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
@@ -293,24 +252,118 @@ export function Sidebar({ className }: SidebarProps) {
         </Tooltip>
       </div>
 
-      {/* Theme Toggle */}
+      {/* Sync Status Indicator */}
       <div
         className={cn(
           "transition-all duration-300",
-          isCollapsed ? "flex justify-center px-0 pb-2" : "px-3 pb-2"
+          isCollapsed ? "flex justify-center px-2 py-2" : "px-3 py-2",
+        )}
+      >
+        {isCollapsed ? (
+          <SyncStatusIndicator variant="compact" />
+        ) : (
+          <SyncStatusIndicator variant="full" />
+        )}
+      </div>
+
+      {/* PWA Install Button */}
+      <div
+        className={cn(
+          "transition-all duration-300",
+          isCollapsed ? "flex justify-center px-0 py-2" : "px-3 py-2",
+        )}
+      >
+        <Tooltip delayDuration={0}>
+          <TooltipTrigger asChild>
+            <button
+              onClick={install}
+              disabled={isInstalled || !isInstallable}
+              className={cn(
+                "flex items-center gap-3 w-full rounded-lg transition-all duration-200",
+                isInstalled
+                  ? "text-[var(--color-success)] cursor-default"
+                  : isInstallable
+                    ? "text-accent hover:bg-accent/10 cursor-pointer"
+                    : "text-text-tertiary cursor-not-allowed opacity-50",
+                isCollapsed
+                  ? "justify-center h-9 w-9"
+                  : "justify-start py-2 px-3",
+              )}
+              aria-label={
+                isInstalled
+                  ? t("appInstalled")
+                  : isInstallable
+                    ? t("installApp")
+                    : t("upgradeForPWA")
+              }
+            >
+              {isInstalled ? (
+                <CheckCircle className="w-5 h-5 flex-shrink-0" />
+              ) : (
+                <Download className="w-5 h-5 flex-shrink-0" />
+              )}
+              {!isCollapsed && (
+                <span className="text-sm font-medium">
+                  {isInstalled ? t("appInstalled") : t("installApp")}
+                </span>
+              )}
+            </button>
+          </TooltipTrigger>
+          {isCollapsed ? (
+            <TooltipContent
+              side="right"
+              className="bg-surface border border-border shadow-lg"
+            >
+              {isInstalled
+                ? t("appInstalled")
+                : isInstallable
+                  ? t("installApp")
+                  : t("upgradeForPWADesc")}
+            </TooltipContent>
+          ) : !isInstallable && !isInstalled ? (
+            <TooltipContent
+              side="top"
+              className="bg-surface border border-border shadow-lg"
+            >
+              {t("upgradeForPWADesc")}
+            </TooltipContent>
+          ) : null}
+        </Tooltip>
+      </div>
+
+      {/* Theme Toggle */}
+      <div
+        className={cn(
+          "border-t border-border transition-all duration-300",
+          isCollapsed ? "flex justify-center px-0 py-3" : "px-3 py-2",
         )}
       >
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
             <div className={isCollapsed ? "flex justify-center" : "w-full"}>
-              <ThemeToggle variant={isCollapsed ? "compact" : "full"} />
+              <ThemeToggle
+                variant={isCollapsed ? "compact" : "full"}
+                disabled={!canChangeTheme}
+              />
             </div>
           </TooltipTrigger>
-          {isCollapsed && (
-            <TooltipContent side="right">
-              {t("toggleTheme") || "Toggle Theme"}
+          {isCollapsed ? (
+            <TooltipContent
+              side="right"
+              className="bg-surface border border-border shadow-lg"
+            >
+              {canChangeTheme
+                ? t("toggleTheme") || "Toggle Theme"
+                : t("upgradeForTheme")}
             </TooltipContent>
-          )}
+          ) : !canChangeTheme ? (
+            <TooltipContent
+              side="top"
+              className="bg-surface border border-border shadow-lg"
+            >
+              {t("upgradeForTheme")}
+            </TooltipContent>
+          ) : null}
         </Tooltip>
       </div>
 
@@ -318,7 +371,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div
         className={cn(
           "border-t border-border transition-all duration-300",
-          isCollapsed ? "px-0 py-3 flex justify-center" : "px-3 py-3"
+          isCollapsed ? "px-0 py-3 flex justify-center" : "px-3 py-3",
         )}
       >
         <Tooltip delayDuration={0}>
@@ -326,11 +379,13 @@ export function Sidebar({ className }: SidebarProps) {
             <button
               onClick={toggleSidebar}
               className={cn(
-                "flex items-center gap-2 w-full rounded-lg transition-all duration-200",
+                "flex items-center gap-3 w-full rounded-lg transition-all duration-200",
                 "text-text-secondary hover:bg-surface-alt hover:text-text",
-                isCollapsed ? "justify-center h-9" : "justify-start py-2 px-3"
+                isCollapsed ? "justify-center h-9" : "justify-start py-2 px-3",
               )}
-              aria-label={isCollapsed ? t("expandSidebar") : t("collapseSidebar")}
+              aria-label={
+                isCollapsed ? t("expandSidebar") : t("collapseSidebar")
+              }
             >
               {isCollapsed ? (
                 <ChevronRight className="w-5 h-5" />
@@ -352,7 +407,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div
         className={cn(
           "border-t border-border transition-all duration-300",
-          isCollapsed ? "px-0 py-3 flex justify-center" : "p-4"
+          isCollapsed ? "px-0 py-3 flex justify-center" : "p-4",
         )}
       >
         <Tooltip delayDuration={0}>
@@ -361,7 +416,7 @@ export function Sidebar({ className }: SidebarProps) {
               onClick={handleLogout}
               className={cn(
                 "flex items-center gap-3 rounded-lg text-error hover:bg-error/5 transition-all duration-200 group",
-                isCollapsed ? "justify-center h-9 w-9" : "px-3 py-2.5 w-full"
+                isCollapsed ? "justify-center h-9 w-9" : "px-3 py-2.5 w-full",
               )}
               aria-label={t("signOut")}
             >

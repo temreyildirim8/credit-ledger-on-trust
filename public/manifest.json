@@ -1,6 +1,6 @@
 {
-  "name": "Global Ledger - Credit Ledger App",
-  "short_name": "Global Ledger",
+  "name": "Ledgerly - Credit Ledger App",
+  "short_name": "Ledgerly",
   "description": "Digital credit ledger for micro-SMEs. Replace your paper notebook with a smart, secure, and always-available solution.",
   "start_url": "/",
   "display": "standalone",

@@ -31,7 +31,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-accent" />
+        <Loader2 className="h-8 w-8 animate-spin text-[var(--color-accent)]" />
       </div>
     );
   }
@@ -52,20 +52,20 @@ export default function DashboardPage() {
       <QuickTour />
 
       {/* Greeting Header - Refined Card */}
-      <div className="bg-gradient-to-br from-accent to-accent-hover rounded-2xl p-6 text-white shadow-md">
+      <div className="bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-2xl p-6 text-white shadow-md dark:bg-none dark:p-0 dark:shadow-none dark:text-foreground">
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-2xl font-bold font-display mb-1">
               {getGreeting()} 👋
             </h1>
-            <p className="text-white/90 text-sm">
+            <p className="text-white/90 text-sm dark:text-muted-foreground">
               {t('stats.totalOwed')} • {t('stats.thisMonth')}
             </p>
           </div>
           <Button
             size="sm"
             variant="secondary"
-            className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+            className="bg-white/20 hover:bg-white/30 text-white border-white/30 dark:bg-accent dark:text-white dark:hover:bg-accent-hover dark:border-transparent"
             data-tour="quick-add-button"
           >
             <Plus className="h-4 w-4" />
@@ -84,15 +84,15 @@ export default function DashboardPage() {
       </div>
 
       {/* Quick Actions - Redesigned */}
-      <div className="bg-surface rounded-2xl border border-border p-5 shadow-sm" data-tour="quick-actions">
+      <div className="bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] p-5 shadow-sm" data-tour="quick-actions">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-text">
+          <h2 className="text-lg font-semibold text-[var(--color-text)]">
             {t('quickActions.title')}
           </h2>
           <Button
             variant="ghost"
             size="sm"
-            className="text-accent hover:text-accent-hover"
+            className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]"
           >
             View All
             <ArrowUpRight className="h-4 w-4" />
@@ -106,7 +106,7 @@ export default function DashboardPage() {
 
       {/* Recent Activity */}
       <div data-tour="recent-activity">
-        <h2 className="text-lg font-semibold text-text mb-4">
+        <h2 className="text-lg font-semibold text-[var(--color-text)] mb-4">
           {t('recentActivity.title')}
         </h2>
         <RecentActivity activities={recentActivity} locale={locale} />

@@ -1,21 +1,37 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Loader2 } from 'lucide-react';
-import { toast } from 'sonner';
-import { useTranslations } from 'next-intl';
-import { Customer } from '@/lib/services/customers.service';
-import { useUserProfile } from '@/lib/hooks/useUserProfile';
-import { PhoneInput, PhoneInputValue } from '@/components/ui/phone-input';
+import { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { useTranslations } from "next-intl";
+import { Customer } from "@/lib/services/customers.service";
+import { useUserProfile } from "@/lib/hooks/useUserProfile";
+import { PhoneInput, PhoneInputValue } from "@/components/ui/phone-input";
 
 interface EditCustomerModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onSave: (customerId: string, customer: { name: string; phone?: string; address?: string; notes?: string }) => Promise<unknown>;
+  onSave: (
+    customerId: string,
+    customer: {
+      national_id?: string | null;
+      name: string;
+      phone?: string;
+      address?: string;
+      notes?: string;
+    },
+  ) => Promise<unknown>;
   customer: Customer | null;
 }
 
@@ -24,26 +40,36 @@ interface FormErrors {
   phone?: string;
 }
 
-export function EditCustomerModal({ open, onOpenChange, onSave, customer }: EditCustomerModalProps) {
-  const t = useTranslations('customers.form');
-  const tCommon = useTranslations('common');
-  const tCustomers = useTranslations('customers');
+export function EditCustomerModal({
+  open,
+  onOpenChange,
+  onSave,
+  customer,
+}: EditCustomerModalProps) {
+  const t = useTranslations("customers.form");
+  const tCommon = useTranslations("common");
+  const tCustomers = useTranslations("customers");
   const { currency } = useUserProfile();
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [notes, setNotes] = useState('');
+  const [nationalId, setNationalId] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [touched, setTouched] = useState<{ name: boolean; phone: boolean }>({ name: false, phone: false });
+  const [touched, setTouched] = useState<{ name: boolean; phone: boolean }>({
+    name: false,
+    phone: false,
+  });
 
   // Populate form when customer changes
   useEffect(() => {
     if (customer) {
-      setName(customer.name || '');
-      setPhone(customer.phone || '');
-      setAddress(customer.address || '');
-      setNotes(customer.notes || '');
+      setNationalId(customer.national_id || "");
+      setName(customer.name || "");
+      setPhone(customer.phone || "");
+      setAddress(customer.address || "");
+      setNotes(customer.notes || "");
       setErrors({});
       setTouched({ name: false, phone: false });
     }
@@ -52,13 +78,19 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
   // Validation functions
   const validateName = (value: string): string | undefined => {
     if (!value.trim()) {
-      return tCommon('required');
+      return tCommon("required");
     }
     if (value.trim().length < 2) {
-      return tCustomers.raw('validation.nameTooShort') || 'Name must be at least 2 characters';
+      return (
+        tCustomers.raw("validation.nameTooShort") ||
+        "Name must be at least 2 characters"
+      );
     }
     if (value.trim().length > 100) {
-      return tCustomers.raw('validation.nameTooLong') || 'Name must be less than 100 characters';
+      return (
+        tCustomers.raw("validation.nameTooLong") ||
+        "Name must be less than 100 characters"
+      );
     }
     return undefined;
   };
@@ -68,7 +100,10 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
     // Basic phone validation - allows digits, spaces, dashes, parentheses, and +
     const phoneRegex = /^[+\d][\d\s\-()]{6,20}$/;
     if (!phoneRegex.test(value.trim())) {
-      return tCustomers.raw('validation.invalidPhone') || 'Please enter a valid phone number';
+      return (
+        tCustomers.raw("validation.invalidPhone") ||
+        "Please enter a valid phone number"
+      );
     }
     return undefined;
   };
@@ -84,13 +119,13 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
 
   // Handle field blur for validation feedback
   const handleNameBlur = () => {
-    setTouched(prev => ({ ...prev, name: true }));
-    setErrors(prev => ({ ...prev, name: validateName(name) }));
+    setTouched((prev) => ({ ...prev, name: true }));
+    setErrors((prev) => ({ ...prev, name: validateName(name) }));
   };
 
   const handlePhoneBlur = () => {
-    setTouched(prev => ({ ...prev, phone: true }));
-    setErrors(prev => ({ ...prev, phone: validatePhone(phone) }));
+    setTouched((prev) => ({ ...prev, phone: true }));
+    setErrors((prev) => ({ ...prev, phone: validatePhone(phone) }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -100,29 +135,33 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
     setTouched({ name: true, phone: true });
 
     if (!customer) {
-      toast.error(tCustomers('error'));
+      toast.error(tCustomers("error"));
       return;
     }
 
     // Validate form
     if (!validateForm()) {
-      toast.error(tCustomers.raw('validation.fixErrors') || 'Please fix the errors in the form');
+      toast.error(
+        tCustomers.raw("validation.fixErrors") ||
+          "Please fix the errors in the form",
+      );
       return;
     }
 
     setLoading(true);
     try {
       await onSave(customer.id, {
+        national_id: nationalId.trim() || null,
         name: name.trim(),
         phone: phone.trim() || undefined,
         address: address.trim() || undefined,
         notes: notes.trim() || undefined,
       });
-      toast.success(tCustomers('editSuccess'));
+      toast.success(tCustomers("editSuccess"));
       onOpenChange(false);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      toast.error(message || tCustomers('error'));
+      toast.error(message || tCustomers("error"));
     } finally {
       setLoading(false);
     }
@@ -142,15 +181,45 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
       <DialogContent className="sm:max-w-md">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>{t('editTitle')}</DialogTitle>
-            <DialogDescription>
-              {t('editDescription')}
-            </DialogDescription>
+            <DialogTitle>{t("editTitle")}</DialogTitle>
+            <DialogDescription>{t("editDescription")}</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
+            {/* Supabase UUID — read-only */}
             <div className="space-y-2">
-              <Label htmlFor="edit-name" className={errors.name && touched.name ? 'text-destructive' : ''}>
-                {t('name')} <span className="text-destructive">*</span>
+              <Label
+                htmlFor="edit-supabase-id"
+                className="text-[var(--color-text-tertiary)] text-xs"
+              >
+                {t("databaseId")} <span className="font-normal">{t("nonEditable")}</span>
+              </Label>
+              <Input
+                id="edit-supabase-id"
+                value={customer?.id || ""}
+                disabled
+                readOnly
+                className="bg-muted cursor-not-allowed font-mono text-xs text-[var(--color-text-tertiary)]"
+              />
+            </div>
+            {/* National ID — editable */}
+            <div className="space-y-2">
+              <Label htmlFor="edit-nationalId">{t("customId")}</Label>
+              <Input
+                id="edit-nationalId"
+                value={nationalId}
+                onChange={(e) => setNationalId(e.target.value)}
+                placeholder={t("customIdPlaceholder")}
+                disabled={loading}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label
+                htmlFor="edit-name"
+                className={
+                  errors.name && touched.name ? "text-destructive" : ""
+                }
+              >
+                {t("name")} <span className="text-destructive">*</span>
               </Label>
               <Input
                 id="edit-name"
@@ -158,21 +227,33 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
                 onChange={(e) => {
                   setName(e.target.value);
                   if (touched.name) {
-                    setErrors(prev => ({ ...prev, name: validateName(e.target.value) }));
+                    setErrors((prev) => ({
+                      ...prev,
+                      name: validateName(e.target.value),
+                    }));
                   }
                 }}
                 onBlur={handleNameBlur}
-                placeholder={t('namePlaceholder')}
+                placeholder={t("namePlaceholder")}
                 disabled={loading}
-                className={errors.name && touched.name ? 'border-destructive focus-visible:ring-destructive' : ''}
+                className={
+                  errors.name && touched.name
+                    ? "border-destructive focus-visible:ring-destructive"
+                    : ""
+                }
               />
               {errors.name && touched.name && (
                 <p className="text-xs text-destructive">{errors.name}</p>
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-phone" className={errors.phone && touched.phone ? 'text-destructive' : ''}>
-                {t('phone')}
+              <Label
+                htmlFor="edit-phone"
+                className={
+                  errors.phone && touched.phone ? "text-destructive" : ""
+                }
+              >
+                {t("phone")}
               </Label>
               <PhoneInput
                 id="edit-phone"
@@ -180,37 +261,40 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
                 onChange={(value: PhoneInputValue) => {
                   setPhone(value.formatted);
                   if (touched.phone) {
-                    setErrors(prev => ({ ...prev, phone: validatePhone(value.formatted) }));
+                    setErrors((prev) => ({
+                      ...prev,
+                      phone: validatePhone(value.formatted),
+                    }));
                   }
                 }}
                 onBlur={handlePhoneBlur}
                 currencyCode={currency}
-                placeholder={t('phonePlaceholder')}
+                placeholder={t("phonePlaceholder")}
                 disabled={loading}
                 error={!!(errors.phone && touched.phone)}
-                ariaLabel={t('phone')}
+                ariaLabel={t("phone")}
               />
               {errors.phone && touched.phone && (
                 <p className="text-xs text-destructive">{errors.phone}</p>
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-address">{t('address')}</Label>
+              <Label htmlFor="edit-address">{t("address")}</Label>
               <Input
                 id="edit-address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder={t('addressPlaceholder')}
+                placeholder={t("addressPlaceholder")}
                 disabled={loading}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-notes">{tCommon('optional')}</Label>
+              <Label htmlFor="edit-notes">{t("notes")}</Label>
               <Input
                 id="edit-notes"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder={t('notesPlaceholder') || t('addressPlaceholder')}
+                placeholder={t("notesPlaceholder") || t("addressPlaceholder")}
                 disabled={loading}
               />
             </div>
@@ -222,11 +306,11 @@ export function EditCustomerModal({ open, onOpenChange, onSave, customer }: Edit
               onClick={() => handleOpenChange(false)}
               disabled={loading}
             >
-              {tCommon('cancel')}
+              {tCommon("cancel")}
             </Button>
             <Button type="submit" disabled={loading}>
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {t('saveChanges')}
+              {t("saveChanges")}
             </Button>
           </DialogFooter>
         </form>

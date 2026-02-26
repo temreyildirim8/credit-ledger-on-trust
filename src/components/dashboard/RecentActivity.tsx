@@ -24,7 +24,10 @@ interface RecentActivityProps {
   locale?: string;
 }
 
-export function RecentActivity({ activities = [], locale = "en" }: RecentActivityProps) {
+export function RecentActivity({
+  activities = [],
+  locale = "en",
+}: RecentActivityProps) {
   const dateLocale: Locale = localeMap[locale] || enUS;
   const t = useTranslations("dashboard.recentActivity");
   const tTypes = useTranslations("transactions.type");
@@ -40,11 +43,13 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
 
   if (activities.length === 0) {
     return (
-      <Card className="border-border">
+      <Card className="border-[var(--color-border)]">
         <div className="p-8 text-center">
-          <Clock className="h-12 w-12 mx-auto text-text-secondary mb-3" />
-          <h3 className="text-lg font-semibold text-text mb-1">{t("empty")}</h3>
-          <p className="text-sm text-text-secondary">
+          <Clock className="h-12 w-12 mx-auto text-[var(--color-text-secondary)] mb-3" />
+          <h3 className="text-lg font-semibold text-[var(--color-text)] mb-1">
+            {t("empty")}
+          </h3>
+          <p className="text-sm text-[var(--color-text-secondary)]">
             {t("emptyDescription")}
           </p>
         </div>
@@ -60,7 +65,7 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
         return (
           <Card
             key={activity.id}
-            className="border-border hover:shadow-md transition-shadow"
+            className="border-[var(--color-border)] hover:shadow-md transition-shadow"
           >
             <div className="flex items-center justify-between p-4">
               <div className="flex-1">
@@ -68,20 +73,22 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
                   <div
                     className={cn(
                       "p-2 rounded-lg text-xs font-semibold uppercase",
-                      isDebt ? "bg-debt text-white" : "bg-payment text-white"
+                      isDebt
+                        ? "bg-[var(--color-debt-badge)] text-white"
+                        : "bg-[var(--color-payment-badge)] text-white",
                     )}
                   >
                     {tTypes(activity.type)}
                   </div>
-                  <span className="font-medium text-text text-sm">
+                  <span className="font-medium text-[var(--color-text)] text-sm">
                     {activity.customerName}
                   </span>
                 </div>
-                <p className="text-xs text-text-secondary flex items-center gap-1">
+                <p className="text-xs text-[var(--color-text-secondary)] flex items-center gap-1 pt-1">
                   <Clock className="h-3.5 w-3.5" />
                   {formatDistanceToNow(
-                    new Date(activity.date || '1970-01-01'),
-                    { addSuffix: true, locale: dateLocale }
+                    new Date(activity.date || "1970-01-01"),
+                    { addSuffix: true, locale: dateLocale },
                   )}
                 </p>
               </div>
@@ -89,7 +96,9 @@ export function RecentActivity({ activities = [], locale = "en" }: RecentActivit
                 <p
                   className={cn(
                     "text-lg font-semibold",
-                    isDebt ? "text-debt-text" : "text-payment-text"
+                    isDebt
+                      ? "text-[var(--color-debt-text)]"
+                      : "text-[var(--color-payment-text)]",
                   )}
                 >
                   {isDebt ? "+" : "-"}

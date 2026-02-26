@@ -71,9 +71,9 @@ export function SyncStatusIndicator({
     if (!isOnline) {
       return {
         icon: <WifiOff className="h-4 w-4" />,
-        color: "text-orange-500",
-        bgColor: "bg-orange-50",
-        borderColor: "border-orange-200",
+        color: "text-orange-500 dark:text-orange-400",
+        bgColor: "bg-orange-50 dark:bg-orange-950/50",
+        borderColor: "border-orange-200 dark:border-orange-800",
         label: t("offline"),
       };
     }
@@ -81,9 +81,9 @@ export function SyncStatusIndicator({
     if (hasError) {
       return {
         icon: <AlertCircle className="h-4 w-4" />,
-        color: "text-red-500",
-        bgColor: "bg-red-50",
-        borderColor: "border-red-200",
+        color: "text-red-500 dark:text-red-400",
+        bgColor: "bg-red-50 dark:bg-red-950/50",
+        borderColor: "border-red-200 dark:border-red-800",
         label: t("syncError"),
       };
     }
@@ -91,9 +91,9 @@ export function SyncStatusIndicator({
     if (isSyncing) {
       return {
         icon: <RefreshCw className="h-4 w-4 animate-spin" />,
-        color: "text-blue-500",
-        bgColor: "bg-blue-50",
-        borderColor: "border-blue-200",
+        color: "text-blue-500 dark:text-blue-400",
+        bgColor: "bg-blue-50 dark:bg-blue-950/50",
+        borderColor: "border-blue-200 dark:border-blue-800",
         label: t("syncing"),
       };
     }
@@ -101,18 +101,18 @@ export function SyncStatusIndicator({
     if (hasPending) {
       return {
         icon: <Cloud className="h-4 w-4" />,
-        color: "text-amber-500",
-        bgColor: "bg-amber-50",
-        borderColor: "border-amber-200",
+        color: "text-amber-500 dark:text-amber-400",
+        bgColor: "bg-amber-50 dark:bg-amber-950/50",
+        borderColor: "border-amber-200 dark:border-amber-800",
         label: t("pending"),
       };
     }
 
     return {
       icon: <CheckCircle2 className="h-4 w-4" />,
-      color: "text-green-500",
-      bgColor: "bg-green-50",
-      borderColor: "border-green-200",
+      color: "text-green-500 dark:text-green-400",
+      bgColor: "bg-green-50 dark:bg-green-950/50",
+      borderColor: "border-green-200 dark:border-green-800",
       label: t("synced"),
     };
   };

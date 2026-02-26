@@ -24,14 +24,14 @@ const navItems = [
     icon: Users,
   },
   {
-    key: "transactions",
-    href: "/transactions",
-    icon: Receipt,
-  },
-  {
     key: "quickAdd",
     href: "/quick-add",
     icon: CirclePlus,
+  },
+  {
+    key: "transactions",
+    href: "/transactions",
+    icon: Receipt,
   },
   {
     key: "settings",
@@ -61,7 +61,7 @@ export function BottomNav({ className }: BottomNavProps) {
     <nav
       className={cn(
         "md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-border z-50 pb-safe",
-        className
+        className,
       )}
     >
       <div className="flex items-center justify-around px-2 h-[68px]">
@@ -81,7 +81,7 @@ export function BottomNav({ className }: BottomNavProps) {
                   "relative flex items-center justify-center transition-all duration-200",
                   isAddButton
                     ? "-mt-5 w-12 h-12 rounded-full bg-accent text-white shadow-lg shadow-accent"
-                    : "w-11 h-11 rounded-xl"
+                    : "w-11 h-11 rounded-xl",
                 )}
               >
                 <Icon
@@ -90,8 +90,8 @@ export function BottomNav({ className }: BottomNavProps) {
                     isActive && !isAddButton
                       ? "text-accent"
                       : !isAddButton
-                      ? "text-text-secondary"
-                      : ""
+                        ? "text-text-secondary"
+                        : "",
                   )}
                 />
               </div>
@@ -100,7 +100,7 @@ export function BottomNav({ className }: BottomNavProps) {
                   "text-[10px] font-medium leading-none mt-0.5",
                   isActive && !isAddButton
                     ? "text-accent"
-                    : "text-text-secondary"
+                    : "text-text-secondary",
                 )}
               >
                 {t(item.key)}

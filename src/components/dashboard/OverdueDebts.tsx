@@ -36,10 +36,10 @@ export function OverdueDebts({ customers = [], locale = "en" }: OverdueDebtsProp
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <AlertCircle className="h-5 w-5 text-error flex-shrink-0" />
+        <AlertCircle className="h-5 w-5 text-[var(--color-error)] flex-shrink-0" />
         <div>
-          <h2 className="text-lg font-semibold text-text">{t("title")}</h2>
-          <p className="text-sm text-text-secondary">({customers.length})</p>
+          <h2 className="text-lg font-semibold text-[var(--color-text)]">{t("title")}</h2>
+          <p className="text-sm text-[var(--color-text-secondary)]">({customers.length})</p>
         </div>
       </div>
 
@@ -47,23 +47,23 @@ export function OverdueDebts({ customers = [], locale = "en" }: OverdueDebtsProp
         {customers.map((customer) => (
           <Card
             key={customer.id}
-            className="border-error/20 bg-error/5 hover:shadow-md transition-shadow"
+            className="border-[var(--color-error)]/20 bg-[var(--color-error)]/5 hover:shadow-md transition-shadow"
           >
             <div className="flex items-center justify-between p-4">
               <div className="flex-1">
-                <p className="font-medium text-text">{customer.name}</p>
-                <p className="text-sm text-error mt-0.5">
+                <p className="font-medium text-[var(--color-text)]">{customer.name}</p>
+                <p className="text-sm text-[var(--color-error)] mt-0.5">
                   {customer.overdueDays} {t("daysOverdue")}
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <p className="text-lg font-semibold text-error">
+                <p className="text-lg font-semibold text-[var(--color-error)]">
                   {formatCurrency(customer.amount)}
                 </p>
                 <button
                   className={cn(
                     "flex items-center gap-2 px-3 py-2 rounded-lg",
-                    "bg-accent text-white hover:bg-accent-hover",
+                    "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)]",
                     "transition-colors duration-200"
                   )}
                 >

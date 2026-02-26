@@ -1,40 +1,40 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
 /**
- * E2E Tests for Global Ledger PWA functionality
+ * E2E Tests for Ledgerly PWA functionality
  * Covers PWA install prompt, offline mode, sync queue, and background sync
  */
 
-const TEST_LOCALE = 'en';
+const TEST_LOCALE = "en";
 const BASE_URL = `http://localhost:3000/${TEST_LOCALE}`;
 
-test.describe('PWA Manifest', () => {
-  test('should have valid manifest.json', async ({ page }) => {
-    const response = await page.request.get('/manifest.json');
+test.describe("PWA Manifest", () => {
+  test("should have valid manifest.json", async ({ page }) => {
+    const response = await page.request.get("/manifest.json");
     expect(response.status()).toBe(200);
 
     const manifest = await response.json();
 
     // Check required PWA manifest fields
-    expect(manifest.name).toBe('Global Ledger - Credit Ledger App');
-    expect(manifest.short_name).toBe('Global Ledger');
-    expect(manifest.start_url).toBe('/');
-    expect(manifest.display).toBe('standalone');
-    expect(manifest.background_color).toBe('#ffffff');
-    expect(manifest.theme_color).toBe('#2D8E4A');
+    expect(manifest.name).toBe("Ledgerly - Credit Ledger App");
+    expect(manifest.short_name).toBe("Ledgerly");
+    expect(manifest.start_url).toBe("/");
+    expect(manifest.display).toBe("standalone");
+    expect(manifest.background_color).toBe("#ffffff");
+    expect(manifest.theme_color).toBe("#2D8E4A");
     expect(manifest.icons).toBeDefined();
     expect(manifest.icons.length).toBeGreaterThan(0);
   });
 
-  test('manifest icon should be accessible', async ({ page }) => {
-    const response = await page.request.get('/icons/icon.svg');
+  test("manifest icon should be accessible", async ({ page }) => {
+    const response = await page.request.get("/icons/icon.svg");
     expect(response.status()).toBe(200);
-    expect(response.headers()['content-type']).toContain('image/svg+xml');
+    expect(response.headers()["content-type"]).toContain("image/svg+xml");
   });
 });
 
-test.describe('Service Worker', () => {
-  test('should register service worker', async ({ page }) => {
+test.describe("Service Worker", () => {
+  test("should register service worker", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Wait for service worker to register
@@ -45,7 +45,7 @@ test.describe('Service Worker', () => {
     expect(swRegistration).toBeTruthy();
   });
 
-  test('should cache app shell on install', async ({ page, context }) => {
+  test("should cache app shell on install", async ({ page, context }) => {
     // Clear all caches first
     await context.clearCookies();
 
@@ -65,18 +65,22 @@ test.describe('Service Worker', () => {
 
     // Should have at least one cache (app shell)
     expect(cacheNames.length).toBeGreaterThan(0);
-    expect(cacheNames.some(name => name.includes('global-ledger'))).toBe(true);
+    expect(cacheNames.some((name) => name.includes("global-ledger"))).toBe(
+      true,
+    );
   });
 });
 
-test.describe('Offline Mode', () => {
+test.describe("Offline Mode", () => {
   test.use({ offline: true });
 
-  test('should show offline page when network is unavailable', async ({ page }) => {
+  test("should show offline page when network is unavailable", async ({
+    page,
+  }) => {
     // First visit online to cache resources
     await page.context().setOffline(false);
     await page.goto(BASE_URL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState("networkidle");
 
     // Now go offline
     await page.context().setOffline(true);
@@ -89,8 +93,8 @@ test.describe('Offline Mode', () => {
   });
 });
 
-test.describe('Offline Mode Toggle', () => {
-  test('should handle online/offline state transitions', async ({ page }) => {
+test.describe("Offline Mode Toggle", () => {
+  test("should handle online/offline state transitions", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Check initial online state
@@ -112,14 +116,14 @@ test.describe('Offline Mode Toggle', () => {
     expect(backOnlineState).toBe(true);
   });
 
-  test('should cache offline.html fallback', async ({ page }) => {
-    const response = await page.request.get('/offline.html');
+  test("should cache offline.html fallback", async ({ page }) => {
+    const response = await page.request.get("/offline.html");
     expect(response.status()).toBe(200);
   });
 });
 
-test.describe('PWA Install Prompt', () => {
-  test('should have install prompt component structure', async ({ page }) => {
+test.describe("PWA Install Prompt", () => {
+  test("should have install prompt component structure", async ({ page }) => {
     // Check that the PWA install prompt can appear
     // Note: The actual beforeinstallprompt event only fires under specific conditions
     // This test verifies the component exists and can render
@@ -128,44 +132,52 @@ test.describe('PWA Install Prompt', () => {
 
     // The PWA install prompt should be set up (even if not visible)
     // Check that the page has proper PWA meta tags
-    const themeColor = await page.locator('meta[name="theme-color"]').getAttribute('content');
+    const themeColor = await page
+      .locator('meta[name="theme-color"]')
+      .getAttribute("content");
     expect(themeColor).toBeTruthy();
   });
 
-  test('should have required PWA meta tags', async ({ page }) => {
+  test("should have required PWA meta tags", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Check theme-color meta tag
-    const themeColor = await page.locator('meta[name="theme-color"]').getAttribute('content');
+    const themeColor = await page
+      .locator('meta[name="theme-color"]')
+      .getAttribute("content");
     expect(themeColor).toBeTruthy();
 
     // Check manifest link
-    const manifestLink = await page.locator('link[rel="manifest"]').getAttribute('href');
-    expect(manifestLink).toBe('/manifest.json');
+    const manifestLink = await page
+      .locator('link[rel="manifest"]')
+      .getAttribute("href");
+    expect(manifestLink).toBe("/manifest.json");
 
     // Check apple-mobile-web-app-capable
-    const appleCapable = await page.locator('meta[name="apple-mobile-web-app-capable"]').getAttribute('content');
-    expect(appleCapable).toBe('yes');
+    const appleCapable = await page
+      .locator('meta[name="apple-mobile-web-app-capable"]')
+      .getAttribute("content");
+    expect(appleCapable).toBe("yes");
   });
 });
 
-test.describe('Background Sync', () => {
-  test('should have IndexedDB sync queue available', async ({ page }) => {
+test.describe("Background Sync", () => {
+  test("should have IndexedDB sync queue available", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Check IndexedDB is available
     const idbAvailable = await page.evaluate(() => {
-      return 'indexedDB' in window;
+      return "indexedDB" in window;
     });
     expect(idbAvailable).toBe(true);
   });
 
-  test('should be able to open sync queue database', async ({ page }) => {
+  test("should be able to open sync queue database", async ({ page }) => {
     await page.goto(BASE_URL);
 
     const dbOpened = await page.evaluate(async () => {
       return new Promise<boolean>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           request.result.close();
           resolve(true);
@@ -177,7 +189,7 @@ test.describe('Background Sync', () => {
     expect(dbOpened).toBe(true);
   });
 
-  test('sync status indicator should exist in app layout', async ({ page }) => {
+  test("sync status indicator should exist in app layout", async ({ page }) => {
     // Navigate to a protected page (would need to be authenticated in real scenario)
     // For now, just check the public page has sync infrastructure
     await page.goto(BASE_URL);
@@ -185,14 +197,16 @@ test.describe('Background Sync', () => {
     // The sync status indicator would be in the app shell
     // Check that the app can handle sync status messages
     const canHandleMessages = await page.evaluate(() => {
-      return 'serviceWorker' in navigator;
+      return "serviceWorker" in navigator;
     });
     expect(canHandleMessages).toBe(true);
   });
 });
 
-test.describe('Cache Strategy', () => {
-  test('should use cache-first strategy for static assets', async ({ page }) => {
+test.describe("Cache Strategy", () => {
+  test("should use cache-first strategy for static assets", async ({
+    page,
+  }) => {
     await page.goto(BASE_URL);
 
     // Wait for service worker to be ready
@@ -202,16 +216,16 @@ test.describe('Cache Strategy', () => {
     });
 
     // Request a cached asset
-    const response = await page.request.get('/manifest.json');
+    const response = await page.request.get("/manifest.json");
 
     // Should get response from cache or network
     expect(response.status()).toBe(200);
   });
 
-  test('should cache navigation requests', async ({ page }) => {
+  test("should cache navigation requests", async ({ page }) => {
     // First visit to populate cache
     await page.goto(BASE_URL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState("networkidle");
 
     // Wait for service worker
     await page.waitForFunction(async () => {
@@ -224,7 +238,7 @@ test.describe('Cache Strategy', () => {
       const cacheKeys = await caches.keys();
       const cache = await caches.open(cacheKeys[0]);
       const keys = await cache.keys();
-      return keys.map(r => r.url);
+      return keys.map((r) => r.url);
     });
 
     // Should have cached at least the root
@@ -232,31 +246,39 @@ test.describe('Cache Strategy', () => {
   });
 });
 
-test.describe('PWA on Mobile Viewport', () => {
+test.describe("PWA on Mobile Viewport", () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
-  test('should display correctly on mobile viewport', async ({ page }) => {
+  test("should display correctly on mobile viewport", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Check viewport meta tag for proper mobile scaling
-    const viewportContent = await page.locator('meta[name="viewport"]').getAttribute('content');
-    expect(viewportContent).toContain('width=device-width');
-    expect(viewportContent).toContain('initial-scale=1');
+    const viewportContent = await page
+      .locator('meta[name="viewport"]')
+      .getAttribute("content");
+    expect(viewportContent).toContain("width=device-width");
+    expect(viewportContent).toContain("initial-scale=1");
   });
 
-  test('should have proper standalone display mode support', async ({ page }) => {
+  test("should have proper standalone display mode support", async ({
+    page,
+  }) => {
     await page.goto(BASE_URL);
 
     // Check if display-mode media query is supported
     const standaloneSupported = await page.evaluate(() => {
-      return window.matchMedia('(display-mode: standalone)').media !== 'not all';
+      return (
+        window.matchMedia("(display-mode: standalone)").media !== "not all"
+      );
     });
     expect(standaloneSupported).toBe(true);
   });
 });
 
-test.describe('Push Notifications (Capability Check)', () => {
-  test('should have push notification capability in service worker', async ({ page }) => {
+test.describe("Push Notifications (Capability Check)", () => {
+  test("should have push notification capability in service worker", async ({
+    page,
+  }) => {
     await page.goto(BASE_URL);
 
     // Wait for service worker
@@ -268,33 +290,33 @@ test.describe('Push Notifications (Capability Check)', () => {
     // Check if pushManager is available (requires HTTPS in production)
     const pushAvailable = await page.evaluate(async () => {
       const registration = await navigator.serviceWorker.ready;
-      return 'pushManager' in registration;
+      return "pushManager" in registration;
     });
     expect(pushAvailable).toBe(true);
   });
 
-  test('service worker should handle push events', async ({ page }) => {
+  test("service worker should handle push events", async ({ page }) => {
     // This test verifies the SW code handles push events
     // Actual push requires backend setup
     await page.goto(BASE_URL);
 
     // Check that SW script includes push handling
-    const swContent = await page.request.get('/sw.js').then(r => r.text());
+    const swContent = await page.request.get("/sw.js").then((r) => r.text());
     expect(swContent).toContain("self.addEventListener('push'");
-    expect(swContent).toContain('showNotification');
+    expect(swContent).toContain("showNotification");
   });
 });
 
-test.describe('Sync Queue Functionality', () => {
-  test('should have sync queue object store in IndexedDB', async ({ page }) => {
+test.describe("Sync Queue Functionality", () => {
+  test("should have sync queue object store in IndexedDB", async ({ page }) => {
     await page.goto(BASE_URL);
 
     const storeExists = await page.evaluate(async () => {
       return new Promise<boolean>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const exists = db.objectStoreNames.contains('sync-queue');
+          const exists = db.objectStoreNames.contains("sync-queue");
           db.close();
           resolve(exists);
         };
@@ -305,26 +327,26 @@ test.describe('Sync Queue Functionality', () => {
     expect(storeExists).toBe(true);
   });
 
-  test('should be able to add item to sync queue', async ({ page }) => {
+  test("should be able to add item to sync queue", async ({ page }) => {
     await page.goto(BASE_URL);
 
     const itemId = await page.evaluate(async () => {
       return new Promise<string | null>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
 
           const id = `sync_test_${Date.now()}`;
           const item = {
             id,
-            action_type: 'create_customer',
-            payload: { name: 'Test Customer' },
+            action_type: "create_customer",
+            payload: { name: "Test Customer" },
             client_timestamp: new Date().toISOString(),
             retry_count: 0,
             max_retries: 3,
-            status: 'pending',
+            status: "pending",
             _addedAt: Date.now(),
           };
 
@@ -343,30 +365,30 @@ test.describe('Sync Queue Functionality', () => {
     });
 
     expect(itemId).not.toBeNull();
-    expect(itemId).toContain('sync_test_');
+    expect(itemId).toContain("sync_test_");
   });
 
-  test('should be able to retrieve pending sync items', async ({ page }) => {
+  test("should be able to retrieve pending sync items", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // First add a test item
     const testId = await page.evaluate(async () => {
       return new Promise<string | null>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
 
           const id = `sync_retrieve_test_${Date.now()}`;
           const item = {
             id,
-            action_type: 'create_transaction',
+            action_type: "create_transaction",
             payload: { amount: 100 },
             client_timestamp: new Date().toISOString(),
             retry_count: 0,
             max_retries: 3,
-            status: 'pending',
+            status: "pending",
             _addedAt: Date.now(),
           };
 
@@ -389,13 +411,13 @@ test.describe('Sync Queue Functionality', () => {
     // Now retrieve pending items
     const pendingItems = await page.evaluate(async () => {
       return new Promise<Array<{ id: string; status: string }>>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readonly');
-          const store = transaction.objectStore('sync-queue');
-          const index = store.index('status');
-          const getAllRequest = index.getAll('pending');
+          const transaction = db.transaction(["sync-queue"], "readonly");
+          const store = transaction.objectStore("sync-queue");
+          const index = store.index("status");
+          const getAllRequest = index.getAll("pending");
 
           getAllRequest.onsuccess = () => {
             db.close();
@@ -414,27 +436,27 @@ test.describe('Sync Queue Functionality', () => {
     expect(pendingItems.some((item) => item.id === testId)).toBe(true);
   });
 
-  test('should be able to update sync queue item status', async ({ page }) => {
+  test("should be able to update sync queue item status", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Add test item
     const testId = await page.evaluate(async () => {
       return new Promise<string | null>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
 
           const id = `sync_update_test_${Date.now()}`;
           const item = {
             id,
-            action_type: 'create_customer',
+            action_type: "create_customer",
             payload: {},
             client_timestamp: new Date().toISOString(),
             retry_count: 0,
             max_retries: 3,
-            status: 'pending',
+            status: "pending",
             _addedAt: Date.now(),
           };
 
@@ -457,17 +479,17 @@ test.describe('Sync Queue Functionality', () => {
     // Update status to syncing
     const updated = await page.evaluate(async (id) => {
       return new Promise<boolean>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
           const getRequest = store.get(id);
 
           getRequest.onsuccess = () => {
             const item = getRequest.result;
             if (item) {
-              item.status = 'syncing';
+              item.status = "syncing";
               const putRequest = store.put(item);
               putRequest.onsuccess = () => {
                 db.close();
@@ -496,11 +518,11 @@ test.describe('Sync Queue Functionality', () => {
     // Verify status was updated
     const item = await page.evaluate(async (id) => {
       return new Promise<{ status: string } | null>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readonly');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readonly");
+          const store = transaction.objectStore("sync-queue");
           const getRequest = store.get(id);
 
           getRequest.onsuccess = () => {
@@ -517,30 +539,30 @@ test.describe('Sync Queue Functionality', () => {
     }, testId);
 
     expect(item).not.toBeNull();
-    expect(item?.status).toBe('syncing');
+    expect(item?.status).toBe("syncing");
   });
 
-  test('should be able to remove item from sync queue', async ({ page }) => {
+  test("should be able to remove item from sync queue", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Add test item
     const testId = await page.evaluate(async () => {
       return new Promise<string | null>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
 
           const id = `sync_delete_test_${Date.now()}`;
           const item = {
             id,
-            action_type: 'delete_customer',
+            action_type: "delete_customer",
             payload: {},
             client_timestamp: new Date().toISOString(),
             retry_count: 0,
             max_retries: 3,
-            status: 'completed',
+            status: "completed",
             _addedAt: Date.now(),
           };
 
@@ -563,11 +585,11 @@ test.describe('Sync Queue Functionality', () => {
     // Delete the item
     const deleted = await page.evaluate(async (id) => {
       return new Promise<boolean>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
           const deleteRequest = store.delete(id);
 
           deleteRequest.onsuccess = () => {
@@ -588,11 +610,11 @@ test.describe('Sync Queue Functionality', () => {
     // Verify item was deleted
     const item = await page.evaluate(async (id) => {
       return new Promise<unknown>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readonly');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readonly");
+          const store = transaction.objectStore("sync-queue");
           const getRequest = store.get(id);
 
           getRequest.onsuccess = () => {
@@ -611,17 +633,17 @@ test.describe('Sync Queue Functionality', () => {
     expect(item).toBeUndefined();
   });
 
-  test('should count pending sync items correctly', async ({ page }) => {
+  test("should count pending sync items correctly", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Clear existing pending items first
     await page.evaluate(async () => {
       return new Promise<void>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
           const clearRequest = store.clear();
           clearRequest.onsuccess = () => {
             db.close();
@@ -640,20 +662,20 @@ test.describe('Sync Queue Functionality', () => {
     for (let i = 0; i < 3; i++) {
       await page.evaluate(async (index) => {
         return new Promise<boolean>((resolve) => {
-          const request = indexedDB.open('global-ledger-offline', 2);
+          const request = indexedDB.open("global-ledger-offline", 2);
           request.onsuccess = () => {
             const db = request.result;
-            const transaction = db.transaction(['sync-queue'], 'readwrite');
-            const store = transaction.objectStore('sync-queue');
+            const transaction = db.transaction(["sync-queue"], "readwrite");
+            const store = transaction.objectStore("sync-queue");
 
             const item = {
               id: `sync_count_test_${Date.now()}_${index}`,
-              action_type: 'create_customer',
+              action_type: "create_customer",
               payload: {},
               client_timestamp: new Date().toISOString(),
               retry_count: 0,
               max_retries: 3,
-              status: 'pending',
+              status: "pending",
               _addedAt: Date.now() + index,
             };
 
@@ -675,13 +697,13 @@ test.describe('Sync Queue Functionality', () => {
     // Count pending items
     const count = await page.evaluate(async () => {
       return new Promise<number>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readonly');
-          const store = transaction.objectStore('sync-queue');
-          const index = store.index('status');
-          const countRequest = index.count('pending');
+          const transaction = db.transaction(["sync-queue"], "readonly");
+          const store = transaction.objectStore("sync-queue");
+          const index = store.index("status");
+          const countRequest = index.count("pending");
 
           countRequest.onsuccess = () => {
             db.close();
@@ -699,17 +721,19 @@ test.describe('Sync Queue Functionality', () => {
     expect(count).toBe(3);
   });
 
-  test('sync queue items should be sorted by added time ascending', async ({ page }) => {
+  test("sync queue items should be sorted by added time ascending", async ({
+    page,
+  }) => {
     await page.goto(BASE_URL);
 
     // Clear existing items
     await page.evaluate(async () => {
       return new Promise<void>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
           const clearRequest = store.clear();
           clearRequest.onsuccess = () => {
             db.close();
@@ -729,20 +753,20 @@ test.describe('Sync Queue Functionality', () => {
     for (const ts of timestamps) {
       await page.evaluate(async (timestamp) => {
         return new Promise<boolean>((resolve) => {
-          const request = indexedDB.open('global-ledger-offline', 2);
+          const request = indexedDB.open("global-ledger-offline", 2);
           request.onsuccess = () => {
             const db = request.result;
-            const transaction = db.transaction(['sync-queue'], 'readwrite');
-            const store = transaction.objectStore('sync-queue');
+            const transaction = db.transaction(["sync-queue"], "readwrite");
+            const store = transaction.objectStore("sync-queue");
 
             const item = {
               id: `sync_order_test_${timestamp}`,
-              action_type: 'create_customer',
+              action_type: "create_customer",
               payload: { order: timestamp },
               client_timestamp: new Date().toISOString(),
               retry_count: 0,
               max_retries: 3,
-              status: 'pending',
+              status: "pending",
               _addedAt: timestamp,
             };
 
@@ -764,16 +788,19 @@ test.describe('Sync Queue Functionality', () => {
     // Get all items and check ordering (oldest first)
     const items = await page.evaluate(async () => {
       return new Promise<Array<{ id: string; _addedAt: number }>>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readonly');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readonly");
+          const store = transaction.objectStore("sync-queue");
           const getAllRequest = store.getAll();
 
           getAllRequest.onsuccess = () => {
             db.close();
-            const items = getAllRequest.result as Array<{ id: string; _addedAt: number }>;
+            const items = getAllRequest.result as Array<{
+              id: string;
+              _addedAt: number;
+            }>;
             // Sort by _addedAt ascending as the app would do
             items.sort((a, b) => a._addedAt - b._addedAt);
             resolve(items);
@@ -793,26 +820,26 @@ test.describe('Sync Queue Functionality', () => {
     expect(items[2]._addedAt).toBe(2000);
   });
 
-  test('should support all sync action types', async ({ page }) => {
+  test("should support all sync action types", async ({ page }) => {
     await page.goto(BASE_URL);
 
     const actionTypes = [
-      'create_customer',
-      'update_customer',
-      'delete_customer',
-      'create_transaction',
-      'update_transaction',
+      "create_customer",
+      "update_customer",
+      "delete_customer",
+      "create_transaction",
+      "update_transaction",
     ];
 
     // Add items of each action type
     for (const actionType of actionTypes) {
       const success = await page.evaluate(async (type) => {
         return new Promise<boolean>((resolve) => {
-          const request = indexedDB.open('global-ledger-offline', 2);
+          const request = indexedDB.open("global-ledger-offline", 2);
           request.onsuccess = () => {
             const db = request.result;
-            const transaction = db.transaction(['sync-queue'], 'readwrite');
-            const store = transaction.objectStore('sync-queue');
+            const transaction = db.transaction(["sync-queue"], "readwrite");
+            const store = transaction.objectStore("sync-queue");
 
             const item = {
               id: `sync_action_test_${type}_${Date.now()}`,
@@ -821,7 +848,7 @@ test.describe('Sync Queue Functionality', () => {
               client_timestamp: new Date().toISOString(),
               retry_count: 0,
               max_retries: 3,
-              status: 'pending',
+              status: "pending",
               _addedAt: Date.now(),
             };
 
@@ -845,19 +872,24 @@ test.describe('Sync Queue Functionality', () => {
     // Verify all types are stored
     const items = await page.evaluate(async () => {
       return new Promise<Array<{ action_type: string }>>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readonly');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readonly");
+          const store = transaction.objectStore("sync-queue");
           const getAllRequest = store.getAll();
 
           getAllRequest.onsuccess = () => {
             db.close();
             resolve(
-              (getAllRequest.result as Array<{ id: string; action_type: string }>)
-                .filter((item) => item.id.startsWith('sync_action_test_'))
-                .map((item) => ({ action_type: item.action_type }))
+              (
+                getAllRequest.result as Array<{
+                  id: string;
+                  action_type: string;
+                }>
+              )
+                .filter((item) => item.id.startsWith("sync_action_test_"))
+                .map((item) => ({ action_type: item.action_type })),
             );
           };
           getAllRequest.onerror = () => {
@@ -876,27 +908,27 @@ test.describe('Sync Queue Functionality', () => {
     });
   });
 
-  test('should handle retry logic in sync queue', async ({ page }) => {
+  test("should handle retry logic in sync queue", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Add item with retry_count = 2
     const testId = await page.evaluate(async () => {
       return new Promise<string | null>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
 
           const id = `sync_retry_test_${Date.now()}`;
           const item = {
             id,
-            action_type: 'create_customer',
+            action_type: "create_customer",
             payload: {},
             client_timestamp: new Date().toISOString(),
             retry_count: 2,
             max_retries: 3,
-            status: 'pending',
+            status: "pending",
             _addedAt: Date.now(),
           };
 
@@ -919,11 +951,11 @@ test.describe('Sync Queue Functionality', () => {
     // Simulate incrementing retry count
     const incremented = await page.evaluate(async (id) => {
       return new Promise<boolean>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
           const getRequest = store.get(id);
 
           getRequest.onsuccess = () => {
@@ -933,8 +965,8 @@ test.describe('Sync Queue Functionality', () => {
 
               // If retry_count >= max_retries, mark as failed
               if (item.retry_count >= item.max_retries) {
-                item.status = 'failed';
-                item.error_message = 'Max retries exceeded';
+                item.status = "failed";
+                item.error_message = "Max retries exceeded";
               }
 
               const putRequest = store.put(item);
@@ -964,58 +996,60 @@ test.describe('Sync Queue Functionality', () => {
 
     // Verify item is now failed
     const item = await page.evaluate(async (id) => {
-      return new Promise<{ retry_count: number; status: string; error_message?: string } | null>(
-        (resolve) => {
-          const request = indexedDB.open('global-ledger-offline', 2);
-          request.onsuccess = () => {
-            const db = request.result;
-            const transaction = db.transaction(['sync-queue'], 'readonly');
-            const store = transaction.objectStore('sync-queue');
-            const getRequest = store.get(id);
+      return new Promise<{
+        retry_count: number;
+        status: string;
+        error_message?: string;
+      } | null>((resolve) => {
+        const request = indexedDB.open("global-ledger-offline", 2);
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction(["sync-queue"], "readonly");
+          const store = transaction.objectStore("sync-queue");
+          const getRequest = store.get(id);
 
-            getRequest.onsuccess = () => {
-              db.close();
-              resolve(getRequest.result);
-            };
-            getRequest.onerror = () => {
-              db.close();
-              resolve(null);
-            };
+          getRequest.onsuccess = () => {
+            db.close();
+            resolve(getRequest.result);
           };
-          request.onerror = () => resolve(null);
-        }
-      );
+          getRequest.onerror = () => {
+            db.close();
+            resolve(null);
+          };
+        };
+        request.onerror = () => resolve(null);
+      });
     }, testId);
 
     expect(item).not.toBeNull();
     expect(item?.retry_count).toBe(3);
-    expect(item?.status).toBe('failed');
-    expect(item?.error_message).toBe('Max retries exceeded');
+    expect(item?.status).toBe("failed");
+    expect(item?.error_message).toBe("Max retries exceeded");
   });
 });
 
-test.describe('Sync Queue Integration', () => {
-  test('should clear sync queue successfully', async ({ page }) => {
+test.describe("Sync Queue Integration", () => {
+  test("should clear sync queue successfully", async ({ page }) => {
     await page.goto(BASE_URL);
 
     // Add some items
     for (let i = 0; i < 3; i++) {
       await page.evaluate(async (index) => {
         return new Promise<void>((resolve) => {
-          const request = indexedDB.open('global-ledger-offline', 2);
+          const request = indexedDB.open("global-ledger-offline", 2);
           request.onsuccess = () => {
             const db = request.result;
-            const transaction = db.transaction(['sync-queue'], 'readwrite');
-            const store = transaction.objectStore('sync-queue');
+            const transaction = db.transaction(["sync-queue"], "readwrite");
+            const store = transaction.objectStore("sync-queue");
 
             const item = {
               id: `sync_clear_test_${Date.now()}_${index}`,
-              action_type: 'create_customer',
+              action_type: "create_customer",
               payload: {},
               client_timestamp: new Date().toISOString(),
               retry_count: 0,
               max_retries: 3,
-              status: 'pending',
+              status: "pending",
               _addedAt: Date.now(),
             };
 
@@ -1031,11 +1065,11 @@ test.describe('Sync Queue Integration', () => {
     // Clear the sync queue
     await page.evaluate(async () => {
       return new Promise<void>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readwrite');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readwrite");
+          const store = transaction.objectStore("sync-queue");
           const clearRequest = store.clear();
           clearRequest.onsuccess = () => {
             db.close();
@@ -1053,11 +1087,11 @@ test.describe('Sync Queue Integration', () => {
     // Verify queue is empty
     const count = await page.evaluate(async () => {
       return new Promise<number>((resolve) => {
-        const request = indexedDB.open('global-ledger-offline', 2);
+        const request = indexedDB.open("global-ledger-offline", 2);
         request.onsuccess = () => {
           const db = request.result;
-          const transaction = db.transaction(['sync-queue'], 'readonly');
-          const store = transaction.objectStore('sync-queue');
+          const transaction = db.transaction(["sync-queue"], "readonly");
+          const store = transaction.objectStore("sync-queue");
           const countRequest = store.count();
 
           countRequest.onsuccess = () => {

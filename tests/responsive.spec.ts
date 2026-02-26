@@ -1,11 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
 /**
- * E2E Tests for Global Ledger Responsive Design
+ * E2E Tests for Ledgerly Responsive Design
  * Covers desktop, tablet, and mobile viewports across all major pages
  */
 
-const TEST_LOCALE = 'en';
+const TEST_LOCALE = "en";
 const BASE_URL = `http://localhost:3000/${TEST_LOCALE}`;
 
 // Viewport configurations
@@ -19,58 +19,60 @@ const VIEWPORTS = {
 /**
  * Helper to skip test if not authenticated (for protected pages)
  */
-async function skipIfUnauthenticated(page: import('@playwright/test').Page): Promise<boolean> {
-  if (page.url().includes('/login')) {
+async function skipIfUnauthenticated(
+  page: import("@playwright/test").Page,
+): Promise<boolean> {
+  if (page.url().includes("/login")) {
     test.skip();
     return true;
   }
   return false;
 }
 
-test.describe('Responsive Design - Marketing Pages', () => {
-  test.describe('Home Page', () => {
-    test('should display correctly on desktop', async ({ page }) => {
+test.describe("Responsive Design - Marketing Pages", () => {
+  test.describe("Home Page", () => {
+    test("should display correctly on desktop", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(BASE_URL);
 
       // Hero section should be visible
-      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 
       // Navigation should show full menu (not hamburger)
-      const navLinks = page.locator('nav a, header a');
+      const navLinks = page.locator("nav a, header a");
       const linkCount = await navLinks.count();
       expect(linkCount).toBeGreaterThan(0);
     });
 
-    test('should display correctly on tablet', async ({ page }) => {
+    test("should display correctly on tablet", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.tablet);
       await page.goto(BASE_URL);
 
       // Content should be readable
-      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 
       // Check hero section is properly sized
-      const heroSection = page.locator('section').first();
+      const heroSection = page.locator("section").first();
       await expect(heroSection).toBeVisible();
     });
 
-    test('should display correctly on mobile', async ({ page }) => {
+    test("should display correctly on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(BASE_URL);
 
       // Hero should stack vertically
-      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 
       // Content should be scrollable
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     });
 
-    test('hero section should adapt to viewport', async ({ page }) => {
+    test("hero section should adapt to viewport", async ({ page }) => {
       // Desktop
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(BASE_URL);
 
-      const heroHeading = page.getByRole('heading', { level: 1 });
+      const heroHeading = page.getByRole("heading", { level: 1 });
       await expect(heroHeading).toBeVisible();
 
       // Resize to mobile
@@ -80,7 +82,7 @@ test.describe('Responsive Design - Marketing Pages', () => {
       await expect(heroHeading).toBeVisible();
     });
 
-    test('features grid should stack on mobile', async ({ page }) => {
+    test("features grid should stack on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(BASE_URL);
 
@@ -97,12 +99,14 @@ test.describe('Responsive Design - Marketing Pages', () => {
       }
     });
 
-    test('CTA buttons should be touch-friendly on mobile', async ({ page }) => {
+    test("CTA buttons should be touch-friendly on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(BASE_URL);
 
       // Find CTA buttons
-      const ctaButtons = page.getByRole('button', { name: /get.*started|sign.*up|try/i });
+      const ctaButtons = page.getByRole("button", {
+        name: /get.*started|sign.*up|try/i,
+      });
       const buttonCount = await ctaButtons.count();
 
       if (buttonCount > 0) {
@@ -118,33 +122,39 @@ test.describe('Responsive Design - Marketing Pages', () => {
     });
   });
 
-  test.describe('Pricing Page', () => {
-    test('should display pricing cards correctly on desktop', async ({ page }) => {
+  test.describe("Pricing Page", () => {
+    test("should display pricing cards correctly on desktop", async ({
+      page,
+    }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(`${BASE_URL}/pricing`);
 
       // Pricing cards should be in a row
-      const pricingCards = page.locator('[class*="card"], [class*="plan"]').filter({ hasText: /free|pro|enterprise/i });
+      const pricingCards = page
+        .locator('[class*="card"], [class*="plan"]')
+        .filter({ hasText: /free|pro|enterprise/i });
       const cardCount = await pricingCards.count();
 
       expect(cardCount).toBeGreaterThanOrEqual(2);
     });
 
-    test('should stack pricing cards on mobile', async ({ page }) => {
+    test("should stack pricing cards on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/pricing`);
 
       // Cards should be visible (stacked)
-      const pricingCards = page.locator('[class*="card"], [class*="plan"]').filter({ hasText: /free|pro|enterprise/i });
+      const pricingCards = page
+        .locator('[class*="card"], [class*="plan"]')
+        .filter({ hasText: /free|pro|enterprise/i });
       const cardCount = await pricingCards.count();
 
       expect(cardCount).toBeGreaterThanOrEqual(2);
     });
   });
 
-  test.describe('Contact Page', () => {
-    test('should display contact form on all viewports', async ({ page }) => {
-      const viewports = ['desktop', 'tablet', 'mobile'] as const;
+  test.describe("Contact Page", () => {
+    test("should display contact form on all viewports", async ({ page }) => {
+      const viewports = ["desktop", "tablet", "mobile"] as const;
 
       for (const viewport of viewports) {
         await page.setViewportSize(VIEWPORTS[viewport]);
@@ -162,9 +172,9 @@ test.describe('Responsive Design - Marketing Pages', () => {
   });
 });
 
-test.describe('Responsive Design - Auth Pages', () => {
-  test.describe('Login Page', () => {
-    test('should display split-screen layout on desktop', async ({ page }) => {
+test.describe("Responsive Design - Auth Pages", () => {
+  test.describe("Login Page", () => {
+    test("should display split-screen layout on desktop", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(`${BASE_URL}/login`);
 
@@ -174,11 +184,14 @@ test.describe('Responsive Design - Auth Pages', () => {
 
       // Check for branding/marketing content on the side
       const brandContent = page.getByText(/global.*ledger|credit.*ledger/i);
-      const hasBrandContent = await brandContent.first().isVisible().catch(() => false);
-      expect(typeof hasBrandContent).toBe('boolean');
+      const hasBrandContent = await brandContent
+        .first()
+        .isVisible()
+        .catch(() => false);
+      expect(typeof hasBrandContent).toBe("boolean");
     });
 
-    test('should display single-column layout on mobile', async ({ page }) => {
+    test("should display single-column layout on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/login`);
 
@@ -187,13 +200,13 @@ test.describe('Responsive Design - Auth Pages', () => {
       await expect(page.getByLabel(/password/i)).toBeVisible();
 
       // Check form is centered/stacked
-      const form = page.locator('form');
+      const form = page.locator("form");
       const hasForm = await form.isVisible().catch(() => false);
       expect(hasForm || true).toBe(true);
     });
 
-    test('login form should be usable on all viewports', async ({ page }) => {
-      const viewports = ['desktop', 'tablet', 'mobile'] as const;
+    test("login form should be usable on all viewports", async ({ page }) => {
+      const viewports = ["desktop", "tablet", "mobile"] as const;
 
       for (const viewport of viewports) {
         await page.setViewportSize(VIEWPORTS[viewport]);
@@ -202,17 +215,21 @@ test.describe('Responsive Design - Auth Pages', () => {
         // All form elements should be visible
         await expect(page.getByLabel(/email/i)).toBeVisible();
         await expect(page.getByLabel(/password/i)).toBeVisible();
-        await expect(page.getByRole('button', { name: /sign.*in|login/i })).toBeVisible();
+        await expect(
+          page.getByRole("button", { name: /sign.*in|login/i }),
+        ).toBeVisible();
 
         // Links should be clickable
-        const forgotPassword = page.getByRole('link', { name: /forgot.*password/i });
+        const forgotPassword = page.getByRole("link", {
+          name: /forgot.*password/i,
+        });
         await expect(forgotPassword).toBeVisible();
       }
     });
   });
 
-  test.describe('Signup Page', () => {
-    test('should display correctly on mobile', async ({ page }) => {
+  test.describe("Signup Page", () => {
+    test("should display correctly on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/signup`);
 
@@ -222,7 +239,7 @@ test.describe('Responsive Design - Auth Pages', () => {
       await expect(page.getByLabel(/password/i)).toBeVisible();
     });
 
-    test('signup form inputs should be properly sized', async ({ page }) => {
+    test("signup form inputs should be properly sized", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/signup`);
 
@@ -237,27 +254,37 @@ test.describe('Responsive Design - Auth Pages', () => {
   });
 });
 
-test.describe('Responsive Design - App Pages', () => {
-  test.describe('Sidebar Navigation', () => {
-    test('should show expanded sidebar on desktop', async ({ page }) => {
+test.describe("Responsive Design - App Pages", () => {
+  test.describe("Sidebar Navigation", () => {
+    test("should show expanded sidebar on desktop", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(`${BASE_URL}/dashboard`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Sidebar should be visible with text labels
-      const sidebar = page.locator('[class*="sidebar"], nav').filter({ has: page.locator('a, button') });
-      const hasSidebar = await sidebar.first().isVisible().catch(() => false);
+      const sidebar = page
+        .locator('[class*="sidebar"], nav')
+        .filter({ has: page.locator("a, button") });
+      const hasSidebar = await sidebar
+        .first()
+        .isVisible()
+        .catch(() => false);
 
       if (hasSidebar) {
         // Navigation items should have visible text
-        const navText = page.getByText(/dashboard|customer|transaction|report|setting/i);
-        const hasNavText = await navText.first().isVisible().catch(() => false);
+        const navText = page.getByText(
+          /dashboard|customer|transaction|report|setting/i,
+        );
+        const hasNavText = await navText
+          .first()
+          .isVisible()
+          .catch(() => false);
         expect(hasNavText || true).toBe(true);
       }
     });
 
-    test('should collapse/hide sidebar on mobile', async ({ page }) => {
+    test("should collapse/hide sidebar on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/dashboard`);
 
@@ -265,17 +292,17 @@ test.describe('Responsive Design - App Pages', () => {
 
       // Sidebar should be hidden or collapsible on mobile
       // Page content should still be visible
-      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     });
 
-    test('sidebar should toggle on mobile', async ({ page }) => {
+    test("sidebar should toggle on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/dashboard`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Look for hamburger menu
-      const menuButtons = page.locator('button');
+      const menuButtons = page.locator("button");
       const menuCount = await menuButtons.count();
 
       // Should have interactive elements
@@ -283,38 +310,48 @@ test.describe('Responsive Design - App Pages', () => {
     });
   });
 
-  test.describe('Dashboard Page', () => {
-    test('KPI cards should adapt to viewport', async ({ page }) => {
+  test.describe("Dashboard Page", () => {
+    test("KPI cards should adapt to viewport", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(`${BASE_URL}/dashboard`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // On desktop, cards should be in a row
-      const statsVisible = await page.getByText(/total.*owed|active.*customer/i).isVisible().catch(() => false);
+      const statsVisible = await page
+        .getByText(/total.*owed|active.*customer/i)
+        .isVisible()
+        .catch(() => false);
 
       if (statsVisible) {
         // Resize to mobile
         await page.setViewportSize(VIEWPORTS.mobile);
 
         // Cards should still be visible (likely in 2x2 grid or stacked)
-        await expect(page.getByText(/total.*owed|active.*customer/i).first()).toBeVisible();
+        await expect(
+          page.getByText(/total.*owed|active.*customer/i).first(),
+        ).toBeVisible();
       }
     });
 
-    test('quick actions should be accessible on mobile', async ({ page }) => {
+    test("quick actions should be accessible on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/dashboard`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Quick add button should be visible
-      const quickAddButton = page.getByRole('button', { name: /quick.*add|add/i });
-      const hasQuickAdd = await quickAddButton.first().isVisible().catch(() => false);
+      const quickAddButton = page.getByRole("button", {
+        name: /quick.*add|add/i,
+      });
+      const hasQuickAdd = await quickAddButton
+        .first()
+        .isVisible()
+        .catch(() => false);
       expect(hasQuickAdd || true).toBe(true);
     });
 
-    test('dashboard should scroll properly on mobile', async ({ page }) => {
+    test("dashboard should scroll properly on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/dashboard`);
 
@@ -329,19 +366,22 @@ test.describe('Responsive Design - App Pages', () => {
     });
   });
 
-  test.describe('Customer Page', () => {
-    test('table should adapt on smaller screens', async ({ page }) => {
+  test.describe("Customer Page", () => {
+    test("table should adapt on smaller screens", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(`${BASE_URL}/customers`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Check for table or card view
-      const tableView = page.locator('table');
+      const tableView = page.locator("table");
       const cardView = page.locator('[class*="card"]');
 
       const hasTable = await tableView.isVisible().catch(() => false);
-      const hasCards = await cardView.first().isVisible().catch(() => false);
+      const hasCards = await cardView
+        .first()
+        .isVisible()
+        .catch(() => false);
 
       expect(hasTable || hasCards).toBe(true);
 
@@ -349,85 +389,93 @@ test.describe('Responsive Design - App Pages', () => {
       await page.setViewportSize(VIEWPORTS.mobile);
 
       // Should still show customer data
-      await expect(page.getByRole('heading', { name: /customers/i })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: /customers/i }),
+      ).toBeVisible();
     });
 
-    test('add customer modal should fit on mobile screen', async ({ page }) => {
+    test("add customer modal should fit on mobile screen", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/customers`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Open modal
-      const addButton = page.getByRole('button', { name: /add.*customer/i });
+      const addButton = page.getByRole("button", { name: /add.*customer/i });
       await addButton.click();
 
       // Modal should be visible
-      await expect(page.getByRole('dialog')).toBeVisible();
+      await expect(page.getByRole("dialog")).toBeVisible();
 
       // Form inputs should be visible
       await expect(page.getByLabel(/name/i)).toBeVisible();
       await expect(page.getByLabel(/phone/i)).toBeVisible();
     });
 
-    test('search should work on all viewports', async ({ page }) => {
-      const viewports = ['desktop', 'tablet', 'mobile'] as const;
+    test("search should work on all viewports", async ({ page }) => {
+      const viewports = ["desktop", "tablet", "mobile"] as const;
 
       for (const viewport of viewports) {
         await page.setViewportSize(VIEWPORTS[viewport]);
         await page.goto(`${BASE_URL}/customers`);
 
-        if (page.url().includes('/login')) continue;
+        if (page.url().includes("/login")) continue;
 
-        const searchInput = page.getByPlaceholder(/search.*customer|name.*phone/i);
+        const searchInput = page.getByPlaceholder(
+          /search.*customer|name.*phone/i,
+        );
         await expect(searchInput).toBeVisible();
 
         // Test typing
-        await searchInput.fill('Test');
-        await expect(searchInput).toHaveValue('Test');
+        await searchInput.fill("Test");
+        await expect(searchInput).toHaveValue("Test");
       }
     });
   });
 
-  test.describe('Transactions Page', () => {
-    test('transaction list should be scrollable on mobile', async ({ page }) => {
+  test.describe("Transactions Page", () => {
+    test("transaction list should be scrollable on mobile", async ({
+      page,
+    }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/transactions`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Page should load
-      await expect(page.getByRole('heading', { name: /transaction/i })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: /transaction/i }),
+      ).toBeVisible();
 
       // Should be able to scroll
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     });
 
-    test('filter buttons should wrap on mobile', async ({ page }) => {
+    test("filter buttons should wrap on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/transactions`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Filter buttons should be visible
-      const allButton = page.getByRole('button', { name: /all/i });
+      const allButton = page.getByRole("button", { name: /all/i });
       await expect(allButton).toBeVisible();
     });
   });
 });
 
-test.describe('Responsive Design - Components', () => {
-  test.describe('Modals and Dialogs', () => {
-    test('modals should be full-width on mobile', async ({ page }) => {
+test.describe("Responsive Design - Components", () => {
+  test.describe("Modals and Dialogs", () => {
+    test("modals should be full-width on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/customers`);
 
       if (await skipIfUnauthenticated(page)) return;
 
-      const addButton = page.getByRole('button', { name: /add.*customer/i });
+      const addButton = page.getByRole("button", { name: /add.*customer/i });
       await addButton.click();
 
-      const dialog = page.getByRole('dialog');
+      const dialog = page.getByRole("dialog");
       await expect(dialog).toBeVisible();
 
       // Dialog should be appropriately sized for mobile
@@ -438,16 +486,16 @@ test.describe('Responsive Design - Components', () => {
       }
     });
 
-    test('modals should be centered on desktop', async ({ page }) => {
+    test("modals should be centered on desktop", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(`${BASE_URL}/customers`);
 
       if (await skipIfUnauthenticated(page)) return;
 
-      const addButton = page.getByRole('button', { name: /add.*customer/i });
+      const addButton = page.getByRole("button", { name: /add.*customer/i });
       await addButton.click();
 
-      const dialog = page.getByRole('dialog');
+      const dialog = page.getByRole("dialog");
       await expect(dialog).toBeVisible();
 
       // Dialog should be centered
@@ -461,12 +509,14 @@ test.describe('Responsive Design - Components', () => {
     });
   });
 
-  test.describe('Buttons', () => {
-    test('primary buttons should be touch-friendly', async ({ page }) => {
+  test.describe("Buttons", () => {
+    test("primary buttons should be touch-friendly", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/login`);
 
-      const submitButton = page.getByRole('button', { name: /sign.*in|login/i });
+      const submitButton = page.getByRole("button", {
+        name: /sign.*in|login/i,
+      });
       const box = await submitButton.boundingBox();
 
       if (box) {
@@ -475,14 +525,18 @@ test.describe('Responsive Design - Components', () => {
       }
     });
 
-    test('icon buttons should have sufficient touch targets', async ({ page }) => {
+    test("icon buttons should have sufficient touch targets", async ({
+      page,
+    }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/customers`);
 
       if (await skipIfUnauthenticated(page)) return;
 
       // Find icon buttons
-      const iconButtons = page.locator('button').filter({ has: page.locator('svg') });
+      const iconButtons = page
+        .locator("button")
+        .filter({ has: page.locator("svg") });
       const count = await iconButtons.count();
 
       if (count > 0) {
@@ -495,13 +549,13 @@ test.describe('Responsive Design - Components', () => {
     });
   });
 
-  test.describe('Typography', () => {
-    test('headings should scale appropriately', async ({ page }) => {
+  test.describe("Typography", () => {
+    test("headings should scale appropriately", async ({ page }) => {
       // Check heading size on desktop
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(BASE_URL);
 
-      const h1 = page.getByRole('heading', { level: 1 }).first();
+      const h1 = page.getByRole("heading", { level: 1 }).first();
       const desktopBox = await h1.boundingBox();
 
       // Check on mobile
@@ -515,22 +569,22 @@ test.describe('Responsive Design - Components', () => {
       }
     });
 
-    test('body text should be readable on all viewports', async ({ page }) => {
-      const viewports = ['desktop', 'tablet', 'mobile'] as const;
+    test("body text should be readable on all viewports", async ({ page }) => {
+      const viewports = ["desktop", "tablet", "mobile"] as const;
 
       for (const viewport of viewports) {
         await page.setViewportSize(VIEWPORTS[viewport]);
         await page.goto(BASE_URL);
 
         // Page should have readable content
-        const textContent = await page.locator('p, span').first().textContent();
+        const textContent = await page.locator("p, span").first().textContent();
         expect(textContent?.length).toBeGreaterThan(0);
       }
     });
   });
 
-  test.describe('Forms', () => {
-    test('form inputs should be properly sized on mobile', async ({ page }) => {
+  test.describe("Forms", () => {
+    test("form inputs should be properly sized on mobile", async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.mobile);
       await page.goto(`${BASE_URL}/login`);
 
@@ -545,8 +599,8 @@ test.describe('Responsive Design - Components', () => {
       }
     });
 
-    test('form labels should be visible on all viewports', async ({ page }) => {
-      const viewports = ['desktop', 'mobile'] as const;
+    test("form labels should be visible on all viewports", async ({ page }) => {
+      const viewports = ["desktop", "mobile"] as const;
 
       for (const viewport of viewports) {
         await page.setViewportSize(VIEWPORTS[viewport]);
@@ -560,57 +614,63 @@ test.describe('Responsive Design - Components', () => {
   });
 });
 
-test.describe('Responsive Design - PWA Specific', () => {
-  test('app should display in standalone mode', async ({ page }) => {
+test.describe("Responsive Design - PWA Specific", () => {
+  test("app should display in standalone mode", async ({ page }) => {
     await page.setViewportSize(VIEWPORTS.mobile);
     await page.goto(BASE_URL);
 
     // Check display-mode media query support
     const standaloneSupport = await page.evaluate(() => {
-      return CSS.supports('display-mode', 'standalone') ||
-             window.matchMedia('(display-mode: standalone)').matches ||
-             window.matchMedia('(display-mode: standalone)').media !== 'not all';
+      return (
+        CSS.supports("display-mode", "standalone") ||
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.matchMedia("(display-mode: standalone)").media !== "not all"
+      );
     });
 
     expect(standaloneSupport || true).toBe(true);
   });
 
-  test('viewport should be properly configured for PWA', async ({ page }) => {
+  test("viewport should be properly configured for PWA", async ({ page }) => {
     await page.goto(BASE_URL);
 
-    const viewport = await page.locator('meta[name="viewport"]').getAttribute('content');
+    const viewport = await page
+      .locator('meta[name="viewport"]')
+      .getAttribute("content");
 
-    expect(viewport).toContain('width=device-width');
-    expect(viewport).toContain('initial-scale=1');
-    expect(viewport).toContain('maximum-scale'); // Should prevent zoom on iOS
+    expect(viewport).toContain("width=device-width");
+    expect(viewport).toContain("initial-scale=1");
+    expect(viewport).toContain("maximum-scale"); // Should prevent zoom on iOS
   });
 
-  test('safe area insets should be handled for notched devices', async ({ page }) => {
+  test("safe area insets should be handled for notched devices", async ({
+    page,
+  }) => {
     // Simulate iPhone X with notch
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto(BASE_URL);
 
     // Page should still render correctly
-    await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 }).first()).toBeVisible();
   });
 });
 
-test.describe('Orientation Changes', () => {
-  test('page should adapt to orientation change', async ({ page }) => {
+test.describe("Orientation Changes", () => {
+  test("page should adapt to orientation change", async ({ page }) => {
     // Start in portrait
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto(BASE_URL);
 
-    await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 }).first()).toBeVisible();
 
     // Rotate to landscape
     await page.setViewportSize({ width: 812, height: 375 });
 
     // Page should still render
-    await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 }).first()).toBeVisible();
   });
 
-  test('mobile landscape should show appropriate layout', async ({ page }) => {
+  test("mobile landscape should show appropriate layout", async ({ page }) => {
     await page.setViewportSize({ width: 812, height: 375 });
     await page.goto(`${BASE_URL}/login`);
 
@@ -620,13 +680,13 @@ test.describe('Orientation Changes', () => {
   });
 });
 
-test.describe('Accessibility on Mobile', () => {
-  test('touch targets should be sufficient size', async ({ page }) => {
+test.describe("Accessibility on Mobile", () => {
+  test("touch targets should be sufficient size", async ({ page }) => {
     await page.setViewportSize(VIEWPORTS.mobile);
     await page.goto(`${BASE_URL}/login`);
 
     // All buttons should have adequate touch targets
-    const buttons = page.getByRole('button');
+    const buttons = page.getByRole("button");
     const count = await buttons.count();
 
     for (let i = 0; i < Math.min(count, 5); i++) {
@@ -641,15 +701,15 @@ test.describe('Accessibility on Mobile', () => {
     }
   });
 
-  test('interactive elements should be focusable', async ({ page }) => {
+  test("interactive elements should be focusable", async ({ page }) => {
     await page.setViewportSize(VIEWPORTS.mobile);
     await page.goto(BASE_URL);
 
     // Tab to first interactive element
-    await page.keyboard.press('Tab');
+    await page.keyboard.press("Tab");
 
     // Something should be focused
-    const focused = page.locator(':focus');
+    const focused = page.locator(":focus");
     const hasFocus = await focused.count();
 
     expect(hasFocus).toBeGreaterThanOrEqual(0);

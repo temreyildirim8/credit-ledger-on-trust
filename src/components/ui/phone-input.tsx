@@ -52,10 +52,10 @@ interface PhoneInputProps {
 }
 
 /**
- * Get top countries for dropdown (sorted by priority)
+ * Get all countries for dropdown (sorted by priority)
  */
-function getTopCountries(): CountryPhoneCode[] {
-  return [...COUNTRY_PHONE_CODES].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0)).slice(0, 20);
+function getAllCountries(): CountryPhoneCode[] {
+  return [...COUNTRY_PHONE_CODES].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
 }
 
 /**
@@ -75,7 +75,7 @@ export function PhoneInput({
   id,
   ariaLabel,
 }: PhoneInputProps) {
-  const topCountries = React.useMemo(() => getTopCountries(), []);
+  const allCountries = React.useMemo(() => getAllCountries(), []);
 
   const [selectedCountry, setSelectedCountry] = React.useState<CountryPhoneCode | null>(() => {
     // Priority: 1. Parse from value, 2. Currency mapping, 3. Default
@@ -189,7 +189,7 @@ export function PhoneInput({
           </SelectValue>
         </SelectTrigger>
         <SelectContent className="max-h-[300px]">
-          {topCountries.map((country) => (
+          {allCountries.map((country) => (
             <SelectItem key={country.code} value={country.code}>
               <span className="flex items-center gap-2">
                 <span>{country.flag}</span>

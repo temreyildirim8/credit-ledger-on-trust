@@ -27,7 +27,8 @@
     "on": "पर",
     "off": "बंद",
     "yes": "हाँ",
-    "no": "नहीं"
+    "no": "नहीं",
+    "defaultBusinessName": "मेरा व्यवसाय"
   },
   "errorBoundary": {
     "title": "कुछ गलत हो गया",
@@ -112,6 +113,7 @@
     "dashboard": "डैशबोर्ड",
     "customers": "ग्राहक",
     "transactions": "लेनदेन",
+    "reports": "रिपोर्ट",
     "quickAdd": "त्वरित जोड़ें",
     "settings": "सेटिंग्स",
     "login": "लॉग इन",
@@ -135,7 +137,10 @@
     "collapseSidebar": "साइडबार संक्षिप्त करें",
     "home": "होम",
     "installApp": "ऐप इंस्टॉल करें",
-    "appInstalled": "ऐप इंस्टॉल है"
+    "appInstalled": "ऐप इंस्टॉल है",
+    "upgradeForPWA": "Pro पर अपग्रेड करें",
+    "upgradeForPWADesc": "ऐप इंस्टॉल करने के लिए Pro पर अपग्रेड करें",
+    "upgradeForTheme": "डार्क मोड के लिए Pro पर अपग्रेड करें"
   },
   "home": {
     "meta": {
@@ -252,6 +257,12 @@
     "save17": "17% बचाएं",
     "mostPopular": "सबसे लोकप्रिय",
     "toggleBilling": "बिलिंग अवधि बदलें",
+    "periods": {
+      "forever": "हमेशा के लिए",
+      "month": "महीना",
+      "year": "वर्ष",
+      "contact": "संपर्क करें"
+    },
     "free": {
       "name": "हमेशा के लिए मुफ्त",
       "price": "$0",
@@ -375,7 +386,7 @@
     "hero": {
       "badge": "संपर्क",
       "title": "संपर्क करें",
-      "subtitle": "क्या आपके Global Ledger के बारे में प्रश्न हैं? हम यहाँ मदद के लिए हैं। सहायता, बिक्री या साझेदारी के लिए हमसे संपर्क करें।"
+      "subtitle": "क्या आपके Ledgerly के बारे में प्रश्न हैं? हम यहाँ मदद के लिए हैं। सहायता, बिक्री या साझेदारी के लिए हमसे संपर्क करें।"
     },
     "title": "संपर्क करें",
     "subtitle": "हम आपसे सुनना चाहेंगे",
@@ -462,15 +473,14 @@
     "recentActivity": {
       "title": "हाल की गतिविधि",
       "empty": "कोई हाल की गतिविधि नहीं",
-      "emptyDescription": "Start by adding your first customer or recording a transaction"
+      "emptyDescription": "अपना पहला ग्राहक जोड़कर या लेनदेन दर्ज करके शुरू करें"
     },
     "overdueDebts": {
       "title": "अवैतनिक ऋण",
       "empty": "कोई अवैतनिक भुगतान नहीं",
       "remind": "याद दिलाएं",
       "daysOverdue": "दिन बकाया",
-      "emptyDescription": "Start by adding your first customer or recording a transaction",
-      "remind": "याद दिलाएं"
+      "emptyDescription": "अपना पहला ग्राहक जोड़कर या लेनदेन दर्ज करके शुरू करें"
     },
     "empty": {
       "title": "Udhar-X में आपका स्वागत है",
@@ -493,7 +503,7 @@
       "noSearchResults": "कोई ग्राहक नहीं मिला",
       "addFirst": "अपना पहला ग्राहक जोड़ें"
     },
-    "count": "{count} ग्राहक | {count} ग्राहक",
+    "count": "{count} ग्राहक",
     "paywall": {
       "limitReached": "ग्राहक सीमा पहुंच गई",
       "upgradeMessage": "असीमित ग्राहकों और अधिक सुविधाओं के लिए Pro में अपग्रेड करें।",
@@ -504,15 +514,21 @@
       "title": "नया ग्राहक जोड़ें",
       "editTitle": "ग्राहक संपादित करें",
       "editDescription": "नीचे ग्राहक जानकारी अपडेट करें।",
+      "customId": "ग्राहक आईडी",
+      "customIdPlaceholder": "उदा., CUST-001, ABC123",
+      "customIdOptional": "(वैकल्पिक)",
       "name": "पूरा नाम",
       "namePlaceholder": "ग्राहक का नाम दर्ज करें",
       "phone": "फोन नंबर",
       "phonePlaceholder": "+90 555 123 4567",
       "address": "पता",
       "addressPlaceholder": "पता दर्ज करें (वैकल्पिक)",
+      "notes": "नोट",
       "notesPlaceholder": "इस ग्राहक के बारे में अतिरिक्त नोट",
       "submit": "ग्राहक जोड़ें",
-      "saveChanges": "परिवर्तन सहेजें"
+      "saveChanges": "परिवर्तन सहेजें",
+      "databaseId": "डेटाबेस आईडी",
+      "nonEditable": "(संपादन योग्य नहीं)"
     },
     "details": {
       "totalDebt": "कुल ऋण",
@@ -545,7 +561,10 @@
       "nameTooShort": "नाम कम से कम 2 अक्षर का होना चाहिए",
       "nameTooLong": "नाम 100 अक्षरों से कम होना चाहिए",
       "invalidPhone": "कृपया एक वैध फोन नंबर दर्ज करें",
-      "fixErrors": "कृपया फॉर्म में त्रुटियों को ठीक करें"
+      "fixErrors": "कृपया फॉर्म में त्रुटियों को ठीक करें",
+      "invalidId": "केवल अक्षर, अंक, डैश और अंडरस्कोर की अनुमति है",
+      "idTooShort": "ID कम से कम 3 अक्षर होना चाहिए",
+      "idTooLong": "ID 50 अक्षरों से कम होना चाहिए"
     },
     "table": {
       "customer": "ग्राहक",
@@ -558,6 +577,7 @@
   "transactions": {
     "title": "लेनदेन",
     "addNew": "नया जोड़ें",
+    "searchPlaceholder": "ग्राहक, विवरण, या राशि से खोजें...",
     "filter": {
       "all": "सभी",
       "debts": "ऋण",
@@ -565,11 +585,18 @@
     },
     "empty": {
       "noTransactions": "अभी तक कोई लेनदेन नहीं",
-      "noFilterResults": "कोई {filter} नहीं मिला"
+      "noFilterResults": "कोई {filter} नहीं मिला",
+      "noSearchResults": "आपकी खोज से मेल खाता कोई लेनदेन नहीं"
     },
-    "count": "{count} लेनदेन | {count} लेनदेन",
+    "count": "{count} लेनदेन",
+    "type": {
+      "debt": "ऋण",
+      "payment": "भुगतान"
+    },
     "form": {
       "title": "नया लेनदेन",
+      "editTitle": "लेनदेन संपादित करें",
+      "editDescription": "लेनदेन विवरण अपडेट करें",
       "description": "ऋण या भुगतान लेनदेन जोड़ें",
       "type": "प्रकार",
       "debt": "ऋण",
@@ -580,9 +607,19 @@
       "amountPlaceholder": "0.00",
       "note": "नोट",
       "notePlaceholder": "विवरण (वैकल्पिक)",
-      "submit": "सहेजें"
+      "date": "तारीख",
+      "submit": "सहेजें",
+      "saveChanges": "परिवर्तन सहेजें"
+    },
+    "table": {
+      "customer": "ग्राहक",
+      "amount": "राशि",
+      "description": "विवरण",
+      "date": "तारीख",
+      "actions": "कार्य"
     },
     "success": "लेनदेन जोड़ा गया!",
+    "editSuccess": "लेनदेन अपडेट किया गया!",
     "error": "लेनदेन जोड़ने में विफल",
     "validation": {
       "customerRequired": "ग्राहक आवश्यक है",
@@ -852,6 +889,18 @@
       "title": "पासवर्ड रीसेट करें",
       "subtitle": "अपना नया पासवर्ड दर्ज करें",
       "brandName": "Udhar-X",
+      "heroTitle": "नया पासवर्ड बनाएं",
+      "heroSubtitle": "आपका नया पासवर्ड सुरक्षित और याद रखने योग्य होना चाहिए।",
+      "tipsTitle": "पासवर्ड आवश्यकताएं:",
+      "tip1": "कम से कम 8 अक्षर",
+      "tip2": "एक बड़ा अक्षर",
+      "tip3": "एक नंबर",
+      "feature1Title": "एन्क्रिप्टेड स्टोरेज",
+      "feature1Desc": "पासवर्ड हैश किए जाते हैं",
+      "feature2Title": "सुरक्षित कनेक्शन",
+      "feature2Desc": "HTTPS एन्क्रिप्टेड",
+      "feature3Title": "स्वचालित लॉक",
+      "feature3Desc": "5 विफल प्रयासों के बाद",
       "password": "नया पासवर्ड",
       "passwordPlaceholder": "नया पासवर्ड दर्ज करें",
       "confirmPassword": "पासवर्ड की पुष्टि करें",
@@ -898,10 +947,14 @@
       "collected": "एकत्रित",
       "newDebts": "नए ऋण",
       "paymentsReceived": "प्राप्त भुगतान",
-      "activeCustomers": "सक्रिय ग्राहक"
+      "activeCustomers": "सक्रिय ग्राहक",
+      "collectionRate": "वसूली दर",
+      "withOutstandingBalance": "बकाया राशि के साथ",
+      "fromLastMonth": "पिछले महीने से"
     },
     "debtAging": {
       "title": "ऋण एजिंग",
+      "description": "आयु के अनुसार बकाया ऋण",
       "current": "वर्तमान",
       "days30": "1-30 दिन",
       "days60": "31-60 दिन",
@@ -919,9 +972,21 @@
       "pdf": "पीडीएफ विवरण निर्यात करें",
       "csv": "सीएसवी निर्यात करें",
       "customerStatement": "ग्राहक विवरण",
+      "selectCustomer": "ग्राहक चुनें",
+      "selectCustomerDescription": "उनका खाता विवरण बनाने के लिए ग्राहक चुनें",
+      "noCustomers": "कोई ग्राहक उपलब्ध नहीं",
       "noTransactions": "निर्यात के लिए कोई लेनदेन नहीं",
+      "generating": "बना रहा है...",
+      "csvSuccess": "CSV सफलतापूर्वक निर्यात किया गया",
+      "csvError": "CSV निर्यात करने में विफल",
+      "pdfSuccess": "PDF रिपोर्ट सफलतापूर्वक निर्यात की गई",
+      "pdfError": "PDF निर्यात करने में विफल",
+      "statementSuccess": "ग्राहक विवरण सफलतापूर्वक निर्यात किया गया",
+      "statementError": "ग्राहक विवरण बनाने में विफल",
       "success": "निर्यात सफल",
-      "error": "डेटा निर्यात करने में विफल"
+      "error": "डेटा निर्यात करने में विफल",
+      "outstanding": "बकाया",
+      "settled": "निपटान"
     },
     "empty": {
       "title": "पर्याप्त डेटा नहीं",

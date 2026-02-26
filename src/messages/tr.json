@@ -27,7 +27,8 @@
     "on": "üzerinde",
     "off": "Kapalı",
     "yes": "Evet",
-    "no": "Hayır"
+    "no": "Hayır",
+    "defaultBusinessName": "İşletmem"
   },
   "errorBoundary": {
     "title": "Bir hata oluştu",
@@ -93,6 +94,7 @@
     "dashboard": "Kontrol Paneli",
     "customers": "Müşteriler",
     "transactions": "İşlemler",
+    "reports": "Raporlar",
     "quickAdd": "Hızlı Ekle",
     "settings": "Ayarlar",
     "login": "Giriş Yap",
@@ -116,7 +118,10 @@
     "collapseSidebar": "Kenar Çubuğunu Daralt",
     "home": "Ana Sayfa",
     "installApp": "Uygulamayı Kur",
-    "appInstalled": "Uygulama Kurulu"
+    "appInstalled": "Uygulama Kurulu",
+    "upgradeForPWA": "Pro'ya Geç",
+    "upgradeForPWADesc": "Uygulamayı kurmak için Pro'ya geçin",
+    "upgradeForTheme": "Dark Mode için Pro'ya Geç"
   },
   "home": {
     "meta": {
@@ -233,6 +238,12 @@
     "save17": "%17 Tasarruf",
     "mostPopular": "En Popüler",
     "toggleBilling": "Fatura dönemini değiştir",
+    "periods": {
+      "forever": "sonsuza kadar",
+      "month": "ay",
+      "year": "yıl",
+      "contact": "iletişim"
+    },
     "basic": {
       "name": "Temel",
       "price": "₺150",
@@ -347,7 +358,7 @@
       "title1": "Hikayemiz: Kağıttan",
       "title2": "Buluta",
       "paragraph1": "On yıllardır, gelişmekte olan piyasalardeki mikro işletmeler, milyonlarca kredi işlemini takip eden el yazısı \"Veresiye\" defterlerine güvendi. Ancak yüksek enflasyonlu ekonomilerde kağıt kırılgandır ve veriler zamanla kaybolur.",
-      "paragraph2": "Dijital uçurumu kapatmak için Global Ledger (Veresiye-X)'ı kurduk. Geleneksel defterleri",
+      "paragraph2": "Dijital uçurumu kapatmak için Ledgerly (Veresiye-X)'ı kurduk. Geleneksel defterleri",
       "digitalTrust": "Dijital Güven",
       "paragraph3": "ile değiştiriyoruz. Platformumuz sadece işlemleri kaydetmez; bankasızlar için finansal kimlik oluşturarak ölçeklenmelerine, borçları daha hızlı tahsil etmelerine ve gelişmelerine olanak tanır.",
       "stat1Value": "%99.9",
@@ -369,7 +380,7 @@
     "hero": {
       "badge": "İletişim",
       "title": "Bizimle İletişime Geçin",
-      "subtitle": "Global Ledger hakkında sorularınız mı var? Buradayız. Destek, satış veya ortaklık için ekibimize ulaşın."
+      "subtitle": "Ledgerly hakkında sorularınız mı var? Buradayız. Destek, satış veya ortaklık için ekibimize ulaşın."
     },
     "form": {
       "title": "Bize Mesaj Gönderin",
@@ -408,7 +419,7 @@
       },
       "office": {
         "title": "Ofis",
-        "company": "Global Ledger Inc.",
+        "company": "Ledgerly Inc.",
         "address": "Levent, Büyükdere Cd. No:199 Şişli, İstanbul, TR"
       },
       "liveChat": {
@@ -423,7 +434,7 @@
     },
     "cta": {
       "title": "İşletmenizi dönüştürmeye hazır mısınız?",
-      "description": "Global Ledger'a güvenen binlerce dükkan sahibine katılın.",
+      "description": "Ledgerly'a güvenen binlerce dükkan sahibine katılın.",
       "primaryButton": "Ücretsiz Başlayın",
       "secondaryButton": "Fiyatları Görüntüle",
       "button": "Yardım Merkezini Ziyaret Et"
@@ -454,15 +465,14 @@
     "recentActivity": {
       "title": "Son Aktivite",
       "empty": "Son aktivite yok",
-      "emptyDescription": "Start by adding your first customer or recording a transaction"
+      "emptyDescription": "İlk müşterinizi ekleyerek veya işlem kaydederek başlayın"
     },
     "overdueDebts": {
       "title": "Gecikmiş Borçlar",
       "empty": "Gecikmiş ödeme yok",
       "remind": "Hatırlat",
       "daysOverdue": "gün gecikmiş",
-      "emptyDescription": "Start by adding your first customer or recording a transaction",
-      "remind": "Hatırlat"
+      "emptyDescription": "İlk müşterinizi ekleyerek veya işlem kaydederek başlayın"
     },
     "empty": {
       "title": "Veresiye-X'a Hoş Geldiniz",
@@ -483,22 +493,34 @@
     "empty": {
       "noCustomers": "Henüz müşteri yok",
       "noSearchResults": "Müşteri bulunamadı",
+      "noSearchResultsDesc": "Farklı bir arama terimi deneyin",
+      "description": "İlk müşterinizi ekleyerek veresiye takibine başlayın",
       "addFirst": "İlk müşterinizi ekleyin"
     },
-    "count": "{count} müşteri | {count} müşteri",
+    "count": "{count} müşteri",
     "form": {
       "title": "Yeni Müşteri Ekle",
       "editTitle": "Müşteriyi Düzenle",
       "editDescription": "Müşteri bilgilerini aşağıda güncelleyin.",
+      "customId": "Kimlik No / TCKN",
+      "customIdPlaceholder": "örn., 12345678901",
+      "customIdOptional": "(isteğe bağlı)",
+      "setUniqueId": "Benzersiz Kod Oluştur",
+      "generatingId": "Kontrol ediliyor...",
+      "idAvailable": "Bu kod kullanılabilir",
+      "idTaken": "Bu kod zaten alınmış, başka bir tane oluşturuluyor...",
       "name": "Tam Ad",
       "namePlaceholder": "Müşteri adını girin",
       "phone": "Telefon Numarası",
       "phonePlaceholder": "+90 555 123 4567",
       "address": "Adres",
       "addressPlaceholder": "Adres girin (isteğe bağlı)",
+      "notes": "Notlar",
       "notesPlaceholder": "Bu müşteri hakkında ek notlar",
       "submit": "Müşteri Ekle",
-      "saveChanges": "Değişiklikleri Kaydet"
+      "saveChanges": "Değişiklikleri Kaydet",
+      "databaseId": "Veritabanı ID",
+      "nonEditable": "(düzenlenemez)"
     },
     "details": {
       "totalDebt": "Toplam Borç",
@@ -522,7 +544,12 @@
       "address": "Adres",
       "edit": "Düzenle",
       "call": "Ara",
-      "editCustomer": "Müşteriyi Düzenle"
+      "editCustomer": "Müşteriyi Düzenle",
+      "lastActivity": "Son Aktivite",
+      "actions": "İşlem",
+      "archive": "Arşivle",
+      "delete": "Sil",
+      "status": "Durum"
     },
     "success": "Müşteri başarıyla eklendi",
     "editSuccess": "Müşteri başarıyla güncellendi",
@@ -531,7 +558,11 @@
       "nameTooShort": "İsim en az 2 karakter olmalı",
       "nameTooLong": "İsim 100 karakterden az olmalı",
       "invalidPhone": "Lütfen geçerli bir telefon numarası girin",
-      "fixErrors": "Lütfen formdaki hataları düzeltin"
+      "fixErrors": "Lütfen formdaki hataları düzeltin",
+      "invalidId": "Yalnızca harf, rakam, tire ve alt çizgi kullanılabilir",
+      "idTooShort": "ID en az 3 karakter olmalı",
+      "idTooLong": "ID 50 karakterden az olmalı",
+      "idTaken": "Bu müşteri kodu zaten kullanımda"
     },
     "table": {
       "customer": "Müşteri",
@@ -550,6 +581,7 @@
   "transactions": {
     "title": "İşlemler",
     "addNew": "Yeni Ekle",
+    "searchPlaceholder": "Müşteri, açıklama veya tutara göre ara...",
     "filter": {
       "all": "Tümü",
       "debts": "Borçlar",
@@ -557,11 +589,18 @@
     },
     "empty": {
       "noTransactions": "Henüz işlem yok",
-      "noFilterResults": "{filter} bulunamadı"
+      "noFilterResults": "{filter} bulunamadı",
+      "noSearchResults": "Aramanızla eşleşen işlem yok"
     },
-    "count": "{count} işlem | {count} işlem",
+    "count": "{count} işlem",
+    "type": {
+      "debt": "Borç",
+      "payment": "Ödeme"
+    },
     "form": {
       "title": "Yeni İşlem",
+      "editTitle": "İşlemi Düzenle",
+      "editDescription": "İşlem detaylarını güncelleyin",
       "description": "Borç veya ödeme işlemi ekleyin",
       "type": "Tür",
       "debt": "Borç",
@@ -572,9 +611,19 @@
       "amountPlaceholder": "0.00",
       "note": "Not",
       "notePlaceholder": "Açıklama (isteğe bağlı)",
-      "submit": "Kaydet"
+      "date": "Tarih",
+      "submit": "Kaydet",
+      "saveChanges": "Değişiklikleri Kaydet"
+    },
+    "table": {
+      "customer": "Müşteri",
+      "amount": "Tutar",
+      "description": "Açıklama",
+      "date": "Tarih",
+      "actions": "İşlemler"
     },
     "success": "İşlem eklendi!",
+    "editSuccess": "İşlem güncellendi!",
     "error": "İşlem eklenemedi",
     "validation": {
       "customerRequired": "Müşteri gereklidir",
@@ -617,10 +666,14 @@
       "collected": "Tahsil Edilen",
       "newDebts": "Yeni Borçlar",
       "paymentsReceived": "Alınan Ödemeler",
-      "activeCustomers": "Aktif Müşteriler"
+      "activeCustomers": "Aktif Müşteriler",
+      "collectionRate": "Tahsilat Oranı",
+      "withOutstandingBalance": "Bakiyesi olan",
+      "fromLastMonth": "geçen aydan"
     },
     "debtAging": {
       "title": "Borç Yaşlandırması",
+      "description": "Yaşa göre bekleyen borçlar",
       "current": "Cari",
       "days30": "1-30 gün",
       "days60": "31-60 gün",
@@ -635,12 +688,60 @@
     "export": {
       "title": "Verileri Dışa Aktar",
       "description": "Raporları ve ekstreleri indirin",
-      "pdf": "PDF Ekstre Dışa Aktar",
-      "csv": "CSV Dışa Aktar",
+      "pdf": "PDF Rapor İndir",
+      "csv": "CSV Veri İndir",
       "customerStatement": "Müşteri Ekstresi",
+      "selectCustomer": "Müşteri Seçin",
+      "selectCustomerDescription": "Hesap ekstresi oluşturulacak müşteriyi seçin",
+      "noCustomers": "Mevcut müşteri yok",
       "noTransactions": "Dışa aktarılacak işlem yok",
+      "generating": "Oluşturuluyor...",
+      "csvSuccess": "CSV başarıyla dışa aktarıldı",
+      "csvError": "CSV dışa aktarılamadı",
+      "pdfSuccess": "PDF raporu başarıyla dışa aktarıldı",
+      "pdfError": "PDF dışa aktarılamadı",
+      "statementSuccess": "Müşteri ekstresi başarıyla dışa aktarıldı",
+      "statementError": "Müşteri ekstresi oluşturulamadı",
       "success": "Dışa aktarma başarıyla tamamlandı",
-      "error": "Veriler dışa aktarılamadı"
+      "error": "Veriler dışa aktarılamadı",
+      "outstanding": "borçlu",
+      "settled": "ödendi"
+    },
+    "trends": {
+      "title": "Trendler",
+      "monthlyCollection": "Aylık Tahsilat",
+      "debtVsPayment": "Borç vs Ödeme",
+      "customerActivity": "Müşteri Aktivitesi",
+      "collectionRate": "Tahsilat Oranı Trendi"
+    },
+    "customerPerformance": {
+      "title": "Müşteri Performansı",
+      "avgPaymentTime": "Ort. Ödeme Süresi",
+      "reliabilityScore": "Güvenilirlik Puanı",
+      "riskCategory": "Risk Kategorisi",
+      "totalTransactions": "Toplam İşlem",
+      "lastPayment": "Son Ödeme",
+      "lowRisk": "Düşük Risk",
+      "mediumRisk": "Orta Risk",
+      "highRisk": "Yüksek Risk"
+    },
+    "comparison": {
+      "title": "Dönem Karşılaştırması",
+      "thisMonth": "Bu Ay",
+      "lastMonth": "Geçen Ay",
+      "thisQuarter": "Bu Çeyrek",
+      "lastQuarter": "Geçen Çeyrek",
+      "thisYear": "Bu Yıl",
+      "lastYear": "Geçen Yıl",
+      "change": "Değişim",
+      "vsLastPeriod": "geçen döneme göre"
+    },
+    "tax": {
+      "title": "Vergi Özeti",
+      "period": "Dönem",
+      "totalSales": "Toplam Satış (Veresiye)",
+      "totalCollected": "Tahsil Edilen",
+      "outstanding": "Bakiye"
     },
     "empty": {
       "title": "Yeterli veri yok",
@@ -724,6 +825,9 @@
     "subtitle": "Hesabınızı ve tercihlerinizi yönetin",
     "betaFounder": "Beta Kurucusu",
     "betaDescription": "Erken benimseyen avantajları - Sonsuza kadar %50 indirim!",
+    "subscription": {
+      "upgrade": "Planı Yükselt"
+    },
     "sections": {
       "profile": {
         "title": "Profil",
@@ -906,7 +1010,8 @@
       "pricing": "Fiyatlandırma",
       "successTitle": "Kayıt Başarılı!",
       "successDescription1": "E-posta adresinize bir doğrulama bağlantısı gönderdik.",
-      "successDescription2": "Lütfen gelen kutunuzu (ve spam klasörünüzü) kontrol edin, ardından hesabınızı doğrulamak için bağlantıya tıklayın."
+      "successDescription2": "Lütfen gelen kutunuzu (ve spam klasörünüzü) kontrol edin, ardından hesabınızı doğrulamak için bağlantıya tıklayın.",
+      "goToLogin": "Giriş Sayfasına Git"
     },
     "forgotPassword": {
       "title": "Şifremi Unuttum",
@@ -958,6 +1063,18 @@
       "title": "Şifre Sıfırlama",
       "subtitle": "Yeni şifrenizi girin",
       "brandName": "Ledgerly",
+      "heroTitle": "Yeni şifre oluştur",
+      "heroSubtitle": "Yeni şifreniz güvenli ve akılda kalıcı olmalı.",
+      "tipsTitle": "Şifre gereksinimleri:",
+      "tip1": "En az 8 karakter",
+      "tip2": "Bir büyük harf",
+      "tip3": "Bir rakam",
+      "feature1Title": "Şifreli Depolama",
+      "feature1Desc": "Şifreler hashlenir",
+      "feature2Title": "Güvenli Bağlantı",
+      "feature2Desc": "HTTPS şifreli",
+      "feature3Title": "Otomatik Kilitleme",
+      "feature3Desc": "5 başarısız denemeden sonra",
       "password": "Yeni Şifre",
       "passwordPlaceholder": "Yeni şifre girin",
       "confirmPassword": "Şifre Tekrarı",

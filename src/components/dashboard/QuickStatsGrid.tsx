@@ -14,23 +14,23 @@ interface StatCardProps {
 
 function StatCard({ label, value, icon, variant }: StatCardProps) {
   const variantStyles = {
-    debt: "bg-debt/10 text-debt-text",
-    collected: "bg-payment/10 text-payment-text",
-    customers: "bg-accent/10 text-accent",
-    month: "bg-surface-alt text-text",
+    debt: "bg-[var(--color-debt)] text-[var(--color-debt-text)]",
+    collected: "bg-[var(--color-payment)] text-[var(--color-payment-text)]",
+    customers: "bg-[var(--color-accent)]/10 text-[var(--color-accent)]",
+    month: "bg-[var(--color-surface-alt)] text-[var(--color-text)]",
   };
 
   return (
-    <Card className={cn("border-border hover:shadow-sm transition-shadow", variantStyles[variant])}>
+    <Card className={cn("border-[var(--color-border)] hover:shadow-sm transition-shadow", variantStyles[variant])}>
       <div className="p-4 md:p-5">
-        <p className="text-xs font-semibold text-text-secondary uppercase tracking-wide mb-2">
+        <p className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide mb-2">
           {label}
         </p>
         <div className="flex items-center gap-3">
           <div className={cn("p-2 rounded-xl", variantStyles[variant])}>
             {icon}
           </div>
-          <span className="text-2xl font-bold">{value}</span>
+          <span className="text-2xl font-bold text-[var(--color-text)]">{value}</span>
         </div>
       </div>
     </Card>

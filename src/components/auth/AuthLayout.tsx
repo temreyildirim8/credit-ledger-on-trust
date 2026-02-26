@@ -30,14 +30,17 @@ export function AuthLayout({
     <div className="min-h-screen flex flex-col lg:flex-row relative">
       {/* Top navigation - Home link and Language Switcher */}
       <div className="absolute top-4 start-4 end-4 z-50 flex items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors bg-white/80 backdrop-blur-sm px-3 py-2 rounded-lg"
-        >
-          <Home className="h-4 w-4" />
-          <span className="hidden sm:inline">{t('home')}</span>
-        </Link>
-        <LanguageSwitcher />
+        <div />
+        <div className="flex items-center gap-3">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors bg-white/80 backdrop-blur-sm px-3 py-2 rounded-lg"
+          >
+            <Home className="h-4 w-4" />
+            <span className="hidden sm:inline">{t('home')}</span>
+          </Link>
+          <LanguageSwitcher variant="icon" />
+        </div>
       </div>
       {/* Left Panel - Visual/Branding (hidden on mobile) */}
       {/* In RTL: this appears on the right, in LTR: on the left */}
