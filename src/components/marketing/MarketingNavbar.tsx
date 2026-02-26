@@ -77,7 +77,7 @@ export function MarketingNavbar() {
           </div>
           <Link
             href="/login"
-            className="text-sm font-bold text-[#0f172a] hover:text-[#3c83f6] transition-colors px-4 py-2 w-24"
+            className="text-sm font-bold text-[#0f172a] hover:text-[#3c83f6] transition-colors px-4 py-2 w-fit"
           >
             {t("login")}
           </Link>

@@ -1,6 +1,12 @@
 "use client";
 
-import { UserPlus, Receipt, Wallet, TrendingUp, CheckCircle } from "lucide-react";
+import {
+  UserPlus,
+  Receipt,
+  Wallet,
+  TrendingUp,
+  CheckCircle,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 
 /**
@@ -46,8 +52,8 @@ export function FeaturesSection() {
   return (
     <>
       {/* How it Works Section */}
-      <section id="features" className="py-32 bg-white">
-        <div className="max-w-[1280px] mx-auto px-6">
+      <section id="features" className="bg-white px-5 py-24 md:px-20">
+        <div className="max-w-[1280px] mx-auto">
           {/* Header */}
           <div className="text-center mb-20">
             <h2 className="text-[36px] font-black leading-[40px] tracking-[-0.9px] text-[#0f172a] mb-6">
@@ -89,7 +95,7 @@ export function FeaturesSection() {
       </section>
 
       {/* Built for Resilience Section */}
-      <section className="py-24 px-6">
+      <section className="px-5 py-24 md:px-20">
         <div className="max-w-[1280px] mx-auto">
           <div className="bg-[#3c83f6] rounded-[48px] py-24 px-6">
             <div className="flex gap-20 items-center justify-center">
@@ -131,8 +137,12 @@ export function FeaturesSection() {
                   <div className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-[32px] aspect-square w-full flex items-center justify-center">
                     <div className="text-white text-center p-12">
                       <TrendingUp className="h-20 w-20 mx-auto mb-6 text-[#3c83f6]" />
-                      <p className="text-xl font-bold mb-2">{t("resilience.dashboardTitle")}</p>
-                      <p className="text-white/60">{t("resilience.dashboardSubtitle")}</p>
+                      <p className="text-xl font-bold mb-2">
+                        {t("resilience.dashboardTitle")}
+                      </p>
+                      <p className="text-white/60">
+                        {t("resilience.dashboardSubtitle")}
+                      </p>
                     </div>
                   </div>
                 </div>

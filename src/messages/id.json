@@ -28,7 +28,8 @@
     "off": "Mati",
     "yes": "Ya",
     "no": "Tidak",
-    "defaultBusinessName": "Usaha Saya"
+    "defaultBusinessName": "Usaha Saya",
+    "trustedBy": "Trusted By"
   },
   "errorBoundary": {
     "title": "Terjadi Kesalahan",
@@ -64,33 +65,52 @@
         "price": "Rp0",
         "period": "selamanya",
         "description": "Untuk toko kecil yang baru memulai",
-        "features": ["5 pelanggan", "50 transaksi", "Dukungan email"]
+        "features": [
+          "5 pelanggan",
+          "50 transaksi",
+          "Dukungan email"
+        ]
       },
       "basic": {
         "name": "Dasar",
         "price": "Rp69.000",
         "period": "bulan",
         "description": "Untuk bisnis yang berkembang",
-        "features": ["50 pelanggan", "Ekspor data (PDF/CSV)", "Laporan lanjutan", "Dukungan email"]
+        "features": [
+          "50 pelanggan",
+          "Ekspor data (PDF/CSV)",
+          "Laporan lanjutan",
+          "Dukungan email"
+        ]
       },
       "pro": {
         "name": "Pro",
         "price": "Rp149.000",
         "period": "bulan",
         "description": "Untuk toko yang mapan",
-        "features": ["Pelanggan tanpa batas", "Pengingat SMS", "Dukungan prioritas", "Akses API"]
+        "features": [
+          "Pelanggan tanpa batas",
+          "Pengingat SMS",
+          "Dukungan prioritas",
+          "Akses API"
+        ]
       },
       "enterprise": {
         "name": "Enterprise",
         "price": "Khusus",
         "period": "",
         "description": "Untuk operasi besar",
-        "features": ["Semua di Pro", "Akses multi-pengguna", "Integrasi khusus", "Opsi white-label"]
+        "features": [
+          "Semua di Pro",
+          "Akses multi-pengguna",
+          "Integrasi khusus",
+          "Opsi white-label"
+        ]
       }
     }
   },
   "nav": {
-    "brandName": "Ledgerly",
+    "brandName": "Catat-X",
     "dashboard": "Dashboard",
     "customers": "Pelanggan",
     "transactions": "Transaksi",
@@ -222,7 +242,7 @@
     },
     "cta": {
       "title": "Siap Untuk Memulai?",
-      "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Ledgerly untuk mengelola kredit pelanggan mereka.",
+      "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Catat-X untuk mengelola kredit pelanggan mereka.",
       "button": "Mulai Gratis Hari Ini"
     }
   },
@@ -345,7 +365,7 @@
       "title1": "Kisah Kami: Dari Kertas",
       "title2": "ke Cloud",
       "paragraph1": "Selama beberapa dekade, UMKM di pasar berkembang telah mengandalkan buku \"Veresiye\" tulisan tangan—buku besar kertas yang melacak jutaan transaksi kredit. Namun di ekonomi inflasi tinggi, kertas rapuh, dan data hilang seiring waktu.",
-      "paragraph2": "Kami mendirikan Ledgerly (Veresiye-X) untuk menjembatani kesenjangan digital. Kami mengganti buku catatan tradisional dengan",
+      "paragraph2": "Kami mendirikan Catat-X (Veresiye-X) untuk menjembatani kesenjangan digital. Kami mengganti buku catatan tradisional dengan",
       "digitalTrust": "Kepercayaan Digital",
       "paragraph3": "Platform kami tidak hanya mencatat transaksi; ia membangun identitas keuangan bagi yang tidak memiliki rekening bank, memungkinkan mereka untuk berkembang, memulihkan hutang lebih cepat, dan berkembang.",
       "stat1Value": "99.9%",
@@ -355,7 +375,7 @@
     },
     "cta": {
       "title": "Siap Untuk Memulai?",
-      "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Ledgerly untuk mengelola kredit pelanggan mereka.",
+      "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Catat-X untuk mengelola kredit pelanggan mereka.",
       "button": "Mulai Gratis Hari Ini"
     }
   },
@@ -367,7 +387,7 @@
     "hero": {
       "badge": "Hubungi Kami",
       "title": "Hubungi Kami",
-      "subtitle": "Ada pertanyaan tentang Ledgerly? Kami siap membantu. Hubungi kami untuk dukungan, penjualan, atau kemitraan."
+      "subtitle": "Ada pertanyaan tentang Catat-X? Kami siap membantu. Hubungi kami untuk dukungan, penjualan, atau kemitraan."
     },
     "title": "Hubungi Kami",
     "subtitle": "Kami ingin mendengar dari Anda",
@@ -738,7 +758,8 @@
   },
   "auth": {
     "common": {
-      "or": "atau"
+      "or": "atau",
+      "trustedBy": "Trusted By"
     },
     "login": {
       "title": "Selamat Datang Kembali",
@@ -776,7 +797,9 @@
       "emailNotConfirmedTitle": "Email Belum Diverifikasi",
       "emailNotConfirmedDescription": "Alamat email Anda belum diverifikasi. Silakan periksa kotak masuk Anda dan klik tautan verifikasi.",
       "resendEmailButton": "Kirim Ulang Email Verifikasi",
-      "goToLogin": "Ke Halaman Login"
+      "goToLogin": "Ke Halaman Login",
+      "redirecting": "Signing you in...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "signup": {
       "title": "Buat Akun",
@@ -818,7 +841,17 @@
       "successTitle": "Pendaftaran Berhasil!",
       "successDescription1": "Kami telah mengirim tautan verifikasi ke alamat email Anda.",
       "successDescription2": "Silakan periksa kotak masuk (dan folder spam), lalu klik tautan untuk memverifikasi akun Anda.",
-      "passwordHint": "Minimal 6 karakter"
+      "passwordHint": "Minimal 6 karakter",
+      "acceptTerms": "Please accept the Terms of Service and Privacy Policy",
+      "agreePrefix": "I agree to the",
+      "agreeAnd": "and",
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "emailSentTitle": "Check Your Email",
+      "emailSentSubtitle": "A verification link has been sent to your inbox.",
+      "successAutoConfirmed": "Account created! Redirecting...",
+      "redirecting": "Setting up your account...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "forgotPassword": {
       "title": "Lupa Kata Sandi",
@@ -864,7 +897,8 @@
       "feature3Desc": "Kembali ke bisnis dalam hitungan menit",
       "about": "Tentang",
       "contact": "Kontak",
-      "pricing": "Harga"
+      "pricing": "Harga",
+      "statusBadge": "Secure & Encrypted Recovery"
     },
     "resetPassword": {
       "title": "Reset Kata Sandi",
@@ -893,10 +927,18 @@
       "error": "Gagal mereset kata sandi",
       "invalidToken": "Link reset tidak valid atau kadaluarsa",
       "passwordsMismatch": "Kata sandi tidak cocok",
-      "passwordTooShort": "Kata sandi harus minimal 6 karakter"
+      "passwordTooShort": "Kata sandi harus minimal 6 karakter",
+      "passwordHint": "Must be at least 8 characters",
+      "verifying": "Verifying link...",
+      "successTitle": "Password Updated!",
+      "invalidLink": "Invalid or expired reset link",
+      "statusBadge": "Bank-Grade Security"
     },
     "verifyOTP": {
-      "brandName": "Hutang-Ku"
+      "brandName": "Hutang-Ku",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes."
     },
     "otpExpired": {
       "title": "Link Verifikasi Kadaluarsa",
@@ -914,6 +956,20 @@
       "linkSuccess": "Akun Google berhasil dihubungkan",
       "unlinkSuccess": "Akun Google diputuskan",
       "alreadyLinked": "Akun Google sudah terhubung"
+    },
+    "verifyOtp": {
+      "brandName": "Global Ledger",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes.",
+      "checkDevice": "Check your email for the code",
+      "codeExpiry": "Code expires in 10 minutes",
+      "feature1Title": "One-time code",
+      "feature1Desc": "Valid for single use only",
+      "feature2Title": "Encrypted",
+      "feature2Desc": "Sent securely to your email",
+      "feature3Title": "Quick verification",
+      "feature3Desc": "Usually within seconds"
     }
   },
   "reports": {
@@ -1060,15 +1116,15 @@
   "faq": {
     "badge": "FAQ",
     "title": "Pertanyaan yang Sering Diajukan",
-    "subtitle": "Semua yang perlu Anda ketahui tentang Ledgerly",
-    "q1": "Apakah Ledgerly benar-benar gratis?",
-    "a1": "Ya! Ledgerly menawarkan rencana gratis selamanya yang mencakup hingga 5 pelanggan dan 50 transaksi. Tidak perlu kartu kredit untuk memulai. Untuk pelanggan dan transaksi tidak terbatas, mode offline, dan laporan, tingkatkan ke Pro.",
+    "subtitle": "Semua yang perlu Anda ketahui tentang Catat-X",
+    "q1": "Apakah Catat-X benar-benar gratis?",
+    "a1": "Ya! Catat-X menawarkan rencana gratis selamanya yang mencakup hingga 5 pelanggan dan 50 transaksi. Tidak perlu kartu kredit untuk memulai. Untuk pelanggan dan transaksi tidak terbatas, mode offline, dan laporan, tingkatkan ke Pro.",
     "q2": "Fitur apa saja yang termasuk dalam rencana gratis?",
     "a2": "Rencana gratis mencakup: hingga 5 pelanggan, hingga 50 transaksi, manajemen pelanggan, dan pelacakan transaksi. Mode offline, laporan, dan ekspor data memerlukan langganan Pro.",
     "q3": "Bagaimana cara kerja cadangan otomatis?",
     "a3": "Data Anda secara otomatis disinkronkan ke server cloud aman kami setiap kali Anda memiliki koneksi internet. Semua data dienkripsi menggunakan enkripsi AES-256 tingkat bank. Fitur ini tersedia di rencana Pro.",
     "q4": "Mata uang dan bahasa apa saja yang didukung?",
-    "a4": "Ledgerly mendukung banyak mata uang termasuk TRY (Lira Turki), IDR (Rupiah Indonesia), NGN (Naira Nigeria), EGP (Pound Mesir), ZAR (Rand Afrika Selatan), dan lainnya. Aplikasi tersedia dalam banyak bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu.",
+    "a4": "Catat-X mendukung banyak mata uang termasuk TRY (Lira Turki), IDR (Rupiah Indonesia), NGN (Naira Nigeria), EGP (Pound Mesir), ZAR (Rand Afrika Selatan), dan lainnya. Aplikasi tersedia dalam banyak bahasa: Turki, Hindi, Indonesia, Inggris, Arab, Spanyol, dan Zulu.",
     "q5": "Bagaimana cara mengirim pengingat pembayaran kepada pelanggan?",
     "a5": "Anda dapat mengirim pengingat langsung melalui WhatsApp dengan pesan yang sudah diisi. Cukup buka detail pelanggan dan ketuk tombol WhatsApp. Pengguna Pro juga mendapatkan pengingat SMS otomatis.",
     "q6": "Bisakah saya mengekspor data saya?",

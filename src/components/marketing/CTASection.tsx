@@ -3,7 +3,8 @@ import { ArrowRight, Check } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 /**
- * CTA section - Dark green gradient with signup call to action
+ * CTA section - Dark background with signup call to action
+ * Matches About page CTA pattern with rounded dark container
  */
 export function CTASection() {
   const t = useTranslations("cta");
@@ -18,41 +19,43 @@ export function CTASection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
+    <section className="px-5 py-24 md:px-20">
+      <div className="max-w-[1280px] mx-auto">
+        <div className="relative overflow-hidden rounded-[32px] bg-[#0f172a] px-16 py-24">
+          {/* Decorative blurs */}
+          <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[rgba(60,131,246,0.2)] blur-[50px]" />
+          <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-[rgba(60,131,246,0.2)] blur-[50px]" />
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
-          {t("title")}
-        </h2>
-        <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-          {t("description")}
-        </p>
+          {/* Content */}
+          <div className="relative mx-auto flex max-w-[768px] flex-col items-center gap-6 text-center">
+            <h2 className="text-[36px] font-extrabold leading-[1.2] tracking-[-0.025em] text-white md:text-[48px] md:leading-[48px]">
+              {t("title")}
+            </h2>
+            <p className="max-w-[730px] text-[18px] leading-[28px] text-[#cbd5e1]">
+              {t("description")}
+            </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-          <Link
-            href="/login"
-            className="inline-flex items-center justify-center gap-2 bg-white text-[var(--color-accent)] hover:bg-white/90 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-xl hover:shadow-2xl"
-          >
-            {t("cta")}
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </div>
-
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          {benefits.map((benefit, index) => (
-            <div key={index} className="flex items-center gap-3 text-left">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-                <Check className="h-4 w-4" />
-              </div>
-              <span className="text-white/90">{benefit}</span>
+            <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/login"
+                className="inline-flex items-center justify-center gap-2 bg-[#3c83f6] px-8 py-4 rounded-xl text-[18px] font-bold text-white transition-colors hover:bg-[#2563eb]"
+              >
+                {t("cta")}
+                <ArrowRight className="h-5 w-5" />
+              </Link>
             </div>
-          ))}
+
+            <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl w-full">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="flex items-center gap-3 text-left">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                    <Check className="h-4 w-4 text-white" />
+                  </div>
+                  <span className="text-white/90 text-[14px]">{benefit}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

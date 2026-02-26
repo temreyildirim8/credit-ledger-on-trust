@@ -28,7 +28,8 @@
     "off": "Kapalı",
     "yes": "Evet",
     "no": "Hayır",
-    "defaultBusinessName": "İşletmem"
+    "defaultBusinessName": "İşletmem",
+    "trustedBy": "Trusted By"
   },
   "errorBoundary": {
     "title": "Bir hata oluştu",
@@ -64,33 +65,52 @@
         "price": "₺0",
         "period": "sonsuza kadar",
         "description": "Yeni başlayan küçük işletmeler için",
-        "features": ["5 müşteri", "50 işlem", "E-posta desteği"]
+        "features": [
+          "5 müşteri",
+          "50 işlem",
+          "E-posta desteği"
+        ]
       },
       "basic": {
         "name": "Temel",
         "price": "₺150",
         "period": "ay",
         "description": "Büyüyen işletmeler için",
-        "features": ["50 müşteri", "Veri dışa aktarma (PDF/CSV)", "Gelişmiş raporlar", "E-posta desteği"]
+        "features": [
+          "50 müşteri",
+          "Veri dışa aktarma (PDF/CSV)",
+          "Gelişmiş raporlar",
+          "E-posta desteği"
+        ]
       },
       "pro": {
         "name": "Pro",
         "price": "₺300",
         "period": "ay",
         "description": "Kurulu işletmeler için",
-        "features": ["Sınırsız müşteri", "SMS hatırlatmaları", "Öncelikli destek", "API erişimi"]
+        "features": [
+          "Sınırsız müşteri",
+          "SMS hatırlatmaları",
+          "Öncelikli destek",
+          "API erişimi"
+        ]
       },
       "enterprise": {
         "name": "Kurumsal",
         "price": "Özel",
         "period": "",
         "description": "Büyük operasyonlar için",
-        "features": ["Pro'daki her şey", "Çoklu kullanıcı erişimi", "Özel entegrasyonlar", "Beyaz etiket seçenekleri"]
+        "features": [
+          "Pro'daki her şey",
+          "Çoklu kullanıcı erişimi",
+          "Özel entegrasyonlar",
+          "Beyaz etiket seçenekleri"
+        ]
       }
     }
   },
   "nav": {
-    "brandName": "Ledgerly",
+    "brandName": "Veresiye-X",
     "dashboard": "Kontrol Paneli",
     "customers": "Müşteriler",
     "transactions": "İşlemler",
@@ -358,7 +378,7 @@
       "title1": "Hikayemiz: Kağıttan",
       "title2": "Buluta",
       "paragraph1": "On yıllardır, gelişmekte olan piyasalardeki mikro işletmeler, milyonlarca kredi işlemini takip eden el yazısı \"Veresiye\" defterlerine güvendi. Ancak yüksek enflasyonlu ekonomilerde kağıt kırılgandır ve veriler zamanla kaybolur.",
-      "paragraph2": "Dijital uçurumu kapatmak için Ledgerly (Veresiye-X)'ı kurduk. Geleneksel defterleri",
+      "paragraph2": "Dijital uçurumu kapatmak için Veresiye-X (Veresiye-X)'ı kurduk. Geleneksel defterleri",
       "digitalTrust": "Dijital Güven",
       "paragraph3": "ile değiştiriyoruz. Platformumuz sadece işlemleri kaydetmez; bankasızlar için finansal kimlik oluşturarak ölçeklenmelerine, borçları daha hızlı tahsil etmelerine ve gelişmelerine olanak tanır.",
       "stat1Value": "%99.9",
@@ -380,7 +400,7 @@
     "hero": {
       "badge": "İletişim",
       "title": "Bizimle İletişime Geçin",
-      "subtitle": "Ledgerly hakkında sorularınız mı var? Buradayız. Destek, satış veya ortaklık için ekibimize ulaşın."
+      "subtitle": "Veresiye-X hakkında sorularınız mı var? Buradayız. Destek, satış veya ortaklık için ekibimize ulaşın."
     },
     "form": {
       "title": "Bize Mesaj Gönderin",
@@ -419,7 +439,7 @@
       },
       "office": {
         "title": "Ofis",
-        "company": "Ledgerly Inc.",
+        "company": "Veresiye-X Inc.",
         "address": "Levent, Büyükdere Cd. No:199 Şişli, İstanbul, TR"
       },
       "liveChat": {
@@ -434,7 +454,7 @@
     },
     "cta": {
       "title": "İşletmenizi dönüştürmeye hazır mısınız?",
-      "description": "Ledgerly'a güvenen binlerce dükkan sahibine katılın.",
+      "description": "Veresiye-X'a güvenen binlerce dükkan sahibine katılın.",
       "primaryButton": "Ücretsiz Başlayın",
       "secondaryButton": "Fiyatları Görüntüle",
       "button": "Yardım Merkezini Ziyaret Et"
@@ -804,15 +824,15 @@
   "faq": {
     "badge": "SSS",
     "title": "Sıkça Sorulan Sorular",
-    "subtitle": "Ledgerly hakkında bilmeniz gereken her şey",
-    "q1": "Ledgerly gerçekten ücretsiz mi?",
-    "a1": "Evet! Ledgerly, 5 müşteriye kadar ve 50 işleme kadar sonsuza kadar ücretsiz bir plan sunar. Başlamak için kredi kartı gerekmez. Sınırsız müşteri, işlem, çevrimdışı mod ve raporlar için Pro'ya yükseltin.",
+    "subtitle": "Veresiye-X hakkında bilmeniz gereken her şey",
+    "q1": "Veresiye-X gerçekten ücretsiz mi?",
+    "a1": "Evet! Veresiye-X, 5 müşteriye kadar ve 50 işleme kadar sonsuza kadar ücretsiz bir plan sunar. Başlamak için kredi kartı gerekmez. Sınırsız müşteri, işlem, çevrimdışı mod ve raporlar için Pro'ya yükseltin.",
     "q2": "Ücretsiz planda hangi özellikler var?",
     "a2": "Ücretsiz plan şunları içerir: 5 müşteriye kadar, 50 işleme kadar, müşteri yönetimi ve işlem takibi. Çevrimdışı mod, raporlar ve veri dışa aktarma Pro aboneliği gerektirir.",
     "q3": "Otomatik yedekleme nasıl çalışır?",
     "a3": "İnternet bağlantınız olduğunda verileriniz otomatik olarak güvenli bulut sunucularımıza senkronize edilir. Tüm veriler banka düzeyinde AES-256 şifrelemesi kullanılarak şifrelenir, bu nedenle kayıtlarınız her zaman güvende ve erişilebilir durumdadır. Bu özellik Pro planlarında mevcuttur.",
     "q4": "Hangi para birimleri ve diller destekleniyor?",
-    "a4": "Ledgerly, TRY (Türk Lirası), IDR (Endonezya Rupisi), NGN (Nijerya Nairası), EGP (Mısır Lirası), ZAR (Güney Afrika Randı) ve daha fazlası dahil olmak üzere birden fazla para birimini destekler. Uygulama birçok dilde mevcuttur: Türkçe, Hintçe, Endonezce, İngilizce, Arapça, İspanyolca ve Zuluca.",
+    "a4": "Veresiye-X, TRY (Türk Lirası), IDR (Endonezya Rupisi), NGN (Nijerya Nairası), EGP (Mısır Lirası), ZAR (Güney Afrika Randı) ve daha fazlası dahil olmak üzere birden fazla para birimini destekler. Uygulama birçok dilde mevcuttur: Türkçe, Hintçe, Endonezce, İngilizce, Arapça, İspanyolca ve Zuluca.",
     "q5": "Müşterilere ödeme hatırlatıcılarını nasıl gönderebilirim?",
     "a5": "Önceden doldurulmuş mesajlarla doğrudan WhatsApp üzerinden hatırlatıcı gönderebilirsiniz. Sadece müşterinin detaylarını açın ve WhatsApp düğmesine dokunun. Pro kullanıcılar ayrıca otomatik SMS hatırlatıcıları alır.",
     "q6": "Verilerimi dışa aktarabilir miyim?",
@@ -930,7 +950,8 @@
   },
   "auth": {
     "common": {
-      "or": "veya"
+      "or": "veya",
+      "trustedBy": "Güvenilen"
     },
     "login": {
       "title": "Tekrar Hoş Geldiniz",
@@ -947,8 +968,8 @@
       "success": "Başarıyla giriş yapıldı",
       "error": "Geçersiz e-posta veya şifre",
       "brandName": "Veresiye-X",
-      "heroTitle": "Veresiyeyi takip et. Güveni inşa et.",
-      "heroSubtitle": "Küçük işletmeniz için müşteri veresiyesini yönetmenin basit yolu.",
+      "heroTitle": "Yerel Pazarları Küresel Olarak Güçlendirmek",
+      "heroSubtitle": "Güvenli dijital defterlerle işletmelerini dönüştüren mikro-KOBİ'ler topluluğuna katılın. Yerel pazarlardan küresel ticarete.",
       "feature1Title": "Müşteri Rehberi",
       "feature1Desc": "Kimin ne borcu olduğunu takip edin",
       "feature2Title": "Akıllı Raporlar",
@@ -968,7 +989,9 @@
       "emailNotConfirmedTitle": "E-posta Doğrulanmadı",
       "emailNotConfirmedDescription": "E-posta adresiniz henüz doğrulanmadı. Lütfen gelen kutunuzu kontrol edin ve doğrulama bağlantısına tıklayın.",
       "resendEmailButton": "Doğrulama E-postasını Yeniden Gönder",
-      "goToLogin": "Giriş Sayfasına Git"
+      "goToLogin": "Giriş Sayfasına Git",
+      "redirecting": "Giriş yapılıyor...",
+      "statusBadge": "100M+ İşletme Tarafından Güvenilir"
     },
     "signup": {
       "title": "Hesap Oluştur",
@@ -990,8 +1013,8 @@
       "success": "Hesap başarıyla oluşturuldu",
       "error": "Hesap oluşturulamadı",
       "brandName": "Veresiye-X",
-      "heroTitle": "Bugün veresiyeyi takip etmeye başla",
-      "heroSubtitle": "Küçük işletmeler için sonsuza kadar ücretsiz. Büyüdükçe yükseltin.",
+      "heroTitle": "İşletme Finansmanınızı Yönetmeye Başlayın",
+      "heroSubtitle": "Yerel pazarlardan küresel ticarete, güvenli dijital defterlerle işletmelerini dönüştüren mikro-KOBİ'ler topluluğuna katılın.",
       "benefit1": "Ücretsiz plan: 5 müşteriye kadar",
       "benefit2": "50 işleme kadar",
       "benefit3": "Çoklu para birimi desteği",
@@ -1011,7 +1034,17 @@
       "successTitle": "Kayıt Başarılı!",
       "successDescription1": "E-posta adresinize bir doğrulama bağlantısı gönderdik.",
       "successDescription2": "Lütfen gelen kutunuzu (ve spam klasörünüzü) kontrol edin, ardından hesabınızı doğrulamak için bağlantıya tıklayın.",
-      "goToLogin": "Giriş Sayfasına Git"
+      "goToLogin": "Giriş Sayfasına Git",
+      "acceptTerms": "Lütfen Kullanım Koşullarını ve Gizlilik Politikasını kabul edin",
+      "agreePrefix": "Kabul ediyorum",
+      "agreeAnd": "ve",
+      "termsLink": "Kullanım Koşullarını",
+      "privacyLink": "Gizlilik Politikasını",
+      "emailSentTitle": "E-postanızı Kontrol Edin",
+      "emailSentSubtitle": "Gelen kutunuza bir doğrulama bağlantısı gönderildi.",
+      "successAutoConfirmed": "Hesap oluşturuldu! Yönlendiriliyor...",
+      "redirecting": "Hesabınız hazırlanıyor...",
+      "statusBadge": "100M+ İşletme Tarafından Güvenilir"
     },
     "forgotPassword": {
       "title": "Şifremi Unuttum",
@@ -1057,12 +1090,13 @@
       "feature3Desc": "Dakikalar içinde işinize dönün",
       "about": "Hakkımızda",
       "contact": "İletişim",
-      "pricing": "Fiyatlandırma"
+      "pricing": "Fiyatlandırma",
+      "statusBadge": "Secure & Encrypted Recovery"
     },
     "resetPassword": {
       "title": "Şifre Sıfırlama",
       "subtitle": "Yeni şifrenizi girin",
-      "brandName": "Ledgerly",
+      "brandName": "Veresiye-X",
       "heroTitle": "Yeni şifre oluştur",
       "heroSubtitle": "Yeni şifreniz güvenli ve akılda kalıcı olmalı.",
       "tipsTitle": "Şifre gereksinimleri:",
@@ -1086,10 +1120,18 @@
       "error": "Şifre sıfırlanamadı",
       "invalidToken": "Geçersiz veya süresi dolmuş bağlantı",
       "passwordsMismatch": "Şifreler eşleşmiyor",
-      "passwordTooShort": "Şifre en az 6 karakter olmalı"
+      "passwordTooShort": "Şifre en az 6 karakter olmalı",
+      "passwordHint": "Must be at least 8 characters",
+      "verifying": "Verifying link...",
+      "successTitle": "Password Updated!",
+      "invalidLink": "Invalid or expired reset link",
+      "statusBadge": "Bank-Grade Security"
     },
     "verifyOTP": {
-      "brandName": "Ledgerly"
+      "brandName": "Veresiye-X",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes."
     },
     "otpExpired": {
       "title": "Doğrulama Bağlantısının Süresi Doldu",
@@ -1107,6 +1149,20 @@
       "linkSuccess": "Google hesabı başarıyla bağlandı",
       "unlinkSuccess": "Google hesabı kaldırıldı",
       "alreadyLinked": "Google hesabı zaten bağlı"
+    },
+    "verifyOtp": {
+      "brandName": "Global Ledger",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes.",
+      "checkDevice": "Check your email for the code",
+      "codeExpiry": "Code expires in 10 minutes",
+      "feature1Title": "One-time code",
+      "feature1Desc": "Valid for single use only",
+      "feature2Title": "Encrypted",
+      "feature2Desc": "Sent securely to your email",
+      "feature3Title": "Quick verification",
+      "feature3Desc": "Usually within seconds"
     }
   },
   "notFound": {

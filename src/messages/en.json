@@ -18,6 +18,7 @@
     "error": "Error",
     "tryAgain": "Try Again",
     "or": "or",
+    "trustedBy": "Trusted By",
     "and": "and",
     "of": "of",
     "in": "in",
@@ -64,28 +65,47 @@
         "price": "$0",
         "period": "forever",
         "description": "For small shops getting started",
-        "features": ["5 customers", "50 transactions", "Email support"]
+        "features": [
+          "5 customers",
+          "50 transactions",
+          "Email support"
+        ]
       },
       "basic": {
         "name": "Basic",
         "price": "$4.99",
         "period": "month",
         "description": "For growing businesses",
-        "features": ["50 customers", "Data export (PDF/CSV)", "Advanced reports", "Email support"]
+        "features": [
+          "50 customers",
+          "Data export (PDF/CSV)",
+          "Advanced reports",
+          "Email support"
+        ]
       },
       "pro": {
         "name": "Pro",
         "price": "$9.99",
         "period": "month",
         "description": "For established shops",
-        "features": ["Unlimited customers", "SMS reminders", "Priority support", "API access"]
+        "features": [
+          "Unlimited customers",
+          "SMS reminders",
+          "Priority support",
+          "API access"
+        ]
       },
       "enterprise": {
         "name": "Enterprise",
         "price": "Custom",
         "period": "",
         "description": "For large operations",
-        "features": ["Everything in Pro", "Multi-user access", "Custom integrations", "White-label options"]
+        "features": [
+          "Everything in Pro",
+          "Multi-user access",
+          "Custom integrations",
+          "White-label options"
+        ]
       }
     }
   },
@@ -765,7 +785,8 @@
   },
   "auth": {
     "common": {
-      "or": "or"
+      "or": "or",
+      "trustedBy": "Trusted By"
     },
     "login": {
       "title": "Welcome Back",
@@ -782,8 +803,8 @@
       "success": "Signed in successfully",
       "error": "Invalid email or password",
       "brandName": "Ledgerly",
-      "heroTitle": "Track credit. Build trust.",
-      "heroSubtitle": "The simple way to manage customer credit for your small business.",
+      "heroTitle": "Empowering Local Markets Globally",
+      "heroSubtitle": "Join a community of micro-SMEs transforming their businesses with secure, digital ledgers. From local bazaars to global trade.",
       "feature1Title": "Customer Directory",
       "feature1Desc": "Keep track of who owes what",
       "feature2Title": "Smart Reports",
@@ -804,13 +825,14 @@
       "emailNotConfirmedDescription": "Your email address has not been verified yet. Please check your inbox and click the verification link.",
       "resendEmailButton": "Resend Verification Email",
       "goToLogin": "Go to Login Page",
-      "redirecting": "Redirecting..."
+      "redirecting": "Signing you in...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "signup": {
       "title": "Create Account",
-      "subtitle": "Start your free trial today",
-      "name": "Full Name",
-      "namePlaceholder": "Enter your full name",
+      "subtitle": "Start managing your business finances securely today.",
+      "name": "Business Name",
+      "namePlaceholder": "e.g. Istanbul Market",
       "email": "Email",
       "emailPlaceholder": "your@email.com",
       "password": "Password",
@@ -826,8 +848,8 @@
       "success": "Account created successfully",
       "error": "Failed to create account",
       "brandName": "Ledgerly",
-      "heroTitle": "Start tracking credit today",
-      "heroSubtitle": "Free forever for small businesses. Upgrade as you grow.",
+      "heroTitle": "Start Managing Your Business Finances",
+      "heroSubtitle": "Join a community of micro-SMEs transforming their businesses with secure, digital ledgers. From local bazaars to global trade.",
       "benefit1": "Free plan: Up to 5 customers",
       "benefit2": "Works offline with automatic sync",
       "benefit3": "Multi-currency support",
@@ -846,7 +868,17 @@
       "pricing": "Pricing",
       "successTitle": "Registration Successful!",
       "successDescription1": "We have sent a verification link to your email address.",
-      "successDescription2": "Please check your inbox (and spam folder), then click the link to verify your account."
+      "successDescription2": "Please check your inbox (and spam folder), then click the link to verify your account.",
+      "acceptTerms": "Please accept the Terms of Service and Privacy Policy",
+      "agreePrefix": "I agree to the",
+      "agreeAnd": "and",
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "emailSentTitle": "Check Your Email",
+      "emailSentSubtitle": "A verification link has been sent to your inbox.",
+      "successAutoConfirmed": "Account created! Redirecting...",
+      "redirecting": "Setting up your account...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "forgotPassword": {
       "title": "Forgot Password",
@@ -882,8 +914,8 @@
         "successDescription": "Your password has been successfully reset. You can now sign in with your new password."
       },
       "brandName": "Ledgerly",
-      "heroTitle": "Forgot your password?",
-      "heroSubtitle": "No worries, we'll help you reset it securely.",
+      "heroTitle": "Reset Your Password Securely",
+      "heroSubtitle": "We'll send a secure verification code to your email. Your account data remains protected throughout the process.",
       "feature1Title": "Secure Reset",
       "feature1Desc": "OTP sent to your email",
       "feature2Title": "Encrypted",
@@ -892,14 +924,15 @@
       "feature3Desc": "Back to business in minutes",
       "about": "About",
       "contact": "Contact",
-      "pricing": "Pricing"
+      "pricing": "Pricing",
+      "statusBadge": "Secure & Encrypted Recovery"
     },
     "resetPassword": {
       "title": "Reset Password",
       "subtitle": "Enter your new password",
       "brandName": "Ledgerly",
-      "heroTitle": "Create new password",
-      "heroSubtitle": "Your new password must be secure and memorable.",
+      "heroTitle": "Create Your New Password",
+      "heroSubtitle": "Choose a strong password to protect your business data. Your new password must be at least 8 characters.",
       "tipsTitle": "Password requirements:",
       "tip1": "At least 8 characters",
       "tip2": "One uppercase letter",
@@ -921,10 +954,32 @@
       "error": "Failed to reset password",
       "invalidToken": "Invalid or expired reset link",
       "passwordsMismatch": "Passwords do not match",
-      "passwordTooShort": "Password must be at least 6 characters"
+      "passwordTooShort": "Password must be at least 6 characters",
+      "passwordHint": "Must be at least 8 characters",
+      "verifying": "Verifying link...",
+      "successTitle": "Password Updated!",
+      "invalidLink": "Invalid or expired reset link",
+      "statusBadge": "Bank-Grade Security"
     },
     "verifyOTP": {
-      "brandName": "Ledgerly"
+      "brandName": "Global Ledger",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes."
+    },
+    "verifyOtp": {
+      "brandName": "Global Ledger",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes.",
+      "checkDevice": "Check your email for the code",
+      "codeExpiry": "Code expires in 10 minutes",
+      "feature1Title": "One-time code",
+      "feature1Desc": "Valid for single use only",
+      "feature2Title": "Encrypted",
+      "feature2Desc": "Sent securely to your email",
+      "feature3Title": "Quick verification",
+      "feature3Desc": "Usually within seconds"
     },
     "otpExpired": {
       "title": "Verification Link Expired",

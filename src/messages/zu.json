@@ -28,7 +28,8 @@
     "off": "Valiwe",
     "yes": "Yebo",
     "no": "Cha",
-    "defaultBusinessName": "Ubhizinisi Bami"
+    "defaultBusinessName": "Ubhizinisi Bami",
+    "trustedBy": "Trusted By"
   },
   "errorBoundary": {
     "title": "Kwenzeke Iphutha",
@@ -109,7 +110,7 @@
     }
   },
   "nav": {
-    "brandName": "Ledgerly",
+    "brandName": "Skweleti-X",
     "dashboard": "I-Dashboard",
     "customers": "Abathengi",
     "transactions": "Ukuthengiselana",
@@ -223,7 +224,7 @@
     },
     "cta": {
       "title": "Ukulungele Ukuqala?",
-      "description": "Joyina izinkampani eziningi ezisebenzisa i-Ledgerly ukulawula ikhredithi yamakhasimende azo.",
+      "description": "Joyina izinkampani eziningi ezisebenzisa i-Skweleti-X ukulawula ikhredithi yamakhasimende azo.",
       "button": "Qala Mahhala Namuhla"
     },
     "resilience": {
@@ -364,7 +365,7 @@
       "title1": "Indaba Yethu: Esiphepheni",
       "title2": "iya Ecloudini",
       "paragraph1": "Selokhu eminyakeni, ama-micro-SME emakethe ezikhulayo asekelwe kumabhuku \"Veresiye\" abhalwe ngesandla—amabhuku ephepha alandela izigidi zemisebenzi yekredithi. Kodwa ezimaketini ezinamathela amahle, iphepha liyabuthakathaka, futhi idatha ilahleka ngokuhamba kwesikhathi.",
-      "paragraph2": "Sasungula i-Ledgerly (Veresiye-X) ukuze sidlulele ngokudijithali. Sibeka amabhuku wendabuko nge",
+      "paragraph2": "Sasungula i-Skweleti-X (Veresiye-X) ukuze sidlulele ngokudijithali. Sibeka amabhuku wendabuko nge",
       "digitalTrust": "Isithembiso Sedijithali",
       "paragraph3": "Iphulatifomu yethu ayibhali imisebenzo kuphela; yakha isaziso semali sabangena kubhange, isivumela ukukhula, ukulanda izikweletu ngokushesha, futhi siphande.",
       "stat1Value": "99.9%",
@@ -374,7 +375,7 @@
     },
     "cta": {
       "title": "Ukulungele Ukuqala?",
-      "description": "Joyina izinkampani eziningi ezisebenzisa i-Ledgerly ukulawula ikhredithi yamakhasimende azo.",
+      "description": "Joyina izinkampani eziningi ezisebenzisa i-Skweleti-X ukulawula ikhredithi yamakhasimende azo.",
       "button": "Qala Mahhala Namuhla"
     }
   },
@@ -386,7 +387,7 @@
     "hero": {
       "badge": "Thinta",
       "title": "Thinta Kami",
-      "subtitle": "Unamibuzo nge-Ledgerly? Silapha ukunisiza. Xhumana nathi ngenhloso yokusiza, ukuthengisa, noma ubuzwe."
+      "subtitle": "Unamibuzo nge-Skweleti-X? Silapha ukunisiza. Xhumana nathi ngenhloso yokusiza, ukuthengisa, noma ubuzwe."
     },
     "title": "Thinta Kami",
     "subtitle": "Sinqoka ukusiza",
@@ -757,7 +758,8 @@
   },
   "auth": {
     "common": {
-      "or": "noma"
+      "or": "noma",
+      "trustedBy": "Trusted By"
     },
     "login": {
       "title": "Welcomed Emuva",
@@ -795,7 +797,9 @@
       "emailNotConfirmedTitle": "I-Imeyili Ayikavunywa",
       "emailNotConfirmedDescription": "Ikheli lakho le-imeyili alikavunywa. Sicela uhlole ibhokisi lakho bese uchofoza isixhumanisi sokuvunywa.",
       "resendEmailButton": "Thumela Kabusha I-Imeyili Yokuvunywa",
-      "goToLogin": "iya Ekhasini Logeniso"
+      "goToLogin": "iya Ekhasini Logeniso",
+      "redirecting": "Signing you in...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "signup": {
       "title": "Yakha I-akhawunti",
@@ -837,7 +841,17 @@
       "successTitle": "Ukubhalisa Kuphumelele!",
       "successDescription1": "Sithumele isixhumanisi sokuvunywa ekheli lakho le-imeyili.",
       "successDescription2": "Sicela uhlole ibhokisi lakho (nedefolda yokucasula), bese uchofoza isixhumanisi ukuvunywa i-akhawunti yakho.",
-      "passwordHint": "Okungenani amagama angu-6"
+      "passwordHint": "Okungenani amagama angu-6",
+      "acceptTerms": "Please accept the Terms of Service and Privacy Policy",
+      "agreePrefix": "I agree to the",
+      "agreeAnd": "and",
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "emailSentTitle": "Check Your Email",
+      "emailSentSubtitle": "A verification link has been sent to your inbox.",
+      "successAutoConfirmed": "Account created! Redirecting...",
+      "redirecting": "Setting up your account...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "forgotPassword": {
       "title": "Ukhohlwe Iphasiwedi",
@@ -883,7 +897,8 @@
       "feature3Desc": "Buyela ebhizinisini ngemizuzu",
       "about": "Mayelana",
       "contact": "Xhumana",
-      "pricing": "Intengo"
+      "pricing": "Intengo",
+      "statusBadge": "Secure & Encrypted Recovery"
     },
     "resetPassword": {
       "title": "Setha Kabusha Iphasiwedi",
@@ -912,10 +927,18 @@
       "error": "Yehlula ukusetha kabusha iphasiwedi",
       "invalidToken": "Ilinki lokusetha kabushi elingavumelekile noma esidlule",
       "passwordsMismatch": "Iphasiwedi ayihambisani",
-      "passwordTooShort": "Iphasiwedi kumele ibe ama-6 okungenani amagama"
+      "passwordTooShort": "Iphasiwedi kumele ibe ama-6 okungenani amagama",
+      "passwordHint": "Must be at least 8 characters",
+      "verifying": "Verifying link...",
+      "successTitle": "Password Updated!",
+      "invalidLink": "Invalid or expired reset link",
+      "statusBadge": "Bank-Grade Security"
     },
     "verifyOTP": {
-      "brandName": "Mali-X"
+      "brandName": "Mali-X",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes."
     },
     "otpExpired": {
       "title": "Ilinki Lokugunyaza Isele",
@@ -933,6 +956,20 @@
       "linkSuccess": "I-akhawunti ye-Google ixhunyiwe ngempumelelo",
       "unlinkSuccess": "I-akhawunti ye-Google ikhishiwe",
       "alreadyLinked": "I-akhawunti ye-Google isivele ixhunyiwe"
+    },
+    "verifyOtp": {
+      "brandName": "Global Ledger",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes.",
+      "checkDevice": "Check your email for the code",
+      "codeExpiry": "Code expires in 10 minutes",
+      "feature1Title": "One-time code",
+      "feature1Desc": "Valid for single use only",
+      "feature2Title": "Encrypted",
+      "feature2Desc": "Sent securely to your email",
+      "feature3Title": "Quick verification",
+      "feature3Desc": "Usually within seconds"
     }
   },
   "reports": {
@@ -1079,15 +1116,15 @@
   "faq": {
     "badge": "FAQ",
     "title": "Imibuzo Evame Ukubuzwa",
-    "subtitle": "Konke okudingeka ukwazi mayelana ne-Ledgerly",
-    "q1": "Ingabe i-Ledgerly yamahhala ngempela?",
-    "a1": "Yebo! I-Ledgerly inikeza uhlelo lwamahhala kuze kube phakade oluhlanganisa abathengi abangu-5 kanye nokuthengiselana okungu-50. Akukho khadi lekiredithi edingekayo ukuze uqale. Ukuze uthole abathengi abangakhawulelwanga, ukuthengiselana, imodi ye-Offline, namabhikihli, thuthukisa ku-Pro.",
+    "subtitle": "Konke okudingeka ukwazi mayelana ne-Skweleti-X",
+    "q1": "Ingabe i-Skweleti-X yamahhala ngempela?",
+    "a1": "Yebo! I-Skweleti-X inikeza uhlelo lwamahhala kuze kube phakade oluhlanganisa abathengi abangu-5 kanye nokuthengiselana okungu-50. Akukho khadi lekiredithi edingekayo ukuze uqale. Ukuze uthole abathengi abangakhawulelwanga, ukuthengiselana, imodi ye-Offline, namabhikihli, thuthukisa ku-Pro.",
     "q2": "Yiziphi izizo ezifakiwe ohlelweni lwamahhala?",
     "a2": "Uhlelo lwamahhala luhlanganisa: abathengi abangu-5, ukuthengiselana okungu-50, ukuphathwa kwamakhasimende, nokulandelela ukuthengiselana. Imodi ye-Offline, amabhikihli, nokukhipha idatha kudinga ukubhalisa kwe-Pro.",
     "q3": "I-backup ezenzakalelayo isebenza kanjani?",
     "a3": "Idatha yakho ivumelaniswa ngokuzenzakalela kumaseva ethu aphephile e-cloud nanoma nini uma unoxhumano lwe-inthanethi. Yonke idatha ibhaliswa ngokusebenzisa ukubhalisa kwe-AES-256 komzinga webhange. Le nkinikishi itholakala ohlelweni lwe-Pro.",
     "q4": "Yimaphi amasheke namalimi axhaswayo?",
-    "a4": "I-Ledgerly ixhasa izimali eziningi okuhlanganisa i-TRY (Turkish Lira), i-IDR (Indonesian Rupiah), i-NGN (Nigerian Naira), i-EGP (Egyptian Pound), i-ZAR (South African Rand), nokuningi. I-app itholakala ngamalimi amaningi: Turkish, Hindi, Indonesian, English, Arabic, Spanish, kanye ne-Zulu.",
+    "a4": "I-Skweleti-X ixhasa izimali eziningi okuhlanganisa i-TRY (Turkish Lira), i-IDR (Indonesian Rupiah), i-NGN (Nigerian Naira), i-EGP (Egyptian Pound), i-ZAR (South African Rand), nokuningi. I-app itholakala ngamalimi amaningi: Turkish, Hindi, Indonesian, English, Arabic, Spanish, kanye ne-Zulu.",
     "q5": "Ngingathumela kanjani izikhumbuzi zokukhokha kubakhasimende?",
     "a5": "Ungathumela izikhumbuzi ngokuqondile nge-WhatsApp ngemilayezo egcwele. Vula nje imininingwane yomthengi bese uchofoza inkinobho ye-WhatsApp. Abasebenzisi be-Pro bathola futhi izikhumbuzi ze-SMS ezizenzakalelayo.",
     "q6": "Ngingakhipha idatha yami?",

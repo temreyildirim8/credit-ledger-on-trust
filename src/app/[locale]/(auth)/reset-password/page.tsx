@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { ResetPasswordBranding } from "@/components/auth/ResetPasswordBranding";
-import Image from "next/image";
+import { BookOpen } from "lucide-react";
 
 export default function ResetPasswordPage() {
   const params = useParams();
@@ -17,14 +17,8 @@ export default function ResetPasswordPage() {
       brandingContent={<ResetPasswordBranding />}
       mobileLogo={
         <div className="lg:hidden flex items-center justify-center gap-2 mb-8">
-          <div className="w-10 h-10 bg-[var(--color-accent)] rounded-xl flex items-center justify-center overflow-hidden">
-            <Image
-              src="/images/icons/icon-logo.svg"
-              alt=""
-              width={24}
-              height={24}
-              className="w-6 h-6"
-            />
+          <div className="w-10 h-10 bg-[var(--color-accent)] rounded-xl flex items-center justify-center overflow-hidden text-white">
+            <BookOpen className="w-6 h-6" />
           </div>
           <span className="text-xl font-bold text-[var(--color-text)]">
             {t("resetPassword.brandName") || "Ledgerly"}

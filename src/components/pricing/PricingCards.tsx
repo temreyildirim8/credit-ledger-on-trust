@@ -54,12 +54,10 @@ export function PricingCards() {
   return (
     <div>
       {/* Billing Toggle */}
-      <div className="flex items-center justify-center gap-4 mb-12">
+      <div className="flex items-center justify-center gap-2 mb-20">
         <span
           className={`text-sm font-medium transition-colors ${
-            billingInterval === "monthly"
-              ? "text-[#0f172a]"
-              : "text-[#64748b]"
+            billingInterval === "monthly" ? "text-[#0f172a]" : "text-[#64748b]"
           }`}
         >
           {t("monthly")}
@@ -73,9 +71,7 @@ export function PricingCards() {
           className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#3c83f6] focus:ring-offset-2"
           style={{
             backgroundColor:
-              billingInterval === "yearly"
-                ? "#3c83f6"
-                : "#e2e8f0",
+              billingInterval === "yearly" ? "#3c83f6" : "#e2e8f0",
           }}
           aria-label={t("toggleBilling")}
         >
@@ -87,21 +83,14 @@ export function PricingCards() {
         </button>
         <span
           className={`text-sm font-medium transition-colors ${
-            billingInterval === "yearly"
-              ? "text-[#0f172a]"
-              : "text-[#64748b]"
+            billingInterval === "yearly" ? "text-[#0f172a]" : "text-[#64748b]"
           }`}
         >
           {t("yearly")}
         </span>
-        {billingInterval === "yearly" && (
-          <Badge
-            variant="secondary"
-            className="bg-[#dcfce7] text-[#16a34a]"
-          >
-            {t("save17")}
-          </Badge>
-        )}
+        <Badge variant="secondary" className="bg-[#dcfce7] text-[#16a34a]">
+          {t("save17")}
+        </Badge>
       </div>
 
       {/* Pricing Cards */}
@@ -147,15 +136,22 @@ export function PricingCards() {
                       /{t(priceInfo.periodKey)}
                     </span>
                   )}
-                  {/* Always show "Save 17%" badge on PRO card (yearly savings) */}
                   {plan.key === "pro" && (
-                    <div className="mt-1">
-                      <Badge
-                        variant="secondary"
-                        className="bg-[#dcfce7] text-[#16a34a] text-xs"
-                      >
-                        {t("save17")}
-                      </Badge>
+                    <div
+                      className={`grid transition-[grid-template-rows,opacity,margin] duration-300 ease-in-out ${
+                        billingInterval === "yearly"
+                          ? "grid-rows-[1fr] opacity-100 mt-2"
+                          : "grid-rows-[0fr] opacity-0 mt-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <Badge
+                          variant="secondary"
+                          className="bg-[#dcfce7] text-[#16a34a] text-xs"
+                        >
+                          {t("save17")}
+                        </Badge>
+                      </div>
                     </div>
                   )}
                 </div>

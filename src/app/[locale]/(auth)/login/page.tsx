@@ -6,7 +6,7 @@ import { useAuth } from "@/lib/hooks/useAuth";
 import { useTranslations } from "next-intl";
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { LoginBranding } from "@/components/auth/LoginBranding";
-import Image from "next/image";
+import { BookOpen } from "lucide-react";
 
 export default function LoginPage() {
   const { user, loading } = useAuth();
@@ -33,14 +33,8 @@ export default function LoginPage() {
       brandingContent={<LoginBranding />}
       mobileLogo={
         <div className="lg:hidden flex items-center justify-center gap-2 mb-8">
-          <div className="w-10 h-10 bg-[var(--color-accent)] rounded-xl flex items-center justify-center overflow-hidden">
-            <Image
-              src="/images/icons/icon-logo.svg"
-              alt=""
-              width={24}
-              height={24}
-              className="w-6 h-6"
-            />
+          <div className="w-10 h-10 bg-[var(--color-accent)] rounded-xl flex items-center justify-center overflow-hidden text-white">
+            <BookOpen className="w-6 h-6" />
           </div>
           <span className="text-xl font-bold text-[var(--color-text)]">
             {t("login.brandName") || "Ledgerly"}

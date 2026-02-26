@@ -18,6 +18,7 @@
     "error": "Error",
     "tryAgain": "Inténtalo de nuevo",
     "or": "o",
+    "trustedBy": "Confiado por",
     "and": "y",
     "of": "de",
     "in": "en",
@@ -64,33 +65,52 @@
         "price": "$0",
         "period": "para siempre",
         "description": "Para pequeñas tiendas que empiezan",
-        "features": ["5 clientes", "50 transacciones", "Soporte por email"]
+        "features": [
+          "5 clientes",
+          "50 transacciones",
+          "Soporte por email"
+        ]
       },
       "basic": {
         "name": "Básico",
         "price": "$4.99",
         "period": "mes",
         "description": "Para negocios en crecimiento",
-        "features": ["50 clientes", "Exportación de datos (PDF/CSV)", "Informes avanzados", "Soporte por email"]
+        "features": [
+          "50 clientes",
+          "Exportación de datos (PDF/CSV)",
+          "Informes avanzados",
+          "Soporte por email"
+        ]
       },
       "pro": {
         "name": "Pro",
         "price": "$9.99",
         "period": "mes",
         "description": "Para tiendas establecidas",
-        "features": ["Clientes ilimitados", "Recordatorios SMS", "Soporte prioritario", "Acceso API"]
+        "features": [
+          "Clientes ilimitados",
+          "Recordatorios SMS",
+          "Soporte prioritario",
+          "Acceso API"
+        ]
       },
       "enterprise": {
         "name": "Empresa",
         "price": "Personalizado",
         "period": "",
         "description": "Para operaciones grandes",
-        "features": ["Todo en Pro", "Acceso multi-usuario", "Integraciones personalizadas", "Opciones de marca blanca"]
+        "features": [
+          "Todo en Pro",
+          "Acceso multi-usuario",
+          "Integraciones personalizadas",
+          "Opciones de marca blanca"
+        ]
       }
     }
   },
   "nav": {
-    "brandName": "Ledgerly",
+    "brandName": "Fiado-X",
     "dashboard": "Panel",
     "customers": "Clientes",
     "transactions": "Transacciones",
@@ -222,7 +242,7 @@
     },
     "cta": {
       "title": "¿Listo para Empezar?",
-      "description": "Únete a miles de negocios que usan Ledgerly para gestionar el crédito de sus clientes.",
+      "description": "Únete a miles de negocios que usan Fiado-X para gestionar el crédito de sus clientes.",
       "button": "Comienza Gratis Hoy"
     }
   },
@@ -345,7 +365,7 @@
       "title1": "Nuestra Historia: Del Papel",
       "title2": "a la Nube",
       "paragraph1": "Durante décadas, las micro-PYMEs en mercados emergentes han dependido de libros \"Fiado\" escritos a mano—libros mayores de papel que rastrean millones en transacciones de crédito. Pero en economías de alta inflación, el papel es frágil, y los datos se pierden con el tiempo.",
-      "paragraph2": "Fundamos Ledgerly (Fiado-X) para cerrar la brecha digital. Estamos reemplazando los cuadernos tradicionales con",
+      "paragraph2": "Fundamos Fiado-X (Fiado-X) para cerrar la brecha digital. Estamos reemplazando los cuadernos tradicionales con",
       "digitalTrust": "Confianza Digital",
       "paragraph3": "Nuestra plataforma no solo registra transacciones; construye una identidad financiera para los no bancarizados, permitiéndoles escalar, recuperar deudas más rápido y prosperar.",
       "stat1Value": "99.9%",
@@ -355,7 +375,7 @@
     },
     "cta": {
       "title": "¿Listo para Empezar?",
-      "description": "Únete a miles de negocios que usan Ledgerly para gestionar el crédito de sus clientes.",
+      "description": "Únete a miles de negocios que usan Fiado-X para gestionar el crédito de sus clientes.",
       "button": "Comienza Gratis Hoy"
     }
   },
@@ -367,7 +387,7 @@
     "hero": {
       "badge": "Contacto",
       "title": "Ponte en Contacto",
-      "subtitle": "¿Tienes preguntas sobre Ledgerly? Estamos aquí para ayudar. Contáctanos para soporte, ventas u oportunidades de asociación."
+      "subtitle": "¿Tienes preguntas sobre Fiado-X? Estamos aquí para ayudar. Contáctanos para soporte, ventas u oportunidades de asociación."
     },
     "title": "Ponte en Contacto",
     "subtitle": "Nos encantaría saber de ti",
@@ -738,7 +758,8 @@
   },
   "auth": {
     "common": {
-      "or": "o"
+      "or": "o",
+      "trustedBy": "Trusted By"
     },
     "login": {
       "title": "Bienvenido de nuevo",
@@ -776,7 +797,9 @@
       "emailNotConfirmedTitle": "Email No Verificado",
       "emailNotConfirmedDescription": "Tu dirección de email no ha sido verificada todavía. Por favor revisa tu bandeja de entrada y haz clic en el enlace de verificación.",
       "resendEmailButton": "Reenviar Email de Verificación",
-      "goToLogin": "Ir a la Página de Login"
+      "goToLogin": "Ir a la Página de Login",
+      "redirecting": "Signing you in...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "signup": {
       "title": "Crear Cuenta",
@@ -818,7 +841,17 @@
       "successTitle": "¡Registro Exitoso!",
       "successDescription1": "Hemos enviado un enlace de verificación a tu dirección de email.",
       "successDescription2": "Por favor revisa tu bandeja de entrada (y carpeta de spam), luego haz clic en el enlace para verificar tu cuenta.",
-      "passwordHint": "Al menos 6 caracteres"
+      "passwordHint": "Al menos 6 caracteres",
+      "acceptTerms": "Please accept the Terms of Service and Privacy Policy",
+      "agreePrefix": "I agree to the",
+      "agreeAnd": "and",
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "emailSentTitle": "Check Your Email",
+      "emailSentSubtitle": "A verification link has been sent to your inbox.",
+      "successAutoConfirmed": "Account created! Redirecting...",
+      "redirecting": "Setting up your account...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "forgotPassword": {
       "title": "Contraseña Olvidada",
@@ -864,7 +897,8 @@
       "feature3Desc": "Vuelve a tu negocio en minutos",
       "about": "Acerca de",
       "contact": "Contacto",
-      "pricing": "Precios"
+      "pricing": "Precios",
+      "statusBadge": "Secure & Encrypted Recovery"
     },
     "resetPassword": {
       "title": "Restablecer Contraseña",
@@ -893,10 +927,18 @@
       "error": "Error al restablecer la contraseña",
       "invalidToken": "Enlace de restablecimiento inválido o expirado",
       "passwordsMismatch": "Las contraseñas no coinciden",
-      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres"
+      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+      "passwordHint": "Must be at least 8 characters",
+      "verifying": "Verifying link...",
+      "successTitle": "Password Updated!",
+      "invalidLink": "Invalid or expired reset link",
+      "statusBadge": "Bank-Grade Security"
     },
     "verifyOTP": {
-      "brandName": "Fiado-X"
+      "brandName": "Fiado-X",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes."
     },
     "otpExpired": {
       "title": "Enlace de Verificación Expirado",
@@ -914,6 +956,20 @@
       "linkSuccess": "Cuenta de Google vinculada exitosamente",
       "unlinkSuccess": "Cuenta de Google desvinculada",
       "alreadyLinked": "La cuenta de Google ya está vinculada"
+    },
+    "verifyOtp": {
+      "brandName": "Global Ledger",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes.",
+      "checkDevice": "Check your email for the code",
+      "codeExpiry": "Code expires in 10 minutes",
+      "feature1Title": "One-time code",
+      "feature1Desc": "Valid for single use only",
+      "feature2Title": "Encrypted",
+      "feature2Desc": "Sent securely to your email",
+      "feature3Title": "Quick verification",
+      "feature3Desc": "Usually within seconds"
     }
   },
   "notFound": {
@@ -1251,15 +1307,15 @@
   "faq": {
     "badge": "FAQ",
     "title": "Preguntas Frecuentes",
-    "subtitle": "Todo lo que necesitas saber sobre Ledgerly",
-    "q1": "¿Ledgerly es realmente gratis?",
-    "a1": "¡Sí! Ledgerly ofrece un plan gratis para siempre que incluye hasta 5 clientes y 50 transacciones. No se requiere tarjeta de crédito para empezar. Para clientes ilimitados, transacciones, modo sin conexión e informes, actualiza a Pro.",
+    "subtitle": "Todo lo que necesitas saber sobre Fiado-X",
+    "q1": "¿Fiado-X es realmente gratis?",
+    "a1": "¡Sí! Fiado-X ofrece un plan gratis para siempre que incluye hasta 5 clientes y 50 transacciones. No se requiere tarjeta de crédito para empezar. Para clientes ilimitados, transacciones, modo sin conexión e informes, actualiza a Pro.",
     "q2": "¿Qué características incluye el plan gratis?",
     "a2": "El plan gratis incluye: hasta 5 clientes, hasta 50 transacciones, gestión de clientes y seguimiento de transacciones. El modo sin conexión, informes y exportación de datos requieren una suscripción Pro.",
     "q3": "¿Cómo funciona la copia de seguridad automática?",
     "a3": "Tus datos se sincronizan automáticamente con nuestros servidores seguros en la nube siempre que tienes conexión a internet. Todos los datos están encriptados usando encriptación AES-256 de grado bancario. Esta característica está disponible en planes Pro.",
     "q4": "¿Qué monedas e idiomas son compatibles?",
-    "a4": "Ledgerly soporta múltiples monedas incluyendo TRY (Lira Turca), IDR (Rupia Indonesia), NGN (Naira Nigeriana), EGP (Libra Egipcia), ZAR (Rand Sudafricano) y más. La aplicación está disponible en múltiples idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú.",
+    "a4": "Fiado-X soporta múltiples monedas incluyendo TRY (Lira Turca), IDR (Rupia Indonesia), NGN (Naira Nigeriana), EGP (Libra Egipcia), ZAR (Rand Sudafricano) y más. La aplicación está disponible en múltiples idiomas: Turco, Hindi, Indonesio, Inglés, Árabe, Español y Zulú.",
     "q5": "¿Cómo envío recordatorios de pago a los clientes?",
     "a5": "Puedes enviar recordatorios directamente a través de WhatsApp con mensajes pre-llenados. Solo abre los detalles de un cliente y toca el botón de WhatsApp. Los usuarios Pro también obtienen recordatorios SMS automáticos.",
     "q6": "¿Puedo exportar mis datos?",

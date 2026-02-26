@@ -28,7 +28,8 @@
     "off": "إيقاف",
     "yes": "نعم",
     "no": "لا",
-    "defaultBusinessName": "عملي"
+    "defaultBusinessName": "عملي",
+    "trustedBy": "Trusted By"
   },
   "errorBoundary": {
     "title": "حدث خطأ ما",
@@ -109,7 +110,7 @@
     }
   },
   "nav": {
-    "brandName": "Ledgerly",
+    "brandName": "دفتر-إكس",
     "dashboard": "لوحة التحكم",
     "customers": "العملاء",
     "transactions": "المعاملات",
@@ -223,7 +224,7 @@
     },
     "cta": {
       "title": "هل أنت مستعد للبدء؟",
-      "description": "انضم إلى آلاف الشركات التي تستخدم Ledgerly لإدارة ائتمان عملائها.",
+      "description": "انضم إلى آلاف الشركات التي تستخدم دفتر-إكس لإدارة ائتمان عملائها.",
       "button": "ابدأ مجاناً اليوم"
     },
     "resilience": {
@@ -364,7 +365,7 @@
       "title1": "قصتنا: من الورق",
       "title2": "إلى السحابة",
       "paragraph1": "لعقود من الزمان، اعتمدت المشاريع الصغيرة في الأسواق الناشئة على دفاتر \"الحساب\" المكتوبة بخط اليد—سجلات ورقية تتبع ملايين المعاملات الائتمانية. لكن في الاقتصادات ذات التضخم المرتفع، الورق هش، والبيانات تضيع مع مرور الوقت.",
-      "paragraph2": "أسسنا Ledgerly (Dayn-X) لسد الفجوة الرقمية. نحن نستبدل الدفاتر التقليدية بـ",
+      "paragraph2": "أسسنا دفتر-إكس (Dayn-X) لسد الفجوة الرقمية. نحن نستبدل الدفاتر التقليدية بـ",
       "digitalTrust": "الثقة الرقمية",
       "paragraph3": "منصتنا لا تسجل المعاملات فقط؛ بل تبني هوية مالية لمن لا يمتلكون حسابات بنكية، مما يسمح لهم بالتوسع واسترداد الديون بشكل أسرع والازدهار.",
       "stat1Value": "99.9%",
@@ -374,7 +375,7 @@
     },
     "cta": {
       "title": "هل أنت مستعد للبدء؟",
-      "description": "انضم إلى آلاف الشركات التي تستخدم Ledgerly لإدارة ائتمان عملائها.",
+      "description": "انضم إلى آلاف الشركات التي تستخدم دفتر-إكس لإدارة ائتمان عملائها.",
       "button": "ابدأ مجاناً اليوم"
     }
   },
@@ -386,7 +387,7 @@
     "hero": {
       "badge": "اتصل بنا",
       "title": "تواصل معنا",
-      "subtitle": "هل لديك أسئلة حول Ledgerly؟ نحن هنا للمساعدة. تواصل مع فريقنا للدعم أو المبيعات أو الشراكة."
+      "subtitle": "هل لديك أسئلة حول دفتر-إكس؟ نحن هنا للمساعدة. تواصل مع فريقنا للدعم أو المبيعات أو الشراكة."
     },
     "title": "تواصل معنا",
     "subtitle": "نود سماع منك",
@@ -799,15 +800,15 @@
   "faq": {
     "badge": "الأسئلة الشائعة",
     "title": "الأسئلة الشائعة",
-    "subtitle": "كل ما تحتاج لمعرفته حول Ledgerly",
-    "q1": "هل Ledgerly مجاني حقًا؟",
-    "a1": "نعم! يقدم Ledgerly خطة مجانية للأبد تشمل ما يصل إلى 5 عملاء و50 معاملة. لا حاجة لبطاقة ائتمان للبدء. للحصول على عملاء ومعاملات غير محدودة ووضع غير متصل وتقارير، قم بالترقية إلى Pro.",
+    "subtitle": "كل ما تحتاج لمعرفته حول دفتر-إكس",
+    "q1": "هل دفتر-إكس مجاني حقًا؟",
+    "a1": "نعم! يقدم دفتر-إكس خطة مجانية للأبد تشمل ما يصل إلى 5 عملاء و50 معاملة. لا حاجة لبطاقة ائتمان للبدء. للحصول على عملاء ومعاملات غير محدودة ووضع غير متصل وتقارير، قم بالترقية إلى Pro.",
     "q2": "ما هي الميزات المضمنة في الخطة المجانية؟",
     "a2": "تتضمن الخطة المجانية: ما يصل إلى 5 عملاء، ما يصل إلى 50 معاملة، إدارة العملاء، وتتبع المعاملات. وضع عدم الاتصال والتقارير وتصدير البيانات تتطلب اشتراك Pro.",
     "q3": "كيف يعمل النسخ الاحتياطي التلقائي؟",
     "a3": "تتم مزامنة بياناتك تلقائيًا مع خوادمنا السحابية الآمنة كلما كان لديك اتصال بالإنترنت. يتم تشفير جميع البيانات باستخدام تشفير AES-256 على مستوى البنك. هذه الميزة متاحة في خطط Pro.",
     "q4": "ما هي العملات واللغات المدعومة؟",
-    "a4": "يدعم Ledgerly عملات متعددة بما في ذلك TRY (الليرة التركية) وIDR (الروبية الإندونيسية) وNGN (النيرة النيجيرية) وEGP (الجنيه المصري) وZAR (الراند الجنوب أفريقي) والمزيد. التطبيق متوفر بلغات متعددة: التركية والهندية والإندونيسية والإنجليزية والعربية والإسبانية والزولو.",
+    "a4": "يدعم دفتر-إكس عملات متعددة بما في ذلك TRY (الليرة التركية) وIDR (الروبية الإندونيسية) وNGN (النيرة النيجيرية) وEGP (الجنيه المصري) وZAR (الراند الجنوب أفريقي) والمزيد. التطبيق متوفر بلغات متعددة: التركية والهندية والإندونيسية والإنجليزية والعربية والإسبانية والزولو.",
     "q5": "كيف أرسل تذكيرات الدفع للعملاء؟",
     "a5": "يمكنك إرسال تذكيرات مباشرة عبر WhatsApp مع رسائل مسبقة التعبئة. فقط افتح تفاصيل العميل وانقر على زر WhatsApp. يحصل مستخدمو Pro أيضًا على تذكيرات SMS تلقائية.",
     "q6": "هل يمكنني تصدير بياناتي؟",
@@ -922,7 +923,8 @@
   },
   "auth": {
     "common": {
-      "or": "أو"
+      "or": "أو",
+      "trustedBy": "Trusted By"
     },
     "login": {
       "title": "مرحبًا بعودتك",
@@ -960,7 +962,9 @@
       "emailNotConfirmedTitle": "البريد الإلكتروني غير موثق",
       "emailNotConfirmedDescription": "لم يتم التحقق من عنوان بريدك الإلكتروني بعد. يرجى التحقق من صندوق الوارد والنقر على رابط التحقق.",
       "resendEmailButton": "إعادة إرسال بريد التحقق",
-      "goToLogin": "الذهاب إلى صفحة تسجيل الدخول"
+      "goToLogin": "الذهاب إلى صفحة تسجيل الدخول",
+      "redirecting": "Signing you in...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "signup": {
       "title": "إنشاء حساب",
@@ -1002,7 +1006,17 @@
       "pricing": "التسعير",
       "successTitle": "التسجيل ناجح!",
       "successDescription1": "لقد أرسلنا رابط التحقق إلى عنوان بريدك الإلكتروني.",
-      "successDescription2": "يرجى التحقق من صندوق الوارد (ومجلد البريد العشوائي)، ثم انقر على الرابط للتحقق من حسابك."
+      "successDescription2": "يرجى التحقق من صندوق الوارد (ومجلد البريد العشوائي)، ثم انقر على الرابط للتحقق من حسابك.",
+      "acceptTerms": "Please accept the Terms of Service and Privacy Policy",
+      "agreePrefix": "I agree to the",
+      "agreeAnd": "and",
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "emailSentTitle": "Check Your Email",
+      "emailSentSubtitle": "A verification link has been sent to your inbox.",
+      "successAutoConfirmed": "Account created! Redirecting...",
+      "redirecting": "Setting up your account...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "forgotPassword": {
       "title": "نسيت كلمة المرور",
@@ -1048,7 +1062,8 @@
       "feature3Desc": "العودة إلى العمل في دقائق",
       "about": "حول",
       "contact": "اتصل بنا",
-      "pricing": "الأسعار"
+      "pricing": "الأسعار",
+      "statusBadge": "Secure & Encrypted Recovery"
     },
     "resetPassword": {
       "title": "إعادة تعيين كلمة المرور",
@@ -1077,10 +1092,18 @@
       "error": "فشل إعادة تعيين كلمة المرور",
       "invalidToken": "رابط إعادة التعيين غير صالح أو منتهي الصلاحية",
       "passwordsMismatch": "كلمات المرور غير متطابقة",
-      "passwordTooShort": "يجب أن تكون كلمة المرور 6 أحرف على الأقل"
+      "passwordTooShort": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+      "passwordHint": "Must be at least 8 characters",
+      "verifying": "Verifying link...",
+      "successTitle": "Password Updated!",
+      "invalidLink": "Invalid or expired reset link",
+      "statusBadge": "Bank-Grade Security"
     },
     "verifyOTP": {
-      "brandName": "Dayn-X"
+      "brandName": "Dayn-X",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes."
     },
     "otpExpired": {
       "title": "انتهت صلاحية رابط التحقق",
@@ -1098,6 +1121,20 @@
       "linkSuccess": "تم ربط حساب Google بنجاح",
       "unlinkSuccess": "تم فصل حساب Google",
       "alreadyLinked": "حساب Google مربوط بالفعل"
+    },
+    "verifyOtp": {
+      "brandName": "Global Ledger",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes.",
+      "checkDevice": "Check your email for the code",
+      "codeExpiry": "Code expires in 10 minutes",
+      "feature1Title": "One-time code",
+      "feature1Desc": "Valid for single use only",
+      "feature2Title": "Encrypted",
+      "feature2Desc": "Sent securely to your email",
+      "feature3Title": "Quick verification",
+      "feature3Desc": "Usually within seconds"
     }
   },
   "notFound": {

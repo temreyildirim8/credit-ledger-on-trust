@@ -12,8 +12,8 @@ export function HeroSection() {
   const t = useTranslations("home.hero");
 
   return (
-    <section className="relative overflow-hidden bg-[#f5f7f8]">
-      <div className="relative max-w-[1280px] mx-auto px-6 pt-[70px] pb-[86px]">
+    <section className="relative overflow-hidden bg-[#f5f7f8] px-5 py-[128px] md:px-20">
+      <div className="relative max-w-[1280px] mx-auto">
         <div className="flex gap-[54px] items-center justify-center">
           {/* Content */}
           <div className="flex-1 max-w-[584px]">

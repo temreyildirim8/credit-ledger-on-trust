@@ -24,8 +24,8 @@ export function TrustBar() {
   ];
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white px-5 py-24 md:px-20">
+      <div className="max-w-[1280px] mx-auto">
         <div className="text-center mb-12">
           <p className="text-sm font-semibold text-[#3c83f6] uppercase tracking-wide mb-2">
             Trusted by businesses small and large
@@ -46,9 +46,7 @@ export function TrustBar() {
                 <p className="text-2xl sm:text-3xl font-bold text-[#0f172a] mb-1">
                   {stat.value}
                 </p>
-                <p className="text-sm text-[#64748b]">
-                  {stat.label}
-                </p>
+                <p className="text-sm text-[#64748b]">{stat.label}</p>
               </div>
             );
           })}

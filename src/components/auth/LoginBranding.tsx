@@ -1,91 +1,74 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Users, TrendingUp, Shield, Globe, BookOpen } from "lucide-react";
+import { BookOpen } from "lucide-react";
 
 /**
  * Login page branding content for left panel
- * Used in AuthLayout component
+ * Figma: node 2008-1281 — logo top, headline middle, social proof bottom
  */
 export function LoginBranding() {
   const t = useTranslations("auth");
 
   return (
     <>
-      {/* Logo/Brand */}
-      <div className="mb-12">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-            <BookOpen className="w-6 h-6 text-white" />
+      {/* TOP: Logo + status badge */}
+      <div className="flex flex-col gap-6">
+        {/* Logo row */}
+        <div className="flex items-center gap-3">
+          {/* Blue square logo */}
+          <div className="relative flex items-center justify-center w-[40px] h-[40px] rounded-[8px] bg-[rgba(60,131,246,0.9)] shadow-[0px_10px_15px_-3px_rgba(60,131,246,0.2),0px_4px_6px_-4px_rgba(60,131,246,0.2)] flex-shrink-0 text-white">
+            <BookOpen className="w-6 h-6" />
           </div>
-          <span className="text-2xl font-bold tracking-tight text-white">
-            {t("login.brandName") || "Ledgerly"}
+          <span className="text-[24px] font-bold tracking-[-0.6px] text-white">
+            {t("login.brandName") || "Global Ledger"}
           </span>
         </div>
-        <h1 className="text-4xl xl:text-5xl font-bold leading-tight mb-4 text-white">
-          {t("login.heroTitle") || "Track credit. Build trust."}
+
+        {/* Status badge */}
+        <div className="inline-flex items-center gap-2 self-start backdrop-blur-[6px] bg-[rgba(255,255,255,0.1)] border border-[rgba(255,255,255,0.2)] px-[13px] py-[5px] rounded-full">
+          <div className="w-[8px] h-[8px] rounded-full bg-[#4ade80] flex-shrink-0" />
+          <span className="text-[14px] font-medium text-white">
+            {t("login.statusBadge") || "Trusted by 100M+ Businesses"}
+          </span>
+        </div>
+      </div>
+
+      {/* MIDDLE: Headline + description */}
+      <div className="flex flex-col gap-6 flex-1 justify-center">
+        <h1 className="text-[36px] font-extrabold leading-[45px] tracking-[-0.9px] text-white max-w-[461px]">
+          {t("login.heroTitle") || "Empowering Local Markets Globally"}
         </h1>
-        <p className="text-lg xl:text-xl text-white/80 max-w-md">
+        <p className="text-[18px] font-medium leading-[29px] text-[#e2e8f0] max-w-[528px]">
           {t("login.heroSubtitle") ||
-            "The simple way to manage customer credit for your small business."}
+            "Join a community of micro-SMEs transforming their businesses with secure, digital ledgers. From local bazaars to global trade."}
         </p>
       </div>
 
-      {/* Feature highlights */}
-      <div className="space-y-5">
-        <div className="flex items-start gap-4 rtl:flex-row-reverse">
-          <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
-            <Users className="w-5 h-5 text-white" />
+      {/* BOTTOM: Social proof — avatar stack + joined text */}
+      <div className="flex flex-col gap-0">
+        {/* Horizontal border */}
+        <div className="w-full border-t border-[rgba(255,255,255,0.1)] mb-[25px]" />
+        <div className="flex items-center gap-4">
+          {/* Avatar stack */}
+          <div className="flex items-center">
+            <div className="relative w-[40px] h-[40px] rounded-full bg-[#1e293b] border-2 border-[#0f172a] overflow-hidden flex-shrink-0 z-30">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#3b82f6] to-[#1e40af]" />
+            </div>
+            <div className="relative w-[40px] h-[40px] rounded-full bg-[#1e293b] border-2 border-[#0f172a] overflow-hidden flex-shrink-0 -ml-[8px] z-20">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#8b5cf6] to-[#6d28d9]" />
+            </div>
+            <div className="relative w-[40px] h-[40px] rounded-full bg-[#1e293b] border-2 border-[#0f172a] overflow-hidden flex-shrink-0 -ml-[8px] z-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#10b981] to-[#059669]" />
+            </div>
           </div>
-          <div className="rtl:text-end">
-            <h3 className="font-semibold text-lg text-white">
-              {t("login.feature1Title") || "Customer Directory"}
-            </h3>
-            <p className="text-white/70 text-sm">
-              {t("login.feature1Desc") || "Keep track of who owes what"}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-start gap-4 rtl:flex-row-reverse">
-          <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
-            <TrendingUp className="w-5 h-5 text-white" />
-          </div>
-          <div className="rtl:text-end">
-            <h3 className="font-semibold text-lg text-white">
-              {t("login.feature2Title") || "Smart Reports"}
-            </h3>
-            <p className="text-white/70 text-sm">
-              {t("login.feature2Desc") || "Insights into your receivables"}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-start gap-4 rtl:flex-row-reverse">
-          <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
-            <Shield className="w-5 h-5 text-white" />
-          </div>
-          <div className="rtl:text-end">
-            <h3 className="font-semibold text-lg text-white">
-              {t("login.feature3Title") || "Secure & Offline"}
-            </h3>
-            <p className="text-white/70 text-sm">
-              {t("login.feature3Desc") || "Works without internet"}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-start gap-4 rtl:flex-row-reverse">
-          <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
-            <Globe className="w-5 h-5 text-white" />
-          </div>
-          <div className="rtl:text-end">
-            <h3 className="font-semibold text-lg text-white">
-              {t("login.feature4Title") || "Multi-Currency"}
-            </h3>
-            <p className="text-white/70 text-sm">
-              {t("login.feature4Desc") || "TRY, IDR, NGN, EGP, ZAR & more"}
-            </p>
+          {/* Text */}
+          <div>
+            <span className="text-[14px] font-bold text-white">5,000+</span>
+            <span className="text-[14px] font-normal text-[#cbd5e1]">
+              {" "}
+              new shops joined this week
+            </span>
           </div>
         </div>
       </div>

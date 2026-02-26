@@ -52,6 +52,7 @@ docs
 .ralph
 .ralphrcplaywright-report/
 .ralphrc
+plans
 test-results/
 playwright-report
 testsprite_tests

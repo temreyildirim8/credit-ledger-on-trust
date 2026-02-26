@@ -28,7 +28,8 @@
     "off": "बंद",
     "yes": "हाँ",
     "no": "नहीं",
-    "defaultBusinessName": "मेरा व्यवसाय"
+    "defaultBusinessName": "मेरा व्यवसाय",
+    "trustedBy": "Trusted By"
   },
   "errorBoundary": {
     "title": "कुछ गलत हो गया",
@@ -109,7 +110,7 @@
     }
   },
   "nav": {
-    "brandName": "Ledgerly",
+    "brandName": "उधार-X",
     "dashboard": "डैशबोर्ड",
     "customers": "ग्राहक",
     "transactions": "लेनदेन",
@@ -223,7 +224,7 @@
     },
     "cta": {
       "title": "शुरू करने के लिए तैयार हैं?",
-      "description": "अपने ग्राहक ऋण को प्रबंधित करने के लिए Ledgerly का उपयोग करने वाले हजारों व्यवसायों में शामिल हों।",
+      "description": "अपने ग्राहक ऋण को प्रबंधित करने के लिए उधार-X का उपयोग करने वाले हजारों व्यवसायों में शामिल हों।",
       "button": "आज ही मुफ्त शुरू करें"
     },
     "resilience": {
@@ -374,7 +375,7 @@
     },
     "cta": {
       "title": "शुरू करने के लिए तैयार हैं?",
-      "description": "अपने ग्राहक ऋण को प्रबंधित करने के लिए Ledgerly का उपयोग करने वाले हजारों व्यवसायों में शामिल हों।",
+      "description": "अपने ग्राहक ऋण को प्रबंधित करने के लिए उधार-X का उपयोग करने वाले हजारों व्यवसायों में शामिल हों।",
       "button": "आज ही मुफ्त शुरू करें"
     }
   },
@@ -386,7 +387,7 @@
     "hero": {
       "badge": "संपर्क",
       "title": "संपर्क करें",
-      "subtitle": "क्या आपके Ledgerly के बारे में प्रश्न हैं? हम यहाँ मदद के लिए हैं। सहायता, बिक्री या साझेदारी के लिए हमसे संपर्क करें।"
+      "subtitle": "क्या आपके उधार-X के बारे में प्रश्न हैं? हम यहाँ मदद के लिए हैं। सहायता, बिक्री या साझेदारी के लिए हमसे संपर्क करें।"
     },
     "title": "संपर्क करें",
     "subtitle": "हम आपसे सुनना चाहेंगे",
@@ -757,7 +758,8 @@
   },
   "auth": {
     "common": {
-      "or": "या"
+      "or": "या",
+      "trustedBy": "Trusted By"
     },
     "login": {
       "title": "वापसी पर स्वागत है",
@@ -795,7 +797,9 @@
       "emailNotConfirmedTitle": "ईमेल सत्यापित नहीं",
       "emailNotConfirmedDescription": "आपका ईमेल पता अभी तक सत्यापित नहीं हुआ है। कृपया अपना इनबॉक्स जांचें और सत्यापन लिंक पर क्लिक करें।",
       "resendEmailButton": "सत्यापन ईमेल पुनः भेजें",
-      "goToLogin": "लॉगिन पृष्ठ पर जाएं"
+      "goToLogin": "लॉगिन पृष्ठ पर जाएं",
+      "redirecting": "Signing you in...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "signup": {
       "title": "खाता बनाएं",
@@ -837,7 +841,17 @@
       "successTitle": "पंजीकरण सफल!",
       "successDescription1": "हमने आपके ईमेल पते पर एक सत्यापन लिंक भेजा है।",
       "successDescription2": "कृपया अपना इनबॉक्स (और स्पैम फोल्डर) जांचें, फिर अपना खाता सत्यापित करने के लिए लिंक पर क्लिक करें।",
-      "passwordHint": "कम से कम 6 अक्षर"
+      "passwordHint": "कम से कम 6 अक्षर",
+      "acceptTerms": "Please accept the Terms of Service and Privacy Policy",
+      "agreePrefix": "I agree to the",
+      "agreeAnd": "and",
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "emailSentTitle": "Check Your Email",
+      "emailSentSubtitle": "A verification link has been sent to your inbox.",
+      "successAutoConfirmed": "Account created! Redirecting...",
+      "redirecting": "Setting up your account...",
+      "statusBadge": "Trusted by 100M+ Businesses"
     },
     "forgotPassword": {
       "title": "पासवर्ड भूल गए",
@@ -883,7 +897,8 @@
       "feature3Desc": "मिनटों में व्यवसाय में वापस",
       "about": "हमारे बारे में",
       "contact": "संपर्क",
-      "pricing": "मूल्य"
+      "pricing": "मूल्य",
+      "statusBadge": "Secure & Encrypted Recovery"
     },
     "resetPassword": {
       "title": "पासवर्ड रीसेट करें",
@@ -912,10 +927,18 @@
       "error": "पासवर्ड रीसेट करने में विफल",
       "invalidToken": "अमान्य या समाप्त रीसेट लिंक",
       "passwordsMismatch": "पासवर्ड मेल नहीं खाते",
-      "passwordTooShort": "पासवर्ड कम से कम 6 अक्षर का होना चाहिए"
+      "passwordTooShort": "पासवर्ड कम से कम 6 अक्षर का होना चाहिए",
+      "passwordHint": "Must be at least 8 characters",
+      "verifying": "Verifying link...",
+      "successTitle": "Password Updated!",
+      "invalidLink": "Invalid or expired reset link",
+      "statusBadge": "Bank-Grade Security"
     },
     "verifyOTP": {
-      "brandName": "Udhar-X"
+      "brandName": "Udhar-X",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes."
     },
     "otpExpired": {
       "title": "सत्यापन लिंक समाप्त",
@@ -933,6 +956,20 @@
       "linkSuccess": "Google खाता सफलतापूर्वक लिंक किया गया",
       "unlinkSuccess": "Google खाता अनलिंक किया गया",
       "alreadyLinked": "Google खाता पहले से लिंक है"
+    },
+    "verifyOtp": {
+      "brandName": "Global Ledger",
+      "statusBadge": "One-Time Verification",
+      "heroTitle": "Verify Your Identity",
+      "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes.",
+      "checkDevice": "Check your email for the code",
+      "codeExpiry": "Code expires in 10 minutes",
+      "feature1Title": "One-time code",
+      "feature1Desc": "Valid for single use only",
+      "feature2Title": "Encrypted",
+      "feature2Desc": "Sent securely to your email",
+      "feature3Title": "Quick verification",
+      "feature3Desc": "Usually within seconds"
     }
   },
   "reports": {
@@ -1079,15 +1116,15 @@
   "faq": {
     "badge": "FAQ",
     "title": "अक्सर पूछे जाने वाले प्रश्न",
-    "subtitle": "Ledgerly के बारे में आपको जो कुछ भी जानना होगा",
-    "q1": "क्या Ledgerly वास्तव में मुफ्त है?",
-    "a1": "हां! Ledgerly एक हमेशा के लिए मुफ्त योजना प्रदान करता है जिसमें 5 तक ग्राहक और 50 लेनदेन शामिल हैं। शुरू करने के लिए क्रेडिट कार्ड की आवश्यकता नहीं। असीमित ग्राहक, लेनदेन, ऑफलाइन मोड और रिपोर्ट के लिए Pro में अपग्रेड करें।",
+    "subtitle": "उधार-X के बारे में आपको जो कुछ भी जानना होगा",
+    "q1": "क्या उधार-X वास्तव में मुफ्त है?",
+    "a1": "हां! उधार-X एक हमेशा के लिए मुफ्त योजना प्रदान करता है जिसमें 5 तक ग्राहक और 50 लेनदेन शामिल हैं। शुरू करने के लिए क्रेडिट कार्ड की आवश्यकता नहीं। असीमित ग्राहक, लेनदेन, ऑफलाइन मोड और रिपोर्ट के लिए Pro में अपग्रेड करें।",
     "q2": "मुफ्त योजना में कौन सी सुविधाएं शामिल हैं?",
     "a2": "मुफ्त योजना में शामिल हैं: 5 तक ग्राहक, 50 तक लेनदेन, ग्राहक प्रबंधन और लेनदेन ट्रैकिंग। ऑफलाइन मोड, रिपोर्ट और डेटा निर्यात के लिए Pro सदस्यता आवश्यक है।",
     "q3": "स्वचालित बैकअप कैसे काम करता है?",
     "a3": "जब भी आपके पास इंटरनेट कनेक्शन होता है तो आपका डेटा स्वचालित रूप से हमारे सुरक्षित क्लाउड सर्वर पर सिंक हो जाता है। सभी डेटा बैंक-ग्रेड AES-256 एन्क्रिप्शन का उपयोग करके एन्क्रिप्ट किया जाता है। यह सुविधा Pro योजनाओं में उपलब्ध है।",
     "q4": "कौन सी मुद्राएं और भाषाएं समर्थित हैं?",
-    "a4": "Ledgerly कई मुद्राओं का समर्थन करता है जिनमें TRY (तुर्की लीरा), IDR (इंडोनेशियाई रुपिया), NGN (नाइजीरियाई नायरा), EGP (मिस्र पाउंड), ZAR (दक्षिण अफ्रीकी रैंड) और अधिक शामिल हैं। ऐप कई भाषाओं में उपलब्ध है: तुर्की, हिंदी, इंडोनेशियाई, अंग्रेजी, अरबी, स्पैनिश और ज़ुलु।",
+    "a4": "उधार-X कई मुद्राओं का समर्थन करता है जिनमें TRY (तुर्की लीरा), IDR (इंडोनेशियाई रुपिया), NGN (नाइजीरियाई नायरा), EGP (मिस्र पाउंड), ZAR (दक्षिण अफ्रीकी रैंड) और अधिक शामिल हैं। ऐप कई भाषाओं में उपलब्ध है: तुर्की, हिंदी, इंडोनेशियाई, अंग्रेजी, अरबी, स्पैनिश और ज़ुलु।",
     "q5": "मैं ग्राहकों को भुगतान रिमाइंडर कैसे भेजूं?",
     "a5": "आप पूर्व-भरे संदेशों के साथ सीधे WhatsApp के माध्यम से रिमाइंडर भेज सकते हैं। बस ग्राहक का विवरण खोलें और WhatsApp बटन टैप करें। Pro उपयोगकर्ताओं को स्वचालित SMS रिमाइंडर भी मिलते हैं।",
     "q6": "क्या मैं अपना डेटा निर्यात कर सकता हूं?",
