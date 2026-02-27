@@ -3,6 +3,7 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { useCustomers } from './useCustomers';
 import { customersService, Customer } from '@/lib/services/customers.service';
 import { offlineCache } from '@/lib/pwa/offline-cache';
+import { QueryClientWrapper } from '@/lib/test-utils';
 import type { User, Session } from '@supabase/supabase-js';
 
 // Mock the useAuth hook
@@ -111,7 +112,7 @@ describe('useCustomers', () => {
         () => new Promise(() => {})
       );
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       expect(result.current.loading).toBe(true);
       expect(result.current.customers).toEqual([]);
@@ -120,7 +121,7 @@ describe('useCustomers', () => {
     it('should load customers on mount', async () => {
       vi.mocked(customersService.getCustomers).mockResolvedValue([mockCustomer]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -140,7 +141,7 @@ describe('useCustomers', () => {
         signOut: vi.fn(),
       });
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       // Wait a bit to ensure no loading happens
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -161,7 +162,7 @@ describe('useCustomers', () => {
         },
       ]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -176,7 +177,7 @@ describe('useCustomers', () => {
     it('should fetch customers from service when online', async () => {
       vi.mocked(customersService.getCustomers).mockResolvedValue([mockCustomer]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -189,7 +190,7 @@ describe('useCustomers', () => {
     it('should cache customers after fetching', async () => {
       vi.mocked(customersService.getCustomers).mockResolvedValue([mockCustomer]);
 
-      renderHook(() => useCustomers());
+      renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(offlineCache.setCustomers).toHaveBeenCalled();
@@ -208,7 +209,7 @@ describe('useCustomers', () => {
         new Error('Network error')
       );
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -228,7 +229,7 @@ describe('useCustomers', () => {
         },
       ]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.customers).toHaveLength(1);
@@ -246,7 +247,7 @@ describe('useCustomers', () => {
       vi.mocked(customersService.getCustomers).mockResolvedValue([]);
       vi.mocked(customersService.createCustomer).mockResolvedValue(newCustomer);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -277,7 +278,7 @@ describe('useCustomers', () => {
         signOut: vi.fn(),
       });
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await expect(
         result.current.createCustomer({ name: 'Test' })
@@ -291,7 +292,7 @@ describe('useCustomers', () => {
       });
       vi.mocked(customersService.getCustomers).mockResolvedValue([]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -327,7 +328,7 @@ describe('useCustomers', () => {
       vi.mocked(customersService.getCustomers).mockResolvedValue([]);
       vi.mocked(customersService.createCustomer).mockResolvedValue(newCustomer);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -348,7 +349,7 @@ describe('useCustomers', () => {
       vi.mocked(customersService.getCustomers).mockResolvedValue([mockCustomer]);
       vi.mocked(customersService.archiveCustomer).mockResolvedValue(undefined);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.customers).toHaveLength(1);
@@ -369,7 +370,7 @@ describe('useCustomers', () => {
         new Error('Archive failed')
       );
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.customers).toHaveLength(1);
@@ -392,7 +393,7 @@ describe('useCustomers', () => {
         { ...mockCustomer, _cachedAt: Date.now() },
       ]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -419,7 +420,7 @@ describe('useCustomers', () => {
       vi.mocked(customersService.getCustomers).mockResolvedValue([mockCustomer]);
       vi.mocked(customersService.deleteCustomer).mockResolvedValue(undefined);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.customers).toHaveLength(1);
@@ -440,7 +441,7 @@ describe('useCustomers', () => {
         new Error('Delete failed')
       );
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.customers).toHaveLength(1);
@@ -463,7 +464,7 @@ describe('useCustomers', () => {
         { ...mockCustomer, _cachedAt: Date.now() },
       ]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -487,7 +488,7 @@ describe('useCustomers', () => {
         .mockResolvedValueOnce([])
         .mockResolvedValueOnce([mockCustomer]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -509,7 +510,7 @@ describe('useCustomers', () => {
     it('should update isOffline when going offline', async () => {
       vi.mocked(customersService.getCustomers).mockResolvedValue([]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -529,7 +530,7 @@ describe('useCustomers', () => {
         .mockResolvedValueOnce([])
         .mockResolvedValueOnce([mockCustomer]);
 
-      const { result } = renderHook(() => useCustomers());
+      const { result } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -551,7 +552,7 @@ describe('useCustomers', () => {
     it('should clean up event listeners on unmount', async () => {
       vi.mocked(customersService.getCustomers).mockResolvedValue([]);
 
-      const { unmount } = renderHook(() => useCustomers());
+      const { unmount } = renderHook(() => useCustomers(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(customersService.getCustomers).toHaveBeenCalled();

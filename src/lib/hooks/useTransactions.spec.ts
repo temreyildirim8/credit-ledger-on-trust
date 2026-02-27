@@ -3,6 +3,7 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { useTransactions } from './useTransactions';
 import { transactionsService, Transaction } from '@/lib/services/transactions.service';
 import { offlineCache } from '@/lib/pwa/offline-cache';
+import { QueryClientWrapper } from '@/lib/test-utils';
 import type { User, Session } from '@supabase/supabase-js';
 
 // Mock the useAuth hook
@@ -108,7 +109,7 @@ describe('useTransactions', () => {
         () => new Promise(() => {})
       );
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       expect(result.current.loading).toBe(true);
       expect(result.current.transactions).toEqual([]);
@@ -119,7 +120,7 @@ describe('useTransactions', () => {
         mockTransaction,
       ]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -140,7 +141,7 @@ describe('useTransactions', () => {
         signOut: vi.fn(),
       });
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       // Wait a bit to ensure no loading happens
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -161,7 +162,7 @@ describe('useTransactions', () => {
         },
       ]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -178,7 +179,7 @@ describe('useTransactions', () => {
         mockTransaction,
       ]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -193,7 +194,7 @@ describe('useTransactions', () => {
         mockTransaction,
       ]);
 
-      renderHook(() => useTransactions());
+      renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(offlineCache.setTransactions).toHaveBeenCalled();
@@ -212,7 +213,7 @@ describe('useTransactions', () => {
         new Error('Network error')
       );
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -232,7 +233,7 @@ describe('useTransactions', () => {
         },
       ]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.transactions).toHaveLength(1);
@@ -249,7 +250,7 @@ describe('useTransactions', () => {
         mockTransactions
       );
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.transactions).toHaveLength(3);
@@ -278,7 +279,7 @@ describe('useTransactions', () => {
         newTransaction
       );
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -315,7 +316,7 @@ describe('useTransactions', () => {
         signOut: vi.fn(),
       });
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await expect(
         result.current.createTransaction({
@@ -333,7 +334,7 @@ describe('useTransactions', () => {
       });
       vi.mocked(transactionsService.getTransactions).mockResolvedValue([]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -373,7 +374,7 @@ describe('useTransactions', () => {
         newTransaction
       );
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -408,7 +409,7 @@ describe('useTransactions', () => {
         .mockResolvedValueOnce(debtTransaction)
         .mockResolvedValueOnce(paymentTransaction);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -444,7 +445,7 @@ describe('useTransactions', () => {
         .mockResolvedValueOnce([])
         .mockResolvedValueOnce([mockTransaction]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -464,7 +465,7 @@ describe('useTransactions', () => {
     it('should show loading state during refresh', async () => {
       vi.mocked(transactionsService.getTransactions).mockResolvedValueOnce([]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       // Initial load completes
       await waitFor(() => {
@@ -501,7 +502,7 @@ describe('useTransactions', () => {
     it('should update isOffline when going offline', async () => {
       vi.mocked(transactionsService.getTransactions).mockResolvedValue([]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -521,7 +522,7 @@ describe('useTransactions', () => {
         .mockResolvedValueOnce([])
         .mockResolvedValueOnce([mockTransaction]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);
@@ -543,7 +544,7 @@ describe('useTransactions', () => {
     it('should clean up event listeners on unmount', async () => {
       vi.mocked(transactionsService.getTransactions).mockResolvedValue([]);
 
-      const { unmount } = renderHook(() => useTransactions());
+      const { unmount } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(transactionsService.getTransactions).toHaveBeenCalled();
@@ -585,7 +586,7 @@ describe('useTransactions', () => {
         cachedTransaction,
       ]);
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.transactions).toHaveLength(1);
@@ -610,7 +611,7 @@ describe('useTransactions', () => {
         largeAmountTransaction
       );
 
-      const { result } = renderHook(() => useTransactions());
+      const { result } = renderHook(() => useTransactions(), { wrapper: QueryClientWrapper });
 
       await waitFor(() => {
         expect(result.current.loading).toBe(false);

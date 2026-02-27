@@ -32,7 +32,7 @@ export interface PlanConfig {
 }
 
 // Cache for config values
-let configCache: Map<string, ConfigRow['value']> = new Map();
+const configCache: Map<string, ConfigRow['value']> = new Map();
 let cacheExpiry: number = 0;
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
