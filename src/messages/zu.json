@@ -462,6 +462,8 @@
   },
   "dashboard": {
     "title": "I-Dashboard",
+    "quickAdd": "Yengeza Ngokushesha",
+    "viewAll": "Buka Konke",
     "greeting": {
       "morning": "Kusale isiwe",
       "afternoon": "Kusale emuva kwemini",

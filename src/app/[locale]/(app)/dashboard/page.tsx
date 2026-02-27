@@ -77,7 +77,7 @@ export default function DashboardPage() {
           >
             <Link href="/quick-add">
               <Plus className="h-4 w-4" />
-              Quick Add
+              {t("quickAdd")}
             </Link>
           </Button>
         </div>
@@ -110,7 +110,7 @@ export default function DashboardPage() {
             asChild
           >
             <Link href="/quick-add">
-              View All
+              {t("viewAll")}
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Button>

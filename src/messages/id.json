@@ -462,6 +462,8 @@
   },
   "dashboard": {
     "title": "Dashboard",
+    "quickAdd": "Tambah Cepat",
+    "viewAll": "Lihat Semua",
     "greeting": {
       "morning": "Selamat pagi",
       "afternoon": "Selamat siang",

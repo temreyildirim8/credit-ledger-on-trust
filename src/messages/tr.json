@@ -473,6 +473,8 @@
   },
   "dashboard": {
     "title": "Kontrol Paneli",
+    "quickAdd": "Hızlı Ekle",
+    "viewAll": "Tümünü Gör",
     "greeting": {
       "morning": "Günaydın",
       "afternoon": "Tünaydın",

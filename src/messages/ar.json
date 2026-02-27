@@ -462,6 +462,8 @@
   },
   "dashboard": {
     "title": "لوحة التحكم",
+    "quickAdd": "إضافة سريعة",
+    "viewAll": "عرض الكل",
     "greeting": {
       "morning": "صباح الخير",
       "afternoon": "مساء الخير",

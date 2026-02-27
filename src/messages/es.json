@@ -462,6 +462,8 @@
   },
   "dashboard": {
     "title": "Panel",
+    "quickAdd": "Agregar Rápido",
+    "viewAll": "Ver Todo",
     "greeting": {
       "morning": "Buenos días",
       "afternoon": "Buenas tardes",

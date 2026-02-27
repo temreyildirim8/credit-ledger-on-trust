@@ -486,6 +486,8 @@
   },
   "dashboard": {
     "title": "Dashboard",
+    "quickAdd": "Quick Add",
+    "viewAll": "View All",
     "greeting": {
       "morning": "Good morning",
       "afternoon": "Good afternoon",

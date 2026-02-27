@@ -462,6 +462,8 @@
   },
   "dashboard": {
     "title": "डैशबोर्ड",
+    "quickAdd": "त्वरित जोड़ें",
+    "viewAll": "सभी देखें",
     "greeting": {
       "morning": "सुप्रभात",
       "afternoon": "शुभ अपराह्न",
