@@ -87,7 +87,7 @@ export function QuickStatsGrid({
         variant="debt"
         usdValue={
           usdEquivalent && displayCurrency !== "USD"
-            ? formatCurrency(usdEquivalent.totalDebt, "USD")
+            ? formatCurrency(usdEquivalent.totalDebt, "USD", 2)
             : undefined
         }
       />
@@ -98,7 +98,7 @@ export function QuickStatsGrid({
         variant="collected"
         usdValue={
           usdEquivalent && displayCurrency !== "USD"
-            ? formatCurrency(usdEquivalent.totalCollected, "USD")
+            ? formatCurrency(usdEquivalent.totalCollected, "USD", 2)
             : undefined
         }
       />

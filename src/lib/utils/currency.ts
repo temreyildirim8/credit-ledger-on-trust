@@ -26,12 +26,17 @@ export function getCurrencyLocale(currency: string): string {
  * Formats a numeric amount as a currency string.
  * @param amount - The numeric value to format
  * @param currency - ISO 4217 currency code (e.g. 'TRY', 'USD'). Defaults to 'USD'.
+ * @param decimalPlaces - Number of decimal places to show. Defaults to 0.
  */
-export function formatCurrency(amount: number, currency = "USD"): string {
+export function formatCurrency(
+  amount: number,
+  currency = "USD",
+  decimalPlaces = 0,
+): string {
   return new Intl.NumberFormat(getCurrencyLocale(currency), {
     style: "currency",
     currency,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    minimumFractionDigits: decimalPlaces,
+    maximumFractionDigits: decimalPlaces,
   }).format(amount);
 }
