@@ -11,6 +11,7 @@ import { QuickTour } from "@/components/onboarding/QuickTour";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/routing";
 
 export default function DashboardPage() {
   const t = useTranslations("dashboard");
@@ -72,9 +73,12 @@ export default function DashboardPage() {
             variant="secondary"
             className="bg-white/20 hover:bg-white/30 text-white border-white/30 dark:bg-accent dark:text-white dark:hover:bg-accent-hover dark:border-transparent"
             data-tour="quick-add-button"
+            asChild
           >
-            <Plus className="h-4 w-4" />
-            Quick Add
+            <Link href="/quick-add">
+              <Plus className="h-4 w-4" />
+              Quick Add
+            </Link>
           </Button>
         </div>
       </div>
@@ -101,9 +105,12 @@ export default function DashboardPage() {
             variant="ghost"
             size="sm"
             className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]"
+            asChild
           >
-            View All
-            <ArrowUpRight className="h-4 w-4" />
+            <Link href="/quick-add">
+              View All
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </Button>
         </div>
         <QuickActions locale={locale} />

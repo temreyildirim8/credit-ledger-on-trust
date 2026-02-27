@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Shield, FileText, Cookie, Scale, Lock, Gavel } from 'lucide-react';
+import { Shield, FileText } from 'lucide-react';
 import { Link } from '@/routing';
 import { DEFAULT_BRAND } from '@/lib/branding';
 
@@ -29,26 +29,27 @@ const legalItems = [
     key: 'terms',
     href: '/legal/terms',
   },
-  {
-    icon: Cookie,
-    key: 'cookies',
-    href: '/legal/cookies',
-  },
-  {
-    icon: Scale,
-    key: 'compliance',
-    href: '/legal/compliance',
-  },
-  {
-    icon: Lock,
-    key: 'security',
-    href: '/legal/security',
-  },
-  {
-    icon: Gavel,
-    key: 'licensing',
-    href: '/legal/licensing',
-  },
+  // TODO: Create these pages when ready
+  // {
+  //   icon: Cookie,
+  //   key: 'cookies',
+  //   href: '/legal/cookies',
+  // },
+  // {
+  //   icon: Scale,
+  //   key: 'compliance',
+  //   href: '/legal/compliance',
+  // },
+  // {
+  //   icon: Lock,
+  //   key: 'security',
+  //   href: '/legal/security',
+  // },
+  // {
+  //   icon: Gavel,
+  //   key: 'licensing',
+  //   href: '/legal/licensing',
+  // },
 ];
 
 export default function LegalCenterPage() {

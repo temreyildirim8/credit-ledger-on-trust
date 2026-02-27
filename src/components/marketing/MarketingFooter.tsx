@@ -36,19 +36,19 @@ export function MarketingFooter() {
     {
       title: t("resources.title"),
       links: [
-        { name: t("resources.helpCenter"), href: "#" },
-        { name: t("resources.documentation"), href: "#" },
-        { name: t("resources.community"), href: "#" },
-        { name: t("resources.status"), href: "#" },
+        { name: t("resources.helpCenter"), href: "/help" },
+        { name: t("resources.documentation"), href: "#" }, // TODO: Create documentation page
+        { name: t("resources.community"), href: "#" }, // TODO: Create community page
+        { name: t("resources.status"), href: "#" }, // TODO: Create status page
       ],
     },
     {
       title: t("legal.title"),
       links: [
-        { name: t("legal.privacy"), href: "#" },
-        { name: t("legal.terms"), href: "#" },
-        { name: t("legal.cookies"), href: "#" },
-        { name: t("legal.licenses"), href: "#" },
+        { name: t("legal.privacy"), href: "/legal/privacy" },
+        { name: t("legal.terms"), href: "/legal/terms" },
+        { name: t("legal.cookies"), href: "#" }, // TODO: Create /legal/cookies page
+        { name: t("legal.licenses"), href: "#" }, // TODO: Create /legal/licensing page
       ],
     },
   ];

@@ -43,35 +43,33 @@ interface QuickActionsProps {
   locale?: string;
 }
 
-export function QuickActions({ locale = "en" }: QuickActionsProps) {
+export function QuickActions({ locale: _locale = "en" }: QuickActionsProps) {
   const t = useTranslations('dashboard.quickActions');
-
-  const basePath = locale ? `/${locale}` : '';
 
   return (
     <div className="grid grid-cols-4 gap-2 md:gap-3">
       <ActionButton
         label={t('addDebt')}
         icon={<PlusCircle className="h-5 w-5" />}
-        href={`${basePath}/quick-add?type=debt`}
+        href="/quick-add?type=debt"
         variant="primary"
       />
       <ActionButton
         label={t('addPayment')}
         icon={<MinusCircle className="h-5 w-5" />}
-        href={`${basePath}/quick-add?type=payment`}
+        href="/quick-add?type=payment"
         variant="secondary"
       />
       <ActionButton
         label={t('addCustomer')}
         icon={<UserPlus className="h-5 w-5" />}
-        href={`${basePath}/customers?add=true`}
+        href="/customers?add=true"
         variant="secondary"
       />
       <ActionButton
         label={t('sendReminders')}
         icon={<MessageSquare className="h-5 w-5" />}
-        href="#"
+        href="/customers"
         variant="secondary"
       />
     </div>

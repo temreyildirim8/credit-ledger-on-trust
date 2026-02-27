@@ -32,7 +32,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { UpgradePrompt } from "@/components/subscription/UpgradePrompt";
-import Link from "next/link";
+import { Link } from "@/routing";
 import { toast } from "sonner";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useTransactions } from "@/lib/hooks/useTransactions";
@@ -478,7 +478,7 @@ export default function ReportsPage() {
               {t("empty.description")}
             </p>
             <Button asChild>
-              <Link href="./dashboard">
+              <Link href="/dashboard">
                 {t("empty.action")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

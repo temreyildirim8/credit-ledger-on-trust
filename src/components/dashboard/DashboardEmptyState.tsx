@@ -2,14 +2,14 @@
 
 import { Button } from '@/components/ui/button';
 import { Users, Plus, FileText } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/routing';
 import { useTranslations } from 'next-intl';
 
 interface DashboardEmptyStateProps {
-  locale: string;
+  locale?: string;
 }
 
-export function DashboardEmptyState({ locale }: DashboardEmptyStateProps) {
+export function DashboardEmptyState({ locale: _locale }: DashboardEmptyStateProps) {
   const t = useTranslations('dashboard');
 
   return (
@@ -31,7 +31,7 @@ export function DashboardEmptyState({ locale }: DashboardEmptyStateProps) {
 
       {/* CTA Buttons */}
       <div className="flex flex-col sm:flex-row gap-3">
-        <Link href={`/${locale}/customers`}>
+        <Link href="/customers">
           <Button
             size="lg"
             className="bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white gap-2"
@@ -40,7 +40,7 @@ export function DashboardEmptyState({ locale }: DashboardEmptyStateProps) {
             {t('empty.addCustomer')}
           </Button>
         </Link>
-        <Link href={`/${locale}/reports`}>
+        <Link href="/reports">
           <Button
             size="lg"
             variant="outline"

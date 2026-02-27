@@ -9,6 +9,7 @@ import {
   Receipt,
   CirclePlus,
   Settings,
+  BarChart3,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +23,11 @@ const navItems = [
     key: "customers",
     href: "/customers",
     icon: Users,
+  },
+  {
+    key: "reports",
+    href: "/reports",
+    icon: BarChart3,
   },
   {
     key: "quickAdd",

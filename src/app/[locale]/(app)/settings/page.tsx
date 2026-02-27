@@ -46,6 +46,7 @@ import {
 } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
 import { SubscriptionUpgradeModal } from "@/components/settings/SubscriptionUpgradeModal";
+import { Link } from "@/routing";
 
 type SettingsTab =
   | "profile"
@@ -678,24 +679,32 @@ export default function SettingsPage() {
               {/* Support Section */}
               {!isLoading && activeTab === "support" && (
                 <div className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start">
-                    <HelpCircle className="h-4 w-4 mr-2" />
-                    {t("sections.support.helpCenter")}
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link href="/help">
+                      <HelpCircle className="h-4 w-4 mr-2" />
+                      {t("sections.support.helpCenter")}
+                    </Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <Mail className="h-4 w-4 mr-2" />
-                    {t("sections.support.contactSupport")}
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link href="/contact">
+                      <Mail className="h-4 w-4 mr-2" />
+                      {t("sections.support.contactSupport")}
+                    </Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <Phone className="h-4 w-4 mr-2" />
-                    {t("sections.support.callSupport")}
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <a href="mailto:support@globalledger.app">
+                      <Phone className="h-4 w-4 mr-2" />
+                      {t("sections.support.callSupport")}
+                    </a>
                   </Button>
                   <div className="border-t border-border pt-3">
                     <p className="text-sm text-text-secondary text-center mb-2">
                       {t("sections.support.enjoyingApp")}
                     </p>
-                    <Button variant="outline" className="w-full">
-                      {t("sections.support.rateUs")}
+                    <Button variant="outline" className="w-full" asChild>
+                      <a href="mailto:support@globalledger.app?subject=App%20Review">
+                        {t("sections.support.rateUs")}
+                      </a>
                     </Button>
                   </div>
                 </div>
@@ -704,17 +713,23 @@ export default function SettingsPage() {
               {/* Account Section */}
               {!isLoading && activeTab === "account" && (
                 <div className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start">
-                    <Shield className="h-4 w-4 mr-2" />
-                    {tAccount("privacyPolicy")}
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link href="/legal/privacy">
+                      <Shield className="h-4 w-4 mr-2" />
+                      {tAccount("privacyPolicy")}
+                    </Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <Globe className="h-4 w-4 mr-2" />
-                    {tAccount("termsOfService")}
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link href="/legal/terms">
+                      <Globe className="h-4 w-4 mr-2" />
+                      {tAccount("termsOfService")}
+                    </Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <Globe className="h-4 w-4 mr-2" />
-                    {tAccount("licenses")}
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link href="/legal">
+                      <Globe className="h-4 w-4 mr-2" />
+                      {tAccount("licenses")}
+                    </Link>
                   </Button>
                   <div className="border-t border-border pt-3">
                     <Button
