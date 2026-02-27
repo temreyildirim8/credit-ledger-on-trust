@@ -132,7 +132,7 @@ export function SyncStatusIndicator({
               statusDisplay.borderColor,
               "border",
               isOnline && hasPending && "cursor-pointer hover:opacity-80",
-              className
+              className,
             )}
             aria-label={statusDisplay.label}
             disabled={!isOnline || isSyncing}
@@ -145,7 +145,7 @@ export function SyncStatusIndicator({
             )}
           </button>
         </TooltipTrigger>
-        <TooltipContent side="bottom">
+        <TooltipContent side="right">
           <div className="text-center">
             <p className="font-medium">{statusDisplay.label}</p>
             {hasPending && (
@@ -154,7 +154,9 @@ export function SyncStatusIndicator({
               </p>
             )}
             {!isOnline && (
-              <p className="text-xs text-muted-foreground">{t("willSyncWhenOnline")}</p>
+              <p className="text-xs text-muted-foreground">
+                {t("willSyncWhenOnline")}
+              </p>
             )}
           </div>
         </TooltipContent>
@@ -169,7 +171,7 @@ export function SyncStatusIndicator({
         "flex items-center gap-3 px-3 py-2 rounded-lg border",
         statusDisplay.bgColor,
         statusDisplay.borderColor,
-        className
+        className,
       )}
     >
       {/* Status Icon */}
@@ -207,7 +209,10 @@ export function SyncStatusIndicator({
             errorMessage || t("syncFailed")
           ) : (
             <>
-              {t("lastSync")}: {isOnline && !lastSyncedAt ? t("justNow") : formatLastSync(lastSyncedAt)}
+              {t("lastSync")}:{" "}
+              {isOnline && !lastSyncedAt
+                ? t("justNow")
+                : formatLastSync(lastSyncedAt)}
             </>
           )}
         </span>
@@ -235,7 +240,10 @@ export function SyncStatusIndicator({
 
       {/* Offline Badge */}
       {!isOnline && (
-        <Badge variant="outline" className="shrink-0 text-xs border-orange-300 text-orange-600">
+        <Badge
+          variant="outline"
+          className="shrink-0 text-xs border-orange-300 text-orange-600"
+        >
           {t("offlineMode")}
         </Badge>
       )}

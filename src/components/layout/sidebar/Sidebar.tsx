@@ -97,7 +97,8 @@ export function Sidebar({ className }: SidebarProps) {
   });
 
   // Get sidebar state from Zustand store (auto-persisted to localStorage)
-  const { sidebarCollapsed: isCollapsed, setSidebarCollapsed: setIsCollapsed } = useUIStore();
+  const { sidebarCollapsed: isCollapsed, setSidebarCollapsed: setIsCollapsed } =
+    useUIStore();
 
   // Handle resize to force collapse below lg, restore state above lg
   useEffect(() => {
@@ -345,7 +346,7 @@ export function Sidebar({ className }: SidebarProps) {
             </TooltipContent>
           ) : !isInstallable && !isInstalled ? (
             <TooltipContent
-              side="top"
+              side="right"
               className="bg-surface border border-border shadow-lg"
             >
               {t("upgradeForPWADesc")}
@@ -381,7 +382,7 @@ export function Sidebar({ className }: SidebarProps) {
             </TooltipContent>
           ) : !canChangeTheme ? (
             <TooltipContent
-              side="top"
+              side="right"
               className="bg-surface border border-border shadow-lg"
             >
               {t("upgradeForTheme")}
@@ -398,33 +399,24 @@ export function Sidebar({ className }: SidebarProps) {
             isCollapsed ? "px-0 py-3 flex justify-center" : "px-3 py-3",
           )}
         >
-          <Tooltip delayDuration={0}>
-            <TooltipTrigger asChild>
-              <button
-                onClick={toggleSidebar}
-                className={cn(
-                  "flex items-center gap-3 w-full rounded-lg transition-all duration-200",
-                  "text-text-secondary hover:bg-surface-alt hover:text-text",
-                  isCollapsed ? "justify-center h-9" : "justify-start py-2 px-3",
-                )}
-                aria-label={
-                  isCollapsed ? t("expandSidebar") : t("collapseSidebar")
-                }
-              >
-                {isCollapsed ? (
-                  <ChevronRight className="w-5 h-5" />
-                ) : (
-                  <>
-                    <ChevronLeft className="w-5 h-5" />
-                    <span className="text-sm font-medium">{t("collapse")}</span>
-                  </>
-                )}
-              </button>
-            </TooltipTrigger>
-            {isCollapsed && (
-              <TooltipContent side="right">{t("expandSidebar")}</TooltipContent>
+          <button
+            onClick={toggleSidebar}
+            className={cn(
+              "flex items-center gap-3 w-full rounded-lg transition-all duration-200",
+              "text-text-secondary hover:bg-surface-alt hover:text-text",
+              isCollapsed ? "justify-center h-9" : "justify-start py-2 px-3",
             )}
-          </Tooltip>
+            aria-label={isCollapsed ? t("expandSidebar") : t("collapseSidebar")}
+          >
+            {isCollapsed ? (
+              <ChevronRight className="w-5 h-5" />
+            ) : (
+              <>
+                <ChevronLeft className="w-5 h-5" />
+                <span className="text-sm font-medium">{t("collapse")}</span>
+              </>
+            )}
+          </button>
         </div>
       )}
 
@@ -435,28 +427,19 @@ export function Sidebar({ className }: SidebarProps) {
           isCollapsed ? "px-0 py-3 flex justify-center" : "p-4",
         )}
       >
-        <Tooltip delayDuration={0}>
-          <TooltipTrigger asChild>
-            <button
-              onClick={handleLogout}
-              className={cn(
-                "flex items-center gap-3 rounded-lg text-error hover:bg-error/5 transition-all duration-200 group",
-                isCollapsed ? "justify-center h-9 w-9" : "px-3 py-2.5 w-full",
-              )}
-              aria-label={t("signOut")}
-            >
-              <LogOut className="w-5 h-5 flex-shrink-0" />
-              {!isCollapsed && (
-                <span className="font-medium text-sm">{t("signOut")}</span>
-              )}
-            </button>
-          </TooltipTrigger>
-          {isCollapsed && (
-            <TooltipContent side="right" className="text-error">
-              {t("signOut")}
-            </TooltipContent>
+        <button
+          onClick={handleLogout}
+          className={cn(
+            "flex items-center gap-3 rounded-lg text-error hover:bg-error/5 transition-all duration-200 group",
+            isCollapsed ? "justify-center h-9 w-9" : "px-3 py-2.5 w-full",
           )}
-        </Tooltip>
+          aria-label={t("signOut")}
+        >
+          <LogOut className="w-5 h-5 flex-shrink-0" />
+          {!isCollapsed && (
+            <span className="font-medium text-sm">{t("signOut")}</span>
+          )}
+        </button>
       </div>
     </aside>
   );
