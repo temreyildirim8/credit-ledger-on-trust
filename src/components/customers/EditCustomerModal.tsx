@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -290,12 +291,13 @@ export function EditCustomerModal({
             </div>
             <div className="space-y-2">
               <Label htmlFor="edit-notes">{t("notes")}</Label>
-              <Input
+              <Textarea
                 id="edit-notes"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder={t("notesPlaceholder") || t("addressPlaceholder")}
                 disabled={loading}
+                rows={3}
               />
             </div>
           </div>
