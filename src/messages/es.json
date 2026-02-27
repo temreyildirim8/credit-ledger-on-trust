@@ -542,6 +542,9 @@
       "idTaken": "Este código está ocupado, generando otro...",
       "setUniqueId": "Generar Código Único"
     },
+    "customFields": {
+      "sectionTitle": "Información Adicional"
+    },
     "details": {
       "totalDebt": "Deuda Total",
       "balance": "Saldo",
@@ -740,6 +743,10 @@
         "lastBackup": "Última copia: Justo ahora",
         "exporting": "Exportando datos como {format}..."
       },
+      "customFields": {
+        "title": "Campos Personalizados",
+        "description": "Define campos personalizados para tus clientes"
+      },
       "support": {
         "title": "Soporte",
         "description": "Ayuda, contacto y comentarios",
@@ -775,6 +782,39 @@
         "upgradeError": "Error al actualizar el plan. Por favor intenta de nuevo.",
         "footerNote": "Puedes cambiar o cancelar tu plan en cualquier momento. Sin cargos ocultos.",
         "comingSoon": "Próximamente"
+      }
+    },
+    "customFields": {
+      "title": "Campos Personalizados de Clientes",
+      "addField": "Agregar Campo",
+      "editField": "Editar Campo",
+      "fieldName": "Nombre del Campo",
+      "fieldNamePlaceholder": "ej., Fecha de Receta",
+      "fieldType": "Tipo de Campo",
+      "fieldTypeLocked": "El tipo de campo no se puede cambiar después de crearlo",
+      "options": "Opciones",
+      "optionPlaceholder": "Ingresa una opción y presiona Enter",
+      "optionsRequired": "Se requiere al menos una opción para campos desplegables",
+      "isRequired": "Campo requerido",
+      "noFields": "Aún no hay campos personalizados definidos",
+      "noFieldsDescription": "Crea campos personalizados para almacenar información adicional del cliente",
+      "nameRequired": "El nombre del campo es requerido",
+      "confirmDelete": "¿Estás seguro de que quieres eliminar este campo?",
+      "createSuccess": "Campo creado exitosamente",
+      "updateSuccess": "Campo actualizado exitosamente",
+      "deleteSuccess": "Campo eliminado exitosamente",
+      "saveError": "Error al guardar el campo",
+      "deleteError": "Error al eliminar el campo",
+      "loadError": "Error al cargar los campos",
+      "cancel": "Cancelar",
+      "save": "Guardar",
+      "types": {
+        "text": "Texto",
+        "number": "Número",
+        "date": "Fecha",
+        "select": "Desplegable",
+        "textarea": "Texto Largo",
+        "checkbox": "Casilla de Verificación"
       }
     },
     "auth": {

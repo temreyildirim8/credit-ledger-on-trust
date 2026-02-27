@@ -548,6 +548,9 @@
       "idTaken": "Kode ini sudah digunakan, membuat yang lain...",
       "setUniqueId": "Buat Kode Unik"
     },
+    "customFields": {
+      "sectionTitle": "Informasi Tambahan"
+    },
     "details": {
       "totalDebt": "Total Hutang",
       "balance": "Saldo",
@@ -740,6 +743,10 @@
         "lastBackup": "Backup terakhir: Baru saja",
         "exporting": "Mengekspor data sebagai {format}..."
       },
+      "customFields": {
+        "title": "Kolom Kustom",
+        "description": "Tentukan kolom kustom untuk pelanggan Anda"
+      },
       "support": {
         "title": "Dukungan",
         "description": "Bantuan, kontak, dan masukan",
@@ -758,6 +765,39 @@
         "signOut": "Keluar",
         "signOutConfirm": "Apakah Anda yakin ingin keluar? Anda selalu dapat masuk kembali dengan email Anda.",
         "signOutTitle": "Keluar"
+      },
+      "customFields": {
+        "title": "Kolom Kustom Pelanggan",
+        "addField": "Tambah Kolom",
+        "editField": "Edit Kolom",
+        "fieldName": "Nama Kolom",
+        "fieldNamePlaceholder": "contoh: Tanggal Resep",
+        "fieldType": "Tipe Kolom",
+        "fieldTypeLocked": "Tipe kolom tidak dapat diubah setelah dibuat",
+        "options": "Opsi",
+        "optionPlaceholder": "Masukkan opsi dan tekan Enter",
+        "optionsRequired": "Minimal satu opsi diperlukan untuk kolom dropdown",
+        "isRequired": "Kolom wajib",
+        "noFields": "Belum ada kolom kustom yang ditentukan",
+        "noFieldsDescription": "Buat kolom kustom untuk menyimpan informasi pelanggan tambahan",
+        "nameRequired": "Nama kolom wajib diisi",
+        "confirmDelete": "Apakah Anda yakin ingin menghapus kolom ini?",
+        "createSuccess": "Kolom berhasil dibuat",
+        "updateSuccess": "Kolom berhasil diperbarui",
+        "deleteSuccess": "Kolom berhasil dihapus",
+        "saveError": "Gagal menyimpan kolom",
+        "deleteError": "Gagal menghapus kolom",
+        "loadError": "Gagal memuat kolom",
+        "cancel": "Batal",
+        "save": "Simpan",
+        "types": {
+          "text": "Teks",
+          "number": "Angka",
+          "date": "Tanggal",
+          "select": "Dropdown",
+          "textarea": "Teks Panjang",
+          "checkbox": "Kotak Centang"
+        }
       },
       "upgradeModal": {
         "title": "Tingkatkan Paket Anda",

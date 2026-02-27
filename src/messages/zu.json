@@ -548,6 +548,9 @@
       "idTaken": "Le khodi isetshenziwe, iyenza enye...",
       "setUniqueId": "Yenza Ikhodi Ezikhethekile"
     },
+    "customFields": {
+      "sectionTitle": "Ulwazi Olwengeziwe"
+    },
     "details": {
       "totalDebt": "Ikredithi Esisonke",
       "balance": "Isilinganiso",
@@ -740,6 +743,10 @@
         "lastBackup": "I-backu yokugcina: Manje",
         "exporting": "Ikhiphela idatha njengo-{format}..."
       },
+      "customFields": {
+        "title": "Amasimu Angokwezifiso",
+        "description": "Chaza amasimu angokwezifiso emakhasimende akho"
+      },
       "support": {
         "title": "Usizo",
         "description": "Usizo, ukuhlobana, nezinzwakalo",
@@ -758,6 +765,39 @@
         "signOut": "Phuma",
         "signOutConfirm": "Uyaqinisekisa ufuna ukuphuma? Ungavame ukungena khona nge-email yakho.",
         "signOutTitle": "Phuma"
+      },
+      "customFields": {
+        "title": "Amasimu Angokwezifiso Ekhhasimende",
+        "addField": "Yengeza Isimu",
+        "editField": "Hlela Isimu",
+        "fieldName": "Igama Lesimu",
+        "fieldNamePlaceholder": "isb: Usuku Lwesikripthi",
+        "fieldType": "Uhlobo Lwesimu",
+        "fieldTypeLocked": "Uhlobo lwesimu alunakushintshwa emva kokudalwa",
+        "options": "Izinketho",
+        "optionPlaceholder": "Faka inketho bese ucindeza u-Enter",
+        "optionsRequired": "Okungenani inketho eyodwa iyadingeka yamahasimu edrowunodi",
+        "isRequired": "Isimu esidingekayo",
+        "noFields": "Awukho amasimu angokwezifiso achaziwe okwamanje",
+        "noFieldsDescription": "Dala amasimu angokwezifiso ukuze ulondoloze ulwazi lwangaphandle lwamakhasimende",
+        "nameRequired": "Igama lesimu liyadingeka",
+        "confirmDelete": "Uyaqinisekisa ufuna ukucisha lesi simu?",
+        "createSuccess": "Isimu sidalwe ngempumelelo",
+        "updateSuccess": "Isimu sibuyekezwe ngempumelelo",
+        "deleteSuccess": "Isimu sicishiwe ngempumelelo",
+        "saveError": "Ihlulekile ukugcina isimu",
+        "deleteError": "Ihlulekile ukucisha isimu",
+        "loadError": "Ihlulekile ukulayisha amasimu",
+        "cancel": "Khansela",
+        "save": "Gcina",
+        "types": {
+          "text": "Umbhalo",
+          "number": "Inombolo",
+          "date": "Usuku",
+          "select": "Idrowunodi",
+          "textarea": "Umbhalo Omda",
+          "checkbox": "Ibhokisi Lokuhlola"
+        }
       },
       "upgradeModal": {
         "title": "Khuphula Iphulani Lakho",

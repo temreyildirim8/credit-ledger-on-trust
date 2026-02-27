@@ -542,6 +542,9 @@
       "idTaken": "هذا الرمز مستخدم، جارٍ إنشاء آخر...",
       "setUniqueId": "إنشاء رمز فريد"
     },
+    "customFields": {
+      "sectionTitle": "معلومات إضافية"
+    },
     "details": {
       "totalDebt": "إجمالي الدين",
       "balance": "الرصيد",
@@ -938,6 +941,10 @@
         "lastBackup": "آخر نسخ احتياطي: الآن",
         "exporting": "جارٍ تصدير البيانات بصيغة {format}..."
       },
+      "customFields": {
+        "title": "الحقول المخصصة",
+        "description": "حدد الحقول المخصصة لعملائك"
+      },
       "support": {
         "title": "الدعم",
         "description": "المساعدة والتواصل والملاحظات",
@@ -973,6 +980,39 @@
         "upgradeError": "فشل في ترقية الخطة. يرجى المحاولة مرة أخرى.",
         "footerNote": "يمكنك تغيير أو إلغاء خطتك في أي وقت. لا توجد رسوم خفية.",
         "comingSoon": "قريبًا"
+      }
+    },
+    "customFields": {
+      "title": "حقول العميل المخصصة",
+      "addField": "إضافة حقل",
+      "editField": "تعديل الحقل",
+      "fieldName": "اسم الحقل",
+      "fieldNamePlaceholder": "مثال، تاريخ الوصفة",
+      "fieldType": "نوع الحقل",
+      "fieldTypeLocked": "لا يمكن تغيير نوع الحقل بعد الإنشاء",
+      "options": "الخيارات",
+      "optionPlaceholder": "أدخل خيارًا واضغط Enter",
+      "optionsRequired": "مطلوب خيار واحد على الأقل للحقول المنسدلة",
+      "isRequired": "حقل مطلوب",
+      "noFields": "لم يتم تحديد حقول مخصصة بعد",
+      "noFieldsDescription": "أنشئ حقولًا مخصصة لتخزين معلومات إضافية للعميل",
+      "nameRequired": "اسم الحقل مطلوب",
+      "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا الحقل؟",
+      "createSuccess": "تم إنشاء الحقل بنجاح",
+      "updateSuccess": "تم تحديث الحقل بنجاح",
+      "deleteSuccess": "تم حذف الحقل بنجاح",
+      "saveError": "فشل في حفظ الحقل",
+      "deleteError": "فشل في حذف الحقل",
+      "loadError": "فشل في تحميل الحقول",
+      "cancel": "إلغاء",
+      "save": "حفظ",
+      "types": {
+        "text": "نص",
+        "number": "رقم",
+        "date": "تاريخ",
+        "select": "قائمة منسدلة",
+        "textarea": "نص طويل",
+        "checkbox": "خانة اختيار"
       }
     },
     "auth": {
