@@ -470,11 +470,20 @@ export default function SettingsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="currency">
-                      {t("sections.business.currency")}
-                    </Label>
-                    <Select value={currency} onValueChange={setCurrency}>
-                      <SelectTrigger className="w-full">
+                    <div className="flex items-center gap-2">
+                      <Label htmlFor="currency">
+                        {t("sections.business.currency")}
+                      </Label>
+                      <Badge variant="secondary" className="text-xs">
+                        Coming Soon
+                      </Badge>
+                    </div>
+                    <Select
+                      value={currency}
+                      onValueChange={setCurrency}
+                      disabled
+                    >
+                      <SelectTrigger className="w-full opacity-60 cursor-not-allowed">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -492,6 +501,10 @@ export default function SettingsPage() {
                         </SelectItem>
                       </SelectContent>
                     </Select>
+                    <p className="text-xs text-muted-foreground">
+                      Currency conversion will be available in a future update.
+                      Your data will remain in {currency}.
+                    </p>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="language">
@@ -679,19 +692,31 @@ export default function SettingsPage() {
               {/* Support Section */}
               {!isLoading && activeTab === "support" && (
                 <div className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start"
+                    asChild
+                  >
                     <Link href="/help">
                       <HelpCircle className="h-4 w-4 mr-2" />
                       {t("sections.support.helpCenter")}
                     </Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start"
+                    asChild
+                  >
                     <Link href="/contact">
                       <Mail className="h-4 w-4 mr-2" />
                       {t("sections.support.contactSupport")}
                     </Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start"
+                    asChild
+                  >
                     <a href="mailto:support@globalledger.app">
                       <Phone className="h-4 w-4 mr-2" />
                       {t("sections.support.callSupport")}
@@ -713,19 +738,31 @@ export default function SettingsPage() {
               {/* Account Section */}
               {!isLoading && activeTab === "account" && (
                 <div className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start"
+                    asChild
+                  >
                     <Link href="/legal/privacy">
                       <Shield className="h-4 w-4 mr-2" />
                       {tAccount("privacyPolicy")}
                     </Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start"
+                    asChild
+                  >
                     <Link href="/legal/terms">
                       <Globe className="h-4 w-4 mr-2" />
                       {tAccount("termsOfService")}
                     </Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start"
+                    asChild
+                  >
                     <Link href="/legal">
                       <Globe className="h-4 w-4 mr-2" />
                       {tAccount("licenses")}
