@@ -509,19 +509,19 @@ export default function ReportsPage() {
             <TabsList className="bg-white/20 dark:bg-muted">
               <TabsTrigger
                 value="today"
-                className="text-xs sm:text-sm data-[state=active]:bg-white data-[state=active]:text-accent"
+                className="text-xs sm:text-sm data-[state=active]:bg-white"
               >
                 {t("timeFilter.today")}
               </TabsTrigger>
               <TabsTrigger
                 value="week"
-                className="text-xs sm:text-sm data-[state=active]:bg-white data-[state=active]:text-accent"
+                className="text-xs sm:text-sm data-[state=active]:bg-white"
               >
                 {t("timeFilter.week")}
               </TabsTrigger>
               <TabsTrigger
                 value="month"
-                className="text-xs sm:text-sm data-[state=active]:bg-white data-[state=active]:text-accent"
+                className="text-xs sm:text-sm data-[state=active]:bg-white"
               >
                 {t("timeFilter.month")}
               </TabsTrigger>
@@ -601,7 +601,9 @@ export default function ReportsPage() {
               {stats.collectionRate}%
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              <span className="text-green-500">+5.3% {t("shopSummary.fromLastMonth")}</span>
+              <span className="text-green-500">
+                +5.3% {t("shopSummary.fromLastMonth")}
+              </span>
             </p>
           </CardContent>
         </Card>
@@ -661,9 +663,7 @@ export default function ReportsPage() {
               <FileText className="h-5 w-5" />
               {t("export.title")}
             </CardTitle>
-            <CardDescription>
-              {t("export.description")}
-            </CardDescription>
+            <CardDescription>{t("export.description")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {/* PDF Export - Paid feature */}
@@ -746,9 +746,7 @@ export default function ReportsPage() {
       <Dialog open={customerSelectOpen} onOpenChange={setCustomerSelectOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>
-              {t("export.selectCustomer")}
-            </DialogTitle>
+            <DialogTitle>{t("export.selectCustomer")}</DialogTitle>
             <DialogDescription>
               {t("export.selectCustomerDescription")}
             </DialogDescription>
@@ -793,7 +791,9 @@ export default function ReportsPage() {
                         )}
                       >
                         {formatCurrency(Math.abs(customer.balance))}
-                        {customer.balance > 0 ? ` ${t("export.outstanding")}` : ` ${t("export.settled")}`}
+                        {customer.balance > 0
+                          ? ` ${t("export.outstanding")}`
+                          : ` ${t("export.settled")}`}
                       </p>
                     </div>
                     {generatingCustomerPDF === customer.id && (
