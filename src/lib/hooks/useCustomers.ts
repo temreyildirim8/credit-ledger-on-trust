@@ -60,7 +60,8 @@ export function useCustomers() {
 
         if (navigator.onLine) {
           // Online: fetch from network and cache
-          const data = await customersService.getCustomers(user.id);
+          // API route validates JWT server-side, no need to pass userId
+          const data = await customersService.getCustomers();
           setCustomers(data);
 
           // Cache customers for offline use

@@ -302,6 +302,63 @@ export type Database = {
         Args: Record<string, never>;
         Returns: boolean;
       };
+      /**
+       * SECURITY DEFINER function that returns customer balances for a given user_id
+       * Enforces that auth.uid() == p_user_id before returning data
+       * See migration: 20250227_secure_customer_balances.sql
+       */
+      get_customer_balances: {
+        Args: {
+          p_user_id: string;
+        };
+        Returns: {
+          id: string;
+          user_id: string;
+          name: string;
+          phone: string | null;
+          address: string | null;
+          notes: string | null;
+          national_id: string | null;
+          balance: number | null;
+          transaction_count: number | null;
+          last_transaction_date: string | null;
+          is_deleted: boolean | null;
+          created_at: string | null;
+        }[];
+      };
+      /**
+       * SECURITY DEFINER function that returns aggregated dashboard statistics
+       * Enforces that auth.uid() == p_user_id before returning data
+       * Returns: total_debt, total_collected, active_customers, total_transactions
+       */
+      get_dashboard_stats: {
+        Args: {
+          p_user_id: string;
+        };
+        Returns: {
+          total_debt: number;
+          total_collected: number;
+          active_customers: number;
+          total_transactions: number;
+        }[];
+      };
+      /**
+       * SECURITY DEFINER function that returns recent transaction activity
+       * Enforces that auth.uid() == p_user_id before returning data
+       */
+      get_recent_activity: {
+        Args: {
+          p_user_id: string;
+          p_limit?: number;
+        };
+        Returns: {
+          id: string;
+          customer_name: string;
+          type: string;
+          amount: number;
+          transaction_date: string | null;
+        }[];
+      };
     };
     Enums: {
       subscription_plan: "free" | "pro" | "enterprise";

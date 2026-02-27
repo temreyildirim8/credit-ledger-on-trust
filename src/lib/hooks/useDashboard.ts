@@ -1,8 +1,12 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useAuth } from './useAuth';
-import { dashboardService, DashboardStats, RecentActivity } from '@/lib/services/dashboard.service';
+import { useState, useEffect } from "react";
+import { useAuth } from "./useAuth";
+import {
+  dashboardService,
+  DashboardStats,
+  RecentActivity,
+} from "@/lib/services/dashboard.service";
 
 export function useDashboard() {
   const { user } = useAuth();
@@ -16,14 +20,15 @@ export function useDashboard() {
     const loadData = async () => {
       setLoading(true);
       try {
+        // API routes validate JWT server-side, no need to pass userId
         const [statsData, activityData] = await Promise.all([
-          dashboardService.getStats(user.id),
-          dashboardService.getRecentActivity(user.id),
+          dashboardService.getStats(),
+          dashboardService.getRecentActivity(),
         ]);
         setStats(statsData);
         setRecentActivity(activityData);
       } catch (error) {
-        console.error('Error loading dashboard:', error);
+        console.error("Error loading dashboard:", error);
       } finally {
         setLoading(false);
       }

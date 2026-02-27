@@ -56,3 +56,4 @@ plans
 test-results/
 playwright-report
 testsprite_tests
+supabase

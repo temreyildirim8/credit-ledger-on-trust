@@ -1,98 +1,81 @@
-import { supabase } from '@/lib/supabase/client';
-
 export interface DashboardStats {
   totalDebt: number;
   totalCollected: number;
   activeCustomers: number;
+  totalTransactions: number;
 }
 
 export interface RecentActivity {
   id: string;
   customerName: string;
-  type: 'debt' | 'payment';
+  type: "debt" | "payment";
   amount: number;
   date: string | null;
 }
 
-interface CustomerBalanceRow {
-  balance: number | null;
-}
-
-interface PaymentRow {
-  amount: number;
-}
-
-interface TransactionWithCustomerName {
-  id: string;
-  type: string;
-  amount: number;
-  transaction_date: string | null;
-  customers: {
-    name: string | null;
-  } | null;
-}
-
 export const dashboardService = {
-  async getStats(userId: string): Promise<DashboardStats> {
-    // Get customer balances
-    const { data: customers } = await supabase
-      .from('customer_balances')
-      .select('balance')
-      .eq('user_id', userId);
+  /**
+   * Get dashboard statistics for the authenticated user
+   * Uses secure API route (server-side JWT validation)
+   */
+  async getStats(): Promise<DashboardStats> {
+    const response = await fetch("/api/dashboard/stats", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // Important: sends cookies with JWT
+    });
 
-    const totalDebt = (customers as CustomerBalanceRow[] | null)?.reduce(
-      (sum, c) => sum + (c.balance || 0),
-      0
-    ) || 0;
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
+      }
+      const error = await response.json();
+      throw new Error(error.error || "Failed to fetch dashboard stats");
+    }
 
-    // Get total collected (payments)
-    const { data: payments } = await supabase
-      .from('transactions')
-      .select('amount')
-      .eq('user_id', userId)
-      .eq('type', 'payment');
-
-    const totalCollected = (payments as PaymentRow[] | null)?.reduce(
-      (sum, p) => sum + (p.amount || 0),
-      0
-    ) || 0;
-
-    // Get active customers
-    const { count } = await supabase
-      .from('customers')
-      .select('*', { count: 'exact', head: true })
-      .eq('user_id', userId)
-      .eq('is_deleted', false);
-
-    return {
-      totalDebt,
-      totalCollected,
-      activeCustomers: count || 0,
-    };
+    return response.json();
   },
 
-  async getRecentActivity(userId: string, limit = 5): Promise<RecentActivity[]> {
-    const { data } = await supabase
-      .from('transactions')
-      .select(`
-        id,
-        type,
-        amount,
-        transaction_date,
-        customers (
-          name
-        )
-      `)
-      .eq('user_id', userId)
-      .order('transaction_date', { ascending: false })
-      .limit(limit);
+  /**
+   * Get recent transaction activity for the dashboard
+   * Uses secure API route (server-side JWT validation)
+   * @param limit Number of recent activities to return (default: 5)
+   */
+  async getRecentActivity(limit = 5): Promise<RecentActivity[]> {
+    const response = await fetch(`/api/dashboard/activity?limit=${limit}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // Important: sends cookies with JWT
+    });
 
-    return ((data as TransactionWithCustomerName[] | null) || []).map((t) => ({
-      id: t.id,
-      customerName: t.customers?.name || 'Bilinmeyen',
-      type: t.type as 'debt' | 'payment',
-      amount: t.amount,
-      date: t.transaction_date,
-    }));
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
+      }
+      const error = await response.json();
+      throw new Error(error.error || "Failed to fetch recent activity");
+    }
+
+    const data = await response.json();
+
+    return (data || []).map(
+      (t: {
+        id: string;
+        customer_name: string | null;
+        type: string;
+        amount: number;
+        transaction_date: string | null;
+      }) => ({
+        id: t.id,
+        customerName: t.customer_name || "Unknown",
+        type: t.type as "debt" | "payment",
+        amount: t.amount,
+        date: t.transaction_date,
+      }),
+    );
   },
 };

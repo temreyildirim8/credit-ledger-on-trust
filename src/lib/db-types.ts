@@ -23,20 +23,20 @@ export type {
   TransactionType,
   SyncStatus,
   SyncActionType,
-} from './database.types';
+} from "./database.types";
 
 export {
   Constants,
   TRANSACTION_TYPES,
   SYNC_STATUS,
   SYNC_ACTION_TYPES,
-} from './database.types';
+} from "./database.types";
 
 // ============================================
 // Best Practices Query Helpers
 // ============================================
 
-import { SupabaseClient } from '@supabase/supabase-js'
+import { SupabaseClient } from "@supabase/supabase-js";
 
 /**
  * Müşteri sorguları için best practices
@@ -50,11 +50,11 @@ export class CustomerQueries {
    */
   async getActiveCustomers(limit = 50, offset = 0) {
     return this.supabase
-      .from('customers')
-      .select('id, name, phone, created_at')
-      .eq('is_deleted', false)  // Partial index'i tetikler
-      .order('name', { ascending: true })
-      .range(offset, offset + limit - 1)
+      .from("customers")
+      .select("id, name, phone, created_at")
+      .eq("is_deleted", false) // Partial index'i tetikler
+      .order("name", { ascending: true })
+      .range(offset, offset + limit - 1);
   }
 
   /**
@@ -64,15 +64,15 @@ export class CustomerQueries {
   async getCustomerWithBalance(customerId: string) {
     const [customer, balance] = await Promise.all([
       this.supabase
-        .from('customers')
-        .select('*')
-        .eq('id', customerId)
-        .eq('is_deleted', false)
+        .from("customers")
+        .select("*")
+        .eq("id", customerId)
+        .eq("is_deleted", false)
         .single(),
-      this.supabase.rpc('get_customer_balance', { p_customer_id: customerId })
-    ])
+      this.supabase.rpc("get_customer_balance", { p_customer_id: customerId }),
+    ]);
 
-    return { ...customer.data, balance: balance.data }
+    return { ...customer.data, balance: balance.data };
   }
 
   /**
@@ -81,11 +81,11 @@ export class CustomerQueries {
    */
   async searchCustomers(query: string, limit = 20) {
     return this.supabase
-      .from('customers')
-      .select('id, name, phone')
-      .eq('is_deleted', false)
-      .ilike('name', `${query}%`)  // Prefix search için index-friendly
-      .limit(limit)
+      .from("customers")
+      .select("id, name, phone")
+      .eq("is_deleted", false)
+      .ilike("name", `${query}%`) // Prefix search için index-friendly
+      .limit(limit);
   }
 
   /**
@@ -93,9 +93,9 @@ export class CustomerQueries {
    */
   async softDeleteCustomer(customerId: string) {
     return this.supabase
-      .from('customers')
+      .from("customers")
       .update({ is_deleted: true })
-      .eq('id', customerId)
+      .eq("id", customerId);
   }
 }
 
@@ -111,36 +111,35 @@ export class TransactionQueries {
    */
   async getCustomerTransactions(
     customerId: string,
-    type?: 'debt' | 'payment',
-    limit = 50
+    type?: "debt" | "payment",
+    limit = 50,
   ) {
     let query = this.supabase
-      .from('transactions')
-      .select('*')
-      .eq('customer_id', customerId)
-      .order('transaction_date', { ascending: false })
-      .limit(limit)
+      .from("transactions")
+      .select("*")
+      .eq("customer_id", customerId)
+      .order("transaction_date", { ascending: false })
+      .limit(limit);
 
     if (type) {
-      query = query.eq('type', type)  // Partial index'i tetikler
+      query = query.eq("type", type); // Partial index'i tetikler
     }
 
-    return query
+    return query;
   }
 
   /**
    * Batch insert - connection pooling friendly
    */
-  async batchInsertTransactions(transactions: Array<{
-    customer_id: string
-    type: 'debt' | 'payment'
-    amount: number
-    description?: string
-  }>) {
-    return this.supabase
-      .from('transactions')
-      .insert(transactions)
-      .select()
+  async batchInsertTransactions(
+    transactions: Array<{
+      customer_id: string;
+      type: "debt" | "payment";
+      amount: number;
+      description?: string;
+    }>,
+  ) {
+    return this.supabase.from("transactions").insert(transactions).select();
   }
 
   /**
@@ -149,11 +148,11 @@ export class TransactionQueries {
    */
   async getCustomerDebts(customerId: string) {
     return this.supabase
-      .from('transactions')
-      .select('*')
-      .eq('customer_id', customerId)
-      .eq('type', 'debt')  // Partial index'i tetikler
-      .order('amount', { ascending: false })
+      .from("transactions")
+      .select("*")
+      .eq("customer_id", customerId)
+      .eq("type", "debt") // Partial index'i tetikler
+      .order("amount", { ascending: false });
   }
 
   /**
@@ -162,65 +161,71 @@ export class TransactionQueries {
    */
   async getRecentTransactions(limit = 20) {
     return this.supabase
-      .from('transactions')
-      .select(`
+      .from("transactions")
+      .select(
+        `
         *,
         customers (
           id,
           name
         )
-      `)
-      .order('transaction_date', { ascending: false })
-      .limit(limit)
+      `,
+      )
+      .order("transaction_date", { ascending: false })
+      .limit(limit);
   }
 }
 
 /**
- * Dashboard sorguları - covering index optimized
+ * Dashboard sorguları - SECURITY DEFINER function ile güvenli
+ * Artık tüm sorgular server-side JWT doğrulaması ile çalışıyor
  */
 export class DashboardQueries {
   constructor(private supabase: SupabaseClient) {}
 
   /**
-   * Customer balances view - covering index kullanır
+   * Customer balances - SECURITY DEFINER function ile güvenli sorgu
+   * auth.uid() == p_user_id kontrolü yapılır
    */
-  async getCustomerBalances(limit = 50) {
-    return this.supabase
-      .from('customer_balances')
-      .select('*')
-      .order('balance', { ascending: false })
-      .limit(limit)
+  async getCustomerBalances(userId: string) {
+    return this.supabase.rpc("get_customer_balances", {
+      p_user_id: userId,
+    });
   }
 
   /**
-   * Toplam borç özeti
+   * Dashboard istatistikleri - SECURITY DEFINER function ile güvenli sorgu
+   * auth.uid() == p_user_id kontrolü yapılır
+   */
+  async getDashboardStats(userId: string) {
+    return this.supabase.rpc("get_dashboard_stats", {
+      p_user_id: userId,
+    });
+  }
+
+  /**
+   * Son işlemler - SECURITY DEFINER function ile güvenli sorgu
+   * auth.uid() == p_user_id kontrolü yapılır
+   */
+  async getRecentActivity(userId: string, limit = 10) {
+    return this.supabase.rpc("get_recent_activity", {
+      p_user_id: userId,
+      p_limit: limit,
+    });
+  }
+
+  /**
+   * @deprecated Use getDashboardStats with userId instead
+   * Bu method güvenlik açığına neden olabilir - herhangi bir userId filtresi yok!
    */
   async getDebtSummary() {
-    const { data } = await this.supabase
-      .from('customer_balances')
-      .select('balance')
-
+    console.warn(
+      "DEPRECATED: getDebtSummary() is insecure. Use getDashboardStats(userId) instead.",
+    );
     return {
-      totalDebt: data?.reduce((sum, row) => sum + (row.balance || 0), 0) || 0,
-      customerCount: data?.length || 0
-    }
-  }
-
-  /**
-   * Son işlemler with customer info
-   */
-  async getRecentActivity(limit = 10) {
-    return this.supabase
-      .from('transactions')
-      .select(`
-        *,
-        customers (
-          name,
-          phone
-        )
-      `)
-      .order('transaction_date', { ascending: false })
-      .limit(limit)
+      totalDebt: 0,
+      customerCount: 0,
+    };
   }
 }
 
@@ -231,6 +236,6 @@ export function createQueries(supabase: SupabaseClient) {
   return {
     customers: new CustomerQueries(supabase),
     transactions: new TransactionQueries(supabase),
-    dashboard: new DashboardQueries(supabase)
-  }
+    dashboard: new DashboardQueries(supabase),
+  };
 }
