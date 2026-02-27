@@ -9,6 +9,7 @@ import { useBackgroundSync } from "@/lib/hooks/useBackgroundSync";
 
 const SIDEBAR_EXPANDED_WIDTH = 240;
 const SIDEBAR_COLLAPSED_WIDTH = 80;
+const LG_BREAKPOINT = 1024;
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -26,11 +27,38 @@ export function AppShell({ children, title, subtitle }: AppShellProps) {
   // Initialize background sync processor
   useBackgroundSync();
 
+  // Track if screen is below lg breakpoint
+  const [isBelowLg, setIsBelowLg] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < LG_BREAKPOINT;
+  });
+
   // Track sidebar collapsed state for content margin
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window === "undefined") return false;
     return localStorage.getItem("sidebar-collapsed") === "true";
   });
+
+  // Handle resize to force collapse below lg, restore state above lg
+  useEffect(() => {
+    const handleResize = () => {
+      const belowLg = window.innerWidth < LG_BREAKPOINT;
+      setIsBelowLg(belowLg);
+      if (belowLg) {
+        setSidebarCollapsed(true);
+      } else {
+        // Restore saved state when above lg
+        const stored = localStorage.getItem("sidebar-collapsed");
+        setSidebarCollapsed(stored === "true");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    // Initial check
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Listen for sidebar toggle events
   useEffect(() => {
@@ -50,7 +78,10 @@ export function AppShell({ children, title, subtitle }: AppShellProps) {
     };
   }, []);
 
-  const contentMargin = sidebarCollapsed
+  // Force collapsed state when below lg
+  const effectiveCollapsed = isBelowLg ? true : sidebarCollapsed;
+
+  const contentMargin = effectiveCollapsed
     ? SIDEBAR_COLLAPSED_WIDTH
     : SIDEBAR_EXPANDED_WIDTH;
 

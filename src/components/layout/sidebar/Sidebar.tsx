@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "@/routing";
 import { Link } from "@/routing";
 import { useAuth } from "@/lib/hooks/useAuth";
@@ -34,6 +34,7 @@ import {
 
 const SIDEBAR_EXPANDED_WIDTH = 240;
 const SIDEBAR_COLLAPSED_WIDTH = 80;
+const LG_BREAKPOINT = 1024;
 
 const navItems = [
   {
@@ -88,6 +89,12 @@ export function Sidebar({ className }: SidebarProps) {
   // Check if theme change is allowed (Pro feature)
   const canChangeTheme = hasFeature("themeChange");
 
+  // Track if screen is below lg breakpoint
+  const [isBelowLg, setIsBelowLg] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < LG_BREAKPOINT;
+  });
+
   // Collapsed state persisted to localStorage
   const [isCollapsed, setIsCollapsed] = useState(() => {
     // Default to false (expanded) on first load
@@ -95,6 +102,27 @@ export function Sidebar({ className }: SidebarProps) {
     const stored = localStorage.getItem("sidebar-collapsed");
     return stored === "true";
   });
+
+  // Handle resize to force collapse below lg, restore state above lg
+  useEffect(() => {
+    const handleResize = () => {
+      const belowLg = window.innerWidth < LG_BREAKPOINT;
+      setIsBelowLg(belowLg);
+      if (belowLg) {
+        setIsCollapsed(true);
+      } else {
+        // Restore saved state when above lg
+        const stored = localStorage.getItem("sidebar-collapsed");
+        setIsCollapsed(stored === "true");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    // Initial check
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Persist collapsed state
   useEffect(() => {
@@ -104,6 +132,12 @@ export function Sidebar({ className }: SidebarProps) {
       new CustomEvent("sidebar-toggle", { detail: { collapsed: isCollapsed } }),
     );
   }, [isCollapsed]);
+
+  const toggleSidebar = useCallback(() => {
+    // Prevent toggle below lg breakpoint
+    if (isBelowLg) return;
+    setIsCollapsed((prev) => !prev);
+  }, [isBelowLg]);
 
   // Extract locale and base path
   const segments = pathname.split("/");
@@ -119,10 +153,6 @@ export function Sidebar({ className }: SidebarProps) {
     } catch (error) {
       console.error("Sign out error:", error);
     }
-  };
-
-  const toggleSidebar = () => {
-    setIsCollapsed((prev) => !prev);
   };
 
   const sidebarWidth = isCollapsed
@@ -142,11 +172,12 @@ export function Sidebar({ className }: SidebarProps) {
       {/* Logo Header */}
       <div
         className={cn(
-          "flex items-center border-b border-border transition-all duration-300 cursor-pointer",
+          "flex items-center border-b border-border transition-all duration-300",
+          !isBelowLg && "cursor-pointer",
           isCollapsed ? "justify-center p-3" : "gap-3 p-5",
         )}
-        onDoubleClick={toggleSidebar}
-        title={t("doubleclickToToggle")}
+        onDoubleClick={!isBelowLg ? toggleSidebar : undefined}
+        title={!isBelowLg ? t("doubleclickToToggle") : undefined}
       >
         <Link
           href="/dashboard"
@@ -173,8 +204,8 @@ export function Sidebar({ className }: SidebarProps) {
       <nav
         className="flex-1 px-2 py-4 space-y-1"
         data-tour="sidebar-nav"
-        onDoubleClick={toggleSidebar}
-        title={t("doubleclickToToggle")}
+        onDoubleClick={!isBelowLg ? toggleSidebar : undefined}
+        title={!isBelowLg ? t("doubleclickToToggle") : undefined}
       >
         {navItems.map((item) => {
           const isActive = pathname === `${basePath}${item.href}`;
@@ -233,7 +264,8 @@ export function Sidebar({ className }: SidebarProps) {
           isCollapsed ? "flex justify-center px-0 py-2" : "px-3 py-2",
         )}
         onClick={() => {
-          if (isCollapsed) {
+          // Only allow expand when above lg breakpoint
+          if (isCollapsed && !isBelowLg) {
             setIsCollapsed(false);
           }
         }}
@@ -367,41 +399,43 @@ export function Sidebar({ className }: SidebarProps) {
         </Tooltip>
       </div>
 
-      {/* Collapse Toggle Button */}
-      <div
-        className={cn(
-          "border-t border-border transition-all duration-300",
-          isCollapsed ? "px-0 py-3 flex justify-center" : "px-3 py-3",
-        )}
-      >
-        <Tooltip delayDuration={0}>
-          <TooltipTrigger asChild>
-            <button
-              onClick={toggleSidebar}
-              className={cn(
-                "flex items-center gap-3 w-full rounded-lg transition-all duration-200",
-                "text-text-secondary hover:bg-surface-alt hover:text-text",
-                isCollapsed ? "justify-center h-9" : "justify-start py-2 px-3",
-              )}
-              aria-label={
-                isCollapsed ? t("expandSidebar") : t("collapseSidebar")
-              }
-            >
-              {isCollapsed ? (
-                <ChevronRight className="w-5 h-5" />
-              ) : (
-                <>
-                  <ChevronLeft className="w-5 h-5" />
-                  <span className="text-sm font-medium">{t("collapse")}</span>
-                </>
-              )}
-            </button>
-          </TooltipTrigger>
-          {isCollapsed && (
-            <TooltipContent side="right">{t("expandSidebar")}</TooltipContent>
+      {/* Collapse Toggle Button - hidden below lg */}
+      {!isBelowLg && (
+        <div
+          className={cn(
+            "border-t border-border transition-all duration-300",
+            isCollapsed ? "px-0 py-3 flex justify-center" : "px-3 py-3",
           )}
-        </Tooltip>
-      </div>
+        >
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
+              <button
+                onClick={toggleSidebar}
+                className={cn(
+                  "flex items-center gap-3 w-full rounded-lg transition-all duration-200",
+                  "text-text-secondary hover:bg-surface-alt hover:text-text",
+                  isCollapsed ? "justify-center h-9" : "justify-start py-2 px-3",
+                )}
+                aria-label={
+                  isCollapsed ? t("expandSidebar") : t("collapseSidebar")
+                }
+              >
+                {isCollapsed ? (
+                  <ChevronRight className="w-5 h-5" />
+                ) : (
+                  <>
+                    <ChevronLeft className="w-5 h-5" />
+                    <span className="text-sm font-medium">{t("collapse")}</span>
+                  </>
+                )}
+              </button>
+            </TooltipTrigger>
+            {isCollapsed && (
+              <TooltipContent side="right">{t("expandSidebar")}</TooltipContent>
+            )}
+          </Tooltip>
+        </div>
+      )}
 
       {/* User Section - Sign Out */}
       <div
