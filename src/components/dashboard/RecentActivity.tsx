@@ -95,7 +95,7 @@ export function RecentActivity({
                       : "text-[var(--color-payment-text)]",
                   )}
                 >
-                  {isDebt ? "+" : "-"}
+                  {isDebt ? "-" : "+"}
                   {formatCurrency(activity.amount, currency)}
                 </p>
               </div>

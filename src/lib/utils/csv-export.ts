@@ -210,7 +210,7 @@ export function generateTransactionsCSV(options: CSVExportOptions): string {
 
     const formattedDate = formatDateForCSV(transaction.transaction_date || transaction.created_at, locale);
     const formattedAmount = formatCurrencyForCSV(transaction.amount, currency);
-    const amountWithSign = isDebt ? `+${formattedAmount}` : `-${formattedAmount}`;
+    const amountWithSign = isDebt ? `-${formattedAmount}` : `+${formattedAmount}`;
     const formattedBalance = formatCurrencyForCSV(Math.abs(runningBalance), currency);
     const balanceWithSign = runningBalance >= 0 ? formattedBalance : `-${formattedBalance}`;
     const typeLabel = isDebt ? t.debt : t.payment;

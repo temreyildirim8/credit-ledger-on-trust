@@ -107,20 +107,20 @@ describe('RecentActivity', () => {
       expect(paymentBadge).toBeInTheDocument();
     });
 
-    it('should show + prefix for debt amounts', () => {
+    it('should show - prefix for debt amounts', () => {
       render(<RecentActivity activities={mockActivities} />);
 
-      // Debt amounts should have + prefix
-      const plusAmounts = screen.getAllByText(/\+/);
-      expect(plusAmounts.length).toBeGreaterThan(0);
-    });
-
-    it('should show - prefix for payment amounts', () => {
-      render(<RecentActivity activities={mockActivities} />);
-
-      // Payment amounts should have - prefix
+      // Debt amounts should have - prefix (debt reduces your balance)
       const minusAmounts = screen.getAllByText(/-/);
       expect(minusAmounts.length).toBeGreaterThan(0);
+    });
+
+    it('should show + prefix for payment amounts', () => {
+      render(<RecentActivity activities={mockActivities} />);
+
+      // Payment amounts should have + prefix (payment increases your balance)
+      const plusAmounts = screen.getAllByText(/\+/);
+      expect(plusAmounts.length).toBeGreaterThan(0);
     });
   });
 

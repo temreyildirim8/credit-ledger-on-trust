@@ -205,7 +205,7 @@ export function CustomerTable({
                       : "text-[var(--color-payment-text,#10B981)]",
                   )}
                 >
-                  {customer.balance > 0 ? "+" : ""}
+                  {customer.balance > 0 ? "-" : ""}
                   {formatCurrency(Math.abs(customer.balance), currency)}
                 </span>
               </TableCell>

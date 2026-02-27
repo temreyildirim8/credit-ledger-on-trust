@@ -99,7 +99,7 @@ export function TransactionTable({
                       : "text-[var(--color-payment-text,#10B981)]"
                   }`}
                 >
-                  {transaction.type === "debt" ? "+" : "-"}
+                  {transaction.type === "debt" ? "-" : "+"}
                   {formatCurrency(transaction.amount, currency)}
                 </span>
               </TableCell>

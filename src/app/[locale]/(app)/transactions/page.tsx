@@ -216,7 +216,7 @@ export default function TransactionsPage() {
                           : 'text-payment-text'
                       }`}
                     >
-                      {transaction.type === 'debt' ? '+' : '-'}
+                      {transaction.type === 'debt' ? '-' : '+'}
                       {formatCurrency(transaction.amount, currency)}
                     </p>
                     <Button

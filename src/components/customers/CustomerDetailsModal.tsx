@@ -453,7 +453,7 @@ export function CustomerDetailsModal({
                               : "text-[var(--color-payment-text)]",
                           )}
                         >
-                          {transaction.type === "debt" ? "+" : "-"}
+                          {transaction.type === "debt" ? "-" : "+"}
                           {formatCurrency(transaction.amount, userCurrency)}
                         </p>
                       </div>
