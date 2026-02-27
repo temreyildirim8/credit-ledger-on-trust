@@ -33,6 +33,7 @@ export type Database = {
         Row: {
           address: string | null;
           created_at: string | null;
+          custom_fields: Json | null;
           id: string;
           is_deleted: boolean | null;
           name: string;
@@ -46,6 +47,7 @@ export type Database = {
         Insert: {
           address?: string | null;
           created_at?: string | null;
+          custom_fields?: Json | null;
           id?: string;
           is_deleted?: boolean | null;
           name: string;
@@ -59,6 +61,7 @@ export type Database = {
         Update: {
           address?: string | null;
           created_at?: string | null;
+          custom_fields?: Json | null;
           id?: string;
           is_deleted?: boolean | null;
           name?: string;
@@ -273,6 +276,45 @@ export type Database = {
           onboarding_completed?: boolean | null;
           phone?: string | null;
           shop_name?: string | null;
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
+      custom_field_definitions: {
+        Row: {
+          id: string;
+          user_id: string;
+          name: string;
+          slug: string;
+          field_type: string;
+          options: Json;
+          is_required: boolean;
+          sort_order: number;
+          created_at: string | null;
+          updated_at: string | null;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          name: string;
+          slug: string;
+          field_type: string;
+          options?: Json;
+          is_required?: boolean;
+          sort_order?: number;
+          created_at?: string | null;
+          updated_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          name?: string;
+          slug?: string;
+          field_type?: string;
+          options?: Json;
+          is_required?: boolean;
+          sort_order?: number;
+          created_at?: string | null;
           updated_at?: string | null;
         };
         Relationships: [];

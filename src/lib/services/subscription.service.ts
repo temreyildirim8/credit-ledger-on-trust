@@ -22,6 +22,7 @@ export interface PlanFeatures {
   whiteLabel: boolean;
   pwaInstall: boolean;
   themeChange: boolean;
+  customFields: boolean;
 }
 
 // Fallback features (used when config service fails)
@@ -41,6 +42,7 @@ const DEFAULT_FEATURES: PlanFeatures = {
   whiteLabel: false,
   pwaInstall: false,
   themeChange: false,
+  customFields: false,
 };
 
 export const subscriptionsService = {

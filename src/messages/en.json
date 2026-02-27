@@ -576,6 +576,9 @@
       "databaseId": "Database ID",
       "nonEditable": "(non-editable)"
     },
+    "customFields": {
+      "sectionTitle": "Additional Information"
+    },
     "details": {
       "totalDebt": "Total Debt",
       "balance": "Balance",
@@ -814,6 +817,10 @@
         "backupDescription": "Your data is automatically backed up to the cloud",
         "lastBackup": "Last backup: Just now"
       },
+      "customFields": {
+        "title": "Custom Fields",
+        "description": "Define custom fields for your customers"
+      },
       "support": {
         "title": "Support",
         "description": "Help, contact, and feedback",
@@ -832,6 +839,39 @@
         "signOut": "Sign Out",
         "signOutConfirm": "Are you sure you want to sign out? You can always sign back in with your email.",
         "signOutTitle": "Sign Out"
+      }
+    },
+    "customFields": {
+      "title": "Customer Custom Fields",
+      "addField": "Add Field",
+      "editField": "Edit Field",
+      "fieldName": "Field Name",
+      "fieldNamePlaceholder": "e.g., Prescription Date",
+      "fieldType": "Field Type",
+      "fieldTypeLocked": "Field type cannot be changed after creation",
+      "options": "Options",
+      "optionPlaceholder": "Enter option and press Enter",
+      "optionsRequired": "At least one option is required for dropdown fields",
+      "isRequired": "Required field",
+      "noFields": "No custom fields defined yet",
+      "noFieldsDescription": "Create custom fields to store additional customer information",
+      "nameRequired": "Field name is required",
+      "confirmDelete": "Are you sure you want to delete this field?",
+      "createSuccess": "Field created successfully",
+      "updateSuccess": "Field updated successfully",
+      "deleteSuccess": "Field deleted successfully",
+      "saveError": "Failed to save field",
+      "deleteError": "Failed to delete field",
+      "loadError": "Failed to load fields",
+      "cancel": "Cancel",
+      "save": "Save",
+      "types": {
+        "text": "Text",
+        "number": "Number",
+        "date": "Date",
+        "select": "Dropdown",
+        "textarea": "Long Text",
+        "checkbox": "Checkbox"
       }
     },
     "auth": {

@@ -557,6 +557,9 @@
       "databaseId": "Veritabanı ID",
       "nonEditable": "(düzenlenemez)"
     },
+    "customFields": {
+      "sectionTitle": "Ek Bilgiler"
+    },
     "details": {
       "totalDebt": "Toplam Borç",
       "balance": "Bakiye",
@@ -926,6 +929,10 @@
         "lastBackup": "Son yedekleme: Şimdi",
         "exporting": "Veriler {format} olarak dışa aktarılıyor..."
       },
+      "customFields": {
+        "title": "Özel Alanlar",
+        "description": "Müşterileriniz için özel alanlar tanımlayın"
+      },
       "support": {
         "title": "Destek",
         "description": "Yardım, iletişim ve geri bildirim",
@@ -944,7 +951,41 @@
         "signOut": "Çıkış Yap",
         "signOutConfirm": "Çıkış yapmak istediğinizden emin misiniz? Her zaman e-posta ile tekrar giriş yapabilirsiniz.",
         "signOutTitle": "Çıkış Yap"
-      },
+      }
+    },
+    "customFields": {
+      "title": "Müşteri Özel Alanları",
+      "addField": "Alan Ekle",
+      "editField": "Alanı Düzenle",
+      "fieldName": "Alan Adı",
+      "fieldNamePlaceholder": "örn., Reçete Tarihi",
+      "fieldType": "Alan Türü",
+      "fieldTypeLocked": "Alan türü oluşturulduktan sonra değiştirilemez",
+      "options": "Seçenekler",
+      "optionPlaceholder": "Seçenek girin ve Enter'a basın",
+      "optionsRequired": "Açılır menü alanları için en az bir seçenek gereklidir",
+      "isRequired": "Zorunlu alan",
+      "noFields": "Henüz özel alan tanımlanmadı",
+      "noFieldsDescription": "Ek müşteri bilgileri saklamak için özel alanlar oluşturun",
+      "nameRequired": "Alan adı gereklidir",
+      "confirmDelete": "Bu alanı silmek istediğinizden emin misiniz?",
+      "createSuccess": "Alan başarıyla oluşturuldu",
+      "updateSuccess": "Alan başarıyla güncellendi",
+      "deleteSuccess": "Alan başarıyla silindi",
+      "saveError": "Alan kaydedilemedi",
+      "deleteError": "Alan silinemedi",
+      "loadError": "Alanlar yüklenemedi",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "types": {
+        "text": "Metin",
+        "number": "Sayı",
+        "date": "Tarih",
+        "select": "Açılır Menü",
+        "textarea": "Uzun Metin",
+        "checkbox": "Onay Kutusu"
+      }
+    },
       "upgradeModal": {
         "title": "Planınızı Yükseltin",
         "description": "İşletmenizin ihtiyaçlarına uygun bir plan seçin",

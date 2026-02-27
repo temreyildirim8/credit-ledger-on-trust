@@ -28,6 +28,7 @@ import {
   Phone,
   Globe,
   Loader2,
+  FormInput,
 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -47,6 +48,7 @@ import {
 } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
 import { SubscriptionUpgradeModal } from "@/components/settings/SubscriptionUpgradeModal";
+import { CustomFieldManager } from "@/components/custom-fields/CustomFieldManager";
 import { UpgradePrompt } from "@/components/subscription/UpgradePrompt";
 import { Link } from "@/routing";
 import { useSyncStatus } from "@/lib/hooks/useSyncStatus";
@@ -57,6 +59,7 @@ type SettingsTab =
   | "notifications"
   | "subscription"
   | "data"
+  | "customFields"
   | "support"
   | "account";
 
@@ -118,6 +121,12 @@ export default function SettingsPage() {
       titleKey: "sections.data.title",
       descriptionKey: "sections.data.description",
       icon: Download,
+    },
+    {
+      id: "customFields",
+      titleKey: "sections.customFields.title",
+      descriptionKey: "sections.customFields.description",
+      icon: FormInput,
     },
     {
       id: "support",
@@ -761,6 +770,11 @@ export default function SettingsPage() {
                     </div>
                   </div>
                 </div>
+              )}
+
+              {/* Custom Fields Section */}
+              {!isLoading && activeTab === "customFields" && (
+                <CustomFieldManager />
               )}
 
               {/* Support Section */}

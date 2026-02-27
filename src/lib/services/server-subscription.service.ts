@@ -18,6 +18,7 @@ export interface ServerPlanFeatures {
   whiteLabel: boolean;
   pwaInstall: boolean;
   themeChange: boolean;
+  customFields: boolean;
 }
 
 export interface ServerSubscription {
@@ -55,6 +56,7 @@ const DEFAULT_PLAN_FEATURES: Record<SubscriptionPlan, ServerPlanFeatures> = {
     whiteLabel: false,
     pwaInstall: false,
     themeChange: false,
+    customFields: false,
   },
   pro: {
     maxCustomers: 500,
@@ -72,6 +74,7 @@ const DEFAULT_PLAN_FEATURES: Record<SubscriptionPlan, ServerPlanFeatures> = {
     whiteLabel: false,
     pwaInstall: true,
     themeChange: true,
+    customFields: true,
   },
   enterprise: {
     maxCustomers: null, // unlimited
@@ -89,6 +92,7 @@ const DEFAULT_PLAN_FEATURES: Record<SubscriptionPlan, ServerPlanFeatures> = {
     whiteLabel: true,
     pwaInstall: true,
     themeChange: true,
+    customFields: true,
   },
 };
 
@@ -326,6 +330,7 @@ export const PRO_FEATURES: (keyof ServerPlanFeatures)[] = [
   "customIntegrations",
   "pwaInstall",
   "themeChange",
+  "customFields",
 ];
 
 /**

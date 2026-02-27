@@ -18,7 +18,10 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { Customer } from "@/lib/services/customers.service";
 import { useUserProfile } from "@/lib/hooks/useUserProfile";
+import { useCustomFields } from "@/lib/hooks/useCustomFields";
 import { PhoneInput, PhoneInputValue } from "@/components/ui/phone-input";
+import { CustomFieldsSection } from "@/components/custom-fields/CustomFieldsSection";
+import type { CustomFieldValues, CustomFieldErrors } from "@/lib/types/custom-fields";
 
 interface EditCustomerModalProps {
   open: boolean;
@@ -31,6 +34,7 @@ interface EditCustomerModalProps {
       phone?: string;
       address?: string;
       notes?: string;
+      custom_fields?: CustomFieldValues;
     },
   ) => Promise<unknown>;
   customer: Customer | null;
@@ -51,11 +55,14 @@ export function EditCustomerModal({
   const tCommon = useTranslations("common");
   const tCustomers = useTranslations("customers");
   const { currency } = useUserProfile();
+  const { validateValues } = useCustomFields();
   const [nationalId, setNationalId] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
+  const [customFields, setCustomFields] = useState<CustomFieldValues>({});
+  const [customFieldErrors, setCustomFieldErrors] = useState<CustomFieldErrors>({});
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<{ name: boolean; phone: boolean }>({
@@ -71,6 +78,8 @@ export function EditCustomerModal({
       setPhone(customer.phone || "");
       setAddress(customer.address || "");
       setNotes(customer.notes || "");
+      setCustomFields((customer.custom_fields as CustomFieldValues) || {});
+      setCustomFieldErrors({});
       setErrors({});
       setTouched({ name: false, phone: false });
     }
@@ -115,7 +124,12 @@ export function EditCustomerModal({
       phone: validatePhone(phone),
     };
     setErrors(newErrors);
-    return !newErrors.name && !newErrors.phone;
+
+    // Validate custom fields
+    const customErrors = validateValues(customFields);
+    setCustomFieldErrors(customErrors);
+
+    return !newErrors.name && !newErrors.phone && Object.keys(customErrors).length === 0;
   };
 
   // Handle field blur for validation feedback
@@ -157,6 +171,7 @@ export function EditCustomerModal({
         phone: phone.trim() || undefined,
         address: address.trim() || undefined,
         notes: notes.trim() || undefined,
+        custom_fields: customFields,
       });
       toast.success(tCustomers("editSuccess"));
       onOpenChange(false);
@@ -300,6 +315,14 @@ export function EditCustomerModal({
                 rows={3}
               />
             </div>
+
+            {/* Custom fields section (Pro feature) */}
+            <CustomFieldsSection
+              values={customFields}
+              onChange={setCustomFields}
+              errors={customFieldErrors}
+              disabled={loading}
+            />
           </div>
           <DialogFooter>
             <Button

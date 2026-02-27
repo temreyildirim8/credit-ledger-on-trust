@@ -1,4 +1,4 @@
-import type { TablesUpdate } from "@/lib/database.types";
+import type { TablesUpdate, Json } from "@/lib/database.types";
 
 export interface Customer {
   id: string;
@@ -8,6 +8,7 @@ export interface Customer {
   phone: string | null;
   address?: string | null;
   notes?: string | null;
+  custom_fields?: Json | null;
   balance: number;
   transaction_count?: number | null;
   last_transaction_date?: string | null;

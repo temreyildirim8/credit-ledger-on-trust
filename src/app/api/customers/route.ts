@@ -109,6 +109,7 @@ export async function GET(request: NextRequest) {
  * - address?: string (optional)
  * - notes?: string (optional)
  * - national_id?: string (optional)
+ * - custom_fields?: Record<string, unknown> (optional, Pro feature)
  *
  * Security:
  * - JWT is validated server-side via requireAuth()
@@ -126,7 +127,7 @@ export async function POST(request: NextRequest) {
 
     // Parse and validate request body
     const body = await request.json();
-    const { name, phone, address, notes, national_id } = body;
+    const { name, phone, address, notes, national_id, custom_fields } = body;
 
     // Validate required fields
     if (!name || typeof name !== "string" || name.trim().length === 0) {
@@ -159,6 +160,7 @@ export async function POST(request: NextRequest) {
       address: address?.trim() || null,
       notes: notes?.trim() || null,
       national_id: national_id?.trim() || null,
+      custom_fields: custom_fields || {},
     };
 
     const { data, error } = await supabase
@@ -196,6 +198,7 @@ export async function POST(request: NextRequest) {
  * - address?: string (optional)
  * - notes?: string (optional)
  * - national_id?: string (optional)
+ * - custom_fields?: Record<string, unknown> (optional, Pro feature)
  *
  * Security:
  * - JWT is validated server-side via requireAuth()
@@ -213,7 +216,7 @@ export async function PATCH(request: NextRequest) {
 
     // Parse and validate request body
     const body = await request.json();
-    const { customerId, name, phone, address, notes, national_id } = body;
+    const { customerId, name, phone, address, notes, national_id, custom_fields } = body;
 
     if (!customerId || typeof customerId !== "string") {
       return NextResponse.json(
@@ -237,6 +240,7 @@ export async function PATCH(request: NextRequest) {
     if (address !== undefined) updateData.address = address?.trim() || null;
     if (notes !== undefined) updateData.notes = notes?.trim() || null;
     if (national_id !== undefined) updateData.national_id = national_id?.trim() || null;
+    if (custom_fields !== undefined) updateData.custom_fields = custom_fields;
 
     // SECURITY: Update with user_id check for IDOR protection
     const { data, error } = await supabase

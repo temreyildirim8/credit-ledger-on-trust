@@ -18,8 +18,11 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { useSubscription } from "@/lib/hooks/useSubscription";
 import { useUserProfile } from "@/lib/hooks/useUserProfile";
+import { useCustomFields } from "@/lib/hooks/useCustomFields";
 import { UpgradePrompt } from "@/components/subscription/UpgradePrompt";
 import { PhoneInput, PhoneInputValue } from "@/components/ui/phone-input";
+import { CustomFieldsSection } from "@/components/custom-fields/CustomFieldsSection";
+import type { CustomFieldValues, CustomFieldErrors } from "@/lib/types/custom-fields";
 
 /**
  * AddCustomerModal — adds a new customer
@@ -35,6 +38,7 @@ interface AddCustomerModalProps {
     phone?: string;
     address?: string;
     notes?: string;
+    custom_fields?: CustomFieldValues;
   }) => Promise<unknown>;
   currentCustomerCount?: number;
   /** @deprecated Now uses useSubscription hook internally */
@@ -59,12 +63,15 @@ export function AddCustomerModal({
   const tCustomers = useTranslations("customers");
   const { isPaidPlan, customerLimit } = useSubscription();
   const { currency } = useUserProfile();
+  const { validateValues } = useCustomFields();
 
   const [nationalId, setNationalId] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
+  const [customFields, setCustomFields] = useState<CustomFieldValues>({});
+  const [customFieldErrors, setCustomFieldErrors] = useState<CustomFieldErrors>({});
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<{
@@ -91,6 +98,8 @@ export function AddCustomerModal({
       setPhone("");
       setAddress("");
       setNotes("");
+      setCustomFields({});
+      setCustomFieldErrors({});
       setErrors({});
       setTouched({ nationalId: false, name: false, phone: false });
     }
@@ -146,7 +155,12 @@ export function AddCustomerModal({
       phone: validatePhone(phone),
     };
     setErrors(newErrors);
-    return !newErrors.nationalId && !newErrors.name && !newErrors.phone;
+
+    // Validate custom fields
+    const customErrors = validateValues(customFields);
+    setCustomFieldErrors(customErrors);
+
+    return !newErrors.nationalId && !newErrors.name && !newErrors.phone && Object.keys(customErrors).length === 0;
   };
 
   const handleNationalIdChange = (value: string) => {
@@ -200,6 +214,7 @@ export function AddCustomerModal({
         phone: phone.trim() || undefined,
         address: address.trim() || undefined,
         notes: notes.trim() || undefined,
+        custom_fields: customFields,
       });
       toast.success(tCustomers("success"));
       onOpenChange(false);
@@ -218,6 +233,8 @@ export function AddCustomerModal({
       setPhone("");
       setAddress("");
       setNotes("");
+      setCustomFields({});
+      setCustomFieldErrors({});
       setErrors({});
       setTouched({ nationalId: false, name: false, phone: false });
     }
@@ -392,6 +409,14 @@ export function AddCustomerModal({
                 rows={3}
               />
             </div>
+
+            {/* Custom fields section (Pro feature) */}
+            <CustomFieldsSection
+              values={customFields}
+              onChange={setCustomFields}
+              errors={customFieldErrors}
+              disabled={loading}
+            />
           </div>
 
           <DialogFooter>
