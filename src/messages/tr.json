@@ -522,7 +522,9 @@
       "noSearchResults": "Müşteri bulunamadı",
       "noSearchResultsDesc": "Farklı bir arama terimi deneyin",
       "description": "İlk müşterinizi ekleyerek veresiye takibine başlayın",
-      "addFirst": "İlk müşterinizi ekleyin"
+      "addFirst": "İlk müşterinizi ekleyin",
+      "noArchived": "Arşivlenen müşteri yok",
+      "noArchivedDesc": "Arşivlediğiniz müşteriler burada görünecek"
     },
     "count": "{count} müşteri",
     "countWithTotal": "{active} aktif / {total} toplam",

@@ -12,7 +12,7 @@ import { EditCustomerModal } from "@/components/customers/EditCustomerModal";
 import { DestructiveActionModal } from "@/components/customers/DestructiveActionModal";
 import { AddTransactionModal } from "@/components/transactions/AddTransactionModal";
 import { Button } from "@/components/ui/button";
-import { Plus, Search, Loader2, LayoutGrid, List } from "lucide-react";
+import { Plus, Search, Loader2, LayoutGrid, List, Archive } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { usePathname } from "@/routing";
 import { useTranslations } from "next-intl";
@@ -350,25 +350,47 @@ export default function CustomersPage() {
         </div>
       ) : sortedCustomers.length === 0 ? (
         <div className="text-center py-12 bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)]">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center">
-            <Plus className="h-8 w-8 text-[var(--color-accent)]" />
-          </div>
-          <p className="text-[var(--color-text-secondary)] text-lg font-medium">
-            {searchQuery ? t("empty.noSearchResults") : t("empty.noCustomers")}
-          </p>
-          <p className="text-[var(--color-text-tertiary)] mt-2">
-            {searchQuery
-              ? t("empty.noSearchResultsDesc")
-              : t("empty.description")}
-          </p>
-          {!searchQuery && (
-            <Button
-              onClick={() => setAddModalOpen(true)}
-              className="mt-6 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]"
-            >
-              <Plus className="h-4 w-4 mr-2" />
-              {t("empty.addFirst")}
-            </Button>
+          {filterType === "archived" ? (
+            // Archived filter empty state
+            <>
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-500/10 flex items-center justify-center">
+                <Archive className="h-8 w-8 text-gray-500" />
+              </div>
+              <p className="text-[var(--color-text-secondary)] text-lg font-medium">
+                {searchQuery
+                  ? t("empty.noSearchResults")
+                  : t("empty.noArchived")}
+              </p>
+              <p className="text-[var(--color-text-tertiary)] mt-2">
+                {searchQuery
+                  ? t("empty.noSearchResultsDesc")
+                  : t("empty.noArchivedDesc")}
+              </p>
+            </>
+          ) : (
+            // Regular empty state
+            <>
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center">
+                <Plus className="h-8 w-8 text-[var(--color-accent)]" />
+              </div>
+              <p className="text-[var(--color-text-secondary)] text-lg font-medium">
+                {searchQuery ? t("empty.noSearchResults") : t("empty.noCustomers")}
+              </p>
+              <p className="text-[var(--color-text-tertiary)] mt-2">
+                {searchQuery
+                  ? t("empty.noSearchResultsDesc")
+                  : t("empty.description")}
+              </p>
+              {!searchQuery && (
+                <Button
+                  onClick={() => setAddModalOpen(true)}
+                  className="mt-6 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  {t("empty.addFirst")}
+                </Button>
+              )}
+            </>
           )}
         </div>
       ) : viewMode === "table" ? (

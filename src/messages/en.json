@@ -535,7 +535,9 @@
       "noSearchResults": "No customers found",
       "noSearchResultsDesc": "Try a different search term",
       "description": "Add your first customer to start tracking credit",
-      "addFirst": "Add your first customer"
+      "addFirst": "Add your first customer",
+      "noArchived": "No archived customers",
+      "noArchivedDesc": "Archived customers will appear here"
     },
     "count": "{count} customers",
     "countWithTotal": "{active} active / {total} total",

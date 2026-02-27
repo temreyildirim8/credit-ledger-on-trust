@@ -54,7 +54,7 @@ export function useCustomers(includeArchived = false) {
     error,
     refetch,
   } = useQuery<GetCustomersResponse>({
-    queryKey: queryKeys.customers.lists(),
+    queryKey: [...queryKeys.customers.lists(), { includeArchived }],
     queryFn: async () => {
       // Initialize offline cache
       await offlineCache.init();
