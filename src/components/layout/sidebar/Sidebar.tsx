@@ -31,6 +31,16 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useUIStore } from "@/lib/store";
 
 const SIDEBAR_EXPANDED_WIDTH = 240;
@@ -130,6 +140,9 @@ export function Sidebar({ className }: SidebarProps) {
     if (isBelowLg) return;
     setIsCollapsed(!isCollapsed);
   }, [isBelowLg, isCollapsed, setIsCollapsed]);
+
+  // Logout confirmation dialog state
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
   // Extract locale and base path
   const segments = pathname.split("/");
@@ -428,7 +441,7 @@ export function Sidebar({ className }: SidebarProps) {
         )}
       >
         <button
-          onClick={handleLogout}
+          onClick={() => setIsLogoutDialogOpen(true)}
           className={cn(
             "flex items-center gap-3 rounded-lg text-error hover:bg-error/5 transition-all duration-200 group",
             isCollapsed ? "justify-center h-9 w-9" : "px-3 py-2.5 w-full",
@@ -441,6 +454,27 @@ export function Sidebar({ className }: SidebarProps) {
           )}
         </button>
       </div>
+
+      {/* Sign Out Confirmation Dialog */}
+      <AlertDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t("signOutTitle")}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t("signOutConfirm")}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleLogout}
+              className="bg-error hover:bg-error/90 text-white"
+            >
+              {t("signOut")}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </aside>
   );
 }
