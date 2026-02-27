@@ -3,15 +3,14 @@
 import { usePathname } from "@/routing";
 import { Link } from "@/routing";
 import { useTranslations } from 'next-intl';
-import { Home, Users, Receipt, PlusCircle, Settings, BarChart3 } from 'lucide-react';
+import { Home, Users, Receipt, PlusCircle, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { href: '/dashboard', icon: Home, key: 'dashboard' },
   { href: '/customers', icon: Users, key: 'customers' },
-  { href: '/reports', icon: BarChart3, key: 'reports' },
-  { href: '/quick-add', icon: PlusCircle, key: 'quickAdd' },
   { href: '/transactions', icon: Receipt, key: 'transactions' },
+  { href: '/quick-add', icon: PlusCircle, key: 'quickAdd' },
   { href: '/settings', icon: Settings, key: 'settings' },
 ];
 
