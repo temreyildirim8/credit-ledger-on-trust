@@ -141,7 +141,8 @@
     "appInstalled": "ऐप इंस्टॉल है",
     "upgradeForPWA": "Pro पर अपग्रेड करें",
     "upgradeForPWADesc": "ऐप इंस्टॉल करने के लिए Pro पर अपग्रेड करें",
-    "upgradeForTheme": "डार्क मोड के लिए Pro पर अपग्रेड करें"
+    "upgradeForTheme": "डार्क मोड के लिए Pro पर अपग्रेड करें",
+    "creditManagement": "क्रेडिट प्रबंधन"
   },
   "home": {
     "meta": {

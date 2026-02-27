@@ -141,7 +141,8 @@
     "appInstalled": "التطبيق مثبت",
     "upgradeForPWA": "الترقية إلى Pro",
     "upgradeForPWADesc": "قم بالترقية إلى Pro لتثبيت التطبيق",
-    "upgradeForTheme": "الترقية إلى Pro للوضع الداكن"
+    "upgradeForTheme": "الترقية إلى Pro للوضع الداكن",
+    "creditManagement": "إدارة الائتمان"
   },
   "home": {
     "meta": {

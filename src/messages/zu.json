@@ -141,7 +141,8 @@
     "appInstalled": "i-App Ifakiwe",
     "upgradeForPWA": "Thuthukisa ku-Pro",
     "upgradeForPWADesc": "Thuthukisa ku-Pro ukufaka i-app",
-    "upgradeForTheme": "Thuthukisa ku-Pro ku-Dark Mode"
+    "upgradeForTheme": "Thuthukisa ku-Pro ku-Dark Mode",
+    "creditManagement": "Ukuphathwa Kwesikweletu"
   },
   "home": {
     "meta": {

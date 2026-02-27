@@ -141,7 +141,8 @@
     "appInstalled": "App Installed",
     "upgradeForPWA": "Upgrade for App",
     "upgradeForPWADesc": "Upgrade to Pro to install the app",
-    "upgradeForTheme": "Upgrade for Dark Mode"
+    "upgradeForTheme": "Upgrade for Dark Mode",
+    "creditManagement": "Credit Management"
   },
   "home": {
     "meta": {

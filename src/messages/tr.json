@@ -141,7 +141,8 @@
     "appInstalled": "Uygulama Kurulu",
     "upgradeForPWA": "Pro'ya Geç",
     "upgradeForPWADesc": "Uygulamayı kurmak için Pro'ya geçin",
-    "upgradeForTheme": "Dark Mode için Pro'ya Geç"
+    "upgradeForTheme": "Dark Mode için Pro'ya Geç",
+    "creditManagement": "Kredi Yönetimi"
   },
   "home": {
     "meta": {

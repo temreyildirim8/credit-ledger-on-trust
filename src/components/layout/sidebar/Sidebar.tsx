@@ -162,7 +162,7 @@ export function Sidebar({ className }: SidebarProps) {
                 {brandName}
               </h1>
               <p className="text-xs text-text-secondary whitespace-nowrap">
-                Credit Management
+                {t("creditManagement")}
               </p>
             </div>
           )}
