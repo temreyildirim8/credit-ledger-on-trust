@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { requireAuth } from "@/lib/api/protection";
+import { serverSubscriptionService } from "@/lib/services/server-subscription.service";
 import { exchangeRateService } from "@/lib/services/exchange-rate.service";
 
 /**
@@ -8,38 +10,35 @@ import { exchangeRateService } from "@/lib/services/exchange-rate.service";
  * This endpoint is the secure replacement for direct browser access to customer_balances view
  *
  * Security:
- * - JWT is validated server-side via createClient()
+ * - JWT is validated server-side via requireAuth()
  * - Calls SECURITY DEFINER function that validates auth.uid() == p_user_id
  * - No anon key or browser client involved in data access
  *
  * Currency:
  * - Returns both local currency values and USD equivalents
  * - Uses Frankfurter API for exchange rates (European Central Bank rates)
+ *
+ * Pro Features:
+ * - Basic stats available to all users
+ * - Advanced analytics require Pro subscription (advancedReports feature)
  */
 export async function GET(_request: NextRequest) {
   try {
-    // Create server-side Supabase client - this validates the JWT from cookies
+    // Create server-side Supabase client
     const supabase = await createClient();
 
-    // Get the authenticated user - server-side validation
-    const {
-      data: { user },
-      error: authError,
-    } = await supabase.auth.getUser();
-
-    if (authError || !user) {
-      console.error("Authentication error:", authError);
-      return NextResponse.json(
-        { error: "Unauthorized. Please sign in to continue." },
-        { status: 401 },
-      );
+    // Authenticate user using protection helper
+    const auth = await requireAuth(supabase);
+    if (!auth.success) {
+      return auth.response;
     }
+    const { userId } = auth;
 
     // Get user's currency preference
     const { data: userProfile } = await supabase
       .from("user_profiles")
       .select("currency, default_currency")
-      .eq("id", user.id)
+      .eq("id", userId)
       .single();
 
     const userCurrency =
@@ -48,7 +47,7 @@ export async function GET(_request: NextRequest) {
     // Call the SECURITY DEFINER function
     // This function internally checks that auth.uid() == p_user_id
     const { data, error } = await supabase.rpc("get_dashboard_stats", {
-      p_user_id: user.id,
+      p_user_id: userId,
     });
 
     if (error) {
@@ -98,6 +97,12 @@ export async function GET(_request: NextRequest) {
       // Continue without USD equivalents if conversion fails
     }
 
+    // Get subscription info
+    const subscription = await serverSubscriptionService.getSubscription(
+      supabase,
+      userId,
+    );
+
     return NextResponse.json({
       totalDebt,
       totalCollected,
@@ -107,6 +112,10 @@ export async function GET(_request: NextRequest) {
       usdEquivalent: {
         totalDebt: usdTotalDebt,
         totalCollected: usdTotalCollected,
+      },
+      subscription: {
+        plan: subscription?.plan ?? "free",
+        hasAdvancedReports: subscription?.features.advancedReports ?? false,
       },
     });
   } catch (error) {

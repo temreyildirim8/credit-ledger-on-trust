@@ -128,7 +128,6 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
   const userId = subscription.metadata?.user_id;
   const plan = subscription.metadata?.plan as
     | 'free'
-    | 'basic'
     | 'pro'
     | 'enterprise'
     | undefined;
@@ -139,7 +138,7 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
   }
 
   // Determine plan from price if not in metadata
-  let determinedPlan = plan;
+  let determinedPlan: 'free' | 'pro' | 'enterprise' | undefined = plan;
   if (!determinedPlan && subscription.items.data.length > 0) {
     const priceId = subscription.items.data[0].price.id;
     // Map price ID back to plan

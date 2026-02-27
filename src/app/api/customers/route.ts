@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { requireAuth } from "@/lib/api/protection";
+import { serverSubscriptionService } from "@/lib/services/server-subscription.service";
 
 /**
  * GET /api/customers
@@ -12,30 +14,24 @@ import { createClient } from "@/lib/supabase/server";
  * Response:
  * - customers: Array of customer objects
  * - totalCount: Total customer count (including archived) for plan limit checking
+ * - subscription: Subscription info with limits
  *
  * Security:
- * - JWT is validated server-side via createClient()
+ * - JWT is validated server-side via requireAuth()
  * - Calls SECURITY DEFINER function that validates auth.uid() == p_user_id
- * - No anon key or browser client involved in data access
+ * - Returns subscription limits for frontend limit checking
  */
 export async function GET(request: NextRequest) {
   try {
-    // Create server-side Supabase client - this validates the JWT from cookies
+    // Create server-side Supabase client
     const supabase = await createClient();
 
-    // Get the authenticated user - server-side validation
-    const {
-      data: { user },
-      error: authError,
-    } = await supabase.auth.getUser();
-
-    if (authError || !user) {
-      console.error("Authentication error:", authError);
-      return NextResponse.json(
-        { error: "Unauthorized. Please sign in to continue." },
-        { status: 401 },
-      );
+    // Authenticate user using protection helper
+    const auth = await requireAuth(supabase);
+    if (!auth.success) {
+      return auth.response;
     }
+    const { userId } = auth;
 
     // Parse query parameters
     const { searchParams } = new URL(request.url);
@@ -44,7 +40,7 @@ export async function GET(request: NextRequest) {
     // Call the SECURITY DEFINER function with includeArchived parameter
     // This function internally checks that auth.uid() == p_user_id
     const { data, error } = await supabase.rpc("get_customer_balances", {
-      p_user_id: user.id,
+      p_user_id: userId,
       p_include_archived: includeArchived,
     });
 
@@ -60,7 +56,7 @@ export async function GET(request: NextRequest) {
     const { data: totalCountData, error: countError } = await supabase.rpc(
       "get_total_customer_count",
       {
-        p_user_id: user.id,
+        p_user_id: userId,
       },
     );
 
@@ -71,10 +67,24 @@ export async function GET(request: NextRequest) {
 
     const totalCount = totalCountData ?? data?.length ?? 0;
 
-    // Return the customer balances with total count
+    // Get subscription info for limit checking
+    const subscription = await serverSubscriptionService.getSubscription(
+      supabase,
+      userId,
+    );
+    const customerLimit = subscription?.features.maxCustomers ?? 5;
+
+    // Return the customer balances with total count and subscription limits
     return NextResponse.json({
       customers: data ?? [],
       totalCount,
+      subscription: {
+        plan: subscription?.plan ?? "free",
+        customerLimit,
+        customersUsed: totalCount,
+        customersRemaining:
+          customerLimit === null ? null : Math.max(0, customerLimit - totalCount),
+      },
     });
   } catch (error) {
     console.error("Unexpected error in /api/customers:", error);
