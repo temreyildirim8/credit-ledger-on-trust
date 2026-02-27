@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { useAuth } from "@/lib/hooks/useAuth";
+import { useSubscription } from "@/lib/hooks/useSubscription";
 import { userProfilesService } from "@/lib/services/user-profiles.service";
 import { getBrandName } from "@/lib/branding";
 import { Button } from "@/components/ui/button";
@@ -46,7 +47,9 @@ import {
 } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
 import { SubscriptionUpgradeModal } from "@/components/settings/SubscriptionUpgradeModal";
+import { UpgradePrompt } from "@/components/subscription/UpgradePrompt";
 import { Link } from "@/routing";
+import { useSyncStatus } from "@/lib/hooks/useSyncStatus";
 
 type SettingsTab =
   | "profile"
@@ -68,6 +71,7 @@ export default function SettingsPage() {
   const t = useTranslations("settings");
   const tCommon = useTranslations("common");
   const tAccount = useTranslations("settings.sections.account");
+  const tSync = useTranslations("syncStatus");
   const localeHook = useLocale();
 
   const pathname = usePathname();
@@ -75,6 +79,8 @@ export default function SettingsPage() {
   const locale = pathname.split("/")[1] || "en";
   const brandName = getBrandName(localeHook);
   const { user, signOut } = useAuth();
+  const { hasFeature } = useSubscription();
+  const { lastSyncedAt, connectionStatus, pendingCount } = useSyncStatus();
   const [activeTab, setActiveTab] = useState<SettingsTab>("profile");
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
   const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
@@ -474,7 +480,7 @@ export default function SettingsPage() {
                       <Label htmlFor="currency">
                         {t("sections.business.currency")}
                       </Label>
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge className="bg-amber-500 text-white text-xs">
                         Coming Soon
                       </Badge>
                     </div>
@@ -543,44 +549,68 @@ export default function SettingsPage() {
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-text">
-                        {t("sections.notifications.pushEnabled")}
-                      </p>
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium text-text">
+                          {t("sections.notifications.pushEnabled")}
+                        </p>
+                        <Badge className="bg-amber-500 text-white text-xs">
+                          Coming Soon
+                        </Badge>
+                      </div>
                       <p className="text-sm text-text-secondary">
                         {t("sections.notifications.pushDescription")}
                       </p>
                     </div>
                     <Switch
-                      checked={pushEnabled}
+                      // checked={pushEnabled}
+                      checked={false}
                       onCheckedChange={setPushEnabled}
+                      disabled
+                      className="opacity-60"
                     />
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-text">
-                        {t("sections.notifications.remindersEnabled")}
-                      </p>
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium text-text">
+                          {t("sections.notifications.remindersEnabled")}
+                        </p>
+                        <Badge className="bg-amber-500 text-white text-xs">
+                          Coming Soon
+                        </Badge>
+                      </div>
                       <p className="text-sm text-text-secondary">
                         {t("sections.notifications.remindersDescription")}
                       </p>
                     </div>
                     <Switch
-                      checked={remindersEnabled}
+                      // checked={remindersEnabled}
+                      checked={false}
                       onCheckedChange={setRemindersEnabled}
+                      disabled
+                      className="opacity-60"
                     />
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-text">
-                        {t("sections.notifications.weeklyReport")}
-                      </p>
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium text-text">
+                          {t("sections.notifications.weeklyReport")}
+                        </p>
+                        <Badge className="bg-amber-500 text-white text-xs">
+                          Coming Soon
+                        </Badge>
+                      </div>
                       <p className="text-sm text-text-secondary">
                         {t("sections.notifications.weeklyReportDescription")}
                       </p>
                     </div>
                     <Switch
-                      checked={weeklyReport}
+                      // checked={weeklyReport}
+                      checked={false}
                       onCheckedChange={setWeeklyReport}
+                      disabled
+                      className="opacity-60"
                     />
                   </div>
                 </div>
@@ -638,8 +668,11 @@ export default function SettingsPage() {
                     >
                       {t("sections.subscription.upgrade")}
                     </Button>
-                    <Button variant="outline" className="flex-1">
-                      {t("sections.subscription.manageBilling")}
+                    <Button variant="outline" className="flex-1" disabled>
+                      <span>{t("sections.subscription.manageBilling")}</span>
+                      <Badge className="bg-amber-500 text-white text-xs ml-2">
+                        Coming Soon
+                      </Badge>
                     </Button>
                   </div>
                 </div>
@@ -656,22 +689,40 @@ export default function SettingsPage() {
                       {t("sections.data.exportDescription")}
                     </p>
                     <div className="flex gap-2">
-                      <Button
-                        variant="outline"
-                        onClick={() => handleExportData("csv")}
-                        className="flex-1"
-                      >
-                        <Download className="h-4 w-4 mr-2" />
-                        {t("sections.data.exportCSV")}
-                      </Button>
-                      <Button
-                        variant="outline"
-                        onClick={() => handleExportData("pdf")}
-                        className="flex-1"
-                      >
-                        <Download className="h-4 w-4 mr-2" />
-                        {t("sections.data.exportPDF")}
-                      </Button>
+                      {hasFeature("dataExport") ? (
+                        <Button
+                          variant="outline"
+                          onClick={() => handleExportData("csv")}
+                          className="flex-1"
+                        >
+                          <Download className="h-4 w-4 mr-2" />
+                          {t("sections.data.exportCSV")}
+                        </Button>
+                      ) : (
+                        <UpgradePrompt
+                          variant="button"
+                          feature="Data Export"
+                          message={t("sections.data.exportCSV")}
+                          className="flex-1 justify-center"
+                        />
+                      )}
+                      {hasFeature("dataExport") ? (
+                        <Button
+                          variant="outline"
+                          onClick={() => handleExportData("pdf")}
+                          className="flex-1"
+                        >
+                          <Download className="h-4 w-4 mr-2" />
+                          {t("sections.data.exportPDF")}
+                        </Button>
+                      ) : (
+                        <UpgradePrompt
+                          variant="button"
+                          feature="Data Export"
+                          message={t("sections.data.exportPDF")}
+                          className="flex-1 justify-center"
+                        />
+                      )}
                     </div>
                   </div>
                   <div className="p-4 bg-surface-alt rounded-xl border border-border">
@@ -682,8 +733,31 @@ export default function SettingsPage() {
                       {t("sections.data.backupDescription")}
                     </p>
                     <div className="flex items-center gap-2 text-sm text-text-secondary">
-                      <div className="h-2 w-2 rounded-full bg-success" />
-                      {t("sections.data.lastBackup")}
+                      <div
+                        className={`h-2 w-2 rounded-full ${connectionStatus === "online" ? "bg-success" : "bg-orange-500"}`}
+                      />
+                      {tSync("lastSync")}:{" "}
+                      {connectionStatus === "online" && !lastSyncedAt
+                        ? tSync("justNow")
+                        : lastSyncedAt
+                          ? (() => {
+                              const diffMs =
+                                Date.now() - lastSyncedAt.getTime();
+                              const diffMins = Math.floor(diffMs / 60000);
+                              if (diffMins < 1) return tSync("justNow");
+                              if (diffMins < 60)
+                                return tSync("minutesAgo", { count: diffMins });
+                              const diffHours = Math.floor(diffMins / 60);
+                              if (diffHours < 24)
+                                return tSync("hoursAgo", { count: diffHours });
+                              return lastSyncedAt.toLocaleDateString();
+                            })()
+                          : tSync("never")}
+                      {pendingCount > 0 && (
+                        <span className="ml-2 text-amber-600 dark:text-amber-400">
+                          ({tSync("pendingCount", { count: pendingCount })})
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
