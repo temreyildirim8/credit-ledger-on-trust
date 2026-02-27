@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useUIStore } from "@/lib/store";
 
 interface TourStep {
   id: string;
@@ -16,14 +17,15 @@ interface TourStep {
   spotlightPadding?: number;
 }
 
-const TOUR_STORAGE_KEY = "global-ledger-tour-completed";
-
 export function QuickTour() {
   const t = useTranslations("quickTour");
   const [isActive, setIsActive] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const [mounted, setMounted] = useState(false);
+
+  // Get tour state from Zustand store (auto-persisted)
+  const { tourCompleted, setTourCompleted } = useUIStore();
 
   // Tour steps configuration - memoized to prevent recreation on every render
   const steps: TourStep[] = useMemo(() => [
@@ -74,7 +76,6 @@ export function QuickTour() {
     setMounted(true);
 
     const checkTour = () => {
-      const tourCompleted = localStorage.getItem(TOUR_STORAGE_KEY);
       const isDesktop = window.innerWidth >= 768;
 
       // Only show tour on desktop for first-time users
@@ -98,7 +99,7 @@ export function QuickTour() {
     return () => {
       window.removeEventListener("start-quick-tour", handleStartTour);
     };
-  }, []);
+  }, [tourCompleted]);
 
   // Update target position when step changes
   useEffect(() => {
@@ -124,9 +125,9 @@ export function QuickTour() {
 
   const completeTour = useCallback(() => {
     setIsActive(false);
-    localStorage.setItem(TOUR_STORAGE_KEY, "true");
+    setTourCompleted(true);
     window.dispatchEvent(new CustomEvent("quick-tour-completed"));
-  }, []);
+  }, [setTourCompleted]);
 
   const handleNext = useCallback(() => {
     if (currentStep < steps.length - 1) {
@@ -310,19 +311,13 @@ export function QuickTour() {
 
 // Hook to manually start the tour
 export function useStartTour() {
+  const resetTour = useUIStore((state) => state.resetTour);
+
   return () => {
-    localStorage.removeItem(TOUR_STORAGE_KEY);
+    resetTour();
     window.dispatchEvent(new CustomEvent("start-quick-tour"));
   };
 }
 
 // Hook to check if tour has been completed
-export function useTourCompleted() {
-  const [completed, setCompleted] = useState(false);
-
-  useEffect(() => {
-    setCompleted(localStorage.getItem(TOUR_STORAGE_KEY) === "true");
-  }, []);
-
-  return completed;
-}
+export { useTourCompleted } from "@/lib/store";

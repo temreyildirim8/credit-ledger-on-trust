@@ -31,6 +31,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useUIStore } from "@/lib/store";
 
 const SIDEBAR_EXPANDED_WIDTH = 240;
 const SIDEBAR_COLLAPSED_WIDTH = 80;
@@ -95,13 +96,8 @@ export function Sidebar({ className }: SidebarProps) {
     return window.innerWidth < LG_BREAKPOINT;
   });
 
-  // Collapsed state persisted to localStorage
-  const [isCollapsed, setIsCollapsed] = useState(() => {
-    // Default to false (expanded) on first load
-    if (typeof window === "undefined") return false;
-    const stored = localStorage.getItem("sidebar-collapsed");
-    return stored === "true";
-  });
+  // Get sidebar state from Zustand store (auto-persisted to localStorage)
+  const { sidebarCollapsed: isCollapsed, setSidebarCollapsed: setIsCollapsed } = useUIStore();
 
   // Handle resize to force collapse below lg, restore state above lg
   useEffect(() => {
@@ -110,11 +106,8 @@ export function Sidebar({ className }: SidebarProps) {
       setIsBelowLg(belowLg);
       if (belowLg) {
         setIsCollapsed(true);
-      } else {
-        // Restore saved state when above lg
-        const stored = localStorage.getItem("sidebar-collapsed");
-        setIsCollapsed(stored === "true");
       }
+      // Above lg: use Zustand state (already persisted)
     };
 
     window.addEventListener("resize", handleResize);
@@ -122,12 +115,10 @@ export function Sidebar({ className }: SidebarProps) {
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [setIsCollapsed]);
 
-  // Persist collapsed state
+  // Dispatch custom event for AppShell when collapsed state changes
   useEffect(() => {
-    localStorage.setItem("sidebar-collapsed", String(isCollapsed));
-    // Dispatch custom event for AppShell to respond
     window.dispatchEvent(
       new CustomEvent("sidebar-toggle", { detail: { collapsed: isCollapsed } }),
     );
@@ -136,8 +127,8 @@ export function Sidebar({ className }: SidebarProps) {
   const toggleSidebar = useCallback(() => {
     // Prevent toggle below lg breakpoint
     if (isBelowLg) return;
-    setIsCollapsed((prev) => !prev);
-  }, [isBelowLg]);
+    setIsCollapsed(!isCollapsed);
+  }, [isBelowLg, isCollapsed, setIsCollapsed]);
 
   // Extract locale and base path
   const segments = pathname.split("/");

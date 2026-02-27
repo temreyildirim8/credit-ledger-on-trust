@@ -6,6 +6,7 @@ import { BottomNav } from "../bottom-nav";
 import { AppHeader } from "../app-header";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useBackgroundSync } from "@/lib/hooks/useBackgroundSync";
+import { useSidebarCollapsed } from "@/lib/store";
 
 const SIDEBAR_EXPANDED_WIDTH = 240;
 const SIDEBAR_COLLAPSED_WIDTH = 80;
@@ -33,49 +34,19 @@ export function AppShell({ children, title, subtitle }: AppShellProps) {
     return window.innerWidth < LG_BREAKPOINT;
   });
 
-  // Track sidebar collapsed state for content margin
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return localStorage.getItem("sidebar-collapsed") === "true";
-  });
+  // Get sidebar state from Zustand store (auto-persisted)
+  const sidebarCollapsed = useSidebarCollapsed();
 
-  // Handle resize to force collapse below lg, restore state above lg
+  // Handle resize to detect breakpoint changes
   useEffect(() => {
     const handleResize = () => {
-      const belowLg = window.innerWidth < LG_BREAKPOINT;
-      setIsBelowLg(belowLg);
-      if (belowLg) {
-        setSidebarCollapsed(true);
-      } else {
-        // Restore saved state when above lg
-        const stored = localStorage.getItem("sidebar-collapsed");
-        setSidebarCollapsed(stored === "true");
-      }
+      setIsBelowLg(window.innerWidth < LG_BREAKPOINT);
     };
 
     window.addEventListener("resize", handleResize);
-    // Initial check
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Listen for sidebar toggle events
-  useEffect(() => {
-    const handleSidebarToggle = (e: CustomEvent<{ collapsed: boolean }>) => {
-      setSidebarCollapsed(e.detail.collapsed);
-    };
-
-    window.addEventListener(
-      "sidebar-toggle",
-      handleSidebarToggle as EventListener
-    );
-    return () => {
-      window.removeEventListener(
-        "sidebar-toggle",
-        handleSidebarToggle as EventListener
-      );
-    };
   }, []);
 
   // Force collapsed state when below lg
