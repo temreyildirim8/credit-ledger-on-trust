@@ -823,6 +823,16 @@
         "signOutTitle": "Sign Out"
       }
     },
+    "auth": {
+      "login": {
+        "emailPlaceholder": "your@email.com"
+      }
+    },
+    "customers": {
+      "form": {
+        "phonePlaceholder": "+90 555 123 4567"
+      }
+    },
     "errors": {
       "loadFailed": "Failed to load profile",
       "saveFailed": "Failed to save changes"

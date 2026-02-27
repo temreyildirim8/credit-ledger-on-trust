@@ -770,6 +770,16 @@
         "footerNote": "Puedes cambiar o cancelar tu plan en cualquier momento. Sin cargos ocultos."
       }
     },
+    "auth": {
+      "login": {
+        "emailPlaceholder": "tu@correo.com"
+      }
+    },
+    "customers": {
+      "form": {
+        "phonePlaceholder": "+90 555 123 4567"
+      }
+    },
     "errors": {
       "loadFailed": "Error al cargar el perfil",
       "saveFailed": "Error al guardar los cambios"

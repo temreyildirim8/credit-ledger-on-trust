@@ -770,6 +770,16 @@
         "footerNote": "Ungashintsha noma ukhansele iphulani lakho noma kunini. Akukho izindleko ezifihliwe."
       }
     },
+    "auth": {
+      "login": {
+        "emailPlaceholder": "yakho@imeyili.com"
+      }
+    },
+    "customers": {
+      "form": {
+        "phonePlaceholder": "+90 555 123 4567"
+      }
+    },
     "errors": {
       "loadFailed": "Ihlulekile ukulayisha iprofayela",
       "saveFailed": "Ihlulekile ukugcina inguquko"

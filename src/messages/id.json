@@ -770,6 +770,16 @@
         "footerNote": "Anda dapat mengubah atau membatalkan paket kapan saja. Tidak ada biaya tersembunyi."
       }
     },
+    "auth": {
+      "login": {
+        "emailPlaceholder": "@email_anda.com"
+      }
+    },
+    "customers": {
+      "form": {
+        "phonePlaceholder": "+90 555 123 4567"
+      }
+    },
     "errors": {
       "loadFailed": "Gagal memuat profil",
       "saveFailed": "Gagal menyimpan perubahan"

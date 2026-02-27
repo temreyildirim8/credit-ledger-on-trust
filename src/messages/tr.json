@@ -952,6 +952,16 @@
         "footerNote": "Planınızı istediğiniz zaman değiştirebilir veya iptal edebilirsiniz. Gizli ücret yok."
       }
     },
+    "auth": {
+      "login": {
+        "emailPlaceholder": "eposta@adres.com"
+      }
+    },
+    "customers": {
+      "form": {
+        "phonePlaceholder": "+90 555 123 4567"
+      }
+    },
     "errors": {
       "loadFailed": "Profil yüklenemedi",
       "saveFailed": "Değişiklikler kaydedilemedi"

@@ -770,6 +770,16 @@
         "footerNote": "आप किसी भी समय अपना प्लान बदल या रद्द कर सकते हैं। कोई छिपी हुई फीस नहीं।"
       }
     },
+    "auth": {
+      "login": {
+        "emailPlaceholder": "आप@ईमेल.com"
+      }
+    },
+    "customers": {
+      "form": {
+        "phonePlaceholder": "+90 555 123 4567"
+      }
+    },
     "errors": {
       "loadFailed": "प्रोफ़ाइल लोड करने में विफल",
       "saveFailed": "परिवर्तन सहेजने में विफल"

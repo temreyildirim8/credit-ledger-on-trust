@@ -968,6 +968,16 @@
         "footerNote": "يمكنك تغيير أو إلغاء خطتك في أي وقت. لا توجد رسوم خفية."
       }
     },
+    "auth": {
+      "login": {
+        "emailPlaceholder": "بريد@إلكتروني.com"
+      }
+    },
+    "customers": {
+      "form": {
+        "phonePlaceholder": "+90 555 123 4567"
+      }
+    },
     "errors": {
       "loadFailed": "فشل تحميل الملف الشخصي",
       "saveFailed": "فشل حفظ التغييرات"
