@@ -7,6 +7,8 @@ import { formatDistanceToNow } from "date-fns";
 import { tr, enUS, es } from "date-fns/locale";
 import type { Locale } from "date-fns";
 import { useTranslations } from "next-intl";
+import { useUserProfile } from "@/lib/hooks/useUserProfile";
+import { formatCurrency } from "@/lib/utils/currency";
 
 // Locale map for date-fns
 const localeMap: Record<string, Locale> = { en: enUS, tr, es };
@@ -31,15 +33,7 @@ export function RecentActivity({
   const dateLocale: Locale = localeMap[locale] || enUS;
   const t = useTranslations("dashboard.recentActivity");
   const tTypes = useTranslations("transactions.type");
-
-  const formatCurrencyValue = (amount: number) => {
-    return new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
-      style: "currency",
-      currency: locale === "tr" ? "TRY" : "USD",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
+  const { currency } = useUserProfile();
 
   if (activities.length === 0) {
     return (
@@ -102,7 +96,7 @@ export function RecentActivity({
                   )}
                 >
                   {isDebt ? "+" : "-"}
-                  {formatCurrencyValue(activity.amount)}
+                  {formatCurrency(activity.amount, currency)}
                 </p>
               </div>
             </div>

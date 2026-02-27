@@ -22,8 +22,8 @@ import {
   FileText,
 } from "lucide-react";
 import { Customer, customersService } from "@/lib/services/customers.service";
-import { userProfilesService } from "@/lib/services/user-profiles.service";
 import { formatCurrency } from "@/lib/utils/currency";
+import { useUserProfile } from "@/lib/hooks/useUserProfile";
 import { formatDistanceToNow } from "date-fns";
 import { tr, enUS, es, id, hi, ar } from "date-fns/locale";
 import type { Locale } from "date-fns";
@@ -68,6 +68,7 @@ export function CustomerDetailsModal({
   locale = "en",
 }: CustomerDetailsModalProps) {
   const { user } = useAuth();
+  const { currency: userCurrency } = useUserProfile();
   const t = useTranslations("customers");
   const dateLocale = localeMap[locale] || enUS;
 
@@ -75,7 +76,6 @@ export function CustomerDetailsModal({
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
   const [generatingPDF, setGeneratingPDF] = useState(false);
-  const [userCurrency, setUserCurrency] = useState<string>("TRY");
 
   useEffect(() => {
     if (!user?.id || !customerId || !open) return;
@@ -83,18 +83,12 @@ export function CustomerDetailsModal({
     const loadData = async () => {
       setLoading(true);
       try {
-        const [customerData, transactionsData, userProfile] = await Promise.all(
-          [
-            customersService.getCustomerById(user.id, customerId),
-            customersService.getCustomerTransactions(user.id, customerId),
-            userProfilesService.getProfile(user.id),
-          ],
-        );
+        const [customerData, transactionsData] = await Promise.all([
+          customersService.getCustomerById(user.id, customerId),
+          customersService.getCustomerTransactions(user.id, customerId),
+        ]);
         setCustomer(customerData);
         setTransactions(transactionsData);
-        if (userProfile?.currency) {
-          setUserCurrency(userProfile.currency);
-        }
       } catch (error) {
         console.error("Error loading customer:", error);
       } finally {
@@ -222,7 +216,7 @@ export function CustomerDetailsModal({
                           : "text-[var(--color-payment-text)]",
                       )}
                     >
-                      {formatCurrency(Math.abs(customer.balance))}
+                      {formatCurrency(Math.abs(customer.balance), userCurrency)}
                     </p>
                     {customer.transaction_count &&
                       customer.transaction_count > 0 && (
@@ -448,7 +442,7 @@ export function CustomerDetailsModal({
                           )}
                         >
                           {transaction.type === "debt" ? "+" : "-"}
-                          {formatCurrency(transaction.amount)}
+                          {formatCurrency(transaction.amount, userCurrency)}
                         </p>
                       </div>
                     ))}

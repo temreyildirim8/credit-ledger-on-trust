@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { TrendingUp, TrendingDown, Users, DollarSign } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useUserProfile } from "@/lib/hooks/useUserProfile";
+import { formatCurrency } from "@/lib/utils/currency";
 
 interface StatCardProps {
   label: string;
@@ -21,7 +23,12 @@ function StatCard({ label, value, icon, variant }: StatCardProps) {
   };
 
   return (
-    <Card className={cn("border-[var(--color-border)] hover:shadow-sm transition-shadow", variantStyles[variant])}>
+    <Card
+      className={cn(
+        "border-[var(--color-border)] hover:shadow-sm transition-shadow",
+        variantStyles[variant],
+      )}
+    >
       <div className="p-4 md:p-5">
         <p className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide mb-2">
           {label}
@@ -30,7 +37,9 @@ function StatCard({ label, value, icon, variant }: StatCardProps) {
           <div className={cn("p-2 rounded-xl", variantStyles[variant])}>
             {icon}
           </div>
-          <span className="text-2xl font-bold text-[var(--color-text)]">{value}</span>
+          <span className="text-2xl font-bold text-[var(--color-text)]">
+            {value}
+          </span>
         </div>
       </div>
     </Card>
@@ -51,27 +60,19 @@ export function QuickStatsGrid({
   thisMonth = 0,
 }: QuickStatsGridProps) {
   const t = useTranslations("dashboard.stats");
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("tr-TR", {
-      style: "currency",
-      currency: "TRY",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
+  const { currency } = useUserProfile();
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
       <StatCard
         label={t("totalOwed")}
-        value={formatCurrency(totalDebt)}
+        value={formatCurrency(totalDebt, currency)}
         icon={<TrendingUp className="h-4 w-4 md:h-5 md:w-5" />}
         variant="debt"
       />
       <StatCard
         label={t("collected")}
-        value={formatCurrency(totalCollected)}
+        value={formatCurrency(totalCollected, currency)}
         icon={<TrendingDown className="h-4 w-4 md:h-5 md:w-5" />}
         variant="collected"
       />
@@ -83,7 +84,7 @@ export function QuickStatsGrid({
       />
       <StatCard
         label={t("thisMonth")}
-        value={formatCurrency(thisMonth)}
+        value={formatCurrency(thisMonth, currency)}
         icon={<DollarSign className="h-4 w-4 md:h-5 md:w-5" />}
         variant="month"
       />
