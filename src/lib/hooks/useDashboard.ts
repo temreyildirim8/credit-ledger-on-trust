@@ -20,7 +20,7 @@ export function useDashboardStats() {
     queryKey: queryKeys.dashboard.stats(),
     queryFn: () => dashboardService.getStats(),
     enabled: !!user?.id,
-    staleTime: 30 * 1000, // 30 seconds
+    staleTime: 2 * 60 * 1000, // 2 minutes
   });
 }
 
@@ -36,7 +36,7 @@ export function useRecentActivity(limit = 5) {
     queryKey: queryKeys.dashboard.activity(limit),
     queryFn: () => dashboardService.getRecentActivity(limit),
     enabled: !!user?.id,
-    staleTime: 30 * 1000, // 30 seconds
+    staleTime: 2 * 60 * 1000, // 2 minutes
   });
 }
 

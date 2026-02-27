@@ -77,7 +77,7 @@ export function useCustomers() {
       }
     },
     enabled: !!user?.id,
-    staleTime: 30 * 1000, // 30 seconds
+    staleTime: 3 * 60 * 1000, // 3 minutes
     gcTime: 5 * 60 * 1000, // 5 minutes
     retry: (failureCount, _error) => {
       // Don't retry if offline
