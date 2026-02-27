@@ -10,10 +10,11 @@ import { cn } from '@/lib/utils';
 interface CustomerCardProps {
   customer: Customer;
   locale?: string;
+  currency?: string;
   onClick?: () => void;
 }
 
-export function CustomerCard({ customer, onClick }: CustomerCardProps) {
+export function CustomerCard({ customer, currency = "USD", onClick }: CustomerCardProps) {
   const hasDebt = customer.balance > 0;
 
   return (
@@ -52,7 +53,7 @@ export function CustomerCard({ customer, onClick }: CustomerCardProps) {
               hasDebt ? "bg-red-100 text-red-700 hover:bg-red-200" : "bg-green-100 text-green-700 hover:bg-green-200"
             )}
           >
-            {formatCurrency(Math.abs(customer.balance))}
+            {formatCurrency(Math.abs(customer.balance), currency)}
           </Badge>
           <ArrowRight className="h-5 w-5 text-[var(--color-text-tertiary)]" />
         </div>

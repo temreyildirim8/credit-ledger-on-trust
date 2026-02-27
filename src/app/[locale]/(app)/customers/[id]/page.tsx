@@ -13,6 +13,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { tr, enUS, es } from 'date-fns/locale';
 import type { Locale } from 'date-fns';
 import { useTranslations } from 'next-intl';
+import { useUserProfile } from '@/lib/hooks/useUserProfile';
 
 // Locale map for date-fns
 const localeMap: Record<string, Locale> = { en: enUS, tr, es };
@@ -24,6 +25,7 @@ export default function CustomerDetailsPage() {
   const { user } = useAuth();
   const t = useTranslations('customers');
   const tCommon = useTranslations('common');
+  const { currency } = useUserProfile();
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [transactions, setTransactions] = useState<{ id: string; type: string; amount: number; transaction_date: string | null; created_at: string | null; description?: string | null }[]>([]);
   const [loading, setLoading] = useState(true);
@@ -100,7 +102,7 @@ export default function CustomerDetailsPage() {
               {hasDebt ? t('details.totalDebt') : t('details.balance')}
             </p>
             <p className={`text-3xl font-bold ${hasDebt ? 'text-debt-text' : 'text-payment-text'}`}>
-              {formatCurrency(Math.abs(customer.balance))}
+              {formatCurrency(Math.abs(customer.balance), currency)}
             </p>
           </div>
         </CardContent>
@@ -217,7 +219,7 @@ export default function CustomerDetailsPage() {
                     }`}
                   >
                     {transaction.type === 'debt' ? '+' : '-'}
-                    {formatCurrency(transaction.amount)}
+                    {formatCurrency(transaction.amount, currency)}
                   </p>
                 </div>
               ))}

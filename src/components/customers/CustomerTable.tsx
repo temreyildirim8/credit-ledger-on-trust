@@ -51,6 +51,7 @@ function SortButton({ column, label, onSort }: SortButtonProps) {
 interface CustomerTableProps {
   customers: Customer[];
   locale?: string;
+  currency?: string;
   onRowClick?: (customer: Customer) => void;
   onAddDebt?: (customer: Customer) => void;
   onRecordPayment?: (customer: Customer) => void;
@@ -65,6 +66,7 @@ interface CustomerTableProps {
 export function CustomerTable({
   customers,
   locale = "en",
+  currency = "USD",
   onRowClick,
   onAddDebt,
   onRecordPayment,
@@ -204,7 +206,7 @@ export function CustomerTable({
                   )}
                 >
                   {customer.balance > 0 ? "+" : ""}
-                  {formatCurrency(Math.abs(customer.balance))}
+                  {formatCurrency(Math.abs(customer.balance), currency)}
                 </span>
               </TableCell>
               <TableCell>{getStatusBadge(customer.balance)}</TableCell>

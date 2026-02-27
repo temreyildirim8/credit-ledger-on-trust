@@ -24,12 +24,14 @@ const localeMap: Record<string, Locale> = { en: enUS, tr, es, id, hi, ar };
 interface TransactionTableProps {
   transactions: Transaction[];
   locale?: string;
+  currency?: string;
   onEdit?: (transaction: Transaction) => void;
 }
 
 export function TransactionTable({
   transactions,
   locale = "en",
+  currency = "USD",
   onEdit,
 }: TransactionTableProps) {
   const t = useTranslations("transactions");
@@ -98,7 +100,7 @@ export function TransactionTable({
                   }`}
                 >
                   {transaction.type === "debt" ? "+" : "-"}
-                  {formatCurrency(transaction.amount)}
+                  {formatCurrency(transaction.amount, currency)}
                 </span>
               </TableCell>
               <TableCell>

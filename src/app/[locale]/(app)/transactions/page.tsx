@@ -17,6 +17,7 @@ import { tr, enUS, es, id, hi, ar } from 'date-fns/locale';
 import type { Locale } from 'date-fns';
 import { useTranslations } from 'next-intl';
 import type { Transaction } from '@/lib/services/transactions.service';
+import { useUserProfile } from '@/lib/hooks/useUserProfile';
 
 // Locale map for date-fns
 const localeMap: Record<string, Locale> = { en: enUS, tr, es, id, hi, ar };
@@ -28,6 +29,7 @@ export default function TransactionsPage() {
   const t = useTranslations('transactions');
 
   const { transactions, loading, createTransaction, updateTransaction } = useTransactions();
+  const { currency } = useUserProfile();
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
@@ -167,6 +169,7 @@ export default function TransactionsPage() {
           <TransactionTable
             transactions={filteredTransactions}
             locale={locale}
+            currency={currency}
             onEdit={handleEditTransaction}
           />
         </div>
@@ -214,7 +217,7 @@ export default function TransactionsPage() {
                       }`}
                     >
                       {transaction.type === 'debt' ? '+' : '-'}
-                      {formatCurrency(transaction.amount)}
+                      {formatCurrency(transaction.amount, currency)}
                     </p>
                     <Button
                       variant="ghost"

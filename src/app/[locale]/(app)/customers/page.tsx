@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { usePathname } from "@/routing";
 import { useTranslations } from "next-intl";
 import { Customer } from "@/lib/services/customers.service";
+import { useUserProfile } from "@/lib/hooks/useUserProfile";
 import { toast } from "sonner";
 
 export default function CustomersPage() {
@@ -31,6 +32,7 @@ export default function CustomersPage() {
   } = useCustomers();
   const { createTransaction } = useTransactions();
   const { isPaidPlan } = useSubscription();
+  const { currency } = useUserProfile();
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
@@ -331,6 +333,7 @@ export default function CustomersPage() {
           <CustomerTable
             customers={sortedCustomers}
             locale={locale}
+            currency={currency}
             onRowClick={handleRowClick}
             onAddDebt={handleAddDebt}
             onRecordPayment={handleRecordPayment}
@@ -352,6 +355,7 @@ export default function CustomersPage() {
                 key={customer.id}
                 customer={customer}
                 locale={locale}
+                currency={currency}
                 onClick={() => handleRowClick(customer)}
               />
             ))}
