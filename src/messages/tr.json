@@ -142,7 +142,10 @@
     "upgradeForPWA": "Pro'ya Geç",
     "upgradeForPWADesc": "Uygulamayı kurmak için Pro'ya geçin",
     "upgradeForTheme": "Dark Mode için Pro'ya Geç",
-    "creditManagement": "Kredi Yönetimi"
+    "creditManagement": "Kredi Yönetimi",
+    "notifications": "Bildirimler",
+    "userMenu": "Kullanıcı menüsü",
+    "doubleclickToToggle": "Kenar çubuğunu açmak/kapatmak için çift tıklayın"
   },
   "home": {
     "meta": {
@@ -336,7 +339,9 @@
       "title": "Hangi Plani Seçeceğinizden Emin Değil misiniz?",
       "description": "Ücretsiz planımızla başlayın ve daha fazla özelliğe ihtiyaç duyduğunuzda yükseltin.",
       "button": "Ücretsiz Başlayın"
-    }
+    },
+    "checkoutError": "Ödeme başlatılamadı. Lütfen tekrar deneyin.",
+    "loadingCheckout": "Yükleniyor..."
   },
   "about": {
     "meta": {
@@ -820,7 +825,9 @@
     "skip": "Şimdilik Atla",
     "next": "İleri",
     "back": "Geri",
-    "finish": "Başla"
+    "finish": "Başla",
+    "error": "Tercihleriniz kaydedilemedi. Lütfen tekrar deneyin.",
+    "authRequired": "Kimlik doğrulama gerekli"
   },
   "faq": {
     "badge": "SSS",
@@ -907,7 +914,8 @@
         "exportPDF": "PDF Dışa Aktar",
         "backup": "Yedekleme",
         "backupDescription": "Verileriniz otomatik olarak buluta yedeklenir",
-        "lastBackup": "Son yedekleme: Şimdi"
+        "lastBackup": "Son yedekleme: Şimdi",
+        "exporting": "Veriler {format} olarak dışa aktarılıyor..."
       },
       "support": {
         "title": "Destek",
@@ -947,7 +955,8 @@
     "errors": {
       "loadFailed": "Profil yüklenemedi",
       "saveFailed": "Değişiklikler kaydedilemedi"
-    }
+    },
+    "betaDiscount": "%50 İndirim"
   },
   "auth": {
     "common": {
@@ -1426,5 +1435,14 @@
     "benefit4": "2 dakikada kurulum",
     "benefit5": "Birden çok dilde kullanılabilir",
     "benefit6": "Çoklu para birimi desteği"
+  },
+  "pwa": {
+    "install": {
+      "title": "Ledgerly Uygulamasını Kur",
+      "description": "Ledgerly'yi cihazınıza kurarak en iyi deneyimi yaşayın.",
+      "install": "Kur",
+      "notNow": "Şimdi Değil",
+      "close": "Kapat"
+    }
   }
 }

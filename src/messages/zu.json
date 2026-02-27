@@ -142,7 +142,10 @@
     "upgradeForPWA": "Thuthukisa ku-Pro",
     "upgradeForPWADesc": "Thuthukisa ku-Pro ukufaka i-app",
     "upgradeForTheme": "Thuthukisa ku-Pro ku-Dark Mode",
-    "creditManagement": "Ukuphathwa Kwesikweletu"
+    "creditManagement": "Ukuphathwa Kwesikweletu",
+    "notifications": "Izaziso",
+    "userMenu": "Imenyu yomsebenzisi",
+    "doubleclickToToggle": "Chofoza kabili ukuze ushintshe ibha engakubo"
   },
   "home": {
     "meta": {
@@ -323,7 +326,9 @@
       "title": "Ukulungele Ukuqala?",
       "description": "Joyina izinkampani ezinkulungwane ezisebenzisa i-Mali-X ukuphatha ikredithi yamakhasimende azo.",
       "button": "Qala Mahhala Namuhla"
-    }
+    },
+    "checkoutError": "Yehlulekile ukuqala i-checkout. Sicela uzame futhi.",
+    "loadingCheckout": "Iyalayisha..."
   },
   "about": {
     "meta": {
@@ -503,7 +508,9 @@
     "empty": {
       "noCustomers": "Awukho mthengi ukuphela",
       "noSearchResults": "Awukho mthengi atholakele",
-      "addFirst": "Yengeza umthengi wakhookuqala"
+      "addFirst": "Yengeza umthengi wakhookuqala",
+      "description": "Engeza umakhasimende wakho wokuqala ukuze uqale ukulandelela isikoloto",
+      "noSearchResultsDesc": "Zama igama elikhiyiwe elikhethekile"
     },
     "count": "{count} abathengi",
     "paywall": {
@@ -530,7 +537,11 @@
       "submit": "Yengeza Umthengi",
       "saveChanges": "Gcina Utshintsho",
       "databaseId": "ID Yedatabase",
-      "nonEditable": "(akukho ukuhlelwa)"
+      "nonEditable": "(akukho ukuhlelwa)",
+      "generatingId": "Iyahlola...",
+      "idAvailable": "Le khodi iyatholakala",
+      "idTaken": "Le khodi isetshenziwe, iyenza enye...",
+      "setUniqueId": "Yenza Ikhodi Ezikhethekile"
     },
     "details": {
       "totalDebt": "Ikredithi Esisonke",
@@ -554,7 +565,12 @@
       "address": "Ikheli",
       "edit": "Hlela",
       "call": "Shayela",
-      "editCustomer": "Hlela Umthengi"
+      "editCustomer": "Hlela Umthengi",
+      "actions": "Izenzo",
+      "archive": "Gcina",
+      "delete": "Susa",
+      "lastActivity": "Umsebenzi Wokugcina",
+      "status": "Isimo"
     },
     "success": "Umthengi yengezwekahle",
     "editSuccess": "Umthengi uvuselelwekahle",
@@ -566,7 +582,8 @@
       "fixErrors": "Sicela ulungise amaphutha efomu",
       "invalidId": "Izinhlamvu, izinombolo, izinxobo kanye ne-underscores kuphela ezimukelwa",
       "idTooShort": "I-ID kufanele ibe okungenani nezinhlamvu ezi-3",
-      "idTooLong": "I-ID kufanele ibe ngaphansi kwezinhlamvu eziyi-50"
+      "idTooLong": "I-ID kufanele ibe ngaphansi kwezinhlamvu eziyi-50",
+      "idTaken": "Le khodi yamakhasimende isetshenziwe kakade"
     },
     "table": {
       "customer": "Umthengi",
@@ -715,7 +732,8 @@
         "exportPDF": "Dlulisa i-PDF",
         "backup": "I-Backup",
         "backupDescription": "Idath yakho igcinwa kuzithulele ku-cloud",
-        "lastBackup": "I-backu yokugcina: Manje"
+        "lastBackup": "I-backu yokugcina: Manje",
+        "exporting": "Ikhiphela idatha njengo-{format}..."
       },
       "support": {
         "title": "Usizo",
@@ -755,7 +773,11 @@
     "errors": {
       "loadFailed": "Ihlulekile ukulayisha iprofayela",
       "saveFailed": "Ihlulekile ukugcina inguquko"
-    }
+    },
+    "subscription": {
+      "upgrade": "Thuthukisa Iplan"
+    },
+    "betaDiscount": "50% Eyehlisiwe"
   },
   "auth": {
     "common": {
@@ -852,7 +874,8 @@
       "emailSentSubtitle": "A verification link has been sent to your inbox.",
       "successAutoConfirmed": "Account created! Redirecting...",
       "redirecting": "Setting up your account...",
-      "statusBadge": "Trusted by 100M+ Businesses"
+      "statusBadge": "Trusted by 100M+ Businesses",
+      "goToLogin": "Iya ku-Login"
     },
     "forgotPassword": {
       "title": "Ukhohlwe Iphasiwedi",
@@ -1037,6 +1060,42 @@
       "month": "Lo Mnyaka",
       "year": "Lo Mnyaka Wonke",
       "all": "Wonke Isikhathi"
+    },
+    "comparison": {
+      "change": "Uguquko",
+      "lastMonth": "Inyanga Edlule",
+      "lastQuarter": "Ikota Edlule",
+      "lastYear": "Unyaka Odlule",
+      "thisMonth": "Le Nyanga",
+      "thisQuarter": "Le Kota",
+      "thisYear": "Lonyaka",
+      "title": "Ukuqhathanisa Izigaba",
+      "vsLastPeriod": "vs isigaba esidlule"
+    },
+    "customerPerformance": {
+      "avgPaymentTime": "Isikhathi Sokukhokha Esivamile",
+      "highRisk": "Ingozi Ephezulu",
+      "lastPayment": "Inkokhelo Yokugcina",
+      "lowRisk": "Ingozi Ephansi",
+      "mediumRisk": "Ingozi Ephakathi",
+      "reliabilityScore": "Isikalo Sokuthembeka",
+      "riskCategory": "Isigaba Sengozi",
+      "title": "Ukusebenza Kwamakhasimende",
+      "totalTransactions": "Izinhlelo Ezizonke"
+    },
+    "tax": {
+      "outstanding": "Okusalindwe",
+      "period": "Isikhathi",
+      "title": "Isipopho Sentela",
+      "totalCollected": "Okuqoqiwe Ekonke",
+      "totalSales": "Ukuthengisa Kwangaphela (Isikoloto)"
+    },
+    "trends": {
+      "collectionRate": "Uhlelo Lwezinga Lokuqoqa",
+      "customerActivity": "Umsebenzi Wamakhasimende",
+      "debtVsPayment": "Isikweletu vs Inkokhelo",
+      "monthlyCollection": "Ukuqoqa Kwanyanga",
+      "title": "Izikhuyiso"
     }
   },
   "onboarding": {
@@ -1082,7 +1141,9 @@
     "skip": "Yeqa okwamanje",
     "next": "Okulandelayo",
     "back": "Emuva",
-    "finish": "Qala"
+    "finish": "Qala",
+    "error": "Yehlulekile ukulondoloza izintandokazi zakho. Sicela uzame futhi.",
+    "authRequired": "Ukuqinisekiswa kuyadingeka"
   },
   "quickTour": {
     "title": "Uhambo Olusheshayo",
@@ -1363,5 +1424,14 @@
     "benefit4": "Ukusetha kwamaminithi angu-2",
     "benefit5": "Kutholakala ngamalimi amaningi",
     "benefit6": "Ukusekela kwemali eziningi"
+  },
+  "pwa": {
+    "install": {
+      "title": "Faka Uhlelo Lwe-Ledgerly",
+      "description": "Thola ulwazi olungcono ngokufaka i-Ledgerly edivayisini yakho.",
+      "install": "Faka",
+      "notNow": "Hhayi Manje",
+      "close": "Vala"
+    }
   }
 }

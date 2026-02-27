@@ -142,7 +142,10 @@
     "upgradeForPWA": "Pro पर अपग्रेड करें",
     "upgradeForPWADesc": "ऐप इंस्टॉल करने के लिए Pro पर अपग्रेड करें",
     "upgradeForTheme": "डार्क मोड के लिए Pro पर अपग्रेड करें",
-    "creditManagement": "क्रेडिट प्रबंधन"
+    "creditManagement": "क्रेडिट प्रबंधन",
+    "notifications": "सूचनाएं",
+    "userMenu": "उपयोगकर्ता मेनू",
+    "doubleclickToToggle": "साइडबार टॉगल करने के लिए डबल-क्लिक करें"
   },
   "home": {
     "meta": {
@@ -323,7 +326,9 @@
       "title": "शुरू करने के लिए तैयार हैं?",
       "description": "अपने ग्राहक क्रेडिट को प्रबंधित करने के लिए Udhar-X का उपयोग करने वाले हजारों व्यवसायों में शामिल हों।",
       "button": "आज मुफ्त शुरू करें"
-    }
+    },
+    "checkoutError": "checkout शुरू करने में विफल। कृपया पुनः प्रयास करें।",
+    "loadingCheckout": "लोड हो रहा है..."
   },
   "about": {
     "meta": {
@@ -503,7 +508,9 @@
     "empty": {
       "noCustomers": "अभी तक कोई ग्राहक नहीं",
       "noSearchResults": "कोई ग्राहक नहीं मिला",
-      "addFirst": "अपना पहला ग्राहक जोड़ें"
+      "addFirst": "अपना पहला ग्राहक जोड़ें",
+      "description": "क्रेडिट ट्रैक करना शुरू करने के लिए अपना पहला ग्राहक जोड़ें",
+      "noSearchResultsDesc": "कोई अलग खोज शब्द आज़माएं"
     },
     "count": "{count} ग्राहक",
     "paywall": {
@@ -530,7 +537,11 @@
       "submit": "ग्राहक जोड़ें",
       "saveChanges": "परिवर्तन सहेजें",
       "databaseId": "डेटाबेस आईडी",
-      "nonEditable": "(संपादन योग्य नहीं)"
+      "nonEditable": "(संपादन योग्य नहीं)",
+      "generatingId": "जांच हो रही है...",
+      "idAvailable": "यह कोड उपलब्ध है",
+      "idTaken": "यह कोड लिया जा चुका है, दूसरा जनरेट हो रहा है...",
+      "setUniqueId": "अद्वितीय कोड जनरेट करें"
     },
     "details": {
       "totalDebt": "कुल ऋण",
@@ -554,7 +565,12 @@
       "address": "पता",
       "edit": "संपादित करें",
       "call": "कॉल करें",
-      "editCustomer": "ग्राहक संपादित करें"
+      "editCustomer": "ग्राहक संपादित करें",
+      "actions": "क्रियाएं",
+      "archive": "संग्रहित करें",
+      "delete": "हटाएं",
+      "lastActivity": "अंतिम गतिविधि",
+      "status": "स्थिति"
     },
     "success": "ग्राहक सफलतापूर्वक जोड़ा गया",
     "editSuccess": "ग्राहक सफलतापूर्वक अपडेट किया गया",
@@ -566,7 +582,8 @@
       "fixErrors": "कृपया फॉर्म में त्रुटियों को ठीक करें",
       "invalidId": "केवल अक्षर, अंक, डैश और अंडरस्कोर की अनुमति है",
       "idTooShort": "ID कम से कम 3 अक्षर होना चाहिए",
-      "idTooLong": "ID 50 अक्षरों से कम होना चाहिए"
+      "idTooLong": "ID 50 अक्षरों से कम होना चाहिए",
+      "idTaken": "यह ग्राहक कोड पहले से उपयोग में है"
     },
     "table": {
       "customer": "ग्राहक",
@@ -715,7 +732,8 @@
         "exportPDF": "PDF निर्यात करें",
         "backup": "बैकअप",
         "backupDescription": "आपका डेटा स्वचालित रूप से क्लाउड पर बैकअप हो जाता है",
-        "lastBackup": "अंतिम बैकअप: अभी"
+        "lastBackup": "अंतिम बैकअप: अभी",
+        "exporting": "{format} के रूप में डेटा निर्यात हो रहा है..."
       },
       "support": {
         "title": "सहायता",
@@ -755,7 +773,11 @@
     "errors": {
       "loadFailed": "प्रोफ़ाइल लोड करने में विफल",
       "saveFailed": "परिवर्तन सहेजने में विफल"
-    }
+    },
+    "subscription": {
+      "upgrade": "योजना अपग्रेड करें"
+    },
+    "betaDiscount": "50% की छूट"
   },
   "auth": {
     "common": {
@@ -852,7 +874,8 @@
       "emailSentSubtitle": "A verification link has been sent to your inbox.",
       "successAutoConfirmed": "Account created! Redirecting...",
       "redirecting": "Setting up your account...",
-      "statusBadge": "Trusted by 100M+ Businesses"
+      "statusBadge": "Trusted by 100M+ Businesses",
+      "goToLogin": "लॉगिन पर जाएं"
     },
     "forgotPassword": {
       "title": "पासवर्ड भूल गए",
@@ -1037,6 +1060,42 @@
       "month": "इस महीने",
       "year": "इस साल",
       "all": "सभी समय"
+    },
+    "comparison": {
+      "change": "परिवर्तन",
+      "lastMonth": "पिछला महीना",
+      "lastQuarter": "पिछली तिमाही",
+      "lastYear": "पिछला साल",
+      "thisMonth": "इस महीने",
+      "thisQuarter": "इस तिमाही",
+      "thisYear": "इस साल",
+      "title": "अवधि तुलना",
+      "vsLastPeriod": "पिछली अवधि की तुलना में"
+    },
+    "customerPerformance": {
+      "avgPaymentTime": "औसत भुगतान समय",
+      "highRisk": "उच्च जोखिम",
+      "lastPayment": "अंतिम भुगतान",
+      "lowRisk": "कम जोखिम",
+      "mediumRisk": "मध्यम जोखिम",
+      "reliabilityScore": "विश्वसनीयता स्कोर",
+      "riskCategory": "जोखिम श्रेणी",
+      "title": "ग्राहक प्रदर्शन",
+      "totalTransactions": "कुल लेनदेन"
+    },
+    "tax": {
+      "outstanding": "बकाया",
+      "period": "अवधि",
+      "title": "कर सारांश",
+      "totalCollected": "कुल एकत्र",
+      "totalSales": "कुल बिक्री (क्रेडिट)"
+    },
+    "trends": {
+      "collectionRate": "संग्रह दर प्रवृत्ति",
+      "customerActivity": "ग्राहक गतिविधि",
+      "debtVsPayment": "ऋण बनाम भुगतान",
+      "monthlyCollection": "मासिक संग्रह",
+      "title": "रुझान"
     }
   },
   "onboarding": {
@@ -1082,7 +1141,9 @@
     "skip": "अभी के लिए छोड़ें",
     "next": "अगला",
     "back": "वापस",
-    "finish": "शुरू करें"
+    "finish": "शुरू करें",
+    "error": "आपकी प्राथमिकताएं सहेजी नहीं जा सकीं। कृपया पुनः प्रयास करें।",
+    "authRequired": "प्रमाणीकरण आवश्यक है"
   },
   "quickTour": {
     "title": "त्वरित टूर",
@@ -1363,5 +1424,14 @@
     "benefit4": "2 मिनट में सेटअप",
     "benefit5": "कई भाषाओं में उपलब्ध",
     "benefit6": "बहु-मुद्रा समर्थन"
+  },
+  "pwa": {
+    "install": {
+      "title": "Ledgerly ऐप इंस्टॉल करें",
+      "description": "अपने डिवाइस पर Ledgerly इंस्टॉल करके सर्वोत्तम अनुभव प्राप्त करें।",
+      "install": "इंस्टॉल करें",
+      "notNow": "अभी नहीं",
+      "close": "बंद करें"
+    }
   }
 }

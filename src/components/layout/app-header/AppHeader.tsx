@@ -16,23 +16,21 @@ interface AppHeaderProps {
  * App header component for authenticated pages
  * Shows greeting, notifications, and user avatar
  */
-export function AppHeader({
-  title,
-  subtitle,
-  className,
-}: AppHeaderProps) {
+export function AppHeader({ title, subtitle, className }: AppHeaderProps) {
   const { user } = useAuth();
-  const t = useTranslations("dashboard.greeting");
+  const t = useTranslations("nav");
+  const tDashboard = useTranslations("dashboard.greeting");
 
   // Get user name from auth metadata or use default
-  const userName = user?.user_metadata?.full_name || user?.email?.split("@")[0] || "User";
+  const userName =
+    user?.user_metadata?.full_name || user?.email?.split("@")[0] || "User";
 
   // Get greeting based on time of day using i18n
   const getGreeting = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return t("morning");
-    if (hour < 17) return t("afternoon");
-    return t("evening");
+    if (hour < 12) return tDashboard("morning");
+    if (hour < 17) return tDashboard("afternoon");
+    return tDashboard("evening");
   };
 
   return (
@@ -40,24 +38,20 @@ export function AppHeader({
       className={cn(
         "sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-border",
         "md:hidden", // Only show on mobile
-        className
+        className,
       )}
     >
       <div className="flex items-center justify-between px-4 py-3">
         <div>
           {title ? (
-            <h1 className="text-lg font-semibold text-text">
-              {title}
-            </h1>
+            <h1 className="text-lg font-semibold text-text">{title}</h1>
           ) : (
             <div>
               <p className="text-base font-medium text-text">
                 {getGreeting()}, <span className="text-accent">{userName}</span>
               </p>
               {subtitle && (
-                <p className="text-xs text-text-secondary mt-0.5">
-                  {subtitle}
-                </p>
+                <p className="text-xs text-text-secondary mt-0.5">{subtitle}</p>
               )}
             </div>
           )}
@@ -70,7 +64,7 @@ export function AppHeader({
           {/* Notifications */}
           <button
             className="relative p-2.5 rounded-xl hover:bg-surface-alt transition-colors"
-            aria-label="Notifications"
+            aria-label={t("notifications")}
           >
             <Bell className="w-5 h-5 text-text-secondary" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full" />
@@ -79,7 +73,7 @@ export function AppHeader({
           {/* User Avatar */}
           <button
             className="w-10 h-10 rounded-xl bg-accent text-white font-medium flex items-center justify-center shadow-sm"
-            aria-label="User menu"
+            aria-label={t("userMenu")}
           >
             {userName.charAt(0)}
           </button>

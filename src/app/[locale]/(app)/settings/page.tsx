@@ -183,7 +183,7 @@ export default function SettingsPage() {
         }
       } catch (error) {
         console.error("Error loading user profile:", error);
-        toast.error(t("errors.loadFailed") || "Failed to load profile");
+        toast.error(t("errors.loadFailed"));
       } finally {
         setIsLoading(false);
       }
@@ -195,7 +195,7 @@ export default function SettingsPage() {
   const handleSignOut = async () => {
     try {
       await signOut();
-      toast.success(tCommon("success") || "Signed out successfully");
+      toast.success(tCommon("success"));
       // Redirect to marketing home page after sign out
       window.location.replace(`/${locale}`);
     } catch (error) {
@@ -209,7 +209,7 @@ export default function SettingsPage() {
 
     // Validation for empty required fields
     if (!name.trim()) {
-      toast.error(t("sections.profile.nameRequired") || "Name is required");
+      toast.error(t("sections.profile.nameRequired"));
       return;
     }
 
@@ -218,7 +218,7 @@ export default function SettingsPage() {
     const phoneChanged = phone.trim() !== originalPhone.trim();
 
     if (!nameChanged && !phoneChanged) {
-      toast.info(t("sections.profile.noChanges") || "No changes to save");
+      toast.info(t("sections.profile.noChanges"));
       return;
     }
 
@@ -246,7 +246,7 @@ export default function SettingsPage() {
       toast.success(t("sections.profile.saved"));
     } catch (error) {
       console.error("Error saving profile:", error);
-      toast.error(t("errors.saveFailed") || "Failed to save profile");
+      toast.error(t("errors.saveFailed"));
     } finally {
       setIsSaving(false);
     }
@@ -262,7 +262,7 @@ export default function SettingsPage() {
     const languageChanged = language !== originalLanguage;
 
     if (!businessNameChanged && !currencyChanged && !languageChanged) {
-      toast.info(t("sections.business.noChanges") || "No changes to save");
+      toast.info(t("sections.business.noChanges"));
       return;
     }
 
@@ -299,14 +299,16 @@ export default function SettingsPage() {
       }
     } catch (error) {
       console.error("Error saving business settings:", error);
-      toast.error(t("errors.saveFailed") || "Failed to save settings");
+      toast.error(t("errors.saveFailed"));
     } finally {
       setIsSaving(false);
     }
   };
 
   const handleExportData = (format: "csv" | "pdf") => {
-    toast.success(`Exporting data as ${format.toUpperCase()}...`);
+    toast.success(
+      t("sections.data.exporting", { format: format.toUpperCase() }),
+    );
   };
 
   const activeSection = settingsSections.find((s) => s.id === activeTab);
@@ -424,7 +426,7 @@ export default function SettingsPage() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="your@email.com"
+                      placeholder={t("auth.login.emailPlaceholder")}
                     />
                   </div>
                   <div className="space-y-2">
@@ -434,7 +436,7 @@ export default function SettingsPage() {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+90 555 123 4567"
+                      placeholder={t("customers.form.phonePlaceholder")}
                     />
                   </div>
                   <Button
@@ -583,7 +585,9 @@ export default function SettingsPage() {
                           {t("sections.subscription.planName")}
                         </p>
                       </div>
-                      <Badge className="bg-accent text-white">50% Off</Badge>
+                      <Badge className="bg-accent text-white">
+                        {t("betaDiscount")}
+                      </Badge>
                     </div>
                     <div className="space-y-2 text-sm">
                       <div className="flex items-center gap-2">

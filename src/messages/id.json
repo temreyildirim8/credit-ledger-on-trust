@@ -142,7 +142,10 @@
     "upgradeForPWA": "Upgrade ke Pro",
     "upgradeForPWADesc": "Upgrade ke Pro untuk menginstal aplikasi",
     "upgradeForTheme": "Upgrade ke Pro untuk Mode Gelap",
-    "creditManagement": "Manajemen Kredit"
+    "creditManagement": "Manajemen Kredit",
+    "notifications": "Notifikasi",
+    "userMenu": "Menu pengguna",
+    "doubleclickToToggle": "Klik dua kali untuk beralih bilah samping"
   },
   "home": {
     "meta": {
@@ -323,7 +326,9 @@
       "title": "Siap untuk Memulai?",
       "description": "Bergabunglah dengan ribuan bisnis yang menggunakan Hutang-Ku untuk mengelola kredit pelanggan mereka.",
       "button": "Mulai Gratis Hari Ini"
-    }
+    },
+    "checkoutError": "Gagal memulai checkout. Silakan coba lagi.",
+    "loadingCheckout": "Memuat..."
   },
   "about": {
     "meta": {
@@ -503,7 +508,9 @@
     "empty": {
       "noCustomers": "Belum ada pelanggan",
       "noSearchResults": "Tidak ada pelanggan ditemukan",
-      "addFirst": "Tambahkan pelanggan pertama Anda"
+      "addFirst": "Tambahkan pelanggan pertama Anda",
+      "description": "Tambahkan pelanggan pertama Anda untuk mulai melacak kredit",
+      "noSearchResultsDesc": "Coba kata kunci pencarian yang berbeda"
     },
     "count": "{count} pelanggan",
     "paywall": {
@@ -530,7 +537,11 @@
       "submit": "Tambah Pelanggan",
       "saveChanges": "Simpan Perubahan",
       "databaseId": "ID Database",
-      "nonEditable": "(tidak dapat diedit)"
+      "nonEditable": "(tidak dapat diedit)",
+      "generatingId": "Memeriksa...",
+      "idAvailable": "Kode ini tersedia",
+      "idTaken": "Kode ini sudah digunakan, membuat yang lain...",
+      "setUniqueId": "Buat Kode Unik"
     },
     "details": {
       "totalDebt": "Total Hutang",
@@ -554,7 +565,12 @@
       "address": "Alamat",
       "edit": "Edit",
       "call": "Panggil",
-      "editCustomer": "Edit Pelanggan"
+      "editCustomer": "Edit Pelanggan",
+      "actions": "Tindakan",
+      "archive": "Arsipkan",
+      "delete": "Hapus",
+      "lastActivity": "Aktivitas Terakhir",
+      "status": "Status"
     },
     "success": "Pelanggan berhasil ditambahkan",
     "editSuccess": "Pelanggan berhasil diperbarui",
@@ -566,7 +582,8 @@
       "fixErrors": "Silakan perbaiki kesalahan dalam formulir",
       "invalidId": "Hanya huruf, angka, tanda hubung, dan garis bawah yang diizinkan",
       "idTooShort": "ID harus minimal 3 karakter",
-      "idTooLong": "ID harus kurang dari 50 karakter"
+      "idTooLong": "ID harus kurang dari 50 karakter",
+      "idTaken": "Kode pelanggan ini sudah digunakan"
     },
     "table": {
       "customer": "Pelanggan",
@@ -715,7 +732,8 @@
         "exportPDF": "Ekspor PDF",
         "backup": "Backup",
         "backupDescription": "Data Anda dicadangkan secara otomatis ke cloud",
-        "lastBackup": "Backup terakhir: Baru saja"
+        "lastBackup": "Backup terakhir: Baru saja",
+        "exporting": "Mengekspor data sebagai {format}..."
       },
       "support": {
         "title": "Dukungan",
@@ -755,7 +773,11 @@
     "errors": {
       "loadFailed": "Gagal memuat profil",
       "saveFailed": "Gagal menyimpan perubahan"
-    }
+    },
+    "subscription": {
+      "upgrade": "Upgrade Paket"
+    },
+    "betaDiscount": "Diskon 50%"
   },
   "auth": {
     "common": {
@@ -852,7 +874,8 @@
       "emailSentSubtitle": "A verification link has been sent to your inbox.",
       "successAutoConfirmed": "Account created! Redirecting...",
       "redirecting": "Setting up your account...",
-      "statusBadge": "Trusted by 100M+ Businesses"
+      "statusBadge": "Trusted by 100M+ Businesses",
+      "goToLogin": "Pergi ke Login"
     },
     "forgotPassword": {
       "title": "Lupa Kata Sandi",
@@ -1037,6 +1060,42 @@
       "month": "Bulan Ini",
       "year": "Tahun Ini",
       "all": "Sepanjang Waktu"
+    },
+    "comparison": {
+      "change": "Perubahan",
+      "lastMonth": "Bulan Lalu",
+      "lastQuarter": "Kuartal Lalu",
+      "lastYear": "Tahun Lalu",
+      "thisMonth": "Bulan Ini",
+      "thisQuarter": "Kuartal Ini",
+      "thisYear": "Tahun Ini",
+      "title": "Perbandingan Periode",
+      "vsLastPeriod": "vs periode lalu"
+    },
+    "customerPerformance": {
+      "avgPaymentTime": "Waktu Pembayaran Rata-rata",
+      "highRisk": "Risiko Tinggi",
+      "lastPayment": "Pembayaran Terakhir",
+      "lowRisk": "Risiko Rendah",
+      "mediumRisk": "Risiko Sedang",
+      "reliabilityScore": "Skor Keandalan",
+      "riskCategory": "Kategori Risiko",
+      "title": "Performa Pelanggan",
+      "totalTransactions": "Total Transaksi"
+    },
+    "tax": {
+      "outstanding": "Belum Dibayar",
+      "period": "Periode",
+      "title": "Ringkasan Pajak",
+      "totalCollected": "Total Terkumpul",
+      "totalSales": "Total Penjualan (Kredit)"
+    },
+    "trends": {
+      "collectionRate": "Tren Tingkat Pengumpulan",
+      "customerActivity": "Aktivitas Pelanggan",
+      "debtVsPayment": "Hutang vs Pembayaran",
+      "monthlyCollection": "Pengumpulan Bulanan",
+      "title": "Tren"
     }
   },
   "onboarding": {
@@ -1082,7 +1141,9 @@
     "skip": "Lewati untuk sekarang",
     "next": "Berikutnya",
     "back": "Kembali",
-    "finish": "Mulai"
+    "finish": "Mulai",
+    "error": "Gagal menyimpan preferensi Anda. Silakan coba lagi.",
+    "authRequired": "Autentikasi diperlukan"
   },
   "quickTour": {
     "title": "Tur Cepat",
@@ -1363,5 +1424,14 @@
     "benefit4": "Pengaturan dalam 2 menit",
     "benefit5": "Tersedia dalam banyak bahasa",
     "benefit6": "Dukungan multi-mata uang"
+  },
+  "pwa": {
+    "install": {
+      "title": "Pasang Aplikasi Ledgerly",
+      "description": "Dapatkan pengalaman terbaik dengan memasang Ledgerly di perangkat Anda.",
+      "install": "Pasang",
+      "notNow": "Belum Sekarang",
+      "close": "Tutup"
+    }
   }
 }

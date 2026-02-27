@@ -142,7 +142,10 @@
     "upgradeForPWA": "الترقية إلى Pro",
     "upgradeForPWADesc": "قم بالترقية إلى Pro لتثبيت التطبيق",
     "upgradeForTheme": "الترقية إلى Pro للوضع الداكن",
-    "creditManagement": "إدارة الائتمان"
+    "creditManagement": "إدارة الائتمان",
+    "notifications": "الإشعارات",
+    "userMenu": "قائمة المستخدم",
+    "doubleclickToToggle": "انقر مرتين لتبديل الشريط الجانبي"
   },
   "home": {
     "meta": {
@@ -323,7 +326,9 @@
       "title": "هل أنت مستعد للبدء؟",
       "description": "انضم إلى آلاف الشركات التي تستخدم Dayn-X لإدارة ائتمان عملائها.",
       "button": "ابدأ مجانًا اليوم"
-    }
+    },
+    "checkoutError": "تعذّر بدء الدفع. يرجى المحاولة مرة أخرى.",
+    "loadingCheckout": "جارٍ التحميل..."
   },
   "about": {
     "meta": {
@@ -503,7 +508,9 @@
     "empty": {
       "noCustomers": "لا يوجد عملاء بعد",
       "noSearchResults": "لم يتم العثور على عملاء",
-      "addFirst": "أضف أول عميل لك"
+      "addFirst": "أضف أول عميل لك",
+      "description": "أضف عميلك الأول لبدء تتبع الائتمان",
+      "noSearchResultsDesc": "جرب مصطلح بحث مختلف"
     },
     "count": "{count} عميل",
     "form": {
@@ -524,7 +531,11 @@
       "submit": "إضافة عميل",
       "saveChanges": "حفظ التغييرات",
       "databaseId": "معرف قاعدة البيانات",
-      "nonEditable": "(غير قابل للتعديل)"
+      "nonEditable": "(غير قابل للتعديل)",
+      "generatingId": "جارٍ الفحص...",
+      "idAvailable": "هذا الرمز متاح",
+      "idTaken": "هذا الرمز مستخدم، جارٍ إنشاء آخر...",
+      "setUniqueId": "إنشاء رمز فريد"
     },
     "details": {
       "totalDebt": "إجمالي الدين",
@@ -565,7 +576,8 @@
       "fixErrors": "الرجاء تصحيح الأخطاء في النموذج",
       "invalidId": "يُسمح فقط بالحروف والأرقام والشرطات والشرطات السفلية",
       "idTooShort": "يجب أن يكون المعرف 3 أحرف على الأقل",
-      "idTooLong": "يجب أن يكون المعرف أقل من 50 حرفاً"
+      "idTooLong": "يجب أن يكون المعرف أقل من 50 حرفاً",
+      "idTaken": "رمز العميل هذا مستخدم بالفعل"
     },
     "table": {
       "customer": "العميل",
@@ -721,6 +733,42 @@
       "month": "هذا الشهر",
       "year": "هذا العام",
       "all": "كل الوقت"
+    },
+    "comparison": {
+      "change": "التغيير",
+      "lastMonth": "الشهر الماضي",
+      "lastQuarter": "الربع الماضي",
+      "lastYear": "العام الماضي",
+      "thisMonth": "هذا الشهر",
+      "thisQuarter": "هذا الربع",
+      "thisYear": "هذا العام",
+      "title": "مقارنة الفترات",
+      "vsLastPeriod": "مقابل الفترة الماضية"
+    },
+    "customerPerformance": {
+      "avgPaymentTime": "متوسط وقت الدفع",
+      "highRisk": "مخاطرة عالية",
+      "lastPayment": "آخر دفعة",
+      "lowRisk": "مخاطرة منخفضة",
+      "mediumRisk": "مخاطرة متوسطة",
+      "reliabilityScore": "درجة الموثوقية",
+      "riskCategory": "فئة المخاطرة",
+      "title": "أداء العملاء",
+      "totalTransactions": "إجمالي المعاملات"
+    },
+    "tax": {
+      "outstanding": "المستحق",
+      "period": "الفترة",
+      "title": "ملخص الضرائب",
+      "totalCollected": "إجمالي المحصّل",
+      "totalSales": "إجمالي المبيعات (ائتمان)"
+    },
+    "trends": {
+      "collectionRate": "اتجاه معدل التحصيل",
+      "customerActivity": "نشاط العملاء",
+      "debtVsPayment": "الديون مقابل المدفوعات",
+      "monthlyCollection": "التحصيل الشهري",
+      "title": "الاتجاهات"
     }
   },
   "onboarding": {
@@ -766,7 +814,9 @@
     "skip": "تخطي في الوقت الحالي",
     "next": "التالي",
     "back": "رجوع",
-    "finish": "ابدأ"
+    "finish": "ابدأ",
+    "error": "تعذّر حفظ تفضيلاتك. يرجى المحاولة مرة أخرى.",
+    "authRequired": "المصادقة مطلوبة"
   },
   "quickTour": {
     "title": "جولة سريعة",
@@ -880,7 +930,8 @@
         "exportPDF": "تصدير PDF",
         "backup": "النسخ الاحتياطي",
         "backupDescription": "يتم نسخ بياناتك احتياطيًا تلقائيًا إلى السحابة",
-        "lastBackup": "آخر نسخ احتياطي: الآن"
+        "lastBackup": "آخر نسخ احتياطي: الآن",
+        "exporting": "جارٍ تصدير البيانات بصيغة {format}..."
       },
       "support": {
         "title": "الدعم",
@@ -920,7 +971,11 @@
     "errors": {
       "loadFailed": "فشل تحميل الملف الشخصي",
       "saveFailed": "فشل حفظ التغييرات"
-    }
+    },
+    "subscription": {
+      "upgrade": "ترقية الخطة"
+    },
+    "betaDiscount": "خصم 50%"
   },
   "auth": {
     "common": {
@@ -1017,7 +1072,8 @@
       "emailSentSubtitle": "A verification link has been sent to your inbox.",
       "successAutoConfirmed": "Account created! Redirecting...",
       "redirecting": "Setting up your account...",
-      "statusBadge": "Trusted by 100M+ Businesses"
+      "statusBadge": "Trusted by 100M+ Businesses",
+      "goToLogin": "الذهاب إلى تسجيل الدخول"
     },
     "forgotPassword": {
       "title": "نسيت كلمة المرور",
@@ -1368,5 +1424,14 @@
     "benefit4": "الإعداد في دقيقتين",
     "benefit5": "متوفر بلغات متعددة",
     "benefit6": "دعم متعدد العملات"
+  },
+  "pwa": {
+    "install": {
+      "title": "تثبيت تطبيق Ledgerly",
+      "description": "احصل على أفضل تجربة بتثبيت Ledgerly على جهازك.",
+      "install": "تثبيت",
+      "notNow": "ليس الآن",
+      "close": "إغلاق"
+    }
   }
 }

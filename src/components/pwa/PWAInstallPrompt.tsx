@@ -28,7 +28,7 @@ export function PWAInstallPrompt() {
         <button
           onClick={() => setIsVisible(false)}
           className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-          aria-label="Close"
+          aria-label={t("close")}
         >
           <X className="h-4 w-4" />
         </button>

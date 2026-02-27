@@ -142,7 +142,10 @@
     "upgradeForPWA": "Actualizar a Pro",
     "upgradeForPWADesc": "Actualiza a Pro para instalar la app",
     "upgradeForTheme": "Actualizar a Pro para Modo Oscuro",
-    "creditManagement": "Gestión de Crédito"
+    "creditManagement": "Gestión de Crédito",
+    "notifications": "Notificaciones",
+    "userMenu": "Menú de usuario",
+    "doubleclickToToggle": "Doble clic para alternar la barra lateral"
   },
   "home": {
     "meta": {
@@ -323,7 +326,9 @@
       "title": "¿Listo para Comenzar?",
       "description": "Únete a miles de negocios que usan Fiado-X para gestionar el crédito de sus clientes.",
       "button": "Comienza Gratis Hoy"
-    }
+    },
+    "checkoutError": "Error al iniciar el pago. Por favor intenta de nuevo.",
+    "loadingCheckout": "Cargando..."
   },
   "about": {
     "meta": {
@@ -503,7 +508,9 @@
     "empty": {
       "noCustomers": "Aún no hay clientes",
       "noSearchResults": "No se encontraron clientes",
-      "addFirst": "Agrega tu primer cliente"
+      "addFirst": "Agrega tu primer cliente",
+      "description": "Agrega tu primer cliente para comenzar a rastrear el crédito",
+      "noSearchResultsDesc": "Intenta con un término de búsqueda diferente"
     },
     "count": "{count} clientes",
     "form": {
@@ -524,7 +531,11 @@
       "submit": "Agregar Cliente",
       "saveChanges": "Guardar Cambios",
       "databaseId": "ID de Base de Datos",
-      "nonEditable": "(no editable)"
+      "nonEditable": "(no editable)",
+      "generatingId": "Verificando...",
+      "idAvailable": "Este código está disponible",
+      "idTaken": "Este código está ocupado, generando otro...",
+      "setUniqueId": "Generar Código Único"
     },
     "details": {
       "totalDebt": "Deuda Total",
@@ -548,7 +559,12 @@
       "address": "Dirección",
       "edit": "Editar",
       "call": "Llamar",
-      "editCustomer": "Editar Cliente"
+      "editCustomer": "Editar Cliente",
+      "actions": "Acciones",
+      "archive": "Archivar",
+      "delete": "Eliminar",
+      "lastActivity": "Última Actividad",
+      "status": "Estado"
     },
     "success": "Cliente agregado con éxito",
     "editSuccess": "Cliente actualizado con éxito",
@@ -560,7 +576,8 @@
       "fixErrors": "Por favor corrige los errores en el formulario",
       "invalidId": "Solo se permiten letras, números, guiones y guiones bajos",
       "idTooShort": "El ID debe tener al menos 3 caracteres",
-      "idTooLong": "El ID debe tener menos de 50 caracteres"
+      "idTooLong": "El ID debe tener menos de 50 caracteres",
+      "idTaken": "Este código de cliente ya está en uso"
     },
     "table": {
       "customer": "Cliente",
@@ -715,7 +732,8 @@
         "exportPDF": "Exportar PDF",
         "backup": "Copia de Seguridad",
         "backupDescription": "Tus datos se respaldan automáticamente en la nube",
-        "lastBackup": "Última copia: Justo ahora"
+        "lastBackup": "Última copia: Justo ahora",
+        "exporting": "Exportando datos como {format}..."
       },
       "support": {
         "title": "Soporte",
@@ -755,7 +773,11 @@
     "errors": {
       "loadFailed": "Error al cargar el perfil",
       "saveFailed": "Error al guardar los cambios"
-    }
+    },
+    "subscription": {
+      "upgrade": "Actualizar Plan"
+    },
+    "betaDiscount": "50% de Descuento"
   },
   "auth": {
     "common": {
@@ -852,7 +874,8 @@
       "emailSentSubtitle": "A verification link has been sent to your inbox.",
       "successAutoConfirmed": "Account created! Redirecting...",
       "redirecting": "Setting up your account...",
-      "statusBadge": "Trusted by 100M+ Businesses"
+      "statusBadge": "Trusted by 100M+ Businesses",
+      "goToLogin": "Ir al Inicio de Sesión"
     },
     "forgotPassword": {
       "title": "Contraseña Olvidada",
@@ -1228,6 +1251,42 @@
       "month": "Este Mes",
       "year": "Este Año",
       "all": "Todo el Tiempo"
+    },
+    "comparison": {
+      "change": "Cambio",
+      "lastMonth": "Mes Pasado",
+      "lastQuarter": "Último Trimestre",
+      "lastYear": "Año Pasado",
+      "thisMonth": "Este Mes",
+      "thisQuarter": "Este Trimestre",
+      "thisYear": "Este Año",
+      "title": "Comparación de Períodos",
+      "vsLastPeriod": "vs período anterior"
+    },
+    "customerPerformance": {
+      "avgPaymentTime": "Tiempo Promedio de Pago",
+      "highRisk": "Alto Riesgo",
+      "lastPayment": "Último Pago",
+      "lowRisk": "Bajo Riesgo",
+      "mediumRisk": "Riesgo Medio",
+      "reliabilityScore": "Puntuación de Confianza",
+      "riskCategory": "Categoría de Riesgo",
+      "title": "Rendimiento de Clientes",
+      "totalTransactions": "Total de Transacciones"
+    },
+    "tax": {
+      "outstanding": "Pendiente",
+      "period": "Período",
+      "title": "Resumen de Impuestos",
+      "totalCollected": "Total Recaudado",
+      "totalSales": "Ventas Totales (Crédito)"
+    },
+    "trends": {
+      "collectionRate": "Tendencia de Tasa de Cobro",
+      "customerActivity": "Actividad de Clientes",
+      "debtVsPayment": "Deuda vs Pago",
+      "monthlyCollection": "Cobro Mensual",
+      "title": "Tendencias"
     }
   },
   "onboarding": {
@@ -1273,7 +1332,9 @@
     "skip": "Omitir por ahora",
     "next": "Siguiente",
     "back": "Atrás",
-    "finish": "Comenzar"
+    "finish": "Comenzar",
+    "error": "No se pudieron guardar tus preferencias. Por favor intenta de nuevo.",
+    "authRequired": "Autenticación requerida"
   },
   "quickTour": {
     "title": "Tour Rápido",
@@ -1363,5 +1424,14 @@
     "benefit4": "Configuración en 2 minutos",
     "benefit5": "Disponible en múltiples idiomas",
     "benefit6": "Soporte multimoneda"
+  },
+  "pwa": {
+    "install": {
+      "title": "Instalar App Ledgerly",
+      "description": "Obtén la mejor experiencia instalando Ledgerly en tu dispositivo.",
+      "install": "Instalar",
+      "notNow": "Ahora No",
+      "close": "Cerrar"
+    }
   }
 }

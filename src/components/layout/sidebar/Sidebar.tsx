@@ -146,7 +146,7 @@ export function Sidebar({ className }: SidebarProps) {
           isCollapsed ? "justify-center p-3" : "gap-3 p-5",
         )}
         onDoubleClick={toggleSidebar}
-        title="Double-click to toggle sidebar"
+        title={t("doubleclickToToggle")}
       >
         <Link
           href="/dashboard"
@@ -174,7 +174,7 @@ export function Sidebar({ className }: SidebarProps) {
         className="flex-1 px-2 py-4 space-y-1"
         data-tour="sidebar-nav"
         onDoubleClick={toggleSidebar}
-        title="Double-click to toggle sidebar"
+        title={t("doubleclickToToggle")}
       >
         {navItems.map((item) => {
           const isActive = pathname === `${basePath}${item.href}`;
