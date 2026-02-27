@@ -917,6 +917,23 @@
         "manageBilling": "Faturalandırmayı Yönet",
         "upgrade": "Planı Yükselt"
       },
+      "upgradeModal": {
+        "title": "Planınızı Yükseltin",
+        "description": "İşletmenizin ihtiyaçlarına uygun bir plan seçin",
+        "mostPopular": "En Popüler",
+        "currentPlan": "Mevcut Plan",
+        "currentPlanActive": "Mevcut Plan Aktif",
+        "selected": "Seçildi",
+        "cancel": "İptal",
+        "processing": "İşleniyor...",
+        "contactSales": "Satışla İletişime Geçin",
+        "upgradeTo": "{plan} planına yükselt",
+        "upgradeSuccess": "{plan} planına başarıyla yükseltildi!",
+        "contactSalesSuccess": "Satış ekibimiz kısa süre içinde sizinle iletişime geçecek!",
+        "upgradeError": "Plan yükseltilemedi. Lütfen tekrar deneyin.",
+        "footerNote": "Planınızı istediğiniz zaman değiştirebilir veya iptal edebilirsiniz. Gizli ücret yok.",
+        "comingSoon": "Yakında"
+      },
       "data": {
         "title": "Veri ve Yedekleme",
         "description": "Verilerinizi dışa aktarın ve yedekleyin",
@@ -984,24 +1001,6 @@
         "select": "Açılır Menü",
         "textarea": "Uzun Metin",
         "checkbox": "Onay Kutusu"
-      }
-    },
-      "upgradeModal": {
-        "title": "Planınızı Yükseltin",
-        "description": "İşletmenizin ihtiyaçlarına uygun bir plan seçin",
-        "mostPopular": "En Popüler",
-        "currentPlan": "Mevcut Plan",
-        "currentPlanActive": "Mevcut Plan Aktif",
-        "selected": "Seçildi",
-        "cancel": "İptal",
-        "processing": "İşleniyor...",
-        "contactSales": "Satışla İletişime Geçin",
-        "upgradeTo": "{plan} planına yükselt",
-        "upgradeSuccess": "{plan} planına başarıyla yükseltildi!",
-        "contactSalesSuccess": "Satış ekibimiz kısa süre içinde sizinle iletişime geçecek!",
-        "upgradeError": "Plan yükseltilemedi. Lütfen tekrar deneyin.",
-        "footerNote": "Planınızı istediğiniz zaman değiştirebilir veya iptal edebilirsiniz. Gizli ücret yok.",
-        "comingSoon": "Yakında"
       }
     },
     "auth": {
