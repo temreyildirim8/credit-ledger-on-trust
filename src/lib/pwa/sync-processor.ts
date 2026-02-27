@@ -150,22 +150,25 @@ async function processCreateCustomer(payload: Record<string, unknown>): Promise<
 
 /**
  * Process update customer action
+ * SECURITY: Requires userId to verify ownership
  */
 async function processUpdateCustomer(payload: Record<string, unknown>): Promise<void> {
-  const { customerId, updates } = payload as {
+  const { userId, customerId, updates } = payload as {
+    userId: string;
     customerId: string;
     updates: Record<string, unknown>;
   };
 
-  await customersService.updateCustomer(customerId, updates);
+  await customersService.updateCustomer(userId, customerId, updates);
 }
 
 /**
  * Process delete customer action
+ * SECURITY: Requires userId to verify ownership
  */
 async function processDeleteCustomer(payload: Record<string, unknown>): Promise<void> {
-  const { customerId } = payload as { customerId: string };
-  await customersService.deleteCustomer(customerId);
+  const { userId, customerId } = payload as { userId: string; customerId: string };
+  await customersService.deleteCustomer(userId, customerId);
   await offlineCache.deleteCustomer(customerId);
 }
 
@@ -205,22 +208,17 @@ async function processCreateTransaction(payload: Record<string, unknown>): Promi
 
 /**
  * Process update transaction action
+ * SECURITY: Requires userId to verify ownership
  */
 async function processUpdateTransaction(payload: Record<string, unknown>): Promise<void> {
-  const { transactionId, updates } = payload as {
+  const { userId, transactionId, updates } = payload as {
+    userId: string;
     transactionId: string;
     updates: Record<string, unknown>;
   };
 
-  // Note: transactionsService doesn't have updateTransaction yet
-  // This would be implemented when needed
-  const supabase = createClient();
-  const { error } = await supabase
-    .from('transactions')
-    .update(updates)
-    .eq('id', transactionId);
-
-  if (error) throw error;
+  // SECURITY: Use the service method which verifies ownership
+  await transactionsService.updateTransaction(userId, transactionId, updates);
 }
 
 /**

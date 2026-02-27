@@ -232,7 +232,7 @@ export function useTransactions() {
         if (transaction.note !== undefined) updateData.description = transaction.note || null;
         if (transaction.date) updateData.transaction_date = transaction.date;
 
-        return transactionsService.updateTransaction(transactionId, updateData);
+        return transactionsService.updateTransaction(user.id, transactionId, updateData);
       } else {
         // Offline: queue for sync
         await offlineCache.addToSyncQueue({

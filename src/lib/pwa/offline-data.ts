@@ -20,15 +20,15 @@ class OfflineDataService {
   // =====================
 
   /**
-   * Get customers - from Supabase if online, from cache if offline
+   * Get customers - from API if online, from cache if offline
    */
   async getCustomers(userId: string): Promise<Customer[]> {
     if (this.isOnline()) {
       try {
-        const customers = await customersService.getCustomers(userId);
+        const response = await customersService.getCustomers(false);
         // Cache the results for offline access
-        await this.cacheCustomers(userId, customers);
-        return customers;
+        await this.cacheCustomers(userId, response.customers);
+        return response.customers;
       } catch (error) {
         console.error("[OfflineData] Failed to fetch customers, falling back to cache:", error);
         // Fall back to cache on error
@@ -147,10 +147,11 @@ class OfflineDataService {
 
   /**
    * Archive customer - queue if offline
+   * SECURITY: Requires userId to verify ownership
    */
-  async archiveCustomer(customerId: string): Promise<void> {
+  async archiveCustomer(userId: string, customerId: string): Promise<void> {
     if (this.isOnline()) {
-      await customersService.archiveCustomer(customerId);
+      await customersService.archiveCustomer(userId, customerId);
       // Update cache
       await offlineCache.deleteCustomer(customerId);
     } else {
@@ -158,6 +159,7 @@ class OfflineDataService {
       await offlineCache.addToSyncQueue({
         action_type: "delete_customer",
         payload: {
+          user_id: userId,
           customer_id: customerId,
           soft_delete: true,
         },
@@ -174,15 +176,17 @@ class OfflineDataService {
 
   /**
    * Delete customer - queue if offline
+   * SECURITY: Requires userId to verify ownership
    */
-  async deleteCustomer(customerId: string): Promise<void> {
+  async deleteCustomer(userId: string, customerId: string): Promise<void> {
     if (this.isOnline()) {
-      await customersService.deleteCustomer(customerId);
+      await customersService.deleteCustomer(userId, customerId);
       await offlineCache.deleteCustomer(customerId);
     } else {
       await offlineCache.addToSyncQueue({
         action_type: "delete_customer",
         payload: {
+          user_id: userId,
           customer_id: customerId,
           soft_delete: false,
         },
@@ -419,7 +423,8 @@ class OfflineDataService {
           }
 
           case "delete_customer": {
-            const { customer_id, soft_delete } = item.payload as {
+            const { user_id, customer_id, soft_delete } = item.payload as {
+              user_id: string;
               customer_id: string;
               soft_delete: boolean;
             };
@@ -428,9 +433,9 @@ class OfflineDataService {
               break;
             }
             if (soft_delete) {
-              await customersService.archiveCustomer(customer_id);
+              await customersService.archiveCustomer(user_id, customer_id);
             } else {
-              await customersService.deleteCustomer(customer_id);
+              await customersService.deleteCustomer(user_id, customer_id);
             }
             break;
           }

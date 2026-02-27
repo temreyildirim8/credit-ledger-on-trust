@@ -247,6 +247,7 @@ async function processSyncItem(item: SyncQueueItem, _userId: string): Promise<vo
 
     case "update_customer": {
       const payload = item.payload as {
+        userId: string;
         customerId: string;
         updates: Record<string, unknown>;
       };
@@ -256,13 +257,14 @@ async function processSyncItem(item: SyncQueueItem, _userId: string): Promise<vo
         throw new Error("Customer not yet synced");
       }
 
-      await customersService.updateCustomer(payload.customerId, payload.updates);
+      await customersService.updateCustomer(payload.userId, payload.customerId, payload.updates);
       console.log(`[BackgroundSync] Updated customer ${payload.customerId}`);
       break;
     }
 
     case "delete_customer": {
       const payload = item.payload as {
+        userId: string;
         customerId: string;
       };
 
@@ -272,7 +274,7 @@ async function processSyncItem(item: SyncQueueItem, _userId: string): Promise<vo
         break;
       }
 
-      await customersService.deleteCustomer(payload.customerId);
+      await customersService.deleteCustomer(payload.userId, payload.customerId);
       await offlineCache.deleteCustomer(payload.customerId);
       console.log(`[BackgroundSync] Deleted customer ${payload.customerId}`);
       break;

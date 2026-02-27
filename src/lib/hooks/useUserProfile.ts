@@ -16,6 +16,7 @@ interface UseUserProfileReturn {
   loading: boolean;
   error: Error | null;
   refetch: () => Promise<void>;
+  invalidateProfile: () => void;
 }
 
 /**

@@ -149,32 +149,53 @@ export const customersService = {
 
   /**
    * Update an existing customer
-   * Uses direct Supabase client (legacy pattern)
-   * @deprecated Consider migrating to /api/customers PATCH endpoint
+   * SECURITY: Requires userId to verify ownership before updating
+   * @throws Error if customer not found or doesn't belong to user
    */
   async updateCustomer(
+    userId: string,
     customerId: string,
     customer: TablesUpdate<"customers"> & { national_id?: string | null },
   ) {
     const { supabase } = await import("@/lib/supabase/client");
 
+    // SECURITY: Verify ownership by including user_id in the query
     const { data, error } = await supabase
       .from("customers")
       .update(customer)
       .eq("id", customerId)
+      .eq("user_id", userId) // IDOR fix: verify ownership
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      if (error.code === "PGRST116") {
+        throw new Error("Customer not found or access denied");
+      }
+      throw error;
+    }
     return data;
   },
 
   /**
    * Get transactions for a specific customer
+   * SECURITY: Requires userId to verify ownership
    * Uses direct Supabase client with RLS protection
    */
   async getCustomerTransactions(userId: string, customerId: string) {
     const { supabase } = await import("@/lib/supabase/client");
+
+    // First verify the customer belongs to the user
+    const { data: customer } = await supabase
+      .from("customers")
+      .select("id")
+      .eq("id", customerId)
+      .eq("user_id", userId)
+      .single();
+
+    if (!customer) {
+      throw new Error("Customer not found or access denied");
+    }
 
     const { data } = await supabase
       .from("transactions")
@@ -188,33 +209,48 @@ export const customersService = {
 
   /**
    * Soft delete (archive) a customer
-   * Uses direct Supabase client (legacy pattern)
-   * @deprecated Consider migrating to /api/customers DELETE endpoint
+   * SECURITY: Requires userId to verify ownership before archiving
+   * @throws Error if customer not found or doesn't belong to user
    */
-  async archiveCustomer(customerId: string): Promise<void> {
+  async archiveCustomer(userId: string, customerId: string): Promise<void> {
     const { supabase } = await import("@/lib/supabase/client");
 
+    // SECURITY: Verify ownership by including user_id in the query
     const { error } = await supabase
       .from("customers")
       .update({ is_deleted: true })
-      .eq("id", customerId);
+      .eq("id", customerId)
+      .eq("user_id", userId); // IDOR fix: verify ownership
 
     if (error) throw error;
   },
 
   /**
    * Permanently delete a customer and all their transactions
-   * Uses direct Supabase client (legacy pattern)
-   * @deprecated Consider migrating to /api/customers DELETE endpoint
+   * SECURITY: Requires userId to verify ownership before deleting
+   * @throws Error if customer not found or doesn't belong to user
    */
-  async deleteCustomer(customerId: string): Promise<void> {
+  async deleteCustomer(userId: string, customerId: string): Promise<void> {
     const { supabase } = await import("@/lib/supabase/client");
 
-    // First delete all transactions for this customer
+    // First verify the customer belongs to the user
+    const { data: customer, error: verifyError } = await supabase
+      .from("customers")
+      .select("id")
+      .eq("id", customerId)
+      .eq("user_id", userId)
+      .single();
+
+    if (verifyError || !customer) {
+      throw new Error("Customer not found or access denied");
+    }
+
+    // Delete all transactions for this customer (with user_id check for extra security)
     const { error: transactionsError } = await supabase
       .from("transactions")
       .delete()
-      .eq("customer_id", customerId);
+      .eq("customer_id", customerId)
+      .eq("user_id", userId); // IDOR fix: only delete user's own transactions
 
     if (transactionsError) throw transactionsError;
 
@@ -222,7 +258,8 @@ export const customersService = {
     const { error } = await supabase
       .from("customers")
       .delete()
-      .eq("id", customerId);
+      .eq("id", customerId)
+      .eq("user_id", userId); // IDOR fix: verify ownership
 
     if (error) throw error;
   },

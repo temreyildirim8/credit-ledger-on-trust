@@ -234,7 +234,7 @@ export function useCustomers(includeArchived = false) {
       if (!user?.id) throw new Error("User not authenticated");
 
       if (navigator.onLine) {
-        await customersService.updateCustomer(customerId, {
+        await customersService.updateCustomer(user.id, customerId, {
           name: updates.name,
           phone: updates.phone || null,
           address: updates.address || null,
@@ -251,7 +251,7 @@ export function useCustomers(includeArchived = false) {
         // Offline: queue for sync
         await offlineCache.addToSyncQueue({
           action_type: "update_customer",
-          payload: { customerId, updates },
+          payload: { userId: user.id, customerId, updates },
           client_timestamp: new Date().toISOString(),
           retry_count: 0,
           max_retries: 3,
@@ -311,13 +311,15 @@ export function useCustomers(includeArchived = false) {
   // Archive customer mutation (soft delete)
   const archiveMutation = useMutation({
     mutationFn: async (customerId: string) => {
+      if (!user?.id) throw new Error("User not authenticated");
+
       if (navigator.onLine) {
-        await customersService.archiveCustomer(customerId);
+        await customersService.archiveCustomer(user.id, customerId);
         await offlineCache.deleteCustomer(customerId);
       } else {
         await offlineCache.addToSyncQueue({
           action_type: "update_customer",
-          payload: { customerId, updates: { is_deleted: true } },
+          payload: { userId: user.id, customerId, updates: { is_deleted: true } },
           client_timestamp: new Date().toISOString(),
           retry_count: 0,
           max_retries: 3,
@@ -361,13 +363,15 @@ export function useCustomers(includeArchived = false) {
   // Delete customer mutation (hard delete)
   const deleteMutation = useMutation({
     mutationFn: async (customerId: string) => {
+      if (!user?.id) throw new Error("User not authenticated");
+
       if (navigator.onLine) {
-        await customersService.deleteCustomer(customerId);
+        await customersService.deleteCustomer(user.id, customerId);
         await offlineCache.deleteCustomer(customerId);
       } else {
         await offlineCache.addToSyncQueue({
           action_type: "delete_customer",
-          payload: { customerId },
+          payload: { userId: user.id, customerId },
           client_timestamp: new Date().toISOString(),
           retry_count: 0,
           max_retries: 3,
