@@ -12,7 +12,15 @@ import { EditCustomerModal } from "@/components/customers/EditCustomerModal";
 import { DestructiveActionModal } from "@/components/customers/DestructiveActionModal";
 import { AddTransactionModal } from "@/components/transactions/AddTransactionModal";
 import { Button } from "@/components/ui/button";
-import { Plus, Search, Loader2, LayoutGrid, List, Archive } from "lucide-react";
+import {
+  Plus,
+  Search,
+  Loader2,
+  LayoutGrid,
+  List,
+  Archive,
+  Filter,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { usePathname } from "@/routing";
 import { useTranslations } from "next-intl";
@@ -81,15 +89,11 @@ export default function CustomersPage() {
       return customer.is_deleted === true && matchesSearch;
     if (filterType === "hasDebt")
       return (
-        customer.balance > 0 &&
-        customer.is_deleted !== true &&
-        matchesSearch
+        customer.balance > 0 && customer.is_deleted !== true && matchesSearch
       );
     if (filterType === "paidUp")
       return (
-        customer.balance <= 0 &&
-        customer.is_deleted !== true &&
-        matchesSearch
+        customer.balance <= 0 && customer.is_deleted !== true && matchesSearch
       );
     // "all" filter - exclude archived unless showArchived is true
     if (!showArchived && filterType === "all") {
@@ -279,7 +283,13 @@ export default function CustomersPage() {
               setFilterType("all");
               setShowArchived(false);
             }}
+            className={
+              filterType === "all"
+                ? "bg-accent hover:bg-accent-hover"
+                : "hover:bg-surface-alt"
+            }
           >
+            <Filter className="h-4 w-4 mr-1.5" />
             {t("filter.all")}
           </Button>
           <Button
@@ -290,7 +300,9 @@ export default function CustomersPage() {
               setShowArchived(false);
             }}
             className={
-              filterType === "hasDebt" ? "bg-red-500 hover:bg-red-600" : ""
+              filterType === "hasDebt"
+                ? "bg-debt text-debt-text hover:opacity-90"
+                : "hover:bg-surface-alt"
             }
           >
             {t("filter.hasDebt")}
@@ -303,7 +315,9 @@ export default function CustomersPage() {
               setShowArchived(false);
             }}
             className={
-              filterType === "paidUp" ? "bg-green-500 hover:bg-green-600" : ""
+              filterType === "paidUp"
+                ? "bg-payment text-payment-text hover:opacity-90"
+                : "hover:bg-surface-alt"
             }
           >
             {t("filter.paidUp")}
@@ -323,7 +337,7 @@ export default function CustomersPage() {
           </Button>
         </div>
         {/* View Toggle — desktop only (lg and above) */}
-        <div className="hidden lg:flex gap-1 border border-[var(--color-border)] rounded-lg p-1">
+        <div className="hidden lg:flex gap-1 border border-[var(--color-border)] rounded-lg">
           <Button
             variant={viewMode === "table" ? "default" : "ghost"}
             size="icon"
@@ -374,7 +388,9 @@ export default function CustomersPage() {
                 <Plus className="h-8 w-8 text-[var(--color-accent)]" />
               </div>
               <p className="text-[var(--color-text-secondary)] text-lg font-medium">
-                {searchQuery ? t("empty.noSearchResults") : t("empty.noCustomers")}
+                {searchQuery
+                  ? t("empty.noSearchResults")
+                  : t("empty.noCustomers")}
               </p>
               <p className="text-[var(--color-text-tertiary)] mt-2">
                 {searchQuery
