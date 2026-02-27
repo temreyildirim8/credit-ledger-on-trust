@@ -76,8 +76,11 @@ export function AddCustomerModal({
   const effectiveIsPaidPlan = isPaidPlanProp ?? isPaidPlan;
 
   // Check if customer limit is reached for free tier
+  // customerLimit can be null for unlimited plans
   const isAtLimit =
-    !effectiveIsPaidPlan && currentCustomerCount >= customerLimit;
+    !effectiveIsPaidPlan &&
+    customerLimit !== null &&
+    currentCustomerCount >= customerLimit;
 
   // Reset form when modal opens (NOT pre-fill customId)
   useEffect(() => {
@@ -250,12 +253,13 @@ export function AddCustomerModal({
                 </span>
                 <span
                   className={
+                    customerLimit !== null &&
                     currentCustomerCount >= customerLimit
                       ? "text-orange-500 font-medium"
                       : ""
                   }
                 >
-                  {customerLimit} {tCustomers("paywall.limit")}
+                  {customerLimit ?? "∞"} {tCustomers("paywall.limit")}
                 </span>
               </div>
             )}

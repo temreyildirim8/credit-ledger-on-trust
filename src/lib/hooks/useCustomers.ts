@@ -3,7 +3,11 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useState, useEffect } from "react";
 import { useAuth } from "./useAuth";
-import { customersService, Customer } from "@/lib/services/customers.service";
+import {
+  customersService,
+  Customer,
+  GetCustomersResponse,
+} from "@/lib/services/customers.service";
 import { offlineCache, CachedCustomer } from "@/lib/pwa/offline-cache";
 import { queryKeys } from "@/lib/query-keys";
 
@@ -36,19 +40,20 @@ const customerToCached = (
  * - Automatic caching and background refetching
  * - Optimistic updates for mutations
  * - Offline support with IndexedDB fallback
+ * @param includeArchived - When true, includes archived customers in the list
  */
-export function useCustomers() {
+export function useCustomers(includeArchived = false) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
 
   // Query for fetching customers
   const {
-    data: customers = [],
+    data: response,
     isLoading: loading,
     error,
     refetch,
-  } = useQuery<Customer[]>({
+  } = useQuery<GetCustomersResponse>({
     queryKey: queryKeys.customers.lists(),
     queryFn: async () => {
       // Initialize offline cache
@@ -56,13 +61,13 @@ export function useCustomers() {
 
       if (navigator.onLine) {
         // Online: fetch from network
-        const data = await customersService.getCustomers();
+        const data = await customersService.getCustomers(includeArchived);
 
-        // Cache for offline use
-        if (user?.id) {
+        // Cache for offline use (only cache active customers)
+        if (user?.id && !includeArchived) {
           await offlineCache.setCustomers(
             user.id,
-            data.map((c) => customerToCached(c, user.id)),
+            data.customers.map((c) => customerToCached(c, user.id)),
           );
         }
 
@@ -71,9 +76,13 @@ export function useCustomers() {
         // Offline: load from cache
         if (user?.id) {
           const cachedCustomers = await offlineCache.getCustomers(user.id);
-          return cachedCustomers.map(cachedToCustomer);
+          const customers = cachedCustomers.map(cachedToCustomer);
+          return {
+            customers,
+            totalCount: customers.length,
+          };
         }
-        return [];
+        return { customers: [], totalCount: 0 };
       }
     },
     enabled: !!user?.id,
@@ -85,6 +94,10 @@ export function useCustomers() {
       return failureCount < 2;
     },
   });
+
+  // Extract customers and total count from response
+  const customers = response?.customers ?? [];
+  const totalCount = response?.totalCount ?? customers.length;
 
   // Track online/offline status
   useEffect(() => {
@@ -158,12 +171,12 @@ export function useCustomers() {
       await queryClient.cancelQueries({ queryKey: queryKeys.customers.lists() });
 
       // Snapshot the previous value
-      const previousCustomers = queryClient.getQueryData<Customer[]>(
+      const previousData = queryClient.getQueryData<GetCustomersResponse>(
         queryKeys.customers.lists(),
       );
 
       // Optimistically update to the new value
-      if (previousCustomers && user?.id) {
+      if (previousData && user?.id) {
         const optimisticCustomer: Customer = {
           id: `temp_${Date.now()}`,
           user_id: user.id,
@@ -178,20 +191,23 @@ export function useCustomers() {
           is_deleted: false,
           created_at: new Date().toISOString(),
         };
-        queryClient.setQueryData<Customer[]>(
+        queryClient.setQueryData<GetCustomersResponse>(
           queryKeys.customers.lists(),
-          [optimisticCustomer, ...previousCustomers],
+          {
+            customers: [optimisticCustomer, ...previousData.customers],
+            totalCount: previousData.totalCount + 1,
+          },
         );
       }
 
-      return { previousCustomers };
+      return { previousData };
     },
     onError: (_err, _newCustomer, context) => {
       // If the mutation fails, use the context returned from onMutate to roll back
-      if (context?.previousCustomers) {
+      if (context?.previousData) {
         queryClient.setQueryData(
           queryKeys.customers.lists(),
-          context.previousCustomers,
+          context.previousData,
         );
       }
     },
@@ -242,45 +258,48 @@ export function useCustomers() {
           status: "pending",
         });
 
-        const currentCustomers = queryClient.getQueryData<Customer[]>(
+        const currentData = queryClient.getQueryData<GetCustomersResponse>(
           queryKeys.customers.lists(),
         );
-        const current = currentCustomers?.find((c) => c.id === customerId);
+        const current = currentData?.customers.find((c) => c.id === customerId);
         return { ...current, ...updates } as Customer;
       }
     },
     onMutate: async ({ customerId, updates }) => {
       await queryClient.cancelQueries({ queryKey: queryKeys.customers.lists() });
 
-      const previousCustomers = queryClient.getQueryData<Customer[]>(
+      const previousData = queryClient.getQueryData<GetCustomersResponse>(
         queryKeys.customers.lists(),
       );
 
       // Optimistically update
-      if (previousCustomers) {
-        queryClient.setQueryData<Customer[]>(
+      if (previousData) {
+        queryClient.setQueryData<GetCustomersResponse>(
           queryKeys.customers.lists(),
-          previousCustomers.map((c) =>
-            c.id === customerId
-              ? {
-                  ...c,
-                  name: updates.name ?? c.name,
-                  phone: updates.phone ?? c.phone,
-                  address: updates.address ?? c.address,
-                  notes: updates.notes ?? c.notes,
-                }
-              : c,
-          ),
+          {
+            customers: previousData.customers.map((c) =>
+              c.id === customerId
+                ? {
+                    ...c,
+                    name: updates.name ?? c.name,
+                    phone: updates.phone ?? c.phone,
+                    address: updates.address ?? c.address,
+                    notes: updates.notes ?? c.notes,
+                  }
+                : c,
+            ),
+            totalCount: previousData.totalCount,
+          },
         );
       }
 
-      return { previousCustomers };
+      return { previousData };
     },
     onError: (_err, _variables, context) => {
-      if (context?.previousCustomers) {
+      if (context?.previousData) {
         queryClient.setQueryData(
           queryKeys.customers.lists(),
-          context.previousCustomers,
+          context.previousData,
         );
       }
     },
@@ -310,24 +329,27 @@ export function useCustomers() {
     onMutate: async (customerId) => {
       await queryClient.cancelQueries({ queryKey: queryKeys.customers.lists() });
 
-      const previousCustomers = queryClient.getQueryData<Customer[]>(
+      const previousData = queryClient.getQueryData<GetCustomersResponse>(
         queryKeys.customers.lists(),
       );
 
-      if (previousCustomers) {
-        queryClient.setQueryData<Customer[]>(
+      if (previousData) {
+        queryClient.setQueryData<GetCustomersResponse>(
           queryKeys.customers.lists(),
-          previousCustomers.filter((c) => c.id !== customerId),
+          {
+            customers: previousData.customers.filter((c) => c.id !== customerId),
+            totalCount: previousData.totalCount, // totalCount stays the same for archive
+          },
         );
       }
 
-      return { previousCustomers };
+      return { previousData };
     },
     onError: (_err, _customerId, context) => {
-      if (context?.previousCustomers) {
+      if (context?.previousData) {
         queryClient.setQueryData(
           queryKeys.customers.lists(),
-          context.previousCustomers,
+          context.previousData,
         );
       }
     },
@@ -357,24 +379,27 @@ export function useCustomers() {
     onMutate: async (customerId) => {
       await queryClient.cancelQueries({ queryKey: queryKeys.customers.lists() });
 
-      const previousCustomers = queryClient.getQueryData<Customer[]>(
+      const previousData = queryClient.getQueryData<GetCustomersResponse>(
         queryKeys.customers.lists(),
       );
 
-      if (previousCustomers) {
-        queryClient.setQueryData<Customer[]>(
+      if (previousData) {
+        queryClient.setQueryData<GetCustomersResponse>(
           queryKeys.customers.lists(),
-          previousCustomers.filter((c) => c.id !== customerId),
+          {
+            customers: previousData.customers.filter((c) => c.id !== customerId),
+            totalCount: previousData.totalCount - 1, // totalCount decreases for hard delete
+          },
         );
       }
 
-      return { previousCustomers };
+      return { previousData };
     },
     onError: (_err, _customerId, context) => {
-      if (context?.previousCustomers) {
+      if (context?.previousData) {
         queryClient.setQueryData(
           queryKeys.customers.lists(),
-          context.previousCustomers,
+          context.previousData,
         );
       }
     },
@@ -390,6 +415,7 @@ export function useCustomers() {
 
   return {
     customers,
+    totalCount,
     loading,
     isOffline,
     error,

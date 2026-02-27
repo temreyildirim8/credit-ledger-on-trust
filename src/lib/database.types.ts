@@ -306,10 +306,13 @@ export type Database = {
        * SECURITY DEFINER function that returns customer balances for a given user_id
        * Enforces that auth.uid() == p_user_id before returning data
        * See migration: 20250227_secure_customer_balances.sql
+       * @param p_user_id - The user ID to fetch customers for
+       * @param p_include_archived - Optional, when true includes archived customers
        */
       get_customer_balances: {
         Args: {
           p_user_id: string;
+          p_include_archived?: boolean;
         };
         Returns: {
           id: string;
@@ -325,6 +328,17 @@ export type Database = {
           is_deleted: boolean | null;
           created_at: string | null;
         }[];
+      };
+      /**
+       * SECURITY DEFINER function that returns total customer count (including archived)
+       * Used for plan limit enforcement
+       * @param p_user_id - The user ID to count customers for
+       */
+      get_total_customer_count: {
+        Args: {
+          p_user_id: string;
+        };
+        Returns: number;
       };
       /**
        * SECURITY DEFINER function that returns aggregated dashboard statistics

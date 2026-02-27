@@ -17,14 +17,23 @@ export interface Customer {
   updated_at?: string | null;
 }
 
+export interface GetCustomersResponse {
+  customers: Customer[];
+  totalCount: number;
+}
+
 export const customersService = {
   /**
    * Get all customers for the authenticated user
    * Uses secure API route (server-side JWT validation) instead of direct browser access
-   * @returns Array of customer balances
+   * @param includeArchived - When true, includes archived customers in the response
+   * @returns Object with customers array and totalCount (for plan limit checking)
    */
-  async getCustomers(): Promise<Customer[]> {
-    const response = await fetch("/api/customers", {
+  async getCustomers(includeArchived = false): Promise<GetCustomersResponse> {
+    const url = includeArchived
+      ? "/api/customers?includeArchived=true"
+      : "/api/customers";
+    const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -42,20 +51,44 @@ export const customersService = {
 
     const data = await response.json();
 
-    return (data || []).map((row: Customer) => ({
-      id: row.id,
-      user_id: row.user_id,
-      national_id: row.national_id ?? null,
-      name: row.name,
-      phone: row.phone,
-      address: row.address,
-      notes: row.notes,
-      balance: row.balance || 0,
-      transaction_count: row.transaction_count,
-      last_transaction_date: row.last_transaction_date,
-      is_deleted: row.is_deleted,
-      created_at: row.created_at,
-    }));
+    // Handle both old format (array) and new format (object with customers and totalCount)
+    if (Array.isArray(data)) {
+      return {
+        customers: data.map((row: Customer) => ({
+          id: row.id,
+          user_id: row.user_id,
+          national_id: row.national_id ?? null,
+          name: row.name,
+          phone: row.phone,
+          address: row.address,
+          notes: row.notes,
+          balance: row.balance || 0,
+          transaction_count: row.transaction_count,
+          last_transaction_date: row.last_transaction_date,
+          is_deleted: row.is_deleted,
+          created_at: row.created_at,
+        })),
+        totalCount: data.length,
+      };
+    }
+
+    return {
+      customers: (data.customers || []).map((row: Customer) => ({
+        id: row.id,
+        user_id: row.user_id,
+        national_id: row.national_id ?? null,
+        name: row.name,
+        phone: row.phone,
+        address: row.address,
+        notes: row.notes,
+        balance: row.balance || 0,
+        transaction_count: row.transaction_count,
+        last_transaction_date: row.last_transaction_date,
+        is_deleted: row.is_deleted,
+        created_at: row.created_at,
+      })),
+      totalCount: data.totalCount ?? data.customers?.length ?? 0,
+    };
   },
 
   /**
@@ -68,8 +101,8 @@ export const customersService = {
     customerId: string,
   ): Promise<Customer | null> {
     // Fetch all customers for the current user (they're already filtered server-side)
-    const customers = await customersService.getCustomers();
-    const customer = customers.find((c) => c.id === customerId);
+    const { customers } = await customersService.getCustomers();
+    const customer = customers.find((c: Customer) => c.id === customerId);
     return customer || null;
   },
 

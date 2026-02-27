@@ -21,15 +21,17 @@ import { useUserProfile } from "@/lib/hooks/useUserProfile";
 import { toast } from "sonner";
 
 export default function CustomersPage() {
+  const [showArchived, setShowArchived] = useState(false);
   const {
     customers,
+    totalCount,
     loading,
     createCustomer,
     updateCustomer,
     refreshCustomers,
     archiveCustomer,
     deleteCustomer,
-  } = useCustomers();
+  } = useCustomers(showArchived);
   const { createTransaction } = useTransactions();
   const { isPaidPlan } = useSubscription();
   const { currency } = useUserProfile();
@@ -52,9 +54,9 @@ export default function CustomersPage() {
   >("archive");
   const [destructiveLoading, setDestructiveLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterType, setFilterType] = useState<"all" | "hasDebt" | "paidUp">(
-    "all",
-  );
+  const [filterType, setFilterType] = useState<
+    "all" | "hasDebt" | "paidUp" | "archived"
+  >("all");
   const [viewMode, setViewMode] = useState<"table" | "cards">(
     typeof window !== "undefined" && window.innerWidth < 1024
       ? "cards"
@@ -74,8 +76,25 @@ export default function CustomersPage() {
       customer.id.toLowerCase().includes(q) ||
       (customer.national_id ?? "").toLowerCase().includes(q);
 
-    if (filterType === "hasDebt") return customer.balance > 0 && matchesSearch;
-    if (filterType === "paidUp") return customer.balance <= 0 && matchesSearch;
+    // When showing archived, only show archived customers
+    if (filterType === "archived")
+      return customer.is_deleted === true && matchesSearch;
+    if (filterType === "hasDebt")
+      return (
+        customer.balance > 0 &&
+        customer.is_deleted !== true &&
+        matchesSearch
+      );
+    if (filterType === "paidUp")
+      return (
+        customer.balance <= 0 &&
+        customer.is_deleted !== true &&
+        matchesSearch
+      );
+    // "all" filter - exclude archived unless showArchived is true
+    if (!showArchived && filterType === "all") {
+      return customer.is_deleted !== true && matchesSearch;
+    }
     return matchesSearch;
   });
 
@@ -225,7 +244,10 @@ export default function CustomersPage() {
           <div>
             <h1 className="text-2xl font-bold font-display">{t("title")}</h1>
             <p className="text-white/90 mt-1 dark:text-muted-foreground">
-              {t("count", { count: customers.length })}
+              {t("countWithTotal", {
+                active: customers.filter((c) => !c.is_deleted).length,
+                total: totalCount,
+              })}
             </p>
           </div>
           <Button
@@ -253,14 +275,20 @@ export default function CustomersPage() {
           <Button
             variant={filterType === "all" ? "default" : "outline"}
             size="sm"
-            onClick={() => setFilterType("all")}
+            onClick={() => {
+              setFilterType("all");
+              setShowArchived(false);
+            }}
           >
             {t("filter.all")}
           </Button>
           <Button
             variant={filterType === "hasDebt" ? "default" : "outline"}
             size="sm"
-            onClick={() => setFilterType("hasDebt")}
+            onClick={() => {
+              setFilterType("hasDebt");
+              setShowArchived(false);
+            }}
             className={
               filterType === "hasDebt" ? "bg-red-500 hover:bg-red-600" : ""
             }
@@ -270,12 +298,28 @@ export default function CustomersPage() {
           <Button
             variant={filterType === "paidUp" ? "default" : "outline"}
             size="sm"
-            onClick={() => setFilterType("paidUp")}
+            onClick={() => {
+              setFilterType("paidUp");
+              setShowArchived(false);
+            }}
             className={
               filterType === "paidUp" ? "bg-green-500 hover:bg-green-600" : ""
             }
           >
             {t("filter.paidUp")}
+          </Button>
+          <Button
+            variant={filterType === "archived" ? "default" : "outline"}
+            size="sm"
+            onClick={() => {
+              setFilterType("archived");
+              setShowArchived(true);
+            }}
+            className={
+              filterType === "archived" ? "bg-gray-500 hover:bg-gray-600" : ""
+            }
+          >
+            {t("filter.archived")}
           </Button>
         </div>
         {/* View Toggle — desktop only (lg and above) */}
@@ -368,7 +412,7 @@ export default function CustomersPage() {
         open={addModalOpen}
         onOpenChange={setAddModalOpen}
         onSave={handleAddCustomer}
-        currentCustomerCount={customers.length}
+        currentCustomerCount={totalCount}
         isPaidPlan={isPaidPlan}
       />
 
