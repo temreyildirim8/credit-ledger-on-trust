@@ -207,7 +207,7 @@ export function SyncStatusIndicator({
             errorMessage || t("syncFailed")
           ) : (
             <>
-              {t("lastSync")}: {formatLastSync(lastSyncedAt)}
+              {t("lastSync")}: {isOnline && !lastSyncedAt ? t("justNow") : formatLastSync(lastSyncedAt)}
             </>
           )}
         </span>

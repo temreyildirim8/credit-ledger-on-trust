@@ -30,6 +30,8 @@ import type { Locale } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/hooks/useAuth";
+import { useSubscription } from "@/lib/hooks/useSubscription";
+import { UpgradePrompt } from "@/components/subscription/UpgradePrompt";
 import {
   generateCustomerStatementPDF,
   downloadPDF,
@@ -69,6 +71,7 @@ export function CustomerDetailsModal({
 }: CustomerDetailsModalProps) {
   const { user } = useAuth();
   const { currency: userCurrency } = useUserProfile();
+  const { hasFeature } = useSubscription();
   const t = useTranslations("customers");
   const dateLocale = localeMap[locale] || enUS;
 
@@ -256,20 +259,29 @@ export function CustomerDetailsModal({
 
               {/* PDF Statement and Edit Buttons */}
               <div className="grid grid-cols-2 gap-3">
-                <Button
-                  variant="outline"
-                  onClick={handleDownloadPDF}
-                  disabled={generatingPDF}
-                >
-                  {generatingPDF ? (
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  ) : (
-                    <FileText className="h-4 w-4 mr-2" />
-                  )}
-                  {generatingPDF
-                    ? t("details.generatingPDF")
-                    : t("details.downloadPDF")}
-                </Button>
+                {hasFeature("dataExport") ? (
+                  <Button
+                    variant="outline"
+                    onClick={handleDownloadPDF}
+                    disabled={generatingPDF}
+                  >
+                    {generatingPDF ? (
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    ) : (
+                      <FileText className="h-4 w-4 mr-2" />
+                    )}
+                    {generatingPDF
+                      ? t("details.generatingPDF")
+                      : t("details.downloadPDF")}
+                  </Button>
+                ) : (
+                  <UpgradePrompt
+                    variant="button"
+                    feature="Data Export"
+                    message={t("details.downloadPDF")}
+                    className="justify-start"
+                  />
+                )}
                 {onEdit && (
                   <Button
                     variant="outline"
