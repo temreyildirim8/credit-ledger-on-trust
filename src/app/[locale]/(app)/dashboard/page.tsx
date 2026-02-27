@@ -89,6 +89,8 @@ export default function DashboardPage() {
           totalDebt={stats?.totalDebt}
           totalCollected={stats?.totalCollected}
           activeCustomers={stats?.activeCustomers}
+          currency={stats?.currency}
+          usdEquivalent={stats?.usdEquivalent}
         />
       </div>
 

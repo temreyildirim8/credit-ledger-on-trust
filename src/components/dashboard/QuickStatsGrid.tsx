@@ -12,9 +12,10 @@ interface StatCardProps {
   value: string | number;
   icon: React.ReactNode;
   variant: "debt" | "collected" | "customers" | "month";
+  usdValue?: string;
 }
 
-function StatCard({ label, value, icon, variant }: StatCardProps) {
+function StatCard({ label, value, icon, variant, usdValue }: StatCardProps) {
   const variantStyles = {
     debt: "bg-[var(--color-debt)] text-[var(--color-debt-text)]",
     collected: "bg-[var(--color-payment)] text-[var(--color-payment-text)]",
@@ -37,9 +38,16 @@ function StatCard({ label, value, icon, variant }: StatCardProps) {
           <div className={cn("p-2 rounded-xl", variantStyles[variant])}>
             {icon}
           </div>
-          <span className="text-2xl font-bold text-[var(--color-text)]">
-            {value}
-          </span>
+          <div className="flex flex-col">
+            <span className="text-2xl font-bold text-[var(--color-text)]">
+              {value}
+            </span>
+            {usdValue && (
+              <span className="text-xs text-[var(--color-text-secondary)] mt-0.5">
+                ≈ {usdValue} USD
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </Card>
@@ -51,6 +59,11 @@ interface QuickStatsGridProps {
   totalCollected?: number;
   activeCustomers?: number;
   thisMonth?: number;
+  currency?: string;
+  usdEquivalent?: {
+    totalDebt: number;
+    totalCollected: number;
+  };
 }
 
 export function QuickStatsGrid({
@@ -58,23 +71,36 @@ export function QuickStatsGrid({
   totalCollected = 0,
   activeCustomers = 0,
   thisMonth = 0,
+  currency = "TRY",
+  usdEquivalent,
 }: QuickStatsGridProps) {
   const t = useTranslations("dashboard.stats");
-  const { currency } = useUserProfile();
+  const { currency: userCurrency } = useUserProfile();
+  const displayCurrency = currency || userCurrency;
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
       <StatCard
         label={t("totalOwed")}
-        value={formatCurrency(totalDebt, currency)}
+        value={formatCurrency(totalDebt, displayCurrency)}
         icon={<TrendingUp className="h-4 w-4 md:h-5 md:w-5" />}
         variant="debt"
+        usdValue={
+          usdEquivalent && displayCurrency !== "USD"
+            ? formatCurrency(usdEquivalent.totalDebt, "USD")
+            : undefined
+        }
       />
       <StatCard
         label={t("collected")}
-        value={formatCurrency(totalCollected, currency)}
+        value={formatCurrency(totalCollected, displayCurrency)}
         icon={<TrendingDown className="h-4 w-4 md:h-5 md:w-5" />}
         variant="collected"
+        usdValue={
+          usdEquivalent && displayCurrency !== "USD"
+            ? formatCurrency(usdEquivalent.totalCollected, "USD")
+            : undefined
+        }
       />
       <StatCard
         label={t("activeCustomers")}
@@ -84,7 +110,7 @@ export function QuickStatsGrid({
       />
       <StatCard
         label={t("thisMonth")}
-        value={formatCurrency(thisMonth, currency)}
+        value={formatCurrency(thisMonth, displayCurrency)}
         icon={<DollarSign className="h-4 w-4 md:h-5 md:w-5" />}
         variant="month"
       />

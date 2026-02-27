@@ -3,6 +3,11 @@ export interface DashboardStats {
   totalCollected: number;
   activeCustomers: number;
   totalTransactions: number;
+  currency: string;
+  usdEquivalent: {
+    totalDebt: number;
+    totalCollected: number;
+  };
 }
 
 export interface RecentActivity {
