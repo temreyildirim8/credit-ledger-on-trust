@@ -794,7 +794,8 @@
         "upgradeSuccess": "Successfully upgraded to {plan}!",
         "contactSalesSuccess": "Our sales team will contact you shortly!",
         "upgradeError": "Failed to upgrade plan. Please try again.",
-        "footerNote": "You can change or cancel your plan at any time. No hidden fees."
+        "footerNote": "You can change or cancel your plan at any time. No hidden fees.",
+        "comingSoon": "Coming Soon"
       },
       "data": {
         "title": "Data & Backup",

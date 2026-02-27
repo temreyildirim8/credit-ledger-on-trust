@@ -768,7 +768,8 @@
         "upgradeSuccess": "Kuphumelele ukukhuphula ku-{plan}!",
         "contactSalesSuccess": "Ithimba lethu lendayimade lizokuxhumana maduze!",
         "upgradeError": "Ihlulekile ukukhuphula iphulani. Sicela uzame futhi.",
-        "footerNote": "Ungashintsha noma ukhansele iphulani lakho noma kunini. Akukho izindleko ezifihliwe."
+        "footerNote": "Ungashintsha noma ukhansele iphulani lakho noma kunini. Akukho izindleko ezifihliwe.",
+        "comingSoon": "Kusasa"
       }
     },
     "auth": {

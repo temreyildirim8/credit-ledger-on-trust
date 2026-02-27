@@ -768,7 +768,8 @@
         "upgradeSuccess": "Berhasil ditingkatkan ke {plan}!",
         "contactSalesSuccess": "Tim penjualan kami akan segera menghubungi Anda!",
         "upgradeError": "Gagal meningkatkan paket. Silakan coba lagi.",
-        "footerNote": "Anda dapat mengubah atau membatalkan paket kapan saja. Tidak ada biaya tersembunyi."
+        "footerNote": "Anda dapat mengubah atau membatalkan paket kapan saja. Tidak ada biaya tersembunyi.",
+        "comingSoon": "Segera Hadir"
       }
     },
     "auth": {

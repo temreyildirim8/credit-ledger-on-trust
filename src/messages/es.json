@@ -768,7 +768,8 @@
         "upgradeSuccess": "¡Actualizado exitosamente a {plan}!",
         "contactSalesSuccess": "¡Nuestro equipo de ventas te contactará pronto!",
         "upgradeError": "Error al actualizar el plan. Por favor intenta de nuevo.",
-        "footerNote": "Puedes cambiar o cancelar tu plan en cualquier momento. Sin cargos ocultos."
+        "footerNote": "Puedes cambiar o cancelar tu plan en cualquier momento. Sin cargos ocultos.",
+        "comingSoon": "Próximamente"
       }
     },
     "auth": {

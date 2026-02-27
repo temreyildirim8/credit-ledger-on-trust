@@ -22,9 +22,9 @@ interface SubscriptionUpgradeModalProps {
 }
 
 const plans = [
-  { key: 'free', icon: null, featured: false },
-  { key: 'pro', icon: Star, featured: true },
-  { key: 'enterprise', icon: Building2, featured: false },
+  { key: 'free', icon: null, featured: false, comingSoon: false },
+  { key: 'pro', icon: Star, featured: true, comingSoon: true },
+  { key: 'enterprise', icon: Building2, featured: false, comingSoon: true },
 ] as const;
 
 type PlanKey = (typeof plans)[number]['key'];
@@ -42,6 +42,11 @@ export function SubscriptionUpgradeModal({
   const handleSelectPlan = (planKey: PlanKey) => {
     if (planKey === currentPlan) return;
     setSelectedPlan(planKey);
+  };
+
+  const isComingSoon = (planKey: PlanKey) => {
+    const plan = plans.find((p) => p.key === planKey);
+    return plan?.comingSoon ?? false;
   };
 
   const handleUpgrade = async () => {
@@ -116,17 +121,24 @@ export function SubscriptionUpgradeModal({
               <Card
                 key={plan.key}
                 className={`relative cursor-pointer transition-all ${
-                  isCurrent
-                    ? 'border-success bg-success/5'
-                    : isSelected
-                      ? 'border-accent ring-2 ring-accent bg-accent/5'
-                      : plan.featured
-                        ? 'border-accent/50 hover:border-accent'
-                        : 'border-border hover:border-accent/30'
+                  plan.comingSoon
+                    ? 'opacity-60 cursor-not-allowed'
+                    : isCurrent
+                      ? 'border-success bg-success/5'
+                      : isSelected
+                        ? 'border-accent ring-2 ring-accent bg-accent/5'
+                        : plan.featured
+                          ? 'border-accent/50 hover:border-accent'
+                          : 'border-border hover:border-accent/30'
                 }`}
-                onClick={() => handleSelectPlan(plan.key)}
+                onClick={() => !plan.comingSoon && handleSelectPlan(plan.key)}
               >
-                {plan.featured && !isCurrent && !isSelected && (
+                {plan.comingSoon && (
+                  <Badge className="absolute -top-2 left-1/2 -translate-x-1/2 bg-muted text-text-secondary">
+                    {t('comingSoon')}
+                  </Badge>
+                )}
+                {!plan.comingSoon && plan.featured && !isCurrent && !isSelected && (
                   <Badge className="absolute -top-2 left-1/2 -translate-x-1/2 bg-accent text-white">
                     {t('mostPopular')}
                   </Badge>
@@ -203,7 +215,7 @@ export function SubscriptionUpgradeModal({
           </Button>
           <Button
             onClick={handleUpgrade}
-            disabled={!selectedPlan || isCurrentPlan(selectedPlan) || isLoading}
+            disabled={!selectedPlan || isCurrentPlan(selectedPlan) || isLoading || (selectedPlan && isComingSoon(selectedPlan))}
             className="sm:flex-2 bg-accent hover:bg-accent-hover"
           >
             {isLoading ? (
