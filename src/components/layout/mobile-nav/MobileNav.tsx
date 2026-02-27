@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { href: '/dashboard', icon: Home, key: 'dashboard' },
   { href: '/customers', icon: Users, key: 'customers' },
-  { href: '/transactions', icon: Receipt, key: 'transactions' },
   { href: '/quick-add', icon: PlusCircle, key: 'quickAdd' },
+  { href: '/transactions', icon: Receipt, key: 'transactions' },
   { href: '/settings', icon: Settings, key: 'settings' },
 ];
 

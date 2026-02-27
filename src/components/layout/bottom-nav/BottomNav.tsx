@@ -24,14 +24,14 @@ const navItems = [
     icon: Users,
   },
   {
-    key: "transactions",
-    href: "/transactions",
-    icon: Receipt,
-  },
-  {
     key: "quickAdd",
     href: "/quick-add",
     icon: CirclePlus,
+  },
+  {
+    key: "transactions",
+    href: "/transactions",
+    icon: Receipt,
   },
   {
     key: "settings",
