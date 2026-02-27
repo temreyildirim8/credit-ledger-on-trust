@@ -1,10 +1,7 @@
-import { supabase } from '@/lib/supabase/client';
-import type { TablesInsert } from '@/lib/database.types';
-
 export interface Transaction {
   id: string;
   customer_id: string;
-  type: 'debt' | 'payment';
+  type: "debt" | "payment";
   amount: number;
   description: string | null;
   transaction_date: string | null;
@@ -19,79 +16,87 @@ interface CustomerBasic {
 }
 
 export const transactionsService = {
-  async getTransactions(userId: string): Promise<Transaction[]> {
-    const { data } = await supabase
-      .from('transactions')
-      .select(`
-        id,
-        customer_id,
-        type,
-        amount,
-        description,
-        transaction_date,
-        created_at,
-        customers (
-          name
-        )
-      `)
-      .eq('user_id', userId)
-      .order('transaction_date', { ascending: false });
+  /**
+   * Get all transactions for the authenticated user
+   * Uses secure API route (server-side JWT validation)
+   */
+  async getTransactions(_userId: string): Promise<Transaction[]> {
+    const response = await fetch("/api/transactions", {
+      method: "GET",
+      credentials: "include",
+    });
 
-    return (data || []).map((t) => ({
-      id: t.id,
-      customer_id: t.customer_id,
-      type: t.type as 'debt' | 'payment',
-      amount: t.amount,
-      description: t.description,
-      transaction_date: t.transaction_date,
-      created_at: t.created_at,
-      customer_name: t.customers?.name,
-    }));
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
+      }
+      const error = await response.json();
+      throw new Error(error.error || "Failed to fetch transactions");
+    }
+
+    const data = await response.json();
+    return data.transactions || [];
   },
 
-  async createTransaction(userId: string, transaction: {
-    customerId: string;
-    type: 'debt' | 'payment';
-    amount: number;
-    note?: string;
-    date?: string;
-  }): Promise<Transaction> {
-    const insertData: TablesInsert<'transactions'> = {
-      user_id: userId,
-      customer_id: transaction.customerId,
-      type: transaction.type,
-      amount: transaction.amount,
-      description: transaction.note || null,
-      transaction_date: transaction.date || new Date().toISOString(),
-    };
+  /**
+   * Create a new transaction
+   * Uses secure API route (server-side JWT validation)
+   */
+  async createTransaction(
+    _userId: string,
+    transaction: {
+      customerId: string;
+      type: "debt" | "payment";
+      amount: number;
+      note?: string;
+      date?: string;
+    },
+  ): Promise<Transaction> {
+    const response = await fetch("/api/transactions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        customerId: transaction.customerId,
+        type: transaction.type,
+        amount: transaction.amount,
+        note: transaction.note,
+        date: transaction.date,
+      }),
+    });
 
-    const { data, error } = await supabase
-      .from('transactions')
-      .insert(insertData)
-      .select()
-      .single();
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
+      }
+      const error = await response.json();
+      throw new Error(error.error || "Failed to create transaction");
+    }
 
-    if (error) throw error;
-    return {
-      id: data.id,
-      customer_id: data.customer_id,
-      type: data.type as 'debt' | 'payment',
-      amount: data.amount,
-      description: data.description,
-      transaction_date: data.transaction_date,
-      created_at: data.created_at,
-    };
+    const data = await response.json();
+    return data.transaction;
   },
 
-  async getCustomers(userId: string): Promise<CustomerBasic[]> {
-    const { data } = await supabase
-      .from('customers')
-      .select('id, name')
-      .eq('user_id', userId)
-      .eq('is_deleted', false)
-      .order('name');
+  /**
+   * Get customers for transaction form dropdown
+   * Uses secure API route (server-side JWT validation)
+   */
+  async getCustomers(_userId: string): Promise<CustomerBasic[]> {
+    const response = await fetch("/api/customers", {
+      method: "GET",
+      credentials: "include",
+    });
 
-    return (data || []).map(c => ({
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
+      }
+      const error = await response.json();
+      throw new Error(error.error || "Failed to fetch customers");
+    }
+
+    const data = await response.json();
+    return (data.customers || []).map((c: { id: string; name: string }) => ({
       id: c.id,
       name: c.name,
     }));
@@ -99,99 +104,78 @@ export const transactionsService = {
 
   /**
    * Update an existing transaction
-   * SECURITY: Requires userId to verify ownership before updating
-   * @throws Error if transaction not found or doesn't belong to user
+   * Uses secure API route (server-side JWT validation)
    */
-  async updateTransaction(userId: string, transactionId: string, transaction: {
-    customer_id?: string;
-    type?: 'debt' | 'payment';
-    amount?: number;
-    description?: string | null;
-    transaction_date?: string;
-  }): Promise<Transaction> {
-    // SECURITY: Verify ownership by including user_id in the query
-    const { data, error } = await supabase
-      .from('transactions')
-      .update(transaction)
-      .eq('id', transactionId)
-      .eq('user_id', userId) // IDOR fix: verify ownership
-      .select()
-      .single();
+  async updateTransaction(
+    _userId: string,
+    transactionId: string,
+    transaction: {
+      customer_id?: string;
+      type?: "debt" | "payment";
+      amount?: number;
+      description?: string | null;
+      transaction_date?: string;
+    },
+  ): Promise<Transaction> {
+    const response = await fetch("/api/transactions", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        transactionId,
+        customerId: transaction.customer_id,
+        type: transaction.type,
+        amount: transaction.amount,
+        note: transaction.description,
+        date: transaction.transaction_date,
+      }),
+    });
 
-    if (error) {
-      // If no rows returned, either transaction doesn't exist or doesn't belong to user
-      if (error.code === 'PGRST116') {
-        throw new Error('Transaction not found or access denied');
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
       }
-      throw error;
+      const error = await response.json();
+      throw new Error(error.error || "Failed to update transaction");
     }
 
-    return {
-      id: data.id,
-      customer_id: data.customer_id,
-      type: data.type as 'debt' | 'payment',
-      amount: data.amount,
-      description: data.description,
-      transaction_date: data.transaction_date,
-      created_at: data.created_at,
-    };
+    const data = await response.json();
+    return data.transaction;
   },
 
   /**
    * Delete a transaction
-   * SECURITY: Requires userId to verify ownership before deleting
-   * @throws Error if transaction not found or doesn't belong to user
+   * Uses secure API route (server-side JWT validation)
    */
-  async deleteTransaction(userId: string, transactionId: string): Promise<void> {
-    // SECURITY: Verify ownership by including user_id in the query
-    const { error } = await supabase
-      .from('transactions')
-      .delete()
-      .eq('id', transactionId)
-      .eq('user_id', userId); // IDOR fix: verify ownership
+  async deleteTransaction(
+    _userId: string,
+    transactionId: string,
+  ): Promise<void> {
+    const response = await fetch("/api/transactions", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ transactionId }),
+    });
 
-    if (error) {
-      throw error;
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
+      }
+      const error = await response.json();
+      throw new Error(error.error || "Failed to delete transaction");
     }
   },
 
   /**
    * Get a single transaction by ID
-   * SECURITY: Requires userId to verify ownership
+   * Uses secure API route (server-side JWT validation)
    */
-  async getTransactionById(userId: string, transactionId: string): Promise<Transaction | null> {
-    const { data, error } = await supabase
-      .from('transactions')
-      .select(`
-        id,
-        customer_id,
-        type,
-        amount,
-        description,
-        transaction_date,
-        created_at,
-        customers (name)
-      `)
-      .eq('id', transactionId)
-      .eq('user_id', userId) // IDOR fix: verify ownership
-      .single();
-
-    if (error) {
-      if (error.code === 'PGRST116') {
-        return null; // Not found or access denied
-      }
-      throw error;
-    }
-
-    return {
-      id: data.id,
-      customer_id: data.customer_id,
-      type: data.type as 'debt' | 'payment',
-      amount: data.amount,
-      description: data.description,
-      transaction_date: data.transaction_date,
-      created_at: data.created_at,
-      customer_name: data.customers?.name,
-    };
+  async getTransactionById(
+    userId: string,
+    transactionId: string,
+  ): Promise<Transaction | null> {
+    const transactions = await this.getTransactions(userId);
+    return transactions.find((t) => t.id === transactionId) || null;
   },
 };

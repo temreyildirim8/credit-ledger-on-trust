@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 import { X } from "lucide-react";
 import { useSubscription } from "@/lib/hooks/useSubscription";
 import { useLocale } from "next-intl";
@@ -17,22 +23,24 @@ interface PWAInstallContextValue {
   install: () => Promise<void>;
 }
 
-const PWAInstallContext = createContext<PWAInstallContextValue | undefined>(undefined);
+const PWAInstallContext = createContext<PWAInstallContextValue | undefined>(
+  undefined,
+);
 
 interface PWAInstallProviderProps {
   children: ReactNode;
 }
 
-export function PWAInstallProvider({
-  children,
-}: PWAInstallProviderProps) {
+export function PWAInstallProvider({ children }: PWAInstallProviderProps) {
   const locale = useLocale();
   const _brandName = getBrandName(locale);
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
   // Check if app is already installed on initial render
   const [isInstalled, setIsInstalled] = useState(
-    typeof window !== 'undefined' && window.matchMedia("(display-mode: standalone)").matches
+    typeof window !== "undefined" &&
+      window.matchMedia("(display-mode: standalone)").matches,
   );
   const { hasFeature, loading: subscriptionLoading } = useSubscription();
 
@@ -59,7 +67,10 @@ export function PWAInstallProvider({
     window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {
-      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
       window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
@@ -108,7 +119,7 @@ function PWAInstallPrompt() {
   const brandName = getBrandName(locale);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 2000);
+    const timer = setTimeout(() => setIsVisible(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 

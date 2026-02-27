@@ -1,13 +1,4 @@
-import { supabase } from '@/lib/supabase/client';
-import type { SubscriptionPlan } from '@/lib/database.types';
-
-export interface ConfigRow {
-  key: string;
-  value: string | number | boolean | object | null;
-  description: string | null;
-  created_at: string;
-  updated_at: string;
-}
+import type { SubscriptionPlan } from "@/lib/database.types";
 
 export interface PlanFeatures {
   unlimitedTransactions: boolean;
@@ -24,6 +15,7 @@ export interface PlanFeatures {
   whiteLabel: boolean;
   pwaInstall: boolean;
   themeChange: boolean;
+  customFields: boolean;
 }
 
 export interface PlanConfig {
@@ -32,100 +24,112 @@ export interface PlanConfig {
 }
 
 // Cache for config values
-const configCache: Map<string, ConfigRow['value']> = new Map();
+const configCache: Map<string, unknown> = new Map();
 let cacheExpiry: number = 0;
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 export const configService = {
   /**
    * Get a single config value by key
+   * Uses secure API route
    */
-  async get<T = ConfigRow['value']>(key: string): Promise<T | null> {
+  async get<T = unknown>(key: string): Promise<T | null> {
     // Check cache first
     if (Date.now() < cacheExpiry && configCache.has(key)) {
       return configCache.get(key) as T;
     }
 
-    const { data, error } = await supabase
-      .from('config')
-      .select('value')
-      .eq('key', key)
-      .single();
+    try {
+      const response = await fetch(`/api/config?key=${encodeURIComponent(key)}`, {
+        method: "GET",
+        credentials: "include",
+      });
 
-    if (error) {
+      if (!response.ok) {
+        console.error(`Failed to fetch config: ${key}`);
+        return null;
+      }
+
+      const data = await response.json();
+      const value = data.value as T;
+
+      // Update cache
+      configCache.set(key, value);
+      cacheExpiry = Date.now() + CACHE_TTL;
+
+      return value;
+    } catch (error) {
       console.error(`Failed to fetch config: ${key}`, error);
       return null;
     }
-
-    // Parse value if it's a JSON string
-    let value = data.value;
-    if (typeof value === 'string') {
-      try {
-        value = JSON.parse(value);
-      } catch {
-        // Keep as string if not valid JSON
-      }
-    }
-
-    // Update cache
-    configCache.set(key, value);
-    cacheExpiry = Date.now() + CACHE_TTL;
-
-    return value as T;
   },
 
   /**
    * Get multiple config values by key prefix
+   * Uses secure API route
    */
-  async getByPrefix(prefix: string): Promise<Record<string, ConfigRow['value']>> {
-    const { data, error } = await supabase
-      .from('config')
-      .select('key, value')
-      .like('key', `${prefix}%`);
+  async getByPrefix(prefix: string): Promise<Record<string, unknown>> {
+    try {
+      const response = await fetch(
+        `/api/config?prefix=${encodeURIComponent(prefix)}`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
 
-    if (error) {
+      if (!response.ok) {
+        console.error(`Failed to fetch config by prefix: ${prefix}`);
+        return {};
+      }
+
+      const data = await response.json();
+      const configs = data.configs || {};
+
+      // Update cache
+      for (const [key, value] of Object.entries(configs)) {
+        configCache.set(key, value);
+      }
+      cacheExpiry = Date.now() + CACHE_TTL;
+
+      return configs;
+    } catch (error) {
       console.error(`Failed to fetch config by prefix: ${prefix}`, error);
       return {};
     }
-
-    const result: Record<string, ConfigRow['value']> = {};
-    for (const row of data) {
-      let value = row.value;
-      if (typeof value === 'string') {
-        try {
-          value = JSON.parse(value);
-        } catch {
-          // Keep as string if not valid JSON
-        }
-      }
-      result[row.key] = value;
-      configCache.set(row.key, value);
-    }
-
-    cacheExpiry = Date.now() + CACHE_TTL;
-    return result;
   },
 
   /**
    * Get plan configuration (customer limit + features)
+   * Uses secure API route
    */
   async getPlanConfig(plan: SubscriptionPlan): Promise<PlanConfig> {
-    const [limitResult, featuresResult] = await Promise.all([
-      this.get<string | number>(`plans.${plan}.customer_limit`),
-      this.get<PlanFeatures>(`plans.${plan}.features`),
-    ]);
+    try {
+      const response = await fetch(`/api/config?plan=${plan}`, {
+        method: "GET",
+        credentials: "include",
+      });
 
-    // Parse customer limit
-    let customerLimit: number | null = null;
-    if (limitResult !== null && limitResult !== 'null') {
-      customerLimit = typeof limitResult === 'number' ? limitResult : parseInt(String(limitResult), 10);
-      if (isNaN(customerLimit)) customerLimit = null;
+      if (!response.ok) {
+        console.error(`Failed to fetch plan config: ${plan}`);
+        return {
+          customerLimit: this.getDefaultCustomerLimit(plan),
+          features: this.getDefaultFeatures(plan),
+        };
+      }
+
+      const data = await response.json();
+      return {
+        customerLimit: data.config?.customerLimit ?? this.getDefaultCustomerLimit(plan),
+        features: data.config?.features ?? this.getDefaultFeatures(plan),
+      };
+    } catch (error) {
+      console.error(`Failed to fetch plan config: ${plan}`, error);
+      return {
+        customerLimit: this.getDefaultCustomerLimit(plan),
+        features: this.getDefaultFeatures(plan),
+      };
     }
-
-    return {
-      customerLimit,
-      features: featuresResult ?? this.getDefaultFeatures(),
-    };
   },
 
   /**
@@ -153,24 +157,43 @@ export const configService = {
   },
 
   /**
-   * Default features fallback
+   * Default customer limit (plan-specific)
    */
-  getDefaultFeatures(): PlanFeatures {
+  getDefaultCustomerLimit(plan: SubscriptionPlan = "free"): number | null {
+    switch (plan) {
+      case "free":
+        return 5;
+      case "pro":
+        return 500;
+      case "enterprise":
+        return null; // unlimited
+      default:
+        return 5;
+    }
+  },
+
+  /**
+   * Default features fallback (plan-specific)
+   */
+  getDefaultFeatures(plan: SubscriptionPlan = "free"): PlanFeatures {
+    const isPaidPlan = plan === "pro" || plan === "enterprise";
+
     return {
       unlimitedTransactions: true,
       offlineMode: true,
       basicReports: true,
-      advancedReports: false,
+      advancedReports: isPaidPlan,
       smsReminders: false,
       emailSupport: true,
-      prioritySupport: false,
-      dataExport: false,
+      prioritySupport: isPaidPlan,
+      dataExport: isPaidPlan,
       multiUserAccess: false,
       apiAccess: false,
       customIntegrations: false,
       whiteLabel: false,
       pwaInstall: false,
       themeChange: false,
+      customFields: isPaidPlan,
     };
   },
 };

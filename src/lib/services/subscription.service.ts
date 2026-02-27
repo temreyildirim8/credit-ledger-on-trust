@@ -1,6 +1,21 @@
-import { supabase } from '@/lib/supabase/client';
-import type { Subscription, SubscriptionPlan, TablesInsert, TablesUpdate } from '@/lib/database.types';
-import { configService } from './config.service';
+import { configService } from "./config.service";
+import type { SubscriptionPlan } from "@/lib/database.types";
+
+export interface Subscription {
+  id: string;
+  user_id: string;
+  plan: SubscriptionPlan;
+  status: string | null;
+  stripe_customer_id: string | null;
+  stripe_subscription_id: string | null;
+  current_period_start: string | null;
+  current_period_end: string | null;
+  cancel_at_period_end: boolean | null;
+  sms_limit: number | null;
+  sms_used: number | null;
+  created_at: string | null;
+  updated_at: string | null;
+}
 
 export interface SubscriptionWithFeatures extends Subscription {
   features: PlanFeatures;
@@ -52,100 +67,69 @@ export const subscriptionsService = {
   async getPlanFeatures(plan: SubscriptionPlan): Promise<PlanFeatures> {
     try {
       const config = await configService.getPlanConfig(plan);
+      const isPaidPlan = plan === "pro" || plan === "enterprise";
+
       return {
         maxCustomers: config.customerLimit,
         ...config.features,
+        // Ensure customFields is enabled for paid plans (in case config is missing it)
+        customFields: config.features.customFields ?? isPaidPlan,
       };
     } catch (error) {
-      console.error('Failed to fetch plan config, using defaults:', error);
+      console.error("Failed to fetch plan config, using defaults:", error);
       return DEFAULT_FEATURES;
     }
   },
 
   /**
    * Get user's current subscription
-   * Creates a free subscription if none exists
+   * Uses secure API route (server-side JWT validation)
    */
-  async getSubscription(userId: string): Promise<SubscriptionWithFeatures | null> {
-    const { data, error } = await supabase
-      .from('subscriptions')
-      .select('*')
-      .eq('user_id', userId)
-      .single();
+  async getSubscription(_userId: string): Promise<SubscriptionWithFeatures | null> {
+    const response = await fetch("/api/subscription", {
+      method: "GET",
+      credentials: "include",
+    });
 
-    if (error) {
-      // If no subscription exists, create a free one
-      if (error.code === 'PGRST116') {
-        return this.createFreeSubscription(userId);
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
       }
-      throw error;
+      const error = await response.json();
+      throw new Error(error.error || "Failed to fetch subscription");
     }
 
-    const features = await this.getPlanFeatures(data.plan);
-
-    return {
-      ...data,
-      features,
-    };
-  },
-
-  /**
-   * Create a free subscription for new users
-   */
-  async createFreeSubscription(userId: string): Promise<SubscriptionWithFeatures> {
-    const insertData: TablesInsert<'subscriptions'> = {
-      user_id: userId,
-      plan: 'free',
-      status: 'active',
-      sms_limit: 0,
-      sms_used: 0,
-    };
-
-    const { data, error } = await supabase
-      .from('subscriptions')
-      .insert(insertData)
-      .select()
-      .single();
-
-    if (error) throw error;
-
-    const features = await this.getPlanFeatures('free');
-
-    return {
-      ...data,
-      features,
-    };
+    const data = await response.json();
+    return data.subscription;
   },
 
   /**
    * Update user's subscription plan
+   * Uses secure API route (server-side JWT validation)
    */
-  async updatePlan(userId: string, plan: SubscriptionPlan): Promise<SubscriptionWithFeatures> {
-    const updateData: TablesUpdate<'subscriptions'> = {
-      plan,
-      // Update SMS limit based on plan
-      sms_limit: plan === 'pro' || plan === 'enterprise' ? 100 : 0,
-    };
+  async updatePlan(_userId: string, plan: SubscriptionPlan): Promise<SubscriptionWithFeatures> {
+    const response = await fetch("/api/subscription", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ plan }),
+    });
 
-    const { data, error } = await supabase
-      .from('subscriptions')
-      .update(updateData)
-      .eq('user_id', userId)
-      .select()
-      .single();
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
+      }
+      const error = await response.json();
+      throw new Error(error.error || "Failed to update subscription");
+    }
 
-    if (error) throw error;
-
-    const features = await this.getPlanFeatures(plan);
-
-    return {
-      ...data,
-      features,
-    };
+    const data = await response.json();
+    return data.subscription;
   },
 
   /**
    * Check if user has access to a specific feature
+   * Uses secure API route (server-side JWT validation)
    */
   async hasFeature(userId: string, feature: keyof PlanFeatures): Promise<boolean> {
     const subscription = await this.getSubscription(userId);
@@ -155,7 +139,7 @@ export const subscriptionsService = {
 
     // For numeric features (like maxCustomers), null means unlimited, any number means limited access
     if (featureValue === null) return true;
-    if (typeof featureValue === 'number') {
+    if (typeof featureValue === "number") {
       return featureValue > 0;
     }
 
@@ -164,7 +148,7 @@ export const subscriptionsService = {
 
   /**
    * Get customer limit for user's plan
-   * Returns null for unlimited, or a number for limited plans
+   * Uses secure API route (server-side JWT validation)
    */
   async getCustomerLimit(userId: string): Promise<number | null> {
     const subscription = await this.getSubscription(userId);
@@ -173,36 +157,59 @@ export const subscriptionsService = {
 
   /**
    * Check if user is on a paid plan (pro or enterprise)
+   * Uses secure API route (server-side JWT validation)
    */
   async isPaidPlan(userId: string): Promise<boolean> {
     const subscription = await this.getSubscription(userId);
     if (!subscription) return false;
-    return subscription.plan !== 'free';
+    return subscription.plan !== "free";
   },
 
   /**
-   * Increment SMS usage count
+   * Cancel subscription at period end
+   * Uses secure API route (server-side JWT validation)
    */
-  async incrementSmsUsage(userId: string): Promise<void> {
-    // Get current usage
-    const { data } = await supabase
-      .from('subscriptions')
-      .select('sms_used')
-      .eq('user_id', userId)
-      .single();
+  async cancelAtPeriodEnd(_userId: string): Promise<void> {
+    const response = await fetch("/api/subscription", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ action: "cancel" }),
+    });
 
-    if (data) {
-      const { error } = await supabase
-        .from('subscriptions')
-        .update({ sms_used: (data.sms_used || 0) + 1 })
-        .eq('user_id', userId);
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
+      }
+      const error = await response.json();
+      throw new Error(error.error || "Failed to cancel subscription");
+    }
+  },
 
-      if (error) throw error;
+  /**
+   * Reactivate a cancelled subscription
+   * Uses secure API route (server-side JWT validation)
+   */
+  async reactivate(_userId: string): Promise<void> {
+    const response = await fetch("/api/subscription", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ action: "reactivate" }),
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized. Please sign in to continue.");
+      }
+      const error = await response.json();
+      throw new Error(error.error || "Failed to reactivate subscription");
     }
   },
 
   /**
    * Get current SMS usage and limit
+   * Uses secure API route (server-side JWT validation)
    */
   async getSmsUsage(userId: string): Promise<{ used: number; limit: number }> {
     const subscription = await this.getSubscription(userId);
@@ -210,29 +217,5 @@ export const subscriptionsService = {
       used: subscription?.sms_used ?? 0,
       limit: subscription?.sms_limit ?? 0,
     };
-  },
-
-  /**
-   * Cancel subscription at period end
-   */
-  async cancelAtPeriodEnd(userId: string): Promise<void> {
-    const { error } = await supabase
-      .from('subscriptions')
-      .update({ cancel_at_period_end: true })
-      .eq('user_id', userId);
-
-    if (error) throw error;
-  },
-
-  /**
-   * Reactivate a cancelled subscription
-   */
-  async reactivate(userId: string): Promise<void> {
-    const { error } = await supabase
-      .from('subscriptions')
-      .update({ cancel_at_period_end: false })
-      .eq('user_id', userId);
-
-    if (error) throw error;
   },
 };

@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useSubscription } from "@/lib/hooks/useSubscription";
-import { userProfilesService } from "@/lib/services/user-profiles.service";
+import { useUserProfile, useUpdateUserProfile } from "@/lib/hooks/useUserProfile";
 import { getBrandName } from "@/lib/branding";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,9 +26,11 @@ import {
   Award,
   Mail,
   Phone,
-  Globe,
   Loader2,
   FormInput,
+  Scale,
+  ShieldCheck,
+  UserPen,
 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -84,10 +86,11 @@ export default function SettingsPage() {
   const { user, signOut } = useAuth();
   const { hasFeature } = useSubscription();
   const { lastSyncedAt, connectionStatus, pendingCount } = useSyncStatus();
+  const { profile, loading: profileLoading } = useUserProfile();
+  const { updateProfile } = useUpdateUserProfile();
   const [activeTab, setActiveTab] = useState<SettingsTab>("profile");
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
   const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
 
   // Settings sections
@@ -142,22 +145,22 @@ export default function SettingsPage() {
     },
   ];
 
-  // Profile state
-  const [name, setName] = useState(user?.user_metadata?.name || "");
+  // Profile state - initialized from cached profile data
+  const [name, setName] = useState(profile?.full_name || user?.user_metadata?.name || "");
   const [email, setEmail] = useState(user?.email || "");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(profile?.phone || "");
 
-  // Original values for change detection
-  const [originalName, setOriginalName] = useState("");
-  const [originalPhone, setOriginalPhone] = useState("");
-  const [originalBusinessName, setOriginalBusinessName] = useState("");
-  const [originalCurrency, setOriginalCurrency] = useState("TRY");
-  const [originalLanguage, setOriginalLanguage] = useState(locale);
+  // Original values for change detection (from cached profile)
+  const originalName = profile?.full_name || user?.user_metadata?.name || "";
+  const originalPhone = profile?.phone || "";
+  const originalBusinessName = profile?.shop_name || "";
+  const originalCurrency = profile?.currency || "TRY";
+  const originalLanguage = profile?.language || locale;
 
   // Business state
-  const [businessName, setBusinessName] = useState("");
-  const [currency, setCurrency] = useState("TRY");
-  const [language, setLanguage] = useState(locale);
+  const [businessName, setBusinessName] = useState(profile?.shop_name || "");
+  const [currency, setCurrency] = useState(profile?.currency || "TRY");
+  const [language, setLanguage] = useState(profile?.language || locale);
 
   // Notifications state
   const [pushEnabled, setPushEnabled] = useState(true);
@@ -167,46 +170,6 @@ export default function SettingsPage() {
   // Theme state (reserved for future use)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [darkMode, setDarkMode] = useState(false);
-
-  // Load user profile data on mount
-  useEffect(() => {
-    const loadUserProfile = async () => {
-      if (!user?.id) return;
-
-      try {
-        setIsLoading(true);
-        const profile = await userProfilesService.getProfile(user.id);
-        if (profile) {
-          const loadedName =
-            profile.full_name || user?.user_metadata?.name || "";
-          const loadedPhone = profile.phone || "";
-          const loadedBusinessName = profile.shop_name || "";
-          const loadedCurrency = profile.currency || "TRY";
-          const loadedLanguage = profile.language || locale;
-
-          setName(loadedName);
-          setPhone(loadedPhone);
-          setBusinessName(loadedBusinessName);
-          setCurrency(loadedCurrency);
-          setLanguage(loadedLanguage);
-
-          // Store original values for change detection
-          setOriginalName(loadedName);
-          setOriginalPhone(loadedPhone);
-          setOriginalBusinessName(loadedBusinessName);
-          setOriginalCurrency(loadedCurrency);
-          setOriginalLanguage(loadedLanguage);
-        }
-      } catch (error) {
-        console.error("Error loading user profile:", error);
-        toast.error(t("errors.loadFailed"));
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadUserProfile();
-  }, [user?.id, user?.user_metadata?.name, locale, t]);
 
   const handleSignOut = async () => {
     try {
@@ -240,25 +203,10 @@ export default function SettingsPage() {
 
     setIsSaving(true);
     try {
-      // Check if profile exists, create if not
-      const existingProfile = await userProfilesService.getProfile(user.id);
-
-      if (existingProfile) {
-        await userProfilesService.updateProfile(user.id, {
-          full_name: name.trim(),
-          phone: phone.trim() || undefined,
-        });
-      } else {
-        await userProfilesService.createProfile(user.id, {
-          full_name: name.trim(),
-          phone: phone.trim() || undefined,
-        });
-      }
-
-      // Update original values after successful save
-      setOriginalName(name.trim());
-      setOriginalPhone(phone.trim());
-
+      await updateProfile({
+        full_name: name.trim(),
+        phone: phone.trim() || undefined,
+      });
       toast.success(t("sections.profile.saved"));
     } catch (error) {
       console.error("Error saving profile:", error);
@@ -284,27 +232,11 @@ export default function SettingsPage() {
 
     setIsSaving(true);
     try {
-      // Check if profile exists, create if not
-      const existingProfile = await userProfilesService.getProfile(user.id);
-
-      if (existingProfile) {
-        await userProfilesService.updateProfile(user.id, {
-          shop_name: businessName.trim() || undefined,
-          currency: currency,
-          language: language,
-        });
-      } else {
-        await userProfilesService.createProfile(user.id, {
-          shop_name: businessName.trim() || undefined,
-          currency: currency,
-          language: language,
-        });
-      }
-
-      // Update original values after successful save
-      setOriginalBusinessName(businessName.trim());
-      setOriginalCurrency(currency);
-      setOriginalLanguage(language);
+      await updateProfile({
+        shop_name: businessName.trim() || undefined,
+        currency: currency,
+        language: language,
+      });
 
       toast.success(t("sections.business.saved"));
 
@@ -415,14 +347,14 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="p-6">
               {/* Loading State */}
-              {isLoading && (
+              {profileLoading && (
                 <div className="flex items-center justify-center py-8">
                   <Loader2 className="h-8 w-8 animate-spin text-accent" />
                 </div>
               )}
 
               {/* Profile Section */}
-              {!isLoading && activeTab === "profile" && (
+              {!profileLoading && activeTab === "profile" && (
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">
@@ -469,7 +401,7 @@ export default function SettingsPage() {
               )}
 
               {/* Business Section */}
-              {!isLoading && activeTab === "business" && (
+              {!profileLoading && activeTab === "business" && (
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="businessName">
@@ -554,7 +486,7 @@ export default function SettingsPage() {
               )}
 
               {/* Notifications Section */}
-              {!isLoading && activeTab === "notifications" && (
+              {!profileLoading && activeTab === "notifications" && (
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
                     <div>
@@ -626,7 +558,7 @@ export default function SettingsPage() {
               )}
 
               {/* Subscription Section */}
-              {!isLoading && activeTab === "subscription" && (
+              {!profileLoading && activeTab === "subscription" && (
                 <div className="space-y-5">
                   <div className="p-4 bg-accent/10 rounded-xl border border-accent/20">
                     <div className="flex items-center justify-between mb-3">
@@ -688,7 +620,7 @@ export default function SettingsPage() {
               )}
 
               {/* Data Section */}
-              {!isLoading && activeTab === "data" && (
+              {!profileLoading && activeTab === "data" && (
                 <div className="space-y-5">
                   <div>
                     <p className="font-medium mb-3 text-text">
@@ -773,12 +705,12 @@ export default function SettingsPage() {
               )}
 
               {/* Custom Fields Section */}
-              {!isLoading && activeTab === "customFields" && (
+              {!profileLoading && activeTab === "customFields" && (
                 <CustomFieldManager />
               )}
 
               {/* Support Section */}
-              {!isLoading && activeTab === "support" && (
+              {!profileLoading && activeTab === "support" && (
                 <div className="space-y-3">
                   <Button
                     variant="outline"
@@ -824,15 +756,15 @@ export default function SettingsPage() {
               )}
 
               {/* Account Section */}
-              {!isLoading && activeTab === "account" && (
+              {!profileLoading && activeTab === "account" && (
                 <div className="space-y-3">
                   <Button
                     variant="outline"
                     className="w-full justify-start"
                     asChild
                   >
-                    <Link href="/legal/privacy">
-                      <Shield className="h-4 w-4 mr-2" />
+                    <Link href="/legal/privacy" target="_blank">
+                      <ShieldCheck className="h-4 w-4 mr-2" />
                       {tAccount("privacyPolicy")}
                     </Link>
                   </Button>
@@ -841,8 +773,8 @@ export default function SettingsPage() {
                     className="w-full justify-start"
                     asChild
                   >
-                    <Link href="/legal/terms">
-                      <Globe className="h-4 w-4 mr-2" />
+                    <Link href="/legal/terms" target="_blank">
+                      <UserPen className="h-4 w-4 mr-2" />
                       {tAccount("termsOfService")}
                     </Link>
                   </Button>
@@ -851,8 +783,8 @@ export default function SettingsPage() {
                     className="w-full justify-start"
                     asChild
                   >
-                    <Link href="/legal">
-                      <Globe className="h-4 w-4 mr-2" />
+                    <Link href="/legal" target="_blank">
+                      <Scale className="h-4 w-4 mr-2" />
                       {tAccount("licenses")}
                     </Link>
                   </Button>
@@ -874,8 +806,8 @@ export default function SettingsPage() {
       </div>
 
       {/* Version */}
-      <p className="text-center text-xs text-text-secondary">
-        {brandName} v1.0.0 (Beta)
+      <p className="text-center text-xs text-text-secondary mx-auto bottom-10 absolute">
+        {brandName} / VERSION: 0.1.0 (Beta)
       </p>
 
       {/* Sign Out Confirmation Dialog */}

@@ -40,6 +40,7 @@ const defaultFeatures: PlanFeatures = {
   whiteLabel: false,
   pwaInstall: false,
   themeChange: false,
+  customFields: false,
 };
 
 const SubscriptionContext = createContext<SubscriptionContextType | undefined>(undefined);

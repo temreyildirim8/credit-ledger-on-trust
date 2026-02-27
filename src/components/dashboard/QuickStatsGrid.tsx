@@ -2,7 +2,13 @@
 
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { TrendingUp, TrendingDown, Users, DollarSign } from "lucide-react";
+import {
+  TrendingUp,
+  TrendingDown,
+  Users,
+  DollarSign,
+  Landmark,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useUserProfile } from "@/lib/hooks/useUserProfile";
 import { formatCurrency } from "@/lib/utils/currency";
@@ -82,12 +88,12 @@ export function QuickStatsGrid({
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
       <StatCard
         label={t("totalOwed")}
-        value={formatCurrency(totalDebt, displayCurrency)}
+        value={formatCurrency(Math.max(0, totalDebt), displayCurrency)}
         icon={<TrendingUp className="h-4 w-4 md:h-5 md:w-5" />}
         variant="debt"
         usdValue={
           usdEquivalent && displayCurrency !== "USD"
-            ? formatCurrency(usdEquivalent.totalDebt, "USD", 2)
+            ? formatCurrency(Math.max(0, usdEquivalent.totalDebt), "USD", 2)
             : undefined
         }
       />
@@ -111,7 +117,7 @@ export function QuickStatsGrid({
       <StatCard
         label={t("thisMonth")}
         value={formatCurrency(thisMonth, displayCurrency)}
-        icon={<DollarSign className="h-4 w-4 md:h-5 md:w-5" />}
+        icon={<Landmark className="h-4 w-4 md:h-5 md:w-5" />}
         variant="month"
       />
     </div>

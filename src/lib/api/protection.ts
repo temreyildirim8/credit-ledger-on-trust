@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/db-types";
 import {
-  serverSubscriptionService,
+  subscriptionUtils,
   checkFeatureAccess,
   type ServerPlanFeatures,
-} from "@/lib/services/server-subscription.service";
+} from "@/lib/api/subscription-utils";
 
 /**
  * Authentication result from requireAuth
@@ -62,7 +62,7 @@ export interface FeatureProtectionResult {
   allowed: boolean;
   error?: NextResponse;
   subscription?: Awaited<
-    ReturnType<typeof serverSubscriptionService.getSubscription>
+    ReturnType<typeof subscriptionUtils.getSubscription>
   >;
 }
 
@@ -95,7 +95,7 @@ export async function requireFeature(
     };
   }
 
-  const subscription = await serverSubscriptionService.getSubscription(
+  const subscription = await subscriptionUtils.getSubscription(
     supabase,
     userId,
   );
@@ -117,7 +117,7 @@ export async function requirePaidPlan(
   supabase: SupabaseClient<Database>,
   userId: string,
 ): Promise<FeatureProtectionResult> {
-  const isPaid = await serverSubscriptionService.isPaidPlan(supabase, userId);
+  const isPaid = await subscriptionUtils.isPaidPlan(supabase, userId);
 
   if (!isPaid) {
     return {
@@ -132,7 +132,7 @@ export async function requirePaidPlan(
     };
   }
 
-  const subscription = await serverSubscriptionService.getSubscription(
+  const subscription = await subscriptionUtils.getSubscription(
     supabase,
     userId,
   );
@@ -154,7 +154,7 @@ export async function requireProPlan(
   supabase: SupabaseClient<Database>,
   userId: string,
 ): Promise<FeatureProtectionResult> {
-  const isPro = await serverSubscriptionService.isProPlan(supabase, userId);
+  const isPro = await subscriptionUtils.isProPlan(supabase, userId);
 
   if (!isPro) {
     return {
@@ -169,7 +169,7 @@ export async function requireProPlan(
     };
   }
 
-  const subscription = await serverSubscriptionService.getSubscription(
+  const subscription = await subscriptionUtils.getSubscription(
     supabase,
     userId,
   );
@@ -192,7 +192,7 @@ export async function checkCustomerLimit(
   userId: string,
   currentCount: number,
 ): Promise<FeatureProtectionResult> {
-  const limit = await serverSubscriptionService.getCustomerLimitForUser(
+  const limit = await subscriptionUtils.getCustomerLimitForUser(
     supabase,
     userId,
   );
@@ -203,7 +203,7 @@ export async function checkCustomerLimit(
   }
 
   if (currentCount >= limit) {
-    const subscription = await serverSubscriptionService.getSubscription(
+    const subscription = await subscriptionUtils.getSubscription(
       supabase,
       userId,
     );

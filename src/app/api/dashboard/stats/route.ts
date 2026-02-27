@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { requireAuth } from "@/lib/api/protection";
-import { serverSubscriptionService } from "@/lib/services/server-subscription.service";
 import { exchangeRateService } from "@/lib/services/exchange-rate.service";
 
 /**
@@ -97,12 +96,6 @@ export async function GET(_request: NextRequest) {
       // Continue without USD equivalents if conversion fails
     }
 
-    // Get subscription info
-    const subscription = await serverSubscriptionService.getSubscription(
-      supabase,
-      userId,
-    );
-
     return NextResponse.json({
       totalDebt,
       totalCollected,
@@ -112,10 +105,6 @@ export async function GET(_request: NextRequest) {
       usdEquivalent: {
         totalDebt: usdTotalDebt,
         totalCollected: usdTotalCollected,
-      },
-      subscription: {
-        plan: subscription?.plan ?? "free",
-        hasAdvancedReports: subscription?.features.advancedReports ?? false,
       },
     });
   } catch (error) {

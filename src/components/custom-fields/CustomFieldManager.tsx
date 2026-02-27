@@ -43,13 +43,13 @@ const FIELD_TYPES: { value: CustomFieldType; labelKey: string }[] = [
 
 export function CustomFieldManager() {
   const t = useTranslations("settings.customFields");
-  const { hasFeature } = useSubscription();
+  const { hasFeature, plan, loading: subLoading } = useSubscription();
+
   const [fields, setFields] = useState<CustomFieldDefinition[]>([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [editingField, setEditingField] = useState<CustomFieldDefinition | null>(
-    null,
-  );
+  const [editingField, setEditingField] =
+    useState<CustomFieldDefinition | null>(null);
   const [saving, setSaving] = useState(false);
 
   // Form state
@@ -109,7 +109,10 @@ export function CustomFieldManager() {
 
     setOptions([
       ...options,
-      { label: newOptionLabel.trim(), value: value || `option_${options.length}` },
+      {
+        label: newOptionLabel.trim(),
+        value: value || `option_${options.length}`,
+      },
     ]);
     setNewOptionLabel("");
   };
@@ -150,9 +153,7 @@ export function CustomFieldManager() {
       setDialogOpen(false);
       loadFields();
     } catch (error) {
-      toast.error(
-        error instanceof Error ? error.message : t("saveError"),
-      );
+      toast.error(error instanceof Error ? error.message : t("saveError"));
     } finally {
       setSaving(false);
     }
@@ -178,10 +179,7 @@ export function CustomFieldManager() {
           <CardTitle>{t("title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          <UpgradePrompt
-            variant="card"
-            feature="Custom Fields"
-          />
+          <UpgradePrompt variant="card" feature="Custom Fields" />
         </CardContent>
       </Card>
     );
@@ -204,9 +202,13 @@ export function CustomFieldManager() {
         ) : fields.length === 0 ? (
           <div className="text-center py-8">
             <p className="text-muted-foreground">{t("noFields")}</p>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-muted-foreground mt-1 mb-4">
               {t("noFieldsDescription")}
             </p>
+            <Button onClick={() => handleOpenDialog()} size="sm">
+              <Plus className="h-4 w-4 mr-2" />
+              {t("addField")}
+            </Button>
           </div>
         ) : (
           <div className="space-y-2">
@@ -219,7 +221,10 @@ export function CustomFieldManager() {
                 <div className="flex-1">
                   <p className="font-medium">{field.name}</p>
                   <p className="text-xs text-muted-foreground">
-                    {t(FIELD_TYPES.find((ft) => ft.value === field.field_type)?.labelKey || field.field_type)}
+                    {t(
+                      FIELD_TYPES.find((ft) => ft.value === field.field_type)
+                        ?.labelKey || field.field_type,
+                    )}
                     {field.is_required && (
                       <span className="ml-2 text-destructive">*</span>
                     )}
@@ -247,7 +252,7 @@ export function CustomFieldManager() {
 
       {/* Add/Edit Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="w-1/2">
           <DialogHeader>
             <DialogTitle>
               {editingField ? t("editField") : t("addField")}
@@ -335,10 +340,7 @@ export function CustomFieldManager() {
             )}
 
             <div className="flex items-center gap-2">
-              <Switch
-                checked={isRequired}
-                onCheckedChange={setIsRequired}
-              />
+              <Switch checked={isRequired} onCheckedChange={setIsRequired} />
               <Label>{t("isRequired")}</Label>
             </div>
           </div>

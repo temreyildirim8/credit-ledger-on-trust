@@ -118,7 +118,7 @@ export async function POST(request: NextRequest) {
       }
       console.error("Database error creating custom field:", error);
       return NextResponse.json(
-        { error: "Failed to create custom field" },
+        { error: `Failed to create custom field: ${error.message || error.code || 'Unknown error'}` },
         { status: 500 },
       );
     }

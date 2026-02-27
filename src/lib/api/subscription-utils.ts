@@ -97,10 +97,10 @@ const DEFAULT_PLAN_FEATURES: Record<SubscriptionPlan, ServerPlanFeatures> = {
 };
 
 /**
- * Server-side subscription service for API routes
+ * Server-side subscription utilities for API routes
  * Uses the server Supabase client (passed as parameter)
  */
-export const serverSubscriptionService = {
+export const subscriptionUtils = {
   /**
    * Get plan features from config or fallback to defaults
    */
@@ -349,7 +349,7 @@ export async function checkFeatureAccess(
   userId: string,
   feature: keyof ServerPlanFeatures,
 ): Promise<FeatureCheckResult> {
-  const hasAccess = await serverSubscriptionService.hasFeature(
+  const hasAccess = await subscriptionUtils.hasFeature(
     supabase,
     userId,
     feature,

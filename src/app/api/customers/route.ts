@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { requireAuth, checkCustomerLimit } from "@/lib/api/protection";
-import { serverSubscriptionService } from "@/lib/services/server-subscription.service";
+import { subscriptionUtils } from "@/lib/api/subscription-utils";
 import type { Database } from "@/lib/database.types";
 
 type CustomerInsert = Database["public"]["Tables"]["customers"]["Insert"];
@@ -72,7 +72,7 @@ export async function GET(request: NextRequest) {
     const totalCount = totalCountData ?? data?.length ?? 0;
 
     // Get subscription info for limit checking
-    const subscription = await serverSubscriptionService.getSubscription(
+    const subscription = await subscriptionUtils.getSubscription(
       supabase,
       userId,
     );
