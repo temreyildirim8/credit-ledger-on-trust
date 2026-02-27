@@ -527,7 +527,8 @@
     "filter": {
       "all": "All",
       "hasDebt": "Has Debt",
-      "paidUp": "Paid Up"
+      "paidUp": "Paid Up",
+      "archived": "Archived"
     },
     "empty": {
       "noCustomers": "No customers yet",
@@ -537,6 +538,7 @@
       "addFirst": "Add your first customer"
     },
     "count": "{count} customers",
+    "countWithTotal": "{active} active / {total} total",
     "paywall": {
       "limitReached": "Customer limit reached",
       "upgradeMessage": "Upgrade to Pro for unlimited customers and more features.",
@@ -782,6 +784,7 @@
         "mostPopular": "Most Popular",
         "currentPlan": "Current Plan",
         "currentPlanActive": "Current Plan Active",
+        "selected": "Selected",
         "cancel": "Cancel",
         "processing": "Processing...",
         "contactSales": "Contact Sales",

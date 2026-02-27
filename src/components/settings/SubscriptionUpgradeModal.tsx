@@ -119,14 +119,14 @@ export function SubscriptionUpgradeModal({
                   isCurrent
                     ? 'border-success bg-success/5'
                     : isSelected
-                      ? 'border-accent ring-2 ring-accent/20'
+                      ? 'border-accent ring-2 ring-accent bg-accent/5'
                       : plan.featured
                         ? 'border-accent/50 hover:border-accent'
                         : 'border-border hover:border-accent/30'
                 }`}
                 onClick={() => handleSelectPlan(plan.key)}
               >
-                {plan.featured && !isCurrent && (
+                {plan.featured && !isCurrent && !isSelected && (
                   <Badge className="absolute -top-2 left-1/2 -translate-x-1/2 bg-accent text-white">
                     {t('mostPopular')}
                   </Badge>
@@ -134,6 +134,11 @@ export function SubscriptionUpgradeModal({
                 {isCurrent && (
                   <Badge className="absolute -top-2 left-1/2 -translate-x-1/2 bg-success text-white">
                     {t('currentPlan')}
+                  </Badge>
+                )}
+                {isSelected && !isCurrent && (
+                  <Badge className="absolute -top-2 left-1/2 -translate-x-1/2 bg-accent text-white">
+                    {t('selected')}
                   </Badge>
                 )}
 

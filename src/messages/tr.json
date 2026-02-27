@@ -514,7 +514,8 @@
     "filter": {
       "all": "Tümü",
       "hasDebt": "Borcu Olanlar",
-      "paidUp": "Ödeyenler"
+      "paidUp": "Ödeyenler",
+      "archived": "Arşivlenenler"
     },
     "empty": {
       "noCustomers": "Henüz müşteri yok",
@@ -524,6 +525,7 @@
       "addFirst": "İlk müşterinizi ekleyin"
     },
     "count": "{count} müşteri",
+    "countWithTotal": "{active} aktif / {total} toplam",
     "form": {
       "title": "Yeni Müşteri Ekle",
       "editTitle": "Müşteriyi Düzenle",
@@ -942,6 +944,7 @@
         "mostPopular": "En Popüler",
         "currentPlan": "Mevcut Plan",
         "currentPlanActive": "Mevcut Plan Aktif",
+        "selected": "Seçildi",
         "cancel": "İptal",
         "processing": "İşleniyor...",
         "contactSales": "Satışla İletişime Geçin",
