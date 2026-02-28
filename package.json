@@ -15,7 +15,13 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:headed": "playwright test --headed",
-    "playwright:report": "playwright show-report"
+    "playwright:report": "playwright show-report",
+    "docker:build": "source .env.local && docker build --build-arg NEXT_PUBLIC_SUPABASE_URL=\"$NEXT_PUBLIC_SUPABASE_URL\" --build-arg NEXT_PUBLIC_SUPABASE_ANON_KEY=\"$NEXT_PUBLIC_SUPABASE_ANON_KEY\" --build-arg NEXT_PUBLIC_SITE_URL=\"$NEXT_PUBLIC_SITE_URL\" -t ledgerly-app .",
+    "docker:run": "docker run -p 3001:3000 ledgerly-app",
+    "docker:dev": "docker compose up app-dev",
+    "docker:prod": "docker compose --profile prod up app-prod",
+    "docker:stop": "docker compose down",
+    "docker:logs": "docker compose logs -f"
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.9",
@@ -47,6 +53,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
+    "@swc/helpers": "^0.5.19",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",

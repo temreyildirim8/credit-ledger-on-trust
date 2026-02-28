@@ -20,6 +20,7 @@ const withPWA = withPWAInit({
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  output: "standalone",
 };
 
 export default withPWA(withNextIntl(nextConfig));
