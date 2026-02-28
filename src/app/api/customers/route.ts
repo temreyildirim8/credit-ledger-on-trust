@@ -180,8 +180,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ customer: { ...data, balance: 0 } }, { status: 201 });
   } catch (error) {
     console.error("Unexpected error in POST /api/customers:", error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: `Internal server error: ${errorMessage}` },
       { status: 500 }
     );
   }

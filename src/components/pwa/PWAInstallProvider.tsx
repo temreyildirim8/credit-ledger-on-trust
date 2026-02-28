@@ -53,14 +53,12 @@ export function PWAInstallProvider({ children }: PWAInstallProviderProps) {
       const promptEvent = e as BeforeInstallPromptEvent;
       setDeferredPrompt(promptEvent);
       // Don't set isInstallable here - we'll check subscription first
-      console.log("[PWA] Install captured, prompt available");
     };
 
     const handleAppInstalled = () => {
       setIsInstalled(true);
       setIsInstallable(false);
       setDeferredPrompt(null);
-      console.log("[PWA] App installed");
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
@@ -94,11 +92,11 @@ export function PWAInstallProvider({ children }: PWAInstallProviderProps) {
 
     const { outcome } = await deferredPrompt.userChoice;
 
-    if (outcome === "accepted") {
-      console.log("[PWA] User accepted install");
-    } else {
-      console.log("[PWA] User dismissed install");
-    }
+    // if (outcome === "accepted") {
+    //   console.log("[PWA] User accepted install");
+    // } else {
+    //   console.log("[PWA] User dismissed install");
+    // }
 
     setDeferredPrompt(null);
     setIsInstallable(false);

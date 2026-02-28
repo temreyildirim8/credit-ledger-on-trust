@@ -30,7 +30,6 @@ export function useBackgroundSync() {
 
     // Prevent concurrent sync operations
     if (isSyncingRef.current) {
-      console.log("[BackgroundSync] Sync already in progress, skipping");
       return { success: 0, failed: 0, total: 0 };
     }
 

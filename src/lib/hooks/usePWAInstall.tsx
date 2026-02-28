@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -13,7 +19,9 @@ interface PWAInstallContextValue {
   install: () => Promise<void>;
 }
 
-const PWAInstallContext = createContext<PWAInstallContextValue | undefined>(undefined);
+const PWAInstallContext = createContext<PWAInstallContextValue | undefined>(
+  undefined,
+);
 
 interface PWAInstallProviderProps {
   children: ReactNode;
@@ -26,20 +34,22 @@ export function PWAInstallProvider({
   showInstallPromptAfter = 3000,
   onInstallPrompt,
 }: PWAInstallProviderProps) {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
     // Check if app is already installed - use initial state instead of setState
-    const alreadyInstalled = window.matchMedia("(display-mode: standalone)").matches;
+    const alreadyInstalled = window.matchMedia(
+      "(display-mode: standalone)",
+    ).matches;
 
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       const promptEvent = e as BeforeInstallPromptEvent;
       setDeferredPrompt(promptEvent);
       setIsInstallable(true);
-      console.log("[PWA] Install captured, prompt available");
 
       // Notify parent component that install is ready
       if (onInstallPrompt) {
@@ -51,7 +61,6 @@ export function PWAInstallProvider({
       setIsInstalled(true);
       setIsInstallable(false);
       setDeferredPrompt(null);
-      console.log("[PWA] App installed");
     };
 
     // Set initial installed state using a microtask to avoid synchronous setState
@@ -63,7 +72,10 @@ export function PWAInstallProvider({
     window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {
-      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
       window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, [onInstallPrompt, showInstallPromptAfter]);
@@ -76,13 +88,13 @@ export function PWAInstallProvider({
 
     deferredPrompt.prompt();
 
-    const { outcome } = await deferredPrompt.userChoice;
+    // const { outcome } = await deferredPrompt.userChoice;
 
-    if (outcome === "accepted") {
-      console.log("[PWA] User accepted install");
-    } else {
-      console.log("[PWA] User dismissed install");
-    }
+    // if (outcome === "accepted") {
+    //   console.log("[PWA] User accepted install");
+    // } else {
+    //   console.log("[PWA] User dismissed install");
+    // }
 
     setDeferredPrompt(null);
     setIsInstallable(false);

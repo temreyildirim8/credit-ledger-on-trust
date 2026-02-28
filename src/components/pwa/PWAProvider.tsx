@@ -17,8 +17,6 @@ export function PWAProvider() {
           const existing = await navigator.serviceWorker.getRegistrations();
           await Promise.all(existing.map((reg) => reg.unregister()));
           // Register fresh
-          const reg = await navigator.serviceWorker.register("/sw.js");
-          console.log("[PWA] SW registered:", reg.scope);
         } catch (err) {
           console.warn("[PWA] SW registration failed:", err);
         }
@@ -27,7 +25,6 @@ export function PWAProvider() {
 
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
-      console.log("[PWA] beforeinstallprompt event captured");
       window.dispatchEvent(
         new CustomEvent("pwa-installable", {
           detail: e as BeforeInstallPromptEvent,

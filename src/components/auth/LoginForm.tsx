@@ -83,11 +83,7 @@ export function LoginForm() {
     setAuthError(null);
 
     try {
-      console.log("[LoginForm] Calling signIn...");
       await signIn(email, password);
-      console.log(
-        "[LoginForm] Sign in successful, waiting for auth state update...",
-      );
       toast.success(t("login.success") || "Signed in successfully");
 
       // Show full-page redirecting overlay
@@ -98,7 +94,6 @@ export function LoginForm() {
 
       // Check if user is actually authenticated before redirecting
       const currentUser = await authService.getCurrentUser();
-      console.log("[LoginForm] Current user after sign in:", currentUser?.id);
 
       if (!currentUser) {
         console.error(
@@ -112,10 +107,6 @@ export function LoginForm() {
       // Check if user has completed onboarding
       const hasCompletedOnboarding =
         await userProfilesService.hasCompletedOnboarding(currentUser.id);
-      console.log(
-        "[LoginForm] Has completed onboarding:",
-        hasCompletedOnboarding,
-      );
 
       // Determine redirect
       let redirectTo: string;
@@ -126,7 +117,6 @@ export function LoginForm() {
       } else {
         redirectTo = `/${locale}/dashboard`;
       }
-      console.log("[LoginForm] Redirecting to:", redirectTo);
       router.replace(redirectTo);
     } catch (error) {
       const errorCode =
