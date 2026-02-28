@@ -71,6 +71,8 @@ export default defineConfig({
     // Desktop browsers - use authenticated state (for dashboard, customers, etc.)
     {
       name: "chromium",
+      // Exclude auth.spec.ts — chromium-auth project handles it without storageState
+      testIgnore: /\/tests\/auth\.spec\.ts$/,
       use: {
         ...devices["Desktop Chrome"],
         storageState: "playwright/.auth/user.json",
@@ -79,6 +81,9 @@ export default defineConfig({
     },
     {
       name: "firefox",
+      // Only top-level core UI specs — /tests/database/ and /tests/integration/ have dedicated projects
+      testMatch:
+        /\/tests\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
       use: {
         ...devices["Desktop Firefox"],
         storageState: "playwright/.auth/user.json",
@@ -87,15 +92,19 @@ export default defineConfig({
     },
     {
       name: "webkit",
+      testMatch:
+        /\/tests\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
       use: {
         ...devices["Desktop Safari"],
         storageState: "playwright/.auth/user.json",
       },
       dependencies: ["setup"],
     },
-    // Mobile devices - use authenticated state
+    // Mobile devices - use authenticated state, core UI specs only
     {
       name: "Mobile Chrome",
+      testMatch:
+        /\/tests\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
       use: {
         ...devices["Pixel 5"],
         storageState: "playwright/.auth/user.json",
@@ -104,6 +113,8 @@ export default defineConfig({
     },
     {
       name: "Mobile Safari",
+      testMatch:
+        /\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
       use: {
         ...devices["iPhone 12"],
         storageState: "playwright/.auth/user.json",
