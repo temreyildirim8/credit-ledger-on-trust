@@ -42,36 +42,36 @@ export function FAQSection() {
   ];
 
   return (
-    <section id="faq" className="bg-white px-5 py-24 md:px-20">
+    <section id="faq" className="bg-white px-5 py-16 md:py-24 md:px-20">
       <div className="max-w-[1280px] mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-sm font-semibold text-[#3c83f6] uppercase tracking-wide mb-2">
+        <div className="text-center mb-8 md:mb-12">
+          <p className="text-xs md:text-sm font-semibold text-[#3c83f6] uppercase tracking-wide mb-2">
             {t("badge")}
           </p>
-          <h2 className="text-[36px] font-extrabold leading-[1.2] tracking-[-0.9px] text-[#0f172a] mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-[36px] font-extrabold leading-tight md:leading-[1.2] tracking-[-0.025em] md:tracking-[-0.9px] text-[#0f172a] mb-3 md:mb-4">
             {t("title")}
           </h2>
-          <p className="text-[18px] leading-[28px] text-[#475569] max-w-[672px] mx-auto">
+          <p className="text-base md:text-[18px] leading-relaxed md:leading-[28px] text-[#475569] max-w-[672px] mx-auto">
             {t("subtitle")}
           </p>
         </div>
 
-        <div className="space-y-4 max-w-3xl mx-auto">
+        <div className="space-y-3 md:space-y-4 max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-[#f8fafc] rounded-2xl border border-[#f1f5f9] overflow-hidden transition-all duration-300 hover:border-[#e2e8f0]"
+              className="bg-[#f8fafc] rounded-xl md:rounded-2xl border border-[#f1f5f9] overflow-hidden transition-all duration-300 hover:border-[#e2e8f0]"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full flex items-center justify-between p-6 text-left"
+                className="w-full flex items-center justify-between p-4 md:p-6 text-left"
               >
-                <span className="font-semibold text-[#0f172a] pr-4">
+                <span className="font-semibold text-sm md:text-base text-[#0f172a] pr-4">
                   {faq.question}
                 </span>
                 <ChevronDown
                   className={cn(
-                    "h-5 w-5 text-[#64748b] transition-transform duration-300 flex-shrink-0",
+                    "h-4 w-4 md:h-5 md:w-5 text-[#64748b] transition-transform duration-300 flex-shrink-0",
                     openIndex === index && "rotate-180",
                   )}
                 />
@@ -82,7 +82,7 @@ export function FAQSection() {
                   openIndex === index ? "max-h-96" : "max-h-0",
                 )}
               >
-                <div className="px-6 pb-6 text-[#475569] text-[16px] leading-[26px]">
+                <div className="px-4 md:px-6 pb-4 md:pb-6 text-[#475569] text-sm md:text-[16px] leading-relaxed md:leading-[26px]">
                   {faq.answer}
                 </div>
               </div>
@@ -91,11 +91,11 @@ export function FAQSection() {
         </div>
 
         {/* Contact CTA */}
-        <div className="mt-12 text-center">
-          <p className="text-[#64748b] mb-4">{t("stillHaveQuestions")}</p>
+        <div className="mt-8 md:mt-12 text-center">
+          <p className="text-sm md:text-base text-[#64748b] mb-3 md:mb-4">{t("stillHaveQuestions")}</p>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 text-[#3c83f6] font-semibold hover:underline"
+            className="inline-flex items-center justify-center gap-2 text-sm md:text-base text-[#3c83f6] font-semibold hover:underline"
           >
             {t("contactSupport")}
             <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
