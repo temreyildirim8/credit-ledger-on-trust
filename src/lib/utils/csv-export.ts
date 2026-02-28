@@ -111,7 +111,7 @@ function formatCurrencyForCSV(amount: number, currency: string): string {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: currency,
-    minimumFractionDigits: 0,
+    minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(amount);
 }
