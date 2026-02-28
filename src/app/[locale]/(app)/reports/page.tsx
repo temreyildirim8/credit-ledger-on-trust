@@ -352,12 +352,12 @@ export default function ReportsPage() {
           language: locale,
         },
         summary: {
-          totalOutstanding: stats.totalOwed,
-          totalCollected: stats.collected,
-          newDebts: stats.newDebts,
-          paymentsReceived: stats.paymentsReceived,
-          activeCustomers: stats.activeCustomers,
-          collectionRate: stats.collectionRate,
+          totalOutstanding: stats?.totalOwed,
+          totalCollected: stats?.collected,
+          newDebts: stats?.newDebts,
+          paymentsReceived: stats?.paymentsReceived,
+          activeCustomers: stats?.activeCustomers,
+          collectionRate: stats?.collectionRate,
         },
         debtAging: debtAging,
         customers: customers
@@ -541,7 +541,7 @@ export default function ReportsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-foreground">
-              {formatCurrency(stats.totalOwed)}
+              {formatCurrency(stats?.totalOwed)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               <span className="text-red-500 flex items-center gap-1">
@@ -561,7 +561,7 @@ export default function ReportsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">
-              {formatCurrency(stats.collected)}
+              {formatCurrency(stats?.collected)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               <span className="text-green-500 flex items-center gap-1">
@@ -581,7 +581,7 @@ export default function ReportsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-foreground">
-              {stats.activeCustomers}
+              {stats?.activeCustomers}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               {t("shopSummary.withOutstandingBalance")}
@@ -598,7 +598,7 @@ export default function ReportsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-foreground">
-              {stats.collectionRate}%
+              {stats?.collectionRate?.toFixed(2)}%
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               <span className="text-green-500">
