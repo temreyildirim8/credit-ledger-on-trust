@@ -1,5 +1,7 @@
 {
   "name": "Ledgerly - Credit Ledger App",
+  "version": "0.1.0",
+  "id": "com.ledgerly.app",
   "short_name": "Ledgerly",
   "description": "Digital credit ledger for micro-SMEs. Replace your paper notebook with a smart, secure, and always-available solution.",
   "start_url": "/",
@@ -14,6 +16,34 @@
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
+    },
+    {
+      "src": "/icons/resized/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/resized/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/mobile-app-screen.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Ledgerly Mobile App"
+    },
+    {
+      "src": "/images/dashboard-analytics.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Ledgerly Dashboard"
     }
   ],
   "shortcuts": []

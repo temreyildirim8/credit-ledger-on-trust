@@ -9,42 +9,41 @@ interface BeforeInstallPromptEvent extends Event {
 
 export function PWAProvider() {
   useEffect(() => {
-    // Register service worker only in production (Next.js dev mode redirects cause issues)
-    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then((registration) => {
-          console.log("SW registered: ", registration);
-        })
-        .catch((registrationError) => {
-          console.log("SW registration failed: ", registrationError);
-        });
+    // Register SW — first unregister stale/stuck registrations, then register fresh
+    if ("serviceWorker" in navigator) {
+      (async () => {
+        try {
+          // Clean up any stuck/old registrations
+          const existing = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(existing.map((reg) => reg.unregister()));
+          // Register fresh
+          const reg = await navigator.serviceWorker.register("/sw.js");
+          console.log("[PWA] SW registered:", reg.scope);
+        } catch (err) {
+          console.warn("[PWA] SW registration failed:", err);
+        }
+      })();
     }
 
-    // Handle before install prompt
     const handleBeforeInstallPrompt = (e: Event) => {
-      // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       console.log("[PWA] beforeinstallprompt event captured");
-      // Store the event for later use via custom event
-      window.dispatchEvent(new CustomEvent("pwa-installable", { detail: e as BeforeInstallPromptEvent }));
-      console.log("[PWA] Custom event pwa-installable dispatched");
+      window.dispatchEvent(
+        new CustomEvent("pwa-installable", {
+          detail: e as BeforeInstallPromptEvent,
+        }),
+      );
     };
 
     window.addEventListener("pwa-installable", () => {
-      console.log(
-        "[PWA] pwa-installable event received - waiting for user interaction to show install prompt",
-      );
-      console.log(
-        "[PWA] To show the install banner, call: deferredPrompt.userChoice.then(...)",
-      );
+      console.log("[PWA] pwa-installable event received");
     });
 
-    // Handle app installed
     const handleAppInstalled = () => {
       window.dispatchEvent(new CustomEvent("pwa-installed"));
     };
 
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
     window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {

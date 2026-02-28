@@ -239,7 +239,7 @@ export async function proxy(request: NextRequest) {
 export const config = {
   // Match all paths except api, _next/static, _next/image, favicon.ico, etc.
   matcher: [
-    // Match all paths except static files and API routes
-    "/((?!api|_next/static|_next/image|favicon.ico|manifest.json|icons|images).*)",
+    // Match all paths except static files, API routes, and PWA service worker files
+    "/((?!api|_next/static|_next/image|favicon.ico|manifest.json|icons|images|sw\\.js|workbox-.*\\.js).*)",
   ],
 };
