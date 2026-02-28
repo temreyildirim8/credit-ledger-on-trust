@@ -1013,10 +1013,16 @@
       "verifying": "Verifying link...",
       "successTitle": "Password Updated!",
       "invalidLink": "Invalid or expired reset link",
+      "about": "Mayelana",
+      "contact": "Xhumana",
+      "pricing": "Intengo",
       "statusBadge": "Bank-Grade Security"
     },
     "verifyOTP": {
       "brandName": "Mali-X",
+      "about": "Mayelana",
+      "contact": "Xhumana",
+      "pricing": "Intengo",
       "statusBadge": "One-Time Verification",
       "heroTitle": "Verify Your Identity",
       "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes."

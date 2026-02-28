@@ -1066,10 +1066,16 @@
       "verifying": "Verifying link...",
       "successTitle": "Password Updated!",
       "invalidLink": "Invalid or expired reset link",
+      "about": "About",
+      "contact": "Contact",
+      "pricing": "Pricing",
       "statusBadge": "Bank-Grade Security"
     },
     "verifyOTP": {
       "brandName": "Global Ledger",
+      "about": "About",
+      "contact": "Contact",
+      "pricing": "Pricing",
       "statusBadge": "One-Time Verification",
       "heroTitle": "Verify Your Identity",
       "heroSubtitle": "Enter the secure one-time code sent to your email. Your code expires in 10 minutes."
