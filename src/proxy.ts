@@ -149,7 +149,33 @@ export async function proxy(request: NextRequest) {
     });
   };
 
-  // 3.5. Auto-detect locale for first-time visitors on root path
+  // 3.5. Handle auth callback at root level
+  // When Supabase redirects to the root URL with auth params,
+  // redirect to the proper callback page
+  const { searchParams } = new URL(request.url);
+  const code = searchParams.get("code");
+  const token = searchParams.get("token");
+  const authType = searchParams.get("type");
+  const authError = searchParams.get("error");
+
+  if (pathname === "/" && (code || token || authType || authError)) {
+    // Get locale from cookie or default
+    const localeCookie = request.cookies.get("NEXT_LOCALE")?.value;
+    const detectedLocale = localeCookie || "en";
+    const callbackUrl = new URL(`/${detectedLocale}/auth/callback`, request.url);
+
+    // Preserve all query parameters
+    searchParams.forEach((value, key) => {
+      callbackUrl.searchParams.set(key, value);
+    });
+
+    const redirectResponse = NextResponse.redirect(callbackUrl);
+    // Copy Supabase cookies to maintain session
+    copyCookies(supabaseResponse, redirectResponse);
+    return redirectResponse;
+  }
+
+  // 3.6. Auto-detect locale for first-time visitors on root path
   // Only redirect if:
   // - Path is exactly "/" (root)
   // - User doesn't have locale-detected cookie
