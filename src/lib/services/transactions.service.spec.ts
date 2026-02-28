@@ -1,35 +1,33 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { transactionsService } from './transactions.service';
-import { supabase } from '@/lib/supabase/client';
-
-// Type the mocked supabase
-const mockSupabase = vi.mocked(supabase);
 
 describe('transactionsService', () => {
   const mockUserId = 'user-123';
   const mockCustomerId = 'customer-456';
 
+  // Store original fetch
+  const originalFetch = global.fetch;
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
+  afterEach(() => {
+    global.fetch = originalFetch;
+  });
+
   describe('getTransactions', () => {
     it('should return empty array when no transactions exist', async () => {
-      const mockOrder = vi.fn().mockResolvedValue({ data: null });
-      const mockEq = vi.fn().mockReturnValue({
-        order: mockOrder,
-      });
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: mockEq,
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ transactions: [] }),
       });
 
       const result = await transactionsService.getTransactions(mockUserId);
 
       expect(result).toEqual([]);
-      expect(mockSupabase.from).toHaveBeenCalledWith('transactions');
+      expect(global.fetch).toHaveBeenCalledWith('/api/transactions', expect.any(Object));
     });
 
     it('should return transactions with customer names', async () => {
@@ -42,7 +40,7 @@ describe('transactionsService', () => {
           description: 'Purchase on credit',
           transaction_date: '2024-01-15',
           created_at: '2024-01-15T10:00:00Z',
-          customers: { name: 'John Doe' },
+          customer_name: 'John Doe',
         },
         {
           id: 'tx-2',
@@ -52,19 +50,14 @@ describe('transactionsService', () => {
           description: 'Partial payment',
           transaction_date: '2024-01-16',
           created_at: '2024-01-16T11:00:00Z',
-          customers: { name: 'Jane Smith' },
+          customer_name: 'Jane Smith',
         },
       ];
 
-      const mockOrder = vi.fn().mockResolvedValue({ data: mockData });
-      const mockEq = vi.fn().mockReturnValue({
-        order: mockOrder,
-      });
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: mockEq,
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ transactions: mockData }),
       });
 
       const result = await transactionsService.getTransactions(mockUserId);
@@ -93,24 +86,19 @@ describe('transactionsService', () => {
           description: 'Test',
           transaction_date: '2024-01-15',
           created_at: '2024-01-15',
-          customers: null,
+          customer_name: null,
         },
       ];
 
-      const mockOrder = vi.fn().mockResolvedValue({ data: mockData });
-      const mockEq = vi.fn().mockReturnValue({
-        order: mockOrder,
-      });
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: mockEq,
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ transactions: mockData }),
       });
 
       const result = await transactionsService.getTransactions(mockUserId);
 
-      expect(result[0].customer_name).toBeUndefined();
+      expect(result[0].customer_name).toBeNull();
     });
   });
 
@@ -126,13 +114,10 @@ describe('transactionsService', () => {
         created_at: '2024-01-17T12:00:00Z',
       };
 
-      const mockInsert = vi.fn().mockReturnValue({
-        select: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockTransaction, error: null }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        insert: mockInsert,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 201,
+        json: async () => ({ transaction: mockTransaction }),
       });
 
       const result = await transactionsService.createTransaction(mockUserId, {
@@ -159,13 +144,10 @@ describe('transactionsService', () => {
         created_at: '2024-01-17T12:00:00Z',
       };
 
-      const mockInsert = vi.fn().mockReturnValue({
-        select: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockTransaction, error: null }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        insert: mockInsert,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 201,
+        json: async () => ({ transaction: mockTransaction }),
       });
 
       const result = await transactionsService.createTransaction(mockUserId, {
@@ -188,13 +170,10 @@ describe('transactionsService', () => {
         created_at: new Date().toISOString(),
       };
 
-      const mockInsert = vi.fn().mockReturnValue({
-        select: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockTransaction, error: null }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        insert: mockInsert,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 201,
+        json: async () => ({ transaction: mockTransaction }),
       });
 
       await transactionsService.createTransaction(mockUserId, {
@@ -203,19 +182,17 @@ describe('transactionsService', () => {
         amount: 50.00,
       });
 
-      // Verify that insert was called with transaction data
-      expect(mockInsert).toHaveBeenCalled();
+      // Verify that fetch was called
+      expect(global.fetch).toHaveBeenCalledWith('/api/transactions', expect.objectContaining({
+        method: 'POST',
+      }));
     });
 
     it('should throw error when creation fails', async () => {
-      const mockError = new Error('Creation failed');
-      const mockInsert = vi.fn().mockReturnValue({
-        select: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: null, error: mockError }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        insert: mockInsert,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 500,
+        json: async () => ({ error: 'Creation failed' }),
       });
 
       await expect(
@@ -230,17 +207,10 @@ describe('transactionsService', () => {
 
   describe('getCustomers', () => {
     it('should return empty array when no customers', async () => {
-      const mockOrder = vi.fn().mockResolvedValue({ data: null });
-      const mockEq = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          order: mockOrder,
-        }),
-      });
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: mockEq,
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ customers: [] }),
       });
 
       const result = await transactionsService.getCustomers(mockUserId);
@@ -255,17 +225,10 @@ describe('transactionsService', () => {
         { id: '3', name: 'Charlie' },
       ];
 
-      const mockOrder = vi.fn().mockResolvedValue({ data: mockData });
-      const mockEq = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          order: mockOrder,
-        }),
-      });
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: mockEq,
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ customers: mockData }),
       });
 
       const result = await transactionsService.getCustomers(mockUserId);
@@ -276,31 +239,16 @@ describe('transactionsService', () => {
       expect(result[2]).toEqual({ id: '3', name: 'Charlie' });
     });
 
-    it('should filter out deleted customers', async () => {
-      const mockData = [
-        { id: '1', name: 'Active Customer' },
-      ];
-
-      // Chain: from('customers').select('id, name').eq('user_id', userId).eq('is_deleted', false).order('name')
-      const mockOrder = vi.fn().mockResolvedValue({ data: mockData });
-      const mockEqInner = vi.fn().mockReturnValue({
-        order: mockOrder,
-      });
-      const mockEqOuter = vi.fn().mockReturnValue({
-        eq: mockEqInner,
-      });
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: mockEqOuter,
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+    it('should throw error when unauthorized', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 401,
+        json: async () => ({ error: 'Unauthorized' }),
       });
 
-      const result = await transactionsService.getCustomers(mockUserId);
-
-      // Verify the result (the mock chain ensures is_deleted=false is part of the query)
-      expect(result).toHaveLength(1);
-      expect(result[0]).toEqual({ id: '1', name: 'Active Customer' });
+      await expect(
+        transactionsService.getCustomers(mockUserId)
+      ).rejects.toThrow('Unauthorized. Please sign in to continue.');
     });
   });
 });

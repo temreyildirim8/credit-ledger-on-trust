@@ -2,6 +2,27 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { QuickStatsGrid } from './QuickStatsGrid';
 
+// Mock next-intl
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => {
+    const translations: Record<string, string> = {
+      'totalOwed': 'Total Owed',
+      'collected': 'Collected',
+      'activeCustomers': 'Active Customers',
+      'thisMonth': 'This Month',
+    };
+    return translations[key] || key;
+  },
+}));
+
+// Mock useUserProfile hook
+vi.mock('@/lib/hooks/useUserProfile', () => ({
+  useUserProfile: () => ({
+    currency: 'TRY',
+    locale: 'tr',
+  }),
+}));
+
 describe('QuickStatsGrid', () => {
   const defaultProps = {
     totalDebt: 10000,
@@ -31,13 +52,13 @@ describe('QuickStatsGrid', () => {
 
     it('should render formatted total debt value', () => {
       render(<QuickStatsGrid {...defaultProps} />);
-      // The component uses Intl.NumberFormat with tr-TR locale and TRY currency
-      expect(screen.getByText('₺10.000')).toBeInTheDocument();
+      // The component uses Intl.NumberFormat with tr-TR locale and TRY currency with 2 decimal places
+      expect(screen.getByText('₺10.000,00')).toBeInTheDocument();
     });
 
     it('should render formatted total collected value', () => {
       render(<QuickStatsGrid {...defaultProps} />);
-      expect(screen.getByText('₺5.000')).toBeInTheDocument();
+      expect(screen.getByText('₺5.000,00')).toBeInTheDocument();
     });
 
     it('should render active customers count', () => {
@@ -47,7 +68,7 @@ describe('QuickStatsGrid', () => {
 
     it('should render formatted this month value', () => {
       render(<QuickStatsGrid {...defaultProps} />);
-      expect(screen.getByText('₺2.500')).toBeInTheDocument();
+      expect(screen.getByText('₺2.500,00')).toBeInTheDocument();
     });
   });
 
@@ -55,8 +76,8 @@ describe('QuickStatsGrid', () => {
     it('should use default values when props not provided', () => {
       render(<QuickStatsGrid />);
 
-      // All values should be 0 with default formatting
-      const zeroValues = screen.getAllByText('₺0');
+      // All values should be 0 with default formatting (2 decimal places)
+      const zeroValues = screen.getAllByText('₺0,00');
       expect(zeroValues).toHaveLength(3); // totalDebt, totalCollected, thisMonth
 
       expect(screen.getByText('0')).toBeInTheDocument(); // activeCustomers
@@ -72,7 +93,7 @@ describe('QuickStatsGrid', () => {
         />
       );
 
-      const zeroValues = screen.getAllByText('₺0');
+      const zeroValues = screen.getAllByText('₺0,00');
       expect(zeroValues).toHaveLength(3);
       expect(screen.getByText('0')).toBeInTheDocument();
     });
@@ -87,12 +108,12 @@ describe('QuickStatsGrid', () => {
         />
       );
 
-      // Turkish locale uses dots for thousands, no decimals
-      expect(screen.getByText('₺1.000.000.000')).toBeInTheDocument();
-      expect(screen.getByText('₺500.000.000')).toBeInTheDocument();
+      // Turkish locale uses dots for thousands, with 2 decimal places
+      expect(screen.getByText('₺1.000.000.000,00')).toBeInTheDocument();
+      expect(screen.getByText('₺500.000.000,00')).toBeInTheDocument();
       // 9999 is just a number without formatting, so it should appear as plain text
       expect(screen.getAllByText('9999').length).toBeGreaterThan(0);
-      expect(screen.getByText('₺250.000.000')).toBeInTheDocument();
+      expect(screen.getByText('₺250.000.000,00')).toBeInTheDocument();
     });
 
     it('should handle decimal amounts', () => {
@@ -105,12 +126,11 @@ describe('QuickStatsGrid', () => {
         />
       );
 
-      // With minimumFractionDigits: 0 and maximumFractionDigits: 0,
-      // decimals should be rounded/truncated
-      expect(screen.getByText('₺1.235')).toBeInTheDocument();
-      expect(screen.getByText('₺789')).toBeInTheDocument();
+      // With 2 decimal places
+      expect(screen.getByText('₺1.234,56')).toBeInTheDocument();
+      expect(screen.getByText('₺789,01')).toBeInTheDocument();
       expect(screen.getByText('5')).toBeInTheDocument();
-      expect(screen.getByText('₺346')).toBeInTheDocument();
+      expect(screen.getByText('₺345,67')).toBeInTheDocument();
     });
   });
 
@@ -166,11 +186,11 @@ describe('QuickStatsGrid', () => {
       expect(usersIcon).toBeInTheDocument();
     });
 
-    it('should render DollarSign icon for month card', () => {
+    it('should render Landmark icon for month card', () => {
       const { container } = render(<QuickStatsGrid {...defaultProps} />);
-      // DollarSign icon should be present
-      const dollarSignIcon = container.querySelector('svg.lucide-dollar-sign');
-      expect(dollarSignIcon).toBeInTheDocument();
+      // Landmark icon should be present (not DollarSign)
+      const landmarkIcon = container.querySelector('svg.lucide-landmark');
+      expect(landmarkIcon).toBeInTheDocument();
     });
   });
 
@@ -198,7 +218,8 @@ describe('QuickStatsGrid', () => {
     it('should handle negative totalDebt', () => {
       render(<QuickStatsGrid totalDebt={-1000} />);
       // Negative values should still display (note: Turkish uses minus before symbol)
-      expect(screen.getByText(/-.*₺1.000|₺-1.000/)).toBeInTheDocument();
+      // With 2 decimal places: -₺1.000,00
+      expect(screen.getByText(/-.*₺1\.000/)).toBeInTheDocument();
     });
 
     it('should handle very small amounts', () => {
@@ -211,7 +232,7 @@ describe('QuickStatsGrid', () => {
         />
       );
 
-      // With fractionDigits set to 0, small values should round to 0 or 1
+      // With 2 decimal places, small values should show decimals
       expect(screen.getByText('1')).toBeInTheDocument(); // activeCustomers
     });
 
@@ -225,8 +246,8 @@ describe('QuickStatsGrid', () => {
         />
       );
 
-      // Should use default values of 0
-      const zeroValues = screen.getAllByText('₺0');
+      // Should use default values of 0 with 2 decimal places
+      const zeroValues = screen.getAllByText('₺0,00');
       expect(zeroValues).toHaveLength(3);
     });
   });

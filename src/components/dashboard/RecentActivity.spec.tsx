@@ -2,6 +2,27 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { RecentActivity } from './RecentActivity';
 
+// Mock next-intl
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => {
+    const translations: Record<string, string> = {
+      'empty': 'No activity yet',
+      'emptyDescription': 'Start by adding your first customer to track debts and payments.',
+      'debt': 'Debt',
+      'payment': 'Payment',
+    };
+    return translations[key] || key;
+  },
+}));
+
+// Mock useUserProfile hook
+vi.mock('@/lib/hooks/useUserProfile', () => ({
+  useUserProfile: () => ({
+    currency: 'USD',
+    locale: 'en',
+  }),
+}));
+
 describe('RecentActivity', () => {
   const mockActivities = [
     {

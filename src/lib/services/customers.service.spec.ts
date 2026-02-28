@@ -1,9 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { customersService } from './customers.service';
-import { supabase } from '@/lib/supabase/client';
-
-// Type the mocked supabase
-const mockSupabase = vi.mocked(supabase);
 
 describe('customersService', () => {
   const mockUserId = 'user-123';
@@ -187,13 +183,15 @@ describe('customersService', () => {
         phone: null,
         address: null,
         notes: null,
+        national_id: null,
         created_at: '2024-01-01',
       };
 
-      const mockSingle = vi.fn().mockResolvedValue({ data: mockCustomer, error: null });
-      const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
-      mockSupabase.from = vi.fn().mockReturnValue({ insert: mockInsert });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 201,
+        json: async () => ({ customer: mockCustomer }),
+      });
 
       const result = await customersService.createCustomer(mockUserId, {
         name: 'New Customer',
@@ -211,13 +209,15 @@ describe('customersService', () => {
         phone: '+1234567890',
         address: '123 Main St',
         notes: 'VIP customer',
+        national_id: null,
         created_at: '2024-01-01',
       };
 
-      const mockSingle = vi.fn().mockResolvedValue({ data: mockCustomer, error: null });
-      const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
-      mockSupabase.from = vi.fn().mockReturnValue({ insert: mockInsert });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 201,
+        json: async () => ({ customer: mockCustomer }),
+      });
 
       const result = await customersService.createCustomer(mockUserId, {
         name: 'Full Customer',
@@ -230,11 +230,11 @@ describe('customersService', () => {
     });
 
     it('should throw error when creation fails', async () => {
-      const mockError = new Error('Database error');
-      const mockSingle = vi.fn().mockResolvedValue({ data: null, error: mockError });
-      const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
-      mockSupabase.from = vi.fn().mockReturnValue({ insert: mockInsert });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 500,
+        json: async () => ({ error: 'Database error' }),
+      });
 
       await expect(
         customersService.createCustomer(mockUserId, { name: 'Test' })
@@ -250,13 +250,11 @@ describe('customersService', () => {
         phone: '+9999999999',
       };
 
-      // Chain: update().eq().eq().select().single()
-      const mockSingle = vi.fn().mockResolvedValue({ data: mockUpdated, error: null });
-      const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockEq2 = vi.fn().mockReturnValue({ select: mockSelect });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq1 });
-      mockSupabase.from = vi.fn().mockReturnValue({ update: mockUpdate });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ customer: mockUpdated }),
+      });
 
       const result = await customersService.updateCustomer(mockUserId, mockCustomerId, {
         name: 'Updated Name',
@@ -267,14 +265,11 @@ describe('customersService', () => {
     });
 
     it('should throw error when update fails', async () => {
-      const mockError = new Error('Update failed');
-      // Chain: update().eq().eq().select().single()
-      const mockSingle = vi.fn().mockResolvedValue({ data: null, error: mockError });
-      const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockEq2 = vi.fn().mockReturnValue({ select: mockSelect });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq1 });
-      mockSupabase.from = vi.fn().mockReturnValue({ update: mockUpdate });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 500,
+        json: async () => ({ error: 'Update failed' }),
+      });
 
       await expect(
         customersService.updateCustomer(mockUserId, mockCustomerId, { name: 'Test' })
@@ -282,14 +277,11 @@ describe('customersService', () => {
     });
 
     it('should throw error when customer not found (IDOR protection)', async () => {
-      const mockError = { code: 'PGRST116' };
-      // Chain: update().eq().eq().select().single()
-      const mockSingle = vi.fn().mockResolvedValue({ data: null, error: mockError });
-      const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockEq2 = vi.fn().mockReturnValue({ select: mockSelect });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq1 });
-      mockSupabase.from = vi.fn().mockReturnValue({ update: mockUpdate });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 404,
+        json: async () => ({ error: 'Not found' }),
+      });
 
       await expect(
         customersService.updateCustomer(mockUserId, mockCustomerId, { name: 'Test' })
@@ -298,35 +290,24 @@ describe('customersService', () => {
   });
 
   describe('getCustomerTransactions', () => {
-    it('should throw error when customer not found', async () => {
-      // First query: customer verification - select().eq().eq().single()
-      const mockSingle = vi.fn().mockResolvedValue({ data: null, error: { code: 'PGRST116' } });
-      const mockEq2 = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockSelect = vi.fn().mockReturnValue({ eq: mockEq1 });
-      mockSupabase.from = vi.fn().mockReturnValue({ select: mockSelect });
+    it('should throw error when request fails', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 500,
+        json: async () => ({ error: 'Server error' }),
+      });
 
       await expect(
         customersService.getCustomerTransactions(mockUserId, mockCustomerId)
-      ).rejects.toThrow('Customer not found or access denied');
+      ).rejects.toThrow('Server error');
     });
 
     it('should return empty array when no transactions', async () => {
-      // First query: customer verification - select().eq().eq().single()
-      const mockSingle = vi.fn().mockResolvedValue({ data: { id: mockCustomerId }, error: null });
-      const mockEq2 = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockSelect = vi.fn().mockReturnValue({ eq: mockEq1 });
-
-      // Second query: transactions - select().eq().eq().order()
-      const mockOrder = vi.fn().mockResolvedValue({ data: null });
-      const mockTxEq2 = vi.fn().mockReturnValue({ order: mockOrder });
-      const mockTxEq1 = vi.fn().mockReturnValue({ eq: mockTxEq2 });
-      const mockTxSelect = vi.fn().mockReturnValue({ eq: mockTxEq1 });
-
-      mockSupabase.from = vi.fn()
-        .mockReturnValueOnce({ select: mockSelect })  // customer verification
-        .mockReturnValueOnce({ select: mockTxSelect }); // transactions
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ transactions: [] }),
+      });
 
       const result = await customersService.getCustomerTransactions(mockUserId, mockCustomerId);
 
@@ -355,21 +336,11 @@ describe('customersService', () => {
         },
       ];
 
-      // First query: customer verification - select().eq().eq().single()
-      const mockSingle = vi.fn().mockResolvedValue({ data: { id: mockCustomerId }, error: null });
-      const mockEq2 = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockSelect = vi.fn().mockReturnValue({ eq: mockEq1 });
-
-      // Second query: transactions - select().eq().eq().order()
-      const mockOrder = vi.fn().mockResolvedValue({ data: mockTransactions });
-      const mockTxEq2 = vi.fn().mockReturnValue({ order: mockOrder });
-      const mockTxEq1 = vi.fn().mockReturnValue({ eq: mockTxEq2 });
-      const mockTxSelect = vi.fn().mockReturnValue({ eq: mockTxEq1 });
-
-      mockSupabase.from = vi.fn()
-        .mockReturnValueOnce({ select: mockSelect })  // customer verification
-        .mockReturnValueOnce({ select: mockTxSelect }); // transactions
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ transactions: mockTransactions }),
+      });
 
       const result = await customersService.getCustomerTransactions(mockUserId, mockCustomerId);
 
@@ -381,11 +352,11 @@ describe('customersService', () => {
 
   describe('archiveCustomer', () => {
     it('should archive customer successfully', async () => {
-      // update().eq().eq() chain
-      const mockEq2 = vi.fn().mockResolvedValue({ error: null });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq1 });
-      mockSupabase.from = vi.fn().mockReturnValue({ update: mockUpdate });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({}),
+      });
 
       await expect(
         customersService.archiveCustomer(mockUserId, mockCustomerId)
@@ -393,11 +364,11 @@ describe('customersService', () => {
     });
 
     it('should throw error when archive fails', async () => {
-      const mockError = new Error('Archive failed');
-      const mockEq2 = vi.fn().mockResolvedValue({ error: mockError });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq1 });
-      mockSupabase.from = vi.fn().mockReturnValue({ update: mockUpdate });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 500,
+        json: async () => ({ error: 'Archive failed' }),
+      });
 
       await expect(
         customersService.archiveCustomer(mockUserId, mockCustomerId)
@@ -407,26 +378,11 @@ describe('customersService', () => {
 
   describe('deleteCustomer', () => {
     it('should delete customer and their transactions', async () => {
-      // Mock customer verification - select().eq().eq().single()
-      const mockSingle = vi.fn().mockResolvedValue({ data: { id: mockCustomerId }, error: null });
-      const mockEq2 = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockSelect = vi.fn().mockReturnValue({ eq: mockEq1 });
-
-      // Mock transaction deletion - delete().eq().eq()
-      const mockTxDeleteEq2 = vi.fn().mockResolvedValue({ error: null });
-      const mockTxDeleteEq1 = vi.fn().mockReturnValue({ eq: mockTxDeleteEq2 });
-      const mockTxDelete = vi.fn().mockReturnValue({ eq: mockTxDeleteEq1 });
-
-      // Mock customer deletion - delete().eq().eq()
-      const mockCustDeleteEq2 = vi.fn().mockResolvedValue({ error: null });
-      const mockCustDeleteEq1 = vi.fn().mockReturnValue({ eq: mockCustDeleteEq2 });
-      const mockCustDelete = vi.fn().mockReturnValue({ eq: mockCustDeleteEq1 });
-
-      mockSupabase.from = vi.fn()
-        .mockReturnValueOnce({ select: mockSelect })
-        .mockReturnValueOnce({ delete: mockTxDelete })
-        .mockReturnValueOnce({ delete: mockCustDelete });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({}),
+      });
 
       await expect(
         customersService.deleteCustomer(mockUserId, mockCustomerId)
@@ -434,38 +390,27 @@ describe('customersService', () => {
     });
 
     it('should throw error when customer not found', async () => {
-      // Mock customer verification - select().eq().eq().single()
-      const mockSingle = vi.fn().mockResolvedValue({ data: null, error: { code: 'PGRST116' } });
-      const mockEq2 = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockSelect = vi.fn().mockReturnValue({ eq: mockEq1 });
-
-      mockSupabase.from = vi.fn().mockReturnValue({ select: mockSelect });
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 404,
+        json: async () => ({ error: 'Not found' }),
+      });
 
       await expect(
         customersService.deleteCustomer(mockUserId, mockCustomerId)
       ).rejects.toThrow('Customer not found or access denied');
     });
 
-    it('should throw error when transaction deletion fails', async () => {
-      // Mock customer verification success
-      const mockSingle = vi.fn().mockResolvedValue({ data: { id: mockCustomerId }, error: null });
-      const mockEq2 = vi.fn().mockReturnValue({ single: mockSingle });
-      const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      const mockSelect = vi.fn().mockReturnValue({ eq: mockEq1 });
-
-      const mockError = new Error('Transaction delete failed');
-      const mockTxDeleteEq2 = vi.fn().mockResolvedValue({ error: mockError });
-      const mockTxDeleteEq1 = vi.fn().mockReturnValue({ eq: mockTxDeleteEq2 });
-      const mockTxDelete = vi.fn().mockReturnValue({ eq: mockTxDeleteEq1 });
-
-      mockSupabase.from = vi.fn()
-        .mockReturnValueOnce({ select: mockSelect })
-        .mockReturnValueOnce({ delete: mockTxDelete });
+    it('should throw error when deletion fails', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 500,
+        json: async () => ({ error: 'Delete failed' }),
+      });
 
       await expect(
         customersService.deleteCustomer(mockUserId, mockCustomerId)
-      ).rejects.toThrow('Transaction delete failed');
+      ).rejects.toThrow('Delete failed');
     });
   });
 });
