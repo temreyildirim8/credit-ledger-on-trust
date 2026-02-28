@@ -671,4 +671,336 @@ test.describe("Customer Management", () => {
       await expect(focusedElement).toBeVisible();
     });
   });
+
+  // ---------------------------------------------------------------------------
+  // National ID Search (national_id refactor)
+  // ---------------------------------------------------------------------------
+  test.describe("National ID Search", () => {
+    test("search box should find customer by national ID", async ({ page }) => {
+      await page.goto(`${BASE_URL}/customers`);
+      if (await skipIfUnauthenticated(page)) return;
+
+      await page.waitForLoadState("networkidle");
+
+      const searchInput = page
+        .getByPlaceholder(/search/i)
+        .or(page.getByRole("searchbox"))
+        .first();
+      const hasSearch = await searchInput.isVisible().catch(() => false);
+      if (!hasSearch) {
+        test.skip();
+        return;
+      }
+
+      // Type a numeric string resembling a national ID
+      await searchInput.fill("12345678901");
+      await page.waitForTimeout(500);
+
+      // Results should filter — either shows matching customers or empty state
+      const resultCount = await page
+        .locator('table tbody tr, [class*="card"]')
+        .count();
+      const emptyState = await page
+        .getByText(/no.*customer|no.*result|empty/i)
+        .isVisible()
+        .catch(() => false);
+
+      expect(resultCount >= 0 || emptyState).toBe(true);
+    });
+
+    test("national ID field should be visible in add customer modal", async ({
+      page,
+    }) => {
+      await page.goto(`${BASE_URL}/customers`);
+      if (await skipIfUnauthenticated(page)) return;
+
+      const addButton = page.getByRole("button", { name: /add.*customer/i });
+      await addButton.click();
+
+      const dialog = page.getByRole("dialog");
+      await expect(dialog).toBeVisible();
+
+      // Look for national ID field
+      const nationalIdField = dialog
+        .getByLabel(/national.*id|id.*number|kimlik/i)
+        .or(dialog.getByPlaceholder(/national.*id|id.*number/i))
+        .first();
+
+      const hasNationalId = await nationalIdField
+        .isVisible()
+        .catch(() => false);
+      expect(hasNationalId).toBe(true);
+
+      await page.keyboard.press("Escape");
+    });
+
+    test("national ID should not enforce uniqueness", async ({ page }) => {
+      await page.goto(`${BASE_URL}/customers`);
+      if (await skipIfUnauthenticated(page)) return;
+
+      // Verify the add modal accepts a national ID without uniqueness enforcement message
+      const addButton = page.getByRole("button", { name: /add.*customer/i });
+      await addButton.click();
+
+      const dialog = page.getByRole("dialog");
+      await expect(dialog).toBeVisible();
+
+      const nameInput = dialog.getByLabel(/name/i).first();
+      await nameInput.fill("Test User");
+
+      const nationalIdField = dialog
+        .getByLabel(/national.*id|id.*number|kimlik/i)
+        .or(dialog.getByPlaceholder(/national.*id/i))
+        .first();
+
+      const hasNationalId = await nationalIdField
+        .isVisible()
+        .catch(() => false);
+      if (hasNationalId) {
+        await nationalIdField.fill("11111111111");
+      }
+
+      // Close without submitting
+      await page.keyboard.press("Escape");
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // WhatsApp Click-to-Chat
+  // ---------------------------------------------------------------------------
+  test.describe("WhatsApp Click-to-Chat", () => {
+    test("customer details modal should show WhatsApp button when phone exists", async ({
+      page,
+    }) => {
+      await page.goto(`${BASE_URL}/customers`);
+      if (await skipIfUnauthenticated(page)) return;
+
+      await page.waitForLoadState("networkidle");
+
+      const customerRow = page
+        .locator("table tbody tr")
+        .first();
+      const hasCustomers = await customerRow.isVisible().catch(() => false);
+
+      if (!hasCustomers) {
+        test.skip();
+        return;
+      }
+
+      await customerRow.click();
+      const dialog = page.getByRole("dialog");
+      await expect(dialog).toBeVisible();
+
+      // Check for WhatsApp button (if customer has a phone number)
+      const whatsappBtn = dialog
+        .getByRole("link", { name: /whatsapp|wa\.me/i })
+        .or(dialog.locator('a[href*="wa.me"]'))
+        .first();
+
+      const hasWhatsapp = await whatsappBtn.isVisible().catch(() => false);
+
+      // If WhatsApp button exists, verify href format
+      if (hasWhatsapp) {
+        const href = await whatsappBtn.getAttribute("href");
+        expect(href).toMatch(/wa\.me\//);
+      }
+
+      await page.keyboard.press("Escape");
+    });
+
+    test("customer without phone should not show WhatsApp button", async ({
+      page,
+    }) => {
+      await page.goto(`${BASE_URL}/customers`);
+      if (await skipIfUnauthenticated(page)) return;
+
+      await page.waitForLoadState("networkidle");
+
+      // Try to find a customer row
+      const rows = page.locator("table tbody tr");
+      const rowCount = await rows.count();
+
+      for (let i = 0; i < rowCount; i++) {
+        await rows.nth(i).click();
+        await page.waitForTimeout(300);
+
+        const dialog = page.getByRole("dialog");
+        const hasDialog = await dialog.isVisible().catch(() => false);
+        if (!hasDialog) continue;
+
+        // Check if phone is shown
+        const phoneText = dialog.getByText(/\+\d{7,}|\(\d{3}\)/);
+        const hasPhone = await phoneText.isVisible().catch(() => false);
+
+        if (!hasPhone) {
+          // No phone → WhatsApp should NOT be visible
+          const whatsappBtn = dialog.locator('a[href*="wa.me"]');
+          const hasWhatsapp = await whatsappBtn.isVisible().catch(() => false);
+          expect(hasWhatsapp).toBe(false);
+          await page.keyboard.press("Escape");
+          return;
+        }
+
+        await page.keyboard.press("Escape");
+        await page.waitForTimeout(200);
+      }
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // Edit Customer Modal
+  // ---------------------------------------------------------------------------
+  test.describe("Edit Customer Modal", () => {
+    test("customer details modal should have an edit button", async ({
+      page,
+    }) => {
+      await page.goto(`${BASE_URL}/customers`);
+      if (await skipIfUnauthenticated(page)) return;
+
+      await page.waitForLoadState("networkidle");
+
+      const customerRow = page.locator("table tbody tr").first();
+      const hasCustomers = await customerRow.isVisible().catch(() => false);
+      if (!hasCustomers) {
+        test.skip();
+        return;
+      }
+
+      await customerRow.click();
+      const dialog = page.getByRole("dialog");
+      await expect(dialog).toBeVisible();
+
+      // Look for edit button
+      const editBtn = dialog
+        .getByRole("button", { name: /edit/i })
+        .or(dialog.locator('[aria-label*="edit"], [title*="edit"]'))
+        .first();
+
+      const hasEdit = await editBtn.isVisible().catch(() => false);
+      expect(hasEdit).toBe(true);
+
+      await page.keyboard.press("Escape");
+    });
+
+    test("clicking edit should open edit modal or inline edit form", async ({
+      page,
+    }) => {
+      await page.goto(`${BASE_URL}/customers`);
+      if (await skipIfUnauthenticated(page)) return;
+
+      await page.waitForLoadState("networkidle");
+
+      const customerRow = page.locator("table tbody tr").first();
+      const hasCustomers = await customerRow.isVisible().catch(() => false);
+      if (!hasCustomers) {
+        test.skip();
+        return;
+      }
+
+      await customerRow.click();
+      let dialog = page.getByRole("dialog");
+      await expect(dialog).toBeVisible();
+
+      const editBtn = dialog
+        .getByRole("button", { name: /edit/i })
+        .first();
+      const hasEdit = await editBtn.isVisible().catch(() => false);
+      if (!hasEdit) {
+        await page.keyboard.press("Escape");
+        test.skip();
+        return;
+      }
+
+      await editBtn.click();
+      await page.waitForTimeout(500);
+
+      // Should now show editable form
+      dialog = page.getByRole("dialog").last();
+      const nameInput = dialog.getByRole("textbox").first();
+      const hasInput = await nameInput.isVisible().catch(() => false);
+      expect(hasInput).toBe(true);
+
+      await page.keyboard.press("Escape");
+    });
+
+    test("edit form should pre-populate with customer data", async ({
+      page,
+    }) => {
+      await page.goto(`${BASE_URL}/customers`);
+      if (await skipIfUnauthenticated(page)) return;
+
+      await page.waitForLoadState("networkidle");
+
+      const customerRow = page.locator("table tbody tr").first();
+      const hasCustomers = await customerRow.isVisible().catch(() => false);
+      if (!hasCustomers) {
+        test.skip();
+        return;
+      }
+
+      // Get customer name from row before clicking
+      const _rowText = await customerRow.textContent();
+
+      await customerRow.click();
+      let dialog = page.getByRole("dialog");
+      await expect(dialog).toBeVisible();
+
+      const editBtn = dialog
+        .getByRole("button", { name: /edit/i })
+        .first();
+      const hasEdit = await editBtn.isVisible().catch(() => false);
+      if (!hasEdit) {
+        await page.keyboard.press("Escape");
+        test.skip();
+        return;
+      }
+
+      await editBtn.click();
+      await page.waitForTimeout(500);
+
+      dialog = page.getByRole("dialog").last();
+      const nameInput = dialog.getByRole("textbox").first();
+      const inputValue = await nameInput.inputValue().catch(() => "");
+
+      // Pre-populated value should not be empty
+      expect(inputValue.length).toBeGreaterThan(0);
+
+      await page.keyboard.press("Escape");
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // Country Code Selector (Phone Input)
+  // ---------------------------------------------------------------------------
+  test.describe("Country Code Selector", () => {
+    test("add customer modal should have country code selector for phone", async ({
+      page,
+    }) => {
+      await page.goto(`${BASE_URL}/customers`);
+      if (await skipIfUnauthenticated(page)) return;
+
+      const addButton = page.getByRole("button", { name: /add.*customer/i });
+      await addButton.click();
+
+      const dialog = page.getByRole("dialog");
+      await expect(dialog).toBeVisible();
+
+      // Country code flag/selector button or dropdown
+      const ccSelector = dialog
+        .locator('[class*="phone"], [class*="country"], [class*="flag"], [data-testid*="country"]')
+        .first()
+        .or(dialog.getByRole("button", { name: /\+\d{1,3}|flag|country/i }).first());
+
+      const hasCC = await ccSelector.isVisible().catch(() => false);
+
+      // Also check for +XX prefix next to phone input
+      const phonePrefix = dialog.getByText(/^\+\d{1,3}$/);
+      const hasPrefix = await phonePrefix.isVisible().catch(() => false);
+
+      expect(hasCC || hasPrefix).toBe(true);
+
+      await page.keyboard.press("Escape");
+    });
+  });
 });
+

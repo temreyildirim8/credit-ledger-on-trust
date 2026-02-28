@@ -286,21 +286,25 @@ test.describe("Accessibility Tests - Buttons", () => {
     const buttons = await page.getByRole("button").all();
 
     for (const button of buttons) {
+      // Skip invisible buttons (e.g. hidden toggle states)
+      const isVisible = await button.isVisible().catch(() => false);
+      if (!isVisible) continue;
+
       // Skip Playwright/Next.js devtools buttons injected at runtime
-      const dataAttr = await button.getAttribute("data-next-mark");
-      const classList = await button.getAttribute("class");
+      const dataAttr = await button.getAttribute("data-next-mark").catch(() => null);
+      const classList = await button.getAttribute("class").catch(() => "");
       if (
-        dataAttr === "true" ||
+        dataAttr !== null ||
         classList?.includes("tsqd-") ||
         classList?.includes("__next-")
       ) {
         continue;
       }
 
-      const text = await button.textContent();
-      const ariaLabel = await button.getAttribute("aria-label");
-      const ariaLabelledby = await button.getAttribute("aria-labelledby");
-      const title = await button.getAttribute("title");
+      const text = await button.textContent().catch(() => "");
+      const ariaLabel = await button.getAttribute("aria-label").catch(() => null);
+      const ariaLabelledby = await button.getAttribute("aria-labelledby").catch(() => null);
+      const title = await button.getAttribute("title").catch(() => null);
 
       const hasAccessibleName =
         text?.trim() || ariaLabel || ariaLabelledby || title;

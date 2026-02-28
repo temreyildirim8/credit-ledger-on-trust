@@ -114,7 +114,7 @@ export default defineConfig({
     {
       name: "Mobile Safari",
       testMatch:
-        /\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
+        /\/tests\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
       use: {
         ...devices["iPhone 12"],
         storageState: "playwright/.auth/user.json",
