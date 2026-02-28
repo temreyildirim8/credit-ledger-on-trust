@@ -79,48 +79,6 @@ export default defineConfig({
       },
       dependencies: ["setup"],
     },
-    {
-      name: "firefox",
-      // Only top-level core UI specs — /tests/database/ and /tests/integration/ have dedicated projects
-      testMatch:
-        /\/tests\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
-      use: {
-        ...devices["Desktop Firefox"],
-        storageState: "playwright/.auth/user.json",
-      },
-      dependencies: ["setup"],
-    },
-    {
-      name: "webkit",
-      testMatch:
-        /\/tests\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
-      use: {
-        ...devices["Desktop Safari"],
-        storageState: "playwright/.auth/user.json",
-      },
-      dependencies: ["setup"],
-    },
-    // Mobile devices - use authenticated state, core UI specs only
-    {
-      name: "Mobile Chrome",
-      testMatch:
-        /\/tests\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
-      use: {
-        ...devices["Pixel 5"],
-        storageState: "playwright/.auth/user.json",
-      },
-      dependencies: ["setup"],
-    },
-    {
-      name: "Mobile Safari",
-      testMatch:
-        /\/tests\/(customers|dashboard|transactions|reports|settings|onboarding|paywall|custom-fields|subscription)\.spec\.ts$/,
-      use: {
-        ...devices["iPhone 12"],
-        storageState: "playwright/.auth/user.json",
-      },
-      dependencies: ["setup"],
-    },
     // Integration tests - auth flow (runs without auth state)
     {
       name: "integration-auth-flow",

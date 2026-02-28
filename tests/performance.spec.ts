@@ -20,11 +20,11 @@ const BASE_URL = `http://localhost:3000/${TEST_LOCALE}`;
 
 // Performance budgets (in milliseconds)
 const PERFORMANCE_BUDGETS = {
-  FCP: 2000, // First Contentful Paint
-  LCP: 3000, // Largest Contentful Paint
-  TTI: 4000, // Time to Interactive (approximated)
-  DOM_CONTENT_LOADED: 3000,
-  LOAD: 5000,
+  FCP: process.env.CI ? 2000 : 5000, // First Contentful Paint
+  LCP: process.env.CI ? 3000 : 6000, // Largest Contentful Paint
+  TTI: process.env.CI ? 4000 : 8000, // Time to Interactive (approximated)
+  DOM_CONTENT_LOADED: process.env.CI ? 3000 : 6000,
+  LOAD: process.env.CI ? 5000 : 10000,
 };
 
 // Helper to get web vitals metrics
@@ -407,8 +407,8 @@ test.describe("Performance Tests - Navigation Timing", () => {
       // TCP connection should be fast
       expect(timing.tcp).toBeLessThan(200);
 
-      // Response should be received quickly
-      expect(timing.response).toBeLessThan(1000);
+      // Response should be received quickly (dev server may be slower)
+      expect(timing.response).toBeLessThan(process.env.CI ? 1000 : 5000);
 
       // DOM Content Loaded should be within budget
       expect(timing.domContentLoaded).toBeLessThan(

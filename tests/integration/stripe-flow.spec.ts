@@ -139,10 +139,8 @@ test.describe("Pricing Page — CTA Buttons", () => {
     await page.goto(PRICING_URL);
     await page.waitForLoadState("networkidle");
 
-    const cta = page
-      .getByRole("button", { name: /get.*started|start.*free|sign.*up/i })
-      .first()
-      .or(page.getByRole("link", { name: /get.*started|start.*free/i }).first());
+    // Free plan CTA renders as Link > Button, search by text content
+    const cta = page.getByText(/get.*started|start.*free|get started free/i).first();
     const hasCTA = await cta.isVisible().catch(() => false);
     expect(hasCTA).toBe(true);
   });
@@ -151,14 +149,8 @@ test.describe("Pricing Page — CTA Buttons", () => {
     await page.goto(PRICING_URL);
     await page.waitForLoadState("networkidle");
 
-    const cta = page
-      .getByRole("button", { name: /get.*pro|upgrade.*pro|choose.*pro/i })
-      .first()
-      .or(
-        page
-          .getByRole("link", { name: /get.*pro|upgrade.*pro|choose.*pro/i })
-          .first(),
-      );
+    // Pro plan CTA: 'Start Pro Trial' - search by text content
+    const cta = page.getByText(/start.*pro|get.*pro|upgrade.*pro|choose.*pro/i).first();
     const hasCTA = await cta.isVisible().catch(() => false);
     expect(hasCTA).toBe(true);
   });
@@ -170,7 +162,7 @@ test.describe("Pricing Page — CTA Buttons", () => {
     await page.waitForLoadState("networkidle");
 
     const proCTA = page
-      .getByRole("button", { name: /get.*pro|upgrade.*pro|choose.*pro/i })
+      .getByRole("button", { name: /get.*pro|upgrade.*pro|choose.*pro|start.*pro/i })
       .first();
     const hasProCTA = await proCTA.isVisible().catch(() => false);
 

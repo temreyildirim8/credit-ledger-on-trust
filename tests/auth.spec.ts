@@ -132,9 +132,10 @@ test.describe('Authentication Flow', () => {
     test('should display benefits list on desktop', async ({ page }) => {
       await page.setViewportSize({ width: 1280, height: 720 });
 
-      // Check for some benefits text
-      const freePlanBenefit = page.getByText(/free plan|10 customers/i);
-      await expect(freePlanBenefit.first()).toBeVisible();
+      // Check for some benefits text (i18n: 'Free plan: Up to 5 customers')
+      const freePlanBenefit = page.getByText(/free plan|5 customers|up to/i);
+      const hasText = await freePlanBenefit.first().isVisible().catch(() => false);
+      expect(hasText).toBe(true);
     });
   });
 });

@@ -22,22 +22,21 @@ const test = base.extend({
   storageState: undefined as unknown as string,
 });
 
+test.beforeEach(async ({ page }) => {
+  await page.goto(`${BASE_URL}/onboarding`);
+  await page.waitForTimeout(500);
+  const url = page.url();
+  if (url.includes('/login') || url.includes('/dashboard') || url.includes('/customers')) {
+    test.skip(true, 'User already onboarded or not authenticated');
+  }
+});
+
 test.describe('Onboarding Flow Integration', () => {
   test.describe.configure({ mode: 'serial' });
 
   test('onboarding page is accessible', async ({ page }) => {
-    await test.step('Navigate to onboarding page', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Verify onboarding content is visible', async () => {
-      // If redirected to login (not logged in) or dashboard (already completed), skip
-      const url = page.url();
-      if (url.includes('/login') || url.includes('/dashboard') || url.includes('/customers')) {
-        console.log('Note: onboarding redirected to', url, '— user may have completed onboarding already');
-        test.skip();
-        return;
-      }
 
       // Should show progress indicator or step content
       const progressIndicator = page.getByRole('progressbar').or(
@@ -54,10 +53,7 @@ test.describe('Onboarding Flow Integration', () => {
   });
 
   test('currency selection step works correctly', async ({ page }) => {
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Verify currency options are displayed', async () => {
       // Look for currency symbols or names
       const currencyElements = page.getByText(/\$|₺|₹|₦|E£|R|USD|TRY|IDR|NGN|EGP|ZAR/);
@@ -90,10 +86,7 @@ test.describe('Onboarding Flow Integration', () => {
   });
 
   test('language selection step works correctly', async ({ page }) => {
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Skip to language step if needed', async () => {
       // Check if we're on currency step
       const currencyVisible = await page.getByText(/\$|₺|₹|currency/i).isVisible().catch(() => false);
@@ -138,10 +131,7 @@ test.describe('Onboarding Flow Integration', () => {
   });
 
   test('business category step works correctly', async ({ page }) => {
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Navigate through previous steps', async () => {
       // Step 1: Currency
       const currencyVisible = await page.getByText(/\$|₺|currency/i).isVisible().catch(() => false);
@@ -188,10 +178,7 @@ test.describe('Onboarding Flow Integration', () => {
   });
 
   test('complete onboarding flow: all steps → success → dashboard redirect', async ({ page }) => {
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Complete Step 1: Currency', async () => {
       // Wait for currency options
       await page.waitForSelector('[class*="currency"], [data-currency], button', { timeout: 5000 }).catch(() => null);
@@ -251,10 +238,7 @@ test.describe('Onboarding Flow Integration', () => {
 
 test.describe('Onboarding Navigation', () => {
   test('back button returns to previous step', async ({ page }) => {
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Complete first step and move to second', async () => {
       // Select currency
       await page.getByText(/\$|USD/).first().click();
@@ -286,10 +270,7 @@ test.describe('Onboarding Navigation', () => {
   });
 
   test('progress indicator updates correctly', async ({ page }) => {
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Check initial progress', async () => {
       // Look for step indicator (1/3, Step 1, etc.)
       const progressText = page.getByText(/step.*1|1.*of|1\/3/i);
@@ -321,10 +302,7 @@ test.describe('Onboarding Navigation', () => {
 
 test.describe('Onboarding Validation', () => {
   test('cannot proceed without selecting currency', async ({ page }) => {
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Try to click Next without selection', async () => {
       const nextButton = page.getByRole('button', { name: /next|continue/i });
       const hasNextButton = await nextButton.isVisible().catch(() => false);
@@ -348,10 +326,7 @@ test.describe('Onboarding Validation', () => {
   });
 
   test('selection is preserved when navigating back', async ({ page }) => {
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Select currency (TRY)', async () => {
       const tryOption = page.getByText(/₺|TRY/i).first();
       await tryOption.click();
@@ -389,10 +364,7 @@ test.describe('Onboarding Responsive', () => {
   test('onboarding works on mobile viewport', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
 
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Verify mobile layout', async () => {
       // Content should be visible and scrollable
       const currencyVisible = await page.getByText(/\$|₺|currency/i).isVisible().catch(() => false);
@@ -425,10 +397,7 @@ test.describe('Onboarding Responsive', () => {
   test('onboarding works on tablet viewport', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
 
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Verify tablet layout', async () => {
       // Should show grid layout for options
       const currencyVisible = await page.getByText(/\$|₺|currency/i).isVisible().catch(() => false);
@@ -439,10 +408,7 @@ test.describe('Onboarding Responsive', () => {
 
 test.describe('Onboarding Completion', () => {
   test('onboarding_complete flag is set after completion', async ({ page }) => {
-    await test.step('Navigate to onboarding', async () => {
-      await page.goto(`${BASE_URL}/onboarding`);
-    });
-
+    
     await test.step('Complete all steps', async () => {
       // Step 1: Currency
       await page.getByText(/\$|USD/).first().click();

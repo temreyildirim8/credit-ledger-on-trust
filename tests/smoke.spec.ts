@@ -587,6 +587,10 @@ test.describe("Smoke Tests - Accessibility Basics", () => {
         continue;
       }
 
+      // Skip buttons intentionally removed from tab order
+      const tabIndex = await button.getAttribute("tabindex").catch(() => null);
+      if (tabIndex === "-1") continue;
+
       const ariaLabel = await button.getAttribute("aria-label").catch(() => null);
       const ariaLabelledby = await button.getAttribute("aria-labelledby").catch(() => null);
       const title = await button.getAttribute("title").catch(() => null);

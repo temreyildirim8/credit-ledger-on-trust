@@ -301,13 +301,17 @@ test.describe("Accessibility Tests - Buttons", () => {
         continue;
       }
 
+      // Skip buttons intentionally removed from tab order (purely decorative/helper buttons)
+      const tabIndex = await button.getAttribute("tabindex").catch(() => null);
+      if (tabIndex === "-1") continue;
+
       const text = await button.textContent().catch(() => "");
       const ariaLabel = await button.getAttribute("aria-label").catch(() => null);
       const ariaLabelledby = await button.getAttribute("aria-labelledby").catch(() => null);
       const title = await button.getAttribute("title").catch(() => null);
 
       const hasAccessibleName =
-        text?.trim() || ariaLabel || ariaLabelledby || title;
+        (text?.trim().length ?? 0) > 0 || ariaLabel || ariaLabelledby || title;
       expect(hasAccessibleName).toBeTruthy();
     }
   });

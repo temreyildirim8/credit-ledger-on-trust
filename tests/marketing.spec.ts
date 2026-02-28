@@ -188,7 +188,7 @@ test.describe("Marketing Pages", () => {
 
     test("should display page title", async ({ page }) => {
       const title = page
-        .getByRole("heading", { name: /about|who.*we|our.*story|mission/i })
+        .getByRole("heading", { name: /about|mission|digitizing/i })
         .first();
       await expect(title).toBeVisible();
     });
@@ -249,11 +249,11 @@ test.describe("Marketing Pages", () => {
         // Check for form fields
         const nameInput = page.getByLabel(/name/i);
         const emailInput = page.getByLabel(/email/i);
-        const messageInput = page.getByLabel(/message/i);
+        const messageInput = page.getByLabel(/message|help/i);
 
-        const hasName = await nameInput.isVisible().catch(() => false);
-        const hasEmail = await emailInput.isVisible().catch(() => false);
-        const hasMessage = await messageInput.isVisible().catch(() => false);
+        const hasName = await nameInput.first().isVisible().catch(() => false);
+        const hasEmail = await emailInput.first().isVisible().catch(() => false);
+        const hasMessage = await messageInput.first().isVisible().catch(() => false);
 
         expect(hasName || hasEmail || hasMessage).toBe(true);
       }
@@ -457,7 +457,7 @@ test.describe("Marketing Pages", () => {
 
       // Title should be visible - use first() for multiple matches
       const title = page
-        .getByRole("heading", { name: /about|mission/i })
+        .getByRole("heading", { name: /about|mission|digitizing/i })
         .first();
       await expect(title).toBeVisible();
     });
