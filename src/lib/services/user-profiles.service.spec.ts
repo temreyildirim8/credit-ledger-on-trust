@@ -1,29 +1,26 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { userProfilesService, type OnboardingData } from './user-profiles.service';
-import { supabase } from '@/lib/supabase/client';
-
-// Type the mocked supabase
-const mockSupabase = vi.mocked(supabase);
 
 describe('userProfilesService', () => {
   const mockUserId = 'user-123';
+
+  // Store original fetch
+  const originalFetch = global.fetch;
 
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
+  afterEach(() => {
+    global.fetch = originalFetch;
+  });
+
   describe('getProfile', () => {
-    it('should return null when profile not found (PGRST116)', async () => {
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({
-            data: null,
-            error: { code: 'PGRST116', message: 'No rows found' },
-          }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+    it('should return null when profile not found', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ profile: null }),
       });
 
       const result = await userProfilesService.getProfile(mockUserId);
@@ -47,13 +44,10 @@ describe('userProfilesService', () => {
         updated_at: '2024-01-02',
       };
 
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockProfile, error: null }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ profile: mockProfile }),
       });
 
       const result = await userProfilesService.getProfile(mockUserId);
@@ -61,22 +55,16 @@ describe('userProfilesService', () => {
       expect(result).toEqual(mockProfile);
     });
 
-    it('should throw error for other database errors', async () => {
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({
-            data: null,
-            error: { code: 'OTHER', message: 'Database connection failed' },
-          }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+    it('should throw error for server errors', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 500,
+        json: async () => ({ error: 'Database connection failed' }),
       });
 
       await expect(
         userProfilesService.getProfile(mockUserId)
-      ).rejects.toThrow();
+      ).rejects.toThrow('Database connection failed');
     });
   });
 
@@ -97,13 +85,10 @@ describe('userProfilesService', () => {
         updated_at: null,
       };
 
-      const mockInsert = vi.fn().mockReturnValue({
-        select: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockProfile, error: null }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        insert: mockInsert,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 201,
+        json: async () => ({ profile: mockProfile }),
       });
 
       const result = await userProfilesService.createProfile(mockUserId, {
@@ -137,13 +122,10 @@ describe('userProfilesService', () => {
         updated_at: null,
       };
 
-      const mockInsert = vi.fn().mockReturnValue({
-        select: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockProfile, error: null }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        insert: mockInsert,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 201,
+        json: async () => ({ profile: mockProfile }),
       });
 
       const result = await userProfilesService.createProfile(mockUserId, {});
@@ -154,14 +136,10 @@ describe('userProfilesService', () => {
     });
 
     it('should throw error when creation fails', async () => {
-      const mockError = new Error('Insert failed');
-      const mockInsert = vi.fn().mockReturnValue({
-        select: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: null, error: mockError }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        insert: mockInsert,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 500,
+        json: async () => ({ error: 'Insert failed' }),
       });
 
       await expect(
@@ -187,15 +165,10 @@ describe('userProfilesService', () => {
         updated_at: '2024-01-03',
       };
 
-      const mockUpdate = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          select: vi.fn().mockReturnValue({
-            single: vi.fn().mockResolvedValue({ data: mockUpdated, error: null }),
-          }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        update: mockUpdate,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ profile: mockUpdated }),
       });
 
       const result = await userProfilesService.updateProfile(mockUserId, {
@@ -208,21 +181,27 @@ describe('userProfilesService', () => {
     });
 
     it('should throw error when update fails', async () => {
-      const mockError = new Error('Update failed');
-      const mockUpdate = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          select: vi.fn().mockReturnValue({
-            single: vi.fn().mockResolvedValue({ data: null, error: mockError }),
-          }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        update: mockUpdate,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 500,
+        json: async () => ({ error: 'Update failed' }),
       });
 
       await expect(
         userProfilesService.updateProfile(mockUserId, { full_name: 'Test' })
       ).rejects.toThrow('Update failed');
+    });
+
+    it('should throw error when profile not found', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 404,
+        json: async () => ({ error: 'Not found' }),
+      });
+
+      await expect(
+        userProfilesService.updateProfile(mockUserId, { full_name: 'Test' })
+      ).rejects.toThrow('Profile not found');
     });
   });
 
@@ -234,7 +213,6 @@ describe('userProfilesService', () => {
     };
 
     it('should update existing profile', async () => {
-      // Mock getProfile to return existing profile
       const mockExistingProfile = {
         id: mockUserId,
         full_name: 'Existing User',
@@ -258,25 +236,19 @@ describe('userProfilesService', () => {
         onboarding_completed: true,
       };
 
-      // Setup getProfile mock
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockExistingProfile, error: null }),
-        }),
-      });
-
-      // Setup updateProfile mock
-      const mockUpdate = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          select: vi.fn().mockReturnValue({
-            single: vi.fn().mockResolvedValue({ data: mockUpdatedProfile, error: null }),
-          }),
-        }),
-      });
-
-      mockSupabase.from = vi.fn()
-        .mockReturnValueOnce({ select: mockSelect })
-        .mockReturnValueOnce({ update: mockUpdate });
+      // First call: getProfile
+      // Second call: updateProfile
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: async () => ({ profile: mockExistingProfile }),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: async () => ({ profile: mockUpdatedProfile }),
+        });
 
       const result = await userProfilesService.completeOnboarding(mockUserId, onboardingData);
 
@@ -302,26 +274,19 @@ describe('userProfilesService', () => {
         updated_at: null,
       };
 
-      // Setup getProfile mock to return null (no existing profile)
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({
-            data: null,
-            error: { code: 'PGRST116' },
-          }),
-        }),
-      });
-
-      // Setup createProfile mock
-      const mockInsert = vi.fn().mockReturnValue({
-        select: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockNewProfile, error: null }),
-        }),
-      });
-
-      mockSupabase.from = vi.fn()
-        .mockReturnValueOnce({ select: mockSelect })
-        .mockReturnValueOnce({ insert: mockInsert });
+      // First call: getProfile returns null
+      // Second call: createProfile
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: async () => ({ profile: null }),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 201,
+          json: async () => ({ profile: mockNewProfile }),
+        });
 
       const result = await userProfilesService.completeOnboarding(mockUserId, onboardingData);
 
@@ -347,13 +312,10 @@ describe('userProfilesService', () => {
         updated_at: null,
       };
 
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockProfile, error: null }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ profile: mockProfile }),
       });
 
       const result = await userProfilesService.hasCompletedOnboarding(mockUserId);
@@ -377,13 +339,10 @@ describe('userProfilesService', () => {
         updated_at: null,
       };
 
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({ data: mockProfile, error: null }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ profile: mockProfile }),
       });
 
       const result = await userProfilesService.hasCompletedOnboarding(mockUserId);
@@ -392,16 +351,10 @@ describe('userProfilesService', () => {
     });
 
     it('should return false when profile does not exist', async () => {
-      const mockSelect = vi.fn().mockReturnValue({
-        eq: vi.fn().mockReturnValue({
-          single: vi.fn().mockResolvedValue({
-            data: null,
-            error: { code: 'PGRST116' },
-          }),
-        }),
-      });
-      mockSupabase.from = vi.fn().mockReturnValue({
-        select: mockSelect,
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ profile: null }),
       });
 
       const result = await userProfilesService.hasCompletedOnboarding(mockUserId);
