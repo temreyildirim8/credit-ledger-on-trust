@@ -37,7 +37,6 @@ jobs:
 
   # Job 2: Build and push Docker image
   build-and-push:
-    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: read
