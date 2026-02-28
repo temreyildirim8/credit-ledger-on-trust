@@ -132,7 +132,7 @@ export function CustomerTable({
             <TableHead className="font-semibold text-[var(--color-text-secondary)]">
               {t("form.phone")}
             </TableHead>
-            <TableHead className="font-semibold text-[var(--color-text-secondary)]">
+            <TableHead className="w-[140px] font-semibold text-[var(--color-text-secondary)]">
               <SortButton
                 column="balance"
                 label={t("details.balance")}
