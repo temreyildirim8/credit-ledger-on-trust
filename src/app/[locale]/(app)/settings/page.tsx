@@ -162,9 +162,12 @@ export default function SettingsPage() {
   const [currency, setCurrency] = useState(profile?.currency || "TRY");
   const [language, setLanguage] = useState(profile?.language || locale);
 
-  // Notifications state
+  // Notifications state (reserved for future use)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [pushEnabled, setPushEnabled] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [remindersEnabled, setRemindersEnabled] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [weeklyReport, setWeeklyReport] = useState(true);
 
   // Theme state (reserved for future use)

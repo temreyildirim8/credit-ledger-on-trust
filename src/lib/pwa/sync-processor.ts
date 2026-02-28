@@ -8,7 +8,6 @@
 import { offlineCache, SyncQueueItem } from './offline-cache';
 import { customersService } from '@/lib/services/customers.service';
 import { transactionsService } from '@/lib/services/transactions.service';
-import { createClient } from '@/lib/supabase/client';
 
 export interface SyncResult {
   success: boolean;

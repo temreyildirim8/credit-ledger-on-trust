@@ -43,7 +43,7 @@ const FIELD_TYPES: { value: CustomFieldType; labelKey: string }[] = [
 
 export function CustomFieldManager() {
   const t = useTranslations("settings.customFields");
-  const { hasFeature, plan, loading: subLoading } = useSubscription();
+  const { hasFeature } = useSubscription();
 
   const [fields, setFields] = useState<CustomFieldDefinition[]>([]);
   const [loading, setLoading] = useState(true);
@@ -67,6 +67,7 @@ export function CustomFieldManager() {
     } else {
       setLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canUseCustomFields]);
 
   const loadFields = async () => {

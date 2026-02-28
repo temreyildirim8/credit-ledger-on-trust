@@ -3,7 +3,6 @@ import type {
   CustomFieldDefinitionInput,
   CustomFieldValues,
   CustomFieldErrors,
-  SelectOption,
 } from "@/lib/types/custom-fields";
 
 export const customFieldsService = {

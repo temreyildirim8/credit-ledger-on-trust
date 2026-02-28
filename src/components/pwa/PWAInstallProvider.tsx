@@ -90,7 +90,7 @@ export function PWAInstallProvider({ children }: PWAInstallProviderProps) {
 
     deferredPrompt.prompt();
 
-    const { outcome } = await deferredPrompt.userChoice;
+    const { outcome: _outcome } = await deferredPrompt.userChoice;
 
     // if (outcome === "accepted") {
     //   console.log("[PWA] User accepted install");

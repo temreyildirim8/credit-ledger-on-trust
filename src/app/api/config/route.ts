@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { requireAuth } from "@/lib/api/protection";
 import { subscriptionUtils } from "@/lib/api/subscription-utils";
 import type { SubscriptionPlan } from "@/lib/database.types";
 

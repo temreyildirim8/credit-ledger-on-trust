@@ -6,7 +6,6 @@ import {
   TrendingUp,
   TrendingDown,
   Users,
-  DollarSign,
   Landmark,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
