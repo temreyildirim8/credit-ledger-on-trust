@@ -1,6 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/lib/db-types";
-import type { SubscriptionPlan, TablesInsert } from "@/lib/database.types";
+import type { Database, SubscriptionPlan, TablesInsert } from "@/lib/database.types";
 
 export interface ServerPlanFeatures {
   maxCustomers: number | null; // null = unlimited
