@@ -32,14 +32,13 @@ jobs:
         run: npm ci
 
       - name: Run linter
-        if: github.ref == 'refs/heads/main'
         run: npm run lint
 
       - name: Run tests
-        if: github.ref == 'refs/heads/main'
         run: npm run test:run
 
   build:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: read
