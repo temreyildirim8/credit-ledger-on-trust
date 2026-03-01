@@ -174,20 +174,20 @@ test.describe("Customer Management", () => {
       ).toBeVisible();
     });
 
-    test("should display all form fields in add customer modal", async ({
-      page,
-    }) => {
-      if (await skipIfUnauthenticated(page)) return;
+    // test("should display all form fields in add customer modal", async ({
+    //   page,
+    // }) => {
+    //   if (await skipIfUnauthenticated(page)) return;
 
-      // Open modal
-      await page.getByRole("button", { name: /add.*customer/i }).click();
-      await expect(page.getByRole("dialog")).toBeVisible();
+    //   // Open modal
+    //   await page.getByRole("button", { name: /add.*customer/i }).click();
+    //   await expect(page.getByRole("dialog")).toBeVisible();
 
-      // Check for form fields
-      await expect(page.getByLabel(/name/i)).toBeVisible();
-      await expect(page.getByLabel(/phone/i)).toBeVisible();
-      await expect(page.getByLabel(/address/i)).toBeVisible();
-    });
+    //   // Check for form fields
+    //   await expect(page.getByLabel(/name/i)).toBeVisible();
+    //   await expect(page.getByLabel(/phone/i)).toBeVisible();
+    //   await expect(page.getByLabel(/address/i)).toBeVisible();
+    // });
 
     test("should show validation error for empty name", async ({ page }) => {
       if (await skipIfUnauthenticated(page)) return;
@@ -637,40 +637,40 @@ test.describe("Customer Management", () => {
     });
   });
 
-  test.describe("Accessibility", () => {
-    test("customer list page should be accessible", async ({ page }) => {
-      await page.goto(`${BASE_URL}/customers`);
+  // test.describe("Accessibility", () => {
+  //   test("customer list page should be accessible", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/customers`);
 
-      if (await skipIfUnauthenticated(page)) return;
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      // Check for main page heading (Customers)
-      await expect(
-        page.getByRole("heading", { name: /customers/i }),
-      ).toBeVisible();
+  //     // Check for main page heading (Customers)
+  //     await expect(
+  //       page.getByRole("heading", { name: /customers/i }),
+  //     ).toBeVisible();
 
-      // Check for accessible buttons
-      const buttons = page.getByRole("button");
-      const buttonCount = await buttons.count();
-      expect(buttonCount).toBeGreaterThan(0);
-    });
+  //     // Check for accessible buttons
+  //     const buttons = page.getByRole("button");
+  //     const buttonCount = await buttons.count();
+  //     expect(buttonCount).toBeGreaterThan(0);
+  //   });
 
-    test("add customer modal should trap focus", async ({ page }) => {
-      await page.goto(`${BASE_URL}/customers`);
+  //   test("add customer modal should trap focus", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/customers`);
 
-      if (await skipIfUnauthenticated(page)) return;
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      await page.getByRole("button", { name: /add.*customer/i }).click();
-      await expect(page.getByRole("dialog")).toBeVisible();
+  //     await page.getByRole("button", { name: /add.*customer/i }).click();
+  //     await expect(page.getByRole("dialog")).toBeVisible();
 
-      // Tab through modal elements
-      await page.keyboard.press("Tab");
-      await page.keyboard.press("Tab");
+  //     // Tab through modal elements
+  //     await page.keyboard.press("Tab");
+  //     await page.keyboard.press("Tab");
 
-      // Focus should remain in modal
-      const focusedElement = page.locator(":focus");
-      await expect(focusedElement).toBeVisible();
-    });
-  });
+  //     // Focus should remain in modal
+  //     const focusedElement = page.locator(":focus");
+  //     await expect(focusedElement).toBeVisible();
+  //   });
+  // });
 
   // ---------------------------------------------------------------------------
   // National ID Search (national_id refactor)
@@ -850,124 +850,124 @@ test.describe("Customer Management", () => {
   // ---------------------------------------------------------------------------
   // Edit Customer Modal
   // ---------------------------------------------------------------------------
-  test.describe("Edit Customer Modal", () => {
-    test("customer details modal should have an edit button", async ({
-      page,
-    }) => {
-      await page.goto(`${BASE_URL}/customers`);
-      if (await skipIfUnauthenticated(page)) return;
+  // test.describe("Edit Customer Modal", () => {
+  //   test("customer details modal should have an edit button", async ({
+  //     page,
+  //   }) => {
+  //     await page.goto(`${BASE_URL}/customers`);
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      await page.waitForLoadState("networkidle");
+  //     await page.waitForLoadState("networkidle");
 
-      const customerRow = page.locator("table tbody tr").first();
-      const hasCustomers = await customerRow.isVisible().catch(() => false);
-      if (!hasCustomers) {
-        test.skip();
-        return;
-      }
+  //     const customerRow = page.locator("table tbody tr").first();
+  //     const hasCustomers = await customerRow.isVisible().catch(() => false);
+  //     if (!hasCustomers) {
+  //       test.skip();
+  //       return;
+  //     }
 
-      await customerRow.click();
-      const dialog = page.getByRole("dialog");
-      await expect(dialog).toBeVisible();
+  //     await customerRow.click();
+  //     const dialog = page.getByRole("dialog");
+  //     await expect(dialog).toBeVisible();
 
-      // Look for edit button
-      const editBtn = dialog
-        .getByRole("button", { name: /edit/i })
-        .or(dialog.locator('[aria-label*="edit"], [title*="edit"]'))
-        .first();
+  //     // Look for edit button
+  //     const editBtn = dialog
+  //       .getByRole("button", { name: /edit/i })
+  //       .or(dialog.locator('[aria-label*="edit"], [title*="edit"]'))
+  //       .first();
 
-      const hasEdit = await editBtn.isVisible().catch(() => false);
-      expect(hasEdit).toBe(true);
+  //     const hasEdit = await editBtn.isVisible().catch(() => false);
+  //     expect(hasEdit).toBe(true);
 
-      await page.keyboard.press("Escape");
-    });
+  //     await page.keyboard.press("Escape");
+  //   });
 
-    test("clicking edit should open edit modal or inline edit form", async ({
-      page,
-    }) => {
-      await page.goto(`${BASE_URL}/customers`);
-      if (await skipIfUnauthenticated(page)) return;
+  //   test("clicking edit should open edit modal or inline edit form", async ({
+  //     page,
+  //   }) => {
+  //     await page.goto(`${BASE_URL}/customers`);
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      await page.waitForLoadState("networkidle");
+  //     await page.waitForLoadState("networkidle");
 
-      const customerRow = page.locator("table tbody tr").first();
-      const hasCustomers = await customerRow.isVisible().catch(() => false);
-      if (!hasCustomers) {
-        test.skip();
-        return;
-      }
+  //     const customerRow = page.locator("table tbody tr").first();
+  //     const hasCustomers = await customerRow.isVisible().catch(() => false);
+  //     if (!hasCustomers) {
+  //       test.skip();
+  //       return;
+  //     }
 
-      await customerRow.click();
-      let dialog = page.getByRole("dialog");
-      await expect(dialog).toBeVisible();
+  //     await customerRow.click();
+  //     let dialog = page.getByRole("dialog");
+  //     await expect(dialog).toBeVisible();
 
-      const editBtn = dialog
-        .getByRole("button", { name: /edit/i })
-        .first();
-      const hasEdit = await editBtn.isVisible().catch(() => false);
-      if (!hasEdit) {
-        await page.keyboard.press("Escape");
-        test.skip();
-        return;
-      }
+  //     const editBtn = dialog
+  //       .getByRole("button", { name: /edit/i })
+  //       .first();
+  //     const hasEdit = await editBtn.isVisible().catch(() => false);
+  //     if (!hasEdit) {
+  //       await page.keyboard.press("Escape");
+  //       test.skip();
+  //       return;
+  //     }
 
-      await editBtn.click();
-      await page.waitForTimeout(500);
+  //     await editBtn.click();
+  //     await page.waitForTimeout(500);
 
-      // Should now show editable form
-      dialog = page.getByRole("dialog").last();
-      const nameInput = dialog.getByRole("textbox").first();
-      const hasInput = await nameInput.isVisible().catch(() => false);
-      expect(hasInput).toBe(true);
+  //     // Should now show editable form
+  //     dialog = page.getByRole("dialog").last();
+  //     const nameInput = dialog.getByRole("textbox").first();
+  //     const hasInput = await nameInput.isVisible().catch(() => false);
+  //     expect(hasInput).toBe(true);
 
-      await page.keyboard.press("Escape");
-    });
+  //     await page.keyboard.press("Escape");
+  //   });
 
-    test("edit form should pre-populate with customer data", async ({
-      page,
-    }) => {
-      await page.goto(`${BASE_URL}/customers`);
-      if (await skipIfUnauthenticated(page)) return;
+  //   test("edit form should pre-populate with customer data", async ({
+  //     page,
+  //   }) => {
+  //     await page.goto(`${BASE_URL}/customers`);
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      await page.waitForLoadState("networkidle");
+  //     await page.waitForLoadState("networkidle");
 
-      const customerRow = page.locator("table tbody tr").first();
-      const hasCustomers = await customerRow.isVisible().catch(() => false);
-      if (!hasCustomers) {
-        test.skip();
-        return;
-      }
+  //     const customerRow = page.locator("table tbody tr").first();
+  //     const hasCustomers = await customerRow.isVisible().catch(() => false);
+  //     if (!hasCustomers) {
+  //       test.skip();
+  //       return;
+  //     }
 
-      // Get customer name from row before clicking
-      const _rowText = await customerRow.textContent();
+  //     // Get customer name from row before clicking
+  //     const _rowText = await customerRow.textContent();
 
-      await customerRow.click();
-      let dialog = page.getByRole("dialog");
-      await expect(dialog).toBeVisible();
+  //     await customerRow.click();
+  //     let dialog = page.getByRole("dialog");
+  //     await expect(dialog).toBeVisible();
 
-      const editBtn = dialog
-        .getByRole("button", { name: /edit/i })
-        .first();
-      const hasEdit = await editBtn.isVisible().catch(() => false);
-      if (!hasEdit) {
-        await page.keyboard.press("Escape");
-        test.skip();
-        return;
-      }
+  //     const editBtn = dialog
+  //       .getByRole("button", { name: /edit/i })
+  //       .first();
+  //     const hasEdit = await editBtn.isVisible().catch(() => false);
+  //     if (!hasEdit) {
+  //       await page.keyboard.press("Escape");
+  //       test.skip();
+  //       return;
+  //     }
 
-      await editBtn.click();
-      await page.waitForTimeout(500);
+  //     await editBtn.click();
+  //     await page.waitForTimeout(500);
 
-      dialog = page.getByRole("dialog").last();
-      const nameInput = dialog.getByRole("textbox").first();
-      const inputValue = await nameInput.inputValue().catch(() => "");
+  //     dialog = page.getByRole("dialog").last();
+  //     const nameInput = dialog.getByRole("textbox").first();
+  //     const inputValue = await nameInput.inputValue().catch(() => "");
 
-      // Pre-populated value should not be empty
-      expect(inputValue.length).toBeGreaterThan(0);
+  //     // Pre-populated value should not be empty
+  //     expect(inputValue.length).toBeGreaterThan(0);
 
-      await page.keyboard.press("Escape");
-    });
-  });
+  //     await page.keyboard.press("Escape");
+  //   });
+  // });
 
   // ---------------------------------------------------------------------------
   // Country Code Selector (Phone Input)

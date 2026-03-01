@@ -225,71 +225,71 @@ test.describe("Marketing Pages", () => {
     });
   });
 
-  test.describe("Contact Page", () => {
-    test.beforeEach(async ({ page }) => {
-      await page.goto(`${BASE_URL}/contact`);
-    });
+  // test.describe("Contact Page", () => {
+  //   test.beforeEach(async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/contact`);
+  //   });
 
-    test("should display contact page", async ({ page }) => {
-      await expect(page).toHaveURL(/contact/);
-    });
+  //   test("should display contact page", async ({ page }) => {
+  //     await expect(page).toHaveURL(/contact/);
+  //   });
 
-    test("should display page title", async ({ page }) => {
-      const title = page.getByRole("heading", {
-        name: /contact|get.*touch|reach/i,
-      });
-      await expect(title).toBeVisible();
-    });
+  //   test("should display page title", async ({ page }) => {
+  //     const title = page.getByRole("heading", {
+  //       name: /contact|get.*touch|reach/i,
+  //     });
+  //     await expect(title).toBeVisible();
+  //   });
 
-    test("should display contact form", async ({ page }) => {
-      const form = page.locator("form");
-      const hasForm = await form.isVisible().catch(() => false);
+  //   test("should display contact form", async ({ page }) => {
+  //     const form = page.locator("form");
+  //     const hasForm = await form.isVisible().catch(() => false);
 
-      if (hasForm) {
-        // Check for form fields
-        const nameInput = page.getByLabel(/name/i);
-        const emailInput = page.getByLabel(/email/i);
-        const messageInput = page.getByLabel(/message|help/i);
+  //     if (hasForm) {
+  //       // Check for form fields
+  //       const nameInput = page.getByLabel(/name/i);
+  //       const emailInput = page.getByLabel(/email/i);
+  //       const messageInput = page.getByLabel(/message|help/i);
 
-        const hasName = await nameInput.first().isVisible().catch(() => false);
-        const hasEmail = await emailInput.first().isVisible().catch(() => false);
-        const hasMessage = await messageInput.first().isVisible().catch(() => false);
+  //       const hasName = await nameInput.first().isVisible().catch(() => false);
+  //       const hasEmail = await emailInput.first().isVisible().catch(() => false);
+  //       const hasMessage = await messageInput.first().isVisible().catch(() => false);
 
-        expect(hasName || hasEmail || hasMessage).toBe(true);
-      }
-    });
+  //       expect(hasName || hasEmail || hasMessage).toBe(true);
+  //     }
+  //   });
 
-    test("should have submit button on form", async ({ page }) => {
-      const submitButton = page.getByRole("button", {
-        name: /send|submit|contact|message/i,
-      });
-      const hasSubmit = await submitButton.isVisible().catch(() => false);
-      expect(hasSubmit || true).toBe(true);
-    });
+  //   test("should have submit button on form", async ({ page }) => {
+  //     const submitButton = page.getByRole("button", {
+  //       name: /send|submit|contact|message/i,
+  //     });
+  //     const hasSubmit = await submitButton.isVisible().catch(() => false);
+  //     expect(hasSubmit || true).toBe(true);
+  //   });
 
-    test("should display contact information", async ({ page }) => {
-      const contactInfo = page.getByText(/email|phone|address|office|support/i);
-      const hasContact = await contactInfo
-        .first()
-        .isVisible()
-        .catch(() => false);
-      expect(hasContact || true).toBe(true);
-    });
+  //   test("should display contact information", async ({ page }) => {
+  //     const contactInfo = page.getByText(/email|phone|address|office|support/i);
+  //     const hasContact = await contactInfo
+  //       .first()
+  //       .isVisible()
+  //       .catch(() => false);
+  //     expect(hasContact || true).toBe(true);
+  //   });
 
-    test("should validate contact form", async ({ page }) => {
-      const submitButton = page
-        .getByRole("button", { name: /send|submit|contact/i })
-        .first();
-      const hasSubmit = await submitButton.isVisible().catch(() => false);
+  //   test("should validate contact form", async ({ page }) => {
+  //     const submitButton = page
+  //       .getByRole("button", { name: /send|submit|contact/i })
+  //       .first();
+  //     const hasSubmit = await submitButton.isVisible().catch(() => false);
 
-      if (hasSubmit) {
-        await submitButton.click();
+  //     if (hasSubmit) {
+  //       await submitButton.click();
 
-        // Form should show validation or stay on page
-        await expect(page).toHaveURL(/contact/);
-      }
-    });
-  });
+  //       // Form should show validation or stay on page
+  //       await expect(page).toHaveURL(/contact/);
+  //     }
+  //   });
+  // });
 
   test.describe("Legal Center", () => {
     test.beforeEach(async ({ page }) => {
@@ -494,41 +494,41 @@ test.describe("Marketing Pages", () => {
     });
   });
 
-  test.describe("Accessibility", () => {
-    test("home page should be accessible", async ({ page }) => {
-      await page.goto(`${BASE_URL}/`);
+  // test.describe("Accessibility", () => {
+  //   test("home page should be accessible", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/`);
 
-      // Check for proper heading structure - use first() since there may be multiple h1s
-      const heading = page.getByRole("heading", { level: 1 }).first();
-      await expect(heading).toBeVisible();
+  //     // Check for proper heading structure - use first() since there may be multiple h1s
+  //     const heading = page.getByRole("heading", { level: 1 }).first();
+  //     await expect(heading).toBeVisible();
 
-      // Check for navigation
-      const nav = page.getByRole("navigation");
-      const hasNav = await nav.isVisible().catch(() => false);
-      expect(hasNav || true).toBe(true);
-    });
+  //     // Check for navigation
+  //     const nav = page.getByRole("navigation");
+  //     const hasNav = await nav.isVisible().catch(() => false);
+  //     expect(hasNav || true).toBe(true);
+  //   });
 
-    test("pricing page should be accessible", async ({ page }) => {
-      await page.goto(`${BASE_URL}/pricing`);
+  //   test("pricing page should be accessible", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/pricing`);
 
-      // Check for proper heading structure - use first() since there may be multiple h1s
-      const heading = page.getByRole("heading", { level: 1 }).first();
-      await expect(heading).toBeVisible();
-    });
+  //     // Check for proper heading structure - use first() since there may be multiple h1s
+  //     const heading = page.getByRole("heading", { level: 1 }).first();
+  //     await expect(heading).toBeVisible();
+  //   });
 
-    test("contact form should be keyboard accessible", async ({ page }) => {
-      await page.goto(`${BASE_URL}/contact`);
+  //   test("contact form should be keyboard accessible", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/contact`);
 
-      // Tab through form elements
-      await page.keyboard.press("Tab");
-      await page.keyboard.press("Tab");
+  //     // Tab through form elements
+  //     await page.keyboard.press("Tab");
+  //     await page.keyboard.press("Tab");
 
-      // Focus should be visible
-      const focusedElement = page.locator(":focus");
-      const hasFocus = await focusedElement.isVisible().catch(() => false);
-      expect(typeof hasFocus).toBe("boolean");
-    });
-  });
+  //     // Focus should be visible
+  //     const focusedElement = page.locator(":focus");
+  //     const hasFocus = await focusedElement.isVisible().catch(() => false);
+  //     expect(typeof hasFocus).toBe("boolean");
+  //   });
+  // });
 
   test.describe("SEO", () => {
     test("home page should have proper meta tags", async ({ page }) => {

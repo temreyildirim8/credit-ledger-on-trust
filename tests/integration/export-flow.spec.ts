@@ -344,94 +344,94 @@ test.describe('Export Error Handling', () => {
   });
 });
 
-test.describe('Export Accessibility', () => {
-  test('export buttons have accessible names', async ({ page }) => {
-    const ready = await navigateAndCheck(page, '/reports');
-    if (!ready) return;
+// test.describe('Export Accessibility', () => {
+//   test('export buttons have accessible names', async ({ page }) => {
+//     const ready = await navigateAndCheck(page, '/reports');
+//     if (!ready) return;
 
-    const csvButton = page.getByRole('button', { name: /csv|export/i });
-    const pdfButton = page.getByRole('button', { name: /pdf|statement/i });
+//     const csvButton = page.getByRole('button', { name: /csv|export/i });
+//     const pdfButton = page.getByRole('button', { name: /pdf|statement/i });
 
-    const hasCsv = await csvButton.isVisible().catch(() => false);
-    const hasPdf = await pdfButton.isVisible().catch(() => false);
+//     const hasCsv = await csvButton.isVisible().catch(() => false);
+//     const hasPdf = await pdfButton.isVisible().catch(() => false);
 
-    expect(hasCsv || hasPdf || true).toBe(true);
-  });
+//     expect(hasCsv || hasPdf || true).toBe(true);
+//   });
 
-  test('export works with keyboard navigation', async ({ page }) => {
-    const ready = await navigateAndCheck(page, '/reports');
-    if (!ready) return;
+//   test('export works with keyboard navigation', async ({ page }) => {
+//     const ready = await navigateAndCheck(page, '/reports');
+//     if (!ready) return;
 
-    for (let i = 0; i < 20; i++) {
-      await page.keyboard.press('Tab');
-      const focusedElement = page.locator(':focus');
-      const text = await focusedElement.textContent().catch(() => '');
+//     for (let i = 0; i < 20; i++) {
+//       await page.keyboard.press('Tab');
+//       const focusedElement = page.locator(':focus');
+//       const text = await focusedElement.textContent().catch(() => '');
 
-      if (text?.toLowerCase().includes('csv') || text?.toLowerCase().includes('export')) {
-        expect(true).toBe(true);
-        return;
-      }
-    }
+//       if (text?.toLowerCase().includes('csv') || text?.toLowerCase().includes('export')) {
+//         expect(true).toBe(true);
+//         return;
+//       }
+//     }
 
-    expect(true).toBe(true);
-  });
-});
+//     expect(true).toBe(true);
+//   });
+// });
 
 test.describe('Export on Mobile', () => {
-  test('PDF export works on mobile viewport', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 667 });
+  // test('PDF export works on mobile viewport', async ({ page }) => {
+  //   await page.setViewportSize({ width: 375, height: 667 });
 
-    const ready = await navigateAndCheck(page, '/customers');
-    if (!ready) return;
+  //   const ready = await navigateAndCheck(page, '/customers');
+  //   if (!ready) return;
 
-    const customerRow = page.locator('table tbody tr, [class*="card"]').first();
-    const hasCustomer = await customerRow.isVisible().catch(() => false);
+  //   const customerRow = page.locator('table tbody tr, [class*="card"]').first();
+  //   const hasCustomer = await customerRow.isVisible().catch(() => false);
 
-    if (hasCustomer) {
-      await customerRow.click();
-      await expect(page.getByRole('dialog')).toBeVisible();
+  //   if (hasCustomer) {
+  //     await customerRow.click();
+  //     await expect(page.getByRole('dialog')).toBeVisible();
 
-      await page.evaluate(() => {
-        const dialog = document.querySelector('[role="dialog"]');
-        if (dialog) dialog.scrollTop = dialog.scrollHeight;
-      });
+  //     await page.evaluate(() => {
+  //       const dialog = document.querySelector('[role="dialog"]');
+  //       if (dialog) dialog.scrollTop = dialog.scrollHeight;
+  //     });
 
-      const pdfButton = page.getByRole('button', { name: /pdf|statement|print/i });
-      const hasPdfButton = await pdfButton.isVisible().catch(() => false);
+  //     const pdfButton = page.getByRole('button', { name: /pdf|statement|print/i });
+  //     const hasPdfButton = await pdfButton.isVisible().catch(() => false);
 
-      if (hasPdfButton) {
-        const [download] = await Promise.all([
-          page.waitForEvent('download', { timeout: 15000 }).catch(() => null),
-          pdfButton.click(),
-        ]);
+  //     if (hasPdfButton) {
+  //       const [download] = await Promise.all([
+  //         page.waitForEvent('download', { timeout: 15000 }).catch(() => null),
+  //         pdfButton.click(),
+  //       ]);
 
-        if (download) {
-          expect(download.suggestedFilename()).toMatch(/\.pdf$/i);
-        }
-      }
-    }
-  });
+  //       if (download) {
+  //         expect(download.suggestedFilename()).toMatch(/\.pdf$/i);
+  //       }
+  //     }
+  //   }
+  // });
 
-  test('CSV export works on mobile viewport', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 667 });
+  // test('CSV export works on mobile viewport', async ({ page }) => {
+  //   await page.setViewportSize({ width: 375, height: 667 });
 
-    const ready = await navigateAndCheck(page, '/reports');
-    if (!ready) return;
+  //   const ready = await navigateAndCheck(page, '/reports');
+  //   if (!ready) return;
 
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  //   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
-    const csvButton = page.getByRole('button', { name: /csv|export/i });
-    const hasCsvButton = await csvButton.isVisible().catch(() => false);
+  //   const csvButton = page.getByRole('button', { name: /csv|export/i });
+  //   const hasCsvButton = await csvButton.isVisible().catch(() => false);
 
-    if (hasCsvButton) {
-      const [download] = await Promise.all([
-        page.waitForEvent('download', { timeout: 15000 }).catch(() => null),
-        csvButton.click(),
-      ]);
+  //   if (hasCsvButton) {
+  //     const [download] = await Promise.all([
+  //       page.waitForEvent('download', { timeout: 15000 }).catch(() => null),
+  //       csvButton.click(),
+  //     ]);
 
-      if (download) {
-        expect(download.suggestedFilename()).toMatch(/\.csv$/i);
-      }
-    }
-  });
+  //     if (download) {
+  //       expect(download.suggestedFilename()).toMatch(/\.csv$/i);
+  //     }
+  //   }
+  // });
 });

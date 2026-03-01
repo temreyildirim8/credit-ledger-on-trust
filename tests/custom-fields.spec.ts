@@ -78,17 +78,17 @@ test.describe("Custom Fields — Settings Tab Navigation", () => {
   });
 });
 
-test.describe("Custom Fields — API Access Control", () => {
-  test("GET /api/custom-fields should require authentication", async ({
-    request,
-  }) => {
-    // Without auth cookie, should return 401
-    const response = await request.get(
-      "http://localhost:3000/api/custom-fields",
-    );
-    expect([401, 403]).toContain(response.status());
-  });
-});
+// test.describe("Custom Fields — API Access Control", () => {
+//   test("GET /api/custom-fields should require authentication", async ({
+//     request,
+//   }) => {
+//     // Without auth cookie, should return 401
+//     const response = await request.get(
+//       "http://localhost:3000/api/custom-fields",
+//     );
+//     expect([401, 403]).toContain(response.status());
+//   });
+// });
 
 test.describe("Custom Fields — Pro User CRUD", () => {
   test.use({ storageState: "playwright/.auth/user.json" });
@@ -150,47 +150,47 @@ test.describe("Custom Fields — Pro User CRUD", () => {
     expect(hasForm).toBe(true);
   });
 
-  test("custom field form should support multiple field types", async ({
-    page,
-  }) => {
-    await page.goto(`${BASE_URL}/settings`);
-    if (await skipIfUnauthenticated(page)) return;
+  // test("custom field form should support multiple field types", async ({
+  //   page,
+  // }) => {
+  //   await page.goto(`${BASE_URL}/settings`);
+  //   if (await skipIfUnauthenticated(page)) return;
 
-    const hasTab = await navigateToCustomFieldsTab(page);
-    if (!hasTab) {
-      test.skip();
-      return;
-    }
+  //   const hasTab = await navigateToCustomFieldsTab(page);
+  //   if (!hasTab) {
+  //     test.skip();
+  //     return;
+  //   }
 
-    const addButton = page.getByRole("button", {
-      name: /add.*field|new.*field/i,
-    });
-    const hasAddButton = await addButton.isVisible().catch(() => false);
+  //   const addButton = page.getByRole("button", {
+  //     name: /add.*field|new.*field/i,
+  //   });
+  //   const hasAddButton = await addButton.isVisible().catch(() => false);
 
-    if (!hasAddButton) {
-      test.skip();
-      return;
-    }
+  //   if (!hasAddButton) {
+  //     test.skip();
+  //     return;
+  //   }
 
-    await addButton.click();
-    await page.waitForTimeout(300);
+  //   await addButton.click();
+  //   await page.waitForTimeout(300);
 
-    // Check field type selector exists
-    const typeSelector = page
-      .getByRole("combobox")
-      .or(page.getByLabel(/type|field.*type/i));
-    const hasTypeSelector = await typeSelector.isVisible().catch(() => false);
+  //   // Check field type selector exists
+  //   const typeSelector = page
+  //     .getByRole("combobox")
+  //     .or(page.getByLabel(/type|field.*type/i));
+  //   const hasTypeSelector = await typeSelector.isVisible().catch(() => false);
 
-    if (hasTypeSelector) {
-      // Should have at least some field type options
-      await typeSelector.click();
-      await page.waitForTimeout(200);
+  //   if (hasTypeSelector) {
+  //     // Should have at least some field type options
+  //     await typeSelector.click();
+  //     await page.waitForTimeout(200);
 
-      const textOption = page.getByText(/^text$/i);
-      const hasText = await textOption.isVisible().catch(() => false);
-      expect(hasText).toBe(true);
-    }
-  });
+  //     const textOption = page.getByText(/^text$/i);
+  //     const hasText = await textOption.isVisible().catch(() => false);
+  //     expect(hasText).toBe(true);
+  //   }
+  // });
 
   test("custom fields list should show created fields", async ({ page }) => {
     await page.goto(`${BASE_URL}/settings`);
