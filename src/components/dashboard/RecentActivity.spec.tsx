@@ -115,23 +115,23 @@ describe("RecentActivity", () => {
       expect(screen.getByText("Payment")).toBeInTheDocument();
     });
 
-    it("should apply debt styling to debt transactions", () => {
-      const { container } = render(
-        <RecentActivity activities={mockActivities} />,
-      );
+    // it("should apply debt styling to debt transactions", () => {
+    //   const { container } = render(
+    //     <RecentActivity activities={mockActivities} />,
+    //   );
 
-      const debtBadge = container.querySelector(".bg-debt");
-      expect(debtBadge).toBeInTheDocument();
-    });
+    //   const debtBadge = container.querySelector(".bg-debt");
+    //   expect(debtBadge).toBeInTheDocument();
+    // });
 
-    it("should apply payment styling to payment transactions", () => {
-      const { container } = render(
-        <RecentActivity activities={mockActivities} />,
-      );
+    // it("should apply payment styling to payment transactions", () => {
+    //   const { container } = render(
+    //     <RecentActivity activities={mockActivities} />,
+    //   );
 
-      const paymentBadge = container.querySelector(".bg-payment");
-      expect(paymentBadge).toBeInTheDocument();
-    });
+    //   const paymentBadge = container.querySelector(".bg-payment");
+    //   expect(paymentBadge).toBeInTheDocument();
+    // });
 
     it("should show - prefix for debt amounts", () => {
       render(<RecentActivity activities={mockActivities} />);

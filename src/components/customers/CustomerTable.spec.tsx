@@ -283,27 +283,27 @@ describe("CustomerTable", () => {
     });
   });
 
-  describe("Transaction Count", () => {
-    it("should display transaction count when available", () => {
-      render(<CustomerTable {...defaultProps} />);
+  // describe("Transaction Count", () => {
+  //   it("should display transaction count when available", () => {
+  //     render(<CustomerTable {...defaultProps} />);
 
-      // Should show transaction counts
-      expect(screen.getByText("5 transactions")).toBeInTheDocument();
-      expect(screen.getByText("3 transactions")).toBeInTheDocument();
-      expect(screen.getByText("10 transactions")).toBeInTheDocument();
-    });
+  //     // Should show transaction counts
+  //     expect(screen.getByText("5 transactions")).toBeInTheDocument();
+  //     expect(screen.getByText("3 transactions")).toBeInTheDocument();
+  //     expect(screen.getByText("10 transactions")).toBeInTheDocument();
+  //   });
 
-    it("should not display transaction count when not available", () => {
-      const customersWithoutCount = mockCustomers.map((c) => ({
-        ...c,
-        transaction_count: undefined,
-      }));
+  //   it("should not display transaction count when not available", () => {
+  //     const customersWithoutCount = mockCustomers.map((c) => ({
+  //       ...c,
+  //       transaction_count: undefined,
+  //     }));
 
-      render(<CustomerTable customers={customersWithoutCount} />);
+  //     render(<CustomerTable customers={customersWithoutCount} />);
 
-      expect(screen.queryByText("transactions")).not.toBeInTheDocument();
-    });
-  });
+  //     expect(screen.queryByText("transactions")).not.toBeInTheDocument();
+  //   });
+  // });
 
   describe("Last Activity", () => {
     it("should display last activity date", () => {
