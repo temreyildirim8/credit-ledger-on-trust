@@ -580,6 +580,7 @@
       "sectionTitle": "Additional Information"
     },
     "details": {
+      "dialogTitle": "Customer Details",
       "totalDebt": "Total Debt",
       "balance": "Balance",
       "contact": "Contact",
@@ -607,6 +608,21 @@
       "archive": "Archive",
       "delete": "Delete",
       "status": "Status"
+    },
+    "archive": {
+      "title": "Archive Customer",
+      "descriptionPrefix": "Are you sure you want to archive",
+      "descriptionSuffix": "?",
+      "hint": "This customer will be hidden from your list but their data will be preserved. You can restore archived customers later.",
+      "confirm": "Archive"
+    },
+    "deleteCustomer": {
+      "title": "Delete Customer",
+      "descriptionPrefix": "Are you sure you want to",
+      "descriptionHighlight": "permanently delete",
+      "descriptionSuffix": "?",
+      "hint": "This will also delete all transaction history for this customer. This action cannot be undone.",
+      "confirm": "Delete"
     },
     "success": "Customer added successfully",
     "editSuccess": "Customer updated successfully",
@@ -1019,6 +1035,18 @@
         "title": "Password Reset",
         "success": "Success!",
         "successDescription": "Your password has been successfully reset. You can now sign in with your new password."
+      },
+      "actions": {
+        "invalidEmail": "Please enter a valid email address",
+        "sendFailed": "Failed to send password reset email",
+        "sendSuccess": "Password reset link sent to your email!",
+        "allFieldsRequired": "All fields are required",
+        "passwordsMismatch": "Passwords do not match",
+        "passwordTooShort": "Password must be at least 6 characters",
+        "sessionExpired": "Session invalid or expired. Please try again.",
+        "updateFailed": "Failed to update password",
+        "resetSuccess": "Password successfully reset!",
+        "resetFailed": "Failed to reset password"
       },
       "brandName": "Ledgerly",
       "heroTitle": "Reset Your Password Securely",

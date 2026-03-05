@@ -14,6 +14,7 @@ export function ForgotPasswordForm() {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("auth.forgotPassword");
+  const tActions = useTranslations("auth.forgotPassword.actions");
   const [isPending, startTransition] = useTransition();
 
   // Extract locale from pathname
@@ -34,12 +35,13 @@ export function ForgotPasswordForm() {
     startTransition(async () => {
       const result = await sendPasswordResetOTP(formData);
 
-      if (result.error) {
-        setError(result.error);
-        toast.error(result.error);
-      } else {
+      if (result.error && result.errorType) {
+        const translatedError = tActions(result.errorType);
+        setError(translatedError);
+        toast.error(translatedError);
+      } else if (result.success) {
         setIsSuccess(true);
-        toast.success(result.message || t("success"));
+        toast.success(tActions("sendSuccess"));
       }
     });
   };

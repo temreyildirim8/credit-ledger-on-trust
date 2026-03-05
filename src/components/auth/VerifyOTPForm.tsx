@@ -21,6 +21,7 @@ export function VerifyOTPForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations("auth.forgotPassword");
+  const tActions = useTranslations("auth.forgotPassword.actions");
   const [isPending, startTransition] = useTransition();
 
   const emailFromUrl = searchParams.get("email") || "";
@@ -76,12 +77,13 @@ export function VerifyOTPForm() {
     startTransition(async () => {
       const result = await resetPasswordWithOTP(formData);
 
-      if (result.error) {
-        setError(result.error);
-        toast.error(result.error);
-      } else {
+      if (result.error && result.errorType) {
+        const translatedError = tActions(result.errorType);
+        setError(translatedError);
+        toast.error(translatedError);
+      } else if (result.success) {
         setSuccess(true);
-        toast.success(result.message || t("passwordReset.success"));
+        toast.success(tActions("resetSuccess"));
 
         setTimeout(() => {
           router.push(`/${locale}/reset-success`);
@@ -98,10 +100,10 @@ export function VerifyOTPForm() {
     formData.append("email", email);
     startTransition(async () => {
       const result = await sendPasswordResetOTP(formData);
-      if (result.error) {
-        toast.error(result.error);
-      } else {
-        toast.success(result.message || t("otpVerification.resendSuccess"));
+      if (result.error && result.errorType) {
+        toast.error(tActions(result.errorType));
+      } else if (result.success) {
+        toast.success(tActions("sendSuccess"));
       }
     });
   };

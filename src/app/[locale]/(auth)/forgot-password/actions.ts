@@ -8,7 +8,7 @@ export async function sendPasswordResetOTP(formData: FormData) {
   const email = formData.get('email') as string;
 
   if (!email || !email.includes('@')) {
-    return { error: 'Geçerli bir e-posta adresi girin' };
+    return { error: 'INVALID_EMAIL', errorType: 'invalidEmail' };
   }
 
   try {
@@ -22,13 +22,13 @@ export async function sendPasswordResetOTP(formData: FormData) {
 
     if (error) {
       console.error('Supabase password reset error:', error);
-      return { error: error.message || 'Şifre sıfırlama e-postası gönderilemedi' };
+      return { error: 'SEND_FAILED', errorType: 'sendFailed' };
     }
 
-    return { success: true, message: 'Şifre sıfırlama bağlantısı e-posta adresinize gönderildi!' };
+    return { success: true, errorType: 'sendSuccess' };
   } catch (error) {
     console.error('Send password reset error:', error);
-    return { error: 'Şifre sıfırlama e-postası gönderilemedi' };
+    return { error: 'SEND_FAILED', errorType: 'sendFailed' };
   }
 }
 
@@ -38,15 +38,15 @@ export async function resetPasswordWithOTP(formData: FormData) {
   const confirmPassword = formData.get('confirmPassword') as string;
 
   if (!newPassword || !confirmPassword) {
-    return { error: 'Tüm alanlar gerekli' };
+    return { error: 'ALL_FIELDS_REQUIRED', errorType: 'allFieldsRequired' };
   }
 
   if (newPassword !== confirmPassword) {
-    return { error: 'Şifreler eşleşmiyor' };
+    return { error: 'PASSWORDS_MISMATCH', errorType: 'passwordsMismatch' };
   }
 
   if (newPassword.length < 6) {
-    return { error: 'Şifre en az 6 karakter olmalı' };
+    return { error: 'PASSWORD_TOO_SHORT', errorType: 'passwordTooShort' };
   }
 
   try {
@@ -56,7 +56,7 @@ export async function resetPasswordWithOTP(formData: FormData) {
     const { data: { user }, error: userError } = await supabase.auth.getUser();
 
     if (userError || !user) {
-      return { error: 'Oturum geçersiz veya süresi dolmuş. Lütfen tekrar deneyin.' };
+      return { error: 'SESSION_EXPIRED', errorType: 'sessionExpired' };
     }
 
     // Update the password
@@ -66,12 +66,12 @@ export async function resetPasswordWithOTP(formData: FormData) {
 
     if (updateError) {
       console.error('Password update error:', updateError);
-      return { error: 'Şifre güncellenemedi' };
+      return { error: 'UPDATE_FAILED', errorType: 'updateFailed' };
     }
 
-    return { success: true, message: 'Şifre başarıyla sıfırlandı!' };
+    return { success: true, errorType: 'resetSuccess' };
   } catch (error) {
     console.error('Reset password error:', error);
-    return { error: 'Şifre sıfırlanamadı' };
+    return { error: 'RESET_FAILED', errorType: 'resetFailed' };
   }
 }
