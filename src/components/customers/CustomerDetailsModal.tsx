@@ -149,7 +149,7 @@ export function CustomerDetailsModal({
         {loading ? (
           <>
             <DialogHeader className="sr-only">
-              <DialogTitle>Müşteri Detayları</DialogTitle>
+              <DialogTitle>{t("details.dialogTitle")}</DialogTitle>
             </DialogHeader>
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin text-[var(--color-accent)]" />
@@ -158,7 +158,7 @@ export function CustomerDetailsModal({
         ) : !customer ? (
           <>
             <DialogHeader className="sr-only">
-              <DialogTitle>Müşteri Detayları</DialogTitle>
+              <DialogTitle>{t("details.dialogTitle")}</DialogTitle>
             </DialogHeader>
             <div className="text-center py-12">
               <p className="text-[var(--color-text-secondary)]">

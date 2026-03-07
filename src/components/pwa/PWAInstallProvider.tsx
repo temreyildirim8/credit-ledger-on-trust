@@ -110,7 +110,7 @@ export function PWAInstallProvider({ children }: PWAInstallProviderProps) {
   );
 }
 
-function PWAInstallPrompt() {
+export function PWAInstallPrompt() {
   const { install } = useContext(PWAInstallContext)!;
   const [isVisible, setIsVisible] = useState(false);
   const locale = useLocale();

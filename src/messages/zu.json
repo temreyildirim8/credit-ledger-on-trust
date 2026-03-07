@@ -552,6 +552,7 @@
       "sectionTitle": "Ulwazi Olwengeziwe"
     },
     "details": {
+      "dialogTitle": "Iinkcukacha Zomthengi",
       "totalDebt": "Ikredithi Esisonke",
       "balance": "Isilinganiso",
       "contact": "Umxhulumeni",
@@ -579,6 +580,21 @@
       "delete": "Susa",
       "lastActivity": "Umsebenzi Wokugcina",
       "status": "Isimo"
+    },
+    "archive": {
+      "title": "Gcina Umthengi",
+      "descriptionPrefix": "Uqinisekile ukuba ufuna ukugcina:",
+      "descriptionSuffix": "?",
+      "hint": "Lo mthengi uzofihlwa ohlwini lwakho kodwa i-data yakhe izogcinwa. Ungabuyisa abathengi abagciniwe kamva.",
+      "confirm": "Gcina"
+    },
+    "deleteCustomer": {
+      "title": "Susa Umthengi",
+      "descriptionPrefix": "Uqinisekile ukuba ufuna",
+      "descriptionHighlight": "ukumsuse unaphakade",
+      "descriptionSuffix": "?",
+      "hint": "Lokhu nakho kuzosusa wonke umlando wezinto zalomthengi. Lesi senzo asikwazi ukususwa.",
+      "confirm": "Susa"
     },
     "success": "Umthengi yengezwekahle",
     "editSuccess": "Umthengi uvuselelwekahle",
@@ -966,6 +982,18 @@
         "title": "Iphasiwedi Isethwe Kabusha",
         "success": "Iphumelela!",
         "successDescription": "Iphasiwedi yakho isethwe kabusha ngempumelelo. Manje unganga nge-phasiwedi yakho entsha."
+      },
+      "actions": {
+        "invalidEmail": "Sicela ufake ikheli le-imeyili elisebenzayo",
+        "sendFailed": "Yehlula ukuthumela i-imeyili yokusetha kabusha iphasiwedi",
+        "sendSuccess": "Isixhumanisi sokusetha kabusha iphasiwedi sithunyelwe ku-imeyili yakho!",
+        "allFieldsRequired": "Zonke izinkundla ziyadingeka",
+        "passwordsMismatch": "Iphasiwedi ayihambisani",
+        "passwordTooShort": "Iphasiwedi kumele ibe ngamagama angu-6 okungenani",
+        "sessionExpired": "Iseshini ayisebenzi noma siphelelwe isikhathi. Sicela uzame futhi.",
+        "updateFailed": "Yehlula ukuvuselela iphasiwedi",
+        "resetSuccess": "Iphasiwedi isethwe kabusha ngempumelelo!",
+        "resetFailed": "Yehlula ukusetha kabusha iphasiwedi"
       },
       "brandName": "Mali-X",
       "heroTitle": "Ukhohlwe iphasiwedi?",

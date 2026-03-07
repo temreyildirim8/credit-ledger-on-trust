@@ -552,6 +552,7 @@
       "sectionTitle": "Informasi Tambahan"
     },
     "details": {
+      "dialogTitle": "Detail Pelanggan",
       "totalDebt": "Total Hutang",
       "balance": "Saldo",
       "contact": "Kontak",
@@ -579,6 +580,21 @@
       "delete": "Hapus",
       "lastActivity": "Aktivitas Terakhir",
       "status": "Status"
+    },
+    "archive": {
+      "title": "Arsipkan Pelanggan",
+      "descriptionPrefix": "Apakah Anda yakin ingin mengarsipkan",
+      "descriptionSuffix": "?",
+      "hint": "Pelanggan ini akan disembunyikan dari daftar Anda tetapi datanya akan dipertahankan. Anda dapat memulihkan pelanggan yang diarsipkan nanti.",
+      "confirm": "Arsipkan"
+    },
+    "deleteCustomer": {
+      "title": "Hapus Pelanggan",
+      "descriptionPrefix": "Apakah Anda yakin ingin",
+      "descriptionHighlight": "menghapus secara permanen",
+      "descriptionSuffix": "",
+      "hint": "Ini juga akan menghapus semua riwayat transaksi untuk pelanggan ini. Tindakan ini tidak dapat dibatalkan.",
+      "confirm": "Hapus"
     },
     "success": "Pelanggan berhasil ditambahkan",
     "editSuccess": "Pelanggan berhasil diperbarui",
@@ -966,6 +982,18 @@
         "title": "Kata Sandi Direset",
         "success": "Berhasil!",
         "successDescription": "Kata sandi Anda telah berhasil direset. Anda sekarang dapat masuk dengan kata sandi baru Anda."
+      },
+      "actions": {
+        "invalidEmail": "Silakan masukkan alamat email yang valid",
+        "sendFailed": "Gagal mengirim email reset kata sandi",
+        "sendSuccess": "Tautan reset kata sandi telah dikirim ke email Anda!",
+        "allFieldsRequired": "Semua kolom wajib diisi",
+        "passwordsMismatch": "Kata sandi tidak cocok",
+        "passwordTooShort": "Kata sandi harus minimal 6 karakter",
+        "sessionExpired": "Sesi tidak valid atau kedaluwarsa. Silakan coba lagi.",
+        "updateFailed": "Gagal memperbarui kata sandi",
+        "resetSuccess": "Kata sandi berhasil direset!",
+        "resetFailed": "Gagal mereset kata sandi"
       },
       "brandName": "Hutang-Ku",
       "heroTitle": "Lupa kata sandi?",

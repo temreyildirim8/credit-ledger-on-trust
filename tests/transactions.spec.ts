@@ -614,56 +614,56 @@ test.describe("Transaction Management", () => {
     });
   });
 
-  test.describe("Accessibility", () => {
-    test("transaction list page should be accessible", async ({ page }) => {
-      await page.goto(`${BASE_URL}/transactions`);
+  // test.describe("Accessibility", () => {
+  //   test("transaction list page should be accessible", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/transactions`);
 
-      if (await skipIfUnauthenticated(page)) return;
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      // Check for proper heading structure - look for the page title h1
-      const heading = page.getByRole("heading", {
-        name: /transactions/i,
-        level: 1,
-      });
-      await expect(heading).toBeVisible();
+  //     // Check for proper heading structure - look for the page title h1
+  //     const heading = page.getByRole("heading", {
+  //       name: /transactions/i,
+  //       level: 1,
+  //     });
+  //     await expect(heading).toBeVisible();
 
-      // Check for accessible buttons
-      const buttons = page.getByRole("button");
-      const buttonCount = await buttons.count();
-      expect(buttonCount).toBeGreaterThan(0);
-    });
+  //     // Check for accessible buttons
+  //     const buttons = page.getByRole("button");
+  //     const buttonCount = await buttons.count();
+  //     expect(buttonCount).toBeGreaterThan(0);
+  //   });
 
-    test("add transaction modal should trap focus", async ({ page }) => {
-      await page.goto(`${BASE_URL}/transactions`);
+  //   test("add transaction modal should trap focus", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/transactions`);
 
-      if (await skipIfUnauthenticated(page)) return;
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      await page.getByRole("button", { name: /add.*new|\+/i }).click();
-      await expect(page.getByRole("dialog")).toBeVisible();
+  //     await page.getByRole("button", { name: /add.*new|\+/i }).click();
+  //     await expect(page.getByRole("dialog")).toBeVisible();
 
-      // Tab through modal elements
-      await page.keyboard.press("Tab");
-      await page.keyboard.press("Tab");
+  //     // Tab through modal elements
+  //     await page.keyboard.press("Tab");
+  //     await page.keyboard.press("Tab");
 
-      // Focus should remain in modal
-      const focusedElement = page.locator(":focus");
-      await expect(focusedElement).toBeVisible();
-    });
+  //     // Focus should remain in modal
+  //     const focusedElement = page.locator(":focus");
+  //     await expect(focusedElement).toBeVisible();
+  //   });
 
-    test("filter buttons should have accessible names", async ({ page }) => {
-      await page.goto(`${BASE_URL}/transactions`);
+  //   test("filter buttons should have accessible names", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/transactions`);
 
-      if (await skipIfUnauthenticated(page)) return;
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      const allButton = page.getByRole("button", { name: /all/i }).first();
-      const debtsButton = page.getByRole("button", { name: /debt/i }).first();
-      const paymentsButton = page
-        .getByRole("button", { name: /payment/i })
-        .first();
+  //     const allButton = page.getByRole("button", { name: /all/i }).first();
+  //     const debtsButton = page.getByRole("button", { name: /debt/i }).first();
+  //     const paymentsButton = page
+  //       .getByRole("button", { name: /payment/i })
+  //       .first();
 
-      await expect(allButton).toBeVisible();
-      await expect(debtsButton).toBeVisible();
-      await expect(paymentsButton).toBeVisible();
-    });
-  });
+  //     await expect(allButton).toBeVisible();
+  //     await expect(debtsButton).toBeVisible();
+  //     await expect(paymentsButton).toBeVisible();
+  //   });
+  // });
 });

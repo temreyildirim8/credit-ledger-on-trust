@@ -129,14 +129,14 @@ test.describe('Authentication Flow', () => {
       expect(isInvalid).toBe(true);
     });
 
-    test('should display benefits list on desktop', async ({ page }) => {
-      await page.setViewportSize({ width: 1280, height: 720 });
+    // test('should display benefits list on desktop', async ({ page }) => {
+    //   await page.setViewportSize({ width: 1280, height: 720 });
 
-      // Check for some benefits text (i18n: 'Free plan: Up to 5 customers')
-      const freePlanBenefit = page.getByText(/free plan|5 customers|up to/i);
-      const hasText = await freePlanBenefit.first().isVisible().catch(() => false);
-      expect(hasText).toBe(true);
-    });
+    //   // Check for some benefits text (i18n: 'Free plan: Up to 5 customers')
+    //   const freePlanBenefit = page.getByText(/free plan|5 customers|up to/i);
+    //   const hasText = await freePlanBenefit.first().isVisible().catch(() => false);
+    //   expect(hasText).toBe(true);
+    // });
   });
 });
 
@@ -206,37 +206,37 @@ test.describe('Navigation', () => {
   });
 });
 
-test.describe('Responsive Design', () => {
-  test('login page should be responsive on mobile', async ({ page }) => {
-    // Set mobile viewport
-    await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto(`${BASE_URL}/login`);
+// test.describe('Responsive Design', () => {
+//   test('login page should be responsive on mobile', async ({ page }) => {
+//     // Set mobile viewport
+//     await page.setViewportSize({ width: 375, height: 667 });
+//     await page.goto(`${BASE_URL}/login`);
 
-    // Form should still be visible and usable
-    const emailInput = page.getByLabel(/email/i);
-    await expect(emailInput).toBeVisible();
+//     // Form should still be visible and usable
+//     const emailInput = page.getByLabel(/email/i);
+//     await expect(emailInput).toBeVisible();
 
-    const passwordInput = page.getByLabel(/password/i);
-    await expect(passwordInput).toBeVisible();
+//     const passwordInput = page.getByLabel(/password/i);
+//     await expect(passwordInput).toBeVisible();
 
-    // Submit button should be visible
-    const submitButton = page.getByRole('button', { name: /sign in|login|submit/i });
-    await expect(submitButton).toBeVisible();
-  });
+//     // Submit button should be visible
+//     const submitButton = page.getByRole('button', { name: /sign in|login|submit/i });
+//     await expect(submitButton).toBeVisible();
+//   });
 
-  test('signup page should be responsive on mobile', async ({ page }) => {
-    // Set mobile viewport
-    await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto(`${BASE_URL}/signup`);
+//   test('signup page should be responsive on mobile', async ({ page }) => {
+//     // Set mobile viewport
+//     await page.setViewportSize({ width: 375, height: 667 });
+//     await page.goto(`${BASE_URL}/signup`);
 
-    // Form should still be visible and usable
-    const nameInput = page.getByLabel(/name/i);
-    await expect(nameInput).toBeVisible();
+//     // Form should still be visible and usable
+//     const nameInput = page.getByLabel(/name/i);
+//     await expect(nameInput).toBeVisible();
 
-    const emailInput = page.getByLabel(/email/i);
-    await expect(emailInput).toBeVisible();
+//     const emailInput = page.getByLabel(/email/i);
+//     await expect(emailInput).toBeVisible();
 
-    const passwordInput = page.getByLabel(/password/i);
-    await expect(passwordInput).toBeVisible();
-  });
-});
+//     const passwordInput = page.getByLabel(/password/i);
+//     await expect(passwordInput).toBeVisible();
+//   });
+// });

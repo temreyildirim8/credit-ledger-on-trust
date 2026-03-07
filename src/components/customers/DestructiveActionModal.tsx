@@ -33,6 +33,8 @@ export function DestructiveActionModal({
   loading = false,
 }: DestructiveActionModalProps) {
   const tCommon = useTranslations('common');
+  const tArchive = useTranslations('customers.archive');
+  const tDelete = useTranslations('customers.deleteCustomer');
 
   const isArchive = actionType === 'archive';
 
@@ -56,29 +58,24 @@ export function DestructiveActionModal({
             )}
           </div>
           <AlertDialogTitle className="font-display">
-            {isArchive ? 'Archive Customer' : 'Delete Customer'}
+            {isArchive ? tArchive('title') : tDelete('title')}
           </AlertDialogTitle>
           <AlertDialogDescription asChild>
             <div className="space-y-2">
-              {isArchive ? (
-                <>
-                  <p>
-                    Are you sure you want to archive <strong>{customerName}</strong>?
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    This customer will be hidden from your list but their data will be preserved. You can restore archived customers later.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p>
-                    Are you sure you want to <span className="text-red-600 font-semibold">permanently delete</span> <strong>{customerName}</strong>?
-                  </p>
-                  <p className="text-sm text-red-600">
-                    This will also delete all transaction history for this customer. This action cannot be undone.
-                  </p>
-                </>
-              )}
+              <p>
+                {isArchive ? (
+                  <>
+                    {tArchive('descriptionPrefix')} <strong>{customerName}</strong>{tArchive('descriptionSuffix')}
+                  </>
+                ) : (
+                  <>
+                    {tDelete('descriptionPrefix')} <span className="text-red-600 font-semibold">{tDelete('descriptionHighlight')}</span> <strong>{customerName}</strong>{tDelete('descriptionSuffix') ? ` ${tDelete('descriptionSuffix')}` : ''}
+                  </>
+                )}
+              </p>
+              <p className={cn("text-sm", isArchive ? "text-muted-foreground" : "text-red-600")}>
+                {isArchive ? tArchive('hint') : tDelete('hint')}
+              </p>
             </div>
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -97,7 +94,7 @@ export function DestructiveActionModal({
               )}
             >
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isArchive ? 'Archive' : tCommon('delete')}
+              {isArchive ? tArchive('confirm') : tDelete('confirm')}
             </Button>
           </AlertDialogAction>
         </AlertDialogFooter>

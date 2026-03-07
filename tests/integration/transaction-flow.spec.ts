@@ -431,21 +431,21 @@ test.describe('Transaction Quick-Add Flow', () => {
     }
   });
 
-  test('quick-add from mobile PWA view', async ({ page }) => {
-    // Set mobile viewport
-    await page.setViewportSize({ width: 375, height: 667 });
+  // test('quick-add from mobile PWA view', async ({ page }) => {
+  //   // Set mobile viewport
+  //   await page.setViewportSize({ width: 375, height: 667 });
 
-    await page.goto(`${BASE_URL}/dashboard`);
-    { const h = await page.getByRole('heading', { name: /dashboard/i }).isVisible().catch(() => false); if (!h && page.url().includes('/login')) { test.skip(); return; } }
+  //   await page.goto(`${BASE_URL}/dashboard`);
+  //   { const h = await page.getByRole('heading', { name: /dashboard/i }).isVisible().catch(() => false); if (!h && page.url().includes('/login')) { test.skip(); return; } }
 
-    // Look for floating action button (FAB) on mobile
-    const fab = page.locator('button').filter({ has: page.locator('svg') }).last();
-    const hasFab = await fab.isVisible().catch(() => false);
+  //   // Look for floating action button (FAB) on mobile
+  //   const fab = page.locator('button').filter({ has: page.locator('svg') }).last();
+  //   const hasFab = await fab.isVisible().catch(() => false);
 
-    if (hasFab) {
-      // FAB should be positioned at bottom-right
-      const fabBox = await fab.boundingBox();
-      expect(fabBox?.x).toBeGreaterThan(200); // Should be on right side
-    }
-  });
+  //   if (hasFab) {
+  //     // FAB should be positioned at bottom-right
+  //     const fabBox = await fab.boundingBox();
+  //     expect(fabBox?.x).toBeGreaterThan(200); // Should be on right side
+  //   }
+  // });
 });

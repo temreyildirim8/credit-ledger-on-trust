@@ -546,6 +546,7 @@
       "sectionTitle": "Información Adicional"
     },
     "details": {
+      "dialogTitle": "Detalles del Cliente",
       "totalDebt": "Deuda Total",
       "balance": "Saldo",
       "contact": "Contacto",
@@ -573,6 +574,21 @@
       "delete": "Eliminar",
       "lastActivity": "Última Actividad",
       "status": "Estado"
+    },
+    "archive": {
+      "title": "Archivar Cliente",
+      "descriptionPrefix": "¿Estás seguro de que quieres archivar a",
+      "descriptionSuffix": "?",
+      "hint": "Este cliente se ocultará de tu lista pero sus datos se conservarán. Puedes restaurar clientes archivados más tarde.",
+      "confirm": "Archivar"
+    },
+    "deleteCustomer": {
+      "title": "Eliminar Cliente",
+      "descriptionPrefix": "¿Estás seguro de que quieres",
+      "descriptionHighlight": "eliminar permanentemente",
+      "descriptionSuffix": "a",
+      "hint": "Esto también eliminará todo el historial de transacciones de este cliente. Esta acción no se puede deshacer.",
+      "confirm": "Eliminar"
     },
     "success": "Cliente agregado con éxito",
     "editSuccess": "Cliente actualizado con éxito",
@@ -966,6 +982,18 @@
         "title": "Contraseña Restablecida",
         "success": "¡Éxito!",
         "successDescription": "Tu contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña."
+      },
+      "actions": {
+        "invalidEmail": "Por favor ingresa una dirección de correo válida",
+        "sendFailed": "Error al enviar el correo de restablecimiento",
+        "sendSuccess": "¡Enlace de restablecimiento enviado a tu correo!",
+        "allFieldsRequired": "Todos los campos son obligatorios",
+        "passwordsMismatch": "Las contraseñas no coinciden",
+        "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+        "sessionExpired": "Sesión inválida o expirada. Por favor intenta de nuevo.",
+        "updateFailed": "Error al actualizar la contraseña",
+        "resetSuccess": "¡Contraseña restablecida exitosamente!",
+        "resetFailed": "Error al restablecer la contraseña"
       },
       "brandName": "Fiado-X",
       "heroTitle": "¿Olvidaste tu contraseña?",

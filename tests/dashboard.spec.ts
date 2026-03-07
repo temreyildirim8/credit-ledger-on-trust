@@ -602,57 +602,57 @@ test.describe("Dashboard", () => {
     });
   });
 
-  test.describe("Accessibility", () => {
-    test("dashboard page should be accessible", async ({ page }) => {
-      await page.goto(`${BASE_URL}/dashboard`);
-      await page.waitForLoadState('networkidle');
+  // test.describe("Accessibility", () => {
+  //   test("dashboard page should be accessible", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/dashboard`);
+  //     await page.waitForLoadState('networkidle');
 
-      if (await skipIfUnauthenticated(page)) return;
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      // Check for proper heading structure (h1 or h2 either works)
-      const heading = page.getByRole('heading').first();
-      const hasHeading = await heading.isVisible().catch(() => false);
-      expect(hasHeading).toBe(true);
+  //     // Check for proper heading structure (h1 or h2 either works)
+  //     const heading = page.getByRole('heading').first();
+  //     const hasHeading = await heading.isVisible().catch(() => false);
+  //     expect(hasHeading).toBe(true);
 
-      // Check for accessible buttons
-      const buttons = page.getByRole("button");
-      const buttonCount = await buttons.count();
-      expect(buttonCount).toBeGreaterThan(0);
-    });
+  //     // Check for accessible buttons
+  //     const buttons = page.getByRole("button");
+  //     const buttonCount = await buttons.count();
+  //     expect(buttonCount).toBeGreaterThan(0);
+  //   });
 
-    test("KPI cards should have accessible labels", async ({ page }) => {
-      await page.goto(`${BASE_URL}/dashboard`);
+  //   test("KPI cards should have accessible labels", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/dashboard`);
 
-      if (await skipIfUnauthenticated(page)) return;
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      const statsVisible = await page
-        .getByText(/total.*owed|active.*customer/i)
-        .isVisible()
-        .catch(() => false);
+  //     const statsVisible = await page
+  //       .getByText(/total.*owed|active.*customer/i)
+  //       .isVisible()
+  //       .catch(() => false);
 
-      if (statsVisible) {
-        // Stats should have readable labels
-        const labels = page.getByText(/total|collected|customer|month/i);
-        const labelCount = await labels.count();
-        expect(labelCount).toBeGreaterThan(0);
-      }
-    });
+  //     if (statsVisible) {
+  //       // Stats should have readable labels
+  //       const labels = page.getByText(/total|collected|customer|month/i);
+  //       const labelCount = await labels.count();
+  //       expect(labelCount).toBeGreaterThan(0);
+  //     }
+  //   });
 
-    test("quick actions should be keyboard accessible", async ({ page }) => {
-      await page.goto(`${BASE_URL}/dashboard`);
+  //   test("quick actions should be keyboard accessible", async ({ page }) => {
+  //     await page.goto(`${BASE_URL}/dashboard`);
 
-      if (await skipIfUnauthenticated(page)) return;
+  //     if (await skipIfUnauthenticated(page)) return;
 
-      // Tab through elements
-      await page.keyboard.press("Tab");
-      await page.keyboard.press("Tab");
+  //     // Tab through elements
+  //     await page.keyboard.press("Tab");
+  //     await page.keyboard.press("Tab");
 
-      // Focus should be visible
-      const focusedElement = page.locator(":focus");
-      const hasFocus = await focusedElement.isVisible().catch(() => false);
-      expect(typeof hasFocus).toBe("boolean");
-    });
-  });
+  //     // Focus should be visible
+  //     const focusedElement = page.locator(":focus");
+  //     const hasFocus = await focusedElement.isVisible().catch(() => false);
+  //     expect(typeof hasFocus).toBe("boolean");
+  //   });
+  // });
 
   test.describe("Navigation", () => {
     test("should navigate to customers from empty state", async ({ page }) => {

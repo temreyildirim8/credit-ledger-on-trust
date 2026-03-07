@@ -561,6 +561,7 @@
       "sectionTitle": "Ek Bilgiler"
     },
     "details": {
+      "dialogTitle": "Müşteri Detayları",
       "totalDebt": "Toplam Borç",
       "balance": "Bakiye",
       "contact": "İletişim",
@@ -588,6 +589,21 @@
       "archive": "Arşivle",
       "delete": "Sil",
       "status": "Durum"
+    },
+    "archive": {
+      "title": "Müşteriyi Arşivle",
+      "descriptionPrefix": "Arşivlemek istediğinize emin misiniz:",
+      "descriptionSuffix": "?",
+      "hint": "Bu müşteri listenizden gizlenecek ancak verileri korunacaktır. Arşivlenen müşterileri daha sonra geri yükleyebilirsiniz.",
+      "confirm": "Arşivle"
+    },
+    "deleteCustomer": {
+      "title": "Müşteriyi Sil",
+      "descriptionPrefix": "",
+      "descriptionHighlight": "kalıcı olarak silmek",
+      "descriptionSuffix": "istediğinize emin misiniz?",
+      "hint": "Bu işlem bu müşterinin tüm işlem geçmişini de silecektir. Bu işlem geri alınamaz.",
+      "confirm": "Sil"
     },
     "success": "Müşteri başarıyla eklendi",
     "editSuccess": "Müşteri başarıyla güncellendi",
@@ -1107,10 +1123,10 @@
       "successDescription2": "Lütfen gelen kutunuzu (ve spam klasörünüzü) kontrol edin, ardından hesabınızı doğrulamak için bağlantıya tıklayın.",
       "goToLogin": "Giriş Sayfasına Git",
       "acceptTerms": "Lütfen Kullanım Koşullarını ve Gizlilik Politikasını kabul edin",
-      "agreePrefix": "Kabul ediyorum",
+      "agreePrefix": " ",
       "agreeAnd": "ve",
       "termsLink": "Kullanım Koşullarını",
-      "privacyLink": "Gizlilik Politikasını",
+      "privacyLink": "Gizlilik Politikasını kabul ediyorum",
       "emailSentTitle": "E-postanızı Kontrol Edin",
       "emailSentSubtitle": "Gelen kutunuza bir doğrulama bağlantısı gönderildi.",
       "successAutoConfirmed": "Hesap oluşturuldu! Yönlendiriliyor...",
@@ -1149,6 +1165,18 @@
         "title": "Şifre Sıfırlandı",
         "success": "Başarılı!",
         "successDescription": "Şifreniz başarıyla sıfırlandı. Artık yeni şifrenizle giriş yapabilirsiniz."
+      },
+      "actions": {
+        "invalidEmail": "Geçerli bir e-posta adresi girin",
+        "sendFailed": "Şifre sıfırlama e-postası gönderilemedi",
+        "sendSuccess": "Şifre sıfırlama bağlantısı e-posta adresinize gönderildi!",
+        "allFieldsRequired": "Tüm alanlar gerekli",
+        "passwordsMismatch": "Şifreler eşleşmiyor",
+        "passwordTooShort": "Şifre en az 6 karakter olmalı",
+        "sessionExpired": "Oturum geçersiz veya süresi dolmuş. Lütfen tekrar deneyin.",
+        "updateFailed": "Şifre güncellenemedi",
+        "resetSuccess": "Şifre başarıyla sıfırlandı!",
+        "resetFailed": "Şifre sıfırlanamadı"
       },
       "brandName": "Veresiye-X",
       "heroTitle": "Şifrenizi mi unuttunuz?",
